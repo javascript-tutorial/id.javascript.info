@@ -6,52 +6,52 @@ Ada dua tipe utama editor kode: IDE dan editor enteng. Kebanyakan orang mengguna
 
 ## IDE
 
-Istilah [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) refers to a powerful editor with many features that usually operates on a "whole project." As the name suggests, it's not just an editor, but a full-scale "development environment."
+Istilah [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) mengacu kepada editor powerful dengan banyak fitur yang biasanya beroperasi di atas "seluruh proyek." Terlihat dari namanya, dia bukan hanya sekedar editor biasa, tapi sebuah "lingkungan pengembangan" berskala besar.
 
-An IDE loads the project (which can be many files), allows navigation between files, provides autocompletion based on the whole project (not just the open file), and integrates with a version management system (like [git](https://git-scm.com/)), a testing environment, and other "project-level" stuff.
+Suatu IDE meload proyek (yang bisa berupa banyak file), memungkingkan navigasi antar file, menyediakan autocompletion berdasarkan seluruh proyek (tidak hanya file yang terbuka), dan berintegrasi dengan sistem manajemen versi (seperti [git](https://git-scm.com/)), lingkungan pengujian, dan hal-hal "level proyek" lainnya.
 
-If you haven't selected an IDE yet, consider the following options:
+Jika kamu belum memilih satu IDE, pertimbangkan opsi-opsi berikut:
 
-- [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development. The same company offers other editors for other languages (paid).
-- [Netbeans](http://netbeans.org/) (free).
+- [WebStorm](http://www.jetbrains.com/webstorm/) untuk pengembangan frontend. Perusahaan ini menawarkan editor lain untuk bahasa lain (berbayar).
+- [Netbeans](http://netbeans.org/) (gratis).
 
-Semua IDE ini adalah cross-platform.
+Semua IDE ini bersifat cross-platform.
 
-Untuk Windows, there's also "Visual Studio", not to be confused with "Visual Studio Code." "Visual Studio" is a paid and mighty Windows-only editor, well-suited for the .NET platform. A free version of it is called [Visual Studio Community](https://www.visualstudio.com/vs/community/).
+Untuk Windows, ada juga "Visual Studio", jangan dicampuradukkan dengan "Visual Studio Code." "Visual Studio" itu berbayar dan merupakan editor khusus Windows, sangat cocok untuk platform .NET. Versi gratisnya disebut [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
-Many IDEs are paid but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
+Banyak IDE yang berbayar tetapi punya masa coba. Biaya mereka biasanya tidak seberapa dibanding gaji pengembang berkualitas, jadi pilihlah yang terbaik untukmu.
 
-## Lightweight editors
+## Editor ringan
 
-"Lightweight editors" are not as powerful as IDEs, but they're fast, elegant and simple.
+"Editor ringan" tidak se-powerful IDE, tapi mereka cepat, elegan, dan simpel.
 
-They are mainly used to open and edit a file instantly.
+Mereka digunakan terutama untuk membuka dan mengedit file secara instan.
 
-The main difference between a "lightweight editor" and an "IDE" is that an IDE works on a project-level, so it loads much more data on start, analyzes the project structure if needed and so on. A lightweight editor is much faster if we need only one file.
+Perbedaan utama antara "editor ringan" dan "IDE" adalah IDE bekerja pada level proyek, jadi dia meload banyak data di awal, menganalisa struktur proyek jika dibutuhkan dan lain sebagainya. Editor ringan jauh lebih cepat jika kita cuma butuh satu file.
 
-In practice, lightweight editors may have a lot of plugins including directory-level syntax analyzers and autocompleters, so there's no strict border between a lightweight editor and an IDE.
+Pada praktiknya, editor ringan bisa punya banyak plugin termasuk syntax analyzers dan autocompleters level direktori, jadi tidak ada batasan ketat antara editor ringan dan IDE.
 
-The following options deserve your attention:
+Opsi-opsi berikut patut anda perhatikan:
 
-- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free) also has many IDE-like features.
-- [Atom](https://atom.io/) (cross-platform, free).
+- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, gratis) juga punya banyak fitur seperti IDE.
+- [Atom](https://atom.io/) (cross-platform, gratis).
 - [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
-- [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
-- [Vim](http://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+- [Notepad++](https://notepad-plus-plus.org/) (Windows, gratis).
+- [Vim](http://www.vim.org/) dan [Emacs](https://www.gnu.org/software/emacs/) sangat keren jika kamu tahu cara memakainya.
 
-## My favorites
+## Favorit saya
 
-The personal preference of the author is to have both an IDE for projects and a lightweight editor for quick and easy file editing.
+Preferensi personal penulis ialah punya IDE untuk proyek dan editor ringan untuk mengedit file dengan cepat dan mudah.
 
-I'm using:
+Saya menggunakan:
 
-- As an IDE for JS -- [WebStorm](http://www.jetbrains.com/webstorm/) (I switch to one of the other JetBrains offerings when using other languages)
-- As a lightweight editor -- [Sublime Text](http://www.sublimetext.com) or [Atom](https://atom.io/).
+- IDE untuk JS -- [WebStorm](http://www.jetbrains.com/webstorm/) (Saya berganti ke salah satu produk JetBrains lainnya jika menggunakan bahasa lain)
+- Editor ringan -- [Sublime Text](http://www.sublimetext.com) atau [Atom](https://atom.io/).
 
-## Let's not argue
+## Ayo jangan berantem
 
-The editors in the lists above are those that either I or my friends whom I consider good developers have been using for a long time and are happy with.
+Daftar IDE dan editor di atas merupakan barang yang sudah biasa dipakai saya atau teman-teman saya para pengembang profesional.
 
-There are other great editors in our big world. Please choose the one you like the most.
+Ada banyak editor bagus lainnya di dunia ini. Silakan pilih satu yang paling kamu sukai.
 
-The choice of an editor, like any other tool, is individual and depends on your projects, habits, and personal preferences.
+Pilihan editor, sama seperti tool lainnya, bersifat individual dan tergantung pada proyek, kebiasaan, dan preferensi personal.
