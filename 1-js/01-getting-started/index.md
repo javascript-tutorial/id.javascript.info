@@ -1,3 +1,3 @@
-# An introduction
+# Pengenalan
 
-About the JavaScript language and the environment to develop with it.
+Tentang bahasa JavaScript dan lingkungan pengembangannya.

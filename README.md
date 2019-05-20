@@ -1,65 +1,65 @@
-# The Modern JavaScript Tutorial in Indonesian
+# Tutorial JavaScript Modern dalam Bahasa Indonesia
 
-This repository hosts the translation of <https://javascript.info> in Indonesian.
+Repositor ini menghost translasi dari <https://javascript.info> ke dalam Bahasa Indonesia.
 
 
-**That's how you can contribute:**
+**Bagaimana kamu bisa berkontribusi:**
 
-- See the [Indonesian Translate Progress](https://github.com/javascript-tutorial/id.javascript.info/issues/1) issue.
-- Choose an unchecked article you'd like to translate.
-- Add a comment with the article title to the issue, e.g. `An Introduction to JavaScript`.
-    - Our bot will mark it in the issue, for everyone to know that you're translating it.
-    - Your comment should contain only the title.
-- Fork the repository, translate and send a PR when done.
-    - PR title should match article title, the bot will write it's number into the issue.
+- Lihat isu [Progress Translasi Bahasa Indonesia](https://github.com/javascript-tutorial/id.javascript.info/issues/1).
+- Pilih artikel yang belum dicek yang mau kamu translasi.
+- Tambahkan komen dengan judul artikel pada isunya, contoh `Pengenalan JavaScript`.
+    - Bot kamu akan menandai di dalam isunya supaya setiap orang tahu apa yang kamu sedang translasikan.
+    - Komenmu sebaiknya hanya mengandung judul.
+- Fork repositori ini, translasi dan kirim PR ketika selesai.
+    - Judul PR sebaiknya cocok dengan judul artikel, bot akan menulis nomornya ke dalam isu.
 
-Please kindly allow maintainers to review and merge or request changes in your translation.
+Tolong persilakan maintainer mereview dan menggabungkan atau meminta perubahan dalam translasi.
    
-If maintainers do not respond, or if you'd like to become a maintainer, write us at the [main repo](https://github.com/javascript-tutorial/en.javascript.info/issues/new).
+Jika maintainer tidak merespon, atau jika kamu ingin menjadi maintainer, beritahu kamu di [main repo](https://github.com/javascript-tutorial/en.javascript.info/issues/new).
     
-**Let others know what you're translating, in message boards or chats in your language. Invite them to join!**
+**Biarkan orang tahu apa yang sedang kamu translasi, di papan pesan atau chat di bahasamu. Undang mereka untuk bergabung!**
 
-🎉 Thank you!
+🎉 Terima kasih!
 
-Your name and the contribution size will appear in the "About project" page when the translation gets published.
+Nama dan ukuran kontribusi kamu size akan muncul di laman "Tentang proyek" ketika translasi dipublikasikan.
 
-P.S. The full list of languages can be found at <https://javascript.info/translate>.
+P.S. Daftar lengkap bahasa bisa ditemiukan di <https://javascript.info/translate>.
 
-## Structure
+## Struktur
 
-Every chapter, an article or a task resides in its own folder.
+Tiap bab, satu artikel atau task tetap di masing-masing foldernya.
 
-The folder is named `N-url`, where `N` – is the number for sorting (articles are ordered), and `url` is the URL-slug on the site.
+Folder itu dinamai `N-url`, yang mana `N` – adalah nomor pengurutan (artikel diurut), dan `url` adalah URL-slug di situsnya.
 
-The folder has one of files:
+Folder itu punya satu dari file berikut:
 
-- `index.md` for a section,
-- `article.md` for an article,
-- `task.md` for a task formulation (+`solution.md` with the solution text if any).
+- `index.md` untuk satu seksi,
+- `article.md` untuk satu artikel,
+- `task.md` untuk satu task formulasi (+`solution.md` with the solution text if any).
 
-A file starts with the `# Title Header`, and then the text in Markdown-like format, editable in a simple text editor. 
+Suatu file mulai dengan `# Title Header`, dan teks dalam format serupa Markdown, dapat diedit dalam editor teks sederhana. 
 
-Additional resources and examples for the article or the task, are also in the same folder.
+Sumber tambahan dan contoh untuk artikel atau untuk task, juga ada dalam folder yang sama.
 
-## Translation Tips
+## Tip Translasi
 
-Please keep line breaks and paragraphs "as is": don't add newlines and don't remove existing ones. Makes it easy to merge future changes from the English version into the translation. 
+Mohon jaga line break dan paragraf "apa adanya": jangan tambahkan newline dan jangan hapus yang sudah ada. Membuat itu mudah digabung ke perubahan mendatang dari versi Inggris ke versi translasi.
 
-If you see that the English version can be improved – great, please send a PR to it.
+Jika menurut kamu versi English bisa diimprovisasi – bagus, silakan kirim PR.
 
-### Terms
+### Istilah
 
-- Some specification terms are not to be translated, e.g. "Function Declaration" can be left "as is".
-- For other terms like `resolved promise`, `slash`, `regexp`, and so on - look for a glossary, hopefully there's one for your language already. If not, look for translations in manuals, such as [MDN](https://developer.mozilla.org/en-US/).
+- Beberapa istilah spesifikasi tidak usah ditranslate, e.g. "Deklarasi Function" bisa kiri "apa adanya".
+- Untuk istilah lain seperti `resolved promise`, `slash`, `regexp`, dan lainnya - lihat glosarium, diharapkan ada satu bahasa yang siap. Kalau tidak, cari translasi dalam manual, such as [MDN](https://developer.mozilla.org/en-US/).
 
-### Text in Code Blocks
+### Teks dalam Code Blocks
 
-- Translate comments.
-- Translate user-messages and example strings.
-- Don't translate variables, classes, identifiers.
-- Ensure that the code works after the translation :)
+- Translasi komen.
+- Translasi pesan-user dan contoh string.
+- Jangan mentranslasi variabel, kelas, identifier.
+- Pastikan kode berjalan setelah translasi :)
 
-Example:
+Contoh:
 
 ```js
 // Example
@@ -67,7 +67,7 @@ const text = "Hello, world";
 document.querySelector('.hello').innerHTML = text;
 ```
 
-✅ DO (translate comment):
+✅ LAKUKAN (translasi komen):
 
 ```js
 // Ejemplo
@@ -75,7 +75,7 @@ const text = 'Hola mundo';
 document.querySelector('.hello').innerHTML = text;
 ```
 
-❌ DON'T (translate class):
+❌ JANGAN (translasi kelas):
 
 ```js
 // Ejemplo
@@ -85,29 +85,29 @@ const text = 'Hola mundo';
 document.querySelector('.hola').innerHTML = text;
 ```
 
-### External Links
+### Link External
 
-If an external link is to Wikipedia, e.g. `https://en.wikipedia.org/wiki/JavaScript`, and a version of that article exists in your language that is of decent quality, link to that version instead.
+Jika link external adalah ke Wikipedia, e.g. `https://en.wikipedia.org/wiki/JavaScript`, dan version artikel tersebut muncul dalam bahasamu yang dalam kualitas yang layak, berhubungan dengan versinya.
 
-Example:
+Contohnya:
 
 ```md
 [JavaScript](https://en.wikipedia.org/wiki/JavaScript) is a programming language.
 ```
 
-✅ OK (en -> es):
+✅ OK (en -> id):
 
 ```md
-[JavaScript](https://es.wikipedia.org/wiki/JavaScript) es un lenguaje de programación.
+[JavaScript](https://es.wikipedia.org/wiki/JavaScript) adalah bahasa pemrograman.
 ```
 
-For links to MDN, a partially translated version is ok.
+Untuk link ke MDN, versi translasi parsial juga ok.
 
-If a linked article has no translated version, leave the link "as is".
+Jika link artikel tidak punya translasinya, biarkan linknya "apa adanya".
 
 ### Metadata
 
-Some files, usually tasks, have YAML metadata at the top, delimited by `---`:
+Beberapa file, biasanya task, punya metadara YAML di posisi atas, dipisahkan tanda  `---`:
 
 ```md
 importance: 5
@@ -116,20 +116,20 @@ importance: 5
 ...
 ```
 
-Please don't translate "importance" (and other top metadata).
+Mohon jangan translasi "importance" (dan top metadata lainnya).
 
 ### Anchors
 
-Some headers have `[#anchor]` at the end, e.g.
+Beberapa header punya `[#anchor]` di akhir, contohnya
 
 ```md
 ## Spread operator [#spread-operator]
 ```
 
-Please don't translate or remove the `[#...]` part, it's for URL anchors.
+Jangan translasi atau hapus bagian `[#...]`, demi URL anchors.
 
-## Running locally
+## Jalankan secara lokal
 
-You can run the tutorial server locally to see how the translation looks.
+Kamu bisa menjalankan tutorial server secara lokal untuk melihat bagaimana translasinya.
 
-The server and install instructions are at <https://github.com/javascript-tutorial/server>. 
+Instruksi server dan instalasi di <https://github.com/javascript-tutorial/server>. 
