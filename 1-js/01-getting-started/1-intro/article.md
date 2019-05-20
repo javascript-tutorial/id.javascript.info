@@ -6,9 +6,9 @@ Mari kita tengok apa yang spesial dari JavaScript, apa saja yang bisa kita raih 
 
 *JavaScript* awalnya dibuat untuk *"membuat laman web jadi hidup"*.
 
-Program yang ada dalam bahasa ini disebut *scripts*. Mereka bisa ditulis langsung di dalam HTML laman web dan dieksekusi otomatis saat laman diload.
+Program yang ada dalam bahasa ini disebut *script*. Mereka bisa ditulis langsung di dalam HTML laman web dan dieksekusi otomatis saat laman diload.
 
-Scripts tersedia dan dieksekusi sebagai plain text. Mereka tidak butuh persiapan spesial atau kompilasi untuk berjalan.
+Script tersedia dan dieksekusi sebagai plain text. Mereka tidak butuh persiapan spesial atau kompilasi untuk berjalan.
 
 Dalam apsek ini, JavaScript sangat berbeda dari bahasa lain yang disebut [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
 

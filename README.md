@@ -1,6 +1,6 @@
 # Tutorial JavaScript Modern dalam Bahasa Indonesia
 
-Repositor ini menghost translasi dari <https://javascript.info> ke dalam Bahasa Indonesia.
+Repositor ini merupakan host translasi dari <https://javascript.info> ke dalam Bahasa Indonesia.
 
 
 **Bagaimana kamu bisa berkontribusi:**
@@ -17,7 +17,7 @@ Tolong persilakan maintainer mereview dan menggabungkan atau meminta perubahan d
    
 Jika maintainer tidak merespon, atau jika kamu ingin menjadi maintainer, beritahu kamu di [main repo](https://github.com/javascript-tutorial/en.javascript.info/issues/new).
     
-**Biarkan orang tahu apa yang sedang kamu translasi, di papan pesan atau chat di bahasamu. Undang mereka untuk bergabung!**
+**Biarkan orang lain tahu apa yang sedang kamu translasi, di papan pesan atau chat di bahasamu. Undang mereka untuk bergabung!**
 
 🎉 Terima kasih!
 
@@ -45,7 +45,7 @@ Sumber tambahan dan contoh untuk artikel atau untuk task, juga ada dalam folder 
 
 Mohon jaga line break dan paragraf "apa adanya": jangan tambahkan newline dan jangan hapus yang sudah ada. Membuat itu mudah digabung ke perubahan mendatang dari versi Inggris ke versi translasi.
 
-Jika menurut kamu versi English bisa diimprovisasi – bagus, silakan kirim PR.
+Jika menurut kamu versi Inggris bisa diimprovisasi – bagus, silakan kirim PR.
 
 ### Istilah
 
