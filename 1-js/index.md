@@ -1,6 +1,5 @@
-# The JavaScript language
+# Bahasa JavaScript
 
-Here we learn JavaScript, starting from scratch and go on to advanced concepts like OOP.
+Di sini kita belajar JavaScript, mulai dari nol dan lanjut terus hingga konsep yang mutakhir macam OOP.
 
-We concentrate on the language itself here, with the minimum of environment-specific notes.
-
+Konsentrasi kita di sini tertuju ke bahasanya itu sendiri, dengan catatan lingkungan tertentu se-minimum mungkin.
