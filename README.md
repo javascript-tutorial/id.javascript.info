@@ -118,7 +118,7 @@ importance: 5
 
 Mohon jangan translasi "importance" (dan top metadata lainnya).
 
-### Anchors
+### Anchor
 
 Beberapa header punya `[#anchor]` di akhir, contohnya
 
@@ -132,4 +132,4 @@ Jangan translasi atau hapus bagian `[#...]`, demi URL anchors.
 
 Kamu bisa menjalankan tutorial server secara lokal untuk melihat bagaimana translasinya.
 
-Instruksi server dan instalasi di <https://github.com/javascript-tutorial/server>. 
+Instruksi server dan instal di <https://github.com/javascript-tutorial/server>. 
