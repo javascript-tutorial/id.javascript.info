@@ -1,14 +1,14 @@
 # Konsol pengembang
 
-Code is prone to errors. You will quite likely make errors... Oh, what am I talking about? You are *absolutely* going to make errors, at least if you're a human, not a [robot](https://en.wikipedia.org/wiki/Bender_(Futurama)).
+Yang namanya kode selalu rentan error. Mudah sekali bagimu bikin error... Benar kan? Kamu *tidak akan pernah* luput dari error, itu karena kamu manusia, bukan [robot](https://en.wikipedia.org/wiki/Bender_(Futurama)).
 
-But in the browser, users don't see errors by default. So, if something goes wrong in the script, we won't see what's broken and can't fix it.
+Tapi di dalam peramban, error tidak terlihat ke pengguna secara default. Jadi, kalau ada yang salah di script, itu tidak kelihatan mata kita dan kita sudah memperbaiki itu.
 
-To see errors and get a lot of other useful information about scripts, "developer tools" have been embedded in browsers.
+Supaya bisa melihat error dan memperoleh informasi berfaedah lainnya dari script, "tools pengembang" ditanamkan di dalam peramban.
 
-Most developers lean towards Chrome or Firefox for development because those browsers have the best developer tools. Other browsers also provide developer tools, sometimes with special features, but are usually playing "catch-up" to Chrome or Firefox. So most developers have a "favorite" browser and switch to others if a problem is browser-specific.
+Kebanyakan pengembang memakai Chrome atau Firefox untuk pengembangan karena tools pengembangan yang mereka punya paling mantap. Peramban lain punya juga koq, ada with special features, but are usually playing "catch-up" to Chrome or Firefox. So most developers have a "favorite" browser and switch to others if a problem is browser-specific.
 
-Developer tools are potent; they have many features. To start, we'll learn how to open them, look at errors, and run JavaScript commands.
+Tools pengembang mengandung faedah; mereka punya banyak fitur. Untuk memulainya, kita akan belajar cara membuka mereka, mencari error, dan menjalankan perintah JavaScript.
 
 ## Google Chrome
 
