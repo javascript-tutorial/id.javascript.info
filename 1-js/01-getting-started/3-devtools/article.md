@@ -12,53 +12,53 @@ Tools pengembang mengandung faedah; mereka punya banyak fitur. Untuk memulainya,
 
 ## Google Chrome
 
-Open the page [bug.html](bug.html).
+Buka laman [bug.html](bug.html).
 
-There's an error in the JavaScript code on it. It's hidden from a regular visitor's eyes, so let's open developer tools to see it.
+Ada satu error di dalam kode JavaScript di situ. Ia tersembunyi dari mata pengunjung biasa, mari kita buka tools pengembang untuk melihatnya.
 
-Press `key:F12` or, if you're on Mac, then `key:Cmd+Opt+J`.
+Tekan `key:F12` atau, kalau kamu pakai Mac, tekan `key:Cmd+Opt+J`.
 
-The developer tools will open on the Console tab by default.
+Tools pengembang akan terbuka pada Console tab secara default.
 
-It looks somewhat like this:
+Nanti tampilannya seperti ini:
 
 ![chrome](chrome.png)
 
-The exact look of developer tools depends on your version of Chrome. It changes from time to time but should be similar.
+Tampilan persisnya tools pengembang tergantung versi Chrome kamu. Ia berubah dari masa ke masa tapi tetap serupa.
 
-- Here we can see the red-colored error message. In this case, the script contains an unknown "lalala" command.
-- On the right, there is a clickable link to the source `bug.html:12` with the line number where the error has occurred.
+- Di sini kita bisa melihat pesan error berwarna merah. Di sini, scriptnya mengandung perintah asing "lalala".
+- Di kanan, ada link yang bisa diklik ke sumber `bug.html:12` dengan nomor baris di mana error itu muncul.
 
-Below the error message, there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands. Press `key:Enter` to run them (`key:Shift+Enter` to input multi-line commands).
+Di bawah pesan error, ada simbol `>` berwarna biru. Ia menandakan "command line" di mana kita bisa mengetik perintah JavaScript. Tekan `key:Enter` untuk menjalankannya (`key:Shift+Enter` untuk menginput perintah multi-baris).
 
-Now we can see errors, and that's enough for a start. We'll come back to developer tools later and cover debugging more in-depth in the chapter <info:debugging-chrome>.
+Sekarang kita bisa melihat error, dan itu sudah cukup untuk permulaan. Kita nanti akan kembali ke tools pengembang dan mengcover debugging lebih dalam di bab <info:debugging-chrome>.
 
 
-## Firefox, Edge, and others
+## Firefox, Edge, dan lainnya
 
-Most other browsers use `key:F12` to open developer tools.
+Banyak peramban lain memakai `key:F12` untuk membuka tools pengembang.
 
-The look & feel of them is quite similar. Once you know how to use one of these tools (you can start with Chrome), you can easily switch to another.
+Look & feel mereka hampir mirip. Sekali kamu tahu cara memakainya (kamu bisa mulai dengan Chrome), kamu bisa dengan mudah ganti dari satu ke yang lain.
 
 ## Safari
 
-Safari (Mac browser, not supported by Windows/Linux) is a little bit special here. We need to enable the "Develop menu" first.
+Safari (peramban Mac, tidak didukung Windows/Linux) agak sedikit spesial di sini. Kita harus mengaktifkan "Develop menu" terlebih dulu.
 
-Open Preferences and go to the "Advanced" pane. There's a checkbox at the bottom:
+Buka Preferences dan pergi ke "Advanced" pane. Di sana ada checkbox di sebelah bawah:
 
 ![safari](safari.png)
 
-Now `key:Cmd+Opt+C` can toggle the console. Also, note that the new top menu item named "Develop" has appeared. It has many commands and options.
+Sekarang `key:Cmd+Opt+C` bisa mentoggle konsol. Lalu, menu "Develop" muncul pada menu item di atas. Ia punya banyak perintah dan opsi.
 
-## Multi-line input
+## Input multi-baris
 
-Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+Biasanya, ketika kita menaruh sebaris kode ke konsol, dan menekan `key:Enter`, dia akan berjalan.
 
-To insert multiple lines, press `key:Shift+Enter`.
+Untuk menyisipkan lebih dari satu baris, tekan `key:Shift+Enter`.
 
-## Summary
+## Kesimpulan
 
-- Developer tools allow us to see errors, run commands, examine variables, and much more.
-- They can be opened with `key:F12` for most browsers on Windows. Chrome for Mac needs `key:Cmd+Opt+J`, Safari: `key:Cmd+Opt+C` (need to enable first).
+- Tools pengembang memungkinkan kita melihat error, menjalankan perintah, memeriksa variabel, dan sebagainya.
+- Mereka bisa dibuka dengan `key:F12` untuk kebanyakan peramban di Windows. Chrome di Mac dengan `key:Cmd+Opt+J`, Safari `key:Cmd+Opt+C` (harus diaktifkan terlebih dulu).
 
-Now we have the environment ready. In the next section, we'll get down to JavaScript.
+Kini kita sudah menyiapkan lingkungannya. Di seksi berikutnya, kita akan terjun ke JavaScript.
