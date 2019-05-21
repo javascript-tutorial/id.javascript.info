@@ -41,7 +41,7 @@ Suatu file mulai dengan `# Title Header`, dan teks dalam format serupa Markdown,
 
 Sumber tambahan dan contoh untuk artikel atau untuk task, juga ada dalam folder yang sama.
 
-## Tip Translasi
+## Tips Translasi
 
 Mohon jaga line break dan paragraf "apa adanya": jangan tambahkan newline dan jangan hapus yang sudah ada. Membuat itu mudah digabung ke perubahan mendatang dari versi Inggris ke versi translasi.
 
