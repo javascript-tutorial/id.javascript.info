@@ -1,8 +1,8 @@
-The HTML code:
+Kode HTML:
 
 [html src="index.html"]
 
-For the file `alert.js` in the same folder:
+Untuk file `alert.js` di dalam folder yang sama:
 
 [js src="alert.js"]
 
