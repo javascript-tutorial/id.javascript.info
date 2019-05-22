@@ -1,17 +1,17 @@
 # Hello, world!
 
-The tutorial that you're reading is about core JavaScript, which is platform-independent. Later on, you'll learn about Node.js and other platforms that use it.
+Tutorial yang kamu sedang baca adalah inti JavaScript, bersifat platform-independent. Nantinya, kamu akan belajar tentang Node.js dan platform lain yang menggunakannya.
 
-But we need a working environment to run our scripts and, since this book is online, the browser is a good choice. We'll keep the amount of browser-specific commands (like `alert`) to a minimum so that you don't spend time on them if you plan to concentrate on another environment (like Node.js). We'll focus on JavaScript in the browser in the [next part](/ui) of the tutorial.
+Tapi kita butuh lingkungan kerja untuk menjalankan scripts kita dan, karena buku ini online, peramban adalah pilihan yang baik. Kita akan menjaga supaya jumlah perintah yang spesifik peramban (seperti `alert`) seminimum mungkin sehingga kamu tidak menghabiskan waktu dengan itu jika kamu berencana untuk konsentrasi ke lingkungan lain (seperti Node.js). Kita akan fokus ke JavaScript di peramban dalam [bagian selanjutnya](/ui) dari tutorial ini.
 
-So first, let's see how we attach a script to a webpage. For server-side environments (like Node.js), you can execute the script with a command like `"node my.js"`.
+Jadi pertama, kita lihat bagaimana kita menyisipkan script ke laman web. Untuk lingkungan (seperti Node.js), kamu bisa mengeksekusi script itu dengan perintah seperti `"node my.js"`.
 
 
-## The "script" tag
+## Tag "script"
 
-JavaScript programs can be inserted into any part of an HTML document with the help of the `<script>` tag.
+Program JavaScript bisa disisipkan ke dalam bagian mana saja dari dokumen HTML dengan bantuan tag `<script>`.
 
-For instance:
+Contoh:
 
 ```html run height=100
 <!DOCTYPE HTML>
@@ -35,24 +35,24 @@ For instance:
 ```
 
 ```online
-You can run the example by clicking the "Play" button in the right-top corner of the box above.
+Kamu bisa menjalankan contohnya dengan mengklik tombol "Play" di sebelah ujung kanan-atas dari box di atas.
 ```
 
-The `<script>` tag contains JavaScript code which is automatically executed when the browser processes the tag.
+Tag `<script>` mengandung kode JavaScript yang otomatis dieksekusi ketika peramban memproses tag.
 
 
-## Modern markup
+## Markup modern
 
-The `<script>` tag has a few attributes that are rarely used nowadays but can still be found in old code:
+Tag `<script>` punya beberapa attribut yang jarang digunakan akhir-akhir ini tapi masih bisa ditemukan di kode usang:
 
-The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
-: The old HTML standard, HTML4, required a script to have a `type`. Usually it was `type="text/javascript"`. It's not required anymore. Also, the modern HTML standard, HTML5, totally changed the meaning of this attribute. Now, it can be used for JavaScript modules. But that's an advanced topic; we'll talk about modules in another part of the tutorial. 
+Atribut `type`: <code>&lt;script <u>type</u>=...&gt;</code>
+: Standar HTML jadul, HTML4, mengharuskan script memiliki `type`. Biasanya `type="text/javascript"`. Sekarang sudah tidak usah sama sekali. Selain itu, standar HTML modern, HTML5, merubah total arti atribut ini. Sekarang, itu bisa digunakan untuk modul JavaScript. Tapi itu topik berat; kita akan membicarakan tentang modul di bagian lain dari tutorial ini. 
 
-The `language` attribute: <code>&lt;script <u>language</u>=...&gt;</code>
-: This attribute was meant to show the language of the script. This attribute no longer makes sense because JavaScript is the default language. There is no need to use it.
+Atribut `language`: <code>&lt;script <u>language</u>=...&gt;</code>
+: Atribut ini untuk menunjukkan bahasa dari script. Atribut ini tidak dibutuhkan lagi karena JavaScript adalah bahasa default. Tidak udah menggunakan itu lagi.
 
-Comments before and after scripts.
-: In really ancient books and guides, you may find comments inside `<script>` tags, like this:
+Komen sebelum dan setelah script.
+: Di dalam buku dan panduan jadul, kamu mungkin menemukan komen di dalam tag `<script>`, seperti ini:
 
     ```html no-beautify
     <script type="text/javascript"><!--
@@ -60,30 +60,30 @@ Comments before and after scripts.
     //--></script>
     ```
 
-    This trick isn't used in modern JavaScript. These comments hid JavaScript code from old browsers that didn't know how to process the `<script>` tag. Since browsers released in the last 15 years don't have this issue, this kind of comment can help you identify really old code.
+    Trik ini tidak lagi dipakai di JavaScript modern. Komen ini menyembunyikan kode JavaScript dari peramban tua yang tidak tahu cara memproses tag `<script>`. Oleh karena peramban yang dirilis 15 tahun terakhir tidak punya masalah terkait ini, komen macam ini bisa membantumu mengidentifikasi kode yang sangat tua.
 
 
-## External scripts
+## Script External
 
-If we have a lot of JavaScript code, we can put it into a separate file.
+Jika kita punya banyak kode JavaScript, kita bisa menaruhnya di dalam file berbeda.
 
-Script files are attached to HTML with the `src` attribute:
+File script ditempel ke HTML dengan atribut `src`:
 
 ```html
 <script src="/path/to/script.js"></script>
 ```
 
-Here, `/path/to/script.js` is an absolute path to the script file (from the site root).
+Di sini, `/path/to/script.js` adalah jalur ke file script (dari root sitius).
 
-You can also provide a relative path from the current page. For instance, `src="script.js"` would mean a file `"script.js"` in the current folder.
+Kamu juga bisa menyediakan jalur relatif dari laman ini. Contohnya, `src="script.js"` berarti file `"script.js"` di folder saat ini.
 
-We can give a full URL as well. For instance:
+Kamu bisa berikan URL penuh juga. Contohnya:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
 ```
 
-To attach several scripts, use multiple tags:
+Untuk menempelkan beberapa script, gunakan tag berlapis:
 
 ```html
 <script src="/js/script1.js"></script>
@@ -92,19 +92,19 @@ To attach several scripts, use multiple tags:
 ```
 
 ```smart
-As a rule, only the simplest scripts are put into HTML. More complex ones reside in separate files.
+Aturannya, hanya script paling simpel yang ditaruh di dalam HTML. Yang lebih rumit berada di file terpisah.
 
-The benefit of a separate file is that the browser will download it and store it in its [cache](https://en.wikipedia.org/wiki/Web_cache).
+Keuntungan file terpisah ialah peramban akan mengunduhnya dan menyimpannya di [cache](https://en.wikipedia.org/wiki/Web_cache)-nya.
 
-Other pages that reference the same script will take it from the cache instead of downloading it, so the file is actually downloaded only once.
+Laman lain yang merujuk ke script yang sama akan mengambilnya dari cache ketimbang mengunduhnya, jadi sebenarnya file hanya diunduh sekali saja.
 
-That reduces traffic and makes pages faster.
+Itu mengurangi trafik dan membuat laman lebih cepat.
 ```
 
-````warn header="If `src` is set, the script content is ignored."
-A single `<script>` tag can't have both the `src` attribute and code inside.
+````warn header="Jika `src` diset, konten script diabaikan."
+Tag `<script>` single tidak bisa punya atribut `src` dan kode di dalamnya bersamaan.
 
-This won't work:
+Ini tidak akan berjalan:
 
 ```html
 <script *!*src*/!*="file.js">
@@ -112,9 +112,9 @@ This won't work:
 </script>
 ```
 
-We must choose either an external `<script src="…">` or a regular `<script>` with code.
+Kita harus memilih antara `<script src="…">` external atau `<script>` external.
 
-The example above can be split into two scripts to work:
+Contoh di atas bisa dipecah menjadi dua script:
 
 ```html
 <script src="file.js"></script>
@@ -124,11 +124,11 @@ The example above can be split into two scripts to work:
 ```
 ````
 
-## Summary
+## Kesimpulan
 
-- We can use a `<script>` tag to add JavaScript code to a page.
-- The `type` and `language` attributes are not required.
-- A script in an external file can be inserted with `<script src="path/to/script.js"></script>`.
+- Kita bisa menggunakan tag `<script>` untuk menambah kode JavaScript ke laman.
+- Atribut `type` dan `language` tidak wajib.
+- Script di file external bisa disisipkan dengan `<script src="path/to/script.js"></script>`.
 
 
-There is much more to learn about browser scripts and their interaction with the webpage. But let's keep in mind that this part of the tutorial is devoted to the JavaScript language, so we shouldn't distract ourselves with browser-specific implementations of it. We'll be using the browser as a way to run JavaScript, which is very convenient for online reading, but only one of many.
+Masih banyak lagi yang harus dipelajari tentang script peramban dan interaksi mereka dengan laman web. Tapi harap diingat bahwa bagian ini dari tutorial ini dikhususkan hanya ke bahasa JavaScript, jadi kita tidak akan membahas implementasi Javascript yang spesifik peramban. Kita akan menggunakan peramban hanya sebagai alat untuk menjalankan JavaScript, yang nyaman untuk bacaan luring.
