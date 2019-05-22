@@ -102,7 +102,7 @@ Itu mengurangi trafik dan membuat laman lebih cepat.
 ```
 
 ````warn header="Jika `src` diset, konten script diabaikan."
-Tag `<script>` single tidak bisa punya atribut `src` dan kode di dalamnya bersamaan.
+Tag `<script>` tunggal tidak bisa punya atribut `src` dan kode di dalamnya bersamaan.
 
 Ini tidak akan berjalan:
 
