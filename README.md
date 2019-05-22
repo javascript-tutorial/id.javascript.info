@@ -1,6 +1,6 @@
 # Tutorial JavaScript Modern dalam Bahasa Indonesia
 
-Repositor ini merupakan host translasi dari <https://javascript.info> ke dalam Bahasa Indonesia.
+Repositori ini merupakan host translasi dari <https://javascript.info> ke dalam Bahasa Indonesia.
 
 
 **Bagaimana kamu bisa berkontribusi:**
