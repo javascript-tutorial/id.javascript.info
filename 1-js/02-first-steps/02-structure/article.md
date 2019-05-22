@@ -1,44 +1,44 @@
-# Code structure
+# Struktur kode
 
-The first thing we'll study is the building blocks of code.
+Hal pertama yang kita akan pelajari ialah membangun blok kode.
 
-## Statements
+## Statement
 
-Statements are syntax constructs and commands that perform actions.
+Statement ialah konsep dan perintah syntax yang mejalankan action.
 
-We've already seen a statement, `alert('Hello, world!')`, which shows the message "Hello, world!".
+Kita sudah melihat satu statement, `alert('Hello, world!')`, yang menampilkan pesan "Hello, world!".
 
-We can have as many statements in our code as we want. Statements can be separated with a semicolon.
+Kita bisa memiliki sebanyak apapun statement dalam kode kita. Statement bisa dipisah menggunakan semicolon.
 
-For example, here we split "Hello World" into two alerts:
+Contohnya, di sini kita memecah "Hello World" menjadi dua alert:
 
 ```js run no-beautify
 alert('Hello'); alert('World');
 ```
 
-Usually, statements are written on separate lines to make the code more readable:
+Biasanya, statement ditulis di baris terpisah supaya kode lebih mudah dibaca:
 
 ```js run no-beautify
 alert('Hello');
 alert('World');
 ```
 
-## Semicolons [#semicolon]
+## Semicolon [#semicolon]
 
-A semicolon may be omitted in most cases when a line break exists.
+Semicolon bisa dibuang dalam banyak kasus jika ada line break.
 
-This would also work:
+Ini juga akan bekerja:
 
 ```js run no-beautify
 alert('Hello')
 alert('World')
 ```
 
-Here, JavaScript interprets the line break as an "implicit" semicolon. This is called an [automatic semicolon insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
+Di sini, JavaScript menginterpretasi line break sebagai semicolon "implisit". Ini disebut [penyisipan semicolon otomatis](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
 
-**In most cases, a newline implies a semicolon. But "in most cases" does not mean "always"!**
+**Dalam banyak kasus, sebuah newline (baris baru) mengimplikasikan semicolon. Tapi "dalam banyak kasus" tidak "selalu" begitu!**
 
-There are cases when a newline does not mean a semicolon. For example:
+Ada kasus ketika newline (baris baru) tidak berarti semicolon. Misalnya:
 
 ```js run no-beautify
 alert(3 +
@@ -46,22 +46,22 @@ alert(3 +
 + 2);
 ```
 
-The code outputs `6` because JavaScript does not insert semicolons here. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an "incomplete expression", so the semicolon is not required. And in this case that works as intended.
+Output dari kode itu adalah `6` karena JavaScript tidak menyisipkan semicolon di sini. Sudah jelas sekali bahwa barisnya berakhir dengan tanda plus `"+"`, sehingga itu menjadi "expression tidak lengkap", jadi tidak butuh semicolon. Dan dalam kasus ini memang seperti itu.
 
-**But there are situations where JavaScript "fails" to assume a semicolon where it is really needed.**
+**Tapi ada situasi di mana JavaScript "gagal" mengasumsi semicolon di mana itu benar-benar dibutuhkan.**
 
-Errors which occur in such cases are quite hard to find and fix.
+Error yang muncul pada kasus ini agak sulit dicari dan dibetulkan.
 
-````smart header="An example of an error"
-If you're curious to see a concrete example of such an error, check this code out:
+````smart header="Contoh error"
+Jika kamu kepo untuk melihat contoh konkrit dari error ini, cek kode ini:
 
 ```js run
 [1, 2].forEach(alert)
 ```
 
-No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of the code: it shows `1` then `2`.
+Untuk sekarang tidak usah memikirkan makna bracket `[]` dan `forEach`. Kita akan mempelajari mereka nanti. Untuk sekarang, ingat hasil kode tersebut: yaitu `1` lalu `2`.
 
-Now, let's add an `alert` before the code and *not* finish it with a semicolon:
+Sekarang, ayo kita tambahkan `alert` sebelum kodenya *tanpa* diikuti semicolon:
 
 ```js run no-beautify
 alert("There will be an error")
@@ -69,42 +69,42 @@ alert("There will be an error")
 [1, 2].forEach(alert)
 ```
 
-Now if we run the code, only the first `alert` is shown and then we have an error!
+Sekarang jika kita menjalankan kodenya, hanya `alert` pertama yang tampil dan kemudian error!
 
-But everything is fine again if we add a semicolon after `alert`:
+Tapi semua akan baik-baik saja jika kita menambahkan semicolon setelah `alert`:
 ```js run
 alert("All fine now");
 
 [1, 2].forEach(alert)  
 ```
 
-Now we have the "All fine now" message followed by `1` and `2`.
+Sekarang kita punya pesan "All fine now" diikuti dengan `1` dan `2`.
 
 
-The error in the no-semicolon variant occurs because JavaScript does not assume a semicolon before square brackets `[...]`.
+Error muncul pada varian tanpa semicolon dikarenakan JavaScript tidak mengasumsikan semicolon sebelum kurung persegi `[...]`.
 
-So, because the semicolon is not auto-inserted, the code in the first example is treated as a single statement. Here's how the engine sees it:
+Jadi, karena semicolon tidak otomatis disisipkan, kode di contoh pertama diperlakukan sebagai statement tunggal. Inilah cara engine melihatnya:
 
 ```js run no-beautify
 alert("There will be an error")[1, 2].forEach(alert)
 ```
 
-But it should be two separate statements, not one. Such a merging in this case is just wrong, hence the error. This can happen in other situations.
+Tapi itu harus jadi dua statement terpisah, bukan satu. Penyatuan macam ini salah pada kasus ini, makanya error. Ini bisa terjadi di situasi lain.
 ````
 
-We recommend putting semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- *it is possible* to leave out semicolons most of the time. But it's safer -- especially for a beginner -- to use them.
+Kami sarankan menaruh semicolon di antara statement meski mereka dipisahkan newline (baris baru). Ini aturan yang diterima secara luas oleh komunitas. Harap diingat sekali lagi bahwa -- *bisa saja* menanggalkan semicolon di banyak kesempatan. Tapi akan lebih aman -- terutama untuk pemula -- untuk menggunakan mereka.
 
-## Comments
+## Komen
 
-As time goes on, programs become more and more complex. It becomes necessary to add *comments* which describe what the code does and why.
+Seiring waktu berjalan, program menjadi lebih rumit. Dan dibutuhkan *komen* yang menjelaskan kode apa itu dan kenapa.
 
-Comments can be put into any place of a script. They don't affect its execution because the engine simply ignores them.
+Komen bisa ditaruh di mana saja dari script. Dan tidak berpengaruh ke eksekusi karena engine mengabaikan mereka.
 
-**One-line comments start with two forward slash characters `//`.**
+**Satu-baris komen bermula dengan dua karakter slash `//`.**
 
-The rest of the line is a comment. It may occupy a full line of its own or follow a statement.
+Sisa barisnya adalah komen. Ia bisa memenuhi seluruh baris atau mengikuti statement.
 
-Like here:
+Seperti di sini:
 ```js run
 // This comment occupies a line of its own
 alert('Hello');
@@ -112,9 +112,9 @@ alert('Hello');
 alert('World'); // This comment follows the statement
 ```
 
-**Multiline comments start with a forward slash and an asterisk <code>/&#42;</code> and end with an asterisk and a forward slash <code>&#42;/</code>.**
+**Komen multibaris bermula dengan garis miring dan bintang <code>/&#42;</code> dan berakhir dengan bintang dan garis miring <code>&#42;/</code>.**
 
-Like this:
+Seperti ini:
 
 ```js run
 /* An example with two messages.
@@ -124,9 +124,9 @@ alert('Hello');
 alert('World');
 ```
 
-The content of comments is ignored, so if we put code inside <code>/&#42; ... &#42;/</code>, it won't execute.
+Konten komen diabaikan, jadi jika menaruh kode di dalam <code>/&#42; ... &#42;/</code>, ia tidak akan dieksekusi.
 
-Sometimes it can be handy to temporarily disable a part of code:
+Kadang sangat berguna jika kita bisa menonaktifkan sementara sebagian kode:
 
 ```js run
 /* Commenting out the code
@@ -135,14 +135,14 @@ alert('Hello');
 alert('World');
 ```
 
-```smart header="Use hotkeys!"
-In most editors, a line of code can be commented out by pressing the `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). For Mac, try `key:Cmd` instead of `key:Ctrl`.
+```smart header="Gunakan hotkey!"
+Di banyak editor, sebaris kode bisa dikomen dengan menekan hotkey `key:Ctrl+/` untuk komen baris-tunggal dan sesuatu macam `key:Ctrl+Shift+/` -- untuk komen multibaris (pilih sepotong kode dan tekan hotkeynya). Untuk Mac, coba `key:Cmd` ketimbang `key:Ctrl`.
 ```
 
-````warn header="Nested comments are not supported!"
-There may not be `/*...*/` inside another `/*...*/`.
+````warn header="Komen bersarang tidak didukung!"
+Tidak boleh ada `/*...*/` di dalam `/*...*/` yang lain.
 
-Such code will die with an error:
+Kode begini akan berakhir error:
 
 ```js run no-beautify
 /*
@@ -152,8 +152,8 @@ alert( 'World' );
 ```
 ````
 
-Please, don't hesitate to comment your code.
+Dimohon, jangan ragu mengkomen.
 
-Comments increase the overall code footprint, but that's not a problem at all. There are many tools which minify code before publishing to a production server. They remove comments, so they don't appear in the working scripts. Therefore, comments do not have negative effects on production at all.
+Komen meningkatkan kode footprint garis besar, tapi itu bukan masalah sama sekali. Ada banyak tools yang meminifikasi kode sebelum dipublikasi ke production server. Mereka menghapus komen, jadi mereka tidak tampil di script yang berjalan. Selain itu, komen tidak punya efek negatif pada production sama sekali.
 
-Later in the tutorial there will be a chapter <info:code-quality> that also explains how to write better comments.
+Di akhir tutorial ini akan ada bab <info:code-quality> yang juga menerangkan cara menulis komen yang lebih baik.
