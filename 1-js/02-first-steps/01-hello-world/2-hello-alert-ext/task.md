@@ -1,9 +1,9 @@
-importance: 5
+kepentingan: 5
 
 ---
 
-# Show an alert with an external script
+# Tampilkan alert dengan script external
 
-Take the solution of the previous task <info:task/hello-alert>. Modify it by extracting the script content into an external file `alert.js`, residing in the same folder.
+Ambil solusi dari tugas sebelumnya <info:task/hello-alert>. Modifikasi itu dengan mengextrak konten script ke file external `alert.js`, yang berada di dalam folder yang sama.
 
-Open the page, ensure that the alert works.
+Buka lamannya, pastikan alertnya bekerja.
