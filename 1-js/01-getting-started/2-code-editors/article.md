@@ -1,14 +1,14 @@
 # Editor kode
 
-Editor kode adalah tempat para programmer menghabiskan waktu mereka.
+Editor kode adalah tempat programmer menghabiskan usianya.
 
-Ada dua tipe utama editor kode: IDE dan editor enteng. Kebanyakan orang menggunakan satu tool dari setiap tipe.
+Ada dua tipe utama editor kode: IDE dan editor ringan. Kebanyakan orang menggunakan satu tool saja dari setiap tipe.
 
 ## IDE
 
-Istilah [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) mengacu kepada editor powerful dengan banyak fitur yang biasanya beroperasi di atas "seluruh proyek." Terlihat dari namanya, dia bukan hanya sekedar editor biasa, tapi sebuah "lingkungan pengembangan" berskala besar.
+Istilah [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) mengacu kepada editor mumpuni dengan banyak fitur yang biasanya beroperasi di atas "seluruh proyek." Dilihat dari namanya, ia bukan hanya sekedar editor biasa, tapi sebuah "lingkungan pengembangan" berskala besar.
 
-Suatu IDE meload proyek (yang bisa berupa banyak file), memungkingkan navigasi antar file, menyediakan autocompletion berdasarkan seluruh proyek (tidak hanya file yang terbuka), dan berintegrasi dengan sistem manajemen versi (seperti [git](https://git-scm.com/)), lingkungan pengujian, dan hal-hal "level proyek" lainnya.
+Satu IDE meload proyek (yang bisa berupa banyak file), memungkingkan navigasi antar file, menyediakan autocompletion berdasarkan seluruh proyek (tak hanya file terbuka), dan berintegrasi dengan sistem manajemen versi (seperti [git](https://git-scm.com/)), lingkungan pengujian, dan hal-hal "level proyek" lainnya.
 
 Jika kamu belum memilih satu IDE, pertimbangkan opsi-opsi berikut:
 
@@ -17,19 +17,19 @@ Jika kamu belum memilih satu IDE, pertimbangkan opsi-opsi berikut:
 
 Semua IDE ini bersifat cross-platform.
 
-Untuk Windows, ada juga "Visual Studio", jangan dicampuradukkan dengan "Visual Studio Code." "Visual Studio" itu berbayar dan merupakan editor khusus Windows, sangat cocok untuk platform .NET. Versi gratisnya disebut [Visual Studio Community](https://www.visualstudio.com/vs/community/).
+Untuk Windows, ada juga "Visual Studio", jangan dipusingkan dengan "Visual Studio Code." "Visual Studio" berbayar dan merupakan editor khusus Windows, sangat cocok untuk platform .NET. Versi gratisnya disebut [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
-Banyak IDE yang berbayar tetapi punya masa coba. Biaya mereka biasanya tidak seberapa dibanding gaji pengembang berkualitas, jadi pilihlah yang terbaik untukmu.
+Banyak IDE berbayar tetapi punya masa uji coba. Biaya mereka biasanya tak seberapa dibanding gaji pengembang berkualitas, jadi pilihlah yang terbaik untukmu.
 
 ## Editor ringan
 
-"Editor ringan" tidak se-powerful IDE, tapi mereka cepat, elegan, dan simpel.
+"Editor ringan" tak semumpuni IDE, tapi mereka cepat, elegan, dan simpel.
 
 Mereka digunakan terutama untuk membuka dan mengedit file secara instan.
 
-Perbedaan utama antara "editor ringan" dan "IDE" adalah IDE bekerja pada level proyek, jadi dia meload banyak data di awal, menganalisa struktur proyek jika dibutuhkan dan lain sebagainya. Editor ringan jauh lebih cepat jika kita cuma butuh satu file.
+Perbedaan utama antara "editor ringan" dan "IDE" adalah IDE bekerja pada level proyek, jadi IDE meload banyak data di awal, menganalisa struktur proyek jika dibutuhkan dan lain sebagainya. Editor ringan jauh lebih cepat jika kita cuma membutuhkan hanya satu file.
 
-Pada praktiknya, editor ringan bisa punya banyak plugin termasuk syntax analyzers dan autocompleters level direktori, jadi tidak ada batasan ketat antara editor ringan dan IDE.
+Pada praktiknya, editor ringan bisa punya banyak plugin termasuk syntax analyzers dan autocompleters level direktori, jadi tak ada batasan ketat antara editor ringan dan IDE.
 
 Opsi-opsi berikut patut anda perhatikan:
 
@@ -48,10 +48,10 @@ Saya menggunakan:
 - IDE untuk JS -- [WebStorm](http://www.jetbrains.com/webstorm/) (Saya berganti ke salah satu produk JetBrains lainnya jika menggunakan bahasa lain)
 - Editor ringan -- [Sublime Text](http://www.sublimetext.com) atau [Atom](https://atom.io/).
 
-## Ayo jangan berantem
+## Mari jangan berantem
 
 Daftar IDE dan editor di atas merupakan barang yang sudah biasa dipakai saya atau teman-teman saya para pengembang profesional.
 
-Ada banyak editor bagus lainnya di dunia ini. Silakan pilih satu yang paling kamu sukai.
+Ada banyak editor bagus lainnya di dunia ini. Silakan pilih satu yang paling kamu suka.
 
 Pilihan editor, sama seperti tool lainnya, bersifat individual dan tergantung pada proyek, kebiasaan, dan preferensi personal.
