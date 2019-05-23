@@ -6,7 +6,7 @@ kepentingan: 5
 
 Buat laman yang menampilkan pesan "I'm JavaScript!".
 
-Lakukan di dalam sandbox, atau di hard drive kamu, tak masalah, cuma pastikan bisa berjalan.
+Lakukan dalam sandbox, atau di hard drive kamu, tak masalah, pastikan bisa berjalan.
 
 [demo src="solution"]
 
