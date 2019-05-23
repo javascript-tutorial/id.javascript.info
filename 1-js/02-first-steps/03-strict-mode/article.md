@@ -1,16 +1,16 @@
 # The modern mode, "use strict"
 
-For a long time, JavaScript evolved without compatibility issues. New features were added to the language while old functionality didn't change.
+Selama ini, JavaScript tumbuh tanpa isu kompatibilitas. Fitur baru ditambahkan tanpa mengubah fungsionalitas yang sudah ada.
 
-That had the benefit of never breaking existing code. But the downside was that any mistake or an imperfect decision made by JavaScript's creators got stuck in the language forever.
+Keuntungannya adalah kode yang sudah ada tidak rusak. Tapi jeleknya adalah satu keputusan salah atau cacat yang dibuat oleh pembuat JavaScript akan menetap selamanya.
 
-This was the case until 2009 when ECMAScript 5 (ES5) appeared. It added new features to the language and modified some of the existing ones. To keep the old code working, most modifications are off by default. You need to explicitly enable them with a special directive: `"use strict"`.
+Inilah yang terjadi hingga tahun 2009 ketika ECMAScript 5 (ES5) muncul. Fitur baru ditambahkan dan kode yang sudah ada diubah. Supaya kode yang lama tetap berjalan, modifikasi yang paling besar dimatikan secara default. Kamu harus mengaktifkan mereka secara explisit dengan directive special: `"use strict"`.
 
 ## "use strict"
 
-The directive looks like a string: `"use strict"` or `'use strict'`. When it is located at the top of a script, the whole script works the "modern" way.
+Directive tersebut mirip string: `"use strict"` atau `'use strict'`. Jika itu diletakkan paling atas dari script, seluruh script akan bekerja secara "modern".
 
-For example:
+Contohnya:
 
 ```js
 "use strict";
@@ -19,43 +19,43 @@ For example:
 ...
 ```
 
-We will learn functions (a way to group commands) soon.
+Kita akan mempelajari function (cara untuk mengelompokkan perintah) segera.
 
-Looking ahead, let's just note that `"use strict"` can be put at the start of most kinds of functions instead of the whole script. Doing that enables strict mode in that function only. But usually, people use it for the whole script.
+Melihat ke depan, mari kita ingat bahwa `"use strict"` bisa ditaruh di depan kebanyakan function ketimbang seluruh script. Dengan begitu maka strict mode aktif hanya dalam function itu. Tapi biasanya, orang memakai itu untuk seluruh script.
 
 
-````warn header="Ensure that \"use strict\" is at the top"
-Please make sure that `"use strict"` is at the top of your scripts, otherwise strict mode may not be enabled.
+````warn header="Yakinkan bahwa \"use strict\" berada paling atas"
+Pastikan `"use strict"` berada paling atas dari script kamu, kalau tidak strict mode tidak akan aktif.
 
-Strict mode isn't enabled here:
+Strict mode tidak aktif di sini:
 
 ```js no-strict
 alert("some code");
-// "use strict" below is ignored--it must be at the top
+// "use strict" di sini diabaikan--dia harus berada paling atas
 
 "use strict";
 
-// strict mode is not activated
+// strict mode tidak aktif
 ```
 
-Only comments may appear above `"use strict"`.
+Hanya komen yang muncul di atas `"use strict"`.
 ````
 
-```warn header="There's no way to cancel `use strict`"
-There is no directive like `"no use strict"` that reverts the engine to old behavior.
+```warn header="Tidak ada cara untuk membatalkan `use strict`"
+Tak ada directive seperti `"no use strict"` yang merevert engine ke kelakuan lama.
 
-Once we enter strict mode, there's no return.
+Sekali kita masuk strict mode, tak ada jalan kembali.
 ```
 
-## Browser console
+## Konsol peramban
 
-For the future, when you use a browser console to test features, please note that it doesn't `use strict` by default.
+Di masa depan, ketika kamu memakai konsol peramban untuk menguji fitur, harap diingat bahwa `use strict` tidak aktif secara default.
 
-Sometimes, when `use strict` makes a difference, you'll get incorrect results.
+Kadang, ketika menggunakan `use strict`, kamu akan mendapat hasil yang salah.
 
-Even if we press `key:Shift+Enter` to input multiple lines, and put `use strict` on top, it doesn't work. That's because of how the console executes the code internally.
+Meski jika kita menekan `key:Shift+Enter` untuk menginput baris ganda, dan menggunakan `use strict` di paling atas, tetap tak mempan. Itu diakibatkan oleh cara konsol mengeksekusi kode secara internal.
 
-The reliable way to ensure `use strict` would be to input the code into console like this:
+Cara terpercaya memakai `use strict` yaitu menginput kode ke dalam konsol seperti ini:
 
 ```js
 (function() {
@@ -65,15 +65,15 @@ The reliable way to ensure `use strict` would be to input the code into console 
 })()
 ```
 
-## Always "use strict"
+## Selalu "use strict"
 
-We have yet to cover the differences between strict mode and the "default" mode.
+Kita belum mengcover perbedaan antara mode strict dan mode "default".
 
-In the next chapters, as we learn language features, we'll note the differences between the strict and default modes. Luckily, there aren't many and they actually make our lives better.
+Di bab berikutnya, seiring kira mempelajari fitur bahasa, kita akan mencatat perbedaan antara mode strict dan default. Untungnya, itu tidak banyak dan membuat hidup kita lebih baik.
 
-For now, it's enough to know about it in general:
+Untuk sekarang, cukup tahu sampai di sini secara umum:
 
-1. The `"use strict"` directive switches the engine to the "modern" mode, changing the behavior of some built-in features. We'll see the details later in the tutorial.
-2. Strict mode is enabled by placing `"use strict"` at the top of a script or function. Several language features, like "classes" and "modules", enable strict mode automatically.
-3. Strict mode is supported by all modern browsers.
-4. We recommended always starting scripts with `"use strict"`. All examples in this tutorial assume strict mode unless (very rarely) specified otherwise.
+1. Directive `"use strict"` mengganti engine ke mode "modern", changing the behavior of some built-in features. We'll see the details later in the tutorial.
+2. Mode strict aktif dengan menaruh `"use strict"` paling atas dari script atau function. Beberapa fitur bahasa, seperti "classe" dan "module", mengaktifkan mode strict secara otomatis.
+3. Mode strict didukung semua peramban modern.
+4. Kami sarankan selalu mulai script dengan `"use strict"`. Semua contoh di tutorial ini mengasumsikan mode strict kecuali (sangat jarang) dispesifikasi kebalikannya.
