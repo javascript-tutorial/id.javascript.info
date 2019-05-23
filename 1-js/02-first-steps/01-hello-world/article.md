@@ -131,4 +131,4 @@ Contoh di atas bisa dipecah menjadi dua script:
 - Script di file external bisa disisipkan dengan `<script src="path/to/script.js"></script>`.
 
 
-Masih banyak lagi yang harus dipelajari tentang script peramban dan interaksi mereka dengan laman web. Tapi harap diingat bahwa bagian ini dari tutorial ini dikhususkan hanya ke bahasa JavaScript, jadi kita tak akan membahas implementasi Javascript yang spesifik peramban. Kita akan menggunakan peramban hanya sebagai alat untuk menjalankan JavaScript, yang nyaman untuk bacaan luring.
+Masih banyak lagi yang harus dipelajari tentang script peramban dan interaksi mereka dengan laman web. Tapi harap diingat bahwa bagian ini dari tutorial ini dikhususkan hanya ke bahasa JavaScript, jadi kita tak akan membahas implementasi Javascript yang spesifik peramban. Kita akan menggunakan peramban hanya sebagai alat untuk menjalankan JavaScript, yang nyaman untuk bacaan online.
