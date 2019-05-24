@@ -1,21 +1,21 @@
-First, the variable for the name of our planet.
+Pertama, variabel untuk nama planet kita.
 
-That's simple:
+Itu simpel:
 
 ```js
 let ourPlanetName = "Earth";
 ```
 
-Note, we could use a shorter name `planet`, but it might be not obvious what planet it refers to. It's nice to be more verbose. At least until the variable isNotTooLong.
+Ingat, kita bisa menggunakan nama lebih pendek `planet`, tapi itu tak akan jelas planet apa. Bagus jika lebih bertele-tele. Minimal hingga variabel isNotTooLong.
 
-Second, the name of the current visitor:
+Kedua, nama pengunjung saat ini:
 
 ```js
 let currentUserName = "John";
 ```
 
-Again, we could shorten that to `userName` if we know for sure that the user is current.
+Lagi, kita bisa memperpendek jadi `userName` jika kita tahu pasti user saat ini.
 
-Modern editors and autocomplete make long variable names easy to write. Don't save on them. A name with 3 words in it is fine.
+Editor modern dan autocomplete membuat nama variabel panjang mudah ditulis. Jangan pelit terhadap mereka. Nama yang mengandung 3 kata di dalamnya itu bagus.
 
-And if your editor does not have proper autocompletion, get [a new one](/code-editors).
+Dan jika editormu tidak punya autocompletion yang layak, carilah [editor yang baru](/code-editors).
