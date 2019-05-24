@@ -1,24 +1,24 @@
-# Variables
+# Variabel
 
-Most of the time, a JavaScript application needs to work with information. Here are two examples:
-1. An online shop -- the information might include goods being sold and a shopping cart.
-2. A chat application -- the information might include users, messages, and much more.
+Seringnya, aplikasi JavaScript butuh kerja dengan informasi. Di sini ada dua contoh:
+1. Toko online -- informasinya mungkin berisi barang-barang yang dijual dan kereta belanja.
+2. Aplikasi chat -- informasinya mungkin berisi user, pesan, dan banyak lagi.
 
-Variables are used to store this information.
+Variabel digunakan untuk menyimpan informasi ini.
 
-## A variable
+## Variabel
 
-A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a "named storage" for data. We can use variables to store goodies, visitors, and other data.
+[Variabel](https://en.wikipedia.org/wiki/Variable_(computer_science)) ialah "simpanan bernama" untuk data. Kita bisa memakainya untuk menyimpan barang, pengunjung, dan data lain.
 
-To create a variable in JavaScript, use the `let` keyword.
+Untuk membuat variabel di JavaScript, gunakan katakunci `let`.
 
-The statement below creates (in other words: *declares* or *defines*) a variable with the name "message":
+Statement di bawah membuat (dengan kata lain: *declares* or *defines*) variabel dengan nama "message":
 
 ```js
 let message;
 ```
 
-Now, we can put some data into it by using the assignment operator `=`:
+Kini, kita bisa menaruh beberapa data ke dalamnya dengan menggunakan assignment operator `=`:
 
 ```js
 let message;
@@ -28,7 +28,7 @@ message = 'Hello'; // store the string
 */!*
 ```
 
-The string is now saved into the memory area associated with the variable. We can access it using the variable name:
+String ini kini disimpan ke area memori yang terasosiasi dengan variabel. Kita bisa mengakses itu menggunakan nama variabel:
 
 ```js run
 let message;
@@ -39,7 +39,7 @@ alert(message); // shows the variable content
 */!*
 ```
 
-To be concise, we can combine the variable declaration and assignment into a single line:
+Supaya pendek, kita bisa mengkombinasi deklarasi variabel dan assignment ke baris tunggal:
 
 ```js run
 let message = 'Hello!'; // define the variable and assign the value
@@ -47,15 +47,15 @@ let message = 'Hello!'; // define the variable and assign the value
 alert(message); // Hello!
 ```
 
-We can also declare multiple variables in one line:
+Kita juga bisa mendeklarasi variabel ganda dalam satu baris:
 
 ```js no-beautify
 let user = 'John', age = 25, message = 'Hello';
 ```
 
-That might seem shorter, but we don't recommend it. For the sake of better readability, please use a single line per variable.
+Kelihatannya pendek, tapi itu tidak disarankan. Demi kemudahan dibaca, tolong gunakan bari tunggal per variabel.
 
-The multiline variant is a bit longer, but easier to read:
+Varian multibaris agak panjang, tapi lebih mudah dibaca:
 
 ```js
 let user = 'John';
@@ -63,14 +63,14 @@ let age = 25;
 let message = 'Hello';
 ```
 
-Some people also define multiple variables in this multiline style:
+Beberapa orang juga mendefinisi variabel ganda dalam gaya multibaris ini:
 ```js no-beautify
 let user = 'John',
   age = 25,
   message = 'Hello';
 ```
 
-...Or even in the "comma-first" style:
+...Atau bahkan dalam gaya "comma-first":
 
 ```js no-beautify
 let user = 'John'
@@ -78,32 +78,32 @@ let user = 'John'
   , message = 'Hello';
 ```
 
-Technically, all these variants do the same thing. So, it's a matter of personal taste and aesthetics.
+Secara teknis, semua varian ini melakukan hal yang sama. Jadi, cuma masaleh selera personal dan estetika saja.
 
 
-````smart header="`var` instead of `let`"
-In older scripts, you may also find another keyword: `var` instead of `let`:
+````smart header="`var` ketimbang `let`"
+Di script jadul, kamu mungkin juga menemukan katakunci lain: `var` ketimbang `let`:
 
 ```js
 *!*var*/!* message = 'Hello';
 ```
 
-The `var` keyword is *almost* the same as `let`. It also declares a variable, but in a slightly different, "old-school" way.
+Katakunci `var` *hampir* sama dengan `let`. Gunanya untuk mendeklarasi variabel, tapi caranya agak sedikit beda, "jadul".
 
-There are subtle differences between `let` and `var`, but they do not matter for us yet. We'll cover them in detail in the chapter <info:var>.
+Ada perbedaan halus antara `let` dan `var`, tapi itu tak masalah buat kita sekarang ini. Kita akan mengcover mereka lebih detil di bab <info:var>.
 ````
 
-## A real-life analogy
+## Analogy kehidupan nyata
 
-We can easily grasp the concept of a "variable" if we imagine it as a "box" for data, with a uniquely-named sticker on it.
+Kita bisa dengan mudah memahami konsep "variabel" jika kita membayangkannya sebagai "box" untuk data, dengan stiker nama yang unik.
 
-For instance, the variable `message` can be imagined as a box labeled `"message"` with the value `"Hello!"` in it:
+Contohnya, variabel `message` bisa dibayangkan sebagai box berlabel `"message"` dengan nilai `"Hello!"` di dalamnya:
 
 ![](variable.png)
 
-We can put any value in the box.
+Kita bisa menaruh nilai apapun di dalam box.
 
-We can also change it as many times as we want:
+Kita juga bisa mengubahnya sebanyak yang kita mau:
 ```js run
 let message;
 
@@ -114,11 +114,11 @@ message = 'World!'; // value changed
 alert(message);
 ```
 
-When the value is changed, the old data is removed from the variable:
+Ketika nilainya berubah, data lama dihapus dari variabel:
 
 ![](variable-change.png)
 
-We can also declare two variables and copy data from one into the other.
+Kita juga bisa mendeklarasi dua variabel dan mengkopi data dari satu ke yang lainnya.
 
 ```js run
 let hello = 'Hello world!';
@@ -126,42 +126,42 @@ let hello = 'Hello world!';
 let message;
 
 *!*
-// copy 'Hello world' from hello into message
+// mengkopi 'Hello world' dari hello ke message
 message = hello;
 */!*
 
-// now two variables hold the same data
+// sekarang dua variabel punya data yang sama
 alert(hello); // Hello world!
 alert(message); // Hello world!
 ```
 
-```smart header="Functional languages"
-It's interesting to note that [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/), forbid changing variable values.
+```smart header="Bahasa functional"
+Menarik untuk diingat bahwa bahasa pemrograman [functional](https://en.wikipedia.org/wiki/Functional_programming), seperti [Scala](http://www.scala-lang.org/) atau [Erlang](http://www.erlang.org/), melarang perubahan nilai variabel.
 
-In such languages, once the value is stored "in the box", it's there forever. If we need to store something else, the language forces us to create a new box (declare a new variable). We can't reuse the old one.
+Di dalam bahasa macam ini, sekali nilai disimpan "dalam box", ia akan di sana selamanya. Jika kita harus menyimpan sesuatu yang lain, bahasa tersebut memaksa kita membuat box baru (mendeklarasi variabel baru). Kita tak bisa menggunakan ulang yang lama.
 
-Though it may seem a little odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation confers certain benefits. Studying such a language (even if you're not planning to use it soon) is recommended to broaden the mind.
+Meski kelihatan sedikit aneh saat pandangan pertama, bahasa-bahasa ini ternyata mumpuni untuk pengembangan yang serius. Lebih dari itu, ada area seperti komputasi paralel di mana keterbatasan ini memberikan keuntungan tertentu. Disarankan mempelajari bahasa macam ini (meski jika kamu tak berencana menggunakannya segera) untuk meningkatkan wawasan.
 ```
 
-## Variable naming [#variable-naming]
+## Penamaan variabel [#variable-naming]
 
-There are two limitations on variable names in JavaScript:
+Ada dua keterbatasan pada nama variabel di JavaScript:
 
-1. The name must contain only letters, digits, or the symbols `$` and `_`.
-2. The first character must not be a digit.
+1. Nama hanya boleh mengandung huruf, digit, atau simbol seperti `$` and `_`.
+2. Karakter pertama tidak boleh digit.
 
-Examples of valid names:
+Contoh nama valid:
 
 ```js
 let userName;
 let test123;
 ```
 
-When the name contains multiple words, [camelCase](https://en.wikipedia.org/wiki/CamelCase) is commonly used. That is: words go one after another, each word except first starting with a capital letter: `myVeryLongName`.
+Ketika namanya mengandung kata ganda, [camelCase](https://en.wikipedia.org/wiki/CamelCase) umum digunakan: kata demi kata digabung, setiap kata kecuali yang pertama dimulai dengan huruf kapital: `myVeryLongName`.
 
-What's interesting -- the dollar sign `'$'` and the underscore `'_'` can also be used in names. They are regular symbols, just like letters, without any special meaning.
+Yang menarik ialah -- tanda dollar `'$'` dan underscore `'_'` juga bisa digunakan dalam nama. Mereka simbol reguler, hanya seperti huruf, tanpa makna yang spesial.
 
-These names are valid:
+Nama-nama ini valid:
 
 ```js run untrusted
 let $ = 1; // declared a variable with the name "$"
@@ -170,7 +170,7 @@ let _ = 2; // and now a variable with the name "_"
 alert($ + _); // 3
 ```
 
-Examples of incorrect variable names:
+Contoh nama variabel yang tidak valid:
 
 ```js no-beautify
 let 1a; // cannot start with a digit
@@ -178,27 +178,27 @@ let 1a; // cannot start with a digit
 let my-name; // hyphens '-' aren't allowed in the name
 ```
 
-```smart header="Case matters"
-Variables named `apple` and `AppLE` are two different variables.
+```smart header="Case berpengaruh"
+Variabel dengan nama `apple` dan `AppLE` adalah dua variabel yang berbeda.
 ```
 
-````smart header="Non-English letters are allowed, but not recommended"
-It is possible to use any language, including cyrillic letters or even hieroglyphs, like this:
+````smart header="Huruf non-Inggris diperbolehkan, namun tak direkomendasikan"
+Boleh menggunakan bahasa apapun, termasuk huruf cyrillic atau bahkan hieroglyphs, seperti ini:
 
 ```js
 let имя = '...';
 let 我 = '...';
 ```
 
-Technically, there is no error here, such names are allowed, but there is an international tradition to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
+Secara teknis, tak ada error di sini, nama-nama begitu boleh, tapi ada tradisi internasional untuk menggunakan Inggris dalam nama variabel. Meski jika kita menulis script kecil, ia akan punya nyawa yang panjang. Orang-orang dari negara lain mungkin harus membaca beberapa kali.
 ````
 
-````warn header="Reserved names"
-There is a [list of reserved words](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords), which cannot be used as variable names because they are used by the language itself.
+````warn header="Nama-nama yang dikecualikan"
+Ada [daftar kata yang dikecualikan](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords), yang tidak bisa digunakan sebagai nama variabel karena mereka digunakan oleh bahasa Javascript sendiri.
 
-For example: `let`, `class`, `return`, and `function` are reserved.
+Contohnya: `let`, `class`, `return`, dan `function` dikecualikan.
 
-The code below gives a syntax error:
+Kode di bawah menghasilkan syntax error:
 
 ```js run no-beautify
 let let = 5; // can't name a variable "let", error!
@@ -206,9 +206,9 @@ let return = 5; // also can't name it "return", error!
 ```
 ````
 
-````warn header="An assignment without `use strict`"
+````warn header="Assignment tanpa `use strict`"
 
-Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value without using `let`. This still works now if we don't put `use strict` in our scripts to maintain compatibility with old scripts.
+Normalnya, kita harus mendefinisi variabel sebelum memakainya. Tapi dulu, secara teknis boleh membuat variabel hanya dengan assignment nilai tanpa menggunakan `let`. Ini masih berjalan jika kita tak menaruh `use strict` di script kita untuk mengelola kompatibilitas dengan script jadul.
 
 ```js run no-strict
 // note: no "use strict" in this example
@@ -218,7 +218,7 @@ num = 5; // the variable "num" is created if it didn't exist
 alert(num); // 5
 ```
 
-This is a bad practice and would cause an error in strict mode:
+Ini kebiasaan buruk dan akan mengakibatkan error dalam mode strict:
 
 ```js
 "use strict";
@@ -229,32 +229,32 @@ num = 5; // error: num is not defined
 ```
 ````
 
-## Constants
+## Constant
 
-To declare a constant (unchanging) variable, use `const` instead of `let`:
+Untuk mendeklarasi variabel constant (tak berubah), gunakan `const` ketimbang `let`:
 
 ```js
 const myBirthday = '18.04.1982';
 ```
 
-Variables declared using `const` are called "constants". They cannot be changed. An attempt to do so would cause an error:
+Variabel dideklarasi menggunakan `const` disebut "constant". Mereka tak bisa diubah. Jika kamu mencoba mengubahnya maka ia menghasilkan error:
 
 ```js run
 const myBirthday = '18.04.1982';
 
-myBirthday = '01.01.2001'; // error, can't reassign the constant!
+myBirthday = '01.01.2001'; // error, tak bisa mengassign-ulang constant!
 ```
 
-When a programmer is sure that a variable will never change, they can declare it with `const` to guarantee and clearly communicate that fact to everyone.
+Ketika programmer yakin bahwa variabel tak akan berubah, mereka bisa mendeklarasikan `const` untuk menjamin hal itu dan memberitahu semua orang.
 
 
-### Uppercase constants
+### Constant huruf-besar
 
-There is a widespread practice to use constants as aliases for difficult-to-remember values that are known prior to execution.
+Ada kebiasaan umum untuk menggunakan constant sebagai alias untuk nilai yang sulit dihafal yang akan diketahui sebelum dieksekusi.
 
-Such constants are named using capital letters and underscores.
+Constant macam ini dinamai dengan huruf kapital dan underscore.
 
-Like this:
+Seperti ini:
 
 ```js run
 const COLOR_RED = "#F00";
@@ -262,69 +262,69 @@ const COLOR_GREEN = "#0F0";
 const COLOR_BLUE = "#00F";
 const COLOR_ORANGE = "#FF7F00";
 
-// ...when we need to pick a color
+// ...ketika kita harus memilih warna
 let color = COLOR_ORANGE;
 alert(color); // #FF7F00
 ```
 
-Benefits:
+Keuntungan:
 
-- `COLOR_ORANGE` is much easier to remember than `"#FF7F00"`.
-- It is much easier to mistype `"#FF7F00"` than `COLOR_ORANGE`.
-- When reading the code, `COLOR_ORANGE` is much more meaningful than `#FF7F00`.
+- `COLOR_ORANGE` lebih mudah diingat ketimbang `"#FF7F00"`.
+- Lebih rentan salah penulisan `"#FF7F00"` ketimbang `COLOR_ORANGE`.
+- Ketika membaca code, `COLOR_ORANGE` lebih berarti daripada `#FF7F00`.
 
-When should we use capitals for a constant and when should we name it normally? Let's make that clear.
+Kapan kita sebaiknya menggunakan kapital untuk constant dan kapan itu dinamai dengan normal? Ayo kita perjelas.
 
-Being a "constant" just means that a variable's value never changes. But there are constants that are known prior to execution (like a hexadecimal value for red) and there are constants that are *calculated* in run-time, during the execution, but do not change after their initial assignment.
+Menjadi "constant" hanya berarti jika nilai variable tak pernah berubah. Tapi ada constant yang diketahui sebelum eksekusi (seperti nilai hexadecimal untuk merah) dan ada constant yang *dikalkulasi* dalam run-time, selama eksekusi, tapi tak berubah setelah assignment inisial mereka.
 
-For instance:
+Contohnya:
 ```js
-const pageLoadTime = /* time taken by a webpage to load */;
+const pageLoadTime = /* waktu yang dibutuhkan laman web untuk meload */;
 ```
 
-The value of `pageLoadTime` is not known prior to the page load, so it's named normally. But it's still a constant because it doesn't change after assignment.
+Nilai `pageLoadTime` tidak diketahui sebelum laman diload, jadi itu dinamai dengan normal. Tapi ia masih constant karena ia tak berubah setelah assignment.
 
-In other words, capital-named constants are only used as aliases for "hard-coded" values.  
+Dengan kata lain, constant berhuruf kapital hanya digunakan sebagai alias untuk nilai yang "dihard-code".  
 
-## Name things right
+## Namai dengan benar
 
-Talking about variables, there's one more extremely important thing.
+Berbicara tentang variabel, ada satu hal yang sangat penting.
 
-Please name your variables sensibly. Take time to think about this.
+Tolong namai variabelmu dengan pantas. Luangkan waktu untuk memikirkannya.
 
-Variable naming is one of the most important and complex skills in programming. A quick glance at variable names can reveal which code was written by a beginner versus an experienced developer.
+Penamaan variabel adalah salah satu keahlian yang penting dan rumit dalam pemrograman. Pandangan sekilas pada nama variabel bisa menyingkap kode yang ditulis oleh pengembang pemula versus pengembang berpengalaman.
 
-In a real project, most of the time is spent modifying and extending an existing code base rather than writing something completely separate from scratch. When we return to some code after doing something else for a while, it's much easier to find information that is well-labeled. Or, in other words, when the variables have good names.
+Di proyek nyata, kebanyakan waktu dihabiskan untuk modifikasi dan mengextend code base ketimbang menulis sesuatu yang benar-benar  baru dari awal. Ketika kita kembali ke beberapa kode setelah melakukan sesuatu yang lain untuk sementara, akan lebih mudah menemukan informasi yang labelnya tepat. Atau, dengan kata lain, ketika variabel punya nama yang baik.
 
-Please spend time thinking about the right name for a variable before declaring it. Doing so will repay you handsomely.
+Tolong renungkan tentang nama yang baik untuk variabel sebelum mendeklarasinya. Itu baik untukmu.
 
-Some good-to-follow rules are:
+Beberapa aturan yang baik untuk ditiru:
 
-- Use human-readable names like `userName` or `shoppingCart`.
-- Stay away from abbreviations or short names like `a`, `b`, `c`, unless you really know what you're doing.
-- Make names maximally descriptive and concise. Examples of bad names are `data` and `value`. Such names say nothing. It's only okay to use them if the context of the code makes it exceptionally obvious which data or value the variable is referencing.
-- Agree on terms within your team and in your own mind. If a site visitor is called a "user" then we should name related variables `currentUser` or `newUser` instead of `currentVisitor` or `newManInTown`.
+- Gunakan nama yang manusiawi seperti `userName` atau `shoppingCart`.
+- Jauhi singkatan atau nama pendek seperti `a`, `b`, `c`, kecuali jika kamu benar-benar tau apa yang kamu lakukan.
+- Buat nama sedeskriptif dan sejelas mungkin. Contoh nama yang jelek ialah `data` dan `value`. Nama semacam ini tidak punya makna dan hanya OK untuk menggunakannya jika data atau nilai variabel yang mengacu kontex kodenya luar biasa jelas.
+- Sepakat dalam hal-hal yang ada di dalam timmu dan pikiranmu. Jika pengunjung situs disebut "user" maka kita sebaiknya menamai variabel terkait `currentUser` atau `newUser` ketimbang `currentVisitor` atau `newManInTown`.
 
-Sounds simple? Indeed it is, but creating descriptive and concise variable names in practice is not. Go for it.
+Kedengaran simpel kan? Jelas saja, tapi membuat nama variabel descriptif dan jelas pada praktiknya tidak mudah. Coba lakukan.
 
-```smart header="Reuse or create?"
-And the last note. There are some lazy programmers who, instead of declaring new variables, tend to reuse existing ones.
+```smart header="Daur ulang atau buat baru?"
+Dan catatan terakhirnya. Ada juga programmer malas yang, ketimbang mendeklarasi variabel baru, cenderung menggunakan variabel yang sudah ada.
 
-As a result, their variables are like boxes into which people throw different things without changing their stickers. What's inside the box now? Who knows? We need to come closer and check.
+Hasilnya, variabel mereka seperti box yang orang-orang lempar tanpa menganti stikernya. Apa yang ada di dalam boxnya? Siapa yang tahu? Kita harus mengeceknya dengan seksama.
 
-Such programmers save a little bit on variable declaration but lose ten times more on debugging.
+Programmer macam ini menghemat satu deklarasi variabel namun kehilangan sepuluh kali saat debugging.
 
-An extra variable is good, not evil.
+Variabel extra itu baik, tidak jahat.
 
-Modern JavaScript minifiers and browsers optimize code well enough, so it won't create performance issues. Using different variables for different values can even help the engine optimize your code.
+JavaScript minifier dan peramban modern mengoptimisasi kode dengan cukup baik, sehingga ia tak akan mengakibatkan isu performa. Menggunakan variabel yang berbeda untuk nilai yang berbeda bahkan bisa membantu engine mengoptimisasi kodemu.
 ```
 
-## Summary
+## Kesimpulan
 
-We can declare variables to store data by using the `var`, `let`, or `const` keywords.
+Kita bisa mendeklarasi variabel untuk menyimpan data menggunakan katakunci `var`, `let`, atau `const`.
 
-- `let` -- is a modern variable declaration. The code must be in strict mode to use `let` in Chrome (V8).
-- `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
-- `const` -- is like `let`, but the value of the variable can't be changed.
+- `let` -- adalah deklarasi variabel modern. Kode harus dalam mode strict mode untuk menggunakan `let` di Chrome (V8).
+- `var` -- adalah deklarasi variabel jadul. Normalnya kita tak menggunakannya sama sekali, tapi kita akan mengcover perbedaan halus dari `let` di bab <info:var>, hanya jika kamu membutuhkannya.
+- `const` -- seperti `let`, tapi dengan nilai variabel yang tak bisa berubah.
 
-Variables should be named in a way that allows us to easily understand what's inside them.
+Variabel sebaiknya diberi nama yang memudahkan kita untuk memahami apa isinya.
