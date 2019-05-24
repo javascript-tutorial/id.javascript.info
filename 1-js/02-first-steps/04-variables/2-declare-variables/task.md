@@ -1,8 +1,8 @@
-importance: 3
+kepentingan: 3
 
 ---
 
-# Giving the right name
+# Memberikan nama yang tepat
 
-1. Create a variable with the name of our planet. How would you name such a variable?
-2. Create a variable to store the name of a current visitor to a website. How would you name that variable?
+1. Buat variabel dengan nama planet kita. Bagaimana kamu akan menamainya?
+2. Buat variabel untuk menyimpan nama pengunjung saat ini ke website. Bagaimana kamu menamainya?
