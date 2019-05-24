@@ -312,7 +312,7 @@ Dan catatan terakhirnya. Ada juga programmer malas yang, ketimbang mendeklarasi 
 
 Hasilnya, variabel mereka seperti box yang orang-orang lempar tanpa menganti stikernya. Apa yang ada di dalam boxnya? Siapa yang tahu? Kita harus mengeceknya dengan seksama.
 
-Programmer macam ini menghemat satu deklarasi variabel namun kehilangan sepuluh kali saat debugging.
+Programmer macam ini pelit terhadap satu deklarasi variabel namun boros sepuluh kali saat debugging.
 
 Variabel extra itu baik, tidak jahat.
 
