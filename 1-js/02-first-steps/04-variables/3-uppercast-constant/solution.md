@@ -1,5 +1,5 @@
-We generally use upper case for constants that are "hard-coded". Or, in other words, when the value is known prior to execution and directly written into the code.
+Kita umumnya menggunakan case yang layak untuk constant yang  "dihard-code". Atau, dengan kata lain, ketika nilainya diketahui sebelum eksekusi dan langsung ditulis ke dalam kode.
 
-In this code, `birthday` is exactly like that. So we could use the upper case for it.
+Di dalam kode, `birthday` memang seperti itu. Jadi kita bisa menggunakan kapital besar untuknya.
 
-In contrast, `age` is evaluated in run-time. Today we have one age, a year after we'll have another one. It is constant in a sense that it does not change through the code execution. But it is a bit "less of a constant" than `birthday`, it is calculated, so we should keep the lower case for it.
+Sebaliknya, `age` dievaluasi saat run-time. Hari ini kita punya suatu umur saat ini, setahun kemudian kita akan punya umur yang berbeda lagi. Ia termasuk constant dalam hal bahwa ia tak berubah melalui eksekusi kode. Tapi ia agak "sedikit bukan constant" ketimbang `birthday`, ia dikalkulasi, sehingga kita sebaiknya menggunakan huruf kecil untuk itu.
