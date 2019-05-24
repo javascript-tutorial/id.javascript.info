@@ -1,10 +1,10 @@
-importance: 4
+kepentingan: 4
 
 ---
 
-# Uppercase const?
+# Const huruf kapital?
 
-Examine the following code:
+Cek kode berikut:
 
 ```js
 const birthday = '18.04.1982';
@@ -12,13 +12,13 @@ const birthday = '18.04.1982';
 const age = someCode(birthday);
 ```
 
-Here we have a constant `birthday` date and the `age` is calculated from `birthday` with the help of some code (it is not provided for shortness, and because details don't matter here).
+Di sini kita punya constant tanggal `birthday` dan `age` dikalkulasi dari `birthday` dengan batuan beberapa kode (tidak tersedia yang pendek-pendek, dan karena detail tidak masalah di sini).
 
-Would it be right to use upper case for `birthday`? For `age`? Or even for both?
+Apakah tepat menggunakan huruf kapital untuk `birthday`? Untuk `age`? Atau bahkan untuk keduanya?
 
 ```js
-const BIRTHDAY = '18.04.1982'; // make uppercase?
+const BIRTHDAY = '18.04.1982'; // buat huruf kapital?
 
-const AGE = someCode(BIRTHDAY); // make uppercase?
+const AGE = someCode(BIRTHDAY); // buat huruf kapital?
 ```
 
