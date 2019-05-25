@@ -1,6 +1,6 @@
-# Data types
+# Tipe data
 
-A variable in JavaScript can contain any data. A variable can at one moment be a string and at another be a number:
+Variabel di JavaScript bisa mengandung data apapun. Satu variabel awalnya string bisa berubah jadi angka:
 
 ```js
 // no error
@@ -8,20 +8,20 @@ let message = "hello";
 message = 123456;
 ```
 
-Programming languages that allow such things are called "dynamically typed", meaning that there are data types, but variables are not bound to any of them.
+Bahasa pemrograman yang memperbolehkan hal semacam ini dibsebut "dynamically typed", yang artinya ada tipe data, tapi variabel tak terikat ke tipe data apapun.
 
-There are seven basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
+Ada tujuh tipe data dasar di JavaScript. Di sini, kita akan mengcover mereka secara umum dan di bab berikutnya kita akan berbicara tentang setiap dari mereka secara detil.
 
-## A number
+## Angka
 
 ```js
 let n = 123;
 n = 12.345;
 ```
 
-The *number* type represents both integer and floating point numbers.
+Tipe *angka* merepresentasikan baik angka integer maupun floating point.
 
-There are many operations for numbers, e.g. multiplication `*`, division `/`, addition `+`, subtraction `-`, and so on.
+Ada banyak operasi untuk angka, misal perkalian `*`, pembagian `/`, penambahan `+`, pengurangan `-`, dan lainnya.
 
 Besides regular numbers, there are so-called "special numeric values" which also belong to this data type: `Infinity`, `-Infinity` and `NaN`.
 
@@ -64,7 +64,7 @@ We'll see more about working with numbers in the chapter <info:number>.
 
 ## A string
 
-A string in JavaScript must be surrounded by quotes.
+String di JavaScript harus dikelilingi petik.
 
 ```js
 let str = "Hello";
@@ -72,11 +72,11 @@ let str2 = 'Single quotes are ok too';
 let phrase = `can embed ${str}`;
 ```
 
-In JavaScript, there are 3 types of quotes.
+Di JavaScript, ada 3 tipe petik.
 
-1. Double quotes: `"Hello"`.
-2. Single quotes: `'Hello'`.
-3. Backticks: <code>&#96;Hello&#96;</code>.
+1. Petik ganda: `"Hello"`.
+2. Petik tunggal: `'Hello'`.
+3. Backtick: <code>&#96;Hello&#96;</code>.
 
 Double and single quotes are "simple" quotes. There's no difference between them in JavaScript.
 
