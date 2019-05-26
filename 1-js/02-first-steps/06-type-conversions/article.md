@@ -1,111 +1,111 @@
-# Type Conversions
+# Konversi Tipe
 
-Most of the time, operators and functions automatically convert the values given to them to the right type. 
+Seringkali, operator dan fungsi otomatis mengkonversi nilai yang diberikan ke mereka ke tipe yang sesuai. 
 
-For example, `alert` automatically converts any value to a string to show it. Mathematical operations convert values to numbers.
+Misalnya, `alert` otomatis mengkonversi nilai apapun ke string untuk menampilkannya. Operasi mathematika mengkonversi nilai ke angka.
 
-There are also cases when we need to explicitly convert a value to the expected type.
+Ada juga kasus di mana kita harus explisit mengkonversi nilai ke tipe yang diharapkan.
 
-```smart header="Not talking about objects yet"
-In this chapter, we won't cover objects. Instead, we'll study primitives first. Later, after we learn about objects, we'll see how object conversion works in the chapter <info:object-toprimitive>.
+```smart header="Belum bicara objek dulu"
+Di bab ini, kita takkan mengcover objek. Daripada itu, kita akan belajar primitives dulu. Lalu, setelah kita belajar tentang objek, kita akan lihat cara konversi objek bekerja di bab <info:object-toprimitive>.
 ```
 
 ## ToString
 
-String conversion happens when we need the string form of a value.
+Konversi string terjadi ketika kita butuh bentuk string dari nilai.
 
-For example, `alert(value)` does it to show the value.
+Misalnya, `alert(value)` menampilkan nilai.
 
-We can also call the `String(value)` function to convert a value to a string:
+Kita juga bisa memanggil fungsi `String(value)` untuk mengkonversi nilai string:
 
 ```js run
 let value = true;
 alert(typeof value); // boolean
 
 *!*
-value = String(value); // now value is a string "true"
+value = String(value); // sekarang nilainya string "true"
 alert(typeof value); // string
 */!*
 ```
 
-String conversion is mostly obvious. A `false` becomes `"false"`, `null` becomes `"null"`, etc.
+Konversi string kebanyakan jelas. `false` menjadi `"false"`, `null` menjadi `"null"`, dll.
 
 ## ToNumber
 
-Numeric conversion happens in mathematical functions and expressions automatically.
+Konversi numerik terjadi otomatis dalam fungsi dan expresi matematis.
 
-For example, when division `/` is applied to non-numbers:
+Misalnya, ketika pembagian `/` dilakukan ke non-angka:
 
 ```js run
-alert( "6" / "2" ); // 3, strings are converted to numbers
+alert( "6" / "2" ); // 3, string dikonversi ke angka
 ```
 
-We can use the `Number(value)` function to explicitly convert a `value` to a number:
+Kita bisa gunakan fungsi `Number(value)` untuk explisit mengkonversi `value` ke angka:
 
 ```js run
 let str = "123";
 alert(typeof str); // string
 
-let num = Number(str); // becomes a number 123
+let num = Number(str); // menjadi angka 123
 
-alert(typeof num); // number
+alert(typeof num); // angka
 ```
 
-Explicit conversion is usually required when we read a value from a string-based source like a text form but expect a number to be entered.
+Konversi explisit biasanya dibutuhkan ketika kita membaca nilai dari sumber berbasis string seperti form teks namun menrharapkan angka untuk dienter.
 
-If the string is not a valid number, the result of such a conversion is `NaN`. For instance:
+Jika stringnya angka tak valid, hasilnya konversi macam ini ialah `NaN`. Misalnya:
 
 ```js run
 let age = Number("an arbitrary string instead of a number");
 
-alert(age); // NaN, conversion failed
+alert(age); // NaN, konversi gagal
 ```
 
-Numeric conversion rules:
+Aturan konversi numerik:
 
 | Value |  Becomes... |
 |-------|-------------|
 |`undefined`|`NaN`|
 |`null`|`0`|
-|<code>true&nbsp;and&nbsp;false</code> | `1` and `0` |
-| `string` | Whitespaces from the start and end are removed. If the remaining string is empty, the result is `0`. Otherwise, the number is "read" from the string. An error gives `NaN`. |
+|<code>true&nbsp;dan&nbsp;false</code> | `1` and `0` |
+| `string` | Whitespaces dari awal dan akhir dibuang. Jika string sisanya kosong, hasilnya `0`. Sebaliknya, angkanya "dibaca" dari stringnya. Error memberikan `NaN`. |
 
-Examples:
+Misalnya:
 
 ```js run
 alert( Number("   123   ") ); // 123
-alert( Number("123z") );      // NaN (error reading a number at "z")
+alert( Number("123z") );      // NaN (error membaca angka pada "z")
 alert( Number(true) );        // 1
 alert( Number(false) );       // 0
 ```
 
-Please note that `null` and `undefined` behave differently here: `null` becomes zero while `undefined` becomes `NaN`.
+Tolong diingat bahwa kelakuan `null` dan `undefined` berbeda di sini: `null` menjadi nol namun `undefined` menjadi `NaN`.
 
-````smart header="Addition '+' concatenates strings"
-Almost all mathematical operations convert values to numbers. A notable exception is addition `+`. If one of the added values is a string, the other one is also converted to a string.
+````smart header="Penambahan '+' mengkonkatenasi string"
+Hampir semua operasi matematik mengkonversi nilai ke angka. Pengecualian yang penting ialah penambahan `+`. Jika satu dari nilai yang ditambahkan berupa string, nilai lainnya juga dikonversi ke string.
 
-Then, it concatenates (joins) them:
+Maka, ia mengkonkatenasi (menggabungkan) mereka:
 
 ```js run
-alert( 1 + '2' ); // '12' (string to the right)
-alert( '1' + 2 ); // '12' (string to the left)
+alert( 1 + '2' ); // '12' (string ke kanan)
+alert( '1' + 2 ); // '12' (string ke kiri)
 ```
 
-This only happens when at least one of the arguments is a string. Otherwise, values are converted to numbers.
+Ini cuma terjadi ketika setidaknya satu dari argumen yaitu string. Sebaliknya, nilai dikonversi ke angka.
 ````
 
 ## ToBoolean
 
-Boolean conversion is the simplest one.
+Konversi boolean ialah yang paling simpel.
 
-It happens in logical operations (later we'll meet condition tests and other similar things) but can also be performed explicitly with a call to `Boolean(value)`.
+Ini terjadi dalam operasi logika (nanti kita akan menemui tes kondisi dan hal mirp lainnya) tapi bisa juga berjalan explisit dengan panggilan ke `Boolean(value)`.
 
-The conversion rule:
+Aturan konversi:
 
-- Values that are intuitively "empty", like `0`, an empty string, `null`, `undefined`, and `NaN`, become `false`.
-- Other values become `true`.
+- Nilai yang secara intuitif "kosong", seperti `0`, string kosong, `null`, `undefined`, dan `NaN`, menjadi `false`.
+- Nilai lainnya menjadi `true`.
 
-For instance:
+Misalnya:
 
 ```js run
 alert( Boolean(1) ); // true
@@ -125,36 +125,36 @@ alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
 ````
 
 
-## Summary
+## Kesimpulan
 
-The three most widely used type conversions are to string, to number, and to boolean.
+Tiga tipe konversi yang paling digunakan ialah ke string, ke angka, dan ke boolean.
 
-**`ToString`** -- Occurs when we output something. Can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
+**`ToString`** -- Terjadi ketika kita mengoutput sesuatu. Bisa berjalan dengan `String(value)`. Konversi ke string biasanya untuk nilai primitive.
 
-**`ToNumber`** -- Occurs in math operations. Can be performed with `Number(value)`.
+**`ToNumber`** -- Terjadi di operasi matematika. Bisa berjalan dengan `Number(value)`.
 
-The conversion follows the rules:
+Konversinya mengikuti aturan ini:
 
 | Value |  Becomes... |
 |-------|-------------|
 |`undefined`|`NaN`|
 |`null`|`0`|
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
-| `string` | The string is read "as is", whitespaces from both sides are ignored. An empty string becomes `0`. An error gives `NaN`. |
+| `string` | Stringnya dibaca "apa adanya", whitespace dari kedua sisi diabaikan. String kosong menjadi `0`. Error memberikan `NaN`. |
 
-**`ToBoolean`** -- Occurs in logical operations. Can be performed with `Boolean(value)`.
+**`ToBoolean`** -- Terjadi di operasi logika. Bisa berjalan dengan `Boolean(value)`.
 
-Follows the rules:
+Ikuti aturan ini:
 
 | Value |  Becomes... |
 |-------|-------------|
 |`0`, `null`, `undefined`, `NaN`, `""` |`false`|
-|any other value| `true` |
+|nilai lain apapun| `true` |
 
 
-Most of these rules are easy to understand and memorize. The notable exceptions where people usually make mistakes are:
+Kebanyakan aturan ini mudah dipahami dan diingat. Pengecualian penting di mana orang biasanya membuat kesalahan yaitu:
 
-- `undefined` is `NaN` as a number, not `0`.
-- `"0"` and space-only strings like `"   "` are true as a boolean.
+- `undefined` ialah `NaN` sebagai angka, buka `0`.
+- `"0"` dan string yang cuma-spasi seperti `"   "` ialah true sebagai boolean.
 
-Objects aren't covered here. We'll return to them later in the chapter <info:object-toprimitive> that is devoted exclusively to objects after we learn more basic things about JavaScript.
+Objek tidak dicover di sini. Kita akan kembali ke mereka nanti di bab <info:object-toprimitive> yang khusus exclusif untuk objeck setelah kita belajar hal-hal lebih dasar tentang JavaScript.
