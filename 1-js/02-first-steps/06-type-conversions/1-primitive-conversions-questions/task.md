@@ -1,10 +1,10 @@
-importance: 5
+kepentingan: 5
 
 ---
 
-# Type conversions
+# Konversi tipe
 
-What are results of these expressions?
+Apa hasil dari expresi ini?
 
 ```js no-beautify
 "" + 1 + 0
@@ -23,4 +23,4 @@ null + 1
 undefined + 1
 ```
 
-Think well, write down and then compare with the answer.
+Pikirkan dengan baik, tulis dan bandingkan dengan jawaban.
