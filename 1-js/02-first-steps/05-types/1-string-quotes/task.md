@@ -1,10 +1,10 @@
-importance: 5
+kepentingan: 5
 
 ---
 
-# String quotes
+# Petik string
 
-What is the output of the script?
+Apa output dari script ini?
 
 ```js
 let name = "Ilya";
