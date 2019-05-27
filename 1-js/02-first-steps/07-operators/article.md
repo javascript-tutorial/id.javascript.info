@@ -1,15 +1,15 @@
-# Operators
+# Operator
 
-We know many operators from school. They are things like addition `+`, multiplication `*`, subtraction `-`, and so on.
+Kita tahu banyak operator dari sekolah. Mereka adalah penambahan `+`, perkalian `*`, pengurangan `-`, dll.
 
-In this chapter, we'll concentrate on aspects of operators that are not covered by school arithmetic.
+Di bab ini, kita akan fokus pada aspek operator yang tak dicover artimatika sekolah.
 
-## Terms: "unary", "binary", "operand"
+## Istilah: "unary", "binary", "operand"
 
-Before we move on, let's grasp some common terminology.
+Sebelum kita lanjut, mari pahami dulu terminologi umum.
 
-- *An operand* -- is what operators are applied to. For instance, in the multiplication of `5 * 2` there are two operands: the left operand is `5` and the right operand is `2`. Sometimes, people call these "arguments" instead of "operands".
-- An operator is *unary* if it has a single operand. For example, the unary negation `-` reverses the sign of a number:
+- *Operand* -- untuk apa operator diaplikasikan. Misalnya, dalam perkalian `5 * 2` ada dua operand: operand kiri `5` dan operand kanan `2`. Kadang, orang memanggil ini "argumen" ketimbang "operand".
+- Operator disebut *unary* jika ia punya operand tunggal. Misalnya, negasi unary `-` membalikkan tanda dari angka:
 
     ```js run
     let x = 1;
@@ -17,67 +17,67 @@ Before we move on, let's grasp some common terminology.
     *!*
     x = -x;
     */!*
-    alert( x ); // -1, unary negation was applied
+    alert( x ); // -1, negasi unary diaplikasikan
     ```
-- An operator is *binary* if it has two operands. The same minus exists in binary form as well:
+- Operator disebut *binary* jika ia punya dua operand. Minus yang sama juga berada dalam bentuk binary:
 
     ```js run no-beautify
     let x = 1, y = 3;
-    alert( y - x ); // 2, binary minus subtracts values
+    alert( y - x ); // 2, minus binary mengurangi nilai
     ```
 
-    Formally, we're talking about two different operators here: the unary negation (single operand: reverses the sign) and the binary subtraction (two operands: subtracts).
+    Formalnya, kita akan membahas tentang dua operator berbeda di sini: negasi unary (operand tunggal: membalikkan tanda) dan pengurangan binary (dua operand: pengurangan).
 
-## String concatenation, binary +
+## Konkatenasi string, binary +
 
-Now, let's see special features of JavaScript operators that are beyond school arithmetics.
+Sekarang, mari kita lihat fitur spesial operator JavaScript di luar aritmatika sekolah.
 
-Usually, the plus operator `+` sums numbers.
+Biasanya, operator plus `+` menambah angka.
 
-But, if the binary `+` is applied to strings, it merges (concatenates) them:
+Tapi, jika binary `+` diaplikasikan ke string, ia menggabungkan (konkatenasi) mereka:
 
 ```js
 let s = "my" + "string";
 alert(s); // mystring
 ```
 
-Note that if one of the operands is a string, the other one is converted to a string too.
+Ingat bahwa jika salah satu operand berupa string, maka yang satunya dikonversi ke string juga.
 
-For example:
+Misalnya:
 
 ```js run
 alert( '1' + 2 ); // "12"
 alert( 2 + '1' ); // "21"
 ```
 
-See, it doesn't matter whether the first operand is a string or the second one. The rule is simple: if either operand is a string, the other one is converted into a string as well.
+Lihat, tak masalah operand manapun yang berupa string. Aturannya simpel: jika salah satu operand adalah string, maka yang satunya dikonversi ke string juga.
 
-However, note that operations run from left to right. If there are two numbers followed by a string, the numbers will be added before being converted to a string:
+Namun, ingat bahwa operasi berjalan dari kiri ke kanan. Jika ada dua angka diikuti string, angka akan ditambah sebelum dikonversi ke string:
 
 
 ```js run
-alert(2 + 2 + '1' ); // "41" and not "221"
+alert(2 + 2 + '1' ); // "41" dan bukan "221"
 ```
 
-String concatenation and conversion is a special feature of the binary plus `+`. Other arithmetic operators work only with numbers and always convert their operands to numbers.
+Konkatenasi string dan konversi adalah fitur spesial dari binary plus `+`. Operator aritmatika lainnya bekerja hanya dengan angka dan selalu mengkonversi operand mereka ke angka.
 
-For instance, subtraction and division:
+Misalnya, pengurangan dan pembagian:
 
 ```js run
 alert( 2 - '1' ); // 1
 alert( '6' / '2' ); // 3
 ```
 
-## Numeric conversion, unary +
+## Konversi angka, unary +
 
-The plus `+` exists in two forms: the binary form that we used above and the unary form.
+Plus `+` ada dalam dua bentuk: bentuk binary yang kita gunakan di atas dan bentuk unary.
 
-The unary plus or, in other words, the plus operator `+` applied to a single value, doesn't do anything to numbers. But if the operand is not a number, the unary plus converts it into a number.
+Unary plus atau, dalam kata lain, operator plus `+` diaplikasikan ke nilai tunggal, tak berefek apapun ke angka. Tapi jika operand bukan angka, unary plus dikonversi ke dalam angka.
 
-For example:
+Misalnya:
 
 ```js run
-// No effect on numbers
+// Tak ada efek ke angka
 let x = 1;
 alert( +x ); // 1
 
@@ -85,19 +85,19 @@ let y = -2;
 alert( +y ); // -2
 
 *!*
-// Converts non-numbers
+// Mengkonversi non-angka
 alert( +true ); // 1
 alert( +"" );   // 0
 */!*
 ```
 
-It actually does the same thing as `Number(...)`, but is shorter.
+Sebenarnya ia melakukan hal yang sama seperti `Number(...)`, tapi lebih pendek.
 
-The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings.
+Kebutuhan mengkonversi string ke angka sangat sering meningkat. Misalnya, jika kita memperoleh nilai dari field form HTML, mereka biasanya string.
 
-What if we want to sum them?
+Bagaimana jika kita ingin menjumlahkan mereka?
 
-The binary plus would add them as strings:
+Binary plus akan menambah mereka sebagai string:
 
 ```js run
 let apples = "2";
@@ -224,7 +224,7 @@ The exponentiation operator `**` is a recent addition to the language.
 
 For a natural number `b`, the result of `a ** b` is `a` multiplied by itself `b` times.
 
-For instance:
+Misalnya:
 
 ```js run
 alert( 2 ** 2 ); // 4  (2 * 2)
@@ -232,9 +232,9 @@ alert( 2 ** 3 ); // 8  (2 * 2 * 2)
 alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2)
 ```
 
-The operator works for non-integer numbers as well.
+Operator juga bekerja untuk angka non-integer.
 
-For instance:
+Misalnya:
 
 ```js run
 alert( 4 ** (1/2) ); // 2 (power of 1/2 is the same as a square root, that's maths)
