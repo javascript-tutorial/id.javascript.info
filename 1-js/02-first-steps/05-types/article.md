@@ -150,9 +150,9 @@ Kode di atas menyatakan bahwa `age` tak diketahui atau kosong untuk beberapa ala
 
 Nilai spesial `undefined` juga berbeda lagi. Ia punya tipe miliknya sendiri, sama seperti `null`.
 
-Arti `undefined` ialah "nilai yang tak diassign".
+Arti `undefined` ialah "nilai yang tak ditetapkan".
 
-Jika variabel dideklarasi, namun tak diassign, maka nilainya `undefined`:
+Jika variabel dideklarasi, namun tak ditetapkan, maka nilainya `undefined`:
 
 ```js run
 let x;
@@ -160,7 +160,7 @@ let x;
 alert(x); // menampilkan "undefined"
 ```
 
-Secara teknis, mungkin saja mengassign `undefined` ke variabel apapun:
+Secara teknis, mungkin saja menetapkan `undefined` ke variabel apapun:
 
 ```js run
 let x = 123;
@@ -170,7 +170,7 @@ x = undefined;
 alert(x); // "undefined"
 ```
 
-...Tapi kita tidak menyarankan itu. Normalnya, kita gunakan `null` untuk mengassign nilai "kosong" atau "tak-diketahui" ke variabel, dan kita gunakan `undefined` untuk pengecekan seperti melihat apakah variabel telah diassign.
+...Tapi kita tidak menyarankan itu. Normalnya, kita gunakan `null` untuk menetapkan nilai "kosong" atau "tak-diketahui" ke variabel, dan kita gunakan `undefined` untuk pengecekan seperti melihat apakah variabel telah ditetapkan.
 
 ## Objek dan Simbol
 
@@ -232,7 +232,7 @@ Ada 7 tipe data dasar dalam JavaScript.
 - `string` untuk string. String mungkin punya satu atau lebih karakter, tak ada tipe katakter tunggal terpisah.
 - `boolean` untuk `true`/`false`.
 - `null` untuk nilai tak-diketahui -- tipe mandiri yang punya nilai tunggal `null`.
-- `undefined` untuk nilai tak-diassign -- tipe mandiri yang punya nilai tunggal `undefined`.
+- `undefined` untuk nilai yang belum ditetapkan -- tipe mandiri yang punya nilai tunggal `undefined`.
 - `object` untuk struktur data lebih rumit.
 - `symbol` untuk identifier unik.
 
