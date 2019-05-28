@@ -131,7 +131,7 @@ Jika expresi punya lebih dari satu operator, urutan eksekusi ditentukan oleh *pr
 
 Dari sekolah, kita semua tahu bahwa perkalian dalam expresi `1 + 2 * 2` harus dihitung sebelum penambahan. Itulah arti dari presedensi. Perkalian disebut memiliki *presedensi lebih tinggi* dari penambahan.
 
-Tanda kurung mengoverride presedensi apapun, jika jika kita tak puas dengan urutan implisit, kita bisa gunakan mereka untuk mengubahnya. Misalnya: `(1 + 2) * 2`.
+Tanda kurung mengesampingkan presedensi apapun, jika jika kita tak puas dengan urutan implisit, kita bisa gunakan mereka untuk mengubahnya. Misalnya: `(1 + 2) * 2`.
 
 Ada banyak operator di JavaScript. Tiap operator punya nomor presedensi masing-masing. Nomor yang lebih besar dieksekusi terlebih dahulu. Jika presedensinya sama, urutan eksekusinya dari kiri ke kanan.
 
@@ -147,16 +147,16 @@ Di sini adalah extrak dari [tabel presedensi](https://developer.mozilla.org/en/J
 | 13 | penambahan | `+` |
 | 13 | pengurangan | `-` |
 | ... | ... | ... |
-| 3 | pengassignan | `=` |
+| 3 | penetapan | `=` |
 | ... | ... | ... |
 
 Seperti yang kita lihat, "plus unary" punya prioritas `16` yang lebih tinggi dari `13` "penambahan" (plus binary). Itulah kenapa, dalam expresi `"+apples + +oranges"`, plus unary bekerja sebelum penambahan.
 
-## Pengassignan
+## Penetapan
 
-Mari ingat bahwa that an pengassignan `=` juga merupakan operator. Ia terdaftar di tabel presedensi dengan prioritas sangat rendah `3`.
+Mari ingat bahwa penetapan `=` juga merupakan operator. Ia terdaftar di tabel presedensi dengan prioritas sangat rendah `3`.
 
-Itulah kenapa, ketika kita assign variabel, seperti `x = 2 * 2 + 1`, kalkulasinya dilakukan pertama dan kemudian `=` dievaluasi, menyimpan hasilnya dalam in `x`.
+Itulah kenapa, ketika kita tetapkan variabel, seperti `x = 2 * 2 + 1`, kalkulasinya dilakukan pertama dan kemudian `=` dievaluasi, menyimpan hasilnya dalam in `x`.
 
 ```js
 let x = 2 * 2 + 1;
@@ -164,7 +164,7 @@ let x = 2 * 2 + 1;
 alert( x ); // 5
 ```
 
-It is possible to chain assignments:
+Penetapan dapat dirantai:
 
 ```js run
 let a, b, c;
@@ -178,14 +178,14 @@ alert( b ); // 4
 alert( c ); // 4
 ```
 
-Chained assignments evaluate from right to left. First, the rightmost expression `2 + 2` is evaluated and then assigned to the variables on the left: `c`, `b` and `a`. At the end, all the variables share a single value.
+Penetapan berantai berevaluasi dari kanan ke kiri. Pertama, expresi paling kanan `2 + 2` dievaluasi dan ditetapkan ke variabel di sebelah kiri: `c`, `b` dan `a`. Pada akhirnya, semua variabel berbagi nilai tunggal.
 
-````smart header="The assignment operator `\"=\"` returns a value"
-An operator always returns a value. That's obvious for most of them like addition `+` or multiplication `*`. But the assignment operator follows this rule too.
+````smart header="Operator penetapan `\"=\"` mengembalikan nilai"
+Operator selalu mengembalikan nilai. Sudah jelas untuk kebanyakan operator seperti penambahan `+` atau perkalian `*`. Tapi operator penetapan mengikuti aturan ini juga.
 
-The call `x = value` writes the `value` into `x` *and then returns it*.
+Panggilan `x = value` menulis `value` ke dalam `x` *dan mengembalikannya*.
 
-Here's a demo that uses an assignment as part of a more complex expression:
+Ini adalah demo yang menggunakan penetapan sebagai bagian dari expresi yang rumit:
 
 ```js run
 let a = 1;
@@ -199,9 +199,9 @@ alert( a ); // 3
 alert( c ); // 0
 ```
 
-In the example above, the result of `(a = b + 1)` is the value which is assigned to `a` (that is `3`). It is then used to subtract from `3`.
+Di contoh di atas, hasil dari `(a = b + 1)` ialah nilai yang ditetapkan ke `a` (yaitu `3`). Ia kemudian digunakan untuk pengurangan dari `3`.
 
-Funny code, isn't it? We should understand how it works, because sometimes we see it in 3rd-party libraries, but shouldn't write anything like that ourselves. Such tricks definitely don't make code clearer or readable.
+Kode yang lucu, ya kan? Kita sebaiknya memahami cara ia bekerja, karena kadang kita lihat ia ada dalam librari pihak ke-3, tapi tak boleh menulis apapun seperti yang kita lakukan. Trik macam itu tentu saja tak membuat kode lebih jelas atau lebih terbaca.
 ````
 
 ## Remainder %
@@ -210,7 +210,7 @@ The remainder operator `%`, despite its appearance, is not related to percents.
 
 The result of `a % b` is the remainder of the integer division of `a` by `b`.
 
-For instance:
+Misalnya:
 
 ```js run
 alert( 5 % 2 ); // 1 is a remainder of 5 divided by 2
