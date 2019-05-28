@@ -18,13 +18,13 @@ Statement di bawah membuat (dengan kata lain: *declares* or *defines*) variabel 
 let message;
 ```
 
-Kini, kita bisa menaruh beberapa data ke dalamnya dengan menggunakan assignment operator `=`:
+Kini, kita bisa menaruh beberapa data ke dalamnya dengan menggunakan operator penetapan `=`:
 
 ```js
 let message;
 
 *!*
-message = 'Hello'; // store the string
+message = 'Hello'; // simpan string
 */!*
 ```
 
@@ -35,14 +35,14 @@ let message;
 message = 'Hello!';
 
 *!*
-alert(message); // shows the variable content
+alert(message); // tampilkan isi variabel
 */!*
 ```
 
-Supaya pendek, kita bisa mengkombinasi deklarasi variabel dan assignment ke baris tunggal:
+Supaya ringkas, kita bisa mengkombinasi deklarasi variabel dan penetapan ke baris tunggal:
 
 ```js run
-let message = 'Hello!'; // define the variable and assign the value
+let message = 'Hello!'; // definisikan variabel dan tetapkan nilai
 
 alert(message); // Hello!
 ```
@@ -208,12 +208,12 @@ let return = 5; // also can't name it "return", error!
 
 ````warn header="Assignment tanpa `use strict`"
 
-Normalnya, kita harus mendefinisi variabel sebelum memakainya. Tapi dulu, secara teknis boleh membuat variabel hanya dengan assignment nilai tanpa menggunakan `let`. Ini masih berjalan jika kita tak menaruh `use strict` di script kita untuk mengelola kompatibilitas dengan script jadul.
+Normalnya, kita harus mendefinisi variabel sebelum memakainya. Tapi dulu, secara teknis boleh membuat variabel hanya dengan penetapan nilai tanpa menggunakan `let`. Ini masih berjalan jika kita tak menaruh `use strict` di script kita untuk mengelola kompatibilitas dengan script jadul.
 
 ```js run no-strict
-// note: no "use strict" in this example
+// note: tak ada "use strict" di contoh ini
 
-num = 5; // the variable "num" is created if it didn't exist
+num = 5; // variabel "num" dibuat jika ia tak ada
 
 alert(num); // 5
 ```
@@ -224,35 +224,35 @@ Ini kebiasaan buruk dan akan mengakibatkan error dalam mode strict:
 "use strict";
 
 *!*
-num = 5; // error: num is not defined
+num = 5; // error: num tak terdefinisi
 */!*
 ```
 ````
 
-## Constant
+## Konstan
 
-Untuk mendeklarasi variabel constant (tak berubah), gunakan `const` ketimbang `let`:
+Untuk mendeklarasi variabel konstan (tak berubah), gunakan `const` ketimbang `let`:
 
 ```js
 const myBirthday = '18.04.1982';
 ```
 
-Variabel dideklarasi menggunakan `const` disebut "constant". Mereka tak bisa diubah. Jika kamu mencoba mengubahnya maka ia menghasilkan error:
+Variabel dideklarasi menggunakan `const` disebut "konstan". Mereka tak bisa diubah. Jika kamu mencoba mengubahnya maka ia menghasilkan error:
 
 ```js run
 const myBirthday = '18.04.1982';
 
-myBirthday = '01.01.2001'; // error, tak bisa mengassign-ulang constant!
+myBirthday = '01.01.2001'; // error, tak bisa menetapkan-ulang konstan!
 ```
 
 Ketika programmer yakin bahwa variabel tak akan berubah, mereka bisa mendeklarasikan `const` untuk menjamin hal itu dan memberitahu semua orang.
 
 
-### Constant huruf-besar
+### Konstan huruf-besar
 
-Ada kebiasaan umum untuk menggunakan constant sebagai alias untuk nilai yang sulit dihafal yang akan diketahui sebelum dieksekusi.
+Ada kebiasaan umum untuk menggunakan konstan sebagai alias untuk nilai yang sulit dihafal yang akan diketahui sebelum dieksekusi.
 
-Constant macam ini dinamai dengan huruf kapital dan underscore.
+Konstan macam ini dinamai dengan huruf kapital dan underscore.
 
 Seperti ini:
 
@@ -273,18 +273,18 @@ Keuntungan:
 - Lebih rentan salah penulisan `"#FF7F00"` ketimbang `COLOR_ORANGE`.
 - Ketika membaca code, `COLOR_ORANGE` lebih berarti daripada `#FF7F00`.
 
-Kapan kita sebaiknya menggunakan kapital untuk constant dan kapan itu dinamai dengan normal? Ayo kita perjelas.
+Kapan kita sebaiknya menggunakan kapital untuk konstan dan kapan itu dinamai dengan normal? Ayo kita perjelas.
 
-Menjadi "constant" hanya berarti jika nilai variable tak pernah berubah. Tapi ada constant yang diketahui sebelum eksekusi (seperti nilai hexadecimal untuk merah) dan ada constant yang *dikalkulasi* dalam run-time, selama eksekusi, tapi tak berubah setelah assignment inisial mereka.
+Menjadi "konstan" hanya berarti jika nilai variable tak pernah berubah. Tapi ada konstan yang diketahui sebelum eksekusi (seperti nilai hexadecimal untuk merah) dan ada konstan yang *dikalkulasi* dalam run-time, selama eksekusi, tapi tak berubah setelah penetapan inisial mereka.
 
 Contohnya:
 ```js
 const pageLoadTime = /* waktu yang dibutuhkan laman web untuk meload */;
 ```
 
-Nilai `pageLoadTime` tidak diketahui sebelum laman diload, jadi itu dinamai dengan normal. Tapi ia masih constant karena ia tak berubah setelah assignment.
+Nilai `pageLoadTime` tidak diketahui sebelum laman diload, jadi itu dinamai dengan normal. Tapi ia masih konstan karena ia tak berubah setelah penetapan.
 
-Dengan kata lain, constant berhuruf kapital hanya digunakan sebagai alias untuk nilai yang "dihard-code".  
+Dengan kata lain, konstan berhuruf kapital hanya digunakan sebagai alias untuk nilai yang "dihard-code".  
 
 ## Namai dengan benar
 
