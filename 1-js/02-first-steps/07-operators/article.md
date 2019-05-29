@@ -59,7 +59,7 @@ Namun, ingat bahwa operasi berjalan dari kiri ke kanan. Jika ada dua angka diiku
 alert(2 + 2 + '1' ); // "41" dan bukan "221"
 ```
 
-Konkatenasi string dan konversi adalah fitur spesial dari binary plus `+`. Operator aritmatika lainnya bekerja hanya dengan angka dan selalu mengkonversi operand mereka ke angka.
+Konkatenasi string dan konversi adalah fitur spesial dari plus binary `+`. Operator aritmatika lainnya bekerja hanya dengan angka dan selalu mengkonversi operand mereka ke angka.
 
 Misalnya, pengurangan dan pembagian:
 
@@ -97,13 +97,13 @@ Kebutuhan mengkonversi string ke angka sangat sering meningkat. Misalnya, jika k
 
 Bagaimana jika kita ingin menjumlahkan mereka?
 
-Binary plus akan menambah mereka sebagai string:
+Plus binary akan menambah mereka sebagai string:
 
 ```js run
 let apples = "2";
 let oranges = "3";
 
-alert( apples + oranges ); // "23", binary plus mengkonkatenasi string
+alert( apples + oranges ); // "23", plus binary mengkonkatenasi string
 ```
 
 Jika kita ingin memperlakukan mereka sebagai angka, kita harus mengkonversi, lalu menjumlahkan mereka:
@@ -113,7 +113,7 @@ let apples = "2";
 let oranges = "3";
 
 *!*
-// kedua nilai dikonversi ke angka sebelum binary plus
+// kedua nilai dikonversi ke angka sebelum plus binary
 alert( +apples + +oranges ); // 5
 */!*
 
@@ -204,89 +204,91 @@ Di contoh di atas, hasil dari `(a = b + 1)` ialah nilai yang ditetapkan ke `a` (
 Kode yang lucu, ya kan? Kita sebaiknya memahami cara ia bekerja, karena kadang kita lihat ia ada dalam librari pihak ke-3, tapi tak boleh menulis apapun seperti yang kita lakukan. Trik macam itu tentu saja tak membuat kode lebih jelas atau lebih terbaca.
 ````
 
-## Remainder %
+## Sisa %
 
-The remainder operator `%`, despite its appearance, is not related to percents.
+Operator sisa `%`, meski terlihat begitu, tak ada kaitannya dengan persen.
 
-The result of `a % b` is the remainder of the integer division of `a` by `b`.
-
-Misalnya:
-
-```js run
-alert( 5 % 2 ); // 1 is a remainder of 5 divided by 2
-alert( 8 % 3 ); // 2 is a remainder of 8 divided by 3
-alert( 6 % 3 ); // 0 is a remainder of 6 divided by 3
-```
-
-## Exponentiation **
-
-The exponentiation operator `**` is a recent addition to the language.
-
-For a natural number `b`, the result of `a ** b` is `a` multiplied by itself `b` times.
+Hasil dari `a % b` ialah sisa of the pembagian integer `a` oleh `b`.
 
 Misalnya:
 
-```js run
+​```js run
+alert( 5 % 2 ); // 1 ialah sisa dari 5 dibagi 2
+alert( 8 % 3 ); // 2 ialah sisa dari 8 dibagi 3
+alert( 6 % 3 ); // 0 ialah sisa dari 6 dibagi 3
+​```
+
+## Exponensiasi **
+
+Operator exponensiasi `**` merupakan tambahan baru ke JavaScript.
+
+Untuk angka natural `b`, hasil dari `a ** b` ialah `a` dikalikan dirinya sendiri `b` kali.
+
+Misalnya:
+
+​```js run
 alert( 2 ** 2 ); // 4  (2 * 2)
 alert( 2 ** 3 ); // 8  (2 * 2 * 2)
 alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2)
-```
+​```
 
 Operator juga bekerja untuk angka non-integer.
 
 Misalnya:
 
-```js run
+​```js run
 alert( 4 ** (1/2) ); // 2 (power of 1/2 is the same as a square root, that's maths)
 alert( 8 ** (1/3) ); // 2 (power of 1/3 is the same as a cubic root)
-```
+​```
 
-## Increment/decrement
+## Inkremen/dekremen
 
-<!-- Can't use -- in title, because built-in parse turns it into – -->
+<!-- Tak bisa menggunakan -- di judul, karena built-in parse mengubahnya ke – -->
 
-Increasing or decreasing a number by one is among the most common numerical operations.
+Menaikkan atau menurunkan satu angka ialah salah satu operasi numerik paling umum.
 
-So, there are special operators for it:
+Jadi, ada operator spesial untuk itu:
 
-- **Increment** `++` increases a variable by 1:
+- **Inkremen** `++` menaikkan variabel sebanyak 1:
 
     ```js run no-beautify
     let counter = 2;
-    counter++;      // works the same as counter = counter + 1, but is shorter
+    counter++;      // Cara kerjanya sama dengan counter = counter + 1, tapi lebih pendek
     alert( counter ); // 3
-    ```
-- **Decrement** `--` decreases a variable by 1:
+```
+- **Decrement** `--` menurunkan variabel sebanyak 1:
 
     ```js run no-beautify
     let counter = 2;
-    counter--;      // works the same as counter = counter - 1, but is shorter
+    counter--;      // Cara kerjanya sama dengan counter = counter - 1,tapi lebih pendek
     alert( counter ); // 1
     ```
 
 ```warn
-Increment/decrement can only be applied to variables. Trying to use it on a value like `5++` will give an error.
+Inkremen/dekremen cuma bisa diaplikasikan ke variabel. Mencoba menggunakan itu pada nilai seperti `5++` akan menghasilkan error.
+​```
 ```
 
-The operators `++` and `--` can be placed either before or after a variable.
+Operator `++` dan `--` bisa ditaruh sebelum atau setelah variabel.
 
-- When the operator goes after the variable, it is in "postfix form": `counter++`.
-- The "prefix form" is when the operator goes before the variable: `++counter`.
+- Ketika operatornya ditaruh setelah variabel, ia ada dalam "bentuk postfix": `counter++`.
+- "Bentuk prefix" ialah ketika operatornya ditaruh sebelum variabel: `++counter`.
 
-Both of these statements do the same thing: increase `counter` by `1`.
+Kedua statement ini melakukan hal yang sama: menambah `counter` sebanyak `1`.
 
-Is there any difference? Yes, but we can only see it if we use the returned value of `++/--`.
+Apakah ada perbedaan? Ya, tapi kita cuma bisa melihatnya jika kita menggunakan nilai kembalian `++/--`.
 
-Let's clarify. As we know, all operators return a value. Increment/decrement is no exception. The prefix form returns the new value while the postfix form returns the old value (prior to increment/decrement).
+Mari kita klarifikasi. Seperti yang kita tahu, semua operator mengembalikan nilai. Inkremen/dekremen bukan pengecualian. Bentuk prefix mengembalikan nilai baru sedangkan bentuk postfix mengembalikan nilai lama (sebelum inkremen/dekremen).
 
-To see the difference, here's an example:
+Untuk melihat perbedaannya, berikut contohnya:
 
 ```js run
 let counter = 1;
 let a = ++counter; // (*)
+```
 
 alert(a); // *!*2*/!*
-```
+​```
 
 In the line `(*)`, the *prefix* form `++counter` increments `counter` and returns the new value, `2`. So, the `alert` shows `2`.
 
@@ -297,7 +299,7 @@ let counter = 1;
 let a = counter++; // (*) changed ++counter to counter++
 
 alert(a); // *!*1*/!*
-```
+​```
 
 In the line `(*)`, the *postfix* form `counter++` also increments `counter` but returns the *old* value (prior to increment). So, the `alert` shows `1`.
 
@@ -332,14 +334,14 @@ For instance:
 ```js run
 let counter = 1;
 alert( 2 * ++counter ); // 4
-```
+​```
 
 Compare with:
 
 ```js run
 let counter = 1;
 alert( 2 * counter++ ); // 2, because counter++ returns the "old" value
-```
+​```
 
 Though technically okay, such notation usually makes code less readable. One line does multiple things -- not good.
 
@@ -351,7 +353,7 @@ We advise a style of "one line -- one action":
 let counter = 1;
 alert( 2 * counter );
 counter++;
-```
+​```
 ````
 
 ## Bitwise operators
@@ -378,7 +380,7 @@ We often need to apply an operator to a variable and store the new result in tha
 
 For example:
 
-```js
+​```js
 let n = 2;
 n = n + 5;
 n = n * 2;
