@@ -135,8 +135,13 @@ alert(hello); // Hello world!
 alert(message); // Hello world!
 ```
 
+<<<<<<< HEAD
 ```smart header="Bahasa functional"
 Menarik untuk diingat bahwa bahasa pemrograman [functional](https://en.wikipedia.org/wiki/Functional_programming), seperti [Scala](http://www.scala-lang.org/) atau [Erlang](http://www.erlang.org/), melarang perubahan nilai variabel.
+=======
+```smart header="Functional languages"
+It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
+>>>>>>> 08734734021aa128c13da2382fe8fa062677bb9f
 
 Di dalam bahasa macam ini, sekali nilai disimpan "dalam box", ia akan di sana selamanya. Jika kita harus menyimpan sesuatu yang lain, bahasa tersebut memaksa kita membuat box baru (mendeklarasi variabel baru). Kita tak bisa menggunakan ulang yang lama.
 
@@ -182,8 +187,13 @@ let my-name; // hyphens '-' aren't allowed in the name
 Variabel dengan nama `apple` dan `AppLE` adalah dua variabel yang berbeda.
 ```
 
+<<<<<<< HEAD
 ````smart header="Huruf non-Inggris diperbolehkan, namun tak direkomendasikan"
 Boleh menggunakan bahasa apapun, termasuk huruf cyrillic atau bahkan hieroglyphs, seperti ini:
+=======
+````smart header="Non-Latin letters are allowed, but not recommended"
+It is possible to use any language, including cyrillic letters or even hieroglyphs, like this:
+>>>>>>> 08734734021aa128c13da2382fe8fa062677bb9f
 
 ```js
 let имя = '...';
@@ -254,7 +264,11 @@ Ada kebiasaan umum untuk menggunakan konstan sebagai alias untuk nilai yang suli
 
 Konstan macam ini dinamai dengan huruf kapital dan underscore.
 
+<<<<<<< HEAD
 Seperti ini:
+=======
+For instance, let's make constants for colors in so-called "web" (hexadecimal) format:
+>>>>>>> 08734734021aa128c13da2382fe8fa062677bb9f
 
 ```js run
 const COLOR_RED = "#F00";
@@ -290,7 +304,11 @@ Dengan kata lain, konstan berhuruf kapital hanya digunakan sebagai alias untuk n
 
 Berbicara tentang variabel, ada satu hal yang sangat penting.
 
+<<<<<<< HEAD
 Tolong namai variabelmu dengan pantas. Luangkan waktu untuk memikirkannya.
+=======
+A variable name should have a clean, obvious meaning, describe the data that it stores.
+>>>>>>> 08734734021aa128c13da2382fe8fa062677bb9f
 
 Penamaan variabel adalah salah satu keahlian yang penting dan rumit dalam pemrograman. Pandangan sekilas pada nama variabel bisa menyingkap kode yang ditulis oleh pengembang pemula versus pengembang berpengalaman.
 

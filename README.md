@@ -5,6 +5,7 @@ Repositori ini merupakan host translasi dari <https://javascript.info> ke dalam 
 
 **Bagaimana kamu bisa berkontribusi:**
 
+<<<<<<< HEAD
 - Lihat isu [Progress Translasi Bahasa Indonesia](https://github.com/javascript-tutorial/id.javascript.info/issues/1).
 - Pilih artikel yang belum dicek yang mau kamu translasi.
 - Tambahkan komen dengan judul artikel pada isunya, contoh `Pengenalan JavaScript`.
@@ -12,6 +13,9 @@ Repositori ini merupakan host translasi dari <https://javascript.info> ke dalam 
     - Komenmu sebaiknya hanya mengandung judul.
 - Fork repositori ini, translasi dan kirim PR ketika selesai.
     - Judul PR sebaiknya cocok dengan judul artikel, bot akan menulis nomornya ke dalam isu.
+=======
+See <https://javascript.info/translate> for the details.
+>>>>>>> 08734734021aa128c13da2382fe8fa062677bb9f
 
 Tolong persilakan maintainer mereview dan menggabungkan atau meminta perubahan dalam translasi.
    
