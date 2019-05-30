@@ -290,22 +290,22 @@ let a = ++counter; // (*)
 alert(a); // *!*2*/!*
 ​```
 
-In the line `(*)`, the *prefix* form `++counter` increments `counter` and returns the new value, `2`. So, the `alert` shows `2`.
+Dalam barus `(*)`, bentuk *prefix*`++counter` menginkremen `counter` dan mengembalikan nilai baru, `2`. Jadi, `alert` menampilkan `2`.
 
-Now, let's use the postfix form:
+Sekarang, mari kita gunakan bentuk postfix:
 
 ```js run
 let counter = 1;
-let a = counter++; // (*) changed ++counter to counter++
+let a = counter++; // (*) ganti ++counter ke counter++
 
 alert(a); // *!*1*/!*
 ​```
 
-In the line `(*)`, the *postfix* form `counter++` also increments `counter` but returns the *old* value (prior to increment). So, the `alert` shows `1`.
+Dalam barus `(*)`, bentuk *postfix* `counter++` juga menginkremen `counter` tapi mengembalikan nilai *lama* (sebelum inkremen). Jadi, `alert` menampilkan `1`.
 
-To summarize:
+Ringkasnya:
 
-- If the result of increment/decrement is not used, there is no difference in which form to use:
+- Jika hasil dari inkremen/dekremen tidak digunakan, tak ada perbedaan bentuk mana yang dipakai:
 
     ```js run
     let counter = 0;
@@ -313,7 +313,7 @@ To summarize:
     ++counter;
     alert( counter ); // 2, the lines above did the same
     ```
-- If we'd like to increase a value *and* immediately use the result of the operator, we need the prefix form:
+- Jika kita ingin menaikkan nilai *dan* langsung memakai hasil dari operator, kita butuh bentuk prefix:
 
     ```js run
     let counter = 0;
