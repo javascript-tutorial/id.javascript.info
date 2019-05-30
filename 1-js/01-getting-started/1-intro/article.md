@@ -6,7 +6,7 @@ Mari kita tengok apa yang spesial dari JavaScript, apa saja yang bisa kita perbu
 
 *JavaScript* awalnya dibuat untuk *"membuat laman web menjadi hidup"*.
 
-Program yang ada dalam bahasa ini disebut *script*. Mereka bisa ditulis langsung di dalam HTML laman web dan dieksekusi secara otomatis saat laman diload.
+Program yang ada dalam bahasa ini disebut *script*. Mereka bisa ditulis langsung di dalam HTML laman web dan dijalankan otomatis saat laman diload.
 
 Script tersedia dan dieksekusi sebagai plain text. Mereka tak butuh persiapan spesial atau kompilasi untuk berjalan.
 
@@ -47,32 +47,32 @@ JavaScript modern merupakan bahasa pemrograman yang "aman". Ia tak menyediakan a
 
 Kemampuan JavaScript sangat tergantung pada lingkungan tempat ia berjalan. Contohnya, [Node.js](https://wikipedia.org/wiki/Node.js) mendukung function yang memungkingkan JavaScript melakukan baca/tulis file apapun, melakukan permintaan jaringan, dsb.
 
-In-browser JavaScript bisa melakukan apapun terkait manipulasi laman web, interaksi dengan user, dan webserver.
+In-browser JavaScript bisa melakukan apapun terkait manipulasi laman web, interaksi dengan pengguna, dan webserver.
 
 Contohnya, in-browser JavaScript mampu:
 
 - Menambah HTML baru ke laman, mengganti isinya, memodifikasi gayanya.
-- Bereaksi terhadap aktifitas user, berjalan saat mouse diklik, pointer digerakkan, tombol ditekan.
+- Bereaksi terhadap aktifitas pengguna, berjalan saat mouse diklik, pointer digerakkan, tombol ditekan.
 - Mengirim permintaan jaringan ke remote server, mengunduh dan mengunggah file (disebut teknologi [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming)) dan [COMET](https://en.wikipedia.org/wiki/Comet_(programming))).
 - Memperoleh and mengeset cookie, bertanya ke pengunjung, menampilkan pesan.
 - Menyimpan data pada client-side ("local storage").
 
 ## Apa yang TIDAK BISA dilakukan in-browser JavaScript?
 
-Kemampuan JavaScript pada peramban terbatas demi keamanan user. Tujuannya supaya mencegah laman web jahat mengakses informasi pribadi atau merusak data user.
+Kemampuan JavaScript pada peramban terbatas demi keamanan pengguna. Tujuannya supaya mencegah laman web jahat mengakses informasi pribadi atau merusak data pengguna.
 
 Contoh keterbatasan tersebut meliputi:
 
 - JavaScript pada laman web tak boleh melakukan baca/tulis file semaunya pada hard disk, mengkopi atau mengeksekusi program. Ia tak punya akses langsung ke OS system functions.
 
-    Peramban modern memperbolehkan ia bekerja dengan file, tapi aksesnya dibatasi dan tersedia hanya jika user melakukan hal tertentu, seperti "menjatuhkan" file ke dalam jendela peramban atau memilih file via tag `<input>`.
+    Peramban modern memperbolehkan ia bekerja dengan file, tapi aksesnya dibatasi dan tersedia hanya jika pengguna melakukan hal tertentu, seperti "menjatuhkan" file ke dalam jendela peramban atau memilih file via tag `<input>`.
 
-    Ada cara berinteraksi dengan kamera/microfon dan device lainnya, namun mereka butuh ijin explisit user. Jadi laman dengan kemampuan JavaScript tak boleh mengaktifkan web-camera, memantau sekeliling dan mengirim informasinya ke [NSA](https://en.wikipedia.org/wiki/National_Security_Agency).
+    Ada cara berinteraksi dengan kamera/microfon dan device lainnya, namun mereka butuh ijin explisit pengguna. Jadi laman dengan kemampuan JavaScript tak boleh mengaktifkan web-camera, memantau sekeliling dan mengirim informasinya ke [NSA](https://en.wikipedia.org/wiki/National_Security_Agency).
 - Tab/window yang berbeda umumnya tak kenal satu sama lain. Terkadang mereka bisa kenal, contohnya ketika satu window menggunakan JavaScript untuk membuka window lainnya. Tapi meski demikian, JavaScript dari suatu laman tak boleh mengakses laman lainnya jika mereka datang dari situs berbeda (dari domain, protokol, atau port berbeda).
 
-    Ini disebut "Same Origin Policy". Untuk mengatasinya, *kedua laman* harus mengandung kode JavaScript spesial yang menangani pertukaran data.
+    Ini disebut "Same Origin Policy". Untuk mengatasinya, *kedua laman* harus menyepakai pertukaran data dan mengandung kode JavaScript spesial yang menangani hal itu. Kita akan membahas itu di tutorial.
 
-    Batasan ini pun demi keselamatan user. Satu laman dari `http://anysite.com` yang dibuka user tak boleh mengakses tab peramban lainnya dengan URL `http://gmail.com` dan mencuri informasinya.
+    Batasan ini pun demi keselamatan pengguna. Satu laman dari `http://anysite.com` yang dibuka pengguna tak boleh mengakses tab peramban lainnya dengan URL `http://gmail.com` dan mencuri informasinya.
 - JavaScript bisa dengan mudah berkomunikasi di atas jaring ke server di mana laman berasal. Tapi kemampuannya menerima data dari situs/domain lain dilumpuhkan. Meskipun mampu, ia butuh persetujuan explisit (yang diexpresikan dalam HTTP header) dari sisi remote. Sekali lagi, itu merupakan batasan keamanan.
 
 ![](limitations.png)
@@ -90,7 +90,7 @@ Ada minimal *tiga* hal baik dari JavaScript:
 ```
 JavaScript merupakan satu-satunya teknologi peramban yang mengkombinasikan ketiganya.
 
-Itu yang membuat JavaScript unik. Itulah kenapa JavaScript menjadi tool yang paling banyak bertebaran untuk membuat antarmuka peramban.
+Itu yang membuat JavaScript unik. Itulah kenapa JavaScript menjadi alat yang paling banyak tersebar untuk membuat antarmuka peramban.
 
 Sambil merencanakan belajar teknologi baru, akan menguntungkan juga untuk mengecek perspektifnya. Jadi mari kita lanjut ke tren modern yang mempengaruhinya, termasuk kemampuan peramban dan bahasa baru.
 
