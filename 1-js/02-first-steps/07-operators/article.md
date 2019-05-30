@@ -265,7 +265,7 @@ Jadi, ada operator spesial untuk itu:
     ```
 
 ```warn
-Inkremen/dekremen cuma bisa diaplikasikan ke variabel. Mencoba menggunakan itu pada nilai seperti `5++` akan menghasilkan error.
+Inkremen/dekremen cuma bisa diaplikasikan ke variabel. Mencoba menggunakan itu pada nilai seperti `5++` akan menghasilkan galat.
 ​```
 ```
 
