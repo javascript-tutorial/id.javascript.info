@@ -136,7 +136,7 @@ alert(message); // Hello world!
 ```
 
 ```smart header="Bahasa functional"
-Menarik untuk diingat bahwa bahasa pemrograman [functional](https://en.wikipedia.org/wiki/Functional_programming), seperti [Scala](http://www.scala-lang.org/) atau [Erlang](http://www.erlang.org/), melarang perubahan nilai variabel.
+Ini menarik untuk diingat bahwa ada bahasa pemrograman [functional](https://en.wikipedia.org/wiki/Functional_programming), seperti [Scala](http://www.scala-lang.org/) atau [Erlang](http://www.erlang.org/), yang melarang perubahan nilai variabel.
 
 Di dalam bahasa macam ini, sekali nilai disimpan "dalam box", ia akan di sana selamanya. Jika kita harus menyimpan sesuatu yang lain, bahasa tersebut memaksa kita membuat box baru (mendeklarasi variabel baru). Kita tak bisa menggunakan ulang yang lama.
 
@@ -182,7 +182,7 @@ let my-name; // hyphens '-' aren't allowed in the name
 Variabel dengan nama `apple` dan `AppLE` adalah dua variabel yang berbeda.
 ```
 
-````smart header="Huruf non-Inggris diperbolehkan, namun tak direkomendasikan"
+````smart header="Huruf non-Latin diperbolehkan, namun tak direkomendasikan"
 Boleh menggunakan bahasa apapun, termasuk huruf cyrillic atau bahkan hieroglyphs, seperti ini:
 
 ```js
@@ -190,7 +190,7 @@ let имя = '...';
 let 我 = '...';
 ```
 
-Secara teknis, tak ada error di sini, nama-nama begitu boleh, tapi ada tradisi internasional untuk menggunakan Inggris dalam nama variabel. Meski jika kita menulis script kecil, ia akan punya nyawa yang panjang. Orang-orang dari negara lain mungkin harus membaca beberapa kali.
+Secara teknis, tak ada galat di sini, nama-nama begitu boleh, tapi ada tradisi internasional untuk menggunakan Inggris dalam nama variabel. Meski jika kita menulis script kecil, ia akan punya nyawa yang panjang. Orang-orang dari negara lain mungkin harus membaca beberapa kali.
 ````
 
 ````warn header="Nama-nama yang dikecualikan"
@@ -198,11 +198,11 @@ Ada [daftar kata yang dikecualikan](https://developer.mozilla.org/en-US/docs/Web
 
 Contohnya: `let`, `class`, `return`, dan `function` dikecualikan.
 
-Kode di bawah menghasilkan syntax error:
+Kode di bawah menghasilkan galat syntax:
 
 ```js run no-beautify
-let let = 5; // can't name a variable "let", error!
-let return = 5; // also can't name it "return", error!
+let let = 5; // tak bisa menamai variable "let", galat!
+let return = 5; // juga tak bisa menamainya "return", galat!
 ```
 ````
 
@@ -218,13 +218,13 @@ num = 5; // variabel "num" dibuat jika ia tak ada
 alert(num); // 5
 ```
 
-Ini kebiasaan buruk dan akan mengakibatkan error dalam mode strict:
+Ini kebiasaan buruk dan akan mengakibatkan galat dalam mode strict:
 
 ```js
 "use strict";
 
 *!*
-num = 5; // error: num tak terdefinisi
+num = 5; // galat: num tak terdefinisi
 */!*
 ```
 ````
@@ -237,7 +237,7 @@ Untuk mendeklarasi variabel konstan (tak berubah), gunakan `const` ketimbang `le
 const myBirthday = '18.04.1982';
 ```
 
-Variabel dideklarasi menggunakan `const` disebut "konstan". Mereka tak bisa diubah. Jika kamu mencoba mengubahnya maka ia menghasilkan error:
+Variabel dideklarasi menggunakan `const` disebut "konstan". Mereka tak bisa diubah. Jika kamu mencoba mengubahnya maka ia menghasilkan galat:
 
 ```js run
 const myBirthday = '18.04.1982';
@@ -254,7 +254,7 @@ Ada kebiasaan umum untuk menggunakan konstan sebagai alias untuk nilai yang suli
 
 Konstan macam ini dinamai dengan huruf kapital dan underscore.
 
-Seperti ini:
+Misalnya, mari kita buat konstan untuk warna dalam sesuatu yang disebut format "web" (hexadecimal):
 
 ```js run
 const COLOR_RED = "#F00";
@@ -290,7 +290,7 @@ Dengan kata lain, konstan berhuruf kapital hanya digunakan sebagai alias untuk n
 
 Berbicara tentang variabel, ada satu hal yang sangat penting.
 
-Tolong namai variabelmu dengan pantas. Luangkan waktu untuk memikirkannya.
+Nama variabel sebaiknya punya arti yang bersih dan jelas, menjelaskan data yang ia simpan dengan pantas.
 
 Penamaan variabel adalah salah satu keahlian yang penting dan rumit dalam pemrograman. Pandangan sekilas pada nama variabel bisa menyingkap kode yang ditulis oleh pengembang pemula versus pengembang berpengalaman.
 
