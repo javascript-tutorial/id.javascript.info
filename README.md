@@ -20,7 +20,7 @@ Daftar kontributor tersedia di <https://javascript.info/about#contributors>.
 
 ## Struktur
 
-Tiap bab, artikel atau tugas punya foldernya sendiri.
+Tiap bab, artikel atau tugas mempunyai foldernya sendiri.
 
 Foldernya dinamai like `N-url`, tapi `N` ialah angka untuk tujuan pengurutan dan `url` adalah bagian URL dengan judul dari bahan material.
 
@@ -30,7 +30,7 @@ The type of the material is defined by the file inside the folder:
   - `article.md` berdiri untuk suatu artikel
   - `task.md` berdiri untuk suatu tugas (solusi harus disediakan dalam file `solution.md` juga)
 
-Tiap-tiap file ini mulai dari `# Main header`.
+Setiap file di sini bermula dari `# Main header`.
 
 Sangat mudah menambah hal baru.
 
