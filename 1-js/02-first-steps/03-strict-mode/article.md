@@ -10,7 +10,7 @@ Inilah yang terjadi hingga tahun 2009 ketika ECMAScript 5 (ES5) muncul. Fitur ba
 
 Directive tersebut mirip string: `"use strict"` atau `'use strict'`. Jika itu diletakkan paling atas dari script, seluruh script akan bekerja secara "modern".
 
-Contohnya:
+Misalnya:
 
 ```js
 "use strict";
