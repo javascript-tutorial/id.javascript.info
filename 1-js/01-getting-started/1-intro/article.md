@@ -70,15 +70,7 @@ Contoh keterbatasan tersebut meliputi:
     Ada cara berinteraksi dengan kamera/microfon dan device lainnya, namun mereka butuh ijin explisit pengguna. Jadi laman dengan kemampuan JavaScript tak boleh mengaktifkan web-camera, memantau sekeliling dan mengirim informasinya ke [NSA](https://en.wikipedia.org/wiki/National_Security_Agency).
 - Tab/window yang berbeda umumnya tak kenal satu sama lain. Terkadang mereka bisa kenal, misalnya ketika satu window menggunakan JavaScript untuk membuka window lainnya. Tapi meski demikian, JavaScript dari suatu laman tak boleh mengakses laman lainnya jika mereka datang dari situs berbeda (dari domain, protokol, atau port berbeda).
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    Ini disebut "Same Origin Policy". Untuk mengatasinya, *kedua laman* harus menyepakai pertukaran data dan mengandung kode JavaScript spesial yang menangani hal itu. Kita akan membahas itu di tutorial.
-=======
-    This is called the "Same Origin Policy". To work around that, *both pages* must agree for data exchange and contain a special JavaScript code that handles it. We'll cover that in the tutorial.
->>>>>>> a0266c574c0ab8a0834dd38ed65e7e4ee27f9cdb
-=======
-    Ini disebut "Same Origin Policy". Untuk mengatasinya, *kedua laman* harus menyepakai pertukaran data dan mengandung kode JavaScript spesial yang menangani hal itu. Kita akan membahas itu dalam tutorial ini.
->>>>>>> fix(i18n): 1.01.1
+    Ini disebut "Same Origin Policy". Untuk mengatasinya, *kedua laman* harus menyepakai pertukaran data dan mengandung kode JavaScript spesial yang menangani hal itu. Kita akan membahasnya dalam tutorial ini.
 
     Batasan ini pun demi keselamatan pengguna. Satu laman dari `http://anysite.com` yang dibuka pengguna tak boleh mengakses tab peramban lainnya dengan URL `http://gmail.com` dan mencuri informasinya.
 - JavaScript bisa dengan mudah berkomunikasi di atas jaring ke server di mana laman berasal. Tapi kemampuannya menerima data dari situs/domain lain dilumpuhkan. Meskipun mampu, ia butuh persetujuan explisit (yang diexpresikan dalam HTTP header) dari sisi remote. Sekali lagi, itu merupakan batasan keamanan.
