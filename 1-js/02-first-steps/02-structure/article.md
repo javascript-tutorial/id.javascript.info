@@ -2,13 +2,13 @@
 
 Hal pertama yang kita akan pelajari ialah membangun blok kode.
 
-## Statement
+## Pernyataan
 
-Statement ialah konsep dan perintah syntax yang mejalankan action.
+Pernyataan ialah konsep dan perintah syntax yang mejalankan aksi.
 
-Kita sudah melihat satu statement, `alert('Hello, world!')`, yang menampilkan pesan "Hello, world!".
+Kita sudah melihat satu pernyataan, `alert('Hello, world!')`, yang menampilkan pesan "Hello, world!".
 
-Kita bisa memiliki sebanyak apapun statement dalam kode kita. Statement bisa dipisah menggunakan semicolon.
+Kita bisa memiliki sebanyak apapun pernyataan dalam kode kita. Statement bisa dipisah menggunakan titik koma.
 
 Misalnya, di sini kita memecah "Hello World" menjadi dua alert:
 
@@ -16,29 +16,29 @@ Misalnya, di sini kita memecah "Hello World" menjadi dua alert:
 alert('Hello'); alert('World');
 ```
 
-Biasanya, statement ditulis di baris terpisah supaya kode lebih mudah dibaca:
+Biasanya, pernyataan ditulis dalam baris terpisah supaya kode lebih mudah dibaca:
 
 ```js run no-beautify
 alert('Hello');
 alert('World');
 ```
 
-## Semicolon [#semicolon]
+## Titik koma [#semicolon]
 
-Semicolon bisa dibuang dalam banyak kasus jika ada line break.
+Titik koma bisa dibuang dalam banyak kasus jika ada jeda baris.
 
-Ini juga akan bekerja:
+Ini juga akan berjalan:
 
 ```js run no-beautify
 alert('Hello')
 alert('World')
 ```
 
-Di sini, JavaScript menginterpretasi line break sebagai semicolon "implisit". Ini disebut [penyisipan semicolon otomatis](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
+Di sini, JavaScript menginterpretasi jeda baris sebagai titik koma "implisit". Ini disebut [penyisipan titik koma otomatis](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
 
-**Dalam banyak kasus, sebuah newline (baris baru) mengimplikasikan semicolon. Tapi "dalam banyak kasus" tidak "selalu" begitu!**
+**Dalam banyak kasus, sebuah garis baru mengimplikasikan titik koma. Tapi "dalam banyak kasus" tak "selalu" begitu!**
 
-Ada kasus ketika newline (baris baru) tidak berarti semicolon. Misalnya:
+Ada kasus ketika garis baru tidak berarti titik koma. Misalnya:
 
 ```js run no-beautify
 alert(3 +
@@ -46,22 +46,22 @@ alert(3 +
 + 2);
 ```
 
-Output dari kode itu adalah `6` karena JavaScript tidak menyisipkan semicolon di sini. Sudah jelas sekali bahwa barisnya berakhir dengan tanda plus `"+"`, sehingga itu menjadi "expression tidak lengkap", jadi tidak butuh semicolon. Dan dalam kasus ini memang seperti itu.
+Output dari kode itu adalah `6` karena JavaScript tak menyisipkan titik koma di sini. Sudah jelas sekali bahwa barisnya selesai dengan tanda plus `"+"`, sehingga itu menjadi "expresi tak lengkap", jadi tak butuh titik koma. Dan dalam hal ini memang seperti itu.
 
-**Tapi ada situasi di mana JavaScript "gagal" mengasumsi semicolon di mana itu benar-benar dibutuhkan.**
+**Tapi ada situasi di mana JavaScript "gagal" mengasumsi titik koma di mana itu benar-benar dibutuhkan.**
 
-Error yang muncul pada kasus ini agak sulit dicari dan dibetulkan.
+Galat yang muncul pada kasus ini agak sulit dicari dan dibetulkan.
 
-````smart header="Contoh error"
-Jika kamu kepo untuk melihat contoh konkrit dari error ini, cek kode ini:
+````smart header="Contoh galat"
+Jika kamu penasaran untuk melihat contoh konkrit dari galat ini, cek kode ini:
 
 ```js run
 [1, 2].forEach(alert)
 ```
 
-Untuk sekarang tidak usah memikirkan makna bracket `[]` dan `forEach`. Kita akan mempelajari mereka nanti. Untuk sekarang, ingat hasil kode tersebut: yaitu `1` lalu `2`.
+Untuk sekarang tak usah memikirkan makna kurung siku `[]` dan `forEach`. Kita akan mempelajari mereka nanti. Untuk sekarang, ingat hasil kode tersebut: yaitu `1` lalu `2`.
 
-Sekarang, ayo kita tambahkan `alert` sebelum kodenya *tanpa* diikuti semicolon:
+Sekarang, ayo kita tambahkan `alert` sebelum kodenya *tanpa* diikuti titik koma:
 
 ```js run no-beautify
 alert("There will be an error")
@@ -69,9 +69,9 @@ alert("There will be an error")
 [1, 2].forEach(alert)
 ```
 
-Sekarang jika kita menjalankan kodenya, hanya `alert` pertama yang tampil dan kemudian error!
+Sekarang jika kita menjalankan kodenya, hanya `alert` pertama yang tampil dan kemudian galat!
 
-Tapi semua akan baik-baik saja jika kita menambahkan semicolon setelah `alert`:
+Tapi semua akan baik-baik saja jika kita menambahkan titik koma setelah `alert`:
 ```js run
 alert("All fine now");
 
@@ -81,18 +81,18 @@ alert("All fine now");
 Sekarang kita punya pesan "All fine now" diikuti dengan `1` dan `2`.
 
 
-Error muncul pada varian tanpa semicolon dikarenakan JavaScript tidak mengasumsikan semicolon sebelum kurung persegi `[...]`.
+Galat muncul pada varian tanpa titik koma karena JavaScript tak mengasumsikan titik koma sebelum kurung siku `[...]`.
 
-Jadi, karena semicolon tidak otomatis disisipkan, kode di contoh pertama diperlakukan sebagai statement tunggal. Inilah cara engine melihatnya:
+Jadi, karena titik koma tidak otomatis disisipkan, kode di contoh pertama diperlakukan sebagai statement tunggal. Inilah cara engine melihatnya:
 
 ```js run no-beautify
 alert("There will be an error")[1, 2].forEach(alert)
 ```
 
-Tapi itu harus jadi dua statement terpisah, bukan satu. Penyatuan macam ini salah pada kasus ini, makanya error. Ini bisa terjadi di situasi lain.
+Tapi itu harus jadi dua pernyataan terpisah, bukan satu. Penyatuan macam ini salah pada kasus ini, makanya galat. Ini bisa terjadi dalam situasi lain.
 ````
 
-Kami sarankan menaruh semicolon di antara statement meski mereka dipisahkan newline (baris baru). Ini aturan yang diterima secara luas oleh komunitas. Harap diingat sekali lagi bahwa -- *bisa saja* menanggalkan semicolon di banyak kesempatan. Tapi akan lebih aman -- terutama untuk pemula -- untuk menggunakan mereka.
+Kami sarankan menaruh titik koma di antara pernyataan meski mereka dipisahkan garis baru. Ini aturan yang diterima secara luas oleh komunitas. Harap diingat sekali lagi bahwa -- *bisa saja* menanggalkan titik koma di banyak kesempatan. Tapi akan lebih aman -- terutama untuk pemula -- untuk menggunakan mereka.
 
 ## Komen
 
@@ -102,23 +102,23 @@ Komen bisa ditaruh di mana saja dari script. Dan tidak berpengaruh ke eksekusi k
 
 **Satu-baris komen bermula dengan dua karakter slash `//`.**
 
-Sisa barisnya adalah komen. Ia bisa memenuhi seluruh baris atau mengikuti statement.
+Sisa barisnya adalah komen. Ia bisa memenuhi satu baris sendiri atau mengikuti pernyataan.
 
 Seperti di sini:
 ```js run
-// This comment occupies a line of its own
+// Komen ini menghuni satu baris sendiri
 alert('Hello');
 
-alert('World'); // This comment follows the statement
+alert('World'); // Komen ini mengikuti pernyataan
 ```
 
-**Komen multibaris bermula dengan garis miring dan bintang <code>/&#42;</code> dan berakhir dengan bintang dan garis miring <code>&#42;/</code>.**
+**Komen multiline bermula dengan garis miring dan bintang <code>/&#42;</code> dan berakhir dengan bintang dan garis miring <code>&#42;/</code>.**
 
 Seperti ini:
 
 ```js run
-/* An example with two messages.
-This is a multiline comment.
+/* Contoh dengan dua pesan.
+Ini komen multiline.
 */
 alert('Hello');
 alert('World');
@@ -142,17 +142,17 @@ Di banyak editor, sebaris kode bisa dikomen dengan menekan hotkey `key:Ctrl+/` u
 ````warn header="Komen bersarang tidak didukung!"
 Tidak boleh ada `/*...*/` di dalam `/*...*/` yang lain.
 
-Kode begini akan berakhir error:
+Kode begini akan berakhir galat:
 
 ```js run no-beautify
 /*
-  /* nested comment ?!? */
+  /* komen bersarang ?!? */
 */
 alert( 'World' );
 ```
 ````
 
-Dimohon, jangan ragu mengkomen.
+Silakan, jangan ragu mengkomen.
 
 Komen meningkatkan kode footprint garis besar, tapi itu bukan masalah sama sekali. Ada banyak tools yang meminifikasi kode sebelum dipublikasi ke production server. Mereka menghapus komen, jadi mereka tidak tampil di script yang berjalan. Selain itu, komen tidak punya efek negatif pada production sama sekali.
 
