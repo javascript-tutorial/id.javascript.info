@@ -10,7 +10,7 @@ Kita sudah melihat satu statement, `alert('Hello, world!')`, yang menampilkan pe
 
 Kita bisa memiliki sebanyak apapun statement dalam kode kita. Statement bisa dipisah menggunakan semicolon.
 
-Contohnya, di sini kita memecah "Hello World" menjadi dua alert:
+Misalnya, di sini kita memecah "Hello World" menjadi dua alert:
 
 ```js run no-beautify
 alert('Hello'); alert('World');
