@@ -1,35 +1,35 @@
-# Comparisons
+# Perbandingan
 
-We know many comparison operators from maths:
+Kita tahu banyak operator perbandingan dari matematika:
 
-- Greater/less than: <code>a &gt; b</code>, <code>a &lt; b</code>.
-- Greater/less than or equals: <code>a &gt;= b</code>, <code>a &lt;= b</code>.
-- Equals: `a == b` (please note the double equals sign `=`. A single symbol `a = b` would mean an assignment).
-- Not equals. In maths the notation is <code>&ne;</code>, but in JavaScript it's written as an assignment with an exclamation sign before it: <code>a != b</code>.
+- Lebih besar/kecil dari: <code>a &gt; b</code>, <code>a &lt; b</code>.
+- Lebih besar/kecil dari atau sama dengan: <code>a &gt;= b</code>, <code>a &lt;= b</code>.
+- Sama dengan: `a == b` (please note the double equals sign `=`. A single symbol `a = b` would mean an assignment).
+- Tidak sama dengan. Dalam matematika notasinya ialah <code>&ne;</code>, tapi di JavaScript ia ditulis sebagai penetapan dengan tanda exklamasi sebelumnya: <code>a != b</code>.
 
-## Boolean is the result
+## Boolean ialah hasilnya
 
-Like all other operators, a comparison returns a value. In this case, the value is a boolean.
+Seperti semua operator lain, perbandingan mengembalikan nilai. Dalam hal ini, nilainya boolean.
 
-- `true` -- means "yes", "correct" or "the truth".
-- `false` -- means "no", "wrong" or "not the truth".
+- `true` -- berarti "ya", "betul" atau "fakta".
+- `false` -- berarti "tidak", "salah" atau "bukan fakta".
 
-For example:
+Misalnya:
 
 ```js run
-alert( 2 > 1 );  // true (correct)
-alert( 2 == 1 ); // false (wrong)
-alert( 2 != 1 ); // true (correct)
+alert( 2 > 1 );  // true (benar)
+alert( 2 == 1 ); // false (salah)
+alert( 2 != 1 ); // true (benar)
 ```
 
-A comparison result can be assigned to a variable, just like any value:
+Hasil perbandingan bisa ditetapkan ke variabel, sama seperti nilainya:
 
 ```js run
-let result = 5 > 4; // assign the result of the comparison
+let result = 5 > 4; // tetapkan hasil perbandingan
 alert( result ); // true
 ```
 
-## String comparison
+## Perbandingan string
 
 To see whether a string is greater than another, JavaScript uses the so-called "dictionary" or "lexicographical" order.
 
