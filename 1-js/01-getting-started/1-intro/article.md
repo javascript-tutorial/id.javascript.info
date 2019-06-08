@@ -6,11 +6,7 @@ Mari kita tengok apa yang spesial dari JavaScript, apa saja yang bisa kita perbu
 
 *JavaScript* awalnya dibuat untuk *"membuat laman web menjadi hidup"*.
 
-<<<<<<< HEAD
-Program yang ada dalam bahasa ini disebut *script*. Mereka bisa ditulis langsung di dalam HTML laman web dan dijalankan otomatis saat laman diload.
-=======
-The programs in this language are called *scripts*. They can be written right in a web page's HTML and run automatically as the page loads.
->>>>>>> a0266c574c0ab8a0834dd38ed65e7e4ee27f9cdb
+Program yang ada dalam bahasa ini disebut *script*. Mereka bisa ditulis langsung dalam laman web HTML dan berjalan otomatis saat laman diload.
 
 Script tersedia dan dieksekusi sebagai plain text. Mereka tak butuh persiapan spesial atau kompilasi untuk berjalan.
 
@@ -49,11 +45,11 @@ Engine mengaplikasikan optimisasi di setiap langkah proses. Dia bahkan memperhat
 
 JavaScript modern merupakan bahasa pemrograman yang "aman". Ia tak menyediakan akses tingkat-rendah ke memory atau CPU, karena a awalnya dibuat untuk peramban yang tak butuh itu.
 
-Kemampuan JavaScript sangat tergantung pada lingkungan tempat ia berjalan. Contohnya, [Node.js](https://wikipedia.org/wiki/Node.js) mendukung function yang memungkingkan JavaScript melakukan baca/tulis file apapun, melakukan permintaan jaringan, dsb.
+Kemampuan JavaScript sangat tergantung pada lingkungan tempat ia berjalan. Misalnya, [Node.js](https://wikipedia.org/wiki/Node.js) mendukung function yang memungkingkan JavaScript melakukan baca/tulis file apapun, melakukan permintaan jaringan, dsb.
 
 In-browser JavaScript bisa melakukan apapun terkait manipulasi laman web, interaksi dengan pengguna, dan webserver.
 
-Contohnya, in-browser JavaScript mampu:
+Misalnya, in-browser JavaScript mampu:
 
 - Menambah HTML baru ke laman, mengganti isinya, memodifikasi gayanya.
 - Bereaksi terhadap aktifitas pengguna, berjalan saat mouse diklik, pointer digerakkan, tombol ditekan.
@@ -72,20 +68,24 @@ Contoh keterbatasan tersebut meliputi:
     Peramban modern memperbolehkan ia bekerja dengan file, tapi aksesnya dibatasi dan tersedia hanya jika pengguna melakukan hal tertentu, seperti "menjatuhkan" file ke dalam jendela peramban atau memilih file via tag `<input>`.
 
     Ada cara berinteraksi dengan kamera/microfon dan device lainnya, namun mereka butuh ijin explisit pengguna. Jadi laman dengan kemampuan JavaScript tak boleh mengaktifkan web-camera, memantau sekeliling dan mengirim informasinya ke [NSA](https://en.wikipedia.org/wiki/National_Security_Agency).
-- Tab/window yang berbeda umumnya tak kenal satu sama lain. Terkadang mereka bisa kenal, contohnya ketika satu window menggunakan JavaScript untuk membuka window lainnya. Tapi meski demikian, JavaScript dari suatu laman tak boleh mengakses laman lainnya jika mereka datang dari situs berbeda (dari domain, protokol, atau port berbeda).
+- Tab/window yang berbeda umumnya tak kenal satu sama lain. Terkadang mereka bisa kenal, misalnya ketika satu window menggunakan JavaScript untuk membuka window lainnya. Tapi meski demikian, JavaScript dari suatu laman tak boleh mengakses laman lainnya jika mereka datang dari situs berbeda (dari domain, protokol, atau port berbeda).
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     Ini disebut "Same Origin Policy". Untuk mengatasinya, *kedua laman* harus menyepakai pertukaran data dan mengandung kode JavaScript spesial yang menangani hal itu. Kita akan membahas itu di tutorial.
 =======
     This is called the "Same Origin Policy". To work around that, *both pages* must agree for data exchange and contain a special JavaScript code that handles it. We'll cover that in the tutorial.
 >>>>>>> a0266c574c0ab8a0834dd38ed65e7e4ee27f9cdb
+=======
+    Ini disebut "Same Origin Policy". Untuk mengatasinya, *kedua laman* harus menyepakai pertukaran data dan mengandung kode JavaScript spesial yang menangani hal itu. Kita akan membahas itu dalam tutorial ini.
+>>>>>>> fix(i18n): 1.01.1
 
     Batasan ini pun demi keselamatan pengguna. Satu laman dari `http://anysite.com` yang dibuka pengguna tak boleh mengakses tab peramban lainnya dengan URL `http://gmail.com` dan mencuri informasinya.
 - JavaScript bisa dengan mudah berkomunikasi di atas jaring ke server di mana laman berasal. Tapi kemampuannya menerima data dari situs/domain lain dilumpuhkan. Meskipun mampu, ia butuh persetujuan explisit (yang diexpresikan dalam HTTP header) dari sisi remote. Sekali lagi, itu merupakan batasan keamanan.
 
 ![](limitations.png)
 
-Batasan macam ini tak akan muncul jika JavaScript digunakan di luar peramban, contohnya di server. Peramban modern juga memperbolehkan plugin/extension dengan ijin tambahan.
+Batasan macam ini tak akan muncul jika JavaScript digunakan di luar peramban, misalnya di server. Peramban modern juga memperbolehkan plugin/extension dengan ijin tambahan.
 
 ## Apa yang membuat JavaScript unik?
 
