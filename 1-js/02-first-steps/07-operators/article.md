@@ -280,7 +280,7 @@ Apakah ada perbedaan? Ya, tapi kita cuma bisa melihatnya jika kita menggunakan n
 
 Mari kita klarifikasi. Seperti yang kita tahu, semua operator mengembalikan nilai. Inkremen/dekremen bukan pengecualian. Bentuk prefix mengembalikan nilai baru sedangkan bentuk postfix mengembalikan nilai lama (sebelum inkremen/dekremen).
 
-Untuk melihat perbedaannya, berikut contohnya:
+Untuk melihat perbedaannya, berikut misalnya:
 
 ```js run
 let counter = 1;
@@ -305,7 +305,7 @@ Dalam barus `(*)`, bentuk *postfix* `counter++` juga menginkremen `counter` tapi
 
 Ringkasnya:
 
-- Jika hasil dari inkremen/dekremen tidak digunakan, tak ada perbedaan bentuk mana yang dipakai:
+- Jika hasil dari inkremen/dekremen tak digunakan, tak ada bedanya bentuk mana yang dipakai:
 
     ```js run
     let counter = 0;
@@ -319,33 +319,33 @@ Ringkasnya:
     let counter = 0;
     alert( ++counter ); // 1
     ```
-- If we'd like to increment a value but use its previous value, we need the postfix form:
+- Jika kita ingin menginkremen suatu nilai tanpa memakai nilai sebelumnya, kita butuh bentuk postfix:
 
     ```js run
     let counter = 0;
     alert( counter++ ); // 0
     ```
 
-````smart header="Increment/decrement among other operators"
-The operators `++/--` can be used inside expressions as well. Their precedence is higher than most other arithmetical operations.
+````smart header="Inkremen/dekremen di antara operator lainnya"
+Operator `++/--` bisa juga digunakan di dalam expresi. Presedensi mereka lebih tinggi dari kebanyakan operasi aritmatika lainnya.
 
-For instance:
+Misalnya:
 
 ```js run
 let counter = 1;
 alert( 2 * ++counter ); // 4
 ​```
 
-Compare with:
+Bandingkan dengan:
 
 ```js run
 let counter = 1;
-alert( 2 * counter++ ); // 2, because counter++ returns the "old" value
+alert( 2 * counter++ ); // 2, karena counter++ mengembalikan nilai "lama"
 ​```
 
-Though technically okay, such notation usually makes code less readable. One line does multiple things -- not good.
+Meski secara teknis OK, notasi macam ini biasanya membuat kode kurang dapat dibaca. Satu baris melakukan banyak hal -- tak baik.
 
-While reading code, a fast "vertical" eye-scan can easily miss something like `counter++` and it won't be obvious that the variable increased.
+Sambil membaca kode, a fast "vertical" eye-scan can easily miss something like `counter++` and it won't be obvious that the variable increased.
 
 We advise a style of "one line -- one action":
 
@@ -356,13 +356,13 @@ counter++;
 ​```
 ````
 
-## Bitwise operators
+## Operator bitwise
 
-Bitwise operators treat arguments as 32-bit integer numbers and work on the level of their binary representation.
+Operator bitwise memperlakukan argumen sebagai angka integer 32-bit dan bekerja pada level representasi biner mereka.
 
-These operators are not JavaScript-specific. They are supported in most programming languages.
+Operator ini bukan spesifik JavaScript. Mereka didukung di banyak bahasa pemrograman.
 
-The list of operators:
+Daftar operator:
 
 - AND ( `&` )
 - OR ( `|` )
@@ -372,13 +372,13 @@ The list of operators:
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
-These operators are used very rarely. To understand them, we need to delve into low-level number representation and it would not be optimal to do that right now, especially since we won't need them any time soon. If you're curious, you can read the [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) article on MDN. It would be more practical to do that when a real need arises.
+Operator ini sangat jarang digunakan. Untuk memahami mereka, kita harus menyelidiki lebih dalam representasi angka level-rendah dan itu tak akan optimal untuk dilakukan sekarang, terutama karena kita tak butuh mereka sesegera ini. Kalau kamu penasaran, kamu bisa baca artikel [Operator Bitwise](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) di MDN. Itu akan lebih praktis untuk dilakukan ketika ada kebutuhan riil.
 
-## Modify-in-place
+## Modifikasi di tempat
 
-We often need to apply an operator to a variable and store the new result in that same variable.
+Kita sering wajib mengaplikasikan operator ke variabel dan menyimpan hasilnya di variabel yang sama.
 
-For example:
+Misalnya:
 
 ​```js
 let n = 2;
@@ -386,63 +386,63 @@ n = n + 5;
 n = n * 2;
 ```
 
-This notation can be shortened using the operators `+=` and `*=`:
+Notasi ini bisa dipersingkat menggunakan operator `+=` and `*=`:
 
 ```js run
 let n = 2;
-n += 5; // now n = 7 (same as n = n + 5)
-n *= 2; // now n = 14 (same as n = n * 2)
+n += 5; // sekarang n = 7 (sama dengan n = n + 5)
+n *= 2; // sekarang n = 14 (sama dengan n = n * 2)
 
 alert( n ); // 14
 ```
 
-Short "modify-and-assign" operators exist for all arithmetical and bitwise operators: `/=`, `-=`, etc.
+Operator pendek "modifikasi-dan-tetapkan" eksis untuk semua operator arimatika dan bitwise: `/=`, `-=`, dll.
 
-Such operators have the same precedence as a normal assignment, so they run after most other calculations:
+Operator macam ini punya presedensi yang sama dengan penetapan normal, jadi mereka berjalan setelah kebanyakan kalkulasi lain:
 
 ```js run
 let n = 2;
 
 n *= 3 + 5;
 
-alert( n ); // 16  (right part evaluated first, same as n *= 8)
+alert( n ); // 16  (bagian kanan dievaluasi lebih dulu, sama dengan n *= 8)
 ```
 
-## Comma
+## Koma
 
-The comma operator `,` is one of the rarest and most unusual operators. Sometimes, it's used to write shorter code, so we need to know it in order to understand what's going on.
+Operator koma `,` ialah satu dari banyak operator paling langka dan tak biasa. Kadang, ia digunakan untuk menulis kode lebih pendek, jadi kita harus tahu itu untuk memahami apa yang terjadi.
 
-The comma operator allows us to evaluate several expressions, dividing them with a comma `,`. Each of them is evaluated but only the result of the last one is returned.
+Operator koma memperbolehkan untuk mengevaluasi beberapa expresi, membagi mereka dengan koma `,`. Each of them is evaluated but only the result of the last one is returned.
 
-For example:
+Misalnya:
 
 ```js run
 *!*
 let a = (1 + 2, 3 + 4);
 */!*
 
-alert( a ); // 7 (the result of 3 + 4)
+alert( a ); // 7 (hasil dari 3 + 4)
 ```
 
-Here, the first expression `1 + 2` is evaluated and its result is thrown away. Then, `3 + 4` is evaluated and returned as the result.
+Di sini, expresi pertama `1 + 2` dievaluasi dan hasilnya dibuang. Lalu, `3 + 4` dievaluasi dan dikembalikan sebagai hasilnya.
 
-```smart header="Comma has a very low precedence"
-Please note that the comma operator has very low precedence, lower than `=`, so parentheses are important in the example above.
+```smart header="Koma punya presedensi sangat kecil"
+Harap ingat bahwa operator koma punya presedensi sangat kecil, lebih kecil dari `=`, jadi tanda kurung penting dalam contoh di atas.
 
-Without them: `a = 1 + 2, 3 + 4` evaluates `+` first, summing the numbers into `a = 3, 7`, then the assignment operator `=` assigns    `a = 3`, and finally the number after the comma, `7`, is not processed so it's ignored.
+Tanpa mereka: `a = 1 + 2, 3 + 4` mengevaluasi `+` terlebih dahulu, penjumlahan tersebut menjadi `a = 3, 7`, lalu operator penetapan `=` menetapkan   `a = 3`, dan pada akhirnya angka setelah koma, `7`, tak diproses sehingga ia diabaikan.
 ```
 
-Why do we need an operator that throws away everything except the last part?
+Kenapa kita butuh operator yang membuang semuanya kecuali bagian akhirnya?
 
-Sometimes, people use it in more complex constructs to put several actions in one line.
+Kadang, orang memakai itu dalam konstruksi rumit untuk menaruh beberapa aksi dalam satu baris.
 
-For example:
+Misalnya:
 
 ```js
-// three operations in one line
+// tiga operasi dalam satu baris
 for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
  ...
 }
 ```
 
-Such tricks are used in many JavaScript frameworks. That's why we're mentioning them. But, usually, they don't improve code readability so we should think well before using them.
+Trik macam ini dipakai di banyak framework JavaScript. Itulah kenapa kita membahas mereka. Tapi, biasanya, mereka tak meningkatkan keterbacaan kode sehingga kita sebaiknya pikir-pikir dulu sebelum menggunakan mereka.
