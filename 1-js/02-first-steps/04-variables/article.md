@@ -136,7 +136,7 @@ alert(message); // Hello world!
 ```
 
 ```smart header="Bahasa functional"
-Ini menarik untuk diingat bahwa ada bahasa pemrograman [functional](https://en.wikipedia.org/wiki/Functional_programming), seperti [Scala](http://www.scala-lang.org/) atau [Erlang](http://www.erlang.org/), yang melarang perubahan nilai variabel.
+Menarik untuk diingat bahwa ada bahasa pemrograman [fungsional](https://en.wikipedia.org/wiki/Functional_programming), seperti [Scala](http://www.scala-lang.org/) atau [Erlang](http://www.erlang.org/), yang melarang perubahan nilai variabel.
 
 Di dalam bahasa macam ini, sekali nilai disimpan "dalam box", ia akan di sana selamanya. Jika kita harus menyimpan sesuatu yang lain, bahasa tersebut memaksa kita membuat box baru (mendeklarasi variabel baru). Kita tak bisa menggunakan ulang yang lama.
 
