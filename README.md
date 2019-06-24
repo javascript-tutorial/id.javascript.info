@@ -39,5 +39,5 @@ Setiap file di sini bermula dari `# Main header`.
 Sangat mudah menambah hal baru.
 
 ---
-💓  
+♥  
 Ilya Kantor @iliakan
