@@ -1,5 +1,5 @@
-The answer is:
+Jawabannya adalah:
 
-- `a = 4` (multiplied by 2)
-- `x = 5` (calculated as 1 + 4)
+- `a = 4` (dikali 2)
+- `x = 5` (dikalkulasi sebagai 1 + 4)
 

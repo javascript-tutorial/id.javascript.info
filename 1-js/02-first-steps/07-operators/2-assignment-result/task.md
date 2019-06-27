@@ -1,10 +1,10 @@
-importance: 3
+kepentingan: 3
 
 ---
 
-# Assignment result
+# Hasil penetapan
 
-What are the values of `a` and `x` after the code below?
+Berapa nilai dari `a` dan `x` setelah kode berikut?
 
 ```js
 let a = 2;
