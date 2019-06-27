@@ -8,7 +8,7 @@ Pernyataan ialah konsep dan perintah syntax yang mejalankan aksi.
 
 Kita sudah melihat satu pernyataan, `alert('Hello, world!')`, yang menampilkan pesan "Hello, world!".
 
-Kita bisa memiliki sebanyak apapun pernyataan dalam kode kita. Statement bisa dipisah menggunakan titik koma.
+Kita bisa memiliki sebanyak apapun pernyataan dalam kode kita. Pernyataan bisa dipisah menggunakan titik koma.
 
 Misalnya, di sini kita memecah "Hello World" menjadi dua alert:
 
@@ -83,7 +83,7 @@ Sekarang kita punya pesan "All fine now" diikuti dengan `1` dan `2`.
 
 Galat muncul pada varian tanpa titik koma karena JavaScript tak mengasumsikan titik koma sebelum kurung siku `[...]`.
 
-Jadi, karena titik koma tidak otomatis disisipkan, kode di contoh pertama diperlakukan sebagai statement tunggal. Inilah cara engine melihatnya:
+Jadi, karena titik koma tidak otomatis disisipkan, kode di contoh pertama diperlakukan sebagai pernyataan tunggal. Inilah cara engine melihatnya:
 
 ```js run no-beautify
 alert("There will be an error")[1, 2].forEach(alert)
@@ -129,7 +129,7 @@ Konten komen diabaikan, jadi jika menaruh kode di dalam <code>/&#42; ... &#42;/<
 Kadang sangat berguna jika kita bisa menonaktifkan sementara sebagian kode:
 
 ```js run
-/* Commenting out the code
+/* Mengkomen kode
 alert('Hello');
 */
 alert('World');

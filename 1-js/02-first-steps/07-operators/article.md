@@ -274,7 +274,7 @@ Operator `++` dan `--` bisa ditaruh sebelum atau setelah variabel.
 - Ketika operatornya ditaruh setelah variabel, ia ada dalam "bentuk postfix": `counter++`.
 - "Bentuk prefix" ialah ketika operatornya ditaruh sebelum variabel: `++counter`.
 
-Kedua statement ini melakukan hal yang sama: menambah `counter` sebanyak `1`.
+Kedua pernyataan ini melakukan hal yang sama: menambah `counter` sebanyak `1`.
 
 Apakah ada perbedaan? Ya, tapi kita cuma bisa melihatnya jika kita menggunakan nilai kembalian `++/--`.
 
