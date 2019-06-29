@@ -105,25 +105,14 @@ Akhir-akhir ini muncul banyak bahasa baru, yang *ditranspile* (dikonversi) ke Ja
 
 Tool modern membuat transpilasi sangat cepat dan transparan, yang sebenarnya membuat pengembang mengkode dalam bahasa lain dan mengautokonversi itu "di balik layar".
 
-<<<<<<< HEAD
 Contoh bahasa yang dimaksud:
 
 - [CoffeeScript](http://coffeescript.org/) merupakan "syntactic sugar" dari JavaScript. Dia memperkenalkan syntax yang lebih pendek, memungkingkan kita menulis kode lebih bersih dan lebih presisi. Biasanya, Ruby devs menyukainya.
-- [TypeScript](http://www.typescriptlang.org/) berfokus pada penambahan "strict data typing" yang menyederhanakan pengembangan dan dukungan sistem yang komplex. Ia dibuat oleh Microsoft.
-- [Dart](https://www.dartlang.org/) ialah bahasa mandiri yang punya engine sendiri yang berjalan di lingkungan non-peramban (seperti mobile apps). Dia awalnya ditawarkan Google sebagai pengganti JavaScript, tapi sekarang, peramban mengharuskan ia ditranspile menjadi JavaScript sama seperti di atas.
+- [TypeScript](http://www.typescriptlang.org/) berfokus pada penambahan "strict data typing" yang menyederhanakan pengembangan dan dukungan sistem yang komplex. Ia dikembangkan oleh Microsoft.
+- [Flow](http://flow.org/) juga menambahkan data typing, tapi dalam cara berbeda. Dikembangkan oleh Facebook.
+- [Dart](https://www.dartlang.org/) ialah bahasa mandiri yang punya engine sendiri yang berjalan di lingkungan non-peramban (seperti mobile apps), tapi bisa juga ditranspile ke JavaScript. Dikembangkan oleh Google.
 
-Masih banyak lagi. Tentunya, jika kita menggunakan salah satu bahasa tersebut, kita sebaiknya juga paham JavaScript untuk mengerti apa yang mereka lakukan.
-=======
-The most used are
-Examples of such languages:
-
-- [CoffeeScript](http://coffeescript.org/) is a "syntactic sugar" for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Usually, Ruby devs like it.
-- [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing" to simplify the development and support of complex systems. It is developed by Microsoft.
-- [Flow](http://flow.org/) also adds data typing, but in a different way. Developed by Facebook.
-- [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps), but also can be transpiled to JavaScript. Developed by Google.
-
-There are more. Of course, even if we use one of transpiled languages, we should also know JavaScript to really understand what we're doing.
->>>>>>> 9b5c1c95ec8a466150e519b0e94748717c747b09
+Masih banyak lagi. Tentunya, jika kita menggunakan salah satu bahasa yang ditranspile tersebut, kita sebaiknya juga paham JavaScript untuk mengerti apa yang mereka lakukan.
 
 ## Kesimpulan
 

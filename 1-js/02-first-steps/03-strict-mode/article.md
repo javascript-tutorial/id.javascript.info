@@ -53,29 +53,23 @@ Di masa depan, ketika kamu memakai konsol peramban untuk menguji fitur, harap di
 
 Kadang, ketika menggunakan `use strict`, kamu akan mendapat hasil yang salah.
 
-<<<<<<< HEAD
-Meski jika kita menekan `key:Shift+Enter` untuk menginput baris ganda, dan menggunakan `use strict` di paling atas, tetap tak mempan. Itu diakibatkan oleh cara konsol mengeksekusi kode secara internal.
-
-Cara terpercaya memakai `use strict` yaitu menginput kode ke dalam konsol seperti ini:
-=======
-You can try to press `key:Shift+Enter` to input multiple lines, and put `use strict` on top, like this:
+Kamu bisa menekan `key:Shift+Enter` untuk menginput baris ganda, dan menggunakan `use strict` di paling atas, seperti ini:
 
 ```js
-'use strict'; <Shift+Enter for a newline>
+'use strict'; <Shift+Enter untuk baris baru>
 //  ...your code
 <Enter to run>
 ```
 
-It works in most browsers, namely Firefox and Chrome.
+Ini bekerja pada kebanyakan peramban, macam Firefox dan Chrome.
 
-If it doesn't, the most reliable way to ensure `use strict` would be to input the code into console like this:
->>>>>>> 9b5c1c95ec8a466150e519b0e94748717c747b09
+Jika tidak, cara paling terpercaya ialah memastikan `use strict` adalah menginput kode ke dalam console seperti ini:
 
 ```js
 (function() {
   'use strict';
 
-  // ...your code...
+  // ...kodemu...
 })()
 ```
 

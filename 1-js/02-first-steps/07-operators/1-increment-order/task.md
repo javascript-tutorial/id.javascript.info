@@ -1,10 +1,10 @@
-importance: 5
+kepentingan: 5
 
 ---
 
-# The postfix and prefix forms
+# Bentuk postfix dan prefix
 
-What are the final values of all variables `a`, `b`, `c` and `d` after the code below?
+Berapa nilai final dari semua variabel `a`, `b`, `c` dan `d` setelah kode berikut?
 
 ```js
 let a = 1, b = 1;
