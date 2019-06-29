@@ -108,10 +108,11 @@ Tool modern membuat transpilasi sangat cepat dan transparan, yang sebenarnya mem
 Contoh bahasa yang dimaksud:
 
 - [CoffeeScript](http://coffeescript.org/) merupakan "syntactic sugar" dari JavaScript. Dia memperkenalkan syntax yang lebih pendek, memungkingkan kita menulis kode lebih bersih dan lebih presisi. Biasanya, Ruby devs menyukainya.
-- [TypeScript](http://www.typescriptlang.org/) berfokus pada penambahan "strict data typing" yang menyederhanakan pengembangan dan dukungan sistem yang komplex. Ia dibuat oleh Microsoft.
-- [Dart](https://www.dartlang.org/) ialah bahasa mandiri yang punya engine sendiri yang berjalan di lingkungan non-peramban (seperti mobile apps). Dia awalnya ditawarkan Google sebagai pengganti JavaScript, tapi sekarang, peramban mengharuskan ia ditranspile menjadi JavaScript sama seperti di atas.
+- [TypeScript](http://www.typescriptlang.org/) berfokus pada penambahan "strict data typing" yang menyederhanakan pengembangan dan dukungan sistem yang komplex. Ia dikembangkan oleh Microsoft.
+- [Flow](http://flow.org/) juga menambahkan data typing, tapi dalam cara berbeda. Dikembangkan oleh Facebook.
+- [Dart](https://www.dartlang.org/) ialah bahasa mandiri yang punya engine sendiri yang berjalan di lingkungan non-peramban (seperti mobile apps), tapi bisa juga ditranspile ke JavaScript. Dikembangkan oleh Google.
 
-Masih banyak lagi. Tentunya, jika kita menggunakan salah satu bahasa tersebut, kita sebaiknya juga paham JavaScript untuk mengerti apa yang mereka lakukan.
+Masih banyak lagi. Tentunya, jika kita menggunakan salah satu bahasa yang ditranspile tersebut, kita sebaiknya juga paham JavaScript untuk mengerti apa yang mereka lakukan.
 
 ## Kesimpulan
 
