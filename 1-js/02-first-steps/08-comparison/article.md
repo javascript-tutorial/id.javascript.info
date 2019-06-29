@@ -31,11 +31,11 @@ alert( result ); // true
 
 ## Perbandingan string
 
-To see whether a string is greater than another, JavaScript uses the so-called "dictionary" or "lexicographical" order.
+Untuk melihat apakah satu string lebih besar dari yang lain, JavaScript menggunakan yang disebut "kamus" atau urutan "lexicografik".
 
-In other words, strings are compared letter-by-letter.
+Dengan keta lain, string diperbandingkan huruf-demi-huruf.
 
-For example:
+Misalnya:
 
 ```js run
 alert( 'Z' > 'A' ); // true
@@ -43,53 +43,53 @@ alert( 'Glow' > 'Glee' ); // true
 alert( 'Bee' > 'Be' ); // true
 ```
 
-The algorithm to compare two strings is simple:
+algoritma untuk membandingkan dua string sederhana:
 
-1. Compare the first character of both strings.
-2. If the first character from the first string is greater (or less) than the other string's, then the first string is greater (or less) than the second. We're done.
-3. Otherwise, if both strings' first characters are the same, compare the second characters the same way.
-4. Repeat until the end of either string.
-5. If both strings end at the same length, then they are equal. Otherwise, the longer string is greater.
+1. Bandingkan karakter pertama dari kedua string.
+2. Jika karakter pertama dari string pertama lebih besar (atau lebih kecil) dari string kedua, maka string pertama lebih besar (atau lebih kecil) dari string kedua. Kita selesai.
+3. Sebaliknya, jika karakter pertama kedua string sama, bandingkan karakter kedua dengan cara sama.
+4. Ulangi sampai string berakhir.
+5. Jika kedua string berakhir pada panjang yang sama, maka mereka sama. Sebaliknya, string lebih panjang yang lebih besar.
 
-In the examples above, the comparison `'Z' > 'A'` gets to a result at the first step while the strings `"Glow"` and `"Glee"` are compared character-by-character:
+Pada contoh di atas, pembandingan `'Z' > 'A'` menghasilkan pada langkah pertama sedangkan string `"Glow"` dan `"Glee"` dibandingkan karakter-demi-karakter:
 
-1. `G` is the same as `G`.
-2. `l` is the same as `l`.
-3. `o` is greater than `e`. Stop here. The first string is greater.
+1. `G` sama dengan `G`.
+2. `l` sama dengan `l`.
+3. `o` lebih besar dari `e`. Berhenti di sini. String pertama lebih besar.
 
-```smart header="Not a real dictionary, but Unicode order"
-The comparison algorithm given above is roughly equivalent to the one used in dictionaries or phone books, but it's not exactly the same.
+```smart header="Bukan dictionary riil, tapi urutan Unicode"
+Algoritma pembangingan yang diberikan di atas secara kasar equivalen dengan yang digunakan dalam kamus atau buku telpon, tapi tak sepenuhnya sama.
 
-For instance, case matters. A capital letter `"A"` is not equal to the lowercase `"a"`. Which one is greater? The lowercase `"a"`. Why? Because the lowercase character has a greater index in the internal encoding table JavaScript uses (Unicode). We'll get back to specific details and consequences of this in the chapter <info:string>.
+Misalnya, case diperhitungkan. Huruf besar `"A"` tak sama dengan huruf kecil `"a"`. Yang mana yang lebih besar? Huruf kecil `"a"`. Kenapa? Karena karakter huruf kecil punya index lebih besar dalam tabel encoding internal yang dipakai JavaScript (Unicode). Kita akan kembali ke detil spesifik dan konsekuensinya dalam bab <info:string>.
 ```
 
-## Comparison of different types
+## Pembandingan dari tipe yang berbeda
 
-When comparing values of different types, JavaScript converts the values to numbers.
+Ketika membandingkan nilai dari tipe yang berbeda, JavaScript mengkonversi nilai tersebut ke angka.
 
-For example:
+Misalnya:
 
 ```js run
-alert( '2' > 1 ); // true, string '2' becomes a number 2
-alert( '01' == 1 ); // true, string '01' becomes a number 1
+alert( '2' > 1 ); // true, string '2' menjadi angka 2
+alert( '01' == 1 ); // true, string '01' menjadi angka 1
 ```
 
-For boolean values, `true` becomes `1` and `false` becomes `0`. 
+Untuk nilai boolean, `true` menjadi `1` dan `false` menjadi `0`. 
 
-For example:
+Misalnya:
 
 ```js run
 alert( true == 1 ); // true
 alert( false == 0 ); // true
 ```
 
-````smart header="A funny consequence"
-It is possible that at the same time:
+````smart header="Konsekuensi lucu"
+Memungkinkan juga bahwa pada saat yang sama:
 
-- Two values are equal.
-- One of them is `true` as a boolean and the other one is `false` as a boolean.
+- Dua nilai equal.
+- Satu dari mereka `true` sebagai boolean dan satunya lagi `false` sebagai boolean.
 
-For example:
+Misalnya:
 
 ```js run
 let a = 0;
@@ -101,70 +101,70 @@ alert( Boolean(b) ); // true
 alert(a == b); // true!
 ```
 
-From JavaScript's standpoint, this result is quite normal. An equality check converts values using the numeric conversion (hence `"0"` becomes `0`), while the explicit `Boolean` conversion uses another set of rules.
+Dari cara pandang JavaScript', hasil ini terbilang normal. Pengecekan equalitas mengkonversi nilai menggunakan konversi numerik (jadi `"0"` menjadi `0`), sedangkan konversi explisit `Boolean` menggunakan set aturan yang lain.
 ````
 
-## Strict equality
+## Equalitas ketat
 
-A regular equality check `==` has a problem. It cannot differentiate `0` from `false`:
+Pengecekan equalitas reguler `==` punya satu problem. Ia tak bisa membedakan `0` dari `false`:
 
 ```js run
 alert( 0 == false ); // true
 ```
 
-The same thing happens with an empty string:
+Hal yang sama terjadi pada string kosong:
 
 ```js run
 alert( '' == false ); // true
 ```
 
-This happens because operands of different types are converted to numbers by the equality operator `==`. An empty string, just like `false`, becomes a zero.
+Ini terjadi karena operand dari tipe yang berbeda dikonversi ke angka oleh operator equalitas `==`. String kosong, sama seperti `false`, menjadi nol.
 
-What to do if we'd like to differentiate `0` from `false`?
+Apa yang dilakukan jika kita ingin membedakan `0` dari `false`?
 
-**A strict equality operator `===` checks the equality without type conversion.**
+**Operator equalitas ketat `===` mengecek equalitas tanpa konversi tipe.**
 
-In other words, if `a` and `b` are of different types, then `a === b` immediately returns `false` without an attempt to convert them.
+Dengan kata lain, jika `a` dan `b` tipenya berbeda, maka `a === b` segera menghasilkan `false` tanpa konversi apapun terhadap mereka.
 
-Let's try it:
+Mari kita coba:
 
 ```js run
-alert( 0 === false ); // false, because the types are different
+alert( 0 === false ); // false, karena tipenya berbeda
 ```
 
-There is also a "strict non-equality" operator `!==` analogous to `!=`.
+Ada juga operator "non-equalitas ketat" `!==` yang analog dengan `!=`.
 
-The strict equality operator is a bit longer to write, but makes it obvious what's going on and leaves less room for errors.
+Operator equalitas ketat sedikit lebih panjang untuk ditulis, tapi lebih memperlihatkan apa yang terjadi dan meninggalkan ruang lebih kecil untuk galat.
 
-## Comparison with null and undefined
+## Pembandingan dengan null dan undefined
 
-Let's see more edge cases.
+Mari kita lihat kasus lebih tajam.
 
-There's a non-intuitive behavior when `null` or `undefined` are compared to other values.
+Ada sikap non-intuitif ketika `null` atau `undefined` diperbandingkan dengan nilai lain.
 
 
-For a strict equality check `===`
-: These values are different, because each of them is a different type.
+Untuk pengecekan equalitas ketat `===`
+: Nilai ini berbeda, karena setiap dari mereka tipenya berbeda.
 
     ```js run
     alert( null === undefined ); // false
     ```
 
-For a non-strict check `==`
-: There's a special rule. These two are a "sweet couple": they equal each other (in the sense of `==`), but not any other value.
+Untuk pengecekan non-ketat `==`
+: Ada aturan spesial. Kedyanya merupakan "pasangan manis": mereka sama (karena `==`), tapi tidak dengan nilai lain manapun.
 
     ```js run
     alert( null == undefined ); // true
     ```
 
-For maths and other comparisons `< > <= >=`
-: `null/undefined` are converted to numbers: `null` becomes `0`, while `undefined` becomes `NaN`.
+Untuk pembandingan matematika dan lainnya `< > <= >=`
+: `null/undefined` dikonversi ke angka: `null` menjadi `0`, sedangkan `undefined` menjadi `NaN`.
 
-Now let's see some funny things that happen when we apply these rules. And, what's more important, how to not fall into a trap with them.
+Sekarang mari kita lihat beberapa hal lucu yang terjadi ketika kita menerapkan aturan ini. Dan, yang lebih penting, bagaimana supaya tidak jatuh ke dalam perangkap ini.
 
-### Strange result: null vs 0
+### Hasil aneh: null vs 0
 
-Let's compare `null` with a zero:
+Mari kita bandingkan `null` dengan nol:
 
 ```js run
 alert( null > 0 );  // (1) false
@@ -172,15 +172,15 @@ alert( null == 0 ); // (2) false
 alert( null >= 0 ); // (3) *!*true*/!*
 ```
 
-Mathematically, that's strange. The last result states that "`null` is greater than or equal to zero", so in one of the comparisons above it must be `true`, but they are both false.
+Secara matematik, ini aneh. Hasil terakhir menyatakan bahwa "`null` lebih besar atau sama dengan nol", seharusnya salah satu dari pembandingan di atasnya `true`, tapi nyatanya malah tidak.
 
-The reason is that an equality check `==` and comparisons `> < >= <=` work differently. Comparisons convert `null` to a number, treating it as `0`. That's why (3) `null >= 0` is true and (1) `null > 0` is false.
+Alasannya ialah pengecekan equalitas `==` dan pembandingan `> < >= <=` bekerja secara berbeda. Pembandingan mengkonversi `null` ke angka `0`. Itulah kenapa (3) `null >= 0` true dan (1) `null > 0` false.
 
-On the other hand, the equality check `==` for `undefined` and `null` is defined such that, without any conversions, they equal each other and don't equal anything else. That's why (2) `null == 0` is false.
+Di sisi lain, pengecekan equalitas `==` untuk `undefined` and `null` dijelaskan bahwa, tanpa konversi apapun, mereka sama dengan satu sama lain dan tidak sama dengan nilai lain manapun. Itulah kenapa (2) `null == 0` is false.
 
-### An incomparable undefined
+### Uundefined yang tak bisa diperbandingkan
 
-The value `undefined` shouldn't be compared to other values:
+Nilai `undefined` sebainya tak diperbandingkan dengan nilai lain:
 
 ```js run
 alert( undefined > 0 ); // false (1)
@@ -188,25 +188,25 @@ alert( undefined < 0 ); // false (2)
 alert( undefined == 0 ); // false (3)
 ```
 
-Why does it dislike zero so much? Always false!
+Kenapa ia tak suka sekali dengan nol? Selalu false!
 
-We get these results because:
+Kita dapatkan hasil ini karena:
 
-- Comparisons `(1)` and `(2)` return `false` because `undefined` gets converted to `NaN` and `NaN` is a special numeric value which returns `false` for all comparisons.
-- The equality check `(3)` returns `false` because `undefined` only equals `null` and no other value.
+- Pembandingan `(1)` dan `(2)` menghasilkan `false` karena `undefined` dikonversi ke `NaN` dan `NaN` merupakan numerik spesial yang mengembalikan `false` untuk semua pembandingan.
+- Pengecekan equalitas `(3)` mengembalikan `false` karena `undefined` hanya sama dengan `null` dan tidak dengan nilai lain manapun.
 
-### Evade problems
+### Hindari problem
 
-Why did we go over these examples? Should we remember these peculiarities all the time? Well, not really. Actually, these tricky things will gradually become familiar over time, but there's a solid way to evade problems with them:
+Kenapa kita menggunakan contoh ini? Haruskah kita ingat semua keanehan ini? Tidak juga. Sebenarnya, hal tricky macam ini akan menjadi akrab seiring waktu, tapi ada cara solid untuk menghindari masalah dengan mereka:
 
-Just treat any comparison with `undefined/null` except the strict equality `===` with exceptional care.
+Perlakukan pembandingan manapun dengan `undefined/null` kecuali equalitas ketat `===` dengan hati-hati.
 
-Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`, unless you're really sure of what you're doing. If a variable can have these values, check for them separately.
+Jangan gunakan pembandingan `>= > < <=` dengan variabel yang bisa jadi `null/undefined`, kecuali kamu paham apa yang kamu lakukan. Jika variabel bisa punya nilai ini, cek mereka secara terpisah.
 
-## Summary
+## Kesimpulan
 
-- Comparison operators return a boolean value.
-- Strings are compared letter-by-letter in the "dictionary" order.
-- When values of different types are compared, they get converted to numbers (with the exclusion of a strict equality check).
-- The values `null` and `undefined` equal `==` each other and do not equal any other value.
-- Be careful when using comparisons like `>` or `<` with variables that can occasionally be `null/undefined`. Checking for `null/undefined` separately is a good idea.
+- Operator pembandingan menghasilkan nilai boolean.
+- String dibandingkan huruf-demi-huruf dalam urutan "kamus".
+- Ketika nilai dari tipe berbeda diperbandingkan, mereka dikonversi ke angka (kecuali pengecekan equalitas ketat).
+- Nilai `null` dan `undefined` sama dengan `==` satu sama lain dan tidak sama dengan nilai lain manapun.
+- Waspada ketika menggunakan pembandingan seperti `>` atau `<` dengan variabel yang kadang bisa jadi `null/undefined`. Pengecekan secara terpisah `null/undefined` merupakan ide yang bagus.

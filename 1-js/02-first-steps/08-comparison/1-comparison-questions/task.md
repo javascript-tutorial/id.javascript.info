@@ -1,10 +1,10 @@
-importance: 5
+kepentingan: 5
 
 ---
 
-# Comparisons
+# Pembandingan
 
-What will be the result for these expressions?
+Apa hasil dari expresi ini?
 
 ```js no-beautify
 5 > 4
