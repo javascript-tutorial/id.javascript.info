@@ -12,6 +12,7 @@ Satu IDE meload proyek (yang bisa berupa banyak file), memungkingkan navigasi an
 
 Jika kamu belum memilih satu IDE, pertimbangkan opsi-opsi berikut:
 
+<<<<<<< HEAD:1-js/01-getting-started/2-code-editors/article.md
 - [WebStorm](http://www.jetbrains.com/webstorm/) untuk pengembangan frontend. Perusahaan ini menawarkan editor lain untuk bahasa lain (berbayar).
 - [Netbeans](http://netbeans.org/) (gratis).
 
@@ -20,6 +21,14 @@ Semua IDE ini bersifat cross-platform.
 Untuk Windows, ada juga "Visual Studio", jangan dipusingkan dengan "Visual Studio Code." "Visual Studio" berbayar dan merupakan editor khusus Windows, sangat cocok untuk platform .NET. Versi gratisnya disebut [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
 Banyak IDE berbayar tetapi punya masa uji coba. Biaya mereka biasanya tak seberapa dibanding gaji pengembang berkualitas, jadi pilihlah yang terbaik untukmu.
+=======
+- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
+- [WebStorm](http://www.jetbrains.com/webstorm/) (cross-platform, paid).
+
+For Windows, there's also "Visual Studio", not to be confused with "Visual Studio Code". "Visual Studio" is a paid and mighty Windows-only editor, well-suited for the .NET platform. It's also good at JavaScript. There's also a free version [Visual Studio Community](https://www.visualstudio.com/vs/community/).
+
+Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
+>>>>>>> 9b5c1c95ec8a466150e519b0e94748717c747b09:1-js/01-getting-started/3-code-editors/article.md
 
 ## Editor ringan
 
@@ -33,12 +42,17 @@ Pada praktiknya, editor ringan bisa punya banyak plugin termasuk syntax analyzer
 
 Opsi-opsi berikut patut anda perhatikan:
 
+<<<<<<< HEAD:1-js/01-getting-started/2-code-editors/article.md
 - [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, gratis) juga punya banyak fitur seperti IDE.
 - [Atom](https://atom.io/) (cross-platform, gratis).
+=======
+- [Atom](https://atom.io/) (cross-platform, free).
+>>>>>>> 9b5c1c95ec8a466150e519b0e94748717c747b09:1-js/01-getting-started/3-code-editors/article.md
 - [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, gratis).
 - [Vim](http://www.vim.org/) dan [Emacs](https://www.gnu.org/software/emacs/) sangat keren jika kamu tahu cara memakainya.
 
+<<<<<<< HEAD:1-js/01-getting-started/2-code-editors/article.md
 ## Favorit saya
 
 Preferensi personal penulis ialah punya IDE untuk proyek dan editor ringan untuk mengedit file dengan cepat dan mudah.
@@ -49,6 +63,9 @@ Saya menggunakan:
 - Editor ringan -- [Sublime Text](http://www.sublimetext.com) atau [Atom](https://atom.io/).
 
 ## Mari jangan berantem
+=======
+## Let's not argue
+>>>>>>> 9b5c1c95ec8a466150e519b0e94748717c747b09:1-js/01-getting-started/3-code-editors/article.md
 
 Daftar IDE dan editor di atas merupakan barang yang sudah biasa dipakai saya atau teman-teman saya para pengembang profesional.
 
