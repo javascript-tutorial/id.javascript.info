@@ -105,7 +105,11 @@ Akhir-akhir ini muncul banyak bahasa baru, yang *ditranspile* (dikonversi) ke Ja
 
 Tool modern membuat transpilasi sangat cepat dan transparan, yang sebenarnya membuat pengembang mengkode dalam bahasa lain dan mengautokonversi itu "di balik layar".
 
+<<<<<<< HEAD
 Contoh bahasa yang dimaksud:
+=======
+Examples of such languages:
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 - [CoffeeScript](http://coffeescript.org/) merupakan "syntactic sugar" dari JavaScript. Dia memperkenalkan syntax yang lebih pendek, memungkingkan kita menulis kode lebih bersih dan lebih presisi. Biasanya, Ruby devs menyukainya.
 - [TypeScript](http://www.typescriptlang.org/) berfokus pada penambahan "strict data typing" yang menyederhanakan pengembangan dan dukungan sistem yang komplex. Ia dikembangkan oleh Microsoft.
