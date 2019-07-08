@@ -127,11 +127,19 @@ Kenapa plus unary diaplikasi ke nilai sebelum binarynya? Seperti yang kita lihat
 
 ## Presedensi operator
 
+<<<<<<< HEAD
 Jika expresi punya lebih dari satu operator, urutan eksekusi ditentukan oleh *presedensi* mereka, atau dengan kata lain, urutan prioritas implisit operator.
+=======
+If an expression has more than one operator, the execution order is defined by their *precedence*, or, in other words, the default priority order of operators.
+>>>>>>> 5e9eca374f644ea85c7d548bbe344fd30e5fb89d
 
 Dari sekolah, kita semua tahu bahwa perkalian dalam expresi `1 + 2 * 2` harus dihitung sebelum penambahan. Itulah arti dari presedensi. Perkalian disebut memiliki *presedensi lebih tinggi* dari penambahan.
 
+<<<<<<< HEAD
 Tanda kurung mengesampingkan presedensi apapun, jika jika kita tak puas dengan urutan implisit, kita bisa gunakan mereka untuk mengubahnya. Misalnya: `(1 + 2) * 2`.
+=======
+Parentheses override any precedence, so if we're not satisfied with the default order, we can use them to change it. For example, write `(1 + 2) * 2`.
+>>>>>>> 5e9eca374f644ea85c7d548bbe344fd30e5fb89d
 
 Ada banyak operator di JavaScript. Tiap operator punya nomor presedensi masing-masing. Nomor yang lebih besar dieksekusi terlebih dahulu. Jika presedensinya sama, urutan eksekusinya dari kiri ke kanan.
 
@@ -199,9 +207,15 @@ alert( a ); // 3
 alert( c ); // 0
 ```
 
+<<<<<<< HEAD
 Di contoh di atas, hasil dari `(a = b + 1)` ialah nilai yang ditetapkan ke `a` (yaitu `3`). Ia kemudian digunakan untuk pengurangan dari `3`.
 
 Kode yang lucu, ya kan? Kita sebaiknya memahami cara ia bekerja, karena kadang kita lihat ia ada dalam librari pihak ke-3, tapi tak boleh menulis apapun seperti yang kita lakukan. Trik macam itu tentu saja tak membuat kode lebih jelas atau lebih terbaca.
+=======
+In the example above, the result of expression `(a = b + 1)` is the value which was assigned to `a` (that is `3`). It is then used for further evaluations.
+
+Funny code, isn't it? We should understand how it works, because sometimes we see it in JavaScript libraries, but shouldn't write anything like that ourselves. Such tricks definitely don't make code clearer or readable.
+>>>>>>> 5e9eca374f644ea85c7d548bbe344fd30e5fb89d
 ````
 
 ## Sisa %
@@ -429,10 +443,17 @@ Di sini, expresi pertama `1 + 2` dievaluasi dan hasilnya dibuang. Lalu, `3 + 4` 
 ```smart header="Koma punya presedensi sangat kecil"
 Harap ingat bahwa operator koma punya presedensi sangat kecil, lebih kecil dari `=`, jadi tanda kurung penting dalam contoh di atas.
 
+<<<<<<< HEAD
 Tanpa mereka: `a = 1 + 2, 3 + 4` mengevaluasi `+` terlebih dahulu, penjumlahan tersebut menjadi `a = 3, 7`, lalu operator penetapan `=` menetapkan   `a = 3`, dan pada akhirnya angka setelah koma, `7`, tak diproses sehingga ia diabaikan.
 ```
 
 Kenapa kita butuh operator yang membuang semuanya kecuali bagian akhirnya?
+=======
+Without them: `a = 1 + 2, 3 + 4` evaluates `+` first, summing the numbers into `a = 3, 7`, then the assignment operator `=` assigns `a = 3`, and the rest is ignored. It's like `(a = 1 + 2), 3 + 4`.
+```
+
+Why do we need an operator that throws away everything except the last expression?
+>>>>>>> 5e9eca374f644ea85c7d548bbe344fd30e5fb89d
 
 Kadang, orang memakai itu dalam konstruksi rumit untuk menaruh beberapa aksi dalam satu baris.
 
@@ -445,4 +466,8 @@ for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
 }
 ```
 
+<<<<<<< HEAD
 Trik macam ini dipakai di banyak framework JavaScript. Itulah kenapa kita membahas mereka. Tapi, biasanya, mereka tak meningkatkan keterbacaan kode sehingga kita sebaiknya pikir-pikir dulu sebelum menggunakan mereka.
+=======
+Such tricks are used in many JavaScript frameworks. That's why we're mentioning them. But usually they don't improve code readability so we should think well before using them.
+>>>>>>> 5e9eca374f644ea85c7d548bbe344fd30e5fb89d
