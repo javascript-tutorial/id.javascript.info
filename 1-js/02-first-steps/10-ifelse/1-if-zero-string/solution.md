@@ -1,12 +1,11 @@
-**Yes, it will.**
+**Ya, tentu saja.**
 
-Any string except an empty one (and `"0"` is not empty) becomes `true` in the logical context.
+Setiap string kecuali yang kosong (ingat bahwa `" 0 "` tidak kosong) menjadi `true` dalam konteks logika boolean.
 
-We can run and check:
+Kita dapat mengeksekusi dan mengecek kode di bawah ini :
 
 ```js run
 if ("0") {
   alert( 'Hello' );
 }
 ```
-

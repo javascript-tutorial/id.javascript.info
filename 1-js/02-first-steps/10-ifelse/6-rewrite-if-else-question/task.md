@@ -1,12 +1,12 @@
-importance: 5
+Nilai penting: 5
 
 ---
 
-# Rewrite 'if..else' into '?'
+# Tulis ulang 'if..else' menjadi '?'
 
-Rewrite `if..else` using multiple ternary operators `'?'`.
+Tulis ulang `if..else` menggunakan beberapa operator ternary` '?' `.
 
-For readability, it's recommended to split the code into multiple lines.
+Agar mudah dibaca, disarankan untuk membagi kode menjadi beberapa baris.
 
 ```js
 let message;

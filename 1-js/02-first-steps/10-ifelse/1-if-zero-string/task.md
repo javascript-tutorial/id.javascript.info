@@ -1,14 +1,13 @@
-importance: 5
+Nilai penting: 5
 
 ---
 
-# if (a string with zero)
+# if (string berisi angka nol)
 
-Will `alert` be shown?
+Apakah `alert` akan dieksekusi?
 
 ```js
 if ("0") {
   alert( 'Hello' );
 }
 ```
-
