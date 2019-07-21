@@ -6,11 +6,7 @@ Repository ini menghost konten Inggris dari Tutorial JavaScript Modern, yang dit
 
 Kami ingin membuat tutorial tersedia dalam banyak bahasa. Silakan bantu kami menerjemahkan.
 
-<<<<<<< HEAD
 Lihat <https://javascript.info/translate> untuk detilnya.
-=======
-See <https://javascript.info/translate> for the details.
->>>>>>> a0266c574c0ab8a0834dd38ed65e7e4ee27f9cdb
 
 ## Kontribusi
 
