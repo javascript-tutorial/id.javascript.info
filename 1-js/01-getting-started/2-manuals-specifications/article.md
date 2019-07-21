@@ -1,43 +1,43 @@
 
-# Manuals and specifications
+# Manual dan spesifikasi
 
-This book is a *tutorial*. It aims to help you gradually learn the language. But once you're familiar with the basics, you'll need other sources.
-
-
-## Specification
-
-**The ECMA-262 specification** contains the most in-depth, detailed and formalized information about JavaScript. It defines the language.
-
-But being that formalized, it's difficult to understand at first. So if you need the most trustworthy source of information about the language details, it's the right place. But it's not for everyday use.
-
-The latest draft is at <https://tc39.es/ecma262/>.
-
-To read about bleeding-edge features, that are not yet widely supported, see proposals at <https://github.com/tc39/proposals>.
-
-Also, if you're in developing for the browser, then there are other specs covered in the [second part](info:browser-environment) of the tutorial.
-
-## Manuals
-
-- **MDN (Mozilla) JavaScript Reference** is a manual with examples and other information. It's great to get in-depth information about individual language functions, methods etc.
-
-    One can find it at <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
-
-    Although, it's often best to use an internet search instead. Just use "MDN [term]" in the query, e.g. <https://google.com/search?q=MDN+parseInt> to search for `parseInt` function.
+Buku ini adalah *tutorial*. Tujuannya membantu kamu memahami bahasa ini pelan-pelan. Tapi sekali kamu akrab dengan dasarnya, kamu butuh sumber lain.
 
 
-- **MSDN** – Microsoft manual with a lot of information, including JavaScript (often referrerd to as JScript). If one needs something specific to Internet Explorer, better go there: <http://msdn.microsoft.com/>.
+## Spesifikasi
 
-    Also, we can use an internet search with phrases such as "RegExp MSDN" or "RegExp MSDN jscript".
+**Spesifikasi ECMA-262** berisi informasi format, detil, and mendalam tentang JavaScript. Ia mendefisikan bahasa ini.
 
-## Feature support
+Tapi selain format, ia sulit dipahami di awal. Jadi jika kamu butuh sumber informasi terpercaya tentang detil bahasa, ini tempat yang tepat. Tapi ini bukan untuk penggunaan harian.
 
-JavaScript is a developing language, new features get added regularly.
+Draft terakhir ada di <https://tc39.es/ecma262/>.
 
-To see their support among browser-based and other engines, see:
+Untuk membaca tentang fitur termutakhir, yang belum didukung luas, lihat proposal di <https://github.com/tc39/proposals>.
 
-- <http://caniuse.com> - per-feature tables of support, e.g. to see which engines support modern cryptography functions: <http://caniuse.com/#feat=cryptography>.
-- <https://kangax.github.io/compat-table> - a table with language features and engines that support those or don't support.
+Juga, jika kamu dalam pengembangan untuk peramban, maka ada spek lain yang dibahas di [bagian kedua](info:browser-environment) di tutorial ini.
 
-All these resources are useful in real-life development, as they contain valuable information about language details, their support etc.
+## Manual
 
-Please remember them (or this page) for the cases when you need in-depth information about a particular feature.
+- **Referensi JavaScript MDN (Mozilla)** ialah manual dengan informasi dan contoh lain. Di sana bagus untuk mendapat informasi mendalam tentang metode, fungsi bahasa, dll.
+
+    Kamu bisa cari di <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
+
+    Meski, sering lebih bagus menggunakan pencarian internet. Pakai "MDN [term]" di query, misal <https://google.com/search?q=MDN+parseInt> untuk mencari fungsi `parseInt`.
+
+
+- **MSDN** – Manual Microsoft dengan banyak informasi, termasuk JavaScript (sering dirujuk sebagai JScript). Jika kamu butuh sesuatu specifik ke Internet Explorer, lebih baik menuju: <http://msdn.microsoft.com/>.
+
+    Juga, kamu bisa menggunakan pencarian internet dengan frasa seperti "RegExp MSDN" atau "RegExp MSDN jscript".
+
+## Dukungan fitur
+
+JavaScript merupakan bahasa berkembang, fitur baru ditambah secara reguler.
+
+Untuk melihat dukungan mereka pada engine berbasis peramban dan lainnya, lihat:
+
+- <http://caniuse.com> - tabel dukungan per-fitur, misal untuk melihat engine mana yang mendukung fungsi kryptografi modern: <http://caniuse.com/#feat=cryptography>.
+- <https://kangax.github.io/compat-table> - tabel dengan fitur dan engine bahasa yang mendukung atau yang tidak mendukung.
+
+Semua sumber ini berguna di pengembangan nyata, karena mereka berisi informasi berharga tentang detil bahasa, dukungan mereka dll.
+
+Silakan ingat mereka (atau laman ini) saat kamu butuh informasi mendalam tentang fitur tertentu.
