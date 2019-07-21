@@ -221,7 +221,7 @@ Tiga baris terakhir mungkin butuh penjelasan tambahan:
 
 1. `Math` ialah objek built-in yang menyediakan operasi matematik. Kita akan belajar itu di bab <info:number>. Di sini, itu cuma sekedar contoh dari objek.
 2. Hasil `typeof null` yaitu `"object"`. Itu salah. Ini merupakan error yang terkenal resmi dalam `typeof`, yang dijaga untuk kompatibilitas. Tentu saja, `null` bukanlah objek. Ia merupakan nilai spesial dengan tipe terpisah miliknya sendiri. Jadi, lagi, ini merupakan error dalam bahasa.
-3. Hasil dari `typeof alert` yaitu `"function"`, karena `alert` merupakan fungsi dari bahasa. Kita akan belajar fungsi di bab berikutnya di mana kita akan melihat bahwa tak ada tipe "function" spesial di JavaScript. Fungsi merupakan bagian dari tipe objek. Tapi `typeof` memperlakukan mereka secara berbeda. Formalnya, itu salah, tapi sangat nyaman pada praktiknya.
+3. Hasil dari `typeof alert` yaitu `"function"`, karena `alert` merupakan fungsi. Kita akan belajar fungsi di bab berikutnya di mana kita juga akan melihat bahwa tak ada tipe "fungsi" spesial di JavaScript. Fungsi merupakan bagian dari tipe objek. Tapi `typeof` memperlakukan mereka secara berbeda, ia mengembalikan `"fungsi"`. Tidak sepenuhnya benar, tapi sangat nyaman pada praktiknya.
 
 
 ## Kesimpulan
