@@ -1,9 +1,9 @@
-importance: 4
+nilai penting: 4
 
 ---
 
-# A simple page
+# Laman simpel
 
-Create a web-page that asks for a name and outputs it.
+Buat laman web yang meminta nama dan menampilkannya.
 
 [demo]

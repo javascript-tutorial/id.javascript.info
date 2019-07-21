@@ -1,8 +1,8 @@
-# Interaction: alert, prompt, confirm
+# Interaksi: alert, prompt, confirm
 
-In this part of the tutorial we cover JavaScript language "as is", without environment-specific tweaks.
+Di bagian tutorial ini kita membahas bahasa JavaScript "apa adanya", tanpa tweak ke lingkungan tertentu.
 
-But we'll still be using the browser as our demo environment, so we should know at least a few of its user-interface functions. In this chapter, we'll get familiar with the browser functions `alert`, `prompt` and `confirm`.
+Tapi kita masih akan memakai peramban sebagai lingkungan demo kita, jadi kita sebaiknya paham minimal beberapa fungsi user-interface-nya. Di bab ini, kita akan berkenalan dengan fungsi browser `alert`, `prompt` dan `confirm`.
 
 ## alert
 
@@ -12,37 +12,37 @@ Syntax:
 alert(message);
 ```
 
-This shows a message and pauses script execution until the user presses "OK".
+Ini menampilkan pesan dan menyela exekusi script hingga pengguna menekan "OK".
 
-For example:
+Misalnya:
 
 ```js run
 alert("Hello");
 ```
 
-The mini-window with the message is called a *modal window*. The word "modal" means that the visitor can't interact with the rest of the page, press other buttons, etc. until they have dealt with the window. In this case -- until they press "OK".
+Mini-window dengan pesan ini disebut *modal window*. Kata "modal" artinya pengunjung tak bisa berinteraksi dengan apapun di laman, menekan tombol lain, dll. hingga mereka selesai berurusan dengan window ini. Dalam hal ini -- hingga mereka menekan "OK".
 
 ## prompt
 
-The function `prompt` accepts two arguments:
+Fungsi `prompt` menerima dua argumen:
 
 ```js no-beautify
 result = prompt(title, [default]);
 ```
 
-It shows a modal window with a text message, an input field for the visitor, and the buttons OK/CANCEL.
+Ia menampilkan modal window dengan pesan teks, input field untuk pengunjung, dan tombol OK/CANCEL.
 
 `title`
-: The text to show the visitor.
+: Teks untuk ditampilkan ke pengunjung.
 
 `default`
-: An optional second parameter, the initial value for the input field.
+: Parameter kedua opsional, nilai inisial untuk input field.
 
-The visitor may type something in the prompt input field and press OK. Or they can cancel the input by pressing CANCEL or hitting the `key:Esc` key.
+Pengunjung boleh menulis apapun di input field prompt dan menekan OK. Atau mereka bisa membatalkan input dengan menekan CANCEL atau menekan `key:Esc`.
 
-The call to `prompt` returns the text from the input field or `null` if the input was canceled.
+Panggilan ke `prompt` mengembalikan teks dari input field atau `null` jika input dibatalkan.
 
-For instance:
+Misalnya:
 
 ```js run
 let age = prompt('How old are you?', 100);
@@ -51,15 +51,15 @@ alert(`You are ${age} years old!`); // You are 100 years old!
 ```
 
 ````warn header="In IE: always supply a `default`"
-The second parameter is optional, but if we don't supply it, Internet Explorer will insert the text `"undefined"` into the prompt.
+Parameter kedua ini opsional, tapi jika kita tidak menyuplai, Internet Explorer akan menyisipkan teks `"undefined"` ke dalam prompt.
 
-Run this code in Internet Explorer to see:
+Jalan kode ini di Internet Explorer untuk melihat:
 
 ```js run
 let test = prompt("Test");
 ```
 
-So, for prompts to look good in IE, we recommend always providing the second argument:
+Jadi, supaya prompt terlihat bagus di IE, sebaiknya sediakan argumen kedua:
 
 ```js run
 let test = prompt("Test", ''); // <-- for IE
@@ -68,42 +68,42 @@ let test = prompt("Test", ''); // <-- for IE
 
 ## confirm
 
-The syntax:
+Syntaxnya:
 
 ```js
 result = confirm(question);
 ```
 
-The function `confirm` shows a modal window with a `question` and two buttons: OK and CANCEL.
+Fungsi `confirm` menampilkan modal window dengan `pertanyaan` dan dua tombol: OK dan CANCEL.
 
-The result is `true` if OK is pressed and `false` otherwise.
+Hasilnya `true` jika OK ditekan dan `false` jika tidak.
 
-For example:
+Misalnya:
 
 ```js run
 let isBoss = confirm("Are you the boss?");
 
-alert( isBoss ); // true if OK is pressed
+alert( isBoss ); // true jika OK ditekan
 ```
 
-## Summary
+## Kesimpulan
 
-We covered 3 browser-specific functions to interact with visitors:
+Kita membahas 3 fungsi spesifik peramban untuk berinteraksi dengan pengunjung:
 
 `alert`
-: shows a message.
+: menampilkan pesan.
 
 `prompt`
-: shows a message asking the user to input text. It returns the text or, if CANCEL or `key:Esc` is clicked, `null`.
+: menampilkan pesan yang minta input teks pengguna. Ia mengembalikan teks atau, jika CANCEL atau `key:Esc` diklik, `null`.
 
 `confirm`
-: shows a message and waits for the user to press "OK" or "CANCEL". It returns `true` for OK and `false` for CANCEL/`key:Esc`.
+: menampilkan pesan dan menunggu pengguna menekan "OK" atau "CANCEL". It returns `true` for OK and `false` for CANCEL/`key:Esc`.
 
-All these methods are modal: they pause script execution and don't allow the visitor to interact with the rest of the page until the window has been dismissed.
+Semua metode ini ialah modal: mereka menyela exekusi script dan tak membolehkan pengunjung berinteraksi dengan apapun di laman hingga window ditutup.
 
-There are two limitations shared by all the methods above:
+Ada dua batasan yang dibagikan semua metode di atas:
 
-1. The exact location of the modal window is determined by the browser. Usually, it's in the center.
-2. The exact look of the window also depends on the browser. We can't modify it.
+1. Lokasi tepat modal window ditentukan oleh peramban. Biasanya, di tengah.
+2. Tampilan tepat window juga tergantung peramban. Kita tak bisa  modifikasi ini.
 
-That is the price for simplicity. There are other ways to show nicer windows and richer interaction with the visitor, but if "bells and whistles" do not matter much, these methods work just fine.
+Itulah harga untuk kesederhanaan. Ada banyak cara menampilkan window lebih manis dan kaya akan interaksi dengan pengguna, tapi jika "bells and whistles" tak jadi masalah, metode ini baik-baik saja.
