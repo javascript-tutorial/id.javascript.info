@@ -1,14 +1,14 @@
-# Conditional operators: if, '?'
+# Operator untuk Pernyataan Bersyarat: if, '?'
 
-Sometimes, we need to perform different actions based on different conditions.
+Terkadang, kita perlu melakukan tindakan berbeda berdasarkan kondisi yang berbeda.
 
-To do that, we can use the `if` statement and the conditional operator `?`, that's also called a "question mark" operator.
+Untuk melakukan itu, kita dapat menggunakan pernyataan  `if`  dan operator kondisional `?`, yang juga merupakan "question mark" operator (operator tanda tanya).
 
-## The "if" statement
+## Pernyataan "if"
 
-The `if` statement evaluates a condition and, if the condition's result is `true`, executes a block of code.
+Pernyataan `if` mengevaluasi suatu kondisi, dan jika hasil kondisi itu benar (`true`),maka pernyataan tersebut akan mengeksekusi kode di dalam blok `if` tersebut.
 
-For example:
+Sebagai contoh:
 
 ```js run
 let year = prompt('In which year was ECMAScript-2015 specification published?', '');
@@ -18,9 +18,9 @@ if (year == 2015) alert( 'You are right!' );
 */!*
 ```
 
-In the example above, the condition is a simple equality check (`year == 2015`), but it can be much more complex.
+Pada contoh di atas, persyaratannya adalah pemeriksaan kesetaraan sederhana (`year == 2015`), tetapi pada kode lain, bisa menjadi jauh lebih kompleks.
 
-If we want to execute more than one statement, we have to wrap our code block inside curly braces:
+Jika kita ingin menjalankan lebih dari satu pernyataan di dalam suatu kondisional blok kode, kita harus membungkus blok kode kita di dalam kurung kurawal {} :
 
 ```js
 if (year == 2015) {
@@ -29,18 +29,18 @@ if (year == 2015) {
 }
 ```
 
-We recommend wrapping your code block with curly braces `{}` every time you use an `if` statement, even if there is only one statement to execute. Doing so improves readability.
+Disarankan untuk membungkus blok kode Anda dengan kurung kurawal `{}` setiap kali Anda menggunakan pernyataan `if`, bahkan jika hanya ada satu pernyataan di dalam suatu blok kode. Hal ini agar kode anda mudah dibaca oleh anda di masa depan,dan tentu saja oleh orang lain.
 
-## Boolean conversion
+## Konversi Boolean
 
-The `if (…)` statement evaluates the expression in its parentheses and converts the result to a boolean.
+Pernyataan `if (…)` mengevaluasi ekspresi dalam tanda kurung dan mengubah hasilnya menjadi boolean.
 
-Let's recall the conversion rules from the chapter <info:type-conversions>:
+Mari kita mengingat kembali aturan konversi dari bab <info:type-conversions>:
 
-- A number `0`, an empty string `""`, `null`, `undefined`, and `NaN` all become `false`. Because of that they are called "falsy" values.
-- Other values become `true`, so they are called "truthy".
+- Angka `0`, string kosong `""`, `null`, `undefined`, dan `NaN` semuanya menjadi salah (`false`). Oleh sebab itu,mereka disebut nilai-nilai "falsy" (palsu/salah)
+- Nilai-nilai yang lain menjadi benar (`true`), sehingga kadang mereka disebut "truthy" (benar)
 
-So, the code under this condition would never execute:
+Jadi, kode dalam kondisi ini tidak akan pernah berjalan:
 
 ```js
 if (0) { // 0 is falsy
@@ -48,7 +48,7 @@ if (0) { // 0 is falsy
 }
 ```
 
-...and inside this condition -- it always will:
+... dan di dalam kondisi ini - selalu akan berjalan:
 
 ```js
 if (1) { // 1 is truthy
@@ -56,7 +56,7 @@ if (1) { // 1 is truthy
 }
 ```
 
-We can also pass a pre-evaluated boolean value to `if`, like this:
+Kami juga dapat memberikan nilai boolean yang telah dievaluasi ke  `if`, seperti ini::
 
 ```js
 let cond = (year == 2015); // equality evaluates to true or false
@@ -66,11 +66,11 @@ if (cond) {
 }
 ```
 
-## The "else" clause
+## Klausa "else"
 
-The `if` statement may contain an optional "else" block. It executes when the condition is false.
+Pernyataan `if` dapat berisi blok opsional "else" opsional. Block "else" dijalankan ketika semua kondisi di atas blok "else" salah (false) semua.
 
-For example:
+Contohnya:
 ```js run
 let year = prompt('In which year was the ECMAScript-2015 specification published?', '');
 
@@ -81,11 +81,11 @@ if (year == 2015) {
 }
 ```
 
-## Several conditions: "else if"
+## Pernyataan kondisional lebih dari satu: "else if"
 
-Sometimes, we'd like to test several variants of a condition. The `else if` clause lets us do that.
+Terkadang,  kita ingin menguji beberapa kondisi yang berbeda-beda Klausa `else if` memungkinkan kita melakukan itu.
 
-For example:
+Sebagai contoh:
 
 ```js run
 let year = prompt('In which year was the ECMAScript-2015 specification published?', '');
@@ -99,15 +99,15 @@ if (year < 2015) {
 }
 ```
 
-In the code above, JavaScript first checks `year < 2015`. If that is falsy, it goes to the next condition `year > 2015`. If that is also falsy, it shows the last `alert`.
+Pada kode di atas, pertama JavaScript mengecek ekspresi `year < 2015`. Jika itu salah, maka masuk ke kondisi selanjutnya `year > 2015`. Jika itu juga salah, pernyataan di dalam blok "else" akan dijalankan,yang merupakan sebuah alert
 
-There can be more `else if` blocks. The final `else` is optional.
+Blok `else if`bisa digunakan berkali-kali. Pernyataan final `else` hanya opsional.
 
-## Conditional operator '?'
+## Operator Kondisional '?'
 
-Sometimes, we need to assign a variable depending on a condition.
+Terkadang, kita perlu memberi nilai ke suatu variabel tergantung pada suatu kondisi.
 
-For instance:
+Contohnya:
 
 ```js run no-beautify
 let accessAllowed;
@@ -124,26 +124,26 @@ if (age > 18) {
 alert(accessAllowed);
 ```
 
-The so-called "conditional" or "question mark" operator lets us do that in a shorter and simpler way.
+Operator "question mark" (tanda tanya) memungkinkan kita melakukan kode di atas dengan cara yang lebih singkat dan sederhana.
 
-The operator is represented by a question mark `?`. Sometimes it's called "ternary", because the operator has three operands. It is actually the one and only operator in JavaScript which has that many.
+Operator tersebut direpresentasikan oleh tanda tanya `?`. Nama lain dari operator ini adalah "ternary", karena operator ini memiliki tiga operan (ternary bahasa Indonesia adalah "terdiri dari 3 bagian"). Ini sebenarnya satu-satunya operator dalam JavaScript yang memiliki 3 operan.
 
-The syntax is:
+Sintaksnya adalah:
 ```js
 let result = condition ? value1 : value2;
 ```
 
-The `condition` is evaluated: if it's truthy then `value1` is returned, otherwise -- `value2`.
+Di kode di atas, `condition` dievaluasi: jika itu benar maka value1 akan dikembalikan, jika tidak - value2 yang akan dikembalikan.
 
-For example:
+Contohnya:
 
 ```js
 let accessAllowed = (age > 18) ? true : false;
 ```
 
-Technically, we can omit the parentheses around `age > 18`. The question mark operator has a low precedence, so it executes after the comparison `>`.
+Secara teknis, kita dapat menghilangkan tanda kurung di sekitar `age > 18` . Operator tanda tanya memiliki prioritas rendah, sehingga hanya akan dijalankan setelah perbandingan `>` .
 
-This example will do the same thing as the previous one:
+Contoh di bawah ini akan melakukan hal yang sama seperti kode sebelumnya:
 
 ```js
 // the comparison operator "age > 18" executes first anyway
@@ -151,10 +151,10 @@ This example will do the same thing as the previous one:
 let accessAllowed = age > 18 ? true : false;
 ```
 
-But parentheses make the code more readable, so we recommend using them.
+Tetapi tanda kurung membuat kode lebih mudah dibaca, jadi kami sarankan untuk tetap menggunakannya di kode-kode anda.
 
 ````smart
-In the example above, you can avoid using the question mark operator because the comparison itself returns `true/false`:
+Pada contoh di atas, Anda dapat menghindari pengunaan operator tanda tanya karena perbandingan itu sendiri menghasilkan  `true/false`:
 
 ```js
 // the same
@@ -164,9 +164,9 @@ let accessAllowed = age > 18;
 
 ## Multiple '?'
 
-A sequence of question mark operators `?` can return a value that depends on more than one condition.
+Rangkaian operator tanda tanya `?` dapat mengembalikan nilai yang tergantung pada lebih dari satu kondisi.
 
-For instance:
+Contohnya:
 ```js run
 let age = prompt('age?', 18);
 
@@ -178,14 +178,14 @@ let message = (age < 3) ? 'Hi, baby!' :
 alert( message );
 ```
 
-It may be difficult at first to grasp what's going on. But after a closer look, we can see that it's just an ordinary sequence of tests:
+Mungkin sulit pada awalnya untuk memahami apa yang terjadi. Tetapi setelah melihat lebih dekat, kita dapat melihat bahwa itu hanya serangkaian tes biasa:
 
-1. The first question mark checks whether `age < 3`.
-2. If true -- it returns `'Hi, baby!'`. Otherwise, it continues to the expression after the colon '":"', checking `age < 18`.
-3. If that's true -- it returns `'Hello!'`. Otherwise, it continues to the expression after the next colon '":"', checking `age < 100`.
-4. If that's true -- it returns `'Greetings!'`. Otherwise, it continues to the expression after the last colon '":"', returning `'What an unusual age!'`.
+1. Tanda tanya pertama memeriksa apakah `age < 3`.
+2. Jika benar -- `'Hi, baby!'` akan dikembalikan. Jika tidak, kode akan melanjutkan ke ekspresi setelah titik dua '":"', memeriksa apakah `age < 18`.
+3. Jika itu benar -- `'Hello!'` akan dikembalikan. . Jika tidak, kode akan melanjutkan ke ekspresi setelah titik dua berikutnya '":"', memeriksa `age < 100`.
+4. Jika itu benar -- `'Greetings!'` akan dikembalikan. Jika tidak, kode akan melanjutkan ke ekspresi setelah titik dua terakhir  '":"', dan akhirnya akan mengembalikan `'What an unusual age!'`.
 
-Here's how this looks using `if..else`:
+Kode bawah ini memperlihatkan apabila menggunakan `if..else` untuk kode di atas:
 
 ```js
 if (age < 3) {
@@ -199,9 +199,9 @@ if (age < 3) {
 }
 ```
 
-## Non-traditional use of '?'
+## Penggunaan '?' yang non-tradisional
 
-Sometimes the question mark `?` is used as a replacement for `if`:
+Terkadang tanda tanya `?` digunakan sebagai pengganti `if`:
 
 ```js run no-beautify
 let company = prompt('Which company created JavaScript?', '');
@@ -212,15 +212,15 @@ let company = prompt('Which company created JavaScript?', '');
 */!*
 ```
 
-Depending on the condition `company == 'Netscape'`, either the first or the second expression after the `?` gets executed and shows an alert.
+Bergantung pada kondisional `company == 'Netscape' , ekspresi pertama atau kedua setelah `?` akan dieksekusi dan menunjukkan sebuah "alert".
 
-We don't assign a result to a variable here. Instead, we execute different code depending on the condition.
+Kita tidak memberikan nilai hasil ke suatu variable di sini. Sebagai gantinya, kita mengeksekusi kode yang berbeda tergantung pada kondisinya.
 
-**We don't recommend using the question mark operator in this way.**
+**Kami tidak menyarankan menggunakan operator tanda tanya dengan cara seperti di atas.**
 
-The notation is shorter than the equivalent `if` statement, which appeals to some programmers. But it is less readable.
+Notasinya memang lebih pendek daripada apabila menggunakan pernyataan `if` , yang mungkin menarik bagi beberapa programmer, tetapi hal ini membuat kode anda lebih susah dibaca.
 
-Here is the same code using `if` for comparison:
+Berikut adalah kode yang sama menggunakan `if` untuk perbandingan:
 
 ```js run no-beautify
 let company = prompt('Which company created JavaScript?', '');
@@ -234,6 +234,6 @@ if (company == 'Netscape') {
 */!*
 ```
 
-Our eyes scan the code vertically. Code blocks which span several lines are easier to understand than a long, horizontal instruction set.
+Mata kita memindai kode secara vertikal. Blok kode yang terdiri dari beberapa baris akan lebih mudah dipahami daripada suatu set instruksi horizontal yang panjang.
 
-The purpose of the question mark operator `?` is to return one value or another depending on its condition. Please use it for exactly that. Use `if` when you need to execute different branches of code.
+Tujuan operator tanda tanya `?` adalah mengembalikan satu nilai atau nilai yang lainnya tergantung pada kondisinya. Mohon untuk gunakan operator tanda tanya hanya untuk fungsi tersebut. Gunakan `if ketika Anda perlu menjalankan berbagai cabang kode yang berbeda-beda

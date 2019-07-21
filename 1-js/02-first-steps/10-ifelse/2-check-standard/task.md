@@ -1,14 +1,13 @@
-importance: 2
+Nilai penting: 2
 
 ---
 
-# The name of JavaScript
+# Nama JavaScript
 
-Using the `if..else` construct, write the code which asks: 'What is the "official" name of JavaScript?'
+Dengan menggunakan konstruksi `if..else`, tulis kode yang menanyakan: 'Apa nama" resmi "JavaScript?'
 
-If the visitor enters "ECMAScript", then output "Right!", otherwise -- output: "Didn't know? ECMAScript!"
+Jika pengunjung memasukkan "ECMAScript", maka tunjukkan output "Benar!", Jika tidak - tunjukkan output: "Tidak tahu? ECMAScript!"
 
 ![](ifelse_task2.png)
 
 [demo src="ifelse_task2"]
-

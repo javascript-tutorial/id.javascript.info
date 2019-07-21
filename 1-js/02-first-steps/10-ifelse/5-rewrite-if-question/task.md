@@ -1,10 +1,10 @@
-importance: 5
+Nilai penting: 5
 
 ---
 
-# Rewrite 'if' into '?'
+# Tulis ulang 'if' menggunakan '?'
 
-Rewrite this `if` using the ternary operator `'?'`:
+Tulis ulang `if` menggunakan operator ternary` '?' `:
 
 ```js
 if (a + b < 4) {
@@ -13,4 +13,3 @@ if (a + b < 4) {
   result = 'Over';
 }
 ```
-
