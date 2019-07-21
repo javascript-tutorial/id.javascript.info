@@ -127,11 +127,11 @@ Kenapa plus unary diaplikasi ke nilai sebelum binarynya? Seperti yang kita lihat
 
 ## Presedensi operator
 
-Jika expresi punya lebih dari satu operator, urutan eksekusi ditentukan oleh *presedensi* mereka, atau dengan kata lain, urutan prioritas implisit operator.
+Jika expresi punya lebih dari satu operator, urutan eksekusi ditentukan oleh *presedensi* mereka, atau dengan kata lain, urutan prioritas default operator.
 
 Dari sekolah, kita semua tahu bahwa perkalian dalam expresi `1 + 2 * 2` harus dihitung sebelum penambahan. Itulah arti dari presedensi. Perkalian disebut memiliki *presedensi lebih tinggi* dari penambahan.
 
-Tanda kurung mengesampingkan presedensi apapun, jika jika kita tak puas dengan urutan implisit, kita bisa gunakan mereka untuk mengubahnya. Misalnya: `(1 + 2) * 2`.
+Tanda kurung mengesampingkan presedensi apapun, jika jika kita tak puas dengan urutan default, kita bisa gunakan mereka untuk mengubahnya. Misalnya: tulis `(1 + 2) * 2`.
 
 Ada banyak operator di JavaScript. Tiap operator punya nomor presedensi masing-masing. Nomor yang lebih besar dieksekusi terlebih dahulu. Jika presedensinya sama, urutan eksekusinya dari kiri ke kanan.
 
@@ -199,9 +199,9 @@ alert( a ); // 3
 alert( c ); // 0
 ```
 
-Di contoh di atas, hasil dari `(a = b + 1)` ialah nilai yang ditetapkan ke `a` (yaitu `3`). Ia kemudian digunakan untuk pengurangan dari `3`.
+Di contoh di atas, hasil dari expresi `(a = b + 1)` ialah nilai yang ditetapkan ke `a` (yaitu `3`). Ia kemudian digunakan untuk evaluasi berikutnya.
 
-Kode yang lucu, ya kan? Kita sebaiknya memahami cara ia bekerja, karena kadang kita lihat ia ada dalam librari pihak ke-3, tapi tak boleh menulis apapun seperti yang kita lakukan. Trik macam itu tentu saja tak membuat kode lebih jelas atau lebih terbaca.
+Kodenya lucu, kan? Kita sebaiknya memahami cara ia bekerja, karena kadang kita lihat ia berada dalam librari Javascript, tapi tak boleh menulis apapun seperti yang kita lakukan. Trik macam itu tentu saja tak membuat kode lebih jelas atau lebih terbaca.
 ````
 
 ## Sisa %
@@ -267,7 +267,6 @@ Jadi, ada operator spesial untuk itu:
 ```warn
 Inkremen/dekremen cuma bisa diaplikasikan ke variabel. Mencoba menggunakan itu pada nilai seperti `5++` akan menghasilkan galat.
 ​```
-```
 
 Operator `++` dan `--` bisa ditaruh sebelum atau setelah variabel.
 
@@ -285,12 +284,11 @@ Untuk melihat perbedaannya, berikut misalnya:
 ```js run
 let counter = 1;
 let a = ++counter; // (*)
-```
 
 alert(a); // *!*2*/!*
 ​```
 
-Dalam barus `(*)`, bentuk *prefix*`++counter` menginkremen `counter` dan mengembalikan nilai baru, `2`. Jadi, `alert` menampilkan `2`.
+Dalam baris `(*)`, bentuk *prefix*`++counter` menginkremen `counter` dan mengembalikan nilai baru, `2`. Jadi, `alert` menampilkan `2`.
 
 Sekarang, mari kita gunakan bentuk postfix:
 
@@ -301,7 +299,7 @@ let a = counter++; // (*) ganti ++counter ke counter++
 alert(a); // *!*1*/!*
 ​```
 
-Dalam barus `(*)`, bentuk *postfix* `counter++` juga menginkremen `counter` tapi mengembalikan nilai *lama* (sebelum inkremen). Jadi, `alert` menampilkan `1`.
+Dalam baris `(*)`, bentuk *postfix* `counter++` juga menginkremen `counter` tapi mengembalikan nilai *lama* (sebelum inkremen). Jadi, `alert` menampilkan `1`.
 
 Ringkasnya:
 
@@ -429,10 +427,10 @@ Di sini, expresi pertama `1 + 2` dievaluasi dan hasilnya dibuang. Lalu, `3 + 4` 
 ```smart header="Koma punya presedensi sangat kecil"
 Harap ingat bahwa operator koma punya presedensi sangat kecil, lebih kecil dari `=`, jadi tanda kurung penting dalam contoh di atas.
 
-Tanpa mereka: `a = 1 + 2, 3 + 4` mengevaluasi `+` terlebih dahulu, penjumlahan tersebut menjadi `a = 3, 7`, lalu operator penetapan `=` menetapkan   `a = 3`, dan pada akhirnya angka setelah koma, `7`, tak diproses sehingga ia diabaikan.
+Tanpa mereka: `a = 1 + 2, 3 + 4` mengevaluasi `+` terlebih dahulu, penjumlahan tersebut menjadi `a = 3, 7`, lalu operator penetapan `=` menetapkan `a = 3`, dan sisanya diabaikan. Ini seperti `(a = 1 + 2), 3 + 4`.
 ```
 
-Kenapa kita butuh operator yang membuang semuanya kecuali bagian akhirnya?
+Kenapa kita butuh operator yang membuang semuanya kecuali expresi akhirnya?
 
 Kadang, orang memakai itu dalam konstruksi rumit untuk menaruh beberapa aksi dalam satu baris.
 
