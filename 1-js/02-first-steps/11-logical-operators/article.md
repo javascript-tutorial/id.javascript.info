@@ -1,24 +1,24 @@
-# Logical operators
+# Operator logika
 
-There are three logical operators in JavaScript: `||` (OR), `&&` (AND), `!` (NOT).
+Ada tiga operator logika di JavaScript: `||` (OR), `&&` (AND), `!` (NOT).
 
-Although they are called "logical", they can be applied to values of any type, not only boolean. Their result can also be of any type.
+Meski mereka dipanggil "logika", mereka bisa diaplikasikan ke nilai tipe apapun, bukan cuma boolean. Hasil mereka bisa juga tipe apapun.
 
-Let's see the details.
+Mari kita lihat detilnya.
 
 ## || (OR)
 
-The "OR" operator is represented with two vertical line symbols:
+Operator "OR" diwakili dengan dua simbol garis vertical:
 
 ```js
 result = a || b;
 ```
 
-In classical programming, the logical OR is meant to manipulate boolean values only. If any of its arguments are `true`, it returns `true`, otherwise it returns `false`.
+Di pemrograman klasik, logika OR gunanya cuma untuk memanipulasi nilai boolean. Jika argumennya ada yang `true`, ia mengembalikan `true`, tapi jika tidak, maka ia mengembalikan `false`.
 
-In JavaScript, the operator is a little bit trickier and more powerful. But first, let's see what happens with boolean values.
+Di JavaScript, operator ini agak tricky dan lebih kuat. Tapi pertama-tama, ayo kita lihat apa yang terjadi pada nilai boolean.
 
-There are four possible logical combinations:
+Ada empat kemungkinan kombinasi logika:
 
 ```js run
 alert( true || true );   // true
@@ -27,21 +27,21 @@ alert( true || false );  // true
 alert( false || false ); // false
 ```
 
-As we can see, the result is always `true` except for the case when both operands are `false`.
+Seperti yang kita lihat, hasilnya selalu `true` kecuali jika kedua operand sama-sama `false`.
 
-If an operand is not a boolean, it's converted to a boolean for the evaluation.
+Jika operand bukan boolean, ia dikonversi ke boolean untuk evaluasi.
 
-For instance, the number `1` is treated as `true`, the number `0` as `false`:
+Misalnya, angka `1` diperlakukan sebagai `true`, angka `0` sebagai `false`:
 
 ```js run
-if (1 || 0) { // works just like if( true || false )
+if (1 || 0) { // bekerja seperti if( true || false )
   alert( 'truthy!' );
 }
 ```
 
-Most of the time, OR `||` is used in an `if` statement to test if *any* of the given conditions is `true`.
+Seringkali, OR `||` digunakan di pernyataan `if` untuk menguji apakah ada satu kondisi *manapun* yang `true`.
 
-For example:
+Misalnya:
 
 ```js run
 let hour = 9;
@@ -53,57 +53,57 @@ if (hour < 10 || hour > 18) {
 }
 ```
 
-We can pass more conditions:
+Kita bisa menyampaikan kondisi lebih:
 
 ```js run
 let hour = 12;
 let isWeekend = true;
 
 if (hour < 10 || hour > 18 || isWeekend) {
-  alert( 'The office is closed.' ); // it is the weekend
+  alert( 'The office is closed.' ); // akhir minggu
 }
 ```
 
-## OR finds the first truthy value
+## OR mencari nilai truthy pertama
 
-The logic described above is somewhat classical. Now, let's bring in the "extra" features of JavaScript.
+Logika di atas memang klasik. Sekarang, mari bawa fitur "extra" JavaScript.
 
-The extended algorithm works as follows.
+Algoritma luas bekerja seperti berikut.
 
-Given multiple OR'ed values:
+Untuk nilai yang diORkan:
 
 ```js
 result = value1 || value2 || value3;
 ```
 
-The OR `||` operator does the following:
+Operator OR `||` melakukan hal berikut:
 
-- Evaluates operands from left to right.
-- For each operand, converts it to boolean. If the result is `true`, stops and returns the original value of that operand.
-- If all operands have been evaluated (i.e. all were `false`), returns the last operand.
+- Mengevaluasi operand dari kiri ke kanan.
+- Untuk tiap operand, konversikan ia ke boolean. Jika hasilnya `true`, stop dan mengembalikan nilai original dari operand.
+- Jika semua operand telah dievaluasi (misal semuanya `false`), mengembalikan operand terakhir.
 
-A value is returned in its original form, without the conversion.
+Nilai dikembalikan di bentuk originalnya, tanpa konversi.
 
-In other words, a chain of OR `"||"` returns the first truthy value or the last one if no truthy value is found.
+Dengan kata lain, rantai OR `"||"` mengembalikan nilai truthy pertama atau yang terakhir jika tak ada nilai truthy.
 
-For instance:
+Misalnya:
 
 ```js run
-alert( 1 || 0 ); // 1 (1 is truthy)
-alert( true || 'no matter what' ); // (true is truthy)
+alert( 1 || 0 ); // 1 (1 truthy)
+alert( true || 'no matter what' ); // (true ialah truthy)
 
-alert( null || 1 ); // 1 (1 is the first truthy value)
-alert( null || 0 || 1 ); // 1 (the first truthy value)
-alert( undefined || null || 0 ); // 0 (all falsy, returns the last value)
+alert( null || 1 ); // 1 (1 ialah nilai truthy pertama)
+alert( null || 0 || 1 ); // 1 (nilai truthy pertama)
+alert( undefined || null || 0 ); // 0 (semua falsy, mengembalikan nilai terakhir)
 ```
 
-This leads to some interesting usage compared to a "pure, classical, boolean-only OR".
+Hal ini menjadikan penggunaan yang menarik dibanding "OR booleanpure, classical, boolean-only OR".
 
-1. **Getting the first truthy value from a list of variables or expressions.**
+1. **Dapatkan nilai truthy dari daftar variabel atau expresi.**
 
-    Imagine we have a list of variables which can either contain data or be `null/undefined`. How can we find the first one with data?
+    Bayangkan kita punya daftar variabel yang bisa berisi data atau `null/undefined`. Bagaimana cara kita mencari data pertama?
 
-    We can use OR `||`:
+    Kita bisa gunakan OR `||`:
 
     ```js run
     let currentUser = null;
@@ -113,27 +113,27 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
     let name = currentUser || defaultUser || "unnamed";
     */!*
 
-    alert( name ); // selects "John" – the first truthy value
+    alert( name ); // memilih "John" – nilai truthy pertama
     ```
 
-    If both `currentUser` and `defaultUser` were falsy, `"unnamed"` would be the result.
-2. **Short-circuit evaluation.**
+    Jika kedua `currentUser` dan `defaultUser` sama-sama falsy, `"unnamed"` akan menjadi hasilnya.
+2. **Evaluasi short-circuit.**
 
-    Operands can be not only values, but arbitrary expressions. OR evaluates and tests them from left to right. The evaluation stops when a truthy value is reached, and the value is returned. This process is called "a short-circuit evaluation" because it goes as short as possible from left to right.
+    Operand bukan hanya nilai, tapi juga expresi sembarang. OR mengevaluasi dan menguji mereka dari kiri ke kanan. Evaluasinya berhenti ketika nilai truthy tercapai, dan nilainya dikembalikan. Proses ini disebut "evaluasi short-circuit" karena ia berjalan sependek mungkin dari kiri ke kanan.
 
-    This is clearly seen when the expression given as the second argument has a side effect like a variable assignment.
+    Ini jelas-jelas terlihat ketika expresi yang diberikan sebagai argumen kedua punya efek samping seperti penetapan variabel.
 
-    In the example below, `x` does not get assigned:
+    Di contoh di bawah, `x` tidak ditetapkan:
 
     ```js run no-beautify
     let x;
 
     *!*true*/!* || (x = 1);
 
-    alert(x); // undefined, because (x = 1) not evaluated
+    alert(x); // undefined, karena (x = 1) tak dievaluasi
     ```
 
-    If, instead, the first argument is `false`, `||` evaluates the second one, thus running the assignment:
+    Jika, argumen pertama `false`, `||` mengevaluasi nilai kedua, maka penetapan ini:
 
     ```js run no-beautify
     let x;
@@ -143,21 +143,21 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
     alert(x); // 1
     ```
 
-    An assignment is a simple case. There may be side effects, that won't show up if the evaluation doesn't reach them.
+    Penetapan merupakan hal simpel. Bisa jadi ada efek samping, yang tak akan muncul jika evaluasinya tidak mencapainya.
 
-    As we can see, such a use case is a "shorter way of doing `if`". The first operand is converted to boolean. If it's false, the second one is evaluated.
+    Seperti yang bisa kita lihat, use case macam ini ialah "cara terpendek melakukan `if`". Operand pertama dikonversi ke boolean. Jika ia false, yang kedua dievaluasi.
 
-    Most of time, it's better to use a "regular" `if` to keep the code easy to understand, but sometimes this can be handy.
+    Seringkali, lebih baik menggunakan `if` "reguler" supaya kodenya mudah dipahami, tapi kadang bisa jadi berguna.
 
 ## && (AND)
 
-The AND operator is represented with two ampersands `&&`:
+Operator AND diwakili dua ampersand `&&`:
 
 ```js
 result = a && b;
 ```
 
-In classical programming, AND returns `true` if both operands are truthy and `false` otherwise:
+Dalam pemrograman klasik, AND mengembalikan `true` jika kedua operand sama-sama truthy dan `false` jika sebaliknya:
 
 ```js run
 alert( true && true );   // true
