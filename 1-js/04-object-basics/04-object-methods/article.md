@@ -257,9 +257,9 @@ user.hi(); // John (the simple call works)
 */!*
 ```
 
-On the last line there is a conditinal operator that chooses either `user.hi` or `user.bye`. In this case the result is `user.hi`.
+On the last line there is a conditional operator that chooses either `user.hi` or `user.bye`. In this case the result is `user.hi`.
 
-Then the method is immediately called with parentheses `()`. But it doesn't work right!
+Then the method is immediately called with parentheses `()`. But it doesn't work correctly!
 
 As you can see, the call results in an error, because the value of `"this"` inside the call becomes `undefined`.
 
@@ -353,7 +353,7 @@ That's a special feature of arrow functions, it's useful when we actually do not
 
 The value of `this` is defined at run-time.
 - When a function is declared, it may use `this`, but that `this` has no value until the function is called.
-- That function can be copied between objects.
+- A function can be copied between objects.
 - When a function is called in the "method" syntax: `object.method()`, the value of `this` during the call is `object`.
 
 Please note that arrow functions are special: they have no `this`. When `this` is accessed inside an arrow function, it is taken from outside.

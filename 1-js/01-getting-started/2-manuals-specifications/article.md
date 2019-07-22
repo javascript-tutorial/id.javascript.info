@@ -3,16 +3,28 @@
 
 Buku ini adalah *tutorial*. Tujuannya membantu kamu memahami bahasa ini pelan-pelan. Tapi sekali kamu akrab dengan dasarnya, kamu butuh sumber lain.
 
+<<<<<<< HEAD
 
 ## Spesifikasi
+=======
+## Specification
+>>>>>>> 4a8d8987dfc3256045e6b4a3bd8810ad3b25d1b3
 
 **Spesifikasi ECMA-262** berisi informasi format, detil, and mendalam tentang JavaScript. Ia mendefisikan bahasa ini.
 
+<<<<<<< HEAD
 Tapi selain format, ia sulit dipahami di awal. Jadi jika kamu butuh sumber informasi terpercaya tentang detil bahasa, ini tempat yang tepat. Tapi ini bukan untuk penggunaan harian.
+=======
+But being that formalized, it's difficult to understand at first. So if you need the most trustworthy source of information about the language details, the specification is the right place. But it's not for everyday use.
+>>>>>>> 4a8d8987dfc3256045e6b4a3bd8810ad3b25d1b3
 
 Draft terakhir ada di <https://tc39.es/ecma262/>.
 
+<<<<<<< HEAD
 Untuk membaca tentang fitur termutakhir, yang belum didukung luas, lihat proposal di <https://github.com/tc39/proposals>.
+=======
+To read about new bleeding-edge features, including those that are "almost standard" (so-called "stage 3"), see proposals at <https://github.com/tc39/proposals>.
+>>>>>>> 4a8d8987dfc3256045e6b4a3bd8810ad3b25d1b3
 
 Juga, jika kamu dalam pengembangan untuk peramban, maka ada spek lain yang dibahas di [bagian kedua](info:browser-environment) di tutorial ini.
 
@@ -29,7 +41,11 @@ Juga, jika kamu dalam pengembangan untuk peramban, maka ada spek lain yang dibah
 
     Juga, kamu bisa menggunakan pencarian internet dengan frasa seperti "RegExp MSDN" atau "RegExp MSDN jscript".
 
+<<<<<<< HEAD
 ## Dukungan fitur
+=======
+## Compatibility tables
+>>>>>>> 4a8d8987dfc3256045e6b4a3bd8810ad3b25d1b3
 
 JavaScript merupakan bahasa berkembang, fitur baru ditambah secara reguler.
 
