@@ -99,7 +99,7 @@ Kita bisa dengan mudah memahami konsep "variabel" jika kita membayangkannya seba
 
 Misalnya, variabel `message` bisa dibayangkan sebagai box berlabel `"message"` dengan nilai `"Hello!"` di dalamnya:
 
-![](variable.png)
+![](variable.svg)
 
 Kita bisa menaruh nilai apapun di dalam box.
 
@@ -116,7 +116,7 @@ alert(message);
 
 Ketika nilainya berubah, data lama dihapus dari variabel:
 
-![](variable-change.png)
+![](variable-change.svg)
 
 Kita juga bisa mendeklarasi dua variabel dan mengkopi data dari satu ke yang lainnya.
 
