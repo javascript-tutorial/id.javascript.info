@@ -99,7 +99,7 @@ Kita bisa dengan mudah memahami konsep "variabel" jika kita membayangkannya seba
 
 Misalnya, variabel `message` bisa dibayangkan sebagai box berlabel `"message"` dengan nilai `"Hello!"` di dalamnya:
 
-![](variable.png)
+![](variable.svg)
 
 Kita bisa menaruh nilai apapun di dalam box.
 
@@ -116,7 +116,7 @@ alert(message);
 
 Ketika nilainya berubah, data lama dihapus dari variabel:
 
-![](variable-change.png)
+![](variable-change.svg)
 
 Kita juga bisa mendeklarasi dua variabel dan mengkopi data dari satu ke yang lainnya.
 
@@ -323,8 +323,14 @@ JavaScript minifier dan peramban modern mengoptimisasi kode dengan cukup baik, s
 
 Kita bisa mendeklarasi variabel untuk menyimpan data menggunakan katakunci `var`, `let`, atau `const`.
 
+<<<<<<< HEAD
 - `let` -- adalah deklarasi variabel modern. Kode harus dalam mode strict mode untuk menggunakan `let` di Chrome (V8).
 - `var` -- adalah deklarasi variabel jadul. Normalnya kita tak menggunakannya sama sekali, tapi kita akan mengcover perbedaan halus dari `let` di bab <info:var>, hanya jika kamu membutuhkannya.
 - `const` -- seperti `let`, tapi dengan nilai variabel yang tak bisa berubah.
+=======
+- `let` -- is a modern variable declaration.
+- `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
+- `const` -- is like `let`, but the value of the variable can't be changed.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Variabel sebaiknya diberi nama yang memudahkan kita untuk memahami apa isinya.

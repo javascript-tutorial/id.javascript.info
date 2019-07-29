@@ -50,11 +50,19 @@ Buka Preferences dan pergi ke "Advanced" pane. Di sana ada checkbox di sebelah b
 
 Sekarang `key:Cmd+Opt+C` bisa mentoggle konsol. Lalu, menu "Develop" muncul pada menu item di atas. Ia punya banyak perintah dan opsi.
 
+<<<<<<< HEAD
 ## Input multi-baris
 
 Biasanya, ketika kita menaruh sebaris kode ke konsol, dan menekan `key:Enter`, dia akan berjalan.
 
 Untuk menyisipkan lebih dari satu baris, tekan `key:Shift+Enter`.
+=======
+```smart header="Multi-line input"
+Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+
+To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+```
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 ## Kesimpulan
 

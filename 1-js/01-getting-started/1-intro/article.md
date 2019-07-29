@@ -75,7 +75,7 @@ Contoh keterbatasan tersebut meliputi:
     Batasan ini pun demi keselamatan pengguna. Satu laman dari `http://anysite.com` yang dibuka pengguna tak boleh mengakses tab peramban lainnya dengan URL `http://gmail.com` dan mencuri informasinya.
 - JavaScript bisa dengan mudah berkomunikasi di atas jaring ke server di mana laman berasal. Tapi kemampuannya menerima data dari situs/domain lain dilumpuhkan. Meskipun mampu, ia butuh persetujuan explisit (yang diexpresikan dalam HTTP header) dari sisi remote. Sekali lagi, itu merupakan batasan keamanan.
 
-![](limitations.png)
+![](limitations.svg)
 
 Batasan macam ini tak akan muncul jika JavaScript digunakan di luar peramban, misalnya di server. Peramban modern juga memperbolehkan plugin/extension dengan ijin tambahan.
 
@@ -92,8 +92,12 @@ JavaScript merupakan satu-satunya teknologi peramban yang mengkombinasikan ketig
 
 Itu yang membuat JavaScript unik. Itulah kenapa JavaScript menjadi alat yang paling banyak tersebar untuk membuat antarmuka peramban.
 
+<<<<<<< HEAD
 Sambil merencanakan belajar teknologi baru, akan menguntungkan juga untuk mengecek perspektifnya. Jadi mari kita lanjut ke tren modern yang mempengaruhinya, termasuk kemampuan peramban dan bahasa baru.
 
+=======
+That said, JavaScript also allows to create servers, mobile applications, etc.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 ## Bahasa "di atas" JavaScript
 
@@ -105,7 +109,11 @@ Akhir-akhir ini muncul banyak bahasa baru, yang *ditranspile* (dikonversi) ke Ja
 
 Tool modern membuat transpilasi sangat cepat dan transparan, yang sebenarnya membuat pengembang mengkode dalam bahasa lain dan mengautokonversi itu "di balik layar".
 
+<<<<<<< HEAD
 Contoh bahasa yang dimaksud:
+=======
+Examples of such languages:
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 - [CoffeeScript](http://coffeescript.org/) merupakan "syntactic sugar" dari JavaScript. Dia memperkenalkan syntax yang lebih pendek, memungkingkan kita menulis kode lebih bersih dan lebih presisi. Biasanya, Ruby devs menyukainya.
 - [TypeScript](http://www.typescriptlang.org/) berfokus pada penambahan "strict data typing" yang menyederhanakan pengembangan dan dukungan sistem yang komplex. Ia dikembangkan oleh Microsoft.
