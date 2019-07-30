@@ -1,10 +1,10 @@
 # Tutorial JavaScript Modern
 
-Repository ini menghost konten Inggris dari Tutorial JavaScript Modern, yang diterbitkan di [https://javascript.info](https://javascript.info).
+Repository ini menjadi tempat penyimpanan konten Inggris dari Tutorial JavaScript Modern yang diterbitkan di [https://javascript.info](https://javascript.info).
 
 ## Penerjemahan
 
-Kami ingin membuat tutorial tersedia dalam banyak bahasa. Silakan bantu kami menerjemahkan.
+Kami ingin membuat tutorial tersedia dalam banyak bahasa. Silakan bantu kami menerjemahkannya.
 
 Lihat <https://javascript.info/translate> untuk detilnya.
 
