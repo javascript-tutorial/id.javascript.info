@@ -1,12 +1,11 @@
-importance: 4
-
+Kepentingan: 4
 ---
 
-# Is "else" required?
+# Apakah "else" dibutuhkan ?
 
-The following function returns `true` if the parameter `age` is greater than `18`.
+Fungsi berikut mengembalikan nilai `true` jika parameter `age` lebih besar daripada `18`.
 
-Otherwise it asks for a confirmation and returns its result:
+Jika tidak, fungsi tersebut akan meminta konfirmasi dan mengembalikan nilainya:
 
 ```js
 function checkAge(age) {
@@ -21,7 +20,7 @@ function checkAge(age) {
 }
 ```
 
-Will the function work differently if `else` is removed?
+akankah fungsi bekerja berbeda jika `else` dibuang ?
 
 ```js
 function checkAge(age) {
@@ -34,5 +33,4 @@ function checkAge(age) {
 */!*
 }
 ```
-
-Is there any difference in the behavior of these two variants?
+apakah ada perbedaan pada tingkah laku dari kedua variasi ?

@@ -1,4 +1,4 @@
-Using a question mark operator `'?'`:
+Menggunakan tanda tanya operator `'?'`:
 
 ```js
 function checkAge(age) {
@@ -7,6 +7,7 @@ function checkAge(age) {
 ```
 
 Using OR `||` (the shortest variant):
+Menggunakan OR `||` (variasi yang terpendek):
 
 ```js
 function checkAge(age) {
@@ -14,4 +15,4 @@ function checkAge(age) {
 }
 ```
 
-Note that the parentheses around `age > 18` are not required here. They exist for better readabilty.
+Catatan bahwa tanda kurung sekitar `age > 18` tidak dibutuhkan disini. Mereka ada hanya untuk lebih enak dibaca.
