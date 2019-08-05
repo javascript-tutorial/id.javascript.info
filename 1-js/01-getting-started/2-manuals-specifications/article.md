@@ -3,16 +3,28 @@
 
 Buku ini adalah *tutorial*. Tujuannya membantu kamu memahami bahasa ini pelan-pelan. Tapi sekali kamu akrab dengan dasarnya, kamu butuh sumber lain.
 
+<<<<<<< HEAD
 
 ## Spesifikasi
+=======
+## Specification
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 **Spesifikasi ECMA-262** berisi informasi format, detil, and mendalam tentang JavaScript. Ia mendefisikan bahasa ini.
 
+<<<<<<< HEAD
 Tapi selain format, ia sulit dipahami di awal. Jadi jika kamu butuh sumber informasi terpercaya tentang detil bahasa, ini tempat yang tepat. Tapi ini bukan untuk penggunaan harian.
+=======
+But being that formalized, it's difficult to understand at first. So if you need the most trustworthy source of information about the language details, the specification is the right place. But it's not for everyday use.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 Draft terakhir ada di <https://tc39.es/ecma262/>.
 
+<<<<<<< HEAD
 Untuk membaca tentang fitur termutakhir, yang belum didukung luas, lihat proposal di <https://github.com/tc39/proposals>.
+=======
+To read about new bleeding-edge features, including those that are "almost standard" (so-called "stage 3"), see proposals at <https://github.com/tc39/proposals>.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 Juga, jika kamu dalam pengembangan untuk peramban, maka ada spek lain yang dibahas di [bagian kedua](info:browser-environment) di tutorial ini.
 
@@ -25,11 +37,19 @@ Juga, jika kamu dalam pengembangan untuk peramban, maka ada spek lain yang dibah
     Meski, sering lebih bagus menggunakan pencarian internet. Pakai "MDN [term]" di query, misal <https://google.com/search?q=MDN+parseInt> untuk mencari fungsi `parseInt`.
 
 
+<<<<<<< HEAD
 - **MSDN** – Manual Microsoft dengan banyak informasi, termasuk JavaScript (sering dirujuk sebagai JScript). Jika kamu butuh sesuatu specifik ke Internet Explorer, lebih baik menuju: <http://msdn.microsoft.com/>.
+=======
+- **MSDN** – Microsoft manual with a lot of information, including JavaScript (often referred to as JScript). If one needs something specific to Internet Explorer, better go there: <http://msdn.microsoft.com/>.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
     Juga, kamu bisa menggunakan pencarian internet dengan frasa seperti "RegExp MSDN" atau "RegExp MSDN jscript".
 
+<<<<<<< HEAD
 ## Dukungan fitur
+=======
+## Compatibility tables
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 JavaScript merupakan bahasa berkembang, fitur baru ditambah secara reguler.
 

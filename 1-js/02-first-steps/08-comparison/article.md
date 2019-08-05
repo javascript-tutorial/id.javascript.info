@@ -74,7 +74,11 @@ alert( '2' > 1 ); // true, string '2' menjadi angka 2
 alert( '01' == 1 ); // true, string '01' menjadi angka 1
 ```
 
+<<<<<<< HEAD
 Untuk nilai boolean, `true` menjadi `1` dan `false` menjadi `0`. 
+=======
+For boolean values, `true` becomes `1` and `false` becomes `0`.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 Misalnya:
 
@@ -138,6 +142,7 @@ Operator equalitas ketat sedikit lebih panjang untuk ditulis, tapi lebih memperl
 
 ## Pembandingan dengan null dan undefined
 
+<<<<<<< HEAD
 Mari kita lihat kasus lebih tajam.
 
 Ada sikap non-intuitif ketika `null` atau `undefined` diperbandingkan dengan nilai lain.
@@ -145,6 +150,12 @@ Ada sikap non-intuitif ketika `null` atau `undefined` diperbandingkan dengan nil
 
 Untuk pengecekan equalitas ketat `===`
 : Nilai ini berbeda, karena setiap dari mereka tipenya berbeda.
+=======
+There's a non-intuitive behavior when `null` or `undefined` are compared to other values.
+
+For a strict equality check `===`
+: These values are different, because each of them is a different type.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
     ```js run
     alert( null === undefined ); // false
