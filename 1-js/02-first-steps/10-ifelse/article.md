@@ -6,7 +6,11 @@ Untuk melakukan itu, kita dapat menggunakan pernyataan  `if`  dan operator kondi
 
 ## Pernyataan "if"
 
+<<<<<<< HEAD
 Pernyataan `if` mengevaluasi suatu kondisi, dan jika hasil kondisi itu benar (`true`),maka pernyataan tersebut akan mengeksekusi kode di dalam blok `if` tersebut.
+=======
+The `if(...)` statement evaluates a condition in parentheses and, if the result is `true`, executes a block of code.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Sebagai contoh:
 
@@ -216,7 +220,11 @@ Bergantung pada kondisional `company == 'Netscape' , ekspresi pertama atau kedua
 
 Kita tidak memberikan nilai hasil ke suatu variable di sini. Sebagai gantinya, kita mengeksekusi kode yang berbeda tergantung pada kondisinya.
 
+<<<<<<< HEAD
 **Kami tidak menyarankan menggunakan operator tanda tanya dengan cara seperti di atas.**
+=======
+**It's not recommended to use the question mark operator in this way.**
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Notasinya memang lebih pendek daripada apabila menggunakan pernyataan `if` , yang mungkin menarik bagi beberapa programmer, tetapi hal ini membuat kode anda lebih susah dibaca.
 

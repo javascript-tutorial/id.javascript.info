@@ -323,8 +323,14 @@ JavaScript minifier dan peramban modern mengoptimisasi kode dengan cukup baik, s
 
 Kita bisa mendeklarasi variabel untuk menyimpan data menggunakan katakunci `var`, `let`, atau `const`.
 
+<<<<<<< HEAD
 - `let` -- adalah deklarasi variabel modern. Kode harus dalam mode strict mode untuk menggunakan `let` di Chrome (V8).
 - `var` -- adalah deklarasi variabel jadul. Normalnya kita tak menggunakannya sama sekali, tapi kita akan mengcover perbedaan halus dari `let` di bab <info:var>, hanya jika kamu membutuhkannya.
 - `const` -- seperti `let`, tapi dengan nilai variabel yang tak bisa berubah.
+=======
+- `let` -- is a modern variable declaration.
+- `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
+- `const` -- is like `let`, but the value of the variable can't be changed.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Variabel sebaiknya diberi nama yang memudahkan kita untuk memahami apa isinya.

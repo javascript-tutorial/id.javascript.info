@@ -1,6 +1,10 @@
 # Hello, world!
 
+<<<<<<< HEAD
 Bagian dari tutorial ini ialah tentang inti JavaScript itu sendiri. Nanti, kamu akan belajar tentang Node.js dan platform lain yang menggunakannya.
+=======
+This part of the tutorial is about core JavaScript, the language itself.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Tapi kita butuh lingkungan kerja untuk menjalankan scripts kita dan, karena buku ini online, peramban adalah pilihan yang baik. Kita akan menjaga supaya jumlah perintah yang spesifik peramban (seperti `alert`) seminimum mungkin sehingga kamu tak boros waktu di situ jika kamu berencana untuk fokus ke lingkungan lain (seperti Node.js). Kita akan fokus ke JavaScript di peramban dalam [bagian selanjutnya](/ui) dari tutorial ini.
 
@@ -45,8 +49,13 @@ Tag `<script>` mengandung kode JavaScript yang otomatis dieksekusi ketika peramb
 
 Tag `<script>` punya beberapa attribut yang jarang dipakai akhir-akhir ini tapi masih bisa ditemukan dalam kode lama:
 
+<<<<<<< HEAD
 Atribut `type`: <code>&lt;script <u>type</u>=...&gt;</code>
 : Standar HTML lawas, HTML4, mengharuskan script memiliki `type`. Biasanya `type="text/javascript"`. Sekarang sudah tak diperlukan. Selain itu, standar HTML modern, HTML5, menguubah total makna atribut ini. Sekarang, ia bisa digunakan untuk modul JavaScript. Tapi itu topik berat; kita akan membahas modul di bagian lain dari tutorial ini.
+=======
+The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
+: The old HTML standard, HTML4, required a script to have a `type`. Usually it was `type="text/javascript"`. It's not required anymore. Also, the modern HTML standard totally changed the meaning of this attribute. Now, it can be used for JavaScript modules. But that's an advanced topic; we'll talk about modules in another part of the tutorial.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Atribut `language`: <code>&lt;script <u>language</u>=...&gt;</code>
 : Atribut ini untuk menampilkan bahasa script. Atribut ini tak lagi dibutuhkan karena JavaScript adalah bahasa default. Tak usah menggunakan itu lagi.
@@ -73,9 +82,13 @@ File script ditempel ke HTML dengan atribut `src`:
 <script src="/path/to/script.js"></script>
 ```
 
+<<<<<<< HEAD
 Di sini, `/path/to/script.js` adalah jalur ke file script (dari root sitius).
 
 Kamu juga bisa menyediakan jalur relatif dari laman ini. Misalnya, `src="script.js"` berarti file `"script.js"` dalam folder saat ini.
+=======
+Here, `/path/to/script.js` is an absolute path to the script from the site root. One can also provide a relative path from the current page. For instance, `src="script.js"` would mean a file `"script.js"` in the current folder.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Kamu bisa memasang URL penuh juga. Misalnya:
 

@@ -178,7 +178,11 @@ Tipe `object` itu special.
 
 Semua tipe lain disebut "primitive" karena nilainya bisa mengandung sesuatu yang tunggal (bisa jadi string atau angka atau apapun). Sebaliknya, objek digunakan untuk menyimpan koleksi data dan entitas lebih rumit. Kita akan berhadapan dengannya nanti di bab <info:object> setelah kita belajar tentang primitive.
 
+<<<<<<< HEAD
 Tipe `symbol` digunakan untuk membuat identifier unik untuk objek. Kita harus menyebutkannya demi kelengkapan, tapi lebih baik untuk belajar tipe ini setelah objek.
+=======
+The `symbol` type is used to create unique identifiers for objects. We mention it here for completeness, but we'll study it after objects.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 ## Operator typeof [#type-typeof]
 
@@ -219,9 +223,15 @@ typeof alert // "function"  (3)
 
 Tiga baris terakhir mungkin butuh penjelasan tambahan:
 
+<<<<<<< HEAD
 1. `Math` ialah objek built-in yang menyediakan operasi matematik. Kita akan belajar itu di bab <info:number>. Di sini, itu cuma sekedar contoh dari objek.
 2. Hasil `typeof null` yaitu `"object"`. Itu salah. Ini merupakan error yang terkenal resmi dalam `typeof`, yang dijaga untuk kompatibilitas. Tentu saja, `null` bukanlah objek. Ia merupakan nilai spesial dengan tipe terpisah miliknya sendiri. Jadi, lagi, ini merupakan error dalam bahasa.
 3. Hasil dari `typeof alert` yaitu `"function"`, karena `alert` merupakan fungsi. Kita akan belajar fungsi di bab berikutnya di mana kita juga akan melihat bahwa tak ada tipe "fungsi" spesial di JavaScript. Fungsi merupakan bagian dari tipe objek. Tapi `typeof` memperlakukan mereka secara berbeda, ia mengembalikan `"fungsi"`. Tidak sepenuhnya benar, tapi sangat nyaman pada praktiknya.
+=======
+1. `Math` is a built-in object that provides mathematical operations. We will learn it in the chapter <info:number>. Here, it serves just as an example of an object.
+2. The result of `typeof null` is `"object"`. That's wrong. It is an officially recognized error in `typeof`, kept for compatibility. Of course, `null` is not an object. It is a special value with a separate type of its own. So, again, this is an error in the language.
+3. The result of `typeof alert` is `"function"`, because `alert` is a function. We'll study functions in the next chapters where we'll also see that there's no special "function" type in JavaScript. Functions belong to the object type. But `typeof` treats them differently, returning `"function"`. That's not quite correct, but very convenient in practice.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 
 ## Kesimpulan
