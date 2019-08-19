@@ -92,8 +92,12 @@ JavaScript merupakan satu-satunya teknologi peramban yang mengkombinasikan ketig
 
 Itu yang membuat JavaScript unik. Itulah kenapa JavaScript menjadi alat yang paling banyak tersebar untuk membuat antarmuka peramban.
 
+<<<<<<< HEAD
 Sambil merencanakan belajar teknologi baru, akan menguntungkan juga untuk mengecek perspektifnya. Jadi mari kita lanjut ke tren modern yang mempengaruhinya, termasuk kemampuan peramban dan bahasa baru.
 
+=======
+That said, JavaScript also allows to create servers, mobile applications, etc.
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 ## Bahasa "di atas" JavaScript
 
@@ -105,7 +109,11 @@ Akhir-akhir ini muncul banyak bahasa baru, yang *ditranspile* (dikonversi) ke Ja
 
 Tool modern membuat transpilasi sangat cepat dan transparan, yang sebenarnya membuat pengembang mengkode dalam bahasa lain dan mengautokonversi itu "di balik layar".
 
+<<<<<<< HEAD
 Contoh bahasa yang dimaksud:
+=======
+Examples of such languages:
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 - [CoffeeScript](http://coffeescript.org/) merupakan "syntactic sugar" dari JavaScript. Dia memperkenalkan syntax yang lebih pendek, memungkingkan kita menulis kode lebih bersih dan lebih presisi. Biasanya, Ruby devs menyukainya.
 - [TypeScript](http://www.typescriptlang.org/) berfokus pada penambahan "strict data typing" yang menyederhanakan pengembangan dan dukungan sistem yang komplex. Ia dikembangkan oleh Microsoft.
