@@ -1,4 +1,4 @@
-# Patterns and flags
+# Pattern dan flag
 
 Ekspresi reguler ("*regexp*", atau hanya "*reg*") terdiri dari *pattern* dan opsional *flag*.
 
