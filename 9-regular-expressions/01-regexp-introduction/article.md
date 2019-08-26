@@ -13,11 +13,11 @@ regexp = new RegExp("pattern", "flag");
 ...Dan yang pendek, menggunakan garis miring `"/"`:
 
 ```js
-regexp = /pattern/; // tidak dengan flag
+regexp = /pattern/; // tanpa flag
 regexp = /pattern/gmi; // dengan flag g,m dan i (untuk segera ditutup)
 ```
 
-Garing miring `"/"` akan memberi tahu JavaScript bahwa kita sedang membuat ekspresi reguler. Mereka memiliki peran yang sama seperti *quotes* untuk *strings*.
+Garing miring `"/"` akan memberitahu JavaScript bahwa kita sedang membuat ekspresi reguler. Mereka memiliki peran yang sama seperti *quotes* untuk *strings*.
 
 ## Penggunaan
 
@@ -32,7 +32,7 @@ let regexp = /love/;
 alert( str.search(regexp) ); // 2
 ```
 
-Methode `str.search` akan mencari pola `pattern:/love/` dan mengembalikan posisi `pattern:/love/` di dalam string tersebut. Seperti yang kita duga, `pattern:/love/` adalah pola yang paling sederhana. Yang dilakukannya hanyalah mencari *substring* biasa.
+Methode `str.search` akan mencari pola `pattern:/love/` dan mengembalikan posisi `pattern:/love/` di string tersebut. Seperti yang kita duga, `pattern:/love/` adalah pola yang paling sederhana. Yang dilakukannya hanyalah mencari *substring* biasa.
 
 Code di atas sama seperti berikut:
 
@@ -92,28 +92,27 @@ Mereka hanya ada 6 di Javascript:
 : Mode *Dotall*, memungkinkan `.` untuk cocok dengan baris baru (tecantum di dalam bab <info:regexp-character-classes>).
 
 `u`
-: Mengaktifkan dukungan unicode secara penuh. *Flag* ini memungkinkan untuk memproses pasangan pengganti yang benar. Lebih lanjut tentangnya ada di dalam bab <info:regexp-unicode>.
+: Mengaktifkan dukungan unicode secara penuh. *Flag* ini memungkinkan untuk memproses pasangan pengganti (unicode) yang benar. Lebih lanjut tentangnya ada di dalam bab <info:regexp-unicode>.
 
 `y`
 : Mode *Sticky* (tercantum di dalam bab <info:regexp-sticky>)
 
 Kita akan membahas semua *flag* tersebut lebih lanjut di dalam tutorial.
 
-Untuk sekarang, *flag* paling sederhana adalan `i`, berikut contohnya:
+Untuk sekarang, *flag* paling sederhana adalah `i`, berikut contohnya:
 
 ```js run
 let str = "I love JavaScript!";
 
 alert( str.search(/LOVE/i) ); // 2 (lowercased ditemukan)
-
 alert( str.search(/LOVE/) ); // -1 (tidak ada yang ditemukan tanpa flag 'i')
 ```
 
-*Flag* `i` sudah membuat ekpresi reguler menjadi lebih kuat daripada *search substring* biasanya. Tapi masih ada banyak lagi. Kita akan membahas *flag* lain dan fitur *regxp* di dalam bab berikutnya.
+*Flag* `i` telah membuat ekpresi reguler menjadi lebih kuat daripada *search substring* biasanya. Tapi masih ada banyak lagi. Kita akan membahas *flag* lain dan fitur *regxp* di dalam bab berikutnya.
 
 
 ## Ringkasan
 
 - Ekspresi reguler terdiri dari *pattern* dan opsional *flag*: `g`, `i`, `m`, `u`, `s`, `y`.
 - Tanpa *flag* dan simbol khusus yang akan kita pelajari nanti, *search* dengan *regexp* sama seperti *search* dengan substring.
-- Metode `str.search(regexp)` mengembalikan *index* yang cocok atau `-1` jika tidak ada yang cocok. Dalam bab selanjutkan kita akan melihat metode lain.
+- Metode `str.search(regexp)` mengembalikan *index* yang cocok atau `-1` jika tidak ada yang cocok. Dalam bab selanjutnya kita akan melihat metode lain.
