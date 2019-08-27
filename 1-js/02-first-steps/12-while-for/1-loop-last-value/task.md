@@ -1,10 +1,10 @@
-importance: 3
+nilai penting: 3
 
 ---
 
-# Last loop value
+# Nilai terakhir perulangan
 
-What is the last value alerted by this code? Why?
+Apa nilai terakhir yang diperingatkan oleh kode ini? Mengapa?
 
 ```js
 let i = 3;

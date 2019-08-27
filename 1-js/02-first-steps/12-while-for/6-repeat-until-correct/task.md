@@ -1,13 +1,13 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Repeat until the input is correct
+# Ulangi sampai inputnya benar
 
-Write a loop which prompts for a number greater than `100`. If the visitor enters another number -- ask them to input again.
+Tulis sebuah perulangan yang meminta angka lebih dari `100`. Jika pendatang memasukan angka lainnya -- tanya mereka untuk menginput lagi.
 
-The loop must ask for a number until either the visitor enters a number greater than `100` or cancels the input/enters an empty line.
+Perulangan harus bertanya untuk sebuah angka sampai pengunjung memasukan angka lebih dari `100` atau membatalkan input/memasukan sebuah baris kosong.
 
-Here we can assume that the visitor only inputs numbers. There's no need to implement a special handling for a non-numeric input in this task.
+Disini kita dapat menganggap bahwa pengunjung hanya menginput angka. Tidak perlu menerapkan penanganan spesial untuk input non-numerik di tugas ini.
 
 [demo]

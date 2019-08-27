@@ -1,17 +1,17 @@
-importance: 3
+nilai penting: 3
 
 ---
 
-# Output prime numbers
+# Menghasilkan bilangan prima
 
-An integer number greater than `1` is called a [prime](https://en.wikipedia.org/wiki/Prime_number) if it cannot be divided without a remainder by anything except `1` and itself.
+Angka integer lebih dari `1` disebut [bilangan prima](https://en.wikipedia.org/wiki/Prime_number) jika itu tidak bisa dibagi tanpa sisa oleh siapapun kecuali `1` dan bilangan itu sendiri.
 
-In other words, `n > 1` is a prime if it can't be evenly divided by anything except `1` and `n`.
+Dengan kata lain, `n > 1` adalah prima jika tidak dapat dibagi secara merata oleh apapun kecuali `1` dan `n`.
 
-For example, `5` is a prime, because it cannot be divided without a remainder by `2`, `3` and `4`.
+Contohnya, `5` adalah prima, karna tidak bisa dibagi tanpa sisa oleh `2`, `3` and `4`.
 
-**Write the code which outputs prime numbers in the interval from `2` to `n`.**
+**Tulis kode yang menghasilkan bilangan prima dalam interval dari `2` sampai `n`.**
 
-For `n = 10` the result will be `2,3,5,7`.
+Untuk `n = 10` hasilnya akan `2,3,5,7`.
 
-P.S. The code should work for any `n`, not be hard-tuned for any fixed value.
+P.S. Kode harus bekerja untuk segala `n`, tidak disetel untuk nilai tetap apapun.
