@@ -1,10 +1,10 @@
-importance: 4
+Kepentingan: 4
 
 ---
 
-# Function pow(x,n)
+# Fungsi pow(X,n)
 
-Write a function `pow(x,n)` that returns `x` in power `n`. Or, in other words, multiplies `x` by itself `n` times and returns the result.
+Tulis sebuah fungsi `pow(x,n)` yang mengembalikkan nilai `x` pada pangkat `n`. Atau, dengan kata lain, kalikan `x` dengan dirinya sendiri sebanyak `n` kali dan mengembalikan hasilnya.
 
 ```js
 pow(3, 2) = 3 * 3 = 9
@@ -12,8 +12,8 @@ pow(3, 3) = 3 * 3 * 3 = 27
 pow(1, 100) = 1 * 1 * ...* 1 = 1
 ```
 
-Create a web-page that prompts for `x` and `n`, and then shows the result of `pow(x,n)`.
+Buatlah sebuah halaman website yang meminta untuk nilai `x` dan `n`, dan tampilkan hasilnya pada `pow(x,n)`.
 
 [demo]
 
-P.S. In this task the function should support only natural values of `n`: integers up from `1`.
+P.S. pada tugas ini, fungsi seharusnya mendukung hanya nilai bilangan natural dari `n`: bilangan integer mulai dari `1`.

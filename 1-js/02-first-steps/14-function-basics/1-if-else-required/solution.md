@@ -1,1 +1,1 @@
-No difference.
+Tidak ada perbedaan.

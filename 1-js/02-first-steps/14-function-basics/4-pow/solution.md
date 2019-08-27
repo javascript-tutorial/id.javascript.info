@@ -1,5 +1,5 @@
 
-```js run demo
+```js menjalankan demo
 function pow(x, n) {
   let result = x;
 
