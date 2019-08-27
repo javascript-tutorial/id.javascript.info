@@ -1,109 +1,110 @@
 # Pengenalan JavaScript
 
-Mari kita tengok apa yang spesial dari JavaScript, apa saja yang bisa kita perbuat menggunakan JavaScript, dan teknologi apa yang klop dengan JavaScript.
+Mari kita lihat apa yang spesial dari JavaScript, apa saja yang bisa kita buat menggunakan JavaScript, dan teknologi apa yang cocok dengan JavaScript.
 
 ## Apa itu JavaScript?
 
-*JavaScript* awalnya dibuat untuk *"membuat laman web menjadi hidup"*.
+*JavaScript* awalnya dibuat untuk *"membuat halaman web menjadi hidup"*.
 
-Program yang ada dalam bahasa ini disebut *script*. Mereka bisa ditulis langsung dalam laman web HTML dan berjalan otomatis saat laman diload.
+Program yang ada dalam bahasa ini disebut *script*. Script ini bisa ditulis langsung ke dalam kode HTML dari sebuah web dan berjalan otomatis saat halaman dimuat.
 
-Script tersedia dan dieksekusi sebagai plain text. Mereka tak butuh persiapan spesial atau kompilasi untuk berjalan.
+Script tersedia dan dieksekusi sebagai sebuah teks biasa. Script tidak membutuhkan persiapan khusus atau kompilasi untuk dijalankan.
 
-Dalam apsek ini, JavaScript sangat berbeda dari bahasa lain yang disebut [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
+Dalam hal ini, JavaScript sangat berbeda dari bahasa lain yang disebut [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
 
 ```smart header="Kenapa <u>Java</u>Script?"
-Saat JavaScript diciptakan, nama awalnya adalah "LiveScript". Namun saat itu Java sudah sangat popular duluan sehingga akhirnya muncul keputusan untuk mengganti nama LiveScript menjadi Javascript supaya Javascript ketularan populer seperti Java dan seolah-olah menjadi adik dari Java.
+Saat JavaScript diciptakan, nama awalnya adalah "LiveScript". Namun saat itu Java sudah sangat terkenal sehingga akhirnya muncul keputusan untuk mengganti nama LiveScript menjadi Javascript supaya Javascript ikut terkenal seperti Java dan seolah-olah menjadi "adik kandung" dari Java.
 
 Seiring waktu, JavaScript tumbuh menjadi bahasa yang sepenuhnya bebas dengan memiliki spesifikasi [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), dan sekarang JavaScript tak punya hubungan apa-apa dengan Java.
 ```
 
-Hari ini, JavaScript bisa berjalan tak hanya pada peramban, tapi juga di server, atau di device manapun yang memiliki program spesial [JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
+Sekarang, JavaScript bisa berjalan tak hanya pada browser, tapi juga di server, atau di perangkat manapun yang memiliki program khusus [JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
 
-Peramban punya engine tertancap yang disebut "JavaScript virtual machine".
+Browser punya engine yang tertanam didalamnya yang disebut "JavaScript virtual machine".
 
-Tiap engine punya "codename" sendiri-sendiri. Misalnya:
+Tiap engine punya *codename*-nya sendiri. Misalnya:
 
 - [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- di Chrome dan Opera.
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- di Firefox.
-- ...Ada codename lain seperti "Trident" dan "Chakra" untuk versi berbeda dari IE, "ChakraCore" untuk Microsoft Edge, "Nitro" dan "SquirrelFish" untuk Safari, dll.
+- ...Ada juga codename lain seperti "Trident" dan "Chakra" untuk versi berbeda dari IE, "ChakraCore" untuk Microsoft Edge, "Nitro" dan "SquirrelFish" untuk Safari, dll.
 
-Istilah di atas sebaiknya diingat karena mereka digunakan dalam artikel pengembang di internet. Kita akan menggunakan mereka juga. Misalnya, kalau "fitur X didukung V8", kemungkinan ia bisa jalan di Chrome dan Opera.
+Istilah di atas sebaiknya diingat karena akan sering digunakan dalam artikel para developer di internet. Kita akan menggunakannya juga. Misalnya, jika "fitur X didukung V8", kemungkinan ia bisa jalan di Chrome dan Opera.
 
 ```smart header="Bagaimana engine bekerja?"
 
 Engine sangat rumit. Tapi basicnya mudah.
 
-1. Engine (tertanam jika ia sebuah browser) membaca ("memparsing") script.
-2. Lalu ia mengkonversi ("mengkompilasi") script menjadi bahasa mesin.
+1. Engine (tertanam jika ia sebuah browser)bisa membaca ("memparsing") script.
+2. Lalu ia mengkonversi ("mengkompilasi") script tersebut menjadi bahasa mesin.
 3. Dan kemudian kode mesin berjalan, lumayan cepat.
 
-Engine mengaplikasikan optimisasi di setiap langkah proses. Dia bahkan memperhatikan kompilasi script yang berjalan, menganalisa data yang mengalir di dalam, dan mengaplikasikan optimisasi ke kode mesin berdasarkan pengetahuan itu. Ketika selesai, script berjalan lumayan cepat.
+Engine melakukan optimisasi di setiap langkah proses. Dia bahkan memperhatikan script yang telah dikompilasi saat sedang berjalan, menganalisa data yang mengalir di dalam, dan melakukan optimisasi ke kode mesin berdasarkan pengetahuan itu. Ketika selesai, script berjalan lumayan cepat.
 ```
 
-## Apa yang bisa dilakukan in-browser JavaScript?
+## Apa yang bisa dilakukan *in-browser JavaScript*?
 
-JavaScript modern merupakan bahasa pemrograman yang "aman". Ia tak menyediakan akses tingkat-rendah ke memory atau CPU, karena a awalnya dibuat untuk peramban yang tak butuh itu.
+JavaScript modern merupakan bahasa pemrograman yang "aman". Ia tidak menyebabkan akses tingkat-rendah ke memory atau CPU, karena memang awalnya dibuat untuk browser, yang tentunya tidak membutuhkan hal tersebut.
 
 Kemampuan JavaScript sangat tergantung pada lingkungan tempat ia berjalan. Misalnya, [Node.js](https://wikipedia.org/wiki/Node.js) mendukung function yang memungkingkan JavaScript melakukan baca/tulis file apapun, melakukan permintaan jaringan, dsb.
 
-In-browser JavaScript bisa melakukan apapun terkait manipulasi laman web, interaksi dengan pengguna, dan webserver.
+*In-browser JavaScript* bisa melakukan apapun terkait manipulasi halaman web, interaksi dengan pengguna, dan webserver.
 
-Misalnya, in-browser JavaScript mampu:
+Misalnya, *in-browser JavaScript* mampu:
 
-- Menambah HTML baru ke laman, mengganti isinya, memodifikasi gayanya.
+- Menambah HTML baru ke sebuah halaman, mengganti isinya, memodifikasi gayanya.
 - Bereaksi terhadap aktifitas pengguna, berjalan saat mouse diklik, pointer digerakkan, tombol ditekan.
 - Mengirim permintaan jaringan ke remote server, mengunduh dan mengunggah file (disebut teknologi [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming)) dan [COMET](https://en.wikipedia.org/wiki/Comet_(programming))).
-- Memperoleh and mengeset cookie, bertanya ke pengunjung, menampilkan pesan.
+- Memperoleh and menset cookie, bertanya ke pengunjung, menampilkan pesan.
 - Menyimpan data pada client-side ("local storage").
 
-## Apa yang TIDAK BISA dilakukan in-browser JavaScript?
+## Apa yang TIDAK BISA dilakukan *in-browser JavaScript*?
 
-Kemampuan JavaScript pada peramban terbatas demi keamanan pengguna. Tujuannya supaya mencegah laman web jahat mengakses informasi pribadi atau merusak data pengguna.
+Kemampuan JavaScript yang ada di dalam browser terbatas demi keamanan pengguna. Tujuannya supaya mencegah halaman web berbahya mengakses informasi pribadi atau merusak data pengguna.
 
 Contoh keterbatasan tersebut meliputi:
 
-- JavaScript pada laman web tak boleh melakukan baca/tulis file semaunya pada hard disk, mengkopi atau mengeksekusi program. Ia tak punya akses langsung ke OS system functions.
+- JavaScript pada halaman web tak boleh membaca/mengubah file semaunya pada hard disk, mengcopy script tersebut, atau mengeksekusi program. Ia tak punya akses langsung ke OS system functions.
 
-    Peramban modern memperbolehkan ia bekerja dengan file, tapi aksesnya dibatasi dan tersedia hanya jika pengguna melakukan hal tertentu, seperti "menjatuhkan" file ke dalam jendela peramban atau memilih file via tag `<input>`.
+    Browser-browser modern memperbolehkan JavaScript mengakses file, tapi aksesnya dibatasi dan tersedia hanya jika pengguna melakukan hal tertentu, misalnya seperti "menjatuhkan" file ke dalam jendela browser atau memilih file via tag `<input>`.
 
-    Ada cara berinteraksi dengan kamera/microfon dan device lainnya, namun mereka butuh ijin explisit pengguna. Jadi laman dengan kemampuan JavaScript tak boleh mengaktifkan web-camera, memantau sekeliling dan mengirim informasinya ke [NSA](https://en.wikipedia.org/wiki/National_Security_Agency).
-- Tab/window yang berbeda umumnya tak kenal satu sama lain. Terkadang mereka bisa kenal, misalnya ketika satu window menggunakan JavaScript untuk membuka window lainnya. Tapi meski demikian, JavaScript dari suatu laman tak boleh mengakses laman lainnya jika mereka datang dari situs berbeda (dari domain, protokol, atau port berbeda).
+    Ada beberapa cara untuk berinteraksi dengan kamera/mikrofon dan perangkat-perangkat lainnya, namun mereka butuh ijin khusus pengguna. Jadi sebuah halaman yang memiliki JavaScript tidak bisa mengaktifkan web-camera, memantau sekeliling dan mengirim informasinya ke [NSA] secara diam-diam(https://en.wikipedia.org/wiki/National_Security_Agency).
+- Tab/jendela yang berbeda umumnya tidak ada hubungan sama sekali. Terkadang jendela yang berbeda bisa saling berhubungan juga, misalnya ketika satu jendela menggunakan JavaScript untuk membuka jendela lainnya. Tapi meski demikian, JavaScript dari suatu halaman tak boleh mengakses halaman lainnya jika mereka berasal dari situs yang berbeda (dari domain, protokol, atau port berbeda).
 
-    Ini disebut "Same Origin Policy". Untuk mengatasinya, *kedua laman* harus menyepakai pertukaran data dan mengandung kode JavaScript spesial yang menangani hal itu. Kita akan membahasnya dalam tutorial ini.
+    Ini disebut "Same Origin Policy". Untuk melakukan hal tersebut, *kedua halaman* harus sepakat terhadap adanya pertukaran data dan memiliki kode JavaScript khusus yang melakukan hal tersebut. Kita akan membahasnya nanti dalam tutorial ini.
 
-    Batasan ini pun demi keselamatan pengguna. Satu laman dari `http://anysite.com` yang dibuka pengguna tak boleh mengakses tab peramban lainnya dengan URL `http://gmail.com` dan mencuri informasinya.
-- JavaScript bisa dengan mudah berkomunikasi di atas jaring ke server di mana laman berasal. Tapi kemampuannya menerima data dari situs/domain lain dilumpuhkan. Meskipun mampu, ia butuh persetujuan explisit (yang diexpresikan dalam HTTP header) dari sisi remote. Sekali lagi, itu merupakan batasan keamanan.
+    Pembatasan ini pun demi keselamatan pengguna. Sebuah halaman dari `http://anysite.com` yang dibuka pengguna tidak akan bisa mengakses tab browser lainnya dengan URL `http://gmail.com` dan mencuri informasinya.
+    
+- JavaScript bisa dengan mudah berinteraksi secara online ke server di mana halaman berasal. Tapi kemampuannya menerima data dari situs/domain lain dilumpuhkan. Meskipun mampu, ia butuh persetujuan explisit (yang diexpresikan dalam HTTP header) dari sisi remote. Sekali lagi, itu merupakan pembatasan keamanan.
 
 ![](limitations.svg)
 
-Batasan macam ini tak akan muncul jika JavaScript digunakan di luar peramban, misalnya di server. Peramban modern juga memperbolehkan plugin/extension dengan ijin tambahan.
+Pembatasan macam ini tidak ada jika JavaScript digunakan di luar browser, misalnya di server. Browser-browser modern juga memperbolehkan plugin/ekstensi yang membutuhkan ijin tambahan.
 
 ## Apa yang membuat JavaScript unik?
 
-Ada minimal *tiga* hal baik dari JavaScript:
+Ada minimal *tiga* hal unik dari JavaScript:
 
 ```compare
 + Integrasi penuh dengan HTML/CSS.
-+ Hal simpel diselesaikan dengan simpel.
-+ Dukungan peramban mayoritas dan aktif secara default.
++ Hal sederhana diselesaikan dengan sederhana.
++ Dukungan dari mayoritas web browser dan aktif secara default.
 ```
-JavaScript merupakan satu-satunya teknologi peramban yang mengkombinasikan ketiganya.
+JavaScript merupakan satu-satunya teknologi browser yang mengkombinasikan ketiga poin di atas.
 
-Itu yang membuat JavaScript unik. Itulah kenapa JavaScript menjadi alat yang paling banyak tersebar untuk membuat antarmuka peramban.
+Itulah yang membuat JavaScript unik. Itulah kenapa JavaScript menjadi alat yang paling sering untuk membuat antarmuka browser.
 
-Sambil merencanakan belajar teknologi baru, akan menguntungkan juga untuk mengecek perspektifnya. Jadi mari kita lanjut ke tren modern yang mempengaruhinya, termasuk kemampuan peramban dan bahasa baru.
+Yang artinya, JavaScript memungkinkan kita untuk membuat server, aplikasi mobile, dsb
 
 
 ## Bahasa "di atas" JavaScript
 
-Syntax JavaScript tidak memenuhi kebutuhan tiap orang. Masing-masing orang ingin fitur yang berbeda-beda.
+Sintaks JavaScript tidak memenuhi kebutuhan setiap orang. Masing-masing orang ingin fitur yang berbeda-beda.
 
 Itu wajar, karena proyek dan persyaratan tiap orang berbeda-beda.
 
-Akhir-akhir ini muncul banyak bahasa baru, yang *ditranspile* (dikonversi) ke JavaScript sebelum mereka berjalan di peramban.
+Akhir-akhir ini muncul banyak bahasa baru, yang *ditranspile* (dikonversi) ke JavaScript sebelum dijalankan di browser.
 
-Tool modern membuat transpilasi sangat cepat dan transparan, yang sebenarnya membuat pengembang mengkode dalam bahasa lain dan mengautokonversi itu "di balik layar".
+Tool-tool modern membuat transpilasi sangat cepat dan transparan, yang memungkinkan para developer menulis kodenya dalam bahasa lain dan mengautokonversi itu "di balik layar".
 
 Contoh bahasa yang dimaksud:
 
@@ -116,6 +117,6 @@ Masih banyak lagi. Tentunya, jika kita menggunakan salah satu bahasa yang ditran
 
 ## Kesimpulan
 
-- JavaScript awalnya diciptakan sebagai bahasa khusus peramban, namun sekarang banyak digunakan di lingkungan lain.
-- Hari ini, JavaScript mempunyai posisi unik sebagai bahasa peramban paling banyak diadopsi dengan integrasi penuh dengan HTML/CSS.
+- JavaScript awalnya diciptakan sebagai bahasa khusus browser, namun sekarang banyak digunakan di lingkungan lain.
+- Sekarang, JavaScript mempunyai posisi unik sebagai bahasa browser paling banyak diadopsi dengan integrasi penuh dengan HTML/CSS.
 - Ada banyak bahasa yang "ditranspile" ke JavaScript dan menyediakan fitur tertentu. Disarankan untuk mempelajari mereka juga, minimal sebentar, setelah menguasai JavaScript.
