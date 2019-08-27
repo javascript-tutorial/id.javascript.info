@@ -1,10 +1,10 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# The result of OR AND OR
+# Hasil dari OR AND OR
 
-What will the result be?
+Hasilnya akan jadi apa?
 
 ```js
 alert( null || 2 && 3 || 4 );
