@@ -1,119 +1,118 @@
-# Patterns and flags
+# Pattern dan flag
 
-A regular expression (also "regexp", or just "reg") consists of a *pattern* and optional *flags*.
+Ekspresi reguler ("*regexp*", atau hanya "*reg*") terdiri dari *pattern* dan opsional *flag*.
 
-There are two syntaxes to create a regular expression object.
+Ada dua sintaks untuk membuat objek ekspresi reguler.
 
-The long syntax:
-
-```js
-regexp = new RegExp("pattern", "flags");
-```
-
-...And the short one, using slashes `"/"`:
+Sintaks yang panjang:
 
 ```js
-regexp = /pattern/; // no flags
-regexp = /pattern/gmi; // with flags g,m and i (to be covered soon)
+regexp = new RegExp("pattern", "flag");
 ```
 
-Slashes `"/"` tell JavaScript that we are creating a regular expression. They play the same role as quotes for strings.
+...Dan yang pendek, menggunakan garis miring `"/"`:
 
-## Usage
+```js
+regexp = /pattern/; // tanpa flag
+regexp = /pattern/gmi; // dengan flag g,m dan i (untuk segera ditutup)
+```
 
-To search inside a string, we can use method [search](mdn:js/String/search).
+Garing miring `"/"` akan memberitahu JavaScript bahwa kita sedang membuat ekspresi reguler. Mereka memiliki peran yang sama seperti *quotes* untuk *strings*.
 
-Here's an example:
+## Penggunaan
+
+Untuk mencari di dalam sebuah string, kita dapat menggunakan metode [*search*](mdn:js/String/search).
+
+Berikut contohnya:
 
 ```js run
-let str = "I love JavaScript!"; // will search here
+let str = "I love JavaScript!"; // akan mencari disini
 
 let regexp = /love/;
 alert( str.search(regexp) ); // 2
 ```
 
-The `str.search` method looks for the pattern `pattern:/love/` and returns the position inside the string. As we might guess, `pattern:/love/` is the simplest possible pattern. What it does is a simple substring search.
+Methode `str.search` akan mencari pola `pattern:/love/` dan mengembalikan posisi `pattern:/love/` di string tersebut. Seperti yang kita duga, `pattern:/love/` adalah pola yang paling sederhana. Yang dilakukannya hanyalah mencari *substring* biasa.
 
-The code above is the same as:
+Code di atas sama seperti berikut:
 
 ```js run
-let str = "I love JavaScript!"; // will search here
+let str = "I love JavaScript!"; // akan mencari disini
 
 let substr = 'love';
 alert( str.search(substr) ); // 2
 ```
 
-So searching for `pattern:/love/` is the same as searching for `"love"`.
+Jadi, mencari `pattern:/love/` sama seperti mencari `"love"`.
 
-But that's only for now. Soon we'll create more complex regular expressions with much more searching power.
+Tapi itu hanya untuk saat ini. Kita akan membuat ekspresi reguler yang lebih kompleks dengan kekuatan *search* yang jauh lebih banyak.
 
-```smart header="Colors"
-From here on the color scheme is:
+```smart header="Warna"
+Skema warnanya adalah:
 
-- regexp -- `pattern:red`
-- string (where we search) -- `subject:blue`
-- result -- `match:green`
+- regexp -- `pattern:merah`
+- string (tempat kita mencari) -- `subject:biru`
+- result -- `match:hijau`
 ```
 
 
-````smart header="When to use `new RegExp`?"
-Normally we use the short syntax `/.../`. But it does not support variable insertions `${...}`.
+````smart header="Kapan harus menggunakan `new RegExp`?"
+Biasanya kita menggunakan sintaks pendek `/.../`. Tetapi itu tidak mendukung penyisipan variabel menggunakan sintaks `${...}`.
 
-On the other hand, `new RegExp` allows to construct a pattern dynamically from a string, so it's more flexible.
+Di sisi lain, `new RegExp` memungkinkan untuk membangun pola secara dinamis dari string, jadi lebih fleksibel.
 
-Here's an example of a dynamically generated regexp:
+Berikut contoh dari *regexp* yang dihasilkan secara dinamis:
 
 ```js run
-let tag = prompt("Which tag you want to search?", "h2");
+let tag = prompt("Tag mana yang ingin Kamu cari?", "h2");
 let regexp = new RegExp(`<${tag}>`);
 
-// finds <h2> by default
+// mencari <h2> secara default
 alert( "<h1> <h2> <h3>".search(regexp));
 ```
 ````
 
 
-## Flags
+## Flag
 
-Regular expressions may have flags that affect the search.
+Ekspresi reguler mungkin memiliki *flag* yang dapat mempengaruhi *search*.
 
-There are only 6 of them in JavaScript:
+Mereka hanya ada 6 di Javascript:
 
 `i`
-: With this flag the search is case-insensitive: no difference between `A` and `a` (see the example below).
+: Dengan *flag* ini, *search* tidak peka terhadap huruf besar maupun kecil: tidak ada perbedaan antara `A` and `a` (lihat contohnya di bawah ini).
 
 `g`
-: With this flag the search looks for all matches, without it -- only the first one (we'll see uses in the next chapter).
+: Dengan *flag* ini, *search* akan mencari semua yang cocok dengannya, tanpa itu -- hanya yang pertama yang cocok (kita akan melihat kegunaan *flag* `g` di bab berikutnya).
 
 `m`
-: Multiline mode (covered in the chapter <info:regexp-multiline-mode>).
+: Mode *Multiline* (tercantum di dalam bab <info:regexp-multiline-mode>).
 
 `s`
-: "Dotall" mode, allows `.` to match newlines (covered in the chapter <info:regexp-character-classes>).
+: Mode *Dotall*, memungkinkan `.` untuk cocok dengan baris baru (tecantum di dalam bab <info:regexp-character-classes>).
 
 `u`
-: Enables full unicode support. The flag enables correct processing of surrogate pairs. More about that in the chapter <info:regexp-unicode>.
+: Mengaktifkan dukungan unicode secara penuh. *Flag* ini memungkinkan untuk memproses pasangan pengganti (unicode) yang benar. Lebih lanjut tentangnya ada di dalam bab <info:regexp-unicode>.
 
 `y`
-: Sticky mode (covered in the chapter <info:regexp-sticky>)
+: Mode *Sticky* (tercantum di dalam bab <info:regexp-sticky>)
 
-We'll cover all these flags further in the tutorial.
+Kita akan membahas semua *flag* tersebut lebih lanjut di dalam tutorial.
 
-For now, the simplest flag is `i`, here's an example:
+Untuk sekarang, *flag* paling sederhana adalah `i`, berikut contohnya:
 
 ```js run
 let str = "I love JavaScript!";
 
-alert( str.search(/LOVE/i) ); // 2 (found lowercased)
-
-alert( str.search(/LOVE/) ); // -1 (nothing found without 'i' flag)
+alert( str.search(/LOVE/i) ); // 2 (lowercased ditemukan)
+alert( str.search(/LOVE/) ); // -1 (tidak ada yang ditemukan tanpa flag 'i')
 ```
 
-So the `i` flag already makes regular expressions more powerful than a simple substring search. But there's so much more. We'll cover other flags and features in the next chapters.
+*Flag* `i` telah membuat ekpresi reguler menjadi lebih kuat daripada *search substring* biasanya. Tapi masih ada banyak lagi. Kita akan membahas *flag* lain dan fitur *regxp* di dalam bab berikutnya.
 
 
-## Summary
+## Ringkasan
 
-- A regular expression consists of a pattern and optional flags: `g`, `i`, `m`, `u`, `s`, `y`.
-- Without flags and special symbols that we'll study later, the search by a regexp is the same as a  substring search.
-- The method `str.search(regexp)` returns the index where the match is found or `-1` if there's no match. In the next chapter we'll see other methods.
+- Ekspresi reguler terdiri dari *pattern* dan opsional *flag*: `g`, `i`, `m`, `u`, `s`, `y`.
+- Tanpa *flag* dan simbol khusus yang akan kita pelajari nanti, *search* dengan *regexp* sama seperti *search* dengan substring.
+- Metode `str.search(regexp)` mengembalikan *index* yang cocok atau `-1` jika tidak ada yang cocok. Dalam bab selanjutnya kita akan melihat metode lain.
