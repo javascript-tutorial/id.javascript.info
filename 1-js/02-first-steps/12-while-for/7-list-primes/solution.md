@@ -1,29 +1,29 @@
-There are many algorithms for this task.
+Ada banyak algoritma untuk tugas ini.
 
-Let's use a nested loop:
+mari gunakan perulangan bersarang:
 
 ```js
-For each i in the interval {
-  check if i has a divisor from 1..i
-  if yes => the value is not a prime
-  if no => the value is a prime, show it
+Untuk setiap i dalam  interval {
+  cek jika i memiliki pembagi dari 1..i
+  if yes => nilainya bukan prima
+  if no => nilainya prima, tampilkan
 }
 ```
 
-The code using a label:
+Kode menggunakan label:
 
 ```js run
 let n = 10;
 
 nextPrime:
-for (let i = 2; i <= n; i++) { // for each i...
+for (let i = 2; i <= n; i++) { // untuk setiap i...
 
-  for (let j = 2; j < i; j++) { // look for a divisor..
-    if (i % j == 0) continue nextPrime; // not a prime, go next i
+  for (let j = 2; j < i; j++) { // mencari pembagi..
+    if (i % j == 0) continue nextPrime; // bukan prima, pergi selanjutnya i
   }
 
-  alert( i ); // a prime
+  alert( i ); // prima
 }
 ```
 
-There's a lot of space to opimize it. For instance, we could look for the divisors from `2` to square root of `i`. But anyway, if we want to be really efficient for large intervals, we need to change the approach and rely on advanced maths and complex algorithms like [Quadratic sieve](https://en.wikipedia.org/wiki/Quadratic_sieve), [General number field sieve](https://en.wikipedia.org/wiki/General_number_field_sieve) etc.
+Ada banyak ruang untuk mengoptimalkannya. Misalnya, kita dapat mencari pembagi dari `2` ke akar kuadrat dari `i`. Tapi bagaimanapun juga, jika kita ingin menjadi sangat efisien untuk interval besar, kita perlu mengubah pendekatan dan mengandalkan pada matematika lanjutan dan algotima kompleks seperti [Quadratic sieve](https://en.wikipedia.org/wiki/Quadratic_sieve), [General number field sieve](https://en.wikipedia.org/wiki/General_number_field_sieve) dsb.
