@@ -1,9 +1,10 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# What's the result of OR?
+# Apa hasil dari OR?
 
+Apa output kode di bawah?
 What is the code below going to output?
 
 ```js

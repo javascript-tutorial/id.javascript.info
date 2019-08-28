@@ -1,20 +1,20 @@
-importance: 4
+nilai penting: 4
 
 ---
 
-# Which values does the while loop show?
+# Nilai mana yang ditampilkan perulangan while?
 
-For every loop iteration, write down which value it outputs and then compare it with the solution.
+Setiap perulangan, tulis nilai yang dikeluarkan dan bandingkan dengan solusinya.
 
-Both loops `alert` the same values, or not?
+Kedua perulangan `alert` nilai yang sama, atau tidak?
 
-1. The prefix form `++i`:
+1. Bentuk prefix `++i`:
 
     ```js
     let i = 0;
     while (++i < 5) alert( i );
     ```
-2. The postfix form `i++`
+2. Bentuk postfix `i++`
 
     ```js
     let i = 0;

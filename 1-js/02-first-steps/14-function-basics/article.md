@@ -1,18 +1,18 @@
-# Functions
+# Fungsi
 
-Quite often we need to perform a similar action in many places of the script.
+Sering kali, kita harus melakukan tindakan yang sama pada skrip di banyak tempat
 
-For example, we need to show a nice-looking message when a visitor logs in, logs out and maybe somewhere else.
+Sebagai contoh, kita mengharuskan untuk menampilkan pesan yang terlihat indah ketika pengunjung melakukan log in, log out dan mungkin di tempat lain.
 
-Functions are the main "building blocks" of the program. They allow the code to be called many times without repetition.
+Fungsi adalah program utama yang membentuk "struktur bangunan". Mereka memungkinkan kode untuk dipanggil sebanyak mungkin tanpa harus mengetik berulang-ulang.
 
-We've already seen examples of built-in functions, like `alert(message)`, `prompt(message, default)` and `confirm(question)`. But we can create functions of our own as well.
+Kita telah melihat contoh dari fungsi built-in, seperti `alert(message)`, `prompt(message, default)` dan `confirm(question)`.
 
-## Function Declaration
+## Deklarasi Fungsi
 
-To create a function we can use a *function declaration*.
+Untuk membuat fungsi, kita dapat menggunakan *deklarasi fungsi*.
 
-It looks like this:
+Itu terlihat seperti ini:
 
 ```js
 function showMessage() {
@@ -20,7 +20,7 @@ function showMessage() {
 }
 ```
 
-The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* between the parentheses (comma-separated, empty in the example above) and finally the code of the function, also named "the function body", between curly braces.
+Katakunci `fungsi` ditulis duluan, lalu *nama fungsinya*, kemudian daftar semua *parameter* antara tanda kurung () (pada contoh di atas, tanda kurung kosong) dan bagian terakhir adalah fungsi kode, yang juga disebut sebagai "badan fungsi", antara kurung kurawal {}.
 
 ```js
 function name(parameters) {
@@ -28,9 +28,9 @@ function name(parameters) {
 }
 ```
 
-Our new function can be called by its name: `showMessage()`.
+Fungsi baru kita dapat disebut dengan nama: `showMessage()`.
 
-For instance:
+Sebagai contoh:
 
 ```js run
 function showMessage() {
@@ -43,35 +43,35 @@ showMessage();
 */!*
 ```
 
-The call `showMessage()` executes the code of the function. Here we will see the message two times.
+Pemanggilan fungsi `showMessage()` mengeksekusi fungsi kode. Disini kita akan melihat pesan keluaran sebanyak dua kali.
 
-This example clearly demonstrates one of the main purposes of functions: to avoid code duplication.
+Contoh ini secara jelas memaparkan satu fungsi utama dari penggunaan fungsi: untuk menghindari duplikasi kode.
 
-If we ever need to change the message or the way it is shown, it's enough to modify the code in one place: the function which outputs it.
+Jika kita ingin mengubah pesan atau bagaimana pesan itu ingin ditampilkan, itu cukup untuk mengubah kode di satu tempat: yaitu fungsi yang menampilkannya.
 
-## Local variables
+## Variabel lokal
 
-A variable declared inside a function is only visible inside that function.
+Variabel yang diumumkan dalam fungsi hanya akan terlihat di dalam fungsi tersebut.
 
-For example:
+Misalnya:
 
 ```js run
 function showMessage() {
 *!*
-  let message = "Hello, I'm JavaScript!"; // local variable
+  let message = "Hello, I'm JavaScript!"; // variabel lokal
 */!*
 
   alert( message );
 }
 
-showMessage(); // Hello, I'm JavaScript!
+showMessage(); // Halo, saya adalah  JavaScript!
 
-alert( message ); // <-- Error! The variable is local to the function
+alert( message ); // <-- Error! Variabel terlihat secara lokal menurut fungsi
 ```
 
-## Outer variables
+## Variabel luar
 
-A function can access an outer variable as well, for example:
+Suatu fungsi juga dapat mengakses variabel luar, sebagai contoh: 
 
 ```js run no-beautify
 let *!*userName*/!* = 'John';
@@ -81,12 +81,12 @@ function showMessage() {
   alert(message);
 }
 
-showMessage(); // Hello, John
+showMessage(); // Halo, John
 ```
 
-The function has full access to the outer variable. It can modify it as well.
+Fungsi memiliki hak akses penuh kepada variabel luar fungsi. Juga variabel tersebut dapat diubah.
 
-For instance:
+Sebagai contoh:
 
 ```js run
 let *!*userName*/!* = 'John';
@@ -98,48 +98,48 @@ function showMessage() {
   alert(message);
 }
 
-alert( userName ); // *!*John*/!* before the function call
+alert( userName ); // *!*John*/!* sebelum pemanggilan fungsi
 
 showMessage();
 
-alert( userName ); // *!*Bob*/!*, the value was modified by the function
+alert( userName ); // *!*Bob*/!*, nilai dimodifikasi oleh fungsi
 ```
 
-The outer variable is only used if there's no local one.
+Variabel luar hanya dapat digunakan jika tidak ada variabel lokal yang menggunakan.
 
-If a same-named variable is declared inside the function then it *shadows* the outer one. For instance, in the code below the function uses the local `userName`. The outer one is ignored:
+Jika terdapat variabel yang memiliki nama identik yang dideklarasikan di dalam fungsi, lalu variabel luar akan *tertumpukkan*. Sebagai gambaran, pada kode di bawah, fungsi menggunakan variabel lokal bernama `userName`. Variabel luar akan terabaikan:
 
 ```js run
 let userName = 'John';
 
 function showMessage() {
 *!*
-  let userName = "Bob"; // declare a local variable
+  let userName = "Bob"; // deklarasikan lokal variabel
 */!*
 
   let message = 'Hello, ' + userName; // *!*Bob*/!*
   alert(message);
 }
 
-// the function will create and use its own userName
+// fungsi akan membuat dan menggunakan userName dirinya sendiri
 showMessage();
 
-alert( userName ); // *!*John*/!*, unchanged, the function did not access the outer variable
+alert( userName ); // *!*John*/!*, tidak berubah, fungsi tidak dapat mengakses variabel luar
 ```
 
 ```smart header="Global variables"
-Variables declared outside of any function, such as the outer `userName` in the code above, are called *global*.
+Variabel yang dideklarasikan di luar dari fungsi, seperti variabel luar `userName` pada kode di atas, disebut sebagai *global*.
 
-Global variables are visible from any function (unless shadowed by locals).
+Variabel global terlihat dari semua fungsi (terkecuali jika ditumpukkan oleh variabel lokal).
 
-It's a good practice to minimize the use of global variables. Modern code has few or no globals. Most variables reside in their functions. Sometimes though, they can be useful to store project-level data.
+Ini menjadi suatu cara yang baik untuk mengurangi penggunaan variabel global. Kode yang modern hanya memiliki sedikit bahkan tidak ada variabel global. Kebanyakan variabel dideklarasikan dan digunakan di dalam fungsi masing-masing. Kadang-kadang, mereka dapat digunakan untuk menyimpan data setingkat projek.
 ```
 
 ## Parameters
 
-We can pass arbitrary data to functions using parameters (also called *function arguments*) .
+Kita dapat meloloskan data yang begitu acak kepada fungsi sebagai parameter (disebut juga sebagai *fungsi argumen*).
 
-In the example below, the function has two parameters: `from` and `text`.
+Pada contoh di bawah, fungsi memiliki dua paramter: `from` dan `text`.
 
 ```js run
 function showMessage(*!*from, text*/!*) { // arguments: from, text
@@ -147,21 +147,21 @@ function showMessage(*!*from, text*/!*) { // arguments: from, text
 }
 
 *!*
-showMessage('Ann', 'Hello!'); // Ann: Hello! (*)
-showMessage('Ann', "What's up?"); // Ann: What's up? (**)
+showMessage('Ann', 'Hello!'); // Ann: Hallo! (*)
+showMessage('Ann', "What's up?"); // Ann: Ada apa? (**)
 */!*
 ```
 
-When the function is called in lines `(*)` and `(**)`, the given values are copied to local variables `from` and `text`. Then the function uses them.
+Ketika fungsi dipanggil pada penanda `(*)` dan `(**)`, nilai yang diberikan dipindahkan ke variabel lokal `from` dan `text`. Lalu fungsi menggunakan nilai-nilai tersebut.
 
-Here's one more example: we have a variable `from` and pass it to the function. Please note: the function changes `from`, but the change is not seen outside, because a function always gets a copy of the value:
+Ini terdapat satu lagi contoh: kita memiliki variabel `from` dan memindahkannya ke fungsi. Dengan catatan: fungsi akan mengubah `from`, tapi perubahan ini tidak akan terlihat di luar fungsi, karena sebuah fungsi akan selalu mendapatkan salinan nilai:
 
 
 ```js run
 function showMessage(from, text) {
 
 *!*
-  from = '*' + from + '*'; // make "from" look nicer
+  from = '*' + from + '*'; // membuat "from" terlihat lebih indah
 */!*
 
   alert( from + ': ' + text );
@@ -169,55 +169,55 @@ function showMessage(from, text) {
 
 let from = "Ann";
 
-showMessage(from, "Hello"); // *Ann*: Hello
+showMessage(from, "Hello"); // *Ann*: Hallo
 
-// the value of "from" is the same, the function modified a local copy
+// Nilai dari "from" adalah sama, fungsi melakukan perubahan pada variabel lokal
 alert( from ); // Ann
 ```
 
-## Default values
+## Nilai default
 
-If a parameter is not provided, then its value becomes `undefined`.
+Jika parameter tidak diberi nilai, maka nilainya menjadi `undefined`.
 
-For instance, the aforementioned function `showMessage(from, text)` can be called with a single argument:
+Sebagai gambaran, fungsi yang telah tersebut di atas `showMessage(from, text)` dapat dipanggil dengan argumen tunggal:
 
 ```js
 showMessage("Ann");
 ```
 
-That's not an error. Such a call would output `"Ann: undefined"`. There's no `text`, so it's assumed that `text === undefined`.
+Itu tidak terjadi kesalahan. Malah pemanggilan tersebut akan menghasilkan `"Ann: undefined"`. Tidak ada argumen untuk parameter `text`, jadi ini diasumsikan bahwa `text === undefined`.
 
-If we want to use a "default" `text` in this case, then we can specify it after `=`:
+Jika kita ingin menggunakan suatu `text` "default" pada kasus ini, lalu kita dapat menentukannya setelah `=`:
 
 ```js run
 function showMessage(from, *!*text = "no text given"*/!*) {
   alert( from + ": " + text );
 }
 
-showMessage("Ann"); // Ann: no text given
+showMessage("Ann"); // Ann: tidak diberikan teks
 ```
 
-Now if the `text` parameter is not passed, it will get the value `"no text given"`
+Sekarang, jika parameter `text` tidak ditentukan, parameter tersebut akan mengambil nilai `"no text give"`
 
-Here `"no text given"` is a string, but it can be a more complex expression, which is only evaluated and assigned if the parameter is missing. So, this is also possible:
+Disini `"no text give"` adalah string, tapi ia bisa menjadi suatu expresi nilai lebih kompleks, yang hanya dievaluasi dan ditetapkan jika tak ada nilai pada parameter. Jadi, ini juga mungkin ditetapkan:
 
 ```js run
 function showMessage(from, text = anotherFunction()) {
-  // anotherFunction() only executed if no text given
-  // its result becomes the value of text
+  // anotherFunction() hanya akan mengeksekusi jika tidak adanya teks
+  // hasilnya menjjadi nilai pada teks
 }
 ```
 
-```smart header="Evaluation of default parameters"
-In JavaScript, a default parameter is evaluated every time the function is called without the respective parameter.
+```smart header="Evaluasi parameter default"
+Di Javascript, parameter default dievaluasi tiap kali fungsi dipanggil tanpa parameter.
 
-In the example above, `anotherFunction()` is called every time `showMessage()` is called without the `text` parameter.
+Pada contoh di atas, `anotherFunction()` dipanggil tiap kali `showMessage()` dipanggil tanpa parameter `text`.
 ```
 
-````smart header="Default parameters old-style"
-Old editions of JavaScript did not support default parameters. So there are alternative ways to support them, that you can find mostly in the old scripts.
+````smart header="Parameter default gaya-lama"
+Gaya lama Javascript tidak mendukung parameter default. Jadi ada cara alternatif untuk mendukung hal tersebut yang bisa kalian temui pada skrip-skrip lama.
 
-For instance, an explicit check for being `undefined`:
+Sebagai gambaran, suatu penetapan nilai yang jelas untuk nilai `undefined`:
 
 ```js
 function showMessage(from, text) {
@@ -231,11 +231,11 @@ function showMessage(from, text) {
 }
 ```
 
-...Or the `||` operator:
+...Atau operator `||`
 
 ```js
 function showMessage(from, text) {
-  // if text is falsy then text gets the "default" value
+  // Jika teks adalah bernilai falsy, maka teks akan bernilai "standar"
   text = text || 'no text given';
   ...
 }
@@ -245,11 +245,11 @@ function showMessage(from, text) {
 ````
 
 
-## Returning a value
+## Mengembalikan nilai
 
-A function can return a value back into the calling code as the result.
+Fungsi dapat mengembalikan nilai kepada kode pemanggil sebagai hasil akhir.
 
-The simplest example would be a function that sums two values:
+Contoh yang paling sederhana adalah fungsi yang menjumlahkan dua nilai:
 
 ```js run no-beautify
 function sum(a, b) {
@@ -260,9 +260,9 @@ let result = sum(1, 2);
 alert( result ); // 3
 ```
 
-The directive `return` can be in any place of the function. When the execution reaches it, the function stops, and the value is returned to the calling code (assigned to `result` above).
+Penulisan kata `return` dapat ditulis dimana saja pada fungsi. Ketika proses eksekusi kode mencapai kata tersebut, proses eksekusi akan berhenti, dan nilai akan dikembalikan kepada kode pemanggil (yang ditentukan pada variabel `result` di atas).
 
-There may be many occurrences of `return` in a single function. For instance:
+Dapat dimungkinkan kehadiran banyak kata `return` pada suatu fungsi tunggal. Misalnya:
 
 ```js run
 function checkAge(age) {
@@ -286,9 +286,9 @@ if ( checkAge(age) ) {
 }
 ```
 
-It is possible to use `return` without a value. That causes the function to exit immediately.
+Sangat dimungkinkan menggunakan kata `return` tanpa nilai. Hal ini akan menyebabkan fungsi untuk langsung keluar.
 
-For example:
+Misalnya:
 
 ```js
 function showMovie(age) {
@@ -303,18 +303,18 @@ function showMovie(age) {
 }
 ```
 
-In the code above, if `checkAge(age)` returns `false`, then `showMovie` won't proceed to the `alert`.
+Pada contoh kode di atas, jika `checkAge(age)` mengembalikan nilai `false`, maka `showMovie` tidak akan memproses `alert`.
 
 ````smart header="A function with an empty `return` or without it returns `undefined`"
-If a function does not return a value, it is the same as if it returns `undefined`:
+Jika fungsi tidak mengembalikan nilai, hal ini sama saja dengan mengembalikan nilai `undefined`:
 
 ```js run
-function doNothing() { /* empty */ }
+function doNothing() { /* kosong */ }
 
 alert( doNothing() === undefined ); // true
 ```
 
-An empty `return` is also the same as `return undefined`:
+`return` kosong tanpa nilai memiliki nilai yang sama dengan `return undefined`:
 
 ```js run
 function doNothing() {
@@ -326,22 +326,22 @@ alert( doNothing() === undefined ); // true
 ````
 
 ````warn header="Never add a newline between `return` and the value"
-For a long expression in `return`, it might be tempting to put it on a separate line, like this:
+Untuk ekspresi yang lebih panjang pada penggunaan `return`, ini mungkin akan menciptakan suatu penulisan yang singkat untuk menuliskannya pada baris yang berbeda, seperti contoh berikut:
 
 ```js
 return
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
-That doesn't work, because JavaScript assumes a semicolon after `return`. That'll work the same as:
+Hal ini tidak akan berhasil karena Javascript akan menganggap tanda titik koma setelah kata `return`. Hal ini juga akan berlangsung sama dengan contoh berikut:
 
 ```js
 return*!*;*/!*
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
 
-So, it effectively becomes an empty return.
+Jadi, ia efektif menjadi kembalian kosong.
 
-If we want the returned expression to wrap across multiple lines, we should start it at the same line as `return`. Or at least put the opening parentheses there as follows:
+Jika kita ingin expresi kembalian membungkus beberapa baris, kita mesti mulai di baris yang sama dengan `return`. Atau minimal taruh tanda kurung pembuka di sana seperti ini:
 
 ```js
 return (
@@ -350,67 +350,67 @@ return (
   whatever * f(a) + f(b)
   )
 ```
-And it will work just as we expect it to.
+Dan ia akan berjalan seperti harapan kita.
 ````
 
-## Naming a function [#function-naming]
+## Menamakan fungsi [#penamaan fungsi]
 
-Functions are actions. So their name is usually a verb. It should be brief, as accurate as possible and describe what the function does, so that someone reading the code gets an indication of what the function does.
+Fungsi adalah tindakan. Sehingga nama fungsi mencerminkan kata kerja. Ia harus ringkas, sebisa mungkin harus akurat dan menjelaskan fungsi apa yang dikerjakan, sehingga ketika seseorang yang membaca kode tersebut mendapatkan penjelasan atau indikasi fungsi apa tersebut.
 
-It is a widespread practice to start a function with a verbal prefix which vaguely describes the action. There must be an agreement within the team on the meaning of the prefixes.
+Sudah menjadi khalayak umum bahwa untuk membuat fungsi harus dibarengi dengan awalan verbal yang secara tidak langsung menjelaskan tindakannya.
 
-For instance, functions that start with `"show"` usually show something.
+Sebagai gambaran, fungsi yang dimulai dengan kata `"show"` biasanya melakukan tindakan menunjukkan sesuatu.
 
-Function starting with...
+Fungsi yang dimulai dengan...
 
-- `"get…"` -- return a value,
-- `"calc…"` -- calculate something,
-- `"create…"` -- create something,
-- `"check…"` -- check something and return a boolean, etc.
+- `"get"` -- mengembalikan suatu nilai,
+- `"calc"` -- menghitungkan sesuatu,
+- `"create"` -- membuat sesuatu,
+- `"check"` -- melakukan pengecekkan dan mengembalikan nilai boolean, dst.
 
-Examples of such names:
+Contoh dari nama yang diberikan di atas:
 
 ```js no-beautify
-showMessage(..)     // shows a message
-getAge(..)          // returns the age (gets it somehow)
-calcSum(..)         // calculates a sum and returns the result
-createForm(..)      // creates a form (and usually returns it)
-checkPermission(..) // checks a permission, returns true/false
+showMessage(..)     // menampilkan pesan
+getAge(..)          // mengembalikan nilai umur (bagaimanapun mengembalikkan umur)
+calcSum(..)         // menghitung penjumlahan dan mengembalikan hasilnya
+createForm(..)      // membuat formulir (dan biasanya mengembalikan nilai)
+checkPermission(..) // pengecekkan terhadap ijin, mengembalikan true/false
 ```
 
-With prefixes in place, a glance at a function name gives an understanding what kind of work it does and what kind of value it returns.
+Dengan awalan yang tertera, secara sekilas pada nama fungsi memberikan pemahaman tindakan apa yang dilakukan dan nilai apa yang dikembalikan.
 
 ```smart header="One function -- one action"
-A function should do exactly what is suggested by its name, no more.
+Fungsi sebaiknya mengerjakan apa yang telah ditulis pada namanya, tidak lebih.
 
-Two independent actions usually deserve two functions, even if they are usually called together (in that case we can make a 3rd function that calls those two).
+Dua tindakan independen biasanya berasal dari dua fungsi, walaupun mereka dipanggil secara bersamaan (pada kasus ini, kita mampu membuat fuungsi ketiga yang memanggil keduanya).
 
-A few examples of breaking this rule:
+Sedikit contoh yang mematahkan aturan ini:
 
-- `getAge` -- would be bad if it shows an `alert` with the age (should only get).
-- `createForm` -- would be bad if it modifies the document, adding a form to it (should only create it and return).
-- `checkPermission` -- would be bad if it displays the `access granted/denied` message (should only perform the check and return the result).
+- `getAge` -- akan menjadi buruk jika menunjukkan `alert` yang menunjukkan umur (seharusnya hanya get).
+- `createForm` -- akan menjadi buruk jika fungsi tersebut mengubah dokumen, menambahkan formulir pada dokumen tersebut (seharusnya hanya membentuk dokumen dan mengembalikannya).
+- `checkPermission` -- akan menjadi buruk jika fungsi tersebut menampilkan pesan `akses diberikan/ditolak` (seharusnya hanya melakukan pengecekkan dan mengembalikkan nilainya).
 
-These examples assume common meanings of prefixes. You and your team are free to agree on other meanings, but usually they're not much different. In any case, you should have a firm understanding of what a prefix means, what a prefixed function can and cannot do. All same-prefixed functions should obey the rules. And the team should share the knowledge.
+Pada contoh-contoh ini diasumsikan arti-arti umum pada kata awalan. Kamu dan tim kamu memiliki kehendak bebas untuk menentukan arti lainnya, tapi biasanya penentuan arti tersebut tidaklah jauh berbeda. Pada contoh lain, kamu seharusnya memiliki pemahaman yang kuat dari arti kata awalan yang digunakan, kata awalan apa yang dapat digunakan pada fungsi dan tidak dapat diguunakan. Semua kata awalan fungsi harus mengikuti aturan tertentu. Dan tim seharusnya dapat saling memberikan pemahaman satu sama lain.
 ```
 
 ```smart header="Ultrashort function names"
-Functions that are used *very often* sometimes have ultrashort names.
+Fungsi yang *digunakan secara sering* kadang-kadang memiliki nama yang sangat pendek.
 
-For example, the [jQuery](http://jquery.com) framework defines a function with `$`. The [Lodash](http://lodash.com/) library has its core function named `_`.
+Sebagai contoh, framework [jQuary](http://jquary.com) mendefinisikan fungsi dengan simbol `$`. Library [Lodash](https://lodash.com) memiliki fungsi inti yang dinamakan dengan `_`.
 
-These are exceptions. Generally functions names should be concise and descriptive.
+Hal-hal tersebut adalah pengecualian. Secara umum, nama fungsi sebaiknya ringkas dan menjelaskan maksudnya.
 ```
 
-## Functions == Comments
+## Fungsi == komen
 
-Functions should be short and do exactly one thing. If that thing is big, maybe it's worth it to split the function into a few smaller functions. Sometimes following this rule may not be that easy, but it's definitely a good thing.
+Fungsi seharusnya memiliki nama yang pendek dan hanya melakukan satu tindakan. Jika tindakan tersebut mengerjakan hal yang cukup kompleks, mungkin sebaiknya fungsi tersebut dibagi menjadi fungsi yang lebih sederhana. Kadang-kadang, mengikuti aturan ini tidaklah mudah, tetapi tentu adalah hal yang baik.
 
-A separate function is not only easier to test and debug -- its very existence is a great comment!
+Fungsi yang terpisah bukan hanya mudah untuk diuji coba dan debug -- kehadirannya sangat baik untuk diberikan komentar!
 
-For instance, compare the two functions `showPrimes(n)` below. Each one outputs [prime numbers](https://en.wikipedia.org/wiki/Prime_number) up to `n`.
+Sebagai gambaran, bandingkan dua fungsi `showPrimes(n)` di bawah. Setiap satu dari keluarannya [bilangan prima](https://en.wikipedia.org/wiki/Prime_number) mencapai hingga `n`.
 
-The first variant uses a label:
+Variasi pertama menggunakan label:
 
 ```js
 function showPrimes(n) {
@@ -420,12 +420,12 @@ function showPrimes(n) {
       if (i % j == 0) continue nextPrime;
     }
 
-    alert( i ); // a prime
+    alert( i ); // bilangan prima
   }
 }
 ```
 
-The second variant uses an additional function `isPrime(n)` to test for primality:
+Pada variasi yang kedua mengguunakan fungsi tambahan `isPrime(n)` untuk dilakukan uji coba keutamaannya:
 
 ```js
 function showPrimes(n) {
@@ -433,7 +433,7 @@ function showPrimes(n) {
   for (let i = 2; i < n; i++) {
     *!*if (!isPrime(i)) continue;*/!*
 
-    alert(i);  // a prime
+    alert(i);  // bilangan prima
   }
 }
 
@@ -445,13 +445,13 @@ function isPrime(n) {
 }
 ```
 
-The second variant is easier to understand, isn't it? Instead of the code piece we see a name of the action (`isPrime`). Sometimes people refer to such code as *self-describing*.
+Pada variasi yang kedua lebih mudah untuk dipahami, benarkan ? Malah daripada potongan kode yang kita lihat pada tindakan (`isPrime`). Kadang-kadang, orang-orang merujuk kepada penulisan kode yang *menjelaskan dirinya*.
 
-So, functions can be created even if we don't intend to reuse them. They structure the code and make it readable.
+Jadi, fungsi dapat dibuat walaupun kita tidak terlalu sering menggunakannya. Mereka membuat kode lebih terstruktur dan lebih mudah untuk dibaca.
 
-## Summary
+## Kesimpulan
 
-A function declaration looks like this:
+Deklarasi fungsi terlihat seperti ini:
 
 ```js
 function name(parameters, delimited, by, comma) {
@@ -459,18 +459,18 @@ function name(parameters, delimited, by, comma) {
 }
 ```
 
-- Values passed to a function as parameters are copied to its local variables.
-- A function may access outer variables. But it works only from inside out. The code outside of the function doesn't see its local variables.
-- A function can return a value. If it doesn't, then its result is `undefined`.
+- Nilai yang diberikan kepada fungi sebagai parameter dipindahkan ke variabel lokal.
+- Fungsi mungkin dapat diakses dengan variabel luar. Tetapi fungsi tersebut hanya dapat bekerja melalui internal fungsi keluar. Kode di luar daripada fungsi bersangkutan tidak dapat melihat variabel lokal.
+- Fungsi dapat mengembalikan suatu nilai. Jika tidak demikian, maka akan mengembalikan nilai `undefined`.
 
-To make the code clean and easy to understand, it's recommended to use mainly local variables and parameters in the function, not outer variables.
+Untuk membuat kode yang bersih dan mudah untuk dipahami, sangat dianjurkan untuk menggunakan variabel lokal dan parameter pada fungsi, tidak mengguunakan variabel luar / variabel global.
 
-It is always easier to understand a function which gets parameters, works with them and returns a result than a function which gets no parameters, but modifies outer variables as a side-effect.
+Akan menjadi hal yang mudah untuk dipahami pada fungsi yang mendapatkan parameter, yang bekerja dengan parameter tersebut  dan mengembalikan nilainya daripada fuungsi yang tidak memilki parameter, tetapi melakukan modifikasi terhadap variabel luar akan memiliki efek samping.
 
-Function naming:
+Penamaan fungsi:
 
-- A name should clearly describe what the function does. When we see a function call in the code, a good name instantly gives us an understanding what it does and returns.
-- A function is an action, so function names are usually verbal.
-- There exist many well-known function prefixes like `create…`, `show…`, `get…`, `check…` and so on. Use them to hint what a function does.
+- Nama seharusnya ditulis dengan jelas dan mendeskripsikan apa yang dikerjakan. Ketika kita melihat fungsi dipanggil pada kode, penamaan yang baik secara langsuung akan memberikan kita pemahaman apa yang dikerjakan dan nilai apa yang dikembalikan.
+- Fungsi adalah tindakan, sehingga nama fungsi biasanya kata kerja (verbal).
+- Banyak nama-nama awalan fungsi seperti `create`, `show`, `get`, `check` dan lainnya. Gunakan awalan tersebut untuk memberikan kata kunci apa yang dikerjakan oleh fungsi.
 
-Functions are the main building blocks of scripts. Now we've covered the basics, so we actually can start creating and using them. But that's only the beginning of the path. We are going to return to them many times, going more deeply into their advanced features.
+Fungsi adalah bagaikan fondasi bangunan dari skrip. Sekarang, kita telah mempelajari dasarnya, sehingga sekarang kita dapat memumlai untuk membuat dan menggunakannya. Tapi hal itu baru permulaan dari awal perjalanan. Kita akan kembali menggunakan mereka berulang kali, secara terus-menerus menggunakan secara mendalam hingga fitur yang lebih kompleks.

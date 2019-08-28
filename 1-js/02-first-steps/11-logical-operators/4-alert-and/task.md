@@ -1,10 +1,10 @@
-importance: 3
+nilai penting: 3
 
 ---
 
-# What is the result of AND'ed alerts?
+# Apa hasil dari alert yang di-AND-kan?
 
-What will this code show?
+Kode ini akan menampilkan apa?
 
 ```js
 alert( alert(1) && alert(2) );

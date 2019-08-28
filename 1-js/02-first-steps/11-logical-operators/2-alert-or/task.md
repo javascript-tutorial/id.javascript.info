@@ -1,10 +1,10 @@
-importance: 3
+niai penting: 3
 
 ---
 
-# What's the result of OR'ed alerts?
+# Apa hasil dari alert yang di-OR-kan?
 
-What will the code below output?
+Apa output kode di bawah?
 
 ```js
 alert( alert(1) || 2 || alert(3) );

@@ -1,12 +1,12 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# A question about "if"
+# Pertanyaan tentang "if"
 
-Which of these `alert`s are going to execute?
+Mana dari `alert` berikut yang akan diexekusi?
 
-What will the results of the expressions be inside `if(...)`?
+Hasil expresinya akan jadi seperti apa di dalam `if(...)`?
 
 ```js
 if (-1 || 0) alert( 'first' );

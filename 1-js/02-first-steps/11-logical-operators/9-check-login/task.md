@@ -1,25 +1,25 @@
-importance: 3
+nilai penting: 3
 
 ---
 
-# Check the login
+# Cek login
 
-Write the code which asks for a login with `prompt`.
+Tulis kode yang meminta login dengan `prompt`.
 
-If the visitor enters `"Admin"`, then `prompt` for a password, if the input is an empty line or `key:Esc` -- show "Canceled", if it's another string -- then show "I don't know you".
+Jika pengunjung menekan `"Admin"`, maka `prompt` untuk katasandi, jika inputannya beruba baris kosong atau `key:Esc` -- tampilkan "Canceled.", jika string lain -- maka tampilkan "I don't know you".
 
-The password is checked as follows:
+Katasandinya dicek sebagai berikut:
 
-- If it equals "TheMaster", then show "Welcome!",
-- Another string -- show "Wrong password",
-- For an empty string or cancelled input, show "Canceled"
+- Jika ia sama dengan "TheMaster", maka tampilkan "Welcome!",
+- String lain -- tampilkan "Wrong password",
+- Untuk string kosong atau batal input, tampilkan "Canceled."
 
-The schema:
+Skemanya:
 
 ![](ifelse_task.svg)
 
-Please use nested `if` blocks. Mind the overall readability of the code.
+Silakan gunakan blok `if` bersarang. Abaikan kemudahan-baca seluruh kode.
 
-Hint:  passing an empty input to a prompt returns an empty string `''`. Pressing `key:ESC` during a prompt returns `null`.
+Petunjuk:  mengoper inputan kosong ke prompt mengembalikan string kosong `''`. Menekan `key:ESC` saat prompt mengembalikan `null`.
 
 [demo]

@@ -1,4 +1,4 @@
-The answer: `1`.
+Jawabanya: `1`.
 
 ```js run
 let i = 3;
@@ -8,18 +8,18 @@ while (i) {
 }
 ```
 
-Every loop iteration decreases `i` by `1`. The check `while(i)` stops the loop when `i = 0`.
+Setiap pengulangan mengurangi `i`  oleh `1`. Cek `while(i)` menghentikan perulangan ketika `i = 0`.
 
-Hence, the steps of the loop form the following sequence ("loop unrolled"):
+Oleh karena itu, langkah-langkah perulangan membentuk urutan berikut ("perulangan terbuka"):
 
 ```js
 let i = 3;
 
-alert(i--); // shows 3, decreases i to 2
+alert(i--); // menampilkan 3, mengurangi i ke 2
 
-alert(i--) // shows 2, decreases i to 1
+alert(i--) // menampilkan 2, mengurangi i ke 1
 
-alert(i--) // shows 1, decreases i to 0
+alert(i--) // menampilkan 1, mengurangi i ke 0
 
-// done, while(i) check stops the loop
+// selesai while(i) cek menghentikan pengulangan
 ```

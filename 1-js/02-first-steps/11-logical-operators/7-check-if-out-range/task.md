@@ -1,9 +1,9 @@
-importance: 3
+nilai penting: 3
 
 ---
 
-# Check the range outside
+# Cek kisaran luar
 
-Write an `if` condition to check that `age` is NOT between 14 and 90 inclusively.
+Tulis satu kondisi `if` untuk mengecek bahwa `age` BUKAN di antara 14 dan 90 secara inklusif.
 
-Create two variants: the first one using NOT `!`, the second one -- without it.
+Buat dua varian: pertama menggunakan NOT `!`, kedua -- tanpaanya.

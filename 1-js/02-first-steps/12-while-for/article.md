@@ -1,54 +1,54 @@
-# Loops: while and for
+# Perulangan: while dan for
 
-We often need to repeat actions.
+Kita sering perlu untuk mengulangi tindakan.
 
-For example, outputting goods from a list one after another or just running the same code for each number from 1 to 10.
+Contohnya, Mengeluarkan barang dari sebuah daftar satu per satu atau hanya menjalankan kode yang sama untuk setiap nomor dari 1 hingga 10.
 
-*Loops* are a way to repeat the same code multiple times.
+*Perulangan* adalah sebuah cara untuk mengulangi kode yang sama beberapa kali.
 
-## The "while" loop
+## Perulangan "while"
 
-The `while` loop has the following syntax:
+Perulangan `while` memiliki sintaks sebagai berikut:
 
 ```js
-while (condition) {
-  // code
-  // so-called "loop body"
+while (kondisi) {
+  // kode
+  // disebut "badan perulangan"
 }
 ```
 
-While the `condition` is truthy, the `code` from the loop body is executed.
+Ketika `kondisi` bernilai truthy, `kode` dari badan perulangan dijalankan.
 
-For instance, the loop below outputs `i` while `i < 3`:
+Contohnya, perulangan di bawah mengeluarkan `i` selagi `i < 3`:
 
 ```js run
 let i = 0;
-while (i < 3) { // shows 0, then 1, then 2
+while (i < 3) { // menampilkan 0, lalu 1, lalu 2
   alert( i );
   i++;
 }
 ```
 
-A single execution of the loop body is called *an iteration*. The loop in the example above makes three iterations.
+Eksekusi tunggal dari badan perulangan disebut *sebuah pengulangan*. Perulangan pada contoh diatas membuat tiga kali pengulangan.
 
-If `i++` was missing from the example above, the loop would repeat (in theory) forever. In practice, the browser provides ways to stop such loops, and in server-side JavaScript, we can kill the process.
+Jika `i++` hilang dari contoh di atas, perulangan akan mengulangi (dalam teori) secara terus-menerus. Pada praktiknya, browser menyediakan cara untuk menghentikan perulangan, dan pada sisi server JavaScript, kita dapat mematikan prosesnya.
 
-Any expression or variable can be a loop condition, not just comparisons: the condition is evaluated and converted to a boolean by `while`.
+Ekspresi atau variable apapun bisa menjadi sebuah kondisi perulangan, tidak hanya perbandingan: kondisi terevalusasi dan terkonversi menjadi boolean oleh `while`.
 
-For instance, a shorter way to write `while (i != 0)` is `while (i)`:
+Contohnya, cara cepat untuk menulis `while (i != 0)` adalah `while (i)`:
 
 ```js run
 let i = 3;
 *!*
-while (i) { // when i becomes 0, the condition becomes falsy, and the loop stops
+while (i) { // ketika i menjadi 0, kondisi bernilai salah, dan perulangan berhenti
 */!*
   alert( i );
   i--;
 }
 ```
 
-````smart header="Curly braces are not required for a single-line body"
-If the loop body has a single statement, we can omit the curly braces `{…}`:
+````smart header="Kurung kurawal tidak dibutuhkan untuk badan baris tunggal"
+Jika badan perulangan mempunyai sebuah pernyataan tunggal, kita dapat menghilangkan kurung kurawal `{…}`:
 
 ```js run
 let i = 3;
@@ -58,19 +58,19 @@ while (i) alert(i--);
 ```
 ````
 
-## The "do..while" loop
+## Perulangan "do..while"
 
-The condition check can be moved *below* the loop body using the `do..while` syntax:
+Pengecekan kondisi dapat dipindahkan *di bawah* badan perulangan menggunakan `do..while` sintaks:
 
 ```js
 do {
-  // loop body
+  // badan perulangan
 } while (condition);
 ```
 
-The loop will first execute the body, then check the condition, and, while it's truthy, execute it again and again.
+Perulangan akan mengeksekusi badan terlebih dahulu, lalu memeriksa kondisi, dan, selagi itu bernilai truthy, jalankan itu lagi dan lagi.
 
-For example:
+Contohnya:
 
 ```js run
 let i = 0;
@@ -80,109 +80,109 @@ do {
 } while (i < 3);
 ```
 
-This form of syntax should only be used when you want the body of the loop to execute **at least once** regardless of the condition being truthy. Usually, the other form is preferred: `while(…) {…}`.
+Format penulisan ini hanya digunakan ketika kamu ingin badan dari perulangan tereksekusi **setidaknya sekali** Terlepas dari kondisi menjadi bernilai benar. Biasanya, format lain yang dipilih: `while(…) {…}`.
 
-## The "for" loop
+## Perulangan "for"
 
-The `for` loop is more complex, but it's also the most commonly used loop.
+Perulangan `for` lebih complex, tapi merupakan perulangan yang paling umum digunakan.
 
-It looks like this:
+Itu terlihat seperti ini:
 
 ```js
-for (begin; condition; step) {
-  // ... loop body ...
+for (awal; kondisi; langkah) {
+  // ... badan perulangan ...
 }
 ```
 
-Let's learn the meaning of these parts by example. The loop below runs `alert(i)` for `i` from `0` up to (but not including) `3`:
+Mari belajar makna dari bagian ini dari contoh. Perulangan dibawah menjalankan `alert(i)` untuk `i` dari `0` sampai dengan (tapi tidak termasuk) `3`:
 
 ```js run
-for (let i = 0; i < 3; i++) { // shows 0, then 1, then 2
+for (let i = 0; i < 3; i++) { // menampilkan 0, lalu 1, lalu 2
   alert(i);
 }
 ```
 
-Let's examine the `for` statement part-by-part:
+Mari bahas pernyataan `for` bagian demi bagian:
 
-| part  |          |                                                                            |
+| bagian  |          |                                                                            |
 |-------|----------|----------------------------------------------------------------------------|
-| begin | `i = 0`    | Executes once upon entering the loop.                                      |
-| condition | `i < 3`| Checked before every loop iteration. If false, the loop stops.              |
-| step| `i++`      | Executes after the body on each iteration but before the condition check. |
-| body | `alert(i)`| Runs again and again while the condition is truthy.                         |
+| begin | `i = 0`    | jalankan sekali setelah memasuki perulangan.                                      |
+| condition | `i < 3`| periksa sebelum setiap perulangan. jika salah, perulangan berhenti.              |
+| step | `i++`      | Jalankan setelah badan pada setiap perulangan tetapi sebelum kondisi diperiksa. |
+| body | `alert(i)`| Jalankan lagi dan lagi selagi kondisi bernilai benar.                         |
 
-The general loop algorithm works like this:
+Cara kerja algoritma perulangan umum seperti ini:
 
 ```
-Run begin
-→ (if condition → run body and run step)
-→ (if condition → run body and run step)
-→ (if condition → run body and run step)
+Jalankan begin
+→ (jika condition → jalankan body dan jalankan step)
+→ (jika condition → jalankan body dan jalankan step)
+→ (jika condition → jalankan body dan jalankan step)
 → ...
 ```
 
-That is, `begin` executes once, and then it iterates: after each `condition` test, `body` and `step` are executed.
+Dikatakan, `begin` diexekusi sekali, kemudian ia beriterasi: setelah tiap `condition` dites, `body` dan `step` diexekusi.
 
-If you are new to loops, it could help to go back to the example and reproduce how it runs step-by-step on a piece of paper.
+Jika kamu baru pada perulangan, ini bisa membantumu kembali ke contoh dan mereproduksi bagamana ini berjalan selangkah demi selangkah pada sebuah selembar kertas.
 
-Here's exactly what happens in our case:
+Inilah yang sebenarnya terjadi pada kasus kita:
 
 ```js
 // for (let i = 0; i < 3; i++) alert(i)
 
-// run begin
+// jalankan awal
 let i = 0
-// if condition → run body and run step
+// jika kondisi → jalankan badan dan jalankan langkah
 if (i < 3) { alert(i); i++ }
-// if condition → run body and run step
+// jika kondisi → jalankan badan dan jalankan langkah
 if (i < 3) { alert(i); i++ }
-// if condition → run body and run step
+// jika kondisi → jalankan badan dan jalankan langkah
 if (i < 3) { alert(i); i++ }
-// ...finish, because now i == 3
+// ...selesai, karena sekarang i == 3
 ```
 
-````smart header="Inline variable declaration"
-Here, the "counter" variable `i` is declared right in the loop. This is called an "inline" variable declaration. Such variables are visible only inside the loop.
+````smart header="Deklarasi varibel sebaris"
+Disini, "penghitung" variabel `i` dideklarasikan di dalam perulangan. Ini disebut deklarasi variabel "sebaris". variabel ini hanya akan terlihat di dalam perulangan.
 
 ```js run
 for (*!*let*/!* i = 0; i < 3; i++) {
   alert(i); // 0, 1, 2
 }
-alert(i); // error, no such variable
+alert(i); // error, tidak ada variabel
 ```
 
-Instead of defining a variable, we could use an existing one:
+Daripada mendefinisikan sebuah variabel, kita dapat menggunakan yang sudah ada:
 
 ```js run
 let i = 0;
 
-for (i = 0; i < 3; i++) { // use an existing variable
+for (i = 0; i < 3; i++) { // gunakan variabel yang sudah ada
   alert(i); // 0, 1, 2
 }
 
-alert(i); // 3, visible, because declared outside of the loop
+alert(i); // 3, terlihat, karena dideklarasikan diluar dari perulangan
 ```
 
 ````
 
 
-### Skipping parts
+### Melewatkan bagian
 
-Any part of `for` can be skipped.
+Bagian apapun dari `for` dapat dilewati.
 
-For example, we can omit `begin` if we don't need to do anything at the loop start.
+Contoh, kita dapat menghilangkan `awal` jika kita tidak butuh untuk melakukan apapun pada awal perulangan.
 
-Like here:
+Seperti ini:
 
 ```js run
-let i = 0; // we have i already declared and assigned
+let i = 0; // kita punya i yang sudah dideklarasikan dan telah ditetapkan
 
-for (; i < 3; i++) { // no need for "begin"
+for (; i < 3; i++) { // tidak butuh "awal"
   alert( i ); // 0, 1, 2
 }
 ```
 
-We can also remove the `step` part:
+Kita juga bisa menghilangkan bagian `langkah`:
 
 ```js run
 let i = 0;
@@ -192,32 +192,32 @@ for (; i < 3;) {
 }
 ```
 
-This makes the loop identical to `while (i < 3)`.
+Ini membuat perulangan sama dengan `while (i < 3)`.
 
-We can actually remove everything, creating an infinite loop:
+Kita sebenarnya dapat menghilangkan semuanya, membuat sebuah perulangan tak terhingga:
 
 ```js
 for (;;) {
-  // repeats without limits
+  // ulangi tanpa batas
 }
 ```
 
-Please note that the two `for` semicolons `;` must be present. Otherwise, there would be a syntax error.
+Tolong dicatat bahwa dua `for` titik koma `;` harus ada, jika tidak, akan ada sintaks error.
 
-## Breaking the loop
+## Menghentikan perulangan
 
-Normally, a loop exits when its condition becomes falsy.
+Biasanya, sebuah perulangan keluar ketika kondisinya menjadi bernilai salah.
 
-But we can force the exit at any time using the special `break` directive.
+Tapi kita dapat memaksanya keluar pada waktu apapun menggunakan perintah spesial `break`.
 
-For example, the loop below asks the user for a series of numbers, "breaking" when no number is entered:
+Contohnya, perulangan dibawah menanyakan pengguna untuk serangkaian angka, "hentikan" ketika tidak ada angka yang dimasukan:
 
 ```js
 let sum = 0;
 
 while (true) {
 
-  let value = +prompt("Enter a number", '');
+  let value = +prompt("Masukan sebuah angka", '');
 
 *!*
   if (!value) break; // (*)
@@ -229,32 +229,32 @@ while (true) {
 alert( 'Sum: ' + sum );
 ```
 
-The `break` directive is activated at the line `(*)` if the user enters an empty line or cancels the input. It stops the loop immediately, passing control to the first line after the loop. Namely, `alert`.
+Perintah `break` teraktivasi pada baris `(*)` jika pengguna memasukan baris kosong atau membatalkan input. itu akan langsung berhenti, melewati kontrol ke baris pertama setelah perulangan. yang bernama, `alert`.
 
-The combination "infinite loop + `break` as needed" is great for situations when a loop's condition must be checked not in the beginning or end of the loop, but in the middle or even in several places of its body.
+Kombinasi "perulangan tak terhingga + `break` sesuai kebutuhan" bagus untuk situasi dimana sebuah kondisi perulangan harus diperiksa tidak di awal atau akhir dari perulangan, tapi di pertengahan atau bahkan di beberapa tempat tubuhnya.
 
-## Continue to the next iteration [#continue]
+## Lanjutkan ke perulangan berikutnya [#lanjutkan]
 
-The `continue` directive is a "lighter version" of `break`. It doesn't stop the whole loop. Instead, it stops the current iteration and forces the loop to start a new one (if the condition allows).
+Perintah `continue` adalah "versi ringan" dari `break`. Ini tidak mengentikan keseluruhan perulangan. sebagai gantinya, ini menghentikan perulangan saat ini dan memaksa perulangan untuk memulai yang baru (jika kondisi diperbolehkan).
 
-We can use it if we're done with the current iteration and would like to move on to the next one.
+Kita dapat menggunakan ini jika kita selesai dengan perulangan saat ini dan ingin pindah ke yang berikutnya.
 
-The loop below uses `continue` to output only odd values:
+Perulangan dibawah menggunakan `continue` untuk hanya menampilkan nilai ganjil:
 
 ```js run no-beautify
 for (let i = 0; i < 10; i++) {
 
-  // if true, skip the remaining part of the body
+  // jika benar, lewati bagian badan perulangan yang tersisa
   *!*if (i % 2 == 0) continue;*/!*
 
   alert(i); // 1, then 3, 5, 7, 9
 }
 ```
 
-For even values of `i`, the `continue` directive stops executing the body and passes control to the next iteration of `for` (with the next number). So the `alert` is only called for odd values.
+Untuk nilai genap dari `i`, perintah `continue` mengentikan menjalankan badan dan melewati kontrol ke perulangan `for` berikutnya (dengan nomor berikutnya). jadi `alert` hanya terpanggil untuk nilai ganjil.
 
-````smart header="The `continue` directive helps decrease nesting"
-A loop that shows odd values could look like this:
+````smart header="Perintah `continue` membantu mengurangi penyarangan"
+Sebuah perulangan yang menampilkan nilai ganjil dapat terlihat seperti ini:
 
 ```js
 for (let i = 0; i < 10; i++) {
@@ -266,15 +266,15 @@ for (let i = 0; i < 10; i++) {
 }
 ```
 
-From a technical point of view, this is identical to the example above. Surely, we can just wrap the code in an `if` block instead of using `continue`.
+Dari sudut pandang teknis, ini identik dengan contoh diatas. Tentunya, kita dapat membungkus kode dalam sebuah blok `if` daripada menggunakan `continue`.
 
-But as a side-effect, this created one more level of nesting (the `alert` call inside the curly braces). If the code inside of`if` is longer than a few lines, that may decrease the overall readability.
+Tapi efek sampinya, ini membuat penyarangan satu level lebih (`alert` dipanggil didalam kurung kurawal). Jika kode didalam `if` lebih panjang dari beberapa baris, itu mungkin mengurangi keterbacaan keseluruhan.
 ````
 
-````warn header="No `break/continue` to the right side of '?'"
-Please note that syntax constructs that are not expressions cannot be used with the ternary operator `?`. In particular, directives such as `break/continue` aren't allowed there.
+````warn header="Tidak ada `break/continue` ke sisi kanan '?'"
+Harap perhatikan bahwa sintaks yang membangun yang bukan ekspresi tidak dapat digunakan dengan operator ternary `?`. Khususnya, perintah seperti `break/continue` tidak diperbolehkan.
 
-For example, if we take this code:
+Misalnya, jika kita mengambil kode ini:
 
 ```js
 if (i > 5) {
@@ -284,50 +284,50 @@ if (i > 5) {
 }
 ```
 
-...and rewrite it using a question mark:
+...dan tulis ulang menggunakan sebuah tanda tanya:
 
 
 ```js no-beautify
-(i > 5) ? alert(i) : *!*continue*/!*; // continue isn't allowed here
+(i > 5) ? alert(i) : *!*continue*/!*; // continue tidak diperbolehkan disini
 ```
 
-...it stops working: there's a syntax error.
+...ia berhenti jalan: ada galat syntax:
 
-This is just another reason not to use the question mark operator `?` instead of `if`.
+Ini hanya alasan lain untuk tidak menggunakan operator tanda tanya `?` daripada `if`.
 ````
 
-## Labels for break/continue
+## Label untuk break/continue
 
-Sometimes we need to break out from multiple nested loops at once.
+Terkadang kita perlu keluar dari beberapa perulangan bersarang sekaligus.
 
-For example, in the code below we loop over `i` and `j`, prompting for the coordinates `(i, j)` from `(0,0)` to `(3,3)`:
+Contohnya, pada kode dibawah kita lakukan perulangan terhadap `i` and `j`, meminta koordinat `(i, j)` dari `(0,0)` ke`(3,3)`:
 
 ```js run no-beautify
 for (let i = 0; i < 3; i++) {
 
   for (let j = 0; j < 3; j++) {
 
-    let input = prompt(`Value at coords (${i},${j})`, '');
+    let input = prompt(`Nilai pada koordinasi (${i},${j})`, '');
 
-    // what if we want to exit from here to Done (below)?
+    // bagaimana jika saya ingin keluar dari sini ke Done (dibawah)?
   }
 }
 
 alert('Done!');
 ```
 
-We need a way to stop the process if the user cancels the input.
+Kita butuh cara untuk menghentikan proses jika pengguna membatalkan input.
 
-The ordinary `break` after `input` would only break the inner loop. That's not sufficient--labels, come to the rescue!
+`break` biasa setelah `input` hanya akan menghentikan perulangan dalam. Itu tidak cukup--label, datang untuk menyelamatkan!
 
-A *label* is an identifier with a colon before a loop:
+Label adalah sebuah pengidentifikasi dengan sebuah titik dua sebelum perulangan:
 ```js
 labelName: for (...) {
   ...
 }
 ```
 
-The `break <labelName>` statement in the loop below breaks out to the label:
+Pernyataan `break <labelName>` di dalam loop di bawah menghentikan pada label:
 
 ```js run no-beautify
 *!*outer:*/!* for (let i = 0; i < 3; i++) {
@@ -336,51 +336,51 @@ The `break <labelName>` statement in the loop below breaks out to the label:
 
     let input = prompt(`Value at coords (${i},${j})`, '');
 
-    // if an empty string or canceled, then break out of both loops
+    // jika sebuah string kosong atau terbatalkan, lalu hentikan kedua perulangan
     if (!input) *!*break outer*/!*; // (*)
 
-    // do something with the value...
+    // lakukan sesuatu dengan nilai...
   }
 }
 alert('Done!');
 ```
 
-In the code above, `break outer` looks upwards for the label named `outer` and breaks out of that loop.
+Pada kode diatas, `break outer` melihat keatas untuk label bernama `outer` dan menghentikan perulangan itu.
 
-So the control goes straight from `(*)` to `alert('Done!')`.
+Jadi kontrol pergi langsung dari `(*)` ke `alert('Done!')`.
 
-We can also move the label onto a separate line:
+Kita juga dapat memindah label ke sebuah baris terpisah:
 
 ```js no-beautify
 outer:
 for (let i = 0; i < 3; i++) { ... }
 ```
 
-The `continue` directive can also be used with a label. In this case, code execution jumps to the next iteration of the labeled loop.
+Perintah `continue` dapat juga digunakan dengan sebuah label. pada kasus ini, eksekusi kode berpindah ke perulangan label berikutnya.
 
-````warn header="Labels do not allow to \"jump\" anywhere"
-Labels do not allow us to jump into an arbitrary place in the code.
+````warn header="Label tidak mengizinkan \"lompat\" ke manapun"
+Label tidak mengizinkan kita untuk lompat ke sembarang tempat dalam kode.
 
-For example, it is impossible to do this:
+Misalnya, mustahil melakukan ini:
 ```js
-break label; // doesn't jumps to the label below
+break label;  // tidak lompak ke label di bawah
 
 label: for (...)
 ```
 
-A call to `break/continue` is only possible from inside a loop and the label must be somewhere above the directive.
+Sebuah panggilan untuk `break/continue` hanya mungkin dari dalam sebuah perulangan dan label harus berada diatas perintah.
 ````
 
-## Summary
+## Ringkasan
 
-We covered 3 types of loops:
+Kita membahas 3 jenis perulangan:
 
-- `while` -- The condition is checked before each iteration.
-- `do..while` -- The condition is checked after each iteration.
-- `for (;;)` -- The condition is checked before each iteration, additional settings available.
+- `while` -- Kondisi diperiksa sebelum setiap perulangan.
+- `do..while` -- Kondisi diperiksa setelah setiap perulangan.
+- `for (;;)` -- Kondisi diperiksa sebelum setiap perulangan, pengaturan tambahan tersedia.
 
-To make an "infinite" loop, usually the `while(true)` construct is used. Such a loop, just like any other, can be stopped with the `break` directive.
+Untuk membuat sebuah perulangan "tak terhinggaa", biasanya konstruksi `while(true)` digunakan. Demikian sebuah perulangan, seperti yang lainnya, dapat berhenti dengan perintah `break`.
 
-If we don't want to do anything in the current iteration and would like to forward to the next one, we can use the `continue` directive.
+Jika kita tidak ingin melakukan apapun di perulangan saat ini dan ingin meneruskan ke yang berikutnya, kita dapat menggunakan perintah `continue`.
 
-`break/continue` support labels before the loop. A label is the only way for `break/continue` to escape a nested loop to go to an outer one.
+`break/continue` mendukung label sebelum perulangan. Label adalah satu-satunya cara untuk `break/continue` menghindari loop bersarang untuk pergi ke luar

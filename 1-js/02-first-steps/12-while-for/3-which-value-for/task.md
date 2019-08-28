@@ -1,19 +1,19 @@
-importance: 4
+nilai penting: 4
 
 ---
 
-# Which values get shown by the "for" loop?
+# Nilai mana yang ditampilkan oleh perulangan "for" ?
 
-For each loop write down which values it is going to show. Then compare with the answer.
+Untuk setiap perulangan tulis nilai mana yang akan ditampilkan. lalu bandingkan dengan jawabanya
 
-Both loops `alert` same values or not?
+Kedua perulangan `alert` nilai yang sama atau tidak?
 
-1. The postfix form:
+1. Bentuk postfix:
 
     ```js
     for (let i = 0; i < 5; i++) alert( i );
     ```
-2. The prefix form:
+2. Bentuk prefix:
 
     ```js
     for (let i = 0; i < 5; ++i) alert( i );

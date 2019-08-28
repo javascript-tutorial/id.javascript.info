@@ -64,11 +64,7 @@ if (hour < 10 || hour > 18 || isWeekend) {
 }
 ```
 
-<<<<<<< HEAD
-## OR mencari nilai truthy pertama
-=======
-## OR "||" finds the first truthy value
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+## OR "||" mencari nilai truthy pertama
 
 Logika di atas memang klasik. Sekarang, mari bawa fitur "extra" JavaScript.
 
@@ -170,7 +166,7 @@ alert( true && false );  // false
 alert( false && false ); // false
 ```
 
-An example with `if`:
+Contoh dengan `if`:
 
 ```js run
 let hour = 12;
@@ -181,18 +177,18 @@ if (hour == 12 && minute == 30) {
 }
 ```
 
-Just as with OR, any value is allowed as an operand of AND:
+Sama seperti OR, nilai apapun boleh menjadi operand dari AND:
 
 ```js run
-if (1 && 0) { // evaluated as true && false
+if (1 && 0) { // dievaluasi sebagai true && false
   alert( "won't work, because the result is falsy" );
 }
 ```
 
 
-## AND "&&" finds the first falsy value
+## AND "&&" mencari nilai falsy pertama
 
-Given multiple AND'ed values:
+Misal ada beberapa nilai di-AND-kan:
 
 ```js
 result = value1 && value2 && value3;
@@ -200,49 +196,49 @@ result = value1 && value2 && value3;
 
 The AND `&&` operator does the following:
 
-- Evaluates operands from left to right.
-- For each operand, converts it to a boolean. If the result is `false`, stops and returns the original value of that operand.
-- If all operands have been evaluated (i.e. all were truthy), returns the last operand.
+- Mengevaluasi operand dari kiri ke kanan.
+- Untuk tiap operand, konversi ia ke boolean. Jika hasilnya `false`, stop dan kembalikan nilai original operand tersebut.
+- Jika semua operand dievaluasi (i.e. semua truthy), mengembalikan operand terakhir.
 
-In other words, AND returns the first falsy value or the last value if none were found.
+Dengan kata lain, AND mengembalikan nilai falsy pertama atau nilai terakhir jika tak ketemu satupun nilai falsy.
 
-The rules above are similar to OR. The difference is that AND returns the first *falsy* value while OR returns the first *truthy* one.
+Aturan di atas mirip dengan OR. Bedanya ialah AND mengembalikan niai *falsy* pertama sedangkan OR mengembalikan nilai *truthy* pertama.
 
-Examples:
+Misalnya:
 
 ```js run
-// if the first operand is truthy,
-// AND returns the second operand:
+// jika operand pertama truthy,
+// AND mengembalikan operand kedua:
 alert( 1 && 0 ); // 0
 alert( 1 && 5 ); // 5
 
-// if the first operand is falsy,
-// AND returns it. The second operand is ignored
+// jika operand pertama falsy,
+// AND mengembalikan itu. Operand kedua diabaikan
 alert( null && 5 ); // null
 alert( 0 && "no matter what" ); // 0
 ```
 
-We can also pass several values in a row. See how the first falsy one is returned:
+Kita juga bisa mengoper beberapa nilai dalam satu barus. Lihat bagaimana nilai falsy pertama dikembalikan:
 
 ```js run
 alert( 1 && 2 && null && 3 ); // null
 ```
 
-When all values are truthy, the last value is returned:
+Ketika semua nilai truthy, nilai terakhir dikembalikan:
 
 ```js run
 alert( 1 && 2 && 3 ); // 3, the last one
 ```
 
 ````smart header="Precedence of AND `&&` is higher than OR `||`"
-The precedence of AND `&&` operator is higher than OR `||`.
+Presedensi operator AND `&&` lebih tinggi dari OR `||`.
 
-So the code `a && b || c && d` is essentially the same as if the `&&` expressions were in parentheses: `(a && b) || (c && d)`.
+Jadi kode `a && b || c && d` esensinya sama dengan jika expresi `&&` dibungkus tanda kurung: `(a && b) || (c && d)`.
 ````
 
-Just like OR, the AND `&&` operator can sometimes replace `if`.
+Sama seperti OR, operator `&&` kadang bisa menggantikan `if`.
 
-For instance:
+Misalnya:
 
 ```js run
 let x = 1;
@@ -250,9 +246,9 @@ let x = 1;
 (x > 0) && alert( 'Greater than zero!' );
 ```
 
-The action in the right part of `&&` would execute only if the evaluation reaches it. That is, only if `(x > 0)` is true.
+Aksi di bagian kanan `&&` akan diexekusi hanya jika evaluasinya mencapai itu. Yaitu, hanya jika `(x > 0)` true.
 
-So we basically have an analogue for:
+Jadi pada dasarnya kita punya analogi untuk:
 
 ```js run
 let x = 1;
@@ -262,46 +258,46 @@ if (x > 0) {
 }
 ```
 
-The variant with `&&` appears shorter. But `if` is more obvious and tends to be a little bit more readable.
+Varian dengan `&&` muncul lebih pendek. Tapi `if` lebih jelas dan cenderung lebih mudah terbaca.
 
-So we recommend using every construct for its purpose: use `if` if we want if and use `&&` if we want AND.
+Jadi kita rekomendasi menggunakan setiap konstruksi untuk tujuannya: gunakan `if` jika kita ingin if dan gunakan `&&` jika kita ingin AND.
 
 ## ! (NOT)
 
-The boolean NOT operator is represented with an exclamation sign `!`.
+Operator boolean NOT diwakili dengan tanda exklamasi `!`.
 
-The syntax is pretty simple:
+Syntaxnya cukup simpel:
 
 ```js
 result = !value;
 ```
 
-The operator accepts a single argument and does the following:
+Operator ini menerima argumen tunggal dan menjalankan hal berikut:
 
-1. Converts the operand to boolean type: `true/false`.
-2. Returns the inverse value.
+1. Mengkonversi operand ke tipe boolean: `true/false`.
+2. Mengembalikan nilai kebalikan.
 
-For instance:
+Misalnya:
 
 ```js run
 alert( !true ); // false
 alert( !0 ); // true
 ```
 
-A double NOT `!!` is sometimes used for converting a value to boolean type:
+NOT ganda `!!` kadang dipakai untuk mengkonversi nilai ke tipe boolean:
 
 ```js run
 alert( !!"non-empty string" ); // true
 alert( !!null ); // false
 ```
 
-That is, the first NOT converts the value to boolean and returns the inverse, and the second NOT inverses it again. In the end, we have a plain value-to-boolean conversion.
+Yaitu, NOT pertama mengkonversi nilai ke boolean dan mengembalikan kebalikannya, dan NOT kedua membaliknya lagi. Ujungnya, kita punya konversi nilai-ke-boolean biasa.
 
-There's a little more verbose way to do the same thing -- a built-in `Boolean` function:
+Ada sedikit cara rewel untuk melakukan hal serupa -- fungsi `Boolean` built-in:
 
 ```js run
 alert( Boolean("non-empty string") ); // true
 alert( Boolean(null) ); // false
 ```
 
-The precedence of NOT `!` is the highest of all logical operators, so it always executes first, before `&&` or `||`.
+Presedensi NOT `!` paling tinggi dari semua operator logika, jadi ia selalu jalan pertama, sebelum `&&` or `||`.

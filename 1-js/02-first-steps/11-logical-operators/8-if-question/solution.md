@@ -1,6 +1,6 @@
-The answer: the first and the third will execute.
+Jawabannya: pertama dan ketiga akan diexekusi.
 
-Details:
+Detil:
 
 ```js run
 // Runs.

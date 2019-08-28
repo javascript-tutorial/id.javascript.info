@@ -1,10 +1,10 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# What is the result of AND?
+# Apa hasil AND?
 
-What is this code going to show?
+Kode ini akan menampilkan apa?
 
 ```js
 alert( 1 && null && 2 );

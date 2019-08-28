@@ -1,9 +1,9 @@
-importance: 3
+nilai penting: 3
 
 ---
 
-# Check the range between
+# Cek kisaran antara
 
-Write an "if" condition to check that `age` is between `14` and `90` inclusively.
+Tulis satu kondisi "if" untuk mengecek bahwa `age` ada di antara `14` dan `90` secara inklusif.
 
-"Inclusively" means that `age` can reach the edges `14` or `90`.
+"Secara inklusif" artinya bahwa `age` bisa mencapai `14` atau `90`.

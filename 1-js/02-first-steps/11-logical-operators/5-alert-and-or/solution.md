@@ -1,16 +1,16 @@
-The answer: `3`.
+Jawabannya: `3`.
 
 ```js run
 alert( null || 2 && 3 || 4 );
 ```
 
-The precedence of AND `&&` is higher than `||`, so it executes first.
+Presedensi AND `&&` lebih tinggi dari `||`, jadi ia jalan pertama.
 
-The result of `2 && 3 = 3`, so the expression becomes:
+Hasil dari `2 && 3 = 3`, jadi expresinya menjadi:
 
 ```
 null || 3 || 4
 ```
 
-Now the result is the first truthy value: `3`.
+Sekarang hasilnya jadi nilai truthy pertama: `3`.
 

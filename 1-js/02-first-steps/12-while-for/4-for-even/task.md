@@ -1,9 +1,9 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Output even numbers in the loop
+# Menghasilkan angka genap di perulangan
 
-Use the `for` loop to output even numbers from `2` to `10`.
+Gunakan perulangan `for` untuk menghasilkan angka genap dari `2`sampai `10`.
 
 [demo]
