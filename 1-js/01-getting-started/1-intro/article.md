@@ -73,7 +73,6 @@ Contoh keterbatasan tersebut meliputi:
     Ini disebut "Same Origin Policy". Untuk melakukan hal tersebut, *kedua halaman* harus sepakat terhadap adanya pertukaran data dan memiliki kode JavaScript khusus yang melakukan hal tersebut. Kita akan membahasnya nanti dalam tutorial ini.
 
     Pembatasan ini pun demi keselamatan pengguna. Sebuah halaman dari `http://anysite.com` yang dibuka pengguna tidak akan bisa mengakses tab browser lainnya dengan URL `http://gmail.com` dan mencuri informasinya.
-    
 - JavaScript bisa dengan mudah berinteraksi secara online ke server di mana halaman berasal. Tapi kemampuannya menerima data dari situs/domain lain dilumpuhkan. Meskipun mampu, ia butuh persetujuan explisit (yang diexpresikan dalam HTTP header) dari sisi remote. Sekali lagi, itu merupakan pembatasan keamanan.
 
 ![](limitations.svg)
@@ -82,7 +81,7 @@ Pembatasan macam ini tidak ada jika JavaScript digunakan di luar browser, misaln
 
 ## Apa yang membuat JavaScript unik?
 
-Ada minimal *tiga* hal unik dari JavaScript:
+Paling tidak ada *tiga* hal unik dari JavaScript:
 
 ```compare
 + Integrasi penuh dengan HTML/CSS.
@@ -93,8 +92,7 @@ JavaScript merupakan satu-satunya teknologi browser yang mengkombinasikan ketiga
 
 Itulah yang membuat JavaScript unik. Itulah kenapa JavaScript menjadi alat yang paling sering untuk membuat antarmuka browser.
 
-Yang artinya, JavaScript memungkinkan kita untuk membuat server, aplikasi mobile, dsb
-
+Katanya, JavaScript juga bisa dipakai untuk membuat aplikasi server, mobile, dsb.
 
 ## Bahasa "di atas" JavaScript
 
@@ -104,7 +102,7 @@ Itu wajar, karena proyek dan persyaratan tiap orang berbeda-beda.
 
 Akhir-akhir ini muncul banyak bahasa baru, yang *ditranspile* (dikonversi) ke JavaScript sebelum dijalankan di browser.
 
-Tool-tool modern membuat transpilasi sangat cepat dan transparan, yang memungkinkan para developer menulis kodenya dalam bahasa lain dan mengautokonversi itu "di balik layar".
+Tools modern membuat transpilasi sangat cepat dan transparan, yang memungkinkan para developer menulis kodenya dalam bahasa lain dan mengautokonversi itu "di balik layar".
 
 Contoh bahasa yang dimaksud:
 

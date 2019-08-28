@@ -1,10 +1,16 @@
 # Pattern dan flag
 
-Ekspresi reguler ("*regexp*", atau hanya "*reg*") terdiri dari *pattern* dan opsional *flag*.
+Expresi reguler merupakan cara yang kuat untuk mencari dan mengganti dalam teks.
+
+Di JavaScript, mereka tersedia sebagai objek `RegExp`, dan bisa diintegrasi dalam metode string.
+
+## Expresi Reguler
+
+Expresi reguler ("regexp", atau hanya "reg") terdiri dari *pola* dan *flag* opsional.
 
 Ada dua sintaks untuk membuat objek ekspresi reguler.
 
-Sintaks yang panjang:
+Syntax panjang:
 
 ```js
 regexp = new RegExp("pattern", "flag");
@@ -75,7 +81,7 @@ alert( "<h1> <h2> <h3>".search(regexp));
 
 ## Flag
 
-Ekspresi reguler mungkin memiliki *flag* yang dapat mempengaruhi *search*.
+Expresi reguler mungkin memiliki *flag* yang dapat mempengaruhi *search*.
 
 Mereka hanya ada 6 di Javascript:
 
@@ -105,6 +111,7 @@ Untuk sekarang, *flag* paling sederhana adalah `i`, berikut contohnya:
 let str = "I love JavaScript!";
 
 alert( str.search(/LOVE/i) ); // 2 (lowercased ditemukan)
+
 alert( str.search(/LOVE/) ); // -1 (tidak ada yang ditemukan tanpa flag 'i')
 ```
 

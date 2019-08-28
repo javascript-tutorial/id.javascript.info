@@ -17,7 +17,7 @@ while (kondisi) {
 }
 ```
 
-Ketika `kondisi` bernilai `benar`, `kode` dari badan perulangan tereksekusi.
+Ketika `kondisi` bernilai truthy, `kode` dari badan perulangan dijalankan.
 
 Contohnya, perulangan di bawah mengeluarkan `i` selagi `i < 3`:
 
@@ -68,7 +68,7 @@ do {
 } while (condition);
 ```
 
-Perulangan akan mengeksekusi badan terlebih dahulu, lalu memeriksa kondisi, dan, selagi itu bernilai benar, jalankan itu lagi dan lagi.
+Perulangan akan mengeksekusi badan terlebih dahulu, lalu memeriksa kondisi, dan, selagi itu bernilai truthy, jalankan itu lagi dan lagi.
 
 Contohnya:
 
@@ -80,11 +80,11 @@ do {
 } while (i < 3);
 ```
 
-Format penulisan ini hanya digunakan ketika kamu ingin badan  dari perulangan tereksekusi **setidaknya sekali** Terlepas dari kondisi menjadi bernilai benar. Biasanya, format lain yang dipilih: `while(…) {…}`.
+Format penulisan ini hanya digunakan ketika kamu ingin badan dari perulangan tereksekusi **setidaknya sekali** Terlepas dari kondisi menjadi bernilai benar. Biasanya, format lain yang dipilih: `while(…) {…}`.
 
 ## Perulangan "for"
 
-Perulangan `for` adalah perulangan yang paling umum digunakan.
+Perulangan `for` lebih complex, tapi merupakan perulangan yang paling umum digunakan.
 
 Itu terlihat seperti ini:
 
@@ -106,22 +106,24 @@ Mari bahas pernyataan `for` bagian demi bagian:
 
 | bagian  |          |                                                                            |
 |-------|----------|----------------------------------------------------------------------------|
-| awal | `i = 0`    | jalankan sekali setelah memasuki perulangan.                                      |
-| kondisi | `i < 3`| periksa sebelum setiap perulangan. jika salah, perulangan berhenti.              |
-| langkah| `i++`      | Jalankan setelah badan pada setiap perulangan tetapi sebelum kondisi diperiksa. |
-| badan | `alert(i)`| Jalankan lagi dan lagi selagi kondisi bernilai benar.                         |
+| begin | `i = 0`    | jalankan sekali setelah memasuki perulangan.                                      |
+| condition | `i < 3`| periksa sebelum setiap perulangan. jika salah, perulangan berhenti.              |
+| step | `i++`      | Jalankan setelah badan pada setiap perulangan tetapi sebelum kondisi diperiksa. |
+| body | `alert(i)`| Jalankan lagi dan lagi selagi kondisi bernilai benar.                         |
 
+Cara kerja algoritma perulangan umum seperti ini:
 
-Algoritma peulangan umum bekerja seperti ini:
 ```
-jalankan awal
-→ (jika kondisi → jalankan badan dan jalankan langkah)
-→ (jika kondisi → jalankan badan dan jalankan langkah)
-→ (jika kondisi → jalankan badan dan jalankan langkah)
+Jalankan begin
+→ (jika condition → jalankan body dan jalankan step)
+→ (jika condition → jalankan body dan jalankan step)
+→ (jika condition → jalankan body dan jalankan step)
 → ...
 ```
 
-Jika kamu baru pada perulangan, ini dapat membantu untuk kembali ke contoh dan mereproduksi bagamana ini berjalan langkah demi langkah pada sebuah selembar kertas.
+Dikatakan, `begin` diexekusi sekali, kemudian ia beriterasi: setelah tiap `condition` dites, `body` dan `step` diexekusi.
+
+Jika kamu baru pada perulangan, ini bisa membantumu kembali ke contoh dan mereproduksi bagamana ini berjalan selangkah demi selangkah pada sebuah selembar kertas.
 
 Inilah yang sebenarnya terjadi pada kasus kita:
 
@@ -179,6 +181,7 @@ for (; i < 3; i++) { // tidak butuh "awal"
   alert( i ); // 0, 1, 2
 }
 ```
+
 Kita juga bisa menghilangkan bagian `langkah`:
 
 ```js run
@@ -198,6 +201,7 @@ for (;;) {
   // ulangi tanpa batas
 }
 ```
+
 Tolong dicatat bahwa dua `for` titik koma `;` harus ada, jika tidak, akan ada sintaks error.
 
 ## Menghentikan perulangan
@@ -287,15 +291,14 @@ if (i > 5) {
 (i > 5) ? alert(i) : *!*continue*/!*; // continue tidak diperbolehkan disini
 ```
 
-...ini berhenti berjalan. Kode seperti ini akan memberi sintaks error:
-
+...ia berhenti jalan: ada galat syntax:
 
 Ini hanya alasan lain untuk tidak menggunakan operator tanda tanya `?` daripada `if`.
 ````
 
 ## Label untuk break/continue
 
-Terkadang kita perlu keluar dari beberapa loop bersarang sekaligus.
+Terkadang kita perlu keluar dari beberapa perulangan bersarang sekaligus.
 
 Contohnya, pada kode dibawah kita lakukan perulangan terhadap `i` and `j`, meminta koordinat `(i, j)` dari `(0,0)` ke`(3,3)`:
 
@@ -306,8 +309,7 @@ for (let i = 0; i < 3; i++) {
 
     let input = prompt(`Nilai pada koordinasi (${i},${j})`, '');
 
-    // bagaimana jika saya ingin keluar dari sini ke selesai (dibawah)?
-
+    // bagaimana jika saya ingin keluar dari sini ke Done (dibawah)?
   }
 }
 
@@ -356,12 +358,12 @@ for (let i = 0; i < 3; i++) { ... }
 
 Perintah `continue` dapat juga digunakan dengan sebuah label. pada kasus ini, eksekusi kode berpindah ke perulangan label berikutnya.
 
-````warn header="Label bukan sebuah \"goto\""
-Label tidak mengizinkan kita untuk berpindah tempat sewenang-wenang dalam kode.
+````warn header="Label tidak mengizinkan \"lompat\" ke manapun"
+Label tidak mengizinkan kita untuk lompat ke sembarang tempat dalam kode.
 
-Contohnya, ini mustahil untuk melakukan ini:
+Misalnya, mustahil melakukan ini:
 ```js
-break label;  // pindah ke label? Tidak.
+break label;  // tidak lompak ke label di bawah
 
 label: for (...)
 ```
