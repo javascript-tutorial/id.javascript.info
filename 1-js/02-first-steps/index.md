@@ -1,3 +1,3 @@
-# JavaScript Fundamentals
+# JavaScript Dasar
 
-Let's learn the fundamentals of script building.
+Mari kita belajar dasar-dasar pembuatan skrip.
