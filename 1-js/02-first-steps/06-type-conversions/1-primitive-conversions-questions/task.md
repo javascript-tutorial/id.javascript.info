@@ -21,6 +21,7 @@ true + false
 "  -9  " - 5
 null + 1
 undefined + 1
+" \t \n" - 2
 ```
 
 Pikirkan dengan baik, tulis dan bandingkan dengan jawaban.

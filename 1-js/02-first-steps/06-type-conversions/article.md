@@ -10,7 +10,7 @@ Ada juga kasus di mana kita harus explisit mengkonversi nilai ke tipe yang dihar
 Di bab ini, kita takkan mengcover objek. Daripada itu, kita akan belajar primitives dulu. Lalu, setelah kita belajar tentang objek, kita akan lihat cara konversi objek bekerja di bab <info:object-toprimitive>.
 ```
 
-## ToString
+## To String
 
 Konversi string terjadi ketika kita butuh bentuk string dari nilai.
 
@@ -30,7 +30,7 @@ alert(typeof value); // string
 
 Konversi string kebanyakan jelas. `false` menjadi `"false"`, `null` menjadi `"null"`, dll.
 
-## ToNumber
+## To Number
 
 Konversi numerik terjadi otomatis dalam fungsi dan expresi matematis.
 
@@ -94,7 +94,7 @@ alert( '1' + 2 ); // '12' (string ke kiri)
 Ini cuma terjadi ketika setidaknya satu dari argumen yaitu string. Sebaliknya, nilai dikonversi ke angka.
 ````
 
-## ToBoolean
+## To Boolean
 
 Konversi boolean ialah yang paling simpel.
 
@@ -129,9 +129,15 @@ alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
 
 Tiga tipe konversi yang paling digunakan ialah ke string, ke angka, dan ke boolean.
 
+<<<<<<< HEAD
 **`ToString`** -- Terjadi ketika kita mengoutput sesuatu. Bisa berjalan dengan `String(value)`. Konversi ke string biasanya untuk nilai primitive.
 
 **`ToNumber`** -- Terjadi di operasi matematika. Bisa berjalan dengan `Number(value)`.
+=======
+**`To String`** -- Occurs when we output something. Can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
+
+**`To Number`** -- Occurs in math operations. Can be performed with `Number(value)`.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 Konversinya mengikuti aturan ini:
 
@@ -142,7 +148,11 @@ Konversinya mengikuti aturan ini:
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
 | `string` | Stringnya dibaca "apa adanya", whitespace dari kedua sisi diabaikan. String kosong menjadi `0`. Error memberikan `NaN`. |
 
+<<<<<<< HEAD
 **`ToBoolean`** -- Terjadi di operasi logika. Bisa berjalan dengan `Boolean(value)`.
+=======
+**`To Boolean`** -- Occurs in logical operations. Can be performed with `Boolean(value)`.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 Ikuti aturan ini:
 

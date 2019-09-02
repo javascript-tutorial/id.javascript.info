@@ -106,10 +106,17 @@ Mari bahas pernyataan `for` bagian demi bagian:
 
 | bagian  |          |                                                                            |
 |-------|----------|----------------------------------------------------------------------------|
+<<<<<<< HEAD
 | begin | `i = 0`    | jalankan sekali setelah memasuki perulangan.                                      |
 | condition | `i < 3`| periksa sebelum setiap perulangan. jika salah, perulangan berhenti.              |
 | step | `i++`      | Jalankan setelah badan pada setiap perulangan tetapi sebelum kondisi diperiksa. |
 | body | `alert(i)`| Jalankan lagi dan lagi selagi kondisi bernilai benar.                         |
+=======
+| begin | `i = 0`    | Executes once upon entering the loop.                                      |
+| condition | `i < 3`| Checked before every loop iteration. If false, the loop stops.              |
+| body | `alert(i)`| Runs again and again while the condition is truthy.                         |
+| step| `i++`      | Executes after the body on each iteration. |
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 Cara kerja algoritma perulangan umum seperti ini:
 
@@ -300,7 +307,11 @@ Ini hanya alasan lain untuk tidak menggunakan operator tanda tanya `?` daripada 
 
 Terkadang kita perlu keluar dari beberapa perulangan bersarang sekaligus.
 
+<<<<<<< HEAD
 Contohnya, pada kode dibawah kita lakukan perulangan terhadap `i` and `j`, meminta koordinat `(i, j)` dari `(0,0)` ke`(3,3)`:
+=======
+For example, in the code below we loop over `i` and `j`, prompting for the coordinates `(i, j)` from `(0,0)` to `(2,2)`:
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 ```js run no-beautify
 for (let i = 0; i < 3; i++) {
