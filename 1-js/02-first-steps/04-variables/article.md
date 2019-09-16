@@ -12,7 +12,11 @@ Variabel digunakan untuk menyimpan informasi ini.
 
 Untuk membuat variabel di JavaScript, gunakan katakunci `let`.
 
+<<<<<<< HEAD
 Pernyataan di bawah membuat (dengan kata lain: *declares* or *defines*) variabel dengan nama "message":
+=======
+The statement below creates (in other words: *declares*) a variable with the name "message":
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 ```js
 let message;
