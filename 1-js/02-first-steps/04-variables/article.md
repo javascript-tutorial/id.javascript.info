@@ -12,7 +12,11 @@ Variabel digunakan untuk menyimpan informasi ini.
 
 Untuk membuat variabel di JavaScript, gunakan katakunci `let`.
 
+<<<<<<< HEAD
 Pernyataan di bawah membuat (dengan kata lain: *declares* or *defines*) variabel dengan nama "message":
+=======
+The statement below creates (in other words: *declares*) a variable with the name "message":
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 ```js
 let message;
@@ -290,7 +294,11 @@ Dengan kata lain, konstan berhuruf kapital hanya digunakan sebagai alias untuk n
 
 Berbicara tentang variabel, ada satu hal yang sangat penting.
 
+<<<<<<< HEAD
 Nama variabel sebaiknya punya arti yang bersih dan jelas, menjelaskan data yang ia simpan dengan pantas.
+=======
+A variable name should have a clean, obvious meaning, describing the data that it stores.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Penamaan variabel adalah salah satu keahlian yang penting dan rumit dalam pemrograman. Pandangan sekilas pada nama variabel bisa menyingkap kode yang ditulis oleh pengembang pemula versus pengembang berpengalaman.
 
