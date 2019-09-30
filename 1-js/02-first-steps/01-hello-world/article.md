@@ -69,7 +69,11 @@ Komen sebelum dan setelah script.
     //--></script>
     ```
 
+<<<<<<< HEAD
     Trik ini tidak lagi dipakai di JavaScript modern. Komen ini menyembunyikan kode JavaScript dari peramban tua yang tak tahu cara memproses tag `<script>`. Oleh karena peramban yang dirilis 15 tahun terakhir tak punya masalah terkait ini, komen macam ini bisa membantumu mengidentifikasi kode yang sangat jadul.
+=======
+    This trick isn't used in modern JavaScript. These comments hide JavaScript code from old browsers that didn't know how to process the `<script>` tag. Since browsers released in the last 15 years don't have this issue, this kind of comment can help you identify really old code.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 
 ## Script External

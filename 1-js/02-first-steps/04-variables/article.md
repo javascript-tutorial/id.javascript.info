@@ -12,7 +12,11 @@ Variabel digunakan untuk menyimpan informasi ini.
 
 Untuk membuat variabel di JavaScript, gunakan katakunci `let`.
 
+<<<<<<< HEAD
 Pernyataan di bawah membuat (dengan kata lain: *declares* or *defines*) variabel dengan nama "message":
+=======
+The statement below creates (in other words: *declares*) a variable with the name "message":
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 ```js
 let message;
@@ -237,7 +241,11 @@ Untuk mendeklarasi variabel konstan (tak berubah), gunakan `const` ketimbang `le
 const myBirthday = '18.04.1982';
 ```
 
+<<<<<<< HEAD
 Variabel dideklarasi menggunakan `const` disebut "konstan". Mereka tak bisa diubah. Jika kamu mencoba mengubahnya maka ia menghasilkan galat:
+=======
+Variables declared using `const` are called "constants". They cannot be reassigned. An attempt to do so would cause an error:
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 ```js run
 const myBirthday = '18.04.1982';
@@ -290,7 +298,11 @@ Dengan kata lain, konstan berhuruf kapital hanya digunakan sebagai alias untuk n
 
 Berbicara tentang variabel, ada satu hal yang sangat penting.
 
+<<<<<<< HEAD
 Nama variabel sebaiknya punya arti yang bersih dan jelas, menjelaskan data yang ia simpan dengan pantas.
+=======
+A variable name should have a clean, obvious meaning, describing the data that it stores.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 Penamaan variabel adalah salah satu keahlian yang penting dan rumit dalam pemrograman. Pandangan sekilas pada nama variabel bisa menyingkap kode yang ditulis oleh pengembang pemula versus pengembang berpengalaman.
 
