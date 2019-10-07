@@ -47,7 +47,11 @@ Opsi-opsi berikut patut anda perhatikan:
 - [Atom](https://atom.io/) (cross-platform, gratis).
 =======
 - [Atom](https://atom.io/) (cross-platform, free).
+<<<<<<< HEAD
 >>>>>>> 9b5c1c95ec8a466150e519b0e94748717c747b09:1-js/01-getting-started/3-code-editors/article.md
+=======
+- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 - [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, gratis).
 - [Vim](http://www.vim.org/) dan [Emacs](https://www.gnu.org/software/emacs/) sangat keren jika kamu tahu cara memakainya.

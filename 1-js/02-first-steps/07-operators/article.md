@@ -26,7 +26,11 @@ Sebelum kita lanjut, mari pahami dulu terminologi umum.
     alert( y - x ); // 2, minus binary mengurangi nilai
     ```
 
+<<<<<<< HEAD
     Formalnya, kita akan membahas tentang dua operator berbeda di sini: negasi unary (operand tunggal: membalikkan tanda) dan pengurangan binary (dua operand: pengurangan).
+=======
+    Formally, in the examples above we have two different operators that share the same symbol: the negation operator, a unary operator that reverses the sign, and the subtraction operator, a binary operator that subtracts one number from another.
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 ## Konkatenasi string, binary +
 
