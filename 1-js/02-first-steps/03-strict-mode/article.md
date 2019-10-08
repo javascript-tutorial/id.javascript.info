@@ -4,11 +4,7 @@ Selama ini, JavaScript tumbuh tanpa isu kompatibilitas. Fitur baru ditambahkan t
 
 Keuntungannya adalah kode yang sudah ada tidak rusak. Tapi jeleknya adalah satu keputusan salah atau cacat yang dibuat oleh pembuat JavaScript akan menetap selamanya.
 
-<<<<<<< HEAD
-Inilah yang terjadi hingga tahun 2009 ketika ECMAScript 5 (ES5) muncul. Fitur baru ditambahkan dan kode yang sudah ada diubah. Supaya kode yang lama tetap berjalan, modifikasi yang paling besar dimatikan secara default. Kamu harus mengaktifkan mereka secara explisit dengan directive special: `"use strict"`.
-=======
-This was the case until 2009 when ECMAScript 5 (ES5) appeared. It added new features to the language and modified some of the existing ones. To keep the old code working, most such modifications are off by default. You need to explicitly enable them with a special directive: `"use strict"`.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+Inilah yang terjadi hingga tahun 2009 ketika ECMAScript 5 (ES5) muncul. Fitur baru ditambah dan beberapa kode yang ada diubah. Supaya kode lama tetap berjalan, kebanyakan modifikasi seperti ini secara default mati. Kamu harus mengaktifkan mereka secara explisit menggunakan directive special: `"use strict"`.
 
 ## "use strict"
 
@@ -23,13 +19,7 @@ Misalnya:
 ...
 ```
 
-<<<<<<< HEAD
-Kita akan mempelajari function (cara untuk mengelompokkan perintah) segera.
-
-Melihat ke depan, mari kita ingat bahwa `"use strict"` bisa ditaruh di depan kebanyakan function ketimbang seluruh script. Dengan begitu maka strict mode aktif hanya dalam function itu. Tapi biasanya, orang memakai itu untuk seluruh script.
-=======
-We will learn functions (a way to group commands) soon. Looking ahead, let's note that `"use strict"` can be put at the beginning of the function body instead of the whole script. Doing that enables strict mode in that function only. But usually, people use it for the whole script.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+Kita akan mempelajari fungsi (cara mengelompokkan perintah) segera. Melihat ke depan, ingatlah bahwa `"use strict"` bisa ditaruh di depan badan fungsi ketimbang seluruh script. Itu membuat strict mode aktif hanya di dalam fungsi itu. Tapi biasanya, orang memakai itu untuk seluruh script.
 
 
 ````warn header="Yakinkan bahwa \"use strict\" berada paling atas"
