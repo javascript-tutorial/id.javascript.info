@@ -93,13 +93,7 @@ alert( +"" );   // 0
 
 Sebenarnya ia melakukan hal yang sama seperti `Number(...)`, tapi lebih pendek.
 
-<<<<<<< HEAD
-Kebutuhan mengkonversi string ke angka sangat sering meningkat. Misalnya, jika kita memperoleh nilai dari field form HTML, mereka biasanya string.
-
-Bagaimana jika kita ingin menjumlahkan mereka?
-=======
-The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings. What if we want to sum them?
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+Kebutuhan mengkonversi string ke angka sangat sering meningkat. Misalnya, jika kita memperoleh nilai dari kolom di form HTML, mereka biasanya string. Bagaimana jika kita ingin menjumlahkan mereka?
 
 Plus binary akan menambah mereka sebagai string:
 
@@ -131,19 +125,11 @@ Kenapa plus unary diaplikasi ke nilai sebelum binarynya? Seperti yang kita lihat
 
 ## Presedensi operator
 
-<<<<<<< HEAD
 Jika expresi punya lebih dari satu operator, urutan eksekusi ditentukan oleh *presedensi* mereka, atau dengan kata lain, urutan prioritas default operator.
-=======
-If an expression has more than one operator, the execution order is defined by their *precedence*, or, in other words, the default priority order of operators.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 Dari sekolah, kita semua tahu bahwa perkalian dalam expresi `1 + 2 * 2` harus dihitung sebelum penambahan. Itulah arti dari presedensi. Perkalian disebut memiliki *presedensi lebih tinggi* dari penambahan.
 
-<<<<<<< HEAD
-Tanda kurung mengesampingkan presedensi apapun, jika jika kita tak puas dengan urutan default, kita bisa gunakan mereka untuk mengubahnya. Misalnya: tulis `(1 + 2) * 2`.
-=======
-Parentheses override any precedence, so if we're not satisfied with the default order, we can use them to change it. For example, write `(1 + 2) * 2`.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+Tanda kurung mengesampingkan presedensi apapun, jadi jika kita tak puas dengan urutan default, kita bisa gunakan mereka untuk mengubahnya. Misalnya: tulis `(1 + 2) * 2`.
 
 Ada banyak operator di JavaScript. Tiap operator punya nomor presedensi masing-masing. Nomor yang lebih besar dieksekusi terlebih dahulu. Jika presedensinya sama, urutan eksekusinya dari kiri ke kanan.
 
@@ -211,15 +197,9 @@ alert( a ); // 3
 alert( c ); // 0
 ```
 
-<<<<<<< HEAD
 Di contoh di atas, hasil dari expresi `(a = b + 1)` ialah nilai yang ditetapkan ke `a` (yaitu `3`). Ia kemudian digunakan untuk evaluasi berikutnya.
 
-Kodenya lucu, kan? Kita sebaiknya memahami cara ia bekerja, karena kadang kita lihat ia berada dalam librari Javascript, tapi tak boleh menulis apapun seperti yang kita lakukan. Trik macam itu tentu saja tak membuat kode lebih jelas atau lebih terbaca.
-=======
-In the example above, the result of expression `(a = b + 1)` is the value which was assigned to `a` (that is `3`). It is then used for further evaluations.
-
-Funny code, isn't it? We should understand how it works, because sometimes we see it in JavaScript libraries, but shouldn't write anything like that ourselves. Such tricks definitely don't make code clearer or readable.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+Kodenya lucu, kan? Kita sebaiknya memahami cara ia bekerja, karena kadang kita lihat ia berada dalam librari Javascript, tapi tak boleh menulis apapun seperti yang kita lakukan. Trik macam itu tentu tak membuat kode lebih jelas atau dibaca.
 ````
 
 ## Sisa %
@@ -271,22 +251,14 @@ Jadi, ada operator spesial untuk itu:
 
     ```js run no-beautify
     let counter = 2;
-<<<<<<< HEAD
-    counter++;      // Cara kerjanya sama dengan counter = counter + 1, tapi lebih pendek
-=======
-    counter++;        // works the same as counter = counter + 1, but is shorter
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+    counter++;        // cara kerjanya sama dengan counter = counter + 1, tapi lebih pendek
     alert( counter ); // 3
 ```
 - **Decrement** `--` menurunkan variabel sebanyak 1:
 
     ```js run no-beautify
     let counter = 2;
-<<<<<<< HEAD
-    counter--;      // Cara kerjanya sama dengan counter = counter - 1,tapi lebih pendek
-=======
-    counter--;        // works the same as counter = counter - 1, but is shorter
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+    counter--;        // cara kerjanya sama dengan counter = counter - 1,tapi lebih pendek
     alert( counter ); // 1
     ```
 
@@ -453,17 +425,10 @@ Di sini, expresi pertama `1 + 2` dievaluasi dan hasilnya dibuang. Lalu, `3 + 4` 
 ```smart header="Koma punya presedensi sangat kecil"
 Harap ingat bahwa operator koma punya presedensi sangat kecil, lebih kecil dari `=`, jadi tanda kurung penting dalam contoh di atas.
 
-<<<<<<< HEAD
-Tanpa mereka: `a = 1 + 2, 3 + 4` mengevaluasi `+` terlebih dahulu, penjumlahan tersebut menjadi `a = 3, 7`, lalu operator penetapan `=` menetapkan `a = 3`, dan sisanya diabaikan. Ini seperti `(a = 1 + 2), 3 + 4`.
+Tanpa mereka: `a = 1 + 2, 3 + 4` mengevaluasi `+` terlebih dahulu, menjumlahkan mereka menjadi `a = 3, 7`, lalu operator penetapan `=` menetapkan `a = 3`, dan sisanya diabaikan. Ini seperti `(a = 1 + 2), 3 + 4`.
 ```
 
-Kenapa kita butuh operator yang membuang semuanya kecuali expresi akhirnya?
-=======
-Without them: `a = 1 + 2, 3 + 4` evaluates `+` first, summing the numbers into `a = 3, 7`, then the assignment operator `=` assigns `a = 3`, and the rest is ignored. It's like `(a = 1 + 2), 3 + 4`.
-```
-
-Why do we need an operator that throws away everything except the last expression?
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+Kenapa kita butuh operator yang membuang semuanya kecuali expresi terakhir?
 
 Kadang, orang memakai itu dalam konstruksi rumit untuk menaruh beberapa aksi dalam satu baris.
 
@@ -476,8 +441,4 @@ for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
 }
 ```
 
-<<<<<<< HEAD
-Trik macam ini dipakai di banyak framework JavaScript. Itulah kenapa kita membahas mereka. Tapi, biasanya, mereka tak meningkatkan keterbacaan kode sehingga kita sebaiknya pikir-pikir dulu sebelum menggunakan mereka.
-=======
-Such tricks are used in many JavaScript frameworks. That's why we're mentioning them. But usually they don't improve code readability so we should think well before using them.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+Trik macam ini dipakai di banyak framework JavaScript. Itulah kenapa kita membahas mereka. Tapi, biasanya, mereka tak membuat kode mudah dibaca sehingga kita sebaiknya pikir-pikir dulu sebelum menggunakan mereka.
