@@ -30,11 +30,7 @@ Fungsi `prompt` menerima dua argumen:
 result = prompt(title, [default]);
 ```
 
-<<<<<<< HEAD
 Ia menampilkan modal window dengan pesan teks, input field untuk pengunjung, dan tombol OK/CANCEL.
-=======
-It shows a modal window with a text message, an input field for the visitor, and the buttons OK/Cancel.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 `title`
 : Teks untuk ditampilkan ke pengunjung.
@@ -42,11 +38,7 @@ It shows a modal window with a text message, an input field for the visitor, and
 `default`
 : Parameter kedua opsional, nilai inisial untuk input field.
 
-<<<<<<< HEAD
-Pengunjung boleh menulis apapun di input field prompt dan menekan OK. Atau mereka bisa membatalkan input dengan menekan CANCEL atau menekan `key:Esc`.
-=======
-The visitor may type something in the prompt input field and press OK. Or they can cancel the input by pressing Cancel or hitting the `key:Esc` key.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+Pengunjung boleh menulis apapun di input field prompt dan menekan OK. Atau mereka bisa membatalkan input dengan menekan Cancel atau menekan tombol `key:Esc`.
 
 Panggilan ke `prompt` mengembalikan teks dari input field atau `null` jika input dibatalkan.
 
@@ -58,7 +50,7 @@ let age = prompt('How old are you?', 100);
 alert(`You are ${age} years old!`); // You are 100 years old!
 ```
 
-````warn header="In IE: always supply a `default`"
+```warn header="In IE: always supply a `default`"
 Parameter kedua ini opsional, tapi jika kita tidak menyuplai, Internet Explorer akan menyisipkan teks `"undefined"` ke dalam prompt.
 
 Jalan kode ini di Internet Explorer untuk melihat:
@@ -72,7 +64,6 @@ Jadi, supaya prompt terlihat bagus di IE, sebaiknya sediakan argumen kedua:
 ```js run
 let test = prompt("Test", ''); // <-- for IE
 ```
-````
 
 ## confirm
 
@@ -82,11 +73,7 @@ Syntaxnya:
 result = confirm(question);
 ```
 
-<<<<<<< HEAD
-Fungsi `confirm` menampilkan modal window dengan `pertanyaan` dan dua tombol: OK dan CANCEL.
-=======
-The function `confirm` shows a modal window with a `question` and two buttons: OK and Cancel.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+Fungsi `confirm` menampilkan modal window dengan `pertanyaan` dan dua tombol: OK dan Cancel.
 
 Hasilnya `true` jika OK ditekan dan `false` jika tidak.
 
@@ -106,17 +93,10 @@ Kita membahas 3 fungsi spesifik peramban untuk berinteraksi dengan pengunjung:
 : menampilkan pesan.
 
 `prompt`
-<<<<<<< HEAD
-: menampilkan pesan yang minta input teks pengguna. Ia mengembalikan teks atau, jika CANCEL atau `key:Esc` diklik, `null`.
+: menampilkan pesan yang minta input teks pengguna. Ia mengembalikan teks atau, jika Cancel atau `key:Esc` diklik, `null`.
 
 `confirm`
-: menampilkan pesan dan menunggu pengguna menekan "OK" atau "CANCEL". It returns `true` for OK and `false` for CANCEL/`key:Esc`.
-=======
-: shows a message asking the user to input text. It returns the text or, if Cancel button or `key:Esc` is clicked, `null`.
-
-`confirm`
-: shows a message and waits for the user to press "OK" or "Cancel". It returns `true` for OK and `false` for Cancel/`key:Esc`.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+: menampilkan pesan dan menunggu pengguna menekan "OK" atau "Cancel". Ia mengembalikan `true` untuk OK dan `false` untuk Cancel/`key:Esc`.
 
 Semua metode ini ialah modal: mereka menyela exekusi script dan tak membolehkan pengunjung berinteraksi dengan apapun di laman hingga window ditutup.
 
