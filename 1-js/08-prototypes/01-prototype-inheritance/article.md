@@ -43,7 +43,7 @@ If we look for a property in `rabbit`, and it's missing, JavaScript automaticall
 
 For instance:
 
-```js run
+```js
 let animal = {
   eats: true
 };
@@ -211,7 +211,7 @@ The answer is simple: `this` is not affected by prototypes at all.
 
 So, the setter call `admin.fullName=` uses `admin` as `this`, not `user`.
 
-That is actually a super-important thing, because we may have a big object with many methods and inherit from it. Then inherited objects can run its methods, and they will modify the state of these objects, not the big one.
+That is actually a super-important thing, because we may have a big object with many methods, and have objects that inherit from it. And when the inheriting objects run the inherited methods, they will modify only their own states, not the state of the big object.
 
 For instance, here `animal` represents a "method storage", and `rabbit` makes use of it.
 
@@ -308,9 +308,9 @@ Here we have the following inheritance chain: `rabbit` inherits from `animal`, t
 
 Note, there's one funny thing. Where is the method `rabbit.hasOwnProperty` coming from? We did not define it. Looking at the chain we can see that the method is provided by `Object.prototype.hasOwnProperty`. In other words, it's inherited.
 
-...But why `hasOwnProperty` does not appear in `for..in` loop, like `eats` and `jumps`, if it lists all inherited properties.
+...But why does `hasOwnProperty` not appear in the `for..in` loop like `eats` and `jumps` do, if `for..in` lists inherited properties?
 
-The answer is simple: it's not enumerable. Just like all other properties of `Object.prototype`, it has `enumerable:false` flag. That's why they are not listed.
+The answer is simple: it's not enumerable. Just like all other properties of `Object.prototype`, it has `enumerable:false` flag. And `for..in` only lists enumerable properties. That's why it and the rest of the `Object.prototype` properties are not listed.
 
 ```smart header="Almost all other key/value-getting methods ignore inherited properties"
 Almost all other key/value-getting methods, such as `Object.keys`, `Object.values` and so on ignore inherited properties.
@@ -324,6 +324,6 @@ They only operate on the object itself. Properties from the prototype are *not* 
 - We can use `obj.__proto__` to access it (a historical getter/setter, there are other ways, to be covered soon).
 - The object referenced by `[[Prototype]]` is called a "prototype".
 - If we want to read a property of `obj` or call a method, and it doesn't exist, then JavaScript tries to find it in the prototype.
-- Write/delete operations for act directly on the object, they don't use the prototype (assuming it's a data property, not is a setter).
+- Write/delete operations act directly on the object, they don't use the prototype (assuming it's a data property, not a setter).
 - If we call `obj.method()`, and the `method` is taken from the prototype, `this` still references `obj`. So methods always work with the current object even if they are inherited.
-- The `for..in` loop iterates over both own and inherited properties. All other key/value-getting methods only operate on the object itself.
+- The `for..in` loop iterates over both its own and its inherited properties. All other key/value-getting methods only operate on the object itself.

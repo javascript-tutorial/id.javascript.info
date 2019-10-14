@@ -313,7 +313,7 @@ Hopefully, the situation with outer variables is clear now. For most situations 
 
 ## Environments in detail
 
-Here's what's going on in the `makeCounter` example step-by-step, follow it to make sure that you know things in the very detail.
+Here's what's going on in the `makeCounter` example step-by-step, follow it to make sure that you understand how it works in detail.
 
 Please note the additional `[[Environment]]` property is covered here. We didn't mention it before for simplicity.
 
@@ -369,7 +369,7 @@ Please note the additional `[[Environment]]` property is covered here. We didn't
 
     ![](lexenv-nested-makecounter-5.svg)
 
-    Now when the call looks for `count` variable, it first searches its own Lexical Environment (empty), then the Lexical Environment of the outer `makeCounter()` call, where finds it.
+    Now when the call looks for `count` variable, it first searches its own Lexical Environment (empty), then the Lexical Environment of the outer `makeCounter()` call, where it finds it.
 
     Please note how memory management works here. Although `makeCounter()` call finished some time ago, its Lexical Environment was retained in memory, because there's a nested function with `[[Environment]]` referencing it.
 
