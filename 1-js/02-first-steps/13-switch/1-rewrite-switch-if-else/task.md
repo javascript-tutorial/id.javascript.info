@@ -1,10 +1,10 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Rewrite the "switch" into an "if"
+# Tulis kembali "switch" menjadi "if"
 
-Write the code using `if..else` which would correspond to the following `switch`:
+Tulis kode menggunakan `if..else` yang akan berkorespon dengan `switch` berikut:
 
 ```js
 switch (browser) {
