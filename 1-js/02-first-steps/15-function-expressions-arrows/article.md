@@ -1,8 +1,8 @@
-# Function expressions and arrows
+# Expresi fungsi dan panah
 
-In JavaScript, a function is not a "magical language structure", but a special kind of value.
+Di JavaScript, fungsi bukan "struktur bahasa magis", melaikan satu bentuk nilai spesial.
 
-The syntax that we used before is called a *Function Declaration*:
+Syntax yang kita gunakan sebelumnya disebut *Deklarasi Fungsi*:
 
 ```js
 function sayHi() {
@@ -10,9 +10,9 @@ function sayHi() {
 }
 ```
 
-There is another syntax for creating a function that is called a *Function Expression*.
+Ada syntax lain untuk membuat fungsi yang disebut *Expresi Fungsi*.
 
-It looks like this:
+Rupanya seperti ini:
 
 ```js
 let sayHi = function() {
@@ -20,11 +20,11 @@ let sayHi = function() {
 };
 ```
 
-Here, the function is created and assigned to the variable explicitly, like any other value. No matter how the function is defined, it's just a value stored in the variable `sayHi`.
+Di sini, fungsi dibuat dan diisi variabel secara explisit, seperti nilai lain manapun. Tak peduli bagaimana fungsi didefinisi, ia hanya suatu nilai yang disimpan dalam variabel `sayHi`.
 
-The meaning of these code samples is the same: "create a function and put it into the variable `sayHi`".
+Arti dari sampel kode ini sama: "buatlah fungs dan taruhlah di dalam variabel `sayHi`".
 
-We can even print out that value using `alert`:
+Kita bahkan bisa mencetak nilai itu menggunakan `alert`:
 
 ```js run
 function sayHi() {
@@ -32,38 +32,38 @@ function sayHi() {
 }
 
 *!*
-alert( sayHi ); // shows the function code
+alert( sayHi ); // menampilkan kode fungsi
 */!*
 ```
 
-Please note that the last line does not run the function, because there are no parentheses after `sayHi`. There are programming languages where any mention of a function name causes its execution, but JavaScript is not like that.
+Tolong ingat bahwa baris terakhir tidak menjalankan fungsi, karena tak ada tanda kurung setelah `sayHi`. Ada bahasa pemrograman di mana satu penyebutan nama fungsi menyebabkan exekusi fungsi, tapi JavaScript tak seperti itu.
 
-In JavaScript, a function is a value, so we can deal with it as a value. The code above shows its string representation, which is the source code.
+Di JavaScript, fungsi adalah nilai, jadi kita bisa menghadapinya sebagai nilai. Kode di atas menunjukkan representasi stringnya, yang mana kode sumbernya.
 
-Surely, a function is a special values, in the sense that we can call it like `sayHi()`.
+Pastinya, fungsi adalah nilai spesial, dengan anggapan bahwa kita bisa memanggilnya seperti `sayHi()`.
 
-But it's still a value. So we can work with it like with other kinds of values.
+Tapi ia tetaplah nilai. Jadi kita bisa memakainya seperti macam nilai lainnya.
 
-We can copy a function to another variable:
+Kita bisa mengkopi fungsi ke variabel lain:
 
 ```js run no-beautify
-function sayHi() {   // (1) create
+function sayHi() {   // (1) buat
   alert( "Hello" );
 }
 
-let func = sayHi;    // (2) copy
+let func = sayHi;    // (2) kopi
 
-func(); // Hello     // (3) run the copy (it works)!
-sayHi(); // Hello    //     this still works too (why wouldn't it)
+func(); // Hello     // (3) jalankan kopinya (ia bekerja)!
+sayHi(); // Hello    //     ini juga masih bekerja (kenapa tidak)
 ```
 
-Here's what happens above in detail:
+Inilah yang terjadi di atas secara detil:
 
-1. The Function Declaration `(1)` creates the function and puts it into the variable named `sayHi`.
-2. Line `(2)` copies it into the variable `func`. Please note again: there are no parentheses after `sayHi`. If there were, then `func = sayHi()` would write  *the result of the call* `sayHi()` into `func`, not *the function* `sayHi` itself.
-3. Now the function can be called as both `sayHi()` and `func()`.
+1. Deklarasi Fungsi `(1)` membuat fungsi dan menaruhnya ke variabel bernama `sayHi`.
+2. Baris `(2)` mengkopinya ke variabel `func`. Tolong ingat lagi: tak ada tanda kurung setelah `sayHi`. Jika ada, maka `func = sayHi()` akan menulis  *hasil panggilan* `sayHi()` ke `func`, bukan *fungsi* `sayHi` itu sendiri.
+3. Sekarang fungsi bisa dipanggil baik sebagai `sayHi()` maupun `func()`.
 
-Note that we could also have used a Function Expression to declare `sayHi`, in the first line:
+Catat bahwa kita jusa bisa menggunakan Expresi Fungsi untuk mendeklarasi `sayHi`, di baris pertama:
 
 ```js
 let sayHi = function() {
@@ -74,11 +74,11 @@ let func = sayHi;
 // ...
 ```
 
-Everything would work the same.
+Semua akan berjalan sama.
 
 
-````smart header="Why is there a semicolon at the end?"
-You might wonder, why does Function Expression have a semicolon `;` at the end, but Function Declaration does not:
+````smart header="Kenapa ada semicolon di akhir?"
+Kamu mungkin penasaran, kenapa Expresi Fungsi punya semicolon `;` di akhir, tapi Deklarasi Fungsi tidak:
 
 ```js
 function sayHi() {
@@ -90,27 +90,27 @@ let sayHi = function() {
 }*!*;*/!*
 ```
 
-The answer is simple:
-- There's no need for `;` at the end of code blocks and syntax structures that use them like `if { ... }`, `for {  }`, `function f { }` etc.
-- A Function Expression is used inside the statement: `let sayHi = ...;`, as a value. It's not a code block, but rather an assignment. The semicolon `;` is recommended at the end of statements, no matter what the value is. So the semicolon here is not related to the Function Expression itself, it just terminates the statement.
+Jawabannya simpel:
+- `;` tidak dibutuhkan di akhir blok kode dan struktur syntax yang memakai mereka seperti `if { ... }`, `for {  }`, `function f { }` dll.
+- Expresi Fungsi digunakan di dalam pernyataan: `let sayHi = ...;`, sebagai nilai. Ia bukan blok kode, tapi lebih ke penetapan. Semicolon `;` disarankan di akhir pernyataan, tak peduli nilainya apa. Jadi semicolon di sini tak ada hubungannya dengan Expresi Fungsi itu sendiri, ia hanya menstop pernyataan.
 ````
 
-## Callback functions
+## Fungsi callback
 
-Let's look at more examples of passing functions as values and using function expressions.
+Ayo kita lihat pada contoh lain mengoper fungsi sebagai nilai dan menggunakan expresi fungsi.
 
-We'll write a function `ask(question, yes, no)` with three parameters:
+Kita akan menulis fungsi `ask(question, yes, no)` dengan tiga parameter:
 
 `question`
-: Text of the question
+: Teks pertanyaan
 
 `yes`
-: Function to run if the answer is "Yes"
+: Fungsi yang berjalan jika jawabannya "Yes"
 
 `no`
-: Function to run if the answer is "No"
+: Fungsi yang berjalan jika jawabannya "No"
 
-The function should ask the `question` and, depending on the user's answer, call `yes()` or `no()`:
+Fungsinya akan menanyakan `question` dan, tergantung jawabannya pengguna, panggil `yes()` atau `no()`:
 
 ```js run
 *!*
@@ -132,13 +132,13 @@ function showCancel() {
 ask("Do you agree?", showOk, showCancel);
 ```
 
-In practice, such functions are quite useful. The major difference between a real-life `ask` and the example above is that real-life functions use more complex ways to interact with the user than a simple `confirm`. In the browser, such function usually draws a nice-looking question window. But that's another story.
+Pada praktiknya, fungsi macam ini agak berguna. Perbedaan besar antara `ask` kehidupan-nyata dan contoh di atas adalah fungsi kehidupan-nyata memakai cara komplex untuk berinteraksi dengan pengguna daripada sekedar `confirm`. Di peramban, fungsi macam ini biasanya menarik window pertanyaan menarik. Tapi itu cerita lain lagi.
 
-**The arguments `showOk` and `showCancel` of `ask` are called *callback functions* or just *callbacks*.**
+**Argumen `showOk` dan `showCancel` dari `ask` dipanggil *fungsi callback* atau hanya *callback*.**
 
-The idea is that we pass a function and expect it to be "called back" later if necessary. In our case, `showOk` becomes the callback for "yes" answer, and `showCancel` for "no" answer.
+Idenya adalah kita mengoper fungsi dan berharap ia "dipanggil kembali" kemudian jika dibutuhkan. Pada kasus kita, `showOk` menjadi callback untuk jawaban "yes", dan `showCancel` untuk jawaban "no".
 
-We can use Function Expressions to write the same function much shorter:
+Kita bisa memakai Expresi Fungsi untuk menulis fungsi yang sama lebih pendek:
 
 ```js run no-beautify
 function ask(question, yes, no) {
