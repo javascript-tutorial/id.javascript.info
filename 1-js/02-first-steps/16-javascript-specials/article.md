@@ -63,57 +63,57 @@ Lebih lanjut di: <info:strict-mode>.
 
 ## Variabel
 
-Can be declared using:
+Bisa dideklarasi menggunakan:
 
 - `let`
-- `const` (constant, can't be changed)
-- `var` (old-style, will see later)
+- `const` (konstan, tak bisa berubah)
+- `var` (kuno, akan lihat kemudian)
 
-A variable name can include:
-- Letters and digits, but the first character may not be a digit.
-- Characters `$` and `_` are normal, on par with letters.
-- Non-Latin alphabets and hieroglyphs are also allowed, but commonly not used.
+Nama variabel bisa mengandung:
+- Huruf dan digit, tapi karakter pertama bisa tak boleh digit.
+- Karakter `$` dan `_` itu normal, setara dengan huruf.
+- Alfabet non-latin dan hieroglyph juga boleh, tapi jarang dipakai.
 
-Variables are dynamically typed. They can store any value:
+Variabel adalah tipe dinamis. Mereka bisa menyimpan nilai apapun:
 
 ```js
 let x = 5;
 x = "John";
 ```
 
-There are 7 data types:
+Ada 7 tipe data:
 
-- `number` for both floating-point and integer numbers,
-- `string` for strings,
-- `boolean` for logical values: `true/false`,
-- `null` -- a type with a single value `null`, meaning "empty" or "does not exist",
-- `undefined` -- a type with a single value `undefined`, meaning "not assigned",
-- `object` and `symbol` -- for complex data structures and unique identifiers, we haven't learnt them yet.
+- `number` untuk angka floating-point dan integer,
+- `string` untuk string,
+- `boolean` untuk nilai logika: `true/false`,
+- `null` -- tipe dengan nilai tunggal `null`, artinya "kosong" atau "tidak eksis",
+- `undefined` -- tipe dengan nilai tunggal `undefined`, artinya "tak ditetapkan",
+- `object` dan `symbol` -- untuk struktur data komplex dan identifier unik, kita belum mempelajari mereka sekarang.
 
-The `typeof` operator returns the type for a value, with two exceptions:
+Operator `typeof` mengembalikan tipe untuk satu nilai, dengan dua pengecualian:
 ```js
-typeof null == "object" // error in the language
-typeof function(){} == "function" // functions are treated specially
+typeof null == "object" // galat di bahasa
+typeof function(){} == "function" // fungsi diperlakukan spesial
 ```
 
-More in: <info:variables> and <info:types>.
+Lebih lanjut di: <info:variables> and <info:types>.
 
-## Interaction
+## Interaksi
 
-We're using a browser as a working environment, so basic UI functions will be:
+Kita menggunakan peramban sebagai lingkungan kerja, jadi fungsi UI dasar akan menjadi:
 
 [`prompt(question, [default])`](mdn:api/Window/prompt)
-: Ask a `question`, and return either what the visitor entered or `null` if they clicked "cancel".
+: Menanyakan `question`, dan mengembalikan apa yang pengunjung isikan atau `null` jika mereka mengklik "cancel".
 
 [`confirm(question)`](mdn:api/Window/confirm)
-: Ask a `question` and suggest to choose between Ok and Cancel. The choice is returned as `true/false`.
+: Menanyakan `question` dan menyarakan memilih antara Ok dan Cancel. Pilihannya dikembalikan sebagai `true/false`.
 
 [`alert(message)`](mdn:api/Window/alert)
-: Output a `message`.
+: Menampilkan a `message`.
 
-All these functions are *modal*, they pause the code execution and prevent the visitor from interacting with the page until they answer.
+Semua fungsi ini adalah *modal*, mereka menyela exekusi kode dan mencegah pengunjung dari berinteraksi dengan laman hingga mereka menjawab.
 
-For instance:
+Misalnya:
 
 ```js run
 let userName = prompt("Your name?", "Alice");
@@ -123,14 +123,14 @@ alert( "Visitor: " + userName ); // Alice
 alert( "Tea wanted: " + isTeaWanted ); // true
 ```
 
-More in: <info:alert-prompt-confirm>.
+Lebih lanjut di: <info:alert-prompt-confirm>.
 
-## Operators
+## Operator
 
-JavaScript supports the following operators:
+JavaScript mendukung operator berikut:
 
-Arithmetical
-: Regular: `* + - /`, also `%` for the remainder and `**` for power of a number.
+Arithmatika
+: Regular: `* + - /`, juga `%` untuk remainder dan `**` untuk pangkat bilangan.
 
     The binary plus `+` concatenates strings. And if any of the operands is a string, the other one is converted to string too:
 
@@ -139,19 +139,19 @@ Arithmetical
     alert( 1 + '2' ); // '12', string
     ```
 
-Assignments
-: There is a simple assignment: `a = b` and combined ones like `a *= 2`.
+Penetapan
+: Ada penetapan simpel: `a = b` dan penetapan kombinasi seperti `a *= 2`.
 
 Bitwise
-: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators) when they are needed.
+: Operator bitwise bekerja dengan integer 32-bit di bit-level paling kecil: lihat [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators) ketika mereka dibutuhkan.
 
-Conditional
-: The only operator with three parameters: `cond ? resultA : resultB`. If `cond` is truthy, returns `resultA`, otherwise `resultB`.
+Kondisional
+: Satu-satunya operator dengan tiga parameter: `cond ? resultA : resultB`. Jika `cond` truthy, mengembalikan `resultA`, jika tidak `resultB`.
 
-Logical operators
-: Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value where it stopped. Logical NOT `!` converts the operand to boolean type and returns the inverse value.
+Operator logika
+: Logika AND `&&` dan OR `||` menyajikan evaluasi sirkuit-pendek dan mengembalikan nilai di mana ia berhenti. Logika NOT `!` mengkonversi operand ke tipe boolean dan mengembalikan nilai kebalikannya.
 
-Comparisons
+Pembandingan
 : Equality check `==` for values of different types converts them to a number (except `null` and `undefined` that equal each other and nothing else), so these are equal:
 
     ```js run
@@ -172,9 +172,9 @@ Other operators
 
 More in: <info:operators>, <info:comparison>, <info:logical-operators>.
 
-## Loops
+## Loop
 
-- We covered 3 types of loops:
+- Kita meliput 3 tipe loop:
 
     ```js
     // 1
@@ -193,25 +193,25 @@ More in: <info:operators>, <info:comparison>, <info:logical-operators>.
     }
     ```
 
-- The variable declared in `for(let...)` loop is visible only inside the loop. But we can also omit `let` and reuse an existing variable.
-- Directives `break/continue` allow to exit the whole loop/current iteration. Use labels to break nested loops.
+- Variabel yang dideklarasi di loop `for(let...)` terlihat cuma di dalam loop. Tapi kita juga bisa membuang `let` dan memakai kembali variabel yang sudah eksis.
+- Directive `break/continue` membolehkan untuk keluar iterasi loop/current. Guakan label untuk menghancurkan loop bersarang.
 
-Details in: <info:while-for>.
+Detil di: <info:while-for>.
 
-Later we'll study more types of loops to deal with objects.
+Nanti kita akan pelajari tipe loop lainnya untuk berhadapan dengan object.
 
-## The "switch" construct
+## Konstruksi "switch"
 
-The "switch" construct can replace multiple `if` checks. It uses `===` (strict equality) for comparisons.
+Konstruksi "switch" bisa mengganti pengecekan ganda `if`. Ia memakai `===` (ekualitas ketat) untuk pembandingan.
 
-For instance:
+Misalnya:
 
 ```js run
 let age = prompt('Your age?', 18);
 
 switch (age) {
   case 18:
-    alert("Won't work"); // the result of prompt is a string, not a number
+    alert("Won't work"); // hasil prompt ialah string, bukan angka
 
   case "18":
     alert("This works!");
@@ -222,13 +222,13 @@ switch (age) {
 }
 ```
 
-Details in: <info:switch>.
+Detal di: <info:switch>.
 
-## Functions
+## Fungsi
 
-We covered three ways to create a function in JavaScript:
+Kita meliput tiga cara membuat fungsi di JavaScript:
 
-1. Function Declaration: the function in the main code flow
+1. Deklarasi Fungsi: fungsi di aliran kode utama
 
     ```js
     function sum(a, b) {
@@ -238,7 +238,7 @@ We covered three ways to create a function in JavaScript:
     }
     ```
 
-2. Function Expression: the function in the context of an expression
+2. Expresi Fungsi: fungsi di dalam kontex expresi
 
     ```js
     let sum = function(a, b) {
@@ -248,32 +248,32 @@ We covered three ways to create a function in JavaScript:
     };
     ```
 
-3. Arrow functions:
+3. Fungsi panah:
 
     ```js
-    // expression at the right side
+    // expresi di sisi kanan
     let sum = (a, b) => a + b;
 
-    // or multi-line syntax with { ... }, need return here:
+    // atau syntax baris-ganda dengan { ... }, butuh kembalian di sini:
     let sum = (a, b) => {
       // ...
       return a + b;
     }
 
-    // without arguments
+    // tanpa argumen
     let sayHi = () => alert("Hello");
 
-    // with a single argument
+    // dengan argumen tunggal
     let double = n => n * 2;
     ```
 
 
-- Functions may have local variables: those declared inside its body. Such variables are only visible inside the function.
-- Parameters can have default values: `function sum(a = 1, b = 2) {...}`.
-- Functions always return something. If there's no `return` statement, then the result is `undefined`.
+- Fungsi bisa punya variabel lokal: mereka yang dideklarasi dalam badannya. Variabel macam itu cuma terlihat di dalam fungsi.
+- Parameter bisa punya nilai default: `function sum(a = 1, b = 2) {...}`.
+- Fungsi selalu mengembalikan sesuatu. Jika tak ada pernyataan `return`, maka kembaliannya `undefined`.
 
-Details: see <info:function-basics>, <info:function-expressions-arrows>.
+Detil: lihat <info:function-basics>, <info:function-expressions-arrows>.
 
-## More to come
+## Lebih banyak yang akan datang
 
-That was a brief list of JavaScript features. As of now we've studied only basics. Further in the tutorial you'll find more specials and advanced features of JavaScript.
+Ini daftar ringkas fitur JavaScript. Untuk sekarang kita belajar hanya dasar. Kemudian di tutorial nanti kamu akan menemui fitur JavaScript yang lebih canggih dan spesial.
