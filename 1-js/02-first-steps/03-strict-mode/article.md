@@ -73,13 +73,13 @@ Jika tidak, cara paling terpercaya ialah memastikan `use strict` adalah menginpu
 
 ## Selalu "use strict"
 
-Kita belum mengcover perbedaan antara mode strict dan mode "default".
+Kita belum mengcover perbedaan antara mode ketat dan mode "default".
 
-Di bab berikutnya, seiring kira mempelajari fitur bahasa, kita akan mencatat perbedaan antara mode strict dan default. Untungnya, itu tidak banyak dan membuat hidup kita lebih baik.
+Di bab berikutnya, seiring kira mempelajari fitur bahasa, kita akan mencatat perbedaan antara mode ketat dan default. Untungnya, itu tidak banyak dan membuat hidup kita lebih baik.
 
 Untuk sekarang, cukup tahu sampai di sini secara umum:
 
 1. Directive `"use strict"` mengganti engine ke mode "modern", changing the behavior of some built-in features. We'll see the details later in the tutorial.
-2. Mode strict aktif dengan menaruh `"use strict"` paling atas dari script atau function. Beberapa fitur bahasa, seperti "classe" dan "module", mengaktifkan mode strict secara otomatis.
-3. Mode strict didukung semua peramban modern.
-4. Kami sarankan selalu mulai script dengan `"use strict"`. Semua contoh di tutorial ini mengasumsikan mode strict kecuali (sangat jarang) dispesifikasi kebalikannya.
+2. Mode ketat aktif dengan menaruh `"use strict"` paling atas dari script atau function. Beberapa fitur bahasa, seperti "classe" dan "module", mengaktifkan mode ketat secara otomatis.
+3. Mode ketat didukung semua peramban modern.
+4. Kami sarankan selalu mulai script dengan `"use strict"`. Semua contoh di tutorial ini mengasumsikan mode ketat kecuali (sangat jarang) dispesifikasi kebalikannya.
