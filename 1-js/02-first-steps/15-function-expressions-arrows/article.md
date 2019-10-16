@@ -237,7 +237,7 @@ Expresi Fungsi dibuat saat exekusi mencapainya. Itu hanya akan terjadi pada bari
 
 Fitur spesial lain dari Deklarasi Fungsi ialah scope blok mereka.
 
-**Di mode strict, ketika Deklarasi Fungsi berada di jangkauan blok kode, ia terlihat di manapun di dalam blok. Tapi tidak di luarnya.**
+**Di mode ketat, ketika Deklarasi Fungsi berada di jangkauan blok kode, ia terlihat di manapun di dalam blok. Tapi tidak di luarnya.**
 
 Misalnya, bayangkan kita harus mendeklarasi fungsi `welcome()` tergantung variabel `age` yang kita dapat saat runtime. Lalu kita berencana akan menggunakannya kemudian.
 
