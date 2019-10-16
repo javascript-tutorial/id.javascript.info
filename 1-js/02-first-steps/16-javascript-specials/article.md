@@ -1,23 +1,23 @@
-# JavaScript specials
+# Spesial JavaScript
 
-This chapter briefly recaps the features of JavaScript that we've learned by now, paying special attention to subtle moments.
+Bab ini secara singkat merekap fitur JavaScript yang sudah kita pelajari sekarang, membayar perhatian khusus ke momen-momen halus.
 
-## Code structure
+## Struktur kode
 
-Statements are delimited with a semicolon:
+Pernyataan didelimisi dengan semicolon:
 
 ```js run no-beautify
 alert('Hello'); alert('World');
 ```
 
-Usually, a line-break is also treated as a delimiter, so that would also work:
+Biasanya, line-break juga diperlakukan sebagai delimiter, jadi itu juga akan bekerja:
 
 ```js run no-beautify
 alert('Hello')
 alert('World')
 ```
 
-That's called "automatic semicolon insertion". Sometimes it doesn't work, for instance:
+Itu disebut "penyisipan semicolon otomatis". Kadang ia tidak bekerja, misalnya:
 
 ```js run
 alert("There will be an error after this message")
@@ -25,27 +25,27 @@ alert("There will be an error after this message")
 [1, 2].forEach(alert)
 ```
 
-Most codestyle guides agree that we should put a semicolon after each statement.
+Kebanyakan panduan codestyle setuju bahwa kita sebaiknya menaruh semicolon di tiap akhir pernyataan.
 
-Semicolons are not required after code blocks `{...}` and syntax constructs with them like loops:
+Semicolon tak dibutuhkan setelah blok kode `{...}` dan konstruksi syntax dengan mereka yang seperti loop:
 
 ```js
 function f() {
-  // no semicolon needed after function declaration
+  // semicolon tak dibutuhkan setelah deklarasi fungsi
 }
 
 for(;;) {
-  // no semicolon needed after the loop
+  // semicolon tak dibutuhkan setelah loop
 }
 ```
 
-...But even if we can put an "extra" semicolon somewhere, that's not an error. It will be ignored.
+...Tapi meskipun kita taruh semicolon "extra" di suatu tempat, itu bukan galat. Ia akan diabaikan.
 
-More in: <info:structure>.
+Lebih lanjut di: <info:structure>.
 
-## Strict mode
+## Mode ketat
 
-To fully enable all features of modern JavaScript, we should start scripts with `"use strict"`.
+Untuk mengaktifkan penuh semua fitur modern JavaScript, kita sebaiknya mulai script dengan `"use strict"`.
 
 ```js
 'use strict';
@@ -53,15 +53,15 @@ To fully enable all features of modern JavaScript, we should start scripts with 
 ...
 ```
 
-The directive must be at the top of a script or at the beginning of a function body.
+Directive ini harus ada di paling atas script atau di awal badan fungsi.
 
-Without `"use strict"`, everything still works, but some features behave in the old-fashion, "compatible" way. We'd generally prefer the modern behavior.
+Tanpa `"use strict"`, apapun akan bekerja, tapi beberapa fitur bersikap dengan cara kuno, "kompatibel". Secara umum kita akan pilih sikap modern.
 
-Some modern features of the language (like classes that we'll study in the future) enable strict mode implicitly.
+Beberapa fitur modern bahasa ini (seperti kelas yang akan kita pelajari di kemudian) mengaktifkan mode ketat secara implisit.
 
-More in: <info:strict-mode>.
+Lebih lanjut di: <info:strict-mode>.
 
-## Variables
+## Variabel
 
 Can be declared using:
 
