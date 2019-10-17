@@ -310,13 +310,13 @@ if (str.indexOf("Widget") != -1) {
 }
 ```
 
-#### The bitwise NOT trick
+#### Trik bitwise NOT
 
-One of the old tricks used here is the [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~` operator. It converts the number to a 32-bit integer (removes the decimal part if exists) and then reverses all bits in its binary representation.
+Salah satu trik lama yang digunakan disini adalah operator [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~`. Operator ini mengubah angka menjadi integer 32-bit (menghilangkan bagian desimal jika ada) lalu menegasikan semua bit pada representasi binernya.
 
-In practice, that means a simple thing: for 32-bit integers `~n` equals `-(n+1)`.
+Dalam praktik, hal tersebut berarti: untuk integer 32-bit `~n` sama dengan `-(n+1)`.
 
-For instance:
+Sebagai contoh:
 
 ```js run
 alert( ~2 ); // -3, the same as -(2+1)
@@ -327,11 +327,11 @@ alert( ~-1 ); // 0, the same as -(-1+1)
 */!*
 ```
 
-As we can see, `~n` is zero only if `n == -1` (that's for any 32-bit signed integer `n`).
+Seperti yang kita lihat, `~n` bernilai nol apabila `n == -1` (untuk semua signed integer `n`).
 
-So, the test `if ( ~str.indexOf("...") )` is truthy only if the result of `indexOf` is not `-1`. In other words, when there is a match.
+Jadi, pengecekan di dalam `if ( ~str.indexOf("...") )` bernilai benar apabila hasil dari `indexOf` tidak bernilai `-1`. Dengan kata lain, jika kemunculan ditemukan.
 
-People use it to shorten `indexOf` checks:
+Orang-orang menggunakannya untuk memperpendek pengecekan `indexOf`:
 
 ```js run
 let str = "Widget";
@@ -341,19 +341,19 @@ if (~str.indexOf("Widget")) {
 }
 ```
 
-It is usually not recommended to use language features in a non-obvious way, but this particular trick is widely used in old code, so we should understand it.
+Biasanya tidak direkomendasikan untuk menggunakan fitur bahasa dengan cara yang tidak jelas, tetapi trik ini biasa digunakan di kode yang kuno, jadi kita harus memahaminya.
 
-Just remember: `if (~str.indexOf(...))` reads as "if found".
+Ingat: `if (~str.indexOf(...))` dibaca sebagai "if ditemukan".
 
-To be precise though, as big numbers are truncated to 32 bits by `~` operator, there exist other numbers that give `0`, the smallest is `~4294967295=0`. That makes such check is correct only if a string is not that long.
+Untuk lebih detail, karena bilangan yang besar dipotong menjadi 32-bit oleh operator `~`, ada angka lain yang memberikan hasil `0`, angka yang terkecil yaitu `~4294967295=0`. Hal tersebut menyebabkan trik ini benar apabila string yang dites tidak sepanjang itu.
 
-Right now we can see this trick only in the old code, as modern JavaScript provides `.includes` method (see below).
+Kita dapat melihat bahwa trik ini hanya digunakan di kode yang kuno, karena Javascript modern menyediakan method `.includes` (lihat di bawah).
 
 ### includes, startsWith, endsWith
 
-The more modern method [str.includes(substr, pos)](mdn:js/String/includes) returns `true/false` depending on whether `str` contains `substr` within.
+Method yang lebih modern [str.includes(substr, pos)](mdn:js/String/includes) mengembalikan `true/false` tergantung dengan apakah `str` mengandung `substr` di dalamnya.
 
-It's the right choice if we need to test for the match, but don't need its position:
+Ini adalah pilihan yang cocok apabila kita hanya perlu mengetes apakah `substr` ada, tetapi tidak memerlukan posisinya:
 
 ```js run
 alert( "Widget with id".includes("Widget") ); // true
@@ -361,28 +361,28 @@ alert( "Widget with id".includes("Widget") ); // true
 alert( "Hello".includes("Bye") ); // false
 ```
 
-The optional second argument of `str.includes` is the position to start searching from:
+Parameter opsinal kedua dari `str.includes` adalah posisi dimana pencarian mulai dilakukan:
 
 ```js run
 alert( "Widget".includes("id") ); // true
 alert( "Widget".includes("id", 3) ); // false, from position 3 there is no "id"
 ```
 
-The methods [str.startsWith](mdn:js/String/startsWith) and [str.endsWith](mdn:js/String/endsWith) do exactly what they say:
+Method [str.startsWith](mdn:js/String/startsWith) dan [str.endsWith](mdn:js/String/endsWith) melakukan fungsi seperti namanya:
 
 ```js run
 alert( "Widget".startsWith("Wid") ); // true, "Widget" starts with "Wid"
 alert( "Widget".endsWith("get") ); // true, "Widget" ends with "get"
 ```
 
-## Getting a substring
+## Mengambil substring
 
-There are 3 methods in JavaScript to get a substring: `substring`, `substr` and `slice`.
+Ada 3 cara untuk mengambil sebuah substring di Javascript: `substring`, `substr` dan `slice`.
 
 `str.slice(start [, end])`
-: Returns the part of the string from `start` to (but not including) `end`.
+: Mengembalikan bagian dari string dari `start` sampai (tapi tidak termasuk) `end`.
 
-    For instance:
+    Sebagai contoh:
 
     ```js run
     let str = "stringify";
@@ -390,14 +390,14 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
     alert( str.slice(0, 1) ); // 's', from 0 to 1, but not including 1, so only character at 0
     ```
 
-    If there is no second argument, then `slice` goes till the end of the string:
+    Jika tidak ada parameter kedua, maka `slice` akan mengambil semua bagian dari `start` sampai akhir string:
 
     ```js run
     let str = "st*!*ringify*/!*";
     alert( str.slice(2) ); // ringify, from the 2nd position till the end
     ```
 
-    Negative values for `start/end` are also possible. They mean the position is counted from the string end:
+    Nilai negatif untuk `start/end` juga bisa digunakan. Nilai negatif berarti posisinya dihitung dari akhir string:
 
     ```js run
     let str = "strin*!*gif*/!*y";
@@ -407,11 +407,11 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
     ```
 
 `str.substring(start [, end])`
-: Returns the part of the string *between* `start` and `end`.
+: Mengembalikan bagian dari string *di antara* `start` dan `end`.
 
-    This is almost the same as `slice`, but it allows `start` to be greater than `end`.
+    Method ini hampir sama dengan `slice`, tetapi nilai `start` boleh lebih besar daripada `end`.
 
-    For instance:
+    Sebagai contoh:
 
     ```js run
     let str = "st*!*ring*/!*ify";
@@ -426,37 +426,38 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
 
     ```
 
-    Negative arguments are (unlike slice) not supported, they are treated as `0`.
+    Parameter negatif tidak didukung (tidak seperti slice), mereka dianggap sebagai `0`.
 
 `str.substr(start [, length])`
-: Returns the part of the string from `start`, with the given `length`.
+: Mengembalikan substring dari `start`, dengan panjang `length`.
 
-    In contrast with the previous methods, this one allows us to specify the `length` instead of the ending position:
+    Dibandingkan dengan cara-cara sebelumnya, cara ini memperbolehkan kita untuk menyebutkan `length` alih-alih posisi akhir dari string:
 
     ```js run
     let str = "st*!*ring*/!*ify";
     alert( str.substr(2, 4) ); // ring, from the 2nd position get 4 characters
     ```
 
-    The first argument may be negative, to count from the end:
+    Parameter pertama mungkin bernilai negatif, untuk menghitung dari akhir string:
 
     ```js run
     let str = "strin*!*gi*/!*fy";
     alert( str.substr(-4, 2) ); // gi, from the 4th position get 2 characters
     ```
 
-Let's recap these methods to avoid any confusion:
+Mari kita review cara-cara tersebut untuk menghindari kebingungan:
 
-| method | selects... | negatives |
+| method | mengambil... | negatives |
 |--------|-----------|-----------|
-| `slice(start, end)` | from `start` to `end` (not including `end`) | allows negatives |
-| `substring(start, end)` | between `start` and `end` | negative values mean `0` |
-| `substr(start, length)` | from `start` get `length` characters | allows negative `start` |
+| `slice(start, end)` | dari `start` sampai `end` (tidak termasuk `end`) | nilai negatif diperbolehkan |
+| `substring(start, end)` | antara `start` dan `end` | nilai negatif berarti mean `0` |
+| `substr(start, length)` | dari `start` ambil `length` karakter | `start` negatif diperbolehkan |
 
-```smart header="Which one to choose?"
+```smart header="Cara mana yang harus kita gunakan?"
 All of them can do the job. Formally, `substr` has a minor drawback: it is described not in the core JavaScript specification, but in Annex B, which covers browser-only features that exist mainly for historical reasons. So, non-browser environments may fail to support it. But in practice it works everywhere.
+Semuanya dapat melakukan pekerjaannya. Secara formal, `substr` memiliki kekurangan: fungsi ini tidak tercantum di spesifikasi inti Javascript, tetapi di Annex B, yang mencakup hanya fitur browser yang ada karena alasan historis. Jadi, environment non-browser mungkin gagal untuk mendukungnya. Tetapi dalam praktik fungsi ini bekerja di mana saja.
 
-Of the other two variants, `slice` is a little bit more flexible, it allows negative arguments and shorter to write. So, it's enough to remember solely `slice` of these three methods.
+Dibandingkan dengan dua varian yang lain, `slice` lebih fleksibel, karena memperbolehkan parameter negatif dan lebih pendek untuk ditulis. Jadi, dari ketiga cara sudah cukup untuk mengingat `slice`.
 ```
 
 ## Comparing strings
