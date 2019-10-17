@@ -655,7 +655,7 @@ alert( "S\u0307\u0323".normalize().length ); // 1
 alert( "S\u0307\u0323".normalize() == "\u1e68" ); // true
 ```
 
-Pada kenyataan, hal ini tidak selalu berlaku. Contoh diatas berlaku karena simbol `Ṩ` is "cukup seringn digunakan", jadi pembuat UTF-16 memasukkannya di tabel utama dan memberinya sebuah kode.
+Pada kenyataan, hal ini tidak selalu berlaku. Contoh diatas berlaku karena simbol `Ṩ` is "cukup sering digunakan", jadi pembuat UTF-16 memasukkannya di tabel utama dan memberinya sebuah kode.
 
 Jika Anda ingin belajar lebih lanjut tentang aturan normalisasi dan variasinya -- mereka dideskripsikan di appendix Unicode standard:  [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), tetapi untuk kebanyakan kasus informasi yang terdapat di bagian ini sudah cukup.
 
