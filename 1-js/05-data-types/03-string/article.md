@@ -1,14 +1,14 @@
-# Strings
+# String
 
-In JavaScript, the textual data is stored as strings. There is no separate type for a single character.
+Di Javascript, data teks disimpan sebagai string. Tidak ada tipe data sendiri untuk satu buah karakter.
 
-The internal format for strings is always [UTF-16](https://en.wikipedia.org/wiki/UTF-16), it is not tied to the page encoding.
+[UTF-16](https://en.wikipedia.org/wiki/UTF-16) selalu digunakan sebagai format internal string, hal tersebut tidak terikat dengan jenis encoding yang digunakan oleh halaman.
 
-## Quotes
+## Petik
 
-Let's recall the kinds of quotes.
+Mari kita lihat berbagai jenis petik.
 
-Strings can be enclosed within either single quotes, double quotes or backticks:
+String dapat ditutup dengan petik satu, petik dua, maupun backtick:
 
 ```js
 let single = 'single-quoted';
@@ -17,7 +17,7 @@ let double = "double-quoted";
 let backticks = `backticks`;
 ```
 
-Single and double quotes are essentially the same. Backticks, however, allow us to embed any expression into the string, by wrapping it in `${…}`:
+Petik satu dan petik dua kurang lebih hampir sama. Akan tetapi backtick memiliki perbedaan, yaitu memperbolehkan kita untuk menyisipkan ekspresi ke dalam string, dengan menaruhnya di dalam `${…}`:
 
 ```js run
 function sum(a, b) {
@@ -27,7 +27,7 @@ function sum(a, b) {
 alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.
 ```
 
-Another advantage of using backticks is that they allow a string to span multiple lines:
+Kelebihan backtick yang lain yaitu backtick memperbolehkan sebuah string untuk terdiri lebih dari satu baris:
 
 ```js run
 let guestList = `Guests:
@@ -39,18 +39,18 @@ let guestList = `Guests:
 alert(guestList); // a list of guests, multiple lines
 ```
 
-Looks natural, right? But single or double quotes do not work this way.
+Lebih rapi, kan? Tetapi petik satu atau dua tidak bekerja seperti itu.
 
-If we use them and try to use multiple lines, there'll be an error:
+Jika kita coba untuk menggunakan mereka untuk lebih dari satu baris, akan terjadi error:
 
 ```js run
 let guestList = "Guests: // Error: Unexpected token ILLEGAL
   * John";
 ```
 
-Single and double quotes come from ancient times of language creation when the need for multiline strings was not taken into account. Backticks appeared much later and thus are more versatile.
+Petik satu dan petik dua berasal dari masa lalu saat bahasa pemrograman dibuat, dimana kebutuhan untuk string lebih dari satu baris belum dipikirkan. Backtick muncul di kemudian hari, dan lebih fleksibel.
 
-Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. You can read more about it in the [docs](mdn:/JavaScript/Reference/Template_literals#Tagged_template_literals). This is called "tagged templates". This feature makes it easier to wrap strings into custom templating or other functionality, but it is rarely used.
+Backtick juga memperbolehkan kita untuk menyediakan sebuah "fungsi template" sebelum backtick pertama. Sintaknya yaitu: <code>func&#96;string&#96;</code>. Fungsi `func` dipanggil secara otomatis, menerima string dan ekspresi yang berada di dalamnya, lalu dapat memproses mereka. Anda dapat membaca tentang fitur ini lebih lanjut di [dokumentasi](mdn:/JavaScript/Reference/Template_literals#Tagged_template_literals). Fitur ini dipanggil "tagged templates". Fitur ini mempermudah kita untuk membungkus string ke dalam template atau fungsionalitas lain, tetapi fitur ini jarang digunakan.
 
 ## Special characters
 
