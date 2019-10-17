@@ -176,11 +176,11 @@ for (let char of "Hello") {
 }
 ```
 
-## Strings are immutable
+## String bersifat tidak dapat dirubah
 
-Strings can't be changed in JavaScript. It is impossible to change a character.
+Nilai dari string tidak dapat dirubah di Javascript. Tidak dimungkinkan untuk mengubah sebuah karakter.
 
-Let's try it to show that it doesn't work:
+Mari kita coba untuk membuktikannya:
 
 ```js run
 let str = 'Hi';
@@ -189,9 +189,9 @@ str[0] = 'h'; // error
 alert( str[0] ); // doesn't work
 ```
 
-The usual workaround is to create a whole new string and assign it to `str` instead of the old one.
+Salah satu cara untuk mengatasi hal tersebut adalah untuk membuat string baru lalu memasukkan nilainya ke `str`.
 
-For instance:
+Sebagai contoh:
 
 ```js run
 let str = 'Hi';
@@ -201,34 +201,34 @@ str = 'h' + str[1]; // replace the string
 alert( str ); // hi
 ```
 
-In the following sections we'll see more examples of this.
+Di bab ini kita akan melihat contoh yang lebih banyak dari ini.
 
-## Changing the case
+## Mengganti case dari string
 
-Methods [toLowerCase()](mdn:js/String/toLowerCase) and [toUpperCase()](mdn:js/String/toUpperCase) change the case:
+Method [toLowerCase()](mdn:js/String/toLowerCase) dan [toUpperCase()](mdn:js/String/toUpperCase) mengganti case dari string:
 
 ```js run
 alert( 'Interface'.toUpperCase() ); // INTERFACE
 alert( 'Interface'.toLowerCase() ); // interface
 ```
 
-Or, if we want a single character lowercased:
+Atau, apabila kita hanya ingin sebuah karakter yang diubah menjadi huruf kecil:
 
 ```js
 alert( 'Interface'[0].toLowerCase() ); // 'i'
 ```
 
-## Searching for a substring
+## Mencari sebuah substring
 
-There are multiple ways to look for a substring within a string.
+Ada banyak cara untuk mencari sebuah substring di dalam sebuah string.
 
 ### str.indexOf
 
-The first method is [str.indexOf(substr, pos)](mdn:js/String/indexOf).
+Cara yang pertama yaitu [str.indexOf(substr, pos)](mdn:js/String/indexOf).
 
-It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing can be found.
+Method ini mencari `substr` di dalam `str`, mulai dari posisi `pos` yang diberikan, dan mengembalikan posisi dimana substring ditemukan atau `-1` jika tidak ditemukan.
 
-For instance:
+Sebagai contoh:
 
 ```js run
 let str = 'Widget with id';
@@ -239,9 +239,9 @@ alert( str.indexOf('widget') ); // -1, not found, the search is case-sensitive
 alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with id)
 ```
 
-The optional second parameter allows us to search starting from the given position.
+Parameter kedua yang opsional memperbolehkan kita untuk mencari dari posisi yang ditentukan.
 
-For instance, the first occurrence of `"id"` is at position `1`. To look for the next occurrence, let's start the search from position `2`:
+Sebagai contoh, `"id"` muncul pertama pada posisi `1`. Untuk mencari dimana yang selanjutnya terletak, mari kita mulai mencari dari posisi `2`:
 
 ```js run
 let str = 'Widget with id';
@@ -249,7 +249,7 @@ let str = 'Widget with id';
 alert( str.indexOf('id', 2) ) // 12
 ```
 
-If we're interested in all occurrences, we can run `indexOf` in a loop. Every new call is made with the position after the previous match:
+Jika kita tertarik dengan semua kemunculan, kita dapat menjalankan `indexOf` di dalam sebuah perulangan. Setiap panggilan dibuat dengan posisi dari kemunculan sebelumnya:
 
 ```js run
 let str = 'As sly as a fox, as strong as an ox';
@@ -266,7 +266,7 @@ while (true) {
 }
 ```
 
-The same algorithm can be layed out shorter:
+Algoritma yang sama dapat ditulis lebih singkat:
 
 ```js run
 let str = "As sly as a fox, as strong as an ox";
@@ -281,12 +281,12 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
 ```
 
 ```smart header="`str.lastIndexOf(substr, position)`"
-There is also a similar method [str.lastIndexOf(substr, position)](mdn:js/String/lastIndexOf) that searches from the end of a string to its beginning.
+Ada juga method yang hampir sama [str.lastIndexOf(substr, position)](mdn:js/String/lastIndexOf) yang mencari dari akhir sebuah string sampai ke awalnya.
 
-It would list the occurrences in the reverse order.
+Cara tersebut akan menemukan kemunculan dalam urutan yang terbalik.
 ```
 
-There is a slight inconvenience with `indexOf` in the `if` test. We can't put it in the `if` like this:
+Ada sedikit kerepotan dalam menggunakan `indexOf` di dalam `if`. Kita tidak dapat menggunakannya seperti ini:
 
 ```js run
 let str = "Widget with id";
@@ -296,9 +296,9 @@ if (str.indexOf("Widget")) {
 }
 ```
 
-The `alert` in the example above doesn't show because `str.indexOf("Widget")` returns `0` (meaning that it found the match at the starting position). Right, but `if` considers `0` to be `false`.
+Contoh di atas tidak bekerja karena `str.indexOf("Widget")` mengembalikan `0` (artinya kemunculan ditemukan di awal string). `if` menganggap `0` sebagai `false`.
 
-So, we should actually check for `-1`, like this:
+Jadi, kita harus mengecek dengan nilai `-1`, seperti ini:
 
 ```js run
 let str = "Widget with id";
