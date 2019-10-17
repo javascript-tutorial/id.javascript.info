@@ -52,9 +52,9 @@ Petik satu dan petik dua berasal dari masa lalu saat bahasa pemrograman dibuat, 
 
 Backtick juga memperbolehkan kita untuk menyediakan sebuah "fungsi template" sebelum backtick pertama. Sintaknya yaitu: <code>func&#96;string&#96;</code>. Fungsi `func` dipanggil secara otomatis, menerima string dan ekspresi yang berada di dalamnya, lalu dapat memproses mereka. Anda dapat membaca tentang fitur ini lebih lanjut di [dokumentasi](mdn:/JavaScript/Reference/Template_literals#Tagged_template_literals). Fitur ini dipanggil "tagged templates". Fitur ini mempermudah kita untuk membungkus string ke dalam template atau fungsionalitas lain, tetapi fitur ini jarang digunakan.
 
-## Special characters
+## Karakter-karakter spesial
 
-It is still possible to create multiline strings with single and double quotes by using a so-called "newline character", written as `\n`, which denotes a line break:
+Masih mungkin untuk membuat string dengan banyak baris menggunakan petik satu atau petik dua dengan menggunakan "karakter newline", ditulis seperti berikut `\n`, yang menandakan baris baru:
 
 ```js run
 let guestList = "Guests:\n * John\n * Pete\n * Mary";
@@ -62,7 +62,7 @@ let guestList = "Guests:\n * John\n * Pete\n * Mary";
 alert(guestList); // a multiline list of guests
 ```
 
-For example, these two lines are equal, just written differently:
+Sebagai contoh, kedua baris berikut sama saja, hanya ditulis dengan cara yang berbeda:
 
 ```js run
 let str1 = "Hello\nWorld"; // two lines using a "newline symbol"
@@ -74,23 +74,23 @@ World`;
 alert(str1 == str2); // true
 ```
 
-There are other, less common "special" characters.
+Ada karakter spesial yang lain, tetapi mereka lebih jarang digunakan
 
-Here's the full list:
+Berikut adalah daftar lengkapnya:
 
 | Character | Description |
 |-----------|-------------|
-|`\n`|New line|
-|`\r`|Carriage return: not used alone. Windows text files use a combination of two characters `\r\n` to represent a line break. |
-|`\'`, `\"`|Quotes|
+|`\n`|Baris baru|
+|`\r`|Carriage return: tidak digunakan sendiri. File teks milik di Windows menggunakan kombinasi dari dua karakter `\r\n` untuk menandakan baris baru.|
+|`\'`, `\"`|Petik-petik|
 |`\\`|Backslash|
 |`\t`|Tab|
-|`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- kept for compatibility, not used nowadays. |
-|`\xXX`|Unicode character with the given hexadecimal unicode `XX`, e.g. `'\x7A'` is the same as `'z'`.|
-|`\uXXXX`|A unicode symbol with the hex code `XXXX` in UTF-16 encoding, for instance `\u00A9` -- is a unicode for the copyright symbol `©`. It must be exactly 4 hex digits. |
-|`\u{X…XXXXXX}` (1 to 6 hex characters)|A unicode symbol with the given UTF-32 encoding. Some rare characters are encoded with two unicode symbols, taking 4 bytes. This way we can insert long codes. |
+|`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- tetap bisa digunakan untuk kompabilitas, sekarang sudah tidak digunakan. |
+|`\xXX`|Karakter unicode dengan nilai heksadesimal `XX`, misalnya `'\x7A'` itu sama saja dengan `'z'`.|
+|`\uXXXX`|Sebuah simbol unicode dengan nilai heksadesimal `XXXX` di dalam encoding UTF-16, sebagai contoh `\u00A9` -- adalah sebuah unicode untuk simbol copyright `©`. Simbol ini harus terdiri dari 4 digit heksadesimal. |
+|`\u{X…XXXXXX}` (1 to 6 karakter heksadesimal)|Sebuah simbol unicode dengan encoding UTF-32. Beberapa karakter langka menggunakan dua simbol unicode, yang memakan 4 byte. Dengan cara ini kita dapat menggunakan kode yang panjang. |
 
-Examples with unicode:
+Beberapa contoh unicode:
 
 ```js run
 alert( "\u00A9" ); // ©
@@ -98,53 +98,53 @@ alert( "\u{20331}" ); // 佫, a rare Chinese hieroglyph (long unicode)
 alert( "\u{1F60D}" ); // 😍, a smiling face symbol (another long unicode)
 ```
 
-All special characters start with a backslash character `\`. It is also called an "escape character".
+Karakter-karakter spesial yang diawali dengan karakter backslash `\` kadang dipanggil dengan sebutan "escape character".
 
-We might also use it if we wanted to insert a quote into the string.
+Kita kadang dapat menggunakannya apabila kita ingin menggunakan petik di dalam string.
 
-For instance:
+Sebagai contoh:
 
 ```js run
 alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus!
 ```
 
-As you can see, we have to prepend the inner quote by the backslash `\'`, because otherwise it would indicate the string end.
+Seperti yang kita lihat, kita harus menambahkan backslash di depan petik yang di dalam string `\'`, karena jika tidak petik tersebut akan menandakan akhir dari sebuah string.
 
-Of course, only to the quotes that are the same as the enclosing ones need to be escaped. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+Tentu saja, hanya jenis petik yang sama dengan penutup string yang perlu di "escape". Jadi, solusi yang lebih elegan yaitu mengganti petik satu menjadi petik dua atau backtick:
 
 ```js run
 alert( `I'm the Walrus!` ); // I'm the Walrus!
 ```
 
-Note that the backslash `\` serves for the correct reading of the string by JavaScript, then disappears. The in-memory string has no `\`. You can clearly see that in `alert` from the examples above.
+Ingat bahwa backslash `\` hanya dipakai untuk Javascript agar dapat membaca string dengan benar. Di dalam memori, string tidak memiliki `\`. Anda dapat melihatnya secara langsung pada contoh `alert` di atas.
 
-But what if we need to show an actual backslash `\` within the string?
+Tetapi bagaimana jika kita ingin menampilkan backslash `\` di dalam sebuah string?
 
-That's possible, but we need to double it like `\\`:
+Hal tersebut bisa dilakukan, tetapi kita harus menulisnya dua kali seperti ini `\\`:
 
 ```js run
 alert( `The backslash: \\` ); // The backslash: \
 ```
 
-## String length
+## Panjang string
 
-The `length` property has the string length:
+Properti `length` memiliki panjang dari string:
 
 ```js run
 alert( `My\n`.length ); // 3
 ```
 
-Note that `\n` is a single "special" character, so the length is indeed `3`.
+Perlu diingat bahwa `\n` adalah sebuah karakter spesial, jadi panjang dari string adalah `3`.
 
-```warn header="`length` is a property"
-People with a background in some other languages sometimes mistype by calling `str.length()` instead of just `str.length`. That doesn't work.
+```warn header="`length` adalah sebuah properti"
+Orang dengan latar belakang di bahasa pemrograman lain kadang salah mengetik `str.length()` alih-alih `str.length`. Hal tersebut tidak bekerja.
 
-Please note that `str.length` is a numeric property, not a function. There is no need to add parenthesis after it.
+Perlu diingat bahwa `str.length` adalah properti numerik, bukan sebuah fungsi. Tidak perlu menambahkan kurung di belakangnya.
 ```
 
-## Accessing characters
+## Mengakses karakter di dalam string
 
-To get a character at position `pos`, use square brackets `[pos]` or call the method [str.charAt(pos)](mdn:js/String/charAt). The first character starts from the zero position:
+Untuk mengakses karakter pada posisi `pos`, digunakan kurung kotak `[pos]` atau dengan method [str.charAt(pos)](mdn:js/String/charAt). Karakter pertama dimulai dari posisi ke-0:
 
 ```js run
 let str = `Hello`;
@@ -157,9 +157,9 @@ alert( str.charAt(0) ); // H
 alert( str[str.length - 1] ); // o
 ```
 
-The square brackets are a modern way of getting a character, while `charAt` exists mostly for historical reasons.
+Kurung kotak adalah cara modern untuk mengakses sebuah karakter, sementara `charAt` ada karena alasan historis.
 
-The only difference between them is that if no character is found, `[]` returns `undefined`, and `charAt` returns an empty string:
+Perbedaan satu-satunya di antara mereka adalah apabila tidak ada karakter yang ditemukan, `[]` mengembalikan `undefined`, dan `charAt` mengembalikan string kosong:
 
 ```js run
 let str = `Hello`;
@@ -168,7 +168,7 @@ alert( str[1000] ); // undefined
 alert( str.charAt(1000) ); // '' (an empty string)
 ```
 
-We can also iterate over characters using `for..of`:
+Kita juga dapat mengakses karakter per karakter menggunakan sintaks `for..of`:
 
 ```js run
 for (let char of "Hello") {
