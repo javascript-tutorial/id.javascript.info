@@ -454,38 +454,37 @@ Mari kita review cara-cara tersebut untuk menghindari kebingungan:
 | `substr(start, length)` | dari `start` ambil `length` karakter | `start` negatif diperbolehkan |
 
 ```smart header="Cara mana yang harus kita gunakan?"
-All of them can do the job. Formally, `substr` has a minor drawback: it is described not in the core JavaScript specification, but in Annex B, which covers browser-only features that exist mainly for historical reasons. So, non-browser environments may fail to support it. But in practice it works everywhere.
 Semuanya dapat melakukan pekerjaannya. Secara formal, `substr` memiliki kekurangan: fungsi ini tidak tercantum di spesifikasi inti Javascript, tetapi di Annex B, yang mencakup hanya fitur browser yang ada karena alasan historis. Jadi, environment non-browser mungkin gagal untuk mendukungnya. Tetapi dalam praktik fungsi ini bekerja di mana saja.
 
 Dibandingkan dengan dua varian yang lain, `slice` lebih fleksibel, karena memperbolehkan parameter negatif dan lebih pendek untuk ditulis. Jadi, dari ketiga cara sudah cukup untuk mengingat `slice`.
 ```
 
-## Comparing strings
+## Membandingkan string
 
-As we know from the chapter <info:comparison>, strings are compared character-by-character in alphabetical order.
+Seperti yang kita tahu dari bab <info:comparison>, string dibandingkan karakter per karakter dengan urutan alfabet.
 
-Although, there are some oddities.
+Akan tetapi, ada beberapa pengecualian.
 
-1. A lowercase letter is always greater than the uppercase:
+1. Huruf kecil selalu lebih besar dibanding huruf kapital:
 
     ```js run
     alert( 'a' > 'Z' ); // true
     ```
 
-2. Letters with diacritical marks are "out of order":
+2. Karakter dengan tanda diakritik "tidak sesuai urutan":
 
     ```js run
     alert( 'Österreich' > 'Zealand' ); // true
     ```
 
-    This may lead to strange results if we sort these country names. Usually people would expect `Zealand` to come after `Österreich` in the list.
+    Hal ini dapat menyebabkan hasil yang aneh apabila kita mengurutkan nama-nama negara. Biasanya orang mengharapkan `Zealand` muncul setelah `Österreich` di daftar.
 
-To understand what happens, let's review the internal representation of strings in JavaScript.
+Untuk memahami apa yang terjadi, mari kita review representasi internal string di Javascript.
 
-All strings are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). That is: each character has a corresponding numeric code. There are special methods that allow to get the character for the code and back.
+Semua string menggunakan encoding [UTF-16](https://en.wikipedia.org/wiki/UTF-16). Yaitu: setiap karakter memiliki masing-masing kode numerik. Ada method spesial yang memperbolehkan kita untuk mengambil karakter dari kode dan sebaliknya.
 
 `str.codePointAt(pos)`
-: Returns the code for the character at position `pos`:
+: Mengembalikan kode untuk karakter pada posisi `pos`:
 
     ```js run
     // different case letters have different codes
@@ -494,20 +493,20 @@ All strings are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). Th
     ```
 
 `String.fromCodePoint(code)`
-: Creates a character by its numeric `code`
+: Membuat sebuah karakter berdasarkan `code` numeriknya
 
     ```js run
     alert( String.fromCodePoint(90) ); // Z
     ```
 
-    We can also add unicode characters by their codes using `\u` followed by the hex code:
+    Kita juga dapat membuat karakter unicode dengan kode mereka menggunakan `\u` yang diikuti oleh kode heksadesimal:
 
     ```js run
     // 90 is 5a in hexadecimal system
     alert( '\u005a' ); // Z
     ```
 
-Now let's see the characters with codes `65..220` (the latin alphabet and a little bit extra) by making a string of them:
+Sekarang mari kita lihat karakter dengan kode di antara `65..220` (alfabet latin dan sedikit tambahan) dengan membuat string yang terdiri dari mereka:
 
 ```js run
 let str = '';
@@ -520,38 +519,38 @@ alert( str );
 // ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
 ```
 
-See? Capital characters go first, then a few special ones, then lowercase characters, and `Ö` near the end of the output.
+Kan? Huruf kapital muncul pertama, lalu beberapa karakter spesial, lalu huruf kecil, dan `Ö` berada di dekat akhir string.
 
-Now it becomes obvious why `a > Z`.
+Sekarang terlihat jelas kenapa `a > Z`.
 
-The characters are compared by their numeric code. The greater code means that the character is greater. The code for `a` (97) is greater than the code for `Z` (90).
+Karakter-karakter dibandingkan berdasarkan kode numeriknya. Kode yang lebih besar berarti karakter tersebut lebih besar. Kode untuk `a` (97) lebih besar dibandingkan dengan kode untuk `Z` (90).
 
-- All lowercase letters go after uppercase letters because their codes are greater.
-- Some letters like `Ö` stand apart from the main alphabet. Here, it's code is greater than anything from `a` to `z`.
+- Semua huruf kecil muncul setelah huruf kapital karena kode mereka lebih besar.
+- Beberapa karakter seperti `Ö` terpisah dari alfabet utama. Disini, kodenya lebih besar dibandingkan semua karakter dari `a` to `z`.
 
-### Correct comparisons
+### Perbandingan yang benar
 
-The "right" algorithm to do string comparisons is more complex than it may seem, because alphabets are different for different languages.
+Algoritma yang "benar" untuk melakukan perbandingan string lebih kompleks dari kelihatannya, setiap bahasa memiliki alfabet mereka masing-masing.
 
-So, the browser needs to know the language to compare.
+Jadi, browser harus tahu bahasa yang digunakan untuk perbandingan.
 
-Luckily, all modern browsers (IE10- requires the additional library [Intl.JS](https://github.com/andyearnshaw/Intl.js/)) support the internationalization standard [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
+Beruntungnya, semua browser modern (IE10- memerlukan library tambahan [Intl.JS](https://github.com/andyearnshaw/Intl.js/)) mendukung standart internasionalisasi [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
 
-It provides a special method to compare strings in different languages, following their rules.
+Hal tersebut menyediakan cara spesial untuk membandingkan stringi di berbeda bahasa, mengikuti peraturan mereka.
 
-The call [str.localeCompare(str2)](mdn:js/String/localeCompare) returns an integer indicating whether `str` is less, equal or greater than `str2` according to the language rules:
+Method [str.localeCompare(str2)](mdn:js/String/localeCompare) mengembalikan sebuah interger yang menandakan apakah `str` lebih kecil, sama dengan atau lebih besar dari `str2` menurut peraturan-peraturan bahasa:
 
-- Returns a negative number if `str` is less than `str2`.
-- Returns a positive number if `str` is greater than `str2`.
-- Returns `0` if they are equivalent.
+- Mengembalikan nilai negatif jika `str` lebih kecil dibandingkan `str2`
+- Mengembalikan nilai positif jika `str` lebih besar dibandingkan `str2`
+- Mengembalikan `0` apabila mereka sama.
 
-For instance:
+Seperti contoh:
 
 ```js run
 alert( 'Österreich'.localeCompare('Zealand') ); // -1
 ```
 
-This method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), which allows it to specify the language (by default taken from the environment, letter order depends on the language) and setup additional rules like case sensitivity or should `"a"` and `"á"` be treated as the same etc.
+Method ini sebenarnya menerima 2 argumen tambahan yang disebutkan di [dokumentasi](mdn:js/String/localeCompare), yang memperbolehkan untuk menyebutkan bahasa (yang biasanya diambil dari environment, urutan huruf bergantung dari bahasa) dan menyebutkan peraturan-peraturan tambahan seperti case sensitivity atau apakah `"a"` and `"á"` dianggap sama dan seterusnya.
 
 ## Internals, Unicode
 
