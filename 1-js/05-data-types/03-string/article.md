@@ -659,21 +659,23 @@ In reality, this is not always the case. The reason being that the symbol `Ṩ` 
 
 If you want to learn more about normalization rules and variants -- they are described in the appendix of the Unicode standard: [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), but for most practical purposes the information from this section is enough.
 
-## Summary
+## Ringkasan
 
-- There are 3 types of quotes. Backticks allow a string to span multiple lines and embed expressions `${…}`.
-- Strings in JavaScript are encoded using UTF-16.
-- We can use special characters like `\n` and insert letters by their unicode using `\u...`.
-- To get a character, use: `[]`.
-- To get a substring, use: `slice` or `substring`.
-- To lowercase/uppercase a string, use: `toLowerCase/toUpperCase`.
-- To look for a substring, use: `indexOf`, or `includes/startsWith/endsWith` for simple checks.
-- To compare strings according to the language, use: `localeCompare`, otherwise they are compared by character codes.
+- Terdapat 3 jenis tanda petik. Backtick memperbolehkan sebuah string untuk memiliki banyak baris dan menyipkan ekspresi `${…}`.
+- String di Javascript menggunakan encoding UTF-16.
+- Kita dapat menggunakan karakter seperti `\n` dan memasukkan karakter berdasarkan unicode menggunakan `\u...`.
+- Untuk mengakses sebuah karakter, gunakan: `[]`.
+- Untuk mengambil sebuah substring, gunakan: `slice` atau `substring`.
+- Untuk mengubah case dari sebuah string, gunakan: `toLowerCase/toUpperCase`.
+- Untuk mencari lokasi dari sebuah substring, gunakan: `indexOf`, atau `includes/startsWith/endsWith` untuk pengecekan apakah ada atau tidak.
+- Untuk membandingkan string berdasarkan bahasa, gunakan `localeCompare`, jika tidak mereka akan dibandingkan berdasarkan kode karakter.
 
-There are several other helpful methods in strings:
+Ada beberapa method string lain yang berguna:
 
-- `str.trim()` -- removes ("trims") spaces from the beginning and end of the string.
-- `str.repeat(n)` -- repeats the string `n` times.
-- ...and more to be found in the [manual](mdn:js/String).
 
-Strings also have methods for doing search/replace with regular expressions. But that's big topic, so it's explained in a separate tutorial section <info:regular-expressions>.
+- `str.trim()` -- menghilangkan ("memotong") spasi dari awal dan akhir dari sebuah string.
+- `str.repeat(n)` -- mengulang string sebanyak `n` kali.
+...dan masih banyak lagi yang dapat ditemukan di dalam [manual](mdn:js/String).
+- ...dan masih banyak lagi yang dapat ditemukan di dalam [manual](mdn:js/String).
+
+String juga memiliki method-method untuk mencari/mengganti dengan ekspresi reguler (regular expression). Tetapi itu adalah topik yang luas, jadi topik ini dibahas di bagiannya sendiri <info:regular-expressions>.
