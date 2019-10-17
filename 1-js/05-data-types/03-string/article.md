@@ -675,7 +675,6 @@ Ada beberapa method string lain yang berguna:
 
 - `str.trim()` -- menghilangkan ("memotong") spasi dari awal dan akhir dari sebuah string.
 - `str.repeat(n)` -- mengulang string sebanyak `n` kali.
-...dan masih banyak lagi yang dapat ditemukan di dalam [manual](mdn:js/String).
 - ...dan masih banyak lagi yang dapat ditemukan di dalam [manual](mdn:js/String).
 
 String juga memiliki method-method untuk mencari/mengganti dengan ekspresi reguler (regular expression). Tetapi itu adalah topik yang luas, jadi topik ini dibahas di bagiannya sendiri <info:regular-expressions>.
