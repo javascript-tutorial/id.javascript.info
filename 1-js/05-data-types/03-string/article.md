@@ -241,7 +241,7 @@ alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with 
 
 Parameter kedua yang opsional memperbolehkan kita untuk mencari dari posisi yang ditentukan.
 
-Sebagai contoh, `"id"` muncul pertama pada posisi `1`. Untuk mencari dimana yang selanjutnya terletak, mari kita mulai mencari dari posisi `2`:
+Sebagai contoh, `"id"` muncul pertama pada posisi `1`. Untuk mencari dimana kemunculan yang selanjutnya terletak, mari kita mulai mencari dari posisi `2`:
 
 ```js run
 let str = 'Widget with id';
