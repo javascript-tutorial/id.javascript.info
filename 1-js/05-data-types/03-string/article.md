@@ -534,7 +534,7 @@ Algoritma yang "benar" untuk melakukan perbandingan string lebih kompleks dari k
 
 Jadi, browser harus tahu bahasa yang digunakan untuk perbandingan.
 
-Beruntungnya, semua browser modern (IE10- memerlukan library tambahan [Intl.JS](https://github.com/andyearnshaw/Intl.js/)) mendukung standart internasionalisasi [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
+Beruntungnya, semua browser modern (IE10- memerlukan library tambahan [Intl.JS](https://github.com/andyearnshaw/Intl.js/)) mendukung standar internasionalisasi [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
 
 Hal tersebut menyediakan cara spesial untuk membandingkan stringi di berbeda bahasa, mengikuti peraturan mereka.
 
@@ -552,21 +552,21 @@ alert( 'Österreich'.localeCompare('Zealand') ); // -1
 
 Method ini sebenarnya menerima 2 argumen tambahan yang disebutkan di [dokumentasi](mdn:js/String/localeCompare), yang memperbolehkan untuk menyebutkan bahasa (yang biasanya diambil dari environment, urutan huruf bergantung dari bahasa) dan menyebutkan peraturan-peraturan tambahan seperti case sensitivity atau apakah `"a"` and `"á"` dianggap sama dan seterusnya.
 
-## Internals, Unicode
+## Bagian internal dari unicode
 
-```warn header="Advanced knowledge"
-The section goes deeper into string internals. This knowledge will be useful for you if you plan to deal with emoji, rare mathematical or hieroglyphic characters or other rare symbols.
+```warn header="Pengetahuan lanjutan"
+Bagian ini membahas lebih dalam tentang bagian internal string. Pengetahuan ini akan berguna apabila Anda akan berurusan dengan emoji, simbol matematika, hieroglif, atau simbol-simbol lain yang langka.
 
-You can skip the section if you don't plan to support them.
+Anda dapat melewati bagian ini jika tidak berurusan dengan mereka.
 ```
 
 ### Surrogate pairs
 
-All frequently used characters have 2-byte codes. Letters in most european languages, numbers, and even most hieroglyphs, have a 2-byte representation.
+Semua karakter yang sering digunakan memiliki kode 2-byte. Huruf di kebanyakan negara eropa, angka, dan bahkan kebanyakan hieroglif, memiliki representasi 2-byte.
 
-But 2 bytes only allow 65536 combinations and that's not enough for every possible symbol. So rare symbols are encoded with a pair of 2-byte characters called "a surrogate pair".
+Tetapi 2 byte hanya memperbolehkan 65536 kombinasi dan itu tidak cukup untuk semua kombinasi simbol. Jadi simbol-simbol yang langka menggunakan encoding dengan sepasang karakter 2-byte yang disebut "surrogate pair".
 
-The length of such symbols is `2`:
+Panjang dari simbol tersebut adalah `2`:
 
 ```js run
 alert( '𝒳'.length ); // 2, MATHEMATICAL SCRIPT CAPITAL X
@@ -574,24 +574,24 @@ alert( '😂'.length ); // 2, FACE WITH TEARS OF JOY
 alert( '𩷶'.length ); // 2, a rare Chinese hieroglyph
 ```
 
-Note that surrogate pairs did not exist at the time when JavaScript was created, and thus are not correctly processed by the language!
+Perlu diingat bahwa surrogate pair tidak ada pada saat Javascript dibuat, oleh karena itu fitur ini tidak diproses secara benar oleh bahasa ini!
 
-We actually have a single symbol in each of the strings above, but the `length` shows a length of `2`.
+Kita sebenarnya memiliki sebuah simbol di setiap string di atas, tetapi `length` menunjukkan panjang `2`.
 
-`String.fromCodePoint` and `str.codePointAt` are few rare methods that deal with surrogate pairs right. They recently appeared in the language. Before them, there were only [String.fromCharCode](mdn:js/String/fromCharCode) and [str.charCodeAt](mdn:js/String/charCodeAt). These methods are actually the same as `fromCodePoint/codePointAt`, but don't work with surrogate pairs.
+`String.fromCodePoint` dan `str.codePointAt` adalah beberapa method yang menangani surrogate pair dengan benar. Belum lama ini mereka muncul di bahasa ini. Sebelum mereka, hanya ada [String.fromCharCode](mdn:js/String/fromCharCode) dan [str.charCodeAt](mdn:js/String/charCodeAt). Method-method tersebut sebenarnya sama saja dengan `fromCodePoint/codePointAt`, tetapi tidak bisa digunakan untuk surrogate pair.
 
-Getting a symbol can be tricky, because surrogate pairs are treated as two characters:
+Mengambil sebuah simbol terkadang agak susah, karena surrogate pair diperlakukan sebagai dua karakter:
 
 ```js run
 alert( '𝒳'[0] ); // strange symbols...
 alert( '𝒳'[1] ); // ...pieces of the surrogate pair
 ```
 
-Note that pieces of the surrogate pair have no meaning without each other. So the alerts in the example above actually display garbage.
+Perlu diingat bahwa bagian dari surrogate pair tidak memiliki arti tanpa pasangan yang lain. Jadi contoh di atas menampilkan karakter aneh.
 
-Technically, surrogate pairs are also detectable by their codes: if a character has the code in the interval of `0xd800..0xdbff`, then it is the first part of the surrogate pair. The next character (second part) must have the code in interval `0xdc00..0xdfff`. These intervals are reserved exclusively for surrogate pairs by the standard.
+Secara teknis, surrogate pair juga dapat dideteksi berdasarkan kode mereka, jika sebuah karakter memiliki kode di antara `0xd800..0xdbff`, maka karakter ini adalah bagian pertama dari surrogate pair. Karakter selanjutnya (bagian kedua) harus berada di antara `0xdc00..0xdfff`. Interval ini sudah dipesan secara khusus untuk surrogate pair oleh standar.
 
-In the case above:
+Pada kasus diatas:
 
 ```js run
 // charCodeAt is not surrogate-pair aware, so it gives codes for parts
@@ -600,35 +600,35 @@ alert( '𝒳'.charCodeAt(0).toString(16) ); // d835, between 0xd800 and 0xdbff
 alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3, between 0xdc00 and 0xdfff
 ```
 
-You will find more ways to deal with surrogate pairs later in the chapter <info:iterable>. There are probably special libraries for that too, but nothing famous enough to suggest here.
+Anda akan menemukan cara lain untuk bertanganan dengan surrogate pair nanti di bab <info:iterable>. Mungkin juga ada library-library yang untuk hal tersebut, tetapi tidak ada yang cukup terkenal untuk disarankan di sini.
 
-### Diacritical marks and normalization
+### Tanda diakritik dan normalisasi
 
-In many languages there are symbols that are composed of the base character with a mark above/under it.
+Di banyak bahasa terdapat simbol-simbol yang terdiri dari huruf dasar dengan tanda di atas/bawahnya.
 
-For instance, the letter `a` can be the base character for: `àáâäãåā`. Most common "composite" character have their own code in the UTF-16 table. But not all of them, because there are too many possible combinations.
+Sebagai contoh, karakter `a` dapat menjadi huruf dasar untuk: `àáâäãåā`. Kebanyakan karakter "komposit" memiliki kode mereka sendiri di tabel UTF-16. Hal tersebut tidak selalu terjadi, karena terlalu banyak kemungkinan kombinasi.
 
-To support arbitrary compositions, UTF-16 allows us to use several unicode characters: the base character followed by one or many "mark" characters that "decorate" it.
+Untuk mendukung komposisi yang fleksibel, UTF-16 memperbolehkan kita untuk menggunakan beberapa karakter unicode: sebuah huruf dasar yang diikuti oleh satu atau lebih karakter "tanda" yang "menghiasinya".
 
-For instance, if we have `S` followed by the special "dot above" character (code `\u0307`), it is shown as Ṡ.
+Sebagai contoh, jika kita memiliki `S` diikuti dengan karakter spesial "titik di atas" (kode `\u0307`), maka akan ditampilkan Ṡ.
 
 ```js run
 alert( 'S\u0307' ); // Ṡ
 ```
 
-If we need an additional mark above the letter (or below it) -- no problem, just add the necessary mark character.
+Jika kita memerlukan tanda tambahan di atas huruf (atau di bawahnya) -- tidak masalah, tambahkan saja karakter tanda yang diperlukan.
 
-For instance, if we append a character "dot below" (code `\u0323`), then we'll have "S with dots above and below": `Ṩ`.
+Sebagai contoh, jika kita tambahkan sebuah karakter "titik di bawah" (kode `\u0323`), maka kita akan mendapatkan "S dengan titik di atas dan di bawah": `Ṩ`.
 
-For example:
+Sebagai contoh:
 
 ```js run
 alert( 'S\u0307\u0323' ); // Ṩ
 ```
 
-This provides great flexibility, but also an interesting problem: two characters may visually look the same, but be represented with different unicode compositions.
+Hal tersebut memberikan banyak fleksibilitas, tetapi juga masalah yang menarik: dua karakter mungkin terlihat sama, tetapi dapat direpresentasikan dengan komposisi unicode yang berbeda.
 
-For instance:
+Sebagai contoh:
 
 ```js run
 let s1 = 'S\u0307\u0323'; // Ṩ, S + dot above + dot below
@@ -639,15 +639,15 @@ alert( `s1: ${s1}, s2: ${s2}` );
 alert( s1 == s2 ); // false though the characters look identical (?!)
 ```
 
-To solve this, there exists a "unicode normalization" algorithm that brings each string to the single "normal" form.
+Untuk menyelesaikan masalah ini, terdapat sebuah algoritma "normalisasi unicode" yang membuat setiap string menjadi satu bentuk "normal".
 
-It is implemented by [str.normalize()](mdn:js/String/normalize).
+Algoritma tersebut diimplementasikan oleh [str.normalize()](mdn:js/String/normalize).
 
 ```js run
 alert( "S\u0307\u0323".normalize() == "S\u0323\u0307".normalize() ); // true
 ```
 
-It's funny that in our situation `normalize()` actually brings together a sequence of 3 characters to one: `\u1e68` (S with two dots).
+Agak lucu bahwa di situasi kita `normalize()` menjadikan sekumpulan karakter dengan panjang 3 menjadi satu: `\u1e68` (S dengan dua titik).
 
 ```js run
 alert( "S\u0307\u0323".normalize().length ); // 1
@@ -655,9 +655,9 @@ alert( "S\u0307\u0323".normalize().length ); // 1
 alert( "S\u0307\u0323".normalize() == "\u1e68" ); // true
 ```
 
-In reality, this is not always the case. The reason being that the symbol `Ṩ` is "common enough", so UTF-16 creators included it in the main table and gave it the code.
+Pada kenyataan, hal ini tidak selalu berlaku. Contoh diatas berlaku karena simbol `Ṩ` is "cukup seringn digunakan", jadi pembuat UTF-16 memasukkannya di tabel utama dan memberinya sebuah kode.
 
-If you want to learn more about normalization rules and variants -- they are described in the appendix of the Unicode standard: [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), but for most practical purposes the information from this section is enough.
+Jika Anda ingin belajar lebih lanjut tentang aturan normalisasi dan variasinya -- mereka dideskripsikan di appendix Unicode standard:  [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), tetapi untuk kebanyakan kasus informasi yang terdapat di bagian ini sudah cukup.
 
 ## Ringkasan
 
