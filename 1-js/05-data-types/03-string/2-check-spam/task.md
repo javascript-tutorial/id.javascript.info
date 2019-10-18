@@ -4,7 +4,7 @@ Nilai kepentingan: 5
 
 # Mengecek apakah spam
 
-Tulislah sebuah fungsi `checkSpan(str)` yang mengembalikan `true` apabila `str` mengandung 'viagra' atau 'XXX', jika tidak kembalikan `false`.
+Tulislah sebuah fungsi `checkSpam(str)` yang mengembalikan `true` apabila `str` mengandung 'viagra' atau 'XXX', jika tidak kembalikan `false`.
 
 Fungsi yang ditulis harus bersifat case-insensitive:
 
