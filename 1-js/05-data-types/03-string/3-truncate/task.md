@@ -4,7 +4,7 @@ Nilai kepentingan: 5
 
 # Memotong teks menjadi lebih pendek
 
-Buatlah sebuah fungsi `truncate(str, maxlength` yang mengecek panjang dari `str` dan, apabila panjangnya melebihi `maxlength` -- ganti akhir dari `str` menjadi karakter elipsis `"…"`, supaya panjangnya sama dengan `maxlength`.
+Buatlah sebuah fungsi `truncate(str, maxlength)` yang mengecek panjang dari `str` dan, apabila panjangnya melebihi `maxlength` -- ganti akhir dari `str` menjadi karakter elipsis `"…"`, supaya panjangnya sama dengan `maxlength`.
 
 Hasil kembalian dari fungsi seharusnya string yang dipotong (jika diperlukan).
 
