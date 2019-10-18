@@ -1,4 +1,4 @@
-Kita tidak dapat "mengganti" karakter pertama, karena string di Javascript bersifat tidak dapat berubah.
+Kita tidak dapat "mengganti" karakter pertama, karena di Javascript string bersifat tidak dapat berubah.
 
 Tetapi kita dapat membuat sebuah string baru berdasarkan yang sudah ada, dengan karakter pertama yang besar:
 
