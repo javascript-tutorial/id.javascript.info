@@ -1,14 +1,14 @@
-importance: 5
+Nilai kepentingan: 5
 
 ---
 
-# Truncate the text
+# Memotong teks menjadi lebih pendek
 
-Create a function `truncate(str, maxlength)` that checks the length of the `str` and, if it exceeds `maxlength` -- replaces the end of `str` with the ellipsis character `"…"`, to make its length equal to `maxlength`.
+Buatlah sebuah fungsi `truncate(str, maxlength` yang mengecek panjang dari `str` dan, apabila panjangnya melebihi `maxlength` -- ganti akhir dari `str` menjadi karakter elipsis `"…"`, supaya panjangnya sama dengan `maxlength`.
 
-The result of the function should be the truncated (if needed) string.
+Hasil kembalian dari fungsi seharusnya string yang dipotong (jika diperlukan).
 
-For instance:
+Sebagai contoh:
 
 ```js
 truncate("What I'd like to tell on this topic is:", 20) = "What I'd like to te…"
