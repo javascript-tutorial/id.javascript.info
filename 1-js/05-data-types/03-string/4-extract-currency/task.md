@@ -1,14 +1,14 @@
-importance: 4
+Nilai kepentingan: 4
 
 ---
 
-# Extract the money
+# Ambil uangnya
 
-We have a cost in the form `"$120"`. That is: the dollar sign goes first, and then the number.
+Kita memiliki uang dalam bentuk `"$120"`. Yaitu: tanda dolar muncul pertama, lalu diikuti oleh angka.
 
-Create a function `extractCurrencyValue(str)` that would extract the numeric value from such string and return it. 
+Buatlah sebuah fungsi `extractCurrencyValue(str)` yang mengambil nilai dari bagian angka string tersebut dan mengembalikannya.
 
-The example:
+Sebagai contoh:
 
 ```js
 alert( extractCurrencyValue('$120') === 120 ); // true
