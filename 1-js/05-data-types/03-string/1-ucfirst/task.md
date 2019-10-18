@@ -1,10 +1,10 @@
-importance: 5
+Nilai penting: 5
 
 ---
 
-# Uppercase the first character
+# Buat karakter pertama menjadi besar
 
-Write a function `ucFirst(str)` that returns the string `str` with the uppercased first character, for instance:
+Tulislah sebuah fungsi `ucFirst(str)` yang mengembalikan `str` dengan karakter pertama yang besar, sebagai contoh:
 
 ```js
 ucFirst("john") == "John";
