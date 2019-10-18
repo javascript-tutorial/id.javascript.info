@@ -1,12 +1,12 @@
-importance: 5
+Nilai kepentingan: 5
 
 ---
 
-# Check for spam
+# Mengecek apakah spam
 
-Write a function `checkSpam(str)` that returns `true` if `str` contains 'viagra' or 'XXX', otherwise `false`.
+Tulislah sebuah fungsi `checkSpan(str)` yang mengembalikan `true` apabila `str` mengandung 'viagra' atau 'XXX', jika tidak kembalikan `false`.
 
-The function must be case-insensitive:
+Fungsi yang ditulis harus bersifat case-insensitive:
 
 ```js
 checkSpam('buy ViAgRA now') == true
