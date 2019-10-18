@@ -1,183 +1,183 @@
-# Debugging in Chrome
+# Mendebug di Chrome
 
-Before writing more complex code, let's talk about debugging.
+Sebelum menulis kode lebih komplex, ayo kita bahas tentang mendebug.
 
-[Debugging](https://en.wikipedia.org/wiki/Debugging) is the process of finding and fixing errors within a script. All modern browsers and most other environments support debugging tools -- a special UI in developer tools that makes debugging much easier. It also allows to trace the code step by step to see what exactly is going on.
+[Mendebug](https://en.wikipedia.org/wiki/Debugging) ialah proses mencari dan membetulkan galat di dalam script. Semua peramban modern dan kebanyakan lingkungan lain mendukung debugging tools -- UI spesial di developer tools yang membuat debugging jauh lebih mudah. Ia juga membolehkan menjejak kode pelan-pelan untuk melihat apa yang sebenarnya terjadi.
 
-We'll be using Chrome here, because it has enough features, most other browsers have a similar process`.
+Kita akan menggunakan Chrome di sini, karena ia punya cukup fitur, kebanyakan peramban lain punya proses serupa`.
 
-## The "Sources" panel
+## Panel "Sources"
 
-Your Chrome version may look a little bit different, but it still should be obvious what's there.
+Versi Chrome kamu mungkin terlihat berbeda, tapi tetap kelihatan jelas bedanya.
 
-- Open the [example page](debugging/index.html) in Chrome.
-- Turn on developer tools with `key:F12` (Mac: `key:Cmd+Opt+I`).
-- Select the `Sources` panel.
+- Buka [laman contoh](debugging/index.html) di Chrome.
+- Nyalakan developer tools dengan `key:F12` (Mac: `key:Cmd+Opt+I`).
+- Pilih panel `Sources`.
 
-Here's what you should see if you are doing it for the first time:
+Inilah apa yang mesti kamu lihat jika kamu baru melakukannya pertama kali:
 
 ![](chrome-open-sources.svg)
 
-The toggler button <span class="devtools" style="background-position:-168px -76px"></span> opens the tab with files.
+Tombol toggler <span class="devtools" style="background-position:-168px -76px"></span> membuka tab dengan file.
 
-Let's click it and select `hello.js` in the tree view. Here's what should show up:
+Klik itu dan pilih `hello.js` di tree view. Inilah yang mestinya muncul:
 
 ![](chrome-tabs.svg)
 
-Here we can see three zones:
+Di sini kita bisa melihat tiga zona:
 
-1. The **Resources zone** lists HTML, JavaScript, CSS and other files, including images that are attached to the page. Chrome extensions may appear here too.
-2. The **Source zone** shows the source code.
-3. The **Information and control zone** is for debugging, we'll explore it soon.
+1. **Zona sumberdaya** melist HTML, JavaScript, CSS dan file lainnya, termasuk image yang dilampirkan ke laman. Extensi Chrome juga muncul di sini.
+2. **Zona sumber** menampilkan kode sumber.
+3. **Zona informasi dan kontrol** untuk debugging, kita akan mengexplorasi itu segera.
 
-Now you could click the same toggler <span class="devtools" style="background-position:-200px -76px"></span> again to hide the resources list and give the code some space.
+Sekarang kamu bisa mengklik toggler yang sama <span class="devtools" style="background-position:-200px -76px"></span> lagi untuk menyembunyikan daftar sumber daya dan memberi spasi ke kode.
 
-## Console
+## Konsol
 
-If we press `key:Esc`, then a console opens below. We can type commands there and press `key:Enter` to execute.
+Jika kita menekan `key:Esc`, maka konsol terbuka di bawah. Kita bisa mengetik command di sana dan menekan `key:Enter` untuk exekusi.
 
-After a statement is executed, its result is shown below.
+Setelah pernyataan diexekusi, hasilnya ditampilkan di bawah.
 
-For example, here `1+2` results in `3`, and `hello("debugger")` returns nothing, so the result is `undefined`:
+Misalnya, `1+2` menghasilkan `3`, dan `hello("debugger")` tak mengembalikan apa-apa, jadi hasilnya `undefined`:
 
 ![](chrome-sources-console.svg)
 
-## Breakpoints
+## Breakpoint
 
-Let's examine what's going on within the code of the [example page](debugging/index.html). In `hello.js`, click at line number `4`. Yes, right on the `4` digit, not on the code.
+Mari periksa apa yang terjadi di dalam kode [laman contoh](debugging/index.html). Di `hello.js`, klik nomor baris `4`. Ya, tepat di digit `4`, bukan di kode.
 
-Congratulations! You've set a breakpoint. Please also click on the number for line `8`.
+Selamat! Kamu mengeset breakpoint. Silakan klik juga angka untuk baris `8`.
 
-It should look like this (blue is where you should click):
+Rupanya mesti seperti ini (biru adalah tempat di mana kamu klik):
 
 ![](chrome-sources-breakpoint.svg)
 
-A *breakpoint* is a point of code where the debugger will automatically pause the JavaScript execution.
+*Breakpoint* ialah poin kode di mana debugger akan otomatis menjeda exekusi JavaScript.
 
-While the code is paused, we can examine current variables, execute commands in the console etc. In other words, we can debug it.
+Ketika kode dijeda, kita bisa periksa variabel kini, mengexekusi command di konsol dsb. Dengan kata lain, kita bisa mendebug itu.
 
-We can always find a list of breakpoints in the right panel. That's useful when we have many breakpoints in various files. It allows us to:
-- Quickly jump to the breakpoint in the code (by clicking on it in the right panel).
-- Temporarily disable the breakpoint by unchecking it.
-- Remove the breakpoint by right-clicking and selecting Remove.
-- ...And so on.
+Kita selalu bisa menemukan daftar breakpoint di panel kanan. Ini berguna ketika kita punya banyak breakpoint di berbagai file. Ia membolehkan kita untuk:
+- Lompak cepat ke breakpoint di kode (dengan mengklik itu di panel kanan).
+- Mematikan sementara breakpoint dengan meng-uncheck itu.
+- Buang breakpoint dengan mengklik-kanan dan memilik Remove.
+- ...Dan banyak lagi.
 
-```smart header="Conditional breakpoints"
-*Right click* on the line number allows to create a *conditional* breakpoint. It only triggers when the given expression is truthy.
+```smart header="Breakpoint kondisional"
+*Klik kanan* di nomor baris bisa membuat breakpoint *kondisional*. Ia hanya terpicu saat expresi yang diberikan truthy.
 
-That's handy when we need to stop only for a certain variable value or for certain function parameters.
+Ini praktis saat kita harus berhenti cuma untuk nilai variabel tertentu atau untuk parameter fungsi tertentu.
 ```
 
-## Debugger command
+## Command debugger
 
-We can also pause the code by using the `debugger` command in it, like this:
+Kita juga bisa menjeda kode menggunakan command `debugger` di dalamnya, seperti ini:
 
 ```js
 function hello(name) {
   let phrase = `Hello, ${name}!`;
 
 *!*
-  debugger;  // <-- the debugger stops here
+  debugger;  // <-- debugger berhenti di sini
 */!*
 
   say(phrase);
 }
 ```
 
-That's very convenient when we are in a code editor and don't want to switch to the browser and look up the script in developer tools to set the breakpoint.
+Ini sangat nyaman saat kita di dalam editor kode dan tak ingin berubah ke peramban dan mencari script di developer tools untuk mengeset breakpoint.
 
 
-## Pause and look around
+## Jeda dan lihat sekitar
 
-In our example, `hello()` is called during the page load, so the easiest way to activate the debugger (after we've set the breakpoints) is to reload the page. So let's press `key:F5` (Windows, Linux) or `key:Cmd+R` (Mac).
+Di contoh kita, `hello()` dipanggil selama page load, jadi cara termudah untuk mengaktivasi debugger (setelah kita set breakpoint) ialah memuat-ulang laman. Jadi mari tekan `key:F5` (Windows, Linux) atau `key:Cmd+R` (Mac).
 
-As the breakpoint is set, the execution pauses at the 4th line:
+Ketika breakpoint diset, exekusi terjeda di baris ke-4:
 
 ![](chrome-sources-debugger-pause.svg)
 
-Please open the informational dropdowns to the right (labeled with arrows). They allow you to examine the current code state:
+Silakan buka dropdown informasional ke kanan (dilabeli panah). Mereka membolehkan kamu memeriksa code state sekarang:
 
-1. **`Watch` -- shows current values for any expressions.**
+1. **`Watch` -- menampilkan nilai sekarang untuk expresi apapun.**
 
-    You can click the plus `+` and input an expression. The debugger will show its value at any moment, automatically recalculating it in the process of execution.
+    Kamu bisa mengklik `+` dan menginput expresi. Debugger akan menampilkan nilainya kapan saja, otomatis merekalkulasi itu di proses exekusi.
 
-2. **`Call Stack` -- shows the nested calls chain.**
+2. **`Call Stack` -- menampilkan rantai panggilan bersarang.**
 
-    At the current moment the debugger is inside `hello()` call, called by a script in `index.html` (no function there, so it's called "anonymous").
+    Di momen sekarang debugger berada di dalam panggilan `hello()`, dipanggil script di `index.html` (tak ada fungsi di sana, jadi ia disebut "anonymous").
 
     If you click on a stack item (e.g. "anonymous"), the debugger jumps to the corresponding code, and all its variables can be examined as well.
 3. **`Scope` -- current variables.**
 
-    `Local` shows local function variables. You can also see their values highlighted right over the source.
+    `Local` menampilkan variabel fungsi lokal. Kita juga bisa melihat nilai mereka yang dihighlight tepat di sebelah kanan kode.
 
     `Global` has global variables (out of any functions).
 
-    There's also `this` keyword there that we didn't study yet, but we'll do that soon.
+    Ada juta katakunci `this` di sana yang tidak kita pelajari sekarang, tapi nanti kemudian.
 
-## Tracing the execution
+## Menjejak exekusi
 
-Now it's time to *trace* the script.
+Sekarang waktunya *menjejak* script.
 
-There are buttons for it at the top of the right panel. Let's engage them.
+Ada tombol untuk itu di ujung atas panel kanan. Ayo kita ikuti mereka.
 
-<span class="devtools" style="background-position:-7px -76px"></span> -- continue the execution, hotkey `key:F8`.
-: Resumes the execution. If there are no additional breakpoints, then the execution just continues and the debugger loses control.
+<span class="devtools" style="background-position:-7px -76px"></span> -- melanjutkan exekusi, hotkey `key:F8`.
+: Melanjutkan exekusi. Jika tak ada breakpoint tambahan, maka exekusi berlanjut dan debugger hilang kontrol.
 
-    Here's what we can see after a click on it:
+    Inilah apa yang bisa kita lihat setelah satu klik ke dia:
 
     ![](chrome-sources-debugger-trace-1.svg)
 
-    The execution has resumed, reached another breakpoint inside `say()` and paused there. Take a look at the "Call Stack" at the right. It has increased by one more call. We're inside `say()` now.
+    Exekusi dilanjutkan, mencapai breakpoint lain di dalam `say()` dan terjeda di sana. Perhatikan "Call Stack" di kanan. Ia meningkat satu panggilan lagi. Kita di dalam `say()` sekarang.
 
 <span class="devtools" style="background-position:-137px -76px"></span> -- make a step (run the next command), but *don't go into the function*, hotkey `key:F10`.
-: If we click it now, `alert` will be shown. The important thing is that `alert` can be any function, the execution "steps over it", skipping the function internals.
+: Jika kita klik ini sekarang, `alert` akan muncul. Yang penting ialah `alert` bisa fungsi apa saja, exekusi "melangkahinya", mengabaikan fungsi internal.
 
 <span class="devtools" style="background-position:-72px -76px"></span> -- make a step, hotkey `key:F11`.
-: The same as the previous one, but "steps into" nested functions. Clicking this will step through all script actions one by one.
+: Sama dengan sebelumnya, tapi "melangkah masuk ke dalam" fungsi bersarang. Mengklik ini akan melangkahi semua aksi script satu-satu.
 
 <span class="devtools" style="background-position:-104px -76px"></span> -- continue the execution till the end of the current function, hotkey `key:Shift+F11`.
-: The execution would stop at the very last line of the current function. That's handy when we accidentally entered a nested call using <span class="devtools" style="background-position:-72px -76px"></span>, but it does not interest us, and we want to continue to its end as soon as possible.
+: Exekusi akan berhenti di baris terakhir dari fungsi sekarang. Ini praktis saat kita tak sengaja masuk ke panggilan bersarang memakai <span class="devtools" style="background-position:-72px -76px"></span>, tapi itu tak menarik bagi kita, dan kita mau lanjut ke ujungnya sesegera mungkin.
 
 <span class="devtools" style="background-position:-7px -28px"></span> -- enable/disable all breakpoints.
-: That button does not move the execution. Just a mass on/off for breakpoints.
+: Tombol itu tidak menggerakkan exekusi. Cuma on/off massal untuk breakpoint.
 
 <span class="devtools" style="background-position:-264px -4px"></span> -- enable/disable automatic pause in case of an error.
-: When enabled, and the developer tools is open, a script error automatically pauses the execution. Then we can analyze variables to see what went wrong. So if our script dies with an error, we can open debugger, enable this option and reload the page to see where it dies and what's the context at that moment.
+: Ketika menyala, dan developer tools terbuka, galat script otomatis menjeda exekusi. Lalu kita bisa menganalisa variabel untuk melihat apa yang salah. Jadi jika script kita mati karena galat, kita bisa buka debugger, menyalakan opsi ini dan memuat-ulang laman untuk melihat di mana ia mati dan apa kontexnya saat itu.
 
-```smart header="Continue to here"
-Right click on a line of code opens the context menu with a great option called "Continue to here".
+```smart header="Lanjut ke sini"
+Klilk kanan di satu baris kode membuka context menu dengan opsi hebat yang disebut "Lanjut ke sini".
 
-That's handy when we want to move multiple steps forward to the line, but we're too lazy to set a breakpoint.
+Ini praktis saat kita mau pindah beberpaa langkah maju ke baris itu, tapi kita terlalu malas mengeset breakpoint.
 ```
 
 ## Logging
 
-To output something to console from our code, there's `console.log` function.
+Untuk mengoutput sesuatu ke konsol dari kode kita, ada fungsi `console.log`.
 
-For instance, this outputs values from `0` to `4` to console:
+Misalnya, ini mengoutput nilai dari `0` ke `4` ke konsol:
 
 ```js run
-// open console to see
+// buka konsol untuk melihat
 for (let i = 0; i < 5; i++) {
   console.log("value,", i);
 }
 ```
 
-Regular users don't see that output, it is in the console. To see it, either open the Console panel of developer tools or press `key:Esc` while in another panel: that opens the console at the bottom.
+Pengguna reguler tak melihat output itu, itu di dalam konsol. Untuk melihat itu, buka panel Console developer tool atau tekan `key:Esc` ketika di panel lain: yang membukakan konsol di bawah.
 
-If we have enough logging in our code, then we can see what's going on from the records, without the debugger.
+Jika kita punya cukup logging di kode kita, maka kita bisa melihat apa yang terjadi dari record, tanpa debugger.
 
-## Summary
+## Kesimpulan
 
-As we can see, there are three main ways to pause a script:
-1. A breakpoint.
-2. The `debugger` statements.
-3. An error (if dev tools are open and the button <span class="devtools" style="background-position:-264px -4px"></span> is "on").
+Seperti yang kita lihat, ada tiga cara utama untuk menjeda script:
+1. Breakpoint.
+2. Pernyataan `debugger`.
+3. Galat (jika dev tools terbuka dan tombol <span class="devtools" style="background-position:-264px -4px"></span> "menyala").
 
-When paused, we can debug - examine variables and trace the code to see where the execution goes wrong.
+Ketika terjeda, kita bisa mendebug - periksa variabel dan menjejak kode untuk melihat di mana terjadi kesalahan exekusi.
 
-There are many more options in developer tools than covered here. The full manual is at <https://developers.google.com/web/tools/chrome-devtools>.
+Ada banyak lebih opsi di developer tool dari yang diliput di sini. Manual lengkap ada di <https://developers.google.com/web/tools/chrome-devtools>.
 
-The information from this chapter is enough to begin debugging, but later, especially if you do a lot of browser stuff, please go there and look through more advanced capabilities of developer tools.
+Informasi dari bab ini cukup untuk memulai debugging, tapi nanti, terutama jika kamu melakukan banyak hal-hal berkaitan dengan peramban, silakan masuk ke sana dan mencari kemampuan canggih lainnya dari developer tool.
 
-Oh, and also you can click at various places of dev tools and just see what's showing up. That's probably the fastest route to learn dev tools. Don't forget about the right click and context menus!
+Oh, dan juga kamu bisa mengklik di berbagai tempat dev tools dan cuma melihat apa yang muncul. Itu mungkin rute tercepat untuk mempelajari dev tools. Jangan lupa tentang klik kanan dan context menu!
