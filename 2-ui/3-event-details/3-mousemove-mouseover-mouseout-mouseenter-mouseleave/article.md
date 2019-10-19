@@ -52,11 +52,7 @@ That's good for performance, because there may be many intermediate elements. We
 
 On the other hand, we should keep in mind that the mouse pointer doesn't "visit" all elements along the way. It can "jump".
 
-<<<<<<< HEAD
-![](mouseover-mouseout-from-outside.svg)
-=======
 In particular, it's possible that the pointer jumps right inside the middle of the page from out of the window. In that case `relatedTarget` is `null`, because it came from "nowhere":
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 ![](mouseover-mouseout-from-outside.svg)
 
