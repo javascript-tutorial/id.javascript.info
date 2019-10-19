@@ -119,7 +119,7 @@ Silakan buka dropdown informasional ke kanan (dilabeli panah). Mereka membolehka
 Sekarang waktunya *menjejak* script.
 
 Ada tombol untuk itu di ujung atas panel kanan. Ayo kita ikuti mereka.
-
+<!-- https://github.com/ChromeDevTools/devtools-frontend/blob/master/front_end/Images/src/largeIcons.svg -->
 <span class="devtools" style="background-position:-7px -76px"></span> -- melanjutkan exekusi, hotkey `key:F8`.
 : Melanjutkan exekusi. Jika tak ada breakpoint tambahan, maka exekusi berlanjut dan debugger hilang kontrol.
 
@@ -129,19 +129,32 @@ Ada tombol untuk itu di ujung atas panel kanan. Ayo kita ikuti mereka.
 
     Exekusi dilanjutkan, mencapai breakpoint lain di dalam `say()` dan terjeda di sana. Perhatikan "Call Stack" di kanan. Ia meningkat satu panggilan lagi. Kita di dalam `say()` sekarang.
 
-<span class="devtools" style="background-position:-137px -76px"></span> -- make a step (run the next command), but *don't go into the function*, hotkey `key:F10`.
-: Jika kita klik ini sekarang, `alert` akan muncul. Yang penting ialah `alert` bisa fungsi apa saja, exekusi "melangkahinya", mengabaikan fungsi internal.
+<span class="devtools" style="background-position:-200px -190px"></span> -- "Langkahi": jalankan command berikutnya, hotkey `key:F9`.
+: Jalankan pernyataan berikutnya. Jika kita klik itu sekarang, `alert` akan muncul.
 
-<span class="devtools" style="background-position:-72px -76px"></span> -- make a step, hotkey `key:F11`.
-: Sama dengan sebelumnya, tapi "melangkah masuk ke dalam" fungsi bersarang. Mengklik ini akan melangkahi semua aksi script satu-satu.
+    Mengklik ini akan melangkahi semua aksi script satu-satu.
 
-<span class="devtools" style="background-position:-104px -76px"></span> -- continue the execution till the end of the current function, hotkey `key:Shift+F11`.
-: Exekusi akan berhenti di baris terakhir dari fungsi sekarang. Ini praktis saat kita tak sengaja masuk ke panggilan bersarang memakai <span class="devtools" style="background-position:-72px -76px"></span>, tapi itu tak menarik bagi kita, dan kita mau lanjut ke ujungnya sesegera mungkin.
+<span class="devtools" style="background-position:-62px -192px"></span> -- "Langkahi atas": jalankan command berikutnya, tapi *jangan masuk ke fungsi*, hotkey `key:F10`.
+: Serupa dengan command "Step" sebelumnya, tapi berbeda jika pernyataan berikutnya berupa panggilan fungsi. Yaitu: bukan built-in, seperti `alert`, tapi fungsi kita sendiri.
 
-<span class="devtools" style="background-position:-7px -28px"></span> -- enable/disable all breakpoints.
+    Command "Langkahi" masuk ke dalam dan menjeda exekusi di baris pertama, sedangkan "Langkahi atas" mengexekusi panggilan fungsi bersarang secara tak terlihat, mengabaikan internal fungsi.
+
+    Exekusi kemudian segera dijeda setelah fungsi itu.
+
+    Itu baik jika kita tak tertarik mencaritahu ada apa di dalam panggilan fungsi.
+
+<span class="devtools" style="background-position:-4px -194px"></span> -- "Langkahi masuk", hotkey `key:F11`.
+: Serupa dengan "Langkahi", tapi berbeda dalam hal panggilan fungsi asynchronous. Jika kamu baru mulai belajar JavaScript, maka kamu bisa abaikan perbedaan, karena kita tak punya panggilan asynchronous sekarang.
+
+    Untuk masa depan, perhatikan bahwa command "Langkahi" mengabaikan aksi async, seperti `setTimeout` (panggilan fungsi terjadwal), itu diexekusi nanti. "Langkahi masuk" masuk ke dalam kode mereka, menunggu mereka jika perlu. Lihat [DevTools manual](https://developers.google.com/web/updates/2018/01/devtools#async) untuk detil lebih.
+
+<span class="devtools" style="background-position:-32px -194px"></span> -- "Langkahi keluar": lanjutkan exekusi hingga akhir fungsi sekarang, hotkey `key:Shift+F11`.
+: Lanjutkan exekusi dan berhenti di baris terakhir dari fungsi sekarang. Ini praktis saat kita tak sengaja masuk ke panggilan bersarang memakai <span class="devtools" style="background-position:-200px -190px"></span>, tapi itu tak menarik bagi kita, dan kita mau lanjut ke ujungnya sesegera mungkin.
+
+<span class="devtools" style="background-position:-61px -74px"></span> -- nyalakan/matikan semua breakpoint.
 : Tombol itu tidak menggerakkan exekusi. Cuma on/off massal untuk breakpoint.
 
-<span class="devtools" style="background-position:-264px -4px"></span> -- enable/disable automatic pause in case of an error.
+<span class="devtools" style="background-position:-90px -146px"></span> -- nyalakan/matikan jeda otomatis jika ada galat.
 : Ketika menyala, dan developer tools terbuka, galat script otomatis menjeda exekusi. Lalu kita bisa menganalisa variabel untuk melihat apa yang salah. Jadi jika script kita mati karena galat, kita bisa buka debugger, menyalakan opsi ini dan memuat-ulang laman untuk melihat di mana ia mati dan apa kontexnya saat itu.
 
 ```smart header="Lanjut ke sini"
@@ -172,7 +185,7 @@ Jika kita punya cukup logging di kode kita, maka kita bisa melihat apa yang terj
 Seperti yang kita lihat, ada tiga cara utama untuk menjeda script:
 1. Breakpoint.
 2. Pernyataan `debugger`.
-3. Galat (jika dev tools terbuka dan tombol <span class="devtools" style="background-position:-264px -4px"></span> "menyala").
+3. Galat (jika dev tools terbuka dan tombol <span class="devtools" style="background-position:-90px -146px"></span> "menyala").
 
 Ketika terjeda, kita bisa mendebug - periksa variabel dan menjejak kode untuk melihat di mana terjadi kesalahan exekusi.
 

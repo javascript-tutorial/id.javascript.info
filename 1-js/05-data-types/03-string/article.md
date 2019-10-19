@@ -50,9 +50,9 @@ let guestList = "Guests: // Error: Unexpected token ILLEGAL
 
 Petik satu dan petik dua berasal dari masa lalu saat bahasa pemrograman dibuat, dimana kebutuhan untuk string lebih dari satu baris belum dipikirkan. Backtick muncul di kemudian hari, dan lebih fleksibel.
 
-Backtick juga memperbolehkan kita untuk menyediakan sebuah "fungsi template" sebelum backtick pertama. Sintaknya yaitu: <code>func&#96;string&#96;</code>. Fungsi `func` dipanggil secara otomatis, menerima string dan ekspresi yang berada di dalamnya, lalu dapat memproses mereka. Anda dapat membaca tentang fitur ini lebih lanjut di [dokumentasi](mdn:/JavaScript/Reference/Template_literals#Tagged_template_literals). Fitur ini dipanggil "tagged templates". Fitur ini mempermudah kita untuk membungkus string ke dalam template atau fungsionalitas lain, tetapi fitur ini jarang digunakan.
+Backtick juga memperbolehkan kita untuk menspesifikasi "fungsi template" sebelum backtick pertama. Syntaxnya yaitu: <code>func&#96;string&#96;</code>. Fungsi `func` dipanggil secara otomatis, menerima string dan ekspresi yang berada di dalamnya dan bisa memproses mereka. Ini disebut "tagged templates". Fitur ini membuat implementasi kustom templating lebih mudah, tapi jaran dipakai dalam praktik. Kamu bisa membaca lebih tentang ini di [manual](mdn:/JavaScript/Reference/Template_literals#Tagged_templates).
 
-## Karakter-karakter spesial
+## Karakter spesial
 
 Masih mungkin untuk membuat string dengan banyak baris menggunakan petik satu atau petik dua dengan menggunakan "karakter newline", ditulis seperti berikut `\n`, yang menandakan baris baru:
 
@@ -74,7 +74,7 @@ World`;
 alert(str1 == str2); // true
 ```
 
-Ada karakter spesial yang lain, tetapi mereka lebih jarang digunakan
+Ada karakter spesial lain, tetapi mereka jarang digunakan
 
 Berikut adalah daftar lengkapnya:
 
@@ -90,7 +90,7 @@ Berikut adalah daftar lengkapnya:
 |`\uXXXX`|Sebuah simbol unicode dengan nilai heksadesimal `XXXX` di dalam encoding UTF-16, sebagai contoh `\u00A9` -- adalah sebuah unicode untuk simbol copyright `©`. Simbol ini harus terdiri dari 4 digit heksadesimal. |
 |`\u{X…XXXXXX}` (1 to 6 karakter heksadesimal)|Sebuah simbol unicode dengan encoding UTF-32. Beberapa karakter langka menggunakan dua simbol unicode, yang memakan 4 byte. Dengan cara ini kita dapat menggunakan kode yang panjang. |
 
-Beberapa contoh unicode:
+Contoh dengan unicode:
 
 ```js run
 alert( "\u00A9" ); // ©
@@ -102,7 +102,7 @@ Karakter-karakter spesial yang diawali dengan karakter backslash `\` kadang dipa
 
 Kita kadang dapat menggunakannya apabila kita ingin menggunakan petik di dalam string.
 
-Sebagai contoh:
+Misalnya:
 
 ```js run
 alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus!
@@ -168,7 +168,7 @@ alert( str[1000] ); // undefined
 alert( str.charAt(1000) ); // '' (string kosong)
 ```
 
-Kita juga dapat mengakses karakter per karakter menggunakan sintaks `for..of`:
+Kita juga bisa mengakses karakter per karakter menggunakan sintaks `for..of`:
 
 ```js run
 for (let char of "Hello") {
@@ -176,16 +176,16 @@ for (let char of "Hello") {
 }
 ```
 
-## String bersifat tidak dapat dirubah
+## String bersifat tidak dapat diubah
 
-Nilai dari string tidak dapat dirubah di Javascript. Tidak dimungkinkan untuk mengubah sebuah karakter.
+Nilai string tidak dapat diubah di Javascript. Tak mungkin mengubah sebuah karakter.
 
-Mari kita coba untuk membuktikannya:
+Mari kita coba buktikan:
 
 ```js run
 let str = 'Hi';
 
-str[0] = 'h'; // error
+str[0] = 'h'; // galat
 alert( str[0] ); // tidak bekerja
 ```
 
@@ -201,11 +201,11 @@ str = 'h' + str[1]; // mengganti nilai string
 alert( str ); // hi
 ```
 
-Di bab ini kita akan melihat contoh yang lebih banyak dari ini.
+Di bab ini kita akan melihat contoh lebih banyak dari ini.
 
-## Mengganti case dari string
+## Mengganti case
 
-Method [toLowerCase()](mdn:js/String/toLowerCase) dan [toUpperCase()](mdn:js/String/toUpperCase) mengganti case dari string:
+Metode [toLowerCase()](mdn:js/String/toLowerCase) dan [toUpperCase()](mdn:js/String/toUpperCase) mengganti case:
 
 ```js run
 alert( 'Interface'.toUpperCase() ); // INTERFACE
@@ -218,7 +218,7 @@ Atau, apabila kita hanya ingin sebuah karakter yang diubah menjadi huruf kecil:
 alert( 'Interface'[0].toLowerCase() ); // 'i'
 ```
 
-## Mencari sebuah substring
+## Mencari substring
 
 Ada banyak cara untuk mencari sebuah substring di dalam sebuah string.
 
@@ -228,7 +228,7 @@ Cara yang pertama yaitu [str.indexOf(substr, pos)](mdn:js/String/indexOf).
 
 Method ini mencari `substr` di dalam `str`, mulai dari posisi `pos` yang diberikan, dan mengembalikan posisi dimana substring ditemukan atau `-1` jika tidak ditemukan.
 
-Sebagai contoh:
+Misalnya:
 
 ```js run
 let str = 'Widget with id';
@@ -241,7 +241,7 @@ alert( str.indexOf("id") ); // 1, "id" ditemukan pada posisi 1 (..idget with id)
 
 Parameter kedua yang opsional memperbolehkan kita untuk mencari dari posisi yang ditentukan.
 
-Sebagai contoh, `"id"` muncul pertama pada posisi `1`. Untuk mencari dimana kemunculan yang selanjutnya terletak, mari kita mulai mencari dari posisi `2`:
+Misalnya, kemunculan pertama `"id"` ada di posisi `1`. Untuk mencari kemunculan berikutnya, ayo kita mulai pencarian dari posisi `2`:
 
 ```js run
 let str = 'Widget with id';
@@ -249,7 +249,7 @@ let str = 'Widget with id';
 alert( str.indexOf('id', 2) ) // 12
 ```
 
-Jika kita tertarik dengan semua kemunculan, kita dapat menjalankan `indexOf` di dalam sebuah perulangan. Setiap panggilan dibuat dengan posisi dari kemunculan sebelumnya:
+Jika kita tertarik dengan semua kemunculan, kita bisa menjalankan `indexOf` di dalam loop. Setiap panggilan dibuat dengan posisi setelah kemunculan sebelumnya:
 
 ```js run
 let str = 'As sly as a fox, as strong as an ox';
@@ -262,11 +262,11 @@ while (true) {
   if (foundPos == -1) break;
 
   alert( `Found at ${foundPos}` );
-  pos = foundPos + 1; // lanjutkan pencarian dari posisi selanjutnya
+  pos = foundPos + 1; // lanjutkan pencarian dari posisi berikutnya
 }
 ```
 
-Algoritma yang sama dapat ditulis lebih singkat:
+Algoritma yang sama dapat ditulis lebih pendek:
 
 ```js run
 let str = "As sly as a fox, as strong as an ox";
@@ -659,19 +659,18 @@ Pada kenyataan, hal ini tidak selalu berlaku. Contoh diatas berlaku karena simbo
 
 Jika Anda ingin belajar lebih lanjut tentang aturan normalisasi dan variasinya -- mereka dideskripsikan di appendix Unicode standard:  [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), tetapi untuk kebanyakan kasus informasi yang terdapat di bagian ini sudah cukup.
 
-## Ringkasan
+## Kesimpulan
 
-- Terdapat 3 jenis tanda petik. Backtick memperbolehkan sebuah string untuk memiliki banyak baris dan menyipkan ekspresi `${…}`.
-- String di Javascript menggunakan encoding UTF-16.
-- Kita dapat menggunakan karakter seperti `\n` dan memasukkan karakter berdasarkan unicode menggunakan `\u...`.
-- Untuk mengakses sebuah karakter, gunakan: `[]`.
-- Untuk mengambil sebuah substring, gunakan: `slice` atau `substring`.
-- Untuk mengubah case dari sebuah string, gunakan: `toLowerCase/toUpperCase`.
-- Untuk mencari lokasi dari sebuah substring, gunakan: `indexOf`, atau `includes/startsWith/endsWith` untuk pengecekan apakah ada atau tidak.
-- Untuk membandingkan string berdasarkan bahasa, gunakan `localeCompare`, jika tidak mereka akan dibandingkan berdasarkan kode karakter.
+- Terdapat 3 jenis tanda petik. Backtick membolehkan string memiliki baris ganda dan menyisipkan expresi `${…}`.
+- String di Javascript diencode menggunakan UTF-16.
+- Kita bisa memakai karakter seperti `\n` dan memasukkan karakter berdasarkan unicode mereka menggunakan `\u...`.
+- Untuk mendapatkan karakter, gunakan: `[]`.
+- Untuk mendapatkan substring, gunakan: `slice` atau `substring`.
+- Untuk mengubah case kecil/besar dari string, gunakan: `toLowerCase/toUpperCase`.
+- Untuk mencari substring, gunakan: `indexOf`, atau `includes/startsWith/endsWith` untuk pengecekan sederhana.
+- Untuk membandingkan string mengikuti bahasa, gunakan `localeCompare`, jika tidak mereka akan dibandingkan berdasarkan kode karakter.
 
-Ada beberapa method string lain yang berguna:
-
+Ada beberapa metode string lain yang berguna:
 
 - `str.trim()` -- menghilangkan ("memotong") spasi dari awal dan akhir dari sebuah string.
 - `str.repeat(n)` -- mengulang string sebanyak `n` kali.

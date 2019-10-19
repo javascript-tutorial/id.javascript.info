@@ -14,11 +14,22 @@ true + false = 1
 " -9  " - 5 = -14 // (4)
 null + 1 = 1 // (5)
 undefined + 1 = NaN // (6)
+" \t \n" - 2 = -2 // (7)
 ```
 
+<<<<<<< HEAD
 1. Penambahan dengan string `"" + 1` mengkonversi `1` ke string: `"" + 1 = "1"`, dan kita punya `"1" + 0`, aturan yang sama berlaku.
 2. Pengurangan `-` (seperti kebanyakan operasi matematika) cuma berjalan dengan angka, ia mengkonversi string kosong `""` ke `0`.
 3. Penambahan dengan string mengappend angka `5` ke string.
 4. Pengurangan selalu mengkonversi ke angka, jadi ia membuat `"  -9  "` menjadi angka `-9` (mengabaikan spasi sekitarnya).
 5. `null` menjadi `0` setelah konversi numerik.
 6. `undefined` menjadi `NaN` setelah konversi numerik.
+=======
+1. The addition with a string `"" + 1` converts `1` to a string: `"" + 1 = "1"`, and then we have `"1" + 0`, the same rule is applied.
+2. The subtraction `-` (like most math operations) only works with numbers, it converts an empty string `""` to `0`.
+3. The addition with a string appends the number `5` to the string.
+4. The subtraction always converts to numbers, so it makes `"  -9  "` a number `-9` (ignoring spaces around it).
+5. `null` becomes `0` after the numeric conversion.
+6. `undefined` becomes `NaN` after the numeric conversion.
+7. Space characters, are trimmed off string start and end when a string is converted to a number. Here the whole string consists of space characters, such as `\t`, `\n` and a "regular" space between them. So, similarly to an empty string, it becomes `0`.
+>>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
