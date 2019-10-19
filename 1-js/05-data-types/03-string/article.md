@@ -487,7 +487,7 @@ Semua string menggunakan encoding [UTF-16](https://en.wikipedia.org/wiki/UTF-16)
 : Mengembalikan kode untuk karakter pada posisi `pos`:
 
     ```js run
-    // different case letters have different codes
+    // karakter dengan case yang berbeda memiliki kode berbeda
     alert( "z".codePointAt(0) ); // 122
     alert( "Z".codePointAt(0) ); // 90
     ```
