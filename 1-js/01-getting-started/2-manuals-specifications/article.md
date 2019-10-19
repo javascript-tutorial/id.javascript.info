@@ -3,22 +3,13 @@
 
 Buku ini adalah *tutorial*. Tujuannya membantu kamu memahami bahasa ini pelan-pelan. Tapi sekali kamu akrab dengan dasarnya, kamu butuh sumber lain.
 
-
-<<<<<<< HEAD
 ## Spesifikasi
-=======
-[The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contains the most in-depth, detailed and formalized information about JavaScript. It defines the language.
->>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
-**Spesifikasi ECMA-262** berisi informasi format, detil, and mendalam tentang JavaScript. Ia mendefisikan bahasa ini.
+[Spesifikasi ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm) berisi informasi formal, detil, and mendalam tentang JavaScript. Ia mendefisikan bahasa ini.
 
-<<<<<<< HEAD
 Tapi karena menjadi formal, ia sulit dipahami di awal. Jadi jika kamu butuh sumber informasi terpercaya tentang detil bahasa, spesifikasi ini tempat yang tepat. Tapi ini bukan untuk penggunaan harian.
-=======
-A new specification version is released every year. In-between these releases, the latest specification draft is at <https://tc39.es/ecma262/>.
->>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
-Draft terakhir ada di <https://tc39.es/ecma262/>.
+Versi spesifikasi baru dirilis tiap tahun. Di antara rilis ini, draft spesifikasi terakhir ada di <https://tc39.es/ecma262/>.
 
 Untuk membaca tentang fitur terkini, termasuk yang "hampir menjadi standar" (disebut "stage 3"), lihat proposalnya di <https://github.com/tc39/proposals>.
 
