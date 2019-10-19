@@ -1,12 +1,12 @@
-# Coding Style
+# Gaya Mengkode
 
-Our code must be as clean and easy to read as possible.
+Kode kita harus sebisa mungkin bersih dan mudah dibaca.
 
-That is actually the art of programming -- to take a complex task and code it in a way that is both correct and human-readable. A good code style greatly assists in that.  
+Ini sebenarnya seni pemrograman -- ambil tugas rumit dan mengkodenya dengan cara yang benar dan dapat dibaca manusia. Gaya kode yang baik punya andil besar di situ.
 
 ## Syntax
 
-Here is a cheat sheet with some suggested rules (see below for more details):
+Ini adalah satu cheatsheet dengan beberapa aturan yang disarankan (lihat bawah untuk lebih detil):
 
 ![](code-style.svg)
 <!--
@@ -34,57 +34,57 @@ if (n < 0) {
 
 -->
 
-Now let's discuss the rules and reasons for them in detail.
+Sekarang kita bahas aturannya dan alasannya secara detil.
 
-```warn header="There are no \"you must\" rules"
-Nothing is set in stone here. These are style preferences, not religious dogmas.
+```warn header="Tak ada aturan yang memaksa"
+Tak ada yang diset sekeras batu di sini. Mereka cuma preferensi gaya saja, buka dogma agama.
 ```
 
-### Curly Braces
+### Kurung Kurawal
 
-In most JavaScript projects curly braces are written in "Egyptian" style with the opening brace on the same line as the corresponding keyword -- not on a new line. There should also be a space before the opening bracket, like this:
+Di kebanyakan proyek JavaScript kurung kurawal ditulis dalam gaya "Egyptian" dengan kurawal buka di baris yang sama dengan katakunci -- bukan di baris baru. Juga harus ada spasi sebelum bracket pembuka, seperti ini:
 
 ```js
 if (condition) {
-  // do this
-  // ...and that
-  // ...and that
+  // lakukan ini
+  // ...dan itu
+  // ...dan itu
 }
 ```
 
-A single-line construct, such as `if (condition) doSomething()`, is an important edge case. Should we use braces at all?
+Konstruksi sebaris, seperti `if (condition) doSomething()`, ialah hal penting sampingan. Haruskah kita memakai kurawal sama sekali?
 
-Here are the annotated variants so you can judge their readability for yourself:
+Ini adalah varian yang teranotasi jadi kamu bisa menilai sendiri keterbacaan mereka:
 
-1. 😠 Beginners sometimes do that. Bad! Curly braces are not needed:
+1. 😠 Pemula kadang melakukan itu. Buruk! Kurung kurawal tak dibutuhkan:
     ```js
     if (n < 0) *!*{*/!*alert(`Power ${n} is not supported`);*!*}*/!*
     ```
-2. 😠 Split to a separate line without braces. Never do that, easy to make an error when adding new lines:
+2. 😠 Pisahkan baris berbeda tanpa kurawal. Jangan pernah lakukan, mudah membuat galat saat menambah baris baru:
     ```js
     if (n < 0)
       alert(`Power ${n} is not supported`);
     ```
-3. 😏 One line without braces - acceptable, if it's short:
+3. 😏 Sebaris tanpa kurawal - bisa diterima, jika pendek:
     ```js
     if (n < 0) alert(`Power ${n} is not supported`);
     ```
-4. 😃 The best variant:
+4. 😃 Varian terbaik:
     ```js
     if (n < 0) {
       alert(`Power ${n} is not supported`);
     }
     ```
 
-For a very brief code, one line is allowed, e.g. `if (cond) return null`. But a code block (the last variant) is usually more readable.
+Untuk kode ringkas, sebaris dibolehkan, misal `if (cond) return null`. Tapi blok kode (varian terakhir) biasanya lebih dapat terbaca.
 
-### Line Length
+### Panjang Baris
 
-No one likes to read a long horizontal line of code. It's best practice to split them.
+Tak ada orang suka membaca kode horizontal yang panjang. Memisahkan mereka ialah praktik yang baik.
 
-For example:
+Misalnya:
 ```js
-// backtick quotes ` allow to split the string into multiple lines
+// backtick quote ` memperbolehkan memecah string jadi beberapa baris
 let str = `
   Ecma International's TC39 is a group of JavaScript developers,
   implementers, academics, and more, collaborating with the community
@@ -92,7 +92,7 @@ let str = `
 `;
 ```
 
-And, for `if` statements:
+Dan, untuk pernyataan `if`:
 
 ```js
 if (
@@ -104,23 +104,23 @@ if (
 }
 ```
 
-The maximum line length should be agreed upon at the team-level. It's usually 80 or 120 characters.
+Panjang baris maximum sebaiknya disepakati di level-tim. Biasanya 80 atau 120 karakter.
 
-### Indents
+### Indent
 
-There are two types of indents:
+Ada dua tipe indent:
 
-- **Horizontal indents: 2 or 4 spaces.**
+- **Indent horizontal: 2 atau 4 spasi.**
 
-    A horizontal indentation is made using either 2 or 4 spaces or the horizontal tab symbol (key `key:Tab`). Which one to choose is an old holy war. Spaces are more common nowadays.
+    Indentasi horizontal dibuat menggunakan 2 atau 4 spasi atau simbol tab horizontal (kunci `key:Tab`). Pemilihan ini sudah lama jadi perang suci. Spasi jadi lebih umum sekarang ini.
 
-    One advantage of spaces over tabs is that spaces allow more flexible configurations of indents than the tab symbol.
+    Satu keutamaan spasi dari tab ialah konfigurasi indent spasi lebih flexibel dari simbol tab.
 
-    For instance, we can align the arguments with the opening bracket, like this:
+    Misalnya, kita bisa mengalinea argumen dengan bracket pembuka, seperti ini:
 
     ```js no-beautify
     show(parameters,
-         aligned, // 5 spaces padding at the left  
+         aligned, // 5 padding spasi di kiri
          one,
          after,
          another
@@ -129,9 +129,9 @@ There are two types of indents:
     }
     ```
 
-- **Vertical indents: empty lines for splitting code into logical blocks.**
+- **Indent vertikal: baris kosong untuk memecah kode menjadi blok logika.**
 
-    Even a single function can often be divided into logical blocks. In the example below, the initialization of variables, the main loop and returning the result are split vertically:
+    Bahkan satu fungsi pun sering bisa dibagi jadi blok logika. Di contoh berikut, inisialisasi variabel, loop utama dan hasil kembalian dipecah secara vertikal:
 
     ```js
     function pow(x, n) {
@@ -145,46 +145,46 @@ There are two types of indents:
     }
     ```
 
-    Insert an extra newline where it helps to make the code more readable. There should not be more than nine lines of code without a vertical indentation.
+    Sisipkan extra baris baru di mana ini membantu membuat kode lebih terbaca. Tak boleh lebih dari sembilan baris kode tanpa indentasi vertikal.
 
-### Semicolons
+### Semicolon
 
-A semicolon should be present after each statement, even if it could possibly be skipped.
+Semicolon sebaiknya ada di tiap ujung pernyataan, bahkan meski jika itu bisa dilewati.
 
-There are languages where a semicolon is truly optional and it is rarely used. In JavaScript, though, there are cases where a line break is not interpreted as a semicolon, leaving the code vulnerable to errors. See more about that in the chapter <info:structure#semicolon>.
+Ada bahasa di mana semicolon benar-benar opsional dan jarang dipakai. Tapi di JavaScript, ada kasus di mana line break tidak diinterpretasi sebagai semicolon, membuat kode rentan galat. Lihat lebih lanjut tentang itu di bab <info:structure#semicolon>.
 
-If you're an experienced JavaScript programmer, you may choose a no-semicolon code style like [StandardJS](https://standardjs.com/). Otherwise, it's best to use semicolons to avoid possible pitfalls. The majority of developers put semicolons.
+Jika kamu programmer JavaScript berpengalaman, kamu bisa pilih gaya kode tanpa semicolon seperti [StandardJS](https://standardjs.com/). Atau, lebih baik memakai semicolon untuk menghindari kemungkinan jurang nista. Mayoritas pengembang menaruh semicolon.
 
-### Nesting Levels
+### Level Bersarang
 
-Try to avoid nesting code too many levels deep.
+Coba hindari kode bersarang dengan level terlalu dalam.
 
-For example, in the loop, it's sometimes a good idea to use the [`continue`](info:while-for#continue) directive to avoid extra nesting.
+Misalnya, dalam loop, kadang ide bagus memakai directive [`continue`](info:while-for#continue) untuk menghindari sarang extra.
 
-For example, instead of adding a nested `if` conditional like this:
+Misalnya, ketimbang menambah kondisional `if` bersarang seperti ini:
 
 ```js
 for (let i = 0; i < 10; i++) {
   if (cond) {
-    ... // <- one more nesting level
+    ... // <- satu lagi level bersarang
   }
 }
 ```
 
-We can write:
+Kita bisa tulis:
 
 ```js
 for (let i = 0; i < 10; i++) {
   if (!cond) *!*continue*/!*;
-  ...  // <- no extra nesting level
+  ...  // <- tak ada extra level bersarang
 }
 ```
 
-A similar thing can be done with `if/else` and `return`.
+Hal serupa bisa dilakukan dengan `if/else` dan `return`.
 
-For example, two constructs below are identical.
+Misalnya, dua konstruksi berikut identik.
 
-Option 1:
+Opsi 1:
 
 ```js
 function pow(x, n) {
@@ -202,7 +202,7 @@ function pow(x, n) {
 }
 ```
 
-Option 2:
+Opsi 2:
 
 ```js
 function pow(x, n) {
@@ -221,16 +221,16 @@ function pow(x, n) {
 }
 ```
 
-The second one is more readable because the "special case" of `n < 0` is handled early on. Once the check is done we can move on to the "main" code flow without the need for additional nesting.
+Yang kedua lebih terbaca karena "kasus spesial" `n < 0` ditangani segera. Sekali pengecekan selesai kita bisa pindah ke aliran kode "utama" tanpa sarang tambahan.
 
-## Function Placement
+## Penempatan Fungsi
 
-If you are writing several "helper" functions and the code that uses them, there are three ways to organize the functions.
+Jika kamu menulis beberapa fungsi "pembantu" dan kode yang menggunakan mereka, ada tiga cara untuk mengorganisir fungsi.
 
-1. Declare the functions *above* the code that uses them:
+1. Deklarasi fungsi *di atas* kode yang menggunakan mereka:
 
     ```js
-    // *!*function declarations*/!*
+    // *!*deklarasi fungsi*/!*
     function createElement() {
       ...
     }
@@ -243,20 +243,20 @@ If you are writing several "helper" functions and the code that uses them, there
       ...
     }
 
-    // *!*the code which uses them*/!*
+    // *!*kode yang menggunakan mereka*/!*
     let elem = createElement();
     setHandler(elem);
     walkAround();
     ```
-2. Code first, then functions
+2. Kode pertama, lalu fungsi
 
     ```js
-    // *!*the code which uses the functions*/!*
+    // *!*kode yang menggunakan mereka*/!*
     let elem = createElement();
     setHandler(elem);
     walkAround();
 
-    // --- *!*helper functions*/!* ---
+    // --- *!*fungsi pembantu*/!* ---
     function createElement() {
       ...
     }
@@ -269,54 +269,54 @@ If you are writing several "helper" functions and the code that uses them, there
       ...
     }
     ```
-3. Mixed: a function is declared where it's first used.
+3. Campuran: fungsi dideklarasi di mana ia pertama dipakai.
 
-Most of time, the second variant is preferred.
+Seringnya, varian kedua jadi pilihan.
 
-That's because when reading code, we first want to know *what it does*. If the code goes first, then it becomes clear from the start. Then, maybe we won't need to read the functions at all, especially if their names are descriptive of what they actually do.
+Itu karena saat membaca kode, kita pertama mau tahu *itu bisa apa*. Jika kode mulai duluan, maka jadi lebih jelas dari awal. Lalu, mungkin kita tak mau membaca fungsinya sama sekali, terutama jika nama mereka deskriptif, sesuai dengan kelakuan mereka.
 
-## Style Guides
+## Panduan Gaya
 
-A style guide contains general rules about "how to write" code, e.g. which quotes to use, how many spaces to indent, the maximal line length, etc. A lot of minor things.
+Panguan gaya berisi aturan umum tentang "bagaimana menulis" kode, misal quote mana yang dipakai, berapa spasi indent, panjang baris maximal, dll. Banyak hal remeh.
 
-When all members of a team use the same style guide, the code looks uniform, regardless of which team member wrote it.
+Saat semua anggota tim menggunakan panduan gaya yang sama, kodenya terlihat seragam, tak peduli anggota tim mana yang menulisnya.
 
-Of course, a team can always write their own style guide, but usually there's no need to. There are many existing guides to choose from.
+Tentu saja, tim bisa saja  menulis panduan gaya mereka sendiri, tapi biasanya mereka tak butuh. There are many existing guides to choose from.
 
-Some popular choices:
+Beberapa pilihan populer:
 
-- [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml)
-- [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+- [Panduan Gaya JavaScript Google](https://google.github.io/styleguide/javascriptguide.xml)
+- [Panduan Gaya JavaScript Airbnb](https://github.com/airbnb/javascript)
 - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
 - [StandardJS](https://standardjs.com/)
-- (plus many more)
+- (plus banyak lainnya)
 
-If you're a novice developer, start with the cheat sheet at the beginning of this chapter. Then you can browse other style guides to pick up more ideas and decide which one you like best.
+Jika kamu pengembang pemula, mulai dengan cheatsheet di awal bab ini. Lalu kamu bisa menjelajah panduan gaya lain untuk mencari ide lebih dan menentukan mana yang terbaik.
 
-## Automated Linters
+## Linter Terotomasi
 
-Linters are tools that can automatically check the style of your code and make improving suggestions.
+Linter ialah tool yang bisa otomatis mengecek gaya kodemu dan memberi saran improvisasi.
 
-The great thing about them is that style-checking can also find some bugs, like typos in variable or function names. Because of this feature, using a linter is recommended even if you don't want to stick to one particular "code style".
+Yang keren dari ini ialah pengecekan gaya sekaligus menemukan bug., like typos in variable or function names. Because of this feature, using a linter is recommended even if you don't want to stick to one particular "code style".
 
-Here are some well-known linting tools:
+Berikut beberapa linting tool terkenal:
 
 - [JSLint](http://www.jslint.com/) -- one of the first linters.
 - [JSHint](http://www.jshint.com/) -- more settings than JSLint.
 - [ESLint](http://eslint.org/) -- probably the newest one.
 
-All of them can do the job. The author uses [ESLint](http://eslint.org/).
+Semuanya bisa melakukan itu. Penulis ini menggunakan [ESLint](http://eslint.org/).
 
-Most linters are integrated with many popular editors: just enable the plugin in the editor and configure the style.
+Kebanyakan linter terintegrasi dengan banyak editor populer: cuma mengaktifkan plugin di editor dan mengkonfigurasi gayanya.
 
-For instance, for ESLint you should do the following:
+Misalnya, untuk ESLint kamu harus melakukan hal ini:
 
-1. Install [Node.js](https://nodejs.org/).
-2. Install ESLint with the command `npm install -g eslint` (npm is a JavaScript package installer).
-3. Create a config file named `.eslintrc` in the root of your JavaScript project (in the folder that contains all your files).
-4. Install/enable the plugin for your editor that integrates with ESLint. The majority of editors have one.
+1. Instal [Node.js](https://nodejs.org/).
+2. Instal ESLint dengan command `npm install -g eslint` (npm ialah installer package JavaScript).
+3. Buat file konfig bernama `.eslintrc` di root proyek JavaScriptmu (di folder yang berisi semua filemu).
+4. Instal/aktifkan plugin untuk editormu yang berintegrasi dengan ESLint. Mayoritas editor punya satu.
 
-Here's an example of an `.eslintrc` file:
+Berikut contoh file `.eslintrc`:
 
 ```js
 {
@@ -333,16 +333,16 @@ Here's an example of an `.eslintrc` file:
 }
 ```
 
-Here the directive `"extends"` denotes that the configuration is based on the "eslint:recommended" set of settings. After that, we specify our own.
+Di sini directive `"extends"` menunjukkan bahwa konfigurasinya berdasarkan set pengaturan "eslint:recommended". Setelah itu, kita spesifikasikan punya kita sendiri.
 
-It is also possible to download style rule sets from the web and extend them instead. See <http://eslint.org/docs/user-guide/getting-started> for more details about installation.
+Selain itu, dimungkinkan juga mengunduh set aturan gaya dari web dan mengextend mereka. Lihat <http://eslint.org/docs/user-guide/getting-started> untuk detil lebih tentang instalasi.
 
-Also certain IDEs have built-in linting, which is convenient but not as customizable as ESLint.
+Juga IDE tertentu punya linting built-in, yang nyaman tapi tak bisa dikustomisasi seperti ESLint.
 
-## Summary
+## Kesimpulan
 
-All syntax rules described in this chapter (and in the style guides referenced) aim to increase the readability of your code. All of them are debatable.
+Semua aturan syntax yang dideskripsikan di bab ini (dan di referensi panduan gaya) bertujuan untuk meningkatkan keterbacaan kodemu. Mereka dapat diperdebatkan.
 
-When we think about writing "better" code, the questions we should ask ourselves are: "What makes the code more readable and easier to understand?" and "What can help us avoid errors?" These are the main things to keep in mind when choosing and debating code styles.
+Saat kita berpikir tentang menulis kode "lebih baik", pertanyaannya ialah haruskah kita tanya diri kita sendiri: "Apa yang membuat kode dapat lebih terbaca dan lebih mudah dipahami?" dan "Apa yang bisa membantu kita menghindari galat?" Inilah hal utama yang harus dipikirkan saat memilih dan memperdebatkan gaya kode.
 
-Reading popular style guides will allow you to keep up to date with the latest ideas about code style trends and best practices.
+Membaca panduan gaya populer akan membuatmu selalu terupdate dengan ide terbaru tentang tren gaya kode dan praktik terbaiknya.
