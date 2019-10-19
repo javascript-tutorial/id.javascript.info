@@ -1,8 +1,8 @@
-# Function expressions and arrows
+# Expresi fungsi dan panah
 
-In JavaScript, a function is not a "magical language structure", but a special kind of value.
+Di JavaScript, fungsi bukan "struktur bahasa magis", melaikan satu bentuk nilai spesial.
 
-The syntax that we used before is called a *Function Declaration*:
+Syntax yang kita gunakan sebelumnya disebut *Deklarasi Fungsi*:
 
 ```js
 function sayHi() {
@@ -10,9 +10,9 @@ function sayHi() {
 }
 ```
 
-There is another syntax for creating a function that is called a *Function Expression*.
+Ada syntax lain untuk membuat fungsi yang disebut *Expresi Fungsi*.
 
-It looks like this:
+Rupanya seperti ini:
 
 ```js
 let sayHi = function() {
@@ -20,11 +20,11 @@ let sayHi = function() {
 };
 ```
 
-Here, the function is created and assigned to the variable explicitly, like any other value. No matter how the function is defined, it's just a value stored in the variable `sayHi`.
+Di sini, fungsi dibuat dan diisi variabel secara explisit, seperti nilai lain manapun. Tak peduli bagaimana fungsi didefinisi, ia hanya suatu nilai yang disimpan dalam variabel `sayHi`.
 
-The meaning of these code samples is the same: "create a function and put it into the variable `sayHi`".
+Arti dari sampel kode ini sama: "buatlah fungs dan taruhlah di dalam variabel `sayHi`".
 
-We can even print out that value using `alert`:
+Kita bahkan bisa mencetak nilai itu menggunakan `alert`:
 
 ```js run
 function sayHi() {
@@ -32,38 +32,38 @@ function sayHi() {
 }
 
 *!*
-alert( sayHi ); // shows the function code
+alert( sayHi ); // menampilkan kode fungsi
 */!*
 ```
 
-Please note that the last line does not run the function, because there are no parentheses after `sayHi`. There are programming languages where any mention of a function name causes its execution, but JavaScript is not like that.
+Tolong ingat bahwa baris terakhir tidak menjalankan fungsi, karena tak ada tanda kurung setelah `sayHi`. Ada bahasa pemrograman di mana satu penyebutan nama fungsi menyebabkan exekusi fungsi, tapi JavaScript tak seperti itu.
 
-In JavaScript, a function is a value, so we can deal with it as a value. The code above shows its string representation, which is the source code.
+Di JavaScript, fungsi adalah nilai, jadi kita bisa menghadapinya sebagai nilai. Kode di atas menunjukkan representasi stringnya, yang mana kode sumbernya.
 
-Surely, a function is a special value, in the sense that we can call it like `sayHi()`.
+Pastinya, fungsi adalah nilai spesial, dengan anggapan bahwa kita bisa memanggilnya seperti `sayHi()`.
 
-But it's still a value. So we can work with it like with other kinds of values.
+Tapi ia tetaplah nilai. Jadi kita bisa memakainya seperti macam nilai lainnya.
 
-We can copy a function to another variable:
+Kita bisa mengkopi fungsi ke variabel lain:
 
 ```js run no-beautify
-function sayHi() {   // (1) create
+function sayHi() {   // (1) buat
   alert( "Hello" );
 }
 
-let func = sayHi;    // (2) copy
+let func = sayHi;    // (2) kopi
 
-func(); // Hello     // (3) run the copy (it works)!
-sayHi(); // Hello    //     this still works too (why wouldn't it)
+func(); // Hello     // (3) jalankan kopinya (ia bekerja)!
+sayHi(); // Hello    //     ini juga masih bekerja (kenapa tidak)
 ```
 
-Here's what happens above in detail:
+Inilah yang terjadi di atas secara detil:
 
-1. The Function Declaration `(1)` creates the function and puts it into the variable named `sayHi`.
-2. Line `(2)` copies it into the variable `func`. Please note again: there are no parentheses after `sayHi`. If there were, then `func = sayHi()` would write  *the result of the call* `sayHi()` into `func`, not *the function* `sayHi` itself.
-3. Now the function can be called as both `sayHi()` and `func()`.
+1. Deklarasi Fungsi `(1)` membuat fungsi dan menaruhnya ke variabel bernama `sayHi`.
+2. Baris `(2)` mengkopinya ke variabel `func`. Tolong ingat lagi: tak ada tanda kurung setelah `sayHi`. Jika ada, maka `func = sayHi()` akan menulis  *hasil panggilan* `sayHi()` ke `func`, bukan *fungsi* `sayHi` itu sendiri.
+3. Sekarang fungsi bisa dipanggil baik sebagai `sayHi()` maupun `func()`.
 
-Note that we could also have used a Function Expression to declare `sayHi`, in the first line:
+Catat bahwa kita jusa bisa menggunakan Expresi Fungsi untuk mendeklarasi `sayHi`, di baris pertama:
 
 ```js
 let sayHi = function() {
@@ -74,11 +74,11 @@ let func = sayHi;
 // ...
 ```
 
-Everything would work the same.
+Semua akan berjalan sama.
 
 
-````smart header="Why is there a semicolon at the end?"
-You might wonder, why does Function Expression have a semicolon `;` at the end, but Function Declaration does not:
+````smart header="Kenapa ada semicolon di akhir?"
+Kamu mungkin penasaran, kenapa Expresi Fungsi punya semicolon `;` di akhir, tapi Deklarasi Fungsi tidak:
 
 ```js
 function sayHi() {
@@ -90,27 +90,27 @@ let sayHi = function() {
 }*!*;*/!*
 ```
 
-The answer is simple:
-- There's no need for `;` at the end of code blocks and syntax structures that use them like `if { ... }`, `for {  }`, `function f { }` etc.
-- A Function Expression is used inside the statement: `let sayHi = ...;`, as a value. It's not a code block, but rather an assignment. The semicolon `;` is recommended at the end of statements, no matter what the value is. So the semicolon here is not related to the Function Expression itself, it just terminates the statement.
+Jawabannya simpel:
+- `;` tidak dibutuhkan di akhir blok kode dan struktur syntax yang memakai mereka seperti `if { ... }`, `for {  }`, `function f { }` dll.
+- Expresi Fungsi digunakan di dalam pernyataan: `let sayHi = ...;`, sebagai nilai. Ia bukan blok kode, tapi lebih ke penetapan. Semicolon `;` disarankan di akhir pernyataan, tak peduli nilainya apa. Jadi semicolon di sini tak ada hubungannya dengan Expresi Fungsi itu sendiri, ia hanya menstop pernyataan.
 ````
 
-## Callback functions
+## Fungsi callback
 
-Let's look at more examples of passing functions as values and using function expressions.
+Ayo kita lihat pada contoh lain mengoper fungsi sebagai nilai dan menggunakan expresi fungsi.
 
-We'll write a function `ask(question, yes, no)` with three parameters:
+Kita akan menulis fungsi `ask(question, yes, no)` dengan tiga parameter:
 
 `question`
-: Text of the question
+: Teks pertanyaan
 
 `yes`
-: Function to run if the answer is "Yes"
+: Fungsi yang berjalan jika jawabannya "Yes"
 
 `no`
-: Function to run if the answer is "No"
+: Fungsi yang berjalan jika jawabannya "No"
 
-The function should ask the `question` and, depending on the user's answer, call `yes()` or `no()`:
+Fungsinya akan menanyakan `question` dan, tergantung jawabannya pengguna, panggil `yes()` atau `no()`:
 
 ```js run
 *!*
@@ -132,13 +132,13 @@ function showCancel() {
 ask("Do you agree?", showOk, showCancel);
 ```
 
-In practice, such functions are quite useful. The major difference between a real-life `ask` and the example above is that real-life functions use more complex ways to interact with the user than a simple `confirm`. In the browser, such function usually draws a nice-looking question window. But that's another story.
+Pada praktiknya, fungsi macam ini agak berguna. Perbedaan besar antara `ask` kehidupan-nyata dan contoh di atas adalah fungsi kehidupan-nyata memakai cara komplex untuk berinteraksi dengan pengguna daripada sekedar `confirm`. Di peramban, fungsi macam ini biasanya menarik window pertanyaan menarik. Tapi itu cerita lain lagi.
 
-**The arguments `showOk` and `showCancel` of `ask` are called *callback functions* or just *callbacks*.**
+**Argumen `showOk` dan `showCancel` dari `ask` dipanggil *fungsi callback* atau hanya *callback*.**
 
-The idea is that we pass a function and expect it to be "called back" later if necessary. In our case, `showOk` becomes the callback for "yes" answer, and `showCancel` for "no" answer.
+Idenya adalah kita mengoper fungsi dan berharap ia "dipanggil kembali" kemudian jika dibutuhkan. Pada kasus kita, `showOk` menjadi callback untuk jawaban "yes", dan `showCancel` untuk jawaban "no".
 
-We can use Function Expressions to write the same function much shorter:
+Kita bisa memakai Expresi Fungsi untuk menulis fungsi yang sama lebih pendek:
 
 ```js run no-beautify
 function ask(question, yes, no) {
@@ -155,59 +155,59 @@ ask(
 */!*
 ```
 
-Here, functions are declared right inside the `ask(...)` call. They have no name, and so are called *anonymous*. Such functions are not accessible outside of `ask` (because they are not assigned to variables), but that's just what we want here.
+Di sini, fungsi dideklarasi tepat di dalam panggilan `ask(...)`. Mereka tak punya nama, jadinya disebut *anonymous*. Fungsi macam ini tak bisa diakses di luar `ask` (karena mereka tak diset ke variabel), tapi itulah yang kita mau di sini.
 
-Such code appears in our scripts very naturally, it's in the spirit of JavaScript.
+Kode macam ini muncul di script kita secara sangat alamiah, ia ada di dalam semangat JavaScript.
 
-```smart header="A function is a value representing an \"action\""
-Regular values like strings or numbers represent the *data*.
+```smart header="Fungsi adalah nilai yang mewakili \"aksi\""
+Nilai reguler seperti string atau angka mewakiliki *data*.
 
-A function can be perceived as an *action*.
+Fungsi bisa dianggap sebagai *aksi*.
 
-We can pass it between variables and run when we want.
+Kita bisa mengopernya antara variabel dan menjalankannya kapanpun kita mau.
 ```
 
 
-## Function Expression vs Function Declaration
+## Expresi Fungsi vs Deklarasi Fungsi
 
-Let's formulate the key differences between Function Declarations and Expressions.
+Mari kita rumuskan kunci perbedaan antara Deklarasi dan Expresi Fungsi.
 
-First, the syntax: how to differentiate between them in the code.
+Pertama, syntax: bagaimana membedakan antara mereka dalam kode.
 
-- *Function Declaration:* a function, declared as a separate statement, in the main code flow.
+- *Deklarasi Fungsi:* fungsi, yang dideklarasi sebagai pernyataan terpisah, dalam aliran kode utama.
 
     ```js
-    // Function Declaration
+    // Deklarasi Fungsi
     function sum(a, b) {
       return a + b;
     }
     ```
-- *Function Expression:* a function, created inside an expression or inside another syntax construct. Here, the function is created at the right side of the "assignment expression" `=`:
+- *Expresi Fungsi:* fungsi, yang dibuat dalam expresi atau dalam konstruksi syntax lain. Di sini, fungsi dibuat pada sisi kanan dari "expresi penetapan" `=`:
 
     ```js
-    // Function Expression
+    // Expresi Fungsi
     let sum = function(a, b) {
       return a + b;
     };
     ```
 
-The more subtle difference is *when* a function is created by the JavaScript engine.
+Perbedaan yang lebih halus ialah *ketika* fungsi dibuat oleh JavaScript engine.
 
-**A Function Expression is created when the execution reaches it and is usable only from that moment.**
+**Expresi Fungsi dibuat ketika exekusi mencapainya dan hanya dapat dipakai saat itu saja.**
 
-Once the execution flow passes to the right side of the assignment `let sum = function…` -- here we go, the function is created and can be used (assigned, called, etc. ) from now on.
+Sekali aliran exekusi melewati sisi kanan penetapan `let sum = function…` -- di sinilah, fungsi dibuat dan bisa digunakan (diset, dipanggil, dll. ) dari sekarang.
 
-Function Declarations are different.
+Deklarasi Fungsi berbeda.
 
-**A Function Declaration can be called earlier than it is defined.**
+**Deklarasi Fungsi bisa dipanggil lebih cepat dari ia didefinisi.**
 
-For example, a global Function Declaration is visible in the whole script, no matter where it is.
+Misalnya, Deklarasi Fungsi global terlihat di seluruh script, tak peduli di mana ia berada.
 
-That's due to internal algorithms. When JavaScript prepares to run the script, it first looks for global Function Declarations in it and creates the functions. We can think of it as an "initialization stage".
+Itu karena algoritma internal. Saat JavaScript siap menjalankan script, pertama ia melihat Deklarasi Fungsi global di dalam dan membuat fungsi. Kita bisa anggap itu sebagai "tahap inisialisasi".
 
-And after all Function Declarations are processed, the code is executed. So it has access to these functions.
+Dan setelah semua Deklarasi Fungsi diproses, kodenya diexekusi. Jadi ia punya akses ke fungsi-fungsi ini.
 
-For example, this works:
+Misalnya, ini berjalan:
 
 ```js run refresh untrusted
 *!*
@@ -219,34 +219,34 @@ function sayHi(name) {
 }
 ```
 
-The Function Declaration `sayHi` is created when JavaScript is preparing to start the script and is visible everywhere in it.
+Deklarasi Fungsi `sayHi` dibuat saat JavaScript siap memulai scriptnya dan terlihat di manapun di dalam.
 
-...If it were a Function Expression, then it wouldn't work:
+...Jika ia Expresi Fungsi, maka ia tak akan berjalan:
 
 ```js run refresh untrusted
 *!*
-sayHi("John"); // error!
+sayHi("John"); // galat!
 */!*
 
-let sayHi = function(name) {  // (*) no magic any more
+let sayHi = function(name) {  // (*) tak ada magic lagi
   alert( `Hello, ${name}` );
 };
 ```
 
-Function Expressions are created when the execution reaches them. That would happen only in the line `(*)`. Too late.
+Expresi Fungsi dibuat saat exekusi mencapainya. Itu hanya akan terjadi pada baris `(*)`. Sudah telat banget.
 
-Another special feature of Function Declarations is their block scope.
+Fitur spesial lain dari Deklarasi Fungsi ialah scope blok mereka.
 
-**In strict mode, when a Function Declaration is within a code block, it's visible everywhere inside that block. But not outside of it.**
+**Di mode ketat, ketika Deklarasi Fungsi berada di jangkauan blok kode, ia terlihat di manapun di dalam blok. Tapi tidak di luarnya.**
 
-For instance, let's imagine that we need to declare a function `welcome()` depending on the `age` variable that we get during runtime. And then we plan to use it some time later.
+Misalnya, bayangkan kita harus mendeklarasi fungsi `welcome()` tergantung variabel `age` yang kita dapat saat runtime. Lalu kita berencana akan menggunakannya kemudian.
 
-If we use Function Declaration, it won't work as intended:
+Jika kita memakai Deklarasi Fungsi, ia tak akan bekerja sesuai harapan:
 
 ```js run
 let age = prompt("What is your age?", 18);
 
-// conditionally declare a function
+// secara kondisional mendeklarasi fungsi
 if (age < 18) {
 
   function welcome() {
@@ -261,30 +261,30 @@ if (age < 18) {
 
 }
 
-// ...use it later
+// ...pakai ini kemudian
 *!*
 welcome(); // Error: welcome is not defined
 */!*
 ```
 
-That's because a Function Declaration is only visible inside the code block in which it resides.
+Itu karena Deklarasi Fungsi cuma terlihat di dalam blok kode yang ia tinggali.
 
-Here's another example:
+Ini contoh lainnya:
 
 ```js run
-let age = 16; // take 16 as an example
+let age = 16; // ambil 16 sebagai contoh
 
 if (age < 18) {
 *!*
-  welcome();               // \   (runs)
+  welcome();               // \   (berjalan)
 */!*
                            //  |
   function welcome() {     //  |  
-    alert("Hello!");       //  |  Function Declaration is available
-  }                        //  |  everywhere in the block where it's declared
+    alert("Hello!");       //  |  Deklarasi Fungsi tersedia
+  }                        //  |  di manapun dalam blok kode tempat dia dideklarasi
                            //  |
 *!*
-  welcome();               // /   (runs)
+  welcome();               // /   (berjalan)
 */!*
 
 } else {
@@ -294,19 +294,19 @@ if (age < 18) {
   }
 }
 
-// Here we're out of curly braces,
-// so we can not see Function Declarations made inside of them.
+// Di sini kita di luar kurung kurawal,
+// jadi kita tak bisa melihat Deklarasi Fungsi yang dibuat di dalamnya.
 
 *!*
 welcome(); // Error: welcome is not defined
 */!*
 ```
 
-What can we do to make `welcome` visible outside of `if`?
+Apa yang bisa kita lakukan supaya `welcome` terlihat di luar `if`?
 
-The correct approach would be to use a Function Expression and assign `welcome` to the variable that is declared outside of `if` and has the proper visibility.
+Pendekatan yang benar ialah menggunakan Expresi Fungsi dan menetapkan `welcome` ke variabel yang dideklarasi di luar `if` dan punya visibilitas yang cukup.
 
-This code works as intended:
+Kode ini berjalan sesuai harapan:
 
 ```js run
 let age = prompt("What is your age?", 18);
@@ -328,11 +328,11 @@ if (age < 18) {
 }
 
 *!*
-welcome(); // ok now
+welcome(); // sekarang ok
 */!*
 ```
 
-Or we could simplify it even further using a question mark operator `?`:
+Atau kita bisa menyederhanakannya lebih lanjut menggunakan operator tanda tanya `?`:
 
 ```js run
 let age = prompt("What is your age?", 18);
@@ -342,32 +342,32 @@ let welcome = (age < 18) ?
   function() { alert("Greetings!"); };
 
 *!*
-welcome(); // ok now
+welcome(); // sekarang ok
 */!*
 ```
 
 
-```smart header="When to choose Function Declaration versus Function Expression?"
-As a rule of thumb, when we need to declare a function, the first to consider is Function Declaration syntax. It gives more freedom in how to organize our code, because we can call such functions before they are declared.
+```smart header="Kapan harus memilih Deklarasi Fungsi versus Expresi Fungsi?"
+Sebagai aturan praktis, saat kita harus mendeklarasi fungsi, hal pertama yang kita pertimbangkan ialah syntax Deklarasi Fungsi. Ia memberi kebebasan lebih dalam bagaimana mengorganisir kode kita, karena kita bisa memanggil fungsi macam ini sebelum mereka dideklarasi.
 
-That's also better for readability, as it's easier to look up `function f(…) {…}` in the code than `let f = function(…) {…}`. Function Declarations are more "eye-catching".
+Itu juga untuk keterbacaan yang lebih baik, karena lebih mudah melihat `function f(…) {…}` dalam kode ketimbang `let f = function(…) {…}`. Deklarasi Fungsi lebih "eye-catching".
 
-...But if a Function Declaration does not suit us for some reason, or we need a conditional declaration (we've just seen an example), then Function Expression should be used.
+...Tapi jika Deklarasi Fungsi tak cocok untuk beberapa alasan, atau kita butuh deklarasi kondisional (kita sudah lihat contohnya), maka Expresi Fungsi sebaiknya digunakan.
 ```
 
 
-## Arrow functions [#arrow-functions]
+## Fungsi panah [#arrow-functions]
 
-There's one more very simple and concise syntax for creating functions, that's often better than Function Expressions. It's called "arrow functions", because it looks like this:
+Ada lagi syntax yang lebih simpel dan ringkas untuk membuat fungsi, ia lebih baik dari Expresi Fungsi. Ia disebut "fungsi panah", karena rupanya seperti ini:
 
 
 ```js
 let func = (arg1, arg2, ...argN) => expression
 ```
 
-...This creates a function `func` that has arguments `arg1..argN`, evaluates the `expression` on the right side with their use and returns its result.
+...Ini membuat fungsi `func` yang punya argumen `arg1..argN`, mengevaluasi `expression` di sisi kanan dengan penggunaan mereka dan mengembalikan hasilnya.
 
-In other words, it's roughly the same as:
+Dengan kata lain, kasarnya ia sama saja dengan:
 
 ```js
 let func = function(arg1, arg2, ...argN) {
@@ -375,14 +375,14 @@ let func = function(arg1, arg2, ...argN) {
 };
 ```
 
-...But much more concise.
+...Tapi lebih ringkas.
 
-Let's see an example:
+Ayo kita lihat contoh:
 
 ```js run
 let sum = (a, b) => a + b;
 
-/* The arrow function is a shorter form of:
+/* Fungsi panah ialah bentuk pendek dari:
 
 let sum = function(a, b) {
   return a + b;
@@ -393,10 +393,10 @@ alert( sum(1, 2) ); // 3
 
 ```
 
-If we have only one argument, then parentheses around parameters can be omitted, making that even shorter:
+Jika kita cuma punya satu argumen, maka tanda kurung sekitar parameter bisa dibuang, membuatnya lebih pendek lagi:
 
 ```js run
-// same as
+// sama dengan
 // let double = function(n) { return n * 2 }
 *!*
 let double = n => n * 2;
@@ -405,7 +405,7 @@ let double = n => n * 2;
 alert( double(3) ); // 6
 ```
 
-If there are no arguments, parentheses should be empty (but they should be present):
+Jika tak ada argumen, tanda kurung sebaiknya kosong (tapi mereka harus ada):
 
 ```js run
 let sayHi = () => alert("Hello!");
@@ -413,9 +413,9 @@ let sayHi = () => alert("Hello!");
 sayHi();
 ```
 
-Arrow functions can be used in the same way as Function Expressions.
+Panah fungsi bisa digunakan dengan cara yang sama dengan Expresi Fungsi.
 
-For instance, here's the rewritten example with `welcome()`:
+Misalnya, ini contoh yang ditulis ulang dengan `welcome()`:
 
 ```js run
 let age = prompt("What is your age?", 18);
@@ -427,48 +427,48 @@ let welcome = (age < 18) ?
 welcome(); // ok now
 ```
 
-Arrow functions may appear unfamiliar and not very readable at first, but that quickly changes as the eyes get used to the structure.
+Fungsi panah mungkin terlihat asing dan tak mudah terbaca pertama kali, tapi itu cepat berubah seiring mata memandangi strukturnya.
 
-They are very convenient for simple one-line actions, when we're just too lazy to write many words.
+Mereka sangat nyaman untuk aksi sebaris simpel, saat kita malas banget untuk menulis banyak kata.
 
-```smart header="Multiline arrow functions"
+```smart header="Fungsi panah baris-ganda"
 
-The examples above took arguments from the left of `=>` and evaluated the right-side expression with them.
+Contoh di atas mengambil argumen dari kiri `=>` dan mengealuasi expresi sisi kanan expression dengan mereka.
 
-Sometimes we need something a little bit more complex, like multiple expressions or statements. It is also possible, but we should enclose them in curly braces. Then use a normal `return` within them.
+kadang kita butuh sesuatu yang lebih komplex, seperti pernyataan atau expresi ganda. Itu juga memungkinkan, tapi sebaiknya kita melampirkan mereka dalam kurung kurawal. Lalu gunakan `return` normal di dalamnya.
 
-Like this:
+Seperti ini:
 
 ```js run
-let sum = (a, b) => {  // the curly brace opens a multiline function
+let sum = (a, b) => {  // kurung kurawal membuka fungsi baris-ganda
   let result = a + b;
 *!*
-  return result; // if we use curly braces, use return to get results
+  return result; // jika kita menggunakan kurung kurawal, gunakan return untuk mendapatkan hasil
 */!*
 };
 
 alert( sum(1, 2) ); // 3
 ```
 
-```smart header="More to come"
-Here we praised arrow functions for brevity. But that's not all! Arrow functions have other interesting features. We'll return to them later in the chapter <info:arrow-functions>.
+```smart header="Ada lagi"
+Di sini kita memuji fungsi panah karena keringkasan. Tapi belum selesai! Fungsi panah punya fitur menarik lain. Kita akan kembali ke mereka nanti di bab <info:arrow-functions>.
 
-For now, we can already use arrow functions for one-line actions and callbacks.
+Untuk sekarang, kita sudah bisa menggunakan panah fungsi untuk aksi sebaris dan callback.
 ```
 
-## Summary
+## Kesimpulan
 
-- Functions are values. They can be assigned, copied or declared in any place of the code.
-- If the function is declared as a separate statement in the main code flow, that's called a "Function Declaration".
-- If the function is created as a part of an expression, it's called a "Function Expression".
-- Function Declarations are processed before the code block is executed. They are visible everywhere in the block.
-- Function Expressions are created when the execution flow reaches them.
+- Fungsi adalah nilai. Mereka bisa diset, dikopi atau dideklarasi di kode manapun.
+- Jika fungsi dideklarasi sebagai pernyataan terpisah di aliran kode utama, ia disebut "Deklarasi Fungsi".
+- Jika fungsi dibuat sebagai bagian expresi, ia disebut "Expresi Fungsi".
+- Deklarasi Fungsi diproses sebelum blok kode diexekusi. Mereka terlihat di manapun dalam blok.
+- Expresi Fungsi dibuat saat aliran exekusi mencapai mereka.
 
-In most cases when we need to declare a function, a Function Declaration is preferable, because it is visible prior to the declaration itself. That gives us more flexibility in code organization, and is usually more readable.
+Di banyak kasus saat kita harus mendeklarasi fungsi, Deklarasi Fungsi disenangi, karena ia terlihat sebelum deklarasi itu sendiri. Itu memberi kita flexibilitas lebih dalam organisasi kode, dan biasa lebih mudah terbaca.
 
-So we should use a Function Expression only when a Function Declaration is not fit for the task. We've seen a couple of examples of that in this chapter, and will see more in the future.
+Jadi sebaiknya kita gunakan Expresi Fungsi hanya saat Deklarasi Fungsi tak cocok digunakan. Kita sudah melihat beberapa contoh itu di bab ini, dan kita akan melihat lebih lagi nanti.
 
-Arrow functions are handy for one-liners. They come in two flavors:
+Panah fungsi lebih praktis untuk satu baris. Mereka ada dalam dua rasa:
 
-1. Without curly braces: `(...args) => expression` -- the right side is an expression: the function evaluates it and returns the result.
-2. With curly braces: `(...args) => { body }` -- brackets allow us to write multiple statements inside the function, but we need an explicit `return` to return something.
+1. Tanpa kurung kurawal: `(...args) => expression` -- sisi kanan ialah expresi: fungsi mengevaluasinya dan mengembalikan hasil.
+2. Dengan kurung kurawal: `(...args) => { body }` -- bracket memperbolehkan kita menulis pernyataan ganda di dalam fungsi, tapi kita butuh `return` explisit untuk mengembalikan sesuatu.

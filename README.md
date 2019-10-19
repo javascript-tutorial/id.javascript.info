@@ -1,6 +1,6 @@
 # Tutorial JavaScript Modern
 
-Repository ini menjadi tempat penyimpanan konten Inggris dari Tutorial JavaScript Modern yang diterbitkan di [https://javascript.info](https://javascript.info).
+Ini adalah repository konten Indonesia dari Tutorial JavaScript Modern yang terbit di [https://javascript.info](https://javascript.info).
 
 ## Penerjemahan
 
@@ -10,11 +10,11 @@ Lihat <https://javascript.info/translate> untuk detilnya.
 
 ## Kontribusi
 
-Kami juga ingin berkolaborasi pada tutorial dengan orang lain.
+Kami juga ingin berkolaborasi dengan orang lain di tutorial ini.
 
-Ada yang salah? Ada topik hilang? Jelaskan ke semua orang, tambahkan sebagai PR 👏
+Apa ada yang salah? Apa ada topik yang hilang? Jelaskan ke semua orang, ajukan sebagai PR 👏
 
-**Kamu bisa edit text dalam editor apapun.** Tutorial ini memakai format "markdown" yang maju, mudah dipahami. Dan jika kamu ingin melihat bagaimana tampilan on-site-nya, ada server untuk menjalankan tutorial secara lokal di <https://github.com/javascript-tutorial/server>.  
+**Kamu bisa edit teks di editor apapun.** Tutorial ini memakai format "markdown" yang canggih, mudah dipahami. Jika kamu mau lihat bagaimana tampilan on-site-nya, ada server untuk menjalankan tutorial secara lokal di <https://github.com/javascript-tutorial/server>.  
 
 Daftar kontributor tersedia di <https://javascript.info/about#contributors>.
 
@@ -22,15 +22,15 @@ Daftar kontributor tersedia di <https://javascript.info/about#contributors>.
 
 Tiap bab, artikel atau tugas mempunyai foldernya sendiri.
 
-Foldernya dinamai like `N-url`, tapi `N` ialah angka untuk tujuan pengurutan dan `url` adalah bagian URL dengan judul dari bahan material.
+Foldernya dinamai seperti `N-url`, di mana `N` adalah angka untuk tujuan pengurutan dan `url` adalah URL dengan judul bahan material.
 
-The type of the material is defined by the file inside the folder:
+Tipe material didefinisikan oleh file di dalam foldernya:
 
-  - `index.md` berdiri untuk suatu bab
-  - `article.md` berdiri untuk suatu artikel
-  - `task.md` berdiri untuk suatu tugas (solusi harus disediakan dalam file `solution.md` juga)
+  - `index.md` berdiri untuk satu bab
+  - `article.md` berdiri untuk satu artikel
+  - `task.md` berdiri untuk satu tugas (solusi harus disediakan dalam file `solution.md` juga)
 
-Setiap file di sini bermula dari `# Main header`.
+Setiap file di sini dimulai dari `# Main header`.
 
 Sangat mudah menambah hal baru.
 

@@ -1,4 +1,5 @@
-Kepentingan: 4
+nilai penting: 4
+
 ---
 
 # Apakah "else" dibutuhkan ?

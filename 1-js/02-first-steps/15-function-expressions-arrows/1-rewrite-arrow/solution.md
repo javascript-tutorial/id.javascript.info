@@ -14,4 +14,4 @@ ask(
 );
 ```
 
-Looks short and clean, right?
+Terlihat pendek dan bersih, kan?

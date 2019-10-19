@@ -6,11 +6,7 @@ Untuk melakukan itu, kita dapat menggunakan pernyataan  `if`  dan operator kondi
 
 ## Pernyataan "if"
 
-<<<<<<< HEAD
-Pernyataan `if` mengevaluasi suatu kondisi, dan jika hasil kondisi itu benar (`true`),maka pernyataan tersebut akan mengeksekusi kode di dalam blok `if` tersebut.
-=======
-The `if(...)` statement evaluates a condition in parentheses and, if the result is `true`, executes a block of code.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+Pernyataan `if` mengevaluasi suatu kondisi dan, jika hasil kondisi itu `true`, maka blok kode di dalam `if` akan diexekusi.
 
 Sebagai contoh:
 

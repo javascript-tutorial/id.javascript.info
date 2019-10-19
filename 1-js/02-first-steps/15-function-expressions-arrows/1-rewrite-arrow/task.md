@@ -1,7 +1,7 @@
 
 # Rewrite with arrow functions
 
-Replace Function Expressions with arrow functions in the code:
+Ganti Expresi Fungsi dengan fungsi panah dalam kode:
 
 ```js run
 function ask(question, yes, no) {

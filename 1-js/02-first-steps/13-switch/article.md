@@ -1,14 +1,14 @@
-# The "switch" statement
+# Pernyataan "switch"
 
-A `switch` statement can replace multiple `if` checks.
+Pernyataan `switch` bisa mengganti pengecekan ganda `if`.
 
-It gives a more descriptive way to compare a value with multiple variants.
+Ia memberi cara lebih deskriptif untuk membandingkan nilai dengan varian ganda.
 
-## The syntax
+## Syntax
 
-The `switch` has one or more `case` blocks and an optional default.
+`switch` punya satu atau lebih blok `case` dan satu default opsional.
 
-It looks like this:
+Rupanya seperti ini:
 
 ```js no-beautify
 switch(x) {
@@ -26,13 +26,13 @@ switch(x) {
 }
 ```
 
-- The value of `x` is checked for a strict equality to the value from the first `case` (that is, `value1`) then to the second (`value2`) and so on.
-- If the equality is found, `switch` starts to execute the code starting from the corresponding `case`, until the nearest `break` (or until the end of `switch`).
-- If no case is matched then the `default` code is executed (if it exists).
+- Nilai `x` dicek ekaulitasnya secara ketat dengan nilaid dari `case` pertama (yaitu, `value1`) lalu ke kedua (`value2`) dan seterusnya.
+- Jika ekualitas ditemukan, `switch` mulai mengexekusi kode mulai dari `case` yang berkorespondensi, hingga `break` terdekat (atau hingga akhir `switch`).
+- Jika tak ada case yang cocok maka kode `default` diexekusi (jika ada).
 
-## An example
+## Contoh
 
-An example of `switch` (the executed code is highlighted):
+Contoh `switch` (kode yang diexekusi dihighlight):
 
 ```js run
 let a = 2 + 2;
@@ -54,13 +54,13 @@ switch (a) {
 }
 ```
 
-Here the `switch` starts to compare `a` from the first `case` variant that is `3`. The match fails.
+Di sini `switch` mulai membandingkan `a` dari varian `case` pertama yang bernilai `3`. Kecocokan gagal.
 
-Then `4`. That's a match, so the execution starts from `case 4` until the nearest `break`.
+Lalu `4`. Ada kecocokan, jadi exekusi mulai dari `case 4` hingga `break` terdekat.
 
-**If there is no `break` then the execution continues with the next `case` without any checks.**
+**Jika tak ada `break` maka exekusi lanjut dengan `case` berikutnya tanpa pengecekan.**
 
-An example without `break`:
+Contoh tanpa `break`:
 
 ```js run
 let a = 2 + 2;
@@ -79,7 +79,7 @@ switch (a) {
 }
 ```
 
-In the example above we'll see sequential execution of three `alert`s:
+Di contoh di atas kita akan lihat exekusi sekuensial dari tiga `alert`:
 
 ```js
 alert( 'Exactly!' );
@@ -87,10 +87,10 @@ alert( 'Too big' );
 alert( "I don't know such values" );
 ```
 
-````smart header="Any expression can be a `switch/case` argument"
-Both `switch` and `case` allow arbitrary expressions.
+````smart header="Expresi apapun bisa berupa argumen `switch/case`"
+Baik `switch` maupun `case` membolehkan sembarang expresi.
 
-For example:
+Misalnya:
 
 ```js run
 let a = "1";
@@ -107,14 +107,14 @@ switch (+a) {
     alert("this doesn't run");
 }
 ```
-Here `+a` gives `1`, that's compared with `b + 1` in `case`, and the corresponding code is executed.
+Di sini `+a` memberikan `1`, yang dibandingkan dengan `b + 1` ndalam `case`, and the corresponding code is executed.
 ````
 
-## Grouping of "case"
+## Pengelompokan "case"
 
-Several variants of `case` which share the same code can be grouped.
+Beberapa varian `case` yang berbagi kode yang sama bisa dikelompokkan.
 
-For example, if we want the same code to run for `case 3` and `case 5`:
+Misalnya, jika kita ingin kode yang sama berjalan untuk `case 3` dan `case 5`:
 
 ```js run no-beautify
 let a = 2 + 2;
@@ -137,15 +137,15 @@ switch (a) {
 }
 ```
 
-Now both `3` and `5` show the same message.
+Sekarang baik `3` maupun `5` menampilkan pesan yang sama.
 
-The ability to "group" cases is a side-effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
+Kemampuan "mengelompokkan" case adalah efek samping dari bagaimana `switch/case` bekerja tanpa `break`. Di sini exekusi dari `case 3` mulai dari baris `(*)` dan tembus ke `case 5`, karena tidak ada `break`.
 
-## Type matters
+## Tipe berpengaruh
 
-Let's emphasize that the equality check is always strict. The values must be of the same type to match.
+Mari kita tekankan bahwa pengecekan ekualitas selalu ketat. Nilainya harus bertipe sama supaya cocok.
 
-For example, let's consider the code:
+Misalnya, mari kita pertimbangkan kode ini:
 
 ```js run
 let arg = prompt("Enter a value?");
@@ -167,6 +167,6 @@ switch (arg) {
 }
 ```
 
-1. For `0`, `1`, the first `alert` runs.
-2. For `2` the second `alert` runs.
-3. But for `3`, the result of the `prompt` is a string `"3"`, which is not strictly equal `===` to the number `3`. So we've got a dead code in `case 3`! The `default` variant will execute.
+1. Untuk `0`, `1`, `alert` pertama berjalan.
+2. Untuk `2` `alert` kedua berjalan.
+3. Tapi untuk `3`, hasil dari `prompt` ialah string `"3"`, yang berbeda secara ketat `===` dengan angka `3`. Jadi kita punya kode mati di `case 3`! Varian `default` akan diexekusi.

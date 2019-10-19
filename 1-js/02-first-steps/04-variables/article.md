@@ -222,7 +222,7 @@ num = 5; // variabel "num" dibuat jika ia tak ada
 alert(num); // 5
 ```
 
-Ini kebiasaan buruk dan akan mengakibatkan galat dalam mode strict:
+Ini kebiasaan buruk dan akan mengakibatkan galat dalam mode ketat:
 
 ```js
 "use strict";

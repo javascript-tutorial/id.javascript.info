@@ -1,29 +1,29 @@
 
-You could note the following:
+Kamu bisa perhatikan berikut:
 
 ```js no-beautify
-function pow(x,n)  // <- no space between arguments
-{  // <- figure bracket on a separate line
-  let result=1;   // <- no spaces before or after =
-  for(let i=0;i<n;i++) {result*=x;}   // <- no spaces
-  // the contents of { ... } should be on a new line
+function pow(x,n)  // <- tak ada spasi between arguments
+{  // <- menemukan bracket di baris terpisah
+  let result=1;   // <- tak ada spasi sebelum atau setelah =
+  for(let i=0;i<n;i++) {result*=x;}   // <- tak ada spasi
+  // konten { ... } sebaiknya di baris baru
   return result;
 }
 
-let x=prompt("x?",''), n=prompt("n?",'') // <-- technically possible,
-// but better make it 2 lines, also there's no spaces and missing ;
-if (n<0)  // <- no spaces inside (n < 0), and should be extra line above it
-{   // <- figure bracket on a separate line
-  // below - long lines can be split into multiple lines for improved readability
+let x=prompt("x?",''), n=prompt("n?",'') // <-- secara teknis memungkinkan,
+// tapi lebih baik buat 2 baris, juga tak ada spasi dan kehilangan ;
+if (n<0)  // <- tak ada spasi di dalam (n < 0), dan harus ada baris extra line di atasnya
+{   // <- menemukan bracket di baris baru
+  // di bawah - baris panjang bisa dipisah menjadi baris ganda untuk keterbacaan lebih baik
   alert(`Power ${n} is not supported, please enter an integer number greater than zero`);
 }
-else // <- could write it on a single line like "} else {"
+else // <- bisa menulisnya di baris tunggal seperti "} else {"
 {
-  alert(pow(x,n))  // no spaces and missing ;
+  alert(pow(x,n))  // tak ada spasi dan kehilangan ;
 }
 ```
 
-The fixed variant:
+Varian yang dibetulkan:
 
 ```js
 function pow(x, n) {
