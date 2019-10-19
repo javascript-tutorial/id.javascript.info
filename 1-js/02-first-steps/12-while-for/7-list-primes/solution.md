@@ -26,8 +26,4 @@ for (let i = 2; i <= n; i++) { // untuk setiap i...
 }
 ```
 
-<<<<<<< HEAD
-Ada banyak ruang untuk mengoptimalkannya. Misalnya, kita dapat mencari pembagi dari `2` ke akar kuadrat dari `i`. Tapi bagaimanapun juga, jika kita ingin menjadi sangat efisien untuk interval besar, kita perlu mengubah pendekatan dan mengandalkan pada matematika lanjutan dan algotima kompleks seperti [Quadratic sieve](https://en.wikipedia.org/wiki/Quadratic_sieve), [General number field sieve](https://en.wikipedia.org/wiki/General_number_field_sieve) dsb.
-=======
-There's a lot of space to optimize it. For instance, we could look for the divisors from `2` to square root of `i`. But anyway, if we want to be really efficient for large intervals, we need to change the approach and rely on advanced maths and complex algorithms like [Quadratic sieve](https://en.wikipedia.org/wiki/Quadratic_sieve), [General number field sieve](https://en.wikipedia.org/wiki/General_number_field_sieve) etc.
->>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
+Ada banyak ruang untuk mengoptimalkannya. Misalnya, kita dapat mencari pembagi dari `2` ke akar kuadrat dari `i`. Tapi bagaimanapun juga, jika kita ingin sangat efisien untuk interval besar, kita perlu mengubah pendekatan dan mengandalkan matematika lanjutan dan algotima rumit seperti [Quadratic sieve](https://en.wikipedia.org/wiki/Quadratic_sieve), [General number field sieve](https://en.wikipedia.org/wiki/General_number_field_sieve) dsb.
