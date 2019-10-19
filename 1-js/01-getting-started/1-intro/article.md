@@ -12,13 +12,8 @@ Script tersedia dan dieksekusi sebagai sebuah teks biasa. Script tidak membutuhk
 
 Dalam hal ini, JavaScript sangat berbeda dari bahasa lain yang disebut [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
 
-<<<<<<< HEAD
-```smart header="Kenapa <u>Java</u>Script?"
-Saat JavaScript diciptakan, nama awalnya adalah "LiveScript". Namun saat itu Java sudah sangat terkenal sehingga akhirnya muncul keputusan untuk mengganti nama LiveScript menjadi Javascript supaya Javascript ikut terkenal seperti Java dan seolah-olah menjadi "adik kandung" dari Java.
-=======
-```smart header="Why is it called <u>Java</u>Script?"
-When JavaScript was created, it initially had another name: "LiveScript". But Java was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
->>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
+```smart header="Kenapa disebut <u>Java</u>Script?"
+Saat JavaScript diciptakan, nama awalnya adalah "LiveScript". Namun saat itu Java sudah sangat terkenal, sehingga akhirnya diputuskanlah bahwa memposisikan bahasa baru menjadi "adik" Java dapat membantu.
 
 Seiring waktu, JavaScript tumbuh menjadi bahasa yang sepenuhnya bebas dengan memiliki spesifikasi [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), dan sekarang JavaScript tak punya hubungan apa-apa dengan Java.
 ```
