@@ -124,24 +124,13 @@ alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
 ```
 ````
 
-<<<<<<< HEAD
-
 ## Kesimpulan
-=======
-## Summary
->>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 Tiga tipe konversi yang paling digunakan ialah ke string, ke angka, dan ke boolean.
 
-<<<<<<< HEAD
-**`ToString`** -- Terjadi ketika kita mengoutput sesuatu. Bisa berjalan dengan `String(value)`. Konversi ke string biasanya untuk nilai primitive.
+**`Konversi String`** -- Terjadi ketika kita mengoutput sesuatu. Bisa berjalan dengan `String(value)`. Konversi ke string biasanya untuk nilai primitif.
 
-**`ToNumber`** -- Terjadi di operasi matematika. Bisa berjalan dengan `Number(value)`.
-=======
-**`String Conversion`** -- Occurs when we output something. Can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
-
-**`Numeric Conversion`** -- Occurs in math operations. Can be performed with `Number(value)`.
->>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
+**`Konversi Numerik`** -- Terjadi di operasi matematika. Bisa berjalan dengan `Number(value)`.
 
 Konversinya mengikuti aturan ini:
 
@@ -152,11 +141,7 @@ Konversinya mengikuti aturan ini:
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
 | `string` | Stringnya dibaca "apa adanya", whitespace dari kedua sisi diabaikan. String kosong menjadi `0`. Error memberikan `NaN`. |
 
-<<<<<<< HEAD
-**`ToBoolean`** -- Terjadi di operasi logika. Bisa berjalan dengan `Boolean(value)`.
-=======
-**`Boolean Conversion`** -- Occurs in logical operations. Can be performed with `Boolean(value)`.
->>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
+**`Konversi Boolean`** -- Terjadi di operasi logika. Bisa berjalan dengan `Boolean(value)`.
 
 Ikuti aturan ini:
 
