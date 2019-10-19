@@ -31,19 +31,11 @@ Pada praktiknya, editor ringan bisa punya banyak plugin termasuk syntax analyzer
 
 Opsi-opsi berikut patut anda perhatikan:
 
-<<<<<<< HEAD
 - [Atom](https://atom.io/) (lintas-platform, gratis).
 - [Visual Studio Code](https://code.visualstudio.com/) (lintas-platform, gratis).
 - [Sublime Text](http://www.sublimetext.com) (lintas-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, gratis).
 - [Vim](http://www.vim.org/) dan [Emacs](https://www.gnu.org/software/emacs/) sangat keren juga jika kamu tahu cara pakainya.
-=======
-- [Atom](https://atom.io/) (cross-platform, free).
-- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
-- [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
-- [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
-- [Vim](http://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
->>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 ## Jangan berdebat
 
