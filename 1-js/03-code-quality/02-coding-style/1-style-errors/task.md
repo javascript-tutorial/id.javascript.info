@@ -1,10 +1,10 @@
-importance: 4
+nilai penting: 4
 
 ---
 
-# Bad style
+# Gaya jelek
 
-What's wrong with the code style below?
+Apa yang salah dengan gaya kode di bawah?
 
 ```js no-beautify
 function pow(x,n)
@@ -25,4 +25,4 @@ else
 }
 ```
 
-Fix it.
+Betulkan.
