@@ -1,6 +1,6 @@
-The maximal length must be `maxlength`, so we need to cut it a little shorter, to give space for the ellipsis.
+Panjang maksimum adalah `maxlength`, jadi kita perlu memotongnya menjadi lebih pendek, untuk memberi tempat bagi elipsis.
 
-Note that there is actually a single unicode character for an ellipsis. That's not three dots.
+Perlu diperhatikan bahwa elipsis hanyalah sebuah karakter unicode, bukan tiga karakter titik.
 
 ```js run demo
 function truncate(str, maxlength) {
