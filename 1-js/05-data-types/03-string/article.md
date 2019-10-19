@@ -36,7 +36,7 @@ let guestList = `Guests:
  * Mary
 `;
 
-alert(guestList); // a list of guests, multiple lines
+alert(guestList); // list tamu, dipisahkan per baris
 ```
 
 Lebih rapi, kan? Tetapi petik satu atau dua tidak bekerja seperti itu.
@@ -59,15 +59,15 @@ Masih mungkin untuk membuat string dengan banyak baris menggunakan petik satu at
 ```js run
 let guestList = "Guests:\n * John\n * Pete\n * Mary";
 
-alert(guestList); // a multiline list of guests
+alert(guestList); // list tamu yang dipisahkan per baris
 ```
 
 Sebagai contoh, kedua baris berikut sama saja, hanya ditulis dengan cara yang berbeda:
 
 ```js run
-let str1 = "Hello\nWorld"; // two lines using a "newline symbol"
+let str1 = "Hello\nWorld"; // dua baris menggunakan "simbol baris baru"
 
-// two lines using a normal newline and backticks
+// dua baris menggunakan backtick
 let str2 = `Hello
 World`;
 
@@ -94,8 +94,8 @@ Beberapa contoh unicode:
 
 ```js run
 alert( "\u00A9" ); // ©
-alert( "\u{20331}" ); // 佫, a rare Chinese hieroglyph (long unicode)
-alert( "\u{1F60D}" ); // 😍, a smiling face symbol (another long unicode)
+alert( "\u{20331}" ); // 佫, sebuah karakter mandarin (unicode panjang)
+alert( "\u{1F60D}" ); // 😍, sebuah simbol wajah tersenyum (unicode panjang lainnya)
 ```
 
 Karakter-karakter spesial yang diawali dengan karakter backslash `\` kadang dipanggil dengan sebutan "escape character".
@@ -149,11 +149,11 @@ Untuk mengakses karakter pada posisi `pos`, digunakan kurung kotak `[pos]` atau 
 ```js run
 let str = `Hello`;
 
-// the first character
+// karakter pertama
 alert( str[0] ); // H
 alert( str.charAt(0) ); // H
 
-// the last character
+// karakter terakhir
 alert( str[str.length - 1] ); // o
 ```
 
@@ -165,14 +165,14 @@ Perbedaan satu-satunya di antara mereka adalah apabila tidak ada karakter yang d
 let str = `Hello`;
 
 alert( str[1000] ); // undefined
-alert( str.charAt(1000) ); // '' (an empty string)
+alert( str.charAt(1000) ); // '' (string kosong)
 ```
 
 Kita juga dapat mengakses karakter per karakter menggunakan sintaks `for..of`:
 
 ```js run
 for (let char of "Hello") {
-  alert(char); // H,e,l,l,o (char becomes "H", then "e", then "l" etc)
+  alert(char); // H,e,l,l,o (char bernilai "H", lalu "e", lalu "l", dan seterusnya)
 }
 ```
 
@@ -186,7 +186,7 @@ Mari kita coba untuk membuktikannya:
 let str = 'Hi';
 
 str[0] = 'h'; // error
-alert( str[0] ); // doesn't work
+alert( str[0] ); // tidak bekerja
 ```
 
 Salah satu cara untuk mengatasi hal tersebut adalah untuk membuat string baru lalu memasukkan nilainya ke `str`.
@@ -196,7 +196,7 @@ Sebagai contoh:
 ```js run
 let str = 'Hi';
 
-str = 'h' + str[1]; // replace the string
+str = 'h' + str[1]; // mengganti nilai string
 
 alert( str ); // hi
 ```
@@ -233,10 +233,10 @@ Sebagai contoh:
 ```js run
 let str = 'Widget with id';
 
-alert( str.indexOf('Widget') ); // 0, because 'Widget' is found at the beginning
-alert( str.indexOf('widget') ); // -1, not found, the search is case-sensitive
+alert( str.indexOf('Widget') ); // 0, karena 'Widget' ditemukan di awal string
+alert( str.indexOf('widget') ); // -1, tidak ditemukan, karena pencarian bersifat case-sensitive
 
-alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with id)
+alert( str.indexOf("id") ); // 1, "id" ditemukan pada posisi 1 (..idget with id)
 ```
 
 Parameter kedua yang opsional memperbolehkan kita untuk mencari dari posisi yang ditentukan.
@@ -254,7 +254,7 @@ Jika kita tertarik dengan semua kemunculan, kita dapat menjalankan `indexOf` di 
 ```js run
 let str = 'As sly as a fox, as strong as an ox';
 
-let target = 'as'; // let's look for it
+let target = 'as'; // mari kita cari
 
 let pos = 0;
 while (true) {
@@ -262,7 +262,7 @@ while (true) {
   if (foundPos == -1) break;
 
   alert( `Found at ${foundPos}` );
-  pos = foundPos + 1; // continue the search from the next position
+  pos = foundPos + 1; // lanjutkan pencarian dari posisi selanjutnya
 }
 ```
 
@@ -292,7 +292,7 @@ Ada sedikit kerepotan dalam menggunakan `indexOf` di dalam `if`. Kita tidak dapa
 let str = "Widget with id";
 
 if (str.indexOf("Widget")) {
-    alert("We found it"); // doesn't work!
+    alert("We found it"); // tidak bekerja!
 }
 ```
 
@@ -306,7 +306,7 @@ let str = "Widget with id";
 *!*
 if (str.indexOf("Widget") != -1) {
 */!*
-    alert("We found it"); // works now!
+    alert("We found it"); // kalau sekarang berhasil!
 }
 ```
 
@@ -319,11 +319,11 @@ Dalam praktik, hal tersebut berarti: untuk integer 32-bit `~n` sama dengan `-(n+
 Sebagai contoh:
 
 ```js run
-alert( ~2 ); // -3, the same as -(2+1)
-alert( ~1 ); // -2, the same as -(1+1)
-alert( ~0 ); // -1, the same as -(0+1)
+alert( ~2 ); // -3, sama dengan -(2+1)
+alert( ~1 ); // -2, sama dengan -(1+1)
+alert( ~0 ); // -1, sama dengan -(0+1)
 *!*
-alert( ~-1 ); // 0, the same as -(-1+1)
+alert( ~-1 ); // 0, sama dengan -(-1+1)
 */!*
 ```
 
@@ -337,7 +337,7 @@ Orang-orang menggunakannya untuk memperpendek pengecekan `indexOf`:
 let str = "Widget";
 
 if (~str.indexOf("Widget")) {
-  alert( 'Found it!' ); // works
+  alert( 'Found it!' ); // bekerja
 }
 ```
 
@@ -365,14 +365,14 @@ Parameter opsinal kedua dari `str.includes` adalah posisi dimana pencarian mulai
 
 ```js run
 alert( "Widget".includes("id") ); // true
-alert( "Widget".includes("id", 3) ); // false, from position 3 there is no "id"
+alert( "Widget".includes("id", 3) ); // false, dari posisi 3 tidak ditemukan "id"
 ```
 
 Method [str.startsWith](mdn:js/String/startsWith) dan [str.endsWith](mdn:js/String/endsWith) melakukan fungsi seperti namanya:
 
 ```js run
-alert( "Widget".startsWith("Wid") ); // true, "Widget" starts with "Wid"
-alert( "Widget".endsWith("get") ); // true, "Widget" ends with "get"
+alert( "Widget".startsWith("Wid") ); // true, "Widget" diawali oleh "Wid"
+alert( "Widget".endsWith("get") ); // true, "Widget" diakhiri oleh "get"
 ```
 
 ## Mengambil substring
@@ -386,15 +386,15 @@ Ada 3 cara untuk mengambil sebuah substring di Javascript: `substring`, `substr`
 
     ```js run
     let str = "stringify";
-    alert( str.slice(0, 5) ); // 'strin', the substring from 0 to 5 (not including 5)
-    alert( str.slice(0, 1) ); // 's', from 0 to 1, but not including 1, so only character at 0
+    alert( str.slice(0, 5) ); // 'strin', substring dari posisi 0 sampai 5 (tidak termasuk 5)
+    alert( str.slice(0, 1) ); // 's', dari 0 sampai 1, tetapi tidak termasuk 1, jadi hanya karakter pada posisi 0
     ```
 
     Jika tidak ada parameter kedua, maka `slice` akan mengambil semua bagian dari `start` sampai akhir string:
 
     ```js run
     let str = "st*!*ringify*/!*";
-    alert( str.slice(2) ); // ringify, from the 2nd position till the end
+    alert( str.slice(2) ); // ringify, dari posisi kedua sampai terakhir
     ```
 
     Nilai negatif untuk `start/end` juga bisa digunakan. Nilai negatif berarti posisinya dihitung dari akhir string:
@@ -402,7 +402,7 @@ Ada 3 cara untuk mengambil sebuah substring di Javascript: `substring`, `substr`
     ```js run
     let str = "strin*!*gif*/!*y";
 
-    // start at the 4th position from the right, end at the 1st from the right
+    // mulai dari posisi ke-4 dari kanan, berakhir di posisi pertama dari kanan
     alert( str.slice(-4, -1) ); // gif
     ```
 
@@ -416,13 +416,13 @@ Ada 3 cara untuk mengambil sebuah substring di Javascript: `substring`, `substr`
     ```js run
     let str = "st*!*ring*/!*ify";
 
-    // these are same for substring
+    // kedua ini sama saja untuk substring
     alert( str.substring(2, 6) ); // "ring"
     alert( str.substring(6, 2) ); // "ring"
 
-    // ...but not for slice:
-    alert( str.slice(2, 6) ); // "ring" (the same)
-    alert( str.slice(6, 2) ); // "" (an empty string)
+    // ...tetapi tidak untuk slice:
+    alert( str.slice(2, 6) ); // "ring" (sama)
+    alert( str.slice(6, 2) ); // "" (string kosong)
 
     ```
 
@@ -435,14 +435,14 @@ Ada 3 cara untuk mengambil sebuah substring di Javascript: `substring`, `substr`
 
     ```js run
     let str = "st*!*ring*/!*ify";
-    alert( str.substr(2, 4) ); // ring, from the 2nd position get 4 characters
+    alert( str.substr(2, 4) ); // ring, dari posisi ke-2 ambil 4 karakter
     ```
 
     Parameter pertama mungkin bernilai negatif, untuk menghitung dari akhir string:
 
     ```js run
     let str = "strin*!*gi*/!*fy";
-    alert( str.substr(-4, 2) ); // gi, from the 4th position get 2 characters
+    alert( str.substr(-4, 2) ); // gi, dari posisi ke-4 ambil 2 karakter
     ```
 
 Mari kita review cara-cara tersebut untuk menghindari kebingungan:
@@ -502,7 +502,7 @@ Semua string menggunakan encoding [UTF-16](https://en.wikipedia.org/wiki/UTF-16)
     Kita juga dapat membuat karakter unicode dengan kode mereka menggunakan `\u` yang diikuti oleh kode heksadesimal:
 
     ```js run
-    // 90 is 5a in hexadecimal system
+    // 90 bernilai 5a di dalam sistem heksadesimal
     alert( '\u005a' ); // Z
     ```
 
@@ -569,9 +569,9 @@ Tetapi 2 byte hanya memperbolehkan 65536 kombinasi dan itu tidak cukup untuk sem
 Panjang dari simbol tersebut adalah `2`:
 
 ```js run
-alert( '𝒳'.length ); // 2, MATHEMATICAL SCRIPT CAPITAL X
-alert( '😂'.length ); // 2, FACE WITH TEARS OF JOY
-alert( '𩷶'.length ); // 2, a rare Chinese hieroglyph
+alert( '𝒳'.length ); // 2, SIMBOL MATEMATIKA X BESAR
+alert( '😂'.length ); // 2, MUKA DENGAN TANGISAN BAHAGIA
+alert( '𩷶'.length ); // 2, karakter mandarin
 ```
 
 Perlu diingat bahwa surrogate pair tidak ada pada saat Javascript dibuat, oleh karena itu fitur ini tidak diproses secara benar oleh bahasa ini!
@@ -583,8 +583,8 @@ Kita sebenarnya memiliki sebuah simbol di setiap string di atas, tetapi `length`
 Mengambil sebuah simbol terkadang agak susah, karena surrogate pair diperlakukan sebagai dua karakter:
 
 ```js run
-alert( '𝒳'[0] ); // strange symbols...
-alert( '𝒳'[1] ); // ...pieces of the surrogate pair
+alert( '𝒳'[0] ); // simbol aneh...
+alert( '𝒳'[1] ); // ...bagian dari surrogate pair
 ```
 
 Perlu diingat bahwa bagian dari surrogate pair tidak memiliki arti tanpa pasangan yang lain. Jadi contoh di atas menampilkan karakter aneh.
@@ -596,8 +596,8 @@ Pada kasus diatas:
 ```js run
 // charCodeAt is not surrogate-pair aware, so it gives codes for parts
 
-alert( '𝒳'.charCodeAt(0).toString(16) ); // d835, between 0xd800 and 0xdbff
-alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3, between 0xdc00 and 0xdfff
+alert( '𝒳'.charCodeAt(0).toString(16) ); // d835, diantara 0xd800 dan 0xdbff
+alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3, diantara 0xdc00 dan 0xdfff
 ```
 
 Anda akan menemukan cara lain untuk bertanganan dengan surrogate pair nanti di bab <info:iterable>. Mungkin juga ada library-library yang untuk hal tersebut, tetapi tidak ada yang cukup terkenal untuk disarankan di sini.
@@ -631,12 +631,12 @@ Hal tersebut memberikan banyak fleksibilitas, tetapi juga masalah yang menarik: 
 Sebagai contoh:
 
 ```js run
-let s1 = 'S\u0307\u0323'; // Ṩ, S + dot above + dot below
-let s2 = 'S\u0323\u0307'; // Ṩ, S + dot below + dot above
+let s1 = 'S\u0307\u0323'; // Ṩ, S + titik di atas + titik di bawah
+let s2 = 'S\u0323\u0307'; // Ṩ, S + titik di atas + titik di bawah
 
 alert( `s1: ${s1}, s2: ${s2}` );
 
-alert( s1 == s2 ); // false though the characters look identical (?!)
+alert( s1 == s2 ); // false walaupun karakter terlihat sama (?!)
 ```
 
 Untuk menyelesaikan masalah ini, terdapat sebuah algoritma "normalisasi unicode" yang membuat setiap string menjadi satu bentuk "normal".
