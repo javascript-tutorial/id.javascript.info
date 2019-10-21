@@ -117,64 +117,64 @@ Relitanya, kita tak bisa menghindar total dari komentar "penjelasan". Ada algori
 
 ## Komentar baik
 
-Jadi, explanatory comments are usually bad. Which comments are good?
+Jadi, komentar penjelasan biasanya jelek. Komentar mana yang bagus?
 
-Describe the architecture
-: Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) to build high-level architecture diagrams explaining the code. Definitely worth studying.
+Jelaskan arsitekturnya
+: Sediakan overview tingkat-tinggi dari komponen, bagaimana mereka berinteraksi, apa aliran kontrolnya di berbagai situasi... Singkatnya -- gambaran umum dari kode. Ada bahasa spesial [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) untuk membangun diagram arsitektur tingkat-tinggi yang menjelaskan kode. Sangat berfaedah untuk dipelajari.
 
-Document function parameters and usage
-: There's a special syntax [JSDoc](http://en.wikipedia.org/wiki/JSDoc) to document a function: usage, parameters, returned value.
+Parameter dan kegunaan fungsi dokumen
+: Ada syntax spesial [JSDoc](http://en.wikipedia.org/wiki/JSDoc) untuk mendokumentasi fungsi: kegunaan, parameter, nilai kembalian.
 
-    For instance:
+    Misalnya:
     ```js
     /**
-     * Returns x raised to the n-th power.
+     * Kembalikan x yang diberi pangkat n.
      *
-     * @param {number} x The number to raise.
-     * @param {number} n The power, must be a natural number.
-     * @return {number} x raised to the n-th power.
+     * @param {number} x Angka yang mau dinaikkan.
+     * @param {number} n Pangkat, harus angka asli.
+     * @return {number} x hasil setelah pangkat n.
      */
     function pow(x, n) {
       ...
     }
     ```
 
-    Such comments allow us to understand the purpose of the function and use it the right way without looking in its code.
+    Komentar macam ini membolehkan kita memahami maksud fungsi dan memakainya dengan tepat tanpa melihat isi kode.
 
-    By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) can understand them as well and use them to provide autocomplete and some automatic code-checking.
+    Oya, banyak editor seperti [WebStorm](https://www.jetbrains.com/webstorm/) bisa memahami mereka juga dan memakai mereka untuk menyediakan autocomplete dan beberapa pengecekan-kode otomatis.
 
-    Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
+    Juga, Ada tool seperti [JSDoc 3](https://github.com/jsdoc3/jsdoc) yang bisa menggenerate dokumentasi-HTML dari komentar. Kamu bisa baca informasi lebih tentang JSDoc di <http://usejsdoc.org/>.
 
-Why is the task solved this way?
-: What's written is important. But what's *not* written may be even more important to understand what's going on. Why is the task solved exactly this way? The code gives no answer.
+Kenapa tugas ini diselesaikan begini?
+: Apa yang tertulis itu penting. Tapi apa yang *tak* tertilis mungkin lebih penting lagi untuk memahami yang terjadi. Kenapa tugas ini diselesaikan tepat seperti ini? Kodenya tak memberikan jawaban.
 
-    If there are many ways to solve the task, why this one? Especially when it's not the most obvious one.
+    Jika ada banyak cara menyelesaikan tugas, kenapa harus ini? Apalagi ini belum jelas.
 
-    Without such comments the following situation is possible:
-    1. You (or your colleague) open the code written some time ago, and see that it's "suboptimal".
-    2. You think: "How stupid I was then, and how much smarter I'm now", and rewrite using the "more obvious and correct" variant.
-    3. ...The urge to rewrite was good. But in the process you see that the "more obvious" solution is actually lacking. You even dimly remember why, because you already tried it long ago. You revert to the correct variant, but the time was wasted.
+    Tanpa komentar macam ini situasi berikut memungkinkan:
+    1. Kamu (atau kolegamu) membuka kode yang ditulis kapan hari, dan melihat bahwa ini "suboptimal".
+    2. Kamu berpikir: "Koq bego ya saya waktu itu, dan lihat betapa pintar saya sekarang", dan menulis-ulang menggunakan varian yang "lebih jelas dan benar".
+    3. ...Urgensi menulis-ulang itu bagus. Tapi di proses yang kamu lihat adalah solusi "lebih jelas" tersebut jadi minus. Kamu bahkan agak lupa kenapa, karena kamu sudah mencobanya di masa lalu. Kamu balikkan ke varian yang benar, tapi waktumu terbuang percuma.
 
-    Comments that explain the solution are very important. They help to continue development the right way.
+    Komentar yang menjelaskan solusi itu penting. Mereka membantu melanjutkan pengembangan ke arah yang benar.
 
-Any subtle features of the code? Where they are used?
-: If the code has anything subtle and counter-intuitive, it's definitely worth commenting.
+Ada fitur halus dari kodenya? Di mana mereka dipakai?
+: Jika kodenya punya sesuatu yang halus dan kontra-intuitif, itu sudah pasti bagus untuk dikomentari.
 
 ## Kesimpulan
 
-An important sign of a good developer is comments: their presence and even their absence.
+Tanpa penting dari pengembang yang baik ialah komentar: kehadiran mereka dan kealfaan mereka.
 
-Good comments allow us to maintain the code well, come back to it after a delay and use it more effectively.
+Komentar yang baik membuat kita memelihara kode lebih baik, kembali ke situ setelah delay dan memakainya secara efektif.
 
-**Comment this:**
+**Komentari ini:**
 
-- Overall architecture, high-level view.
-- Function usage.
-- Important solutions, especially when not immediately obvious.
+- Arsitektur keseluruhan, pemandangan tingkat-tinggi.
+- Kegunaan fungsi.
+- Solusi penting, terutama yang masih belum jelas.
 
-**Avoid comments:**
+**Hindari komentar:**
 
-- That tell "how code works" and "what it does".
-- Put them in only if it's impossible to make the code so simple and self-descriptive that it doesn't require them.
+- Yang menjelaskan "bagaimana kode bekerja" dan "apa kelakuannya".
+- Menaruh mereka hanya jika sudah tak mungkin menyederhanakan kode dan menjelaskan diri sendiri yang mana itu tak dibutuhkan.
 
-Comments are also used for auto-documenting tools like JSDoc3: they read them and generate HTML-docs (or docs in another format).
+Komentar juga dipakai untuk mengotodokumentasikan tool seperti JSDoc3: mereka membacanya dan menggenerate HTML-docs (atau docs di format lainnya).
