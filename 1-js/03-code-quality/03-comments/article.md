@@ -1,30 +1,30 @@
-# Comments
+# Komentar
 
-As we know from the chapter <info:structure>, comments can be single-line: starting with `//` and multiline: `/* ... */`.
+Seperti yang kita tahu dari bab <info:structure>, komentar bisa sebaris tunggal: mulai dari `//` dan baris-ganda: `/* ... */`.
 
-We normally use them to describe how and why the code works.
+Normalnya kita pakai mereka untuk menjelaskan bagaimana dan kenapa kode bekerja.
 
-At first sight, commenting might be obvious, but novices in programming often use them wrongly.
+Di awal pandangan, berkomentar itu sudah jelas, tapi pemula sering salah memakainya dalam pemrograman.
 
-## Bad comments
+## Komentar jelek
 
-Novices tend to use comments to explain "what is going on in the code". Like this:
+Pemula cenderung memakai komentar untuk menjelaskan "ada apa di dalam kode". Seperti ini:
 
 ```js
-// This code will do this thing (...) and that thing (...)
-// ...and who knows what else...
+// Kode ini akan melakukan ini (...) dan itu (...)
+// ...dan entah apa lagi...
 very;
 complex;
 code;
 ```
 
-But in good code, the amount of such "explanatory" comments should be minimal. Seriously, the code should be easy to understand without them.
+Tapi di dalam kode yang baik, jumlah komentar "penjelasan" seperti ini sebaiknya minimal. Seriusnya, kode harus bisa dimengerti tanpa mereka.
 
-There's a great rule about that: "if the code is so unclear that it requires a comment, then maybe it should be rewritten instead".
+Ada aturan besar tentang itu: "jika kode begitu tak jelas hingga ia butuh komentar, mungkin malah ia harus ditulis ulang".
 
-### Recipe: factor out functions
+### Resep: fungsi faktor keluar
 
-Sometimes it's beneficial to replace a code piece with a function, like here:
+Kadang menguntungkan untuk mengganti sepotong kode dengan fungsi, seperti ini:
 
 ```js
 function showPrimes(n) {
@@ -32,7 +32,7 @@ function showPrimes(n) {
   for (let i = 2; i < n; i++) {
 
 *!*
-    // check if i is a prime number
+    // cek apakah i angka prima
     for (let j = 2; j < i; j++) {
       if (i % j == 0) continue nextPrime;
     }
@@ -43,7 +43,7 @@ function showPrimes(n) {
 }
 ```
 
-The better variant, with a factored out function `isPrime`:
+Varian lebih baiknya, dengan fungsi faktor keluar `isPrime`:
 
 
 ```js
@@ -65,21 +65,21 @@ function isPrime(n) {
 }
 ```
 
-Now we can understand the code easily. The function itself becomes the comment. Such code is called *self-descriptive*.
+Sekarang kita mudah mengerti kodenya. Fungsinya itu sendiri menjadi komentar. Kode macam ini disebut *menjelaskan-diri-sendiri*.
 
-### Recipe: create functions
+### Resep: membuat fungsi
 
-And if we have a long "code sheet" like this:
+Dan jika kita punya "code sheet" sangat panjang seperti ini:
 
 ```js
-// here we add whiskey
+// kita tambah \whiskey di sini
 for(let i = 0; i < 10; i++) {
   let drop = getWhiskey();
   smell(drop);
   add(drop, glass);
 }
 
-// here we add juice
+// kita tambah jus di sini
 for(let t = 0; t < 3; t++) {
   let tomato = getTomato();
   examine(tomato);
@@ -90,7 +90,7 @@ for(let t = 0; t < 3; t++) {
 // ...
 ```
 
-Then it might be a better variant to refactor it into functions like:
+Maka mungkin varian lebih baiknya ialah merefaktornya menjadi fungsi seperti:
 
 ```js
 addWhiskey(glass);
@@ -111,13 +111,13 @@ function addJuice(container) {
 }
 ```
 
-Once again, functions themselves tell what's going on. There's nothing to comment. And also the code structure is better when split. It's clear what every function does, what it takes and what it returns.
+Sekali lagi, fungsi mereka sendiri menjelaskan apa yang terjadi. Tak ada yang dikomentari. Dan juga struktur kodenya lebih baik saat dipisah. Kelakuan tiap fungsi jadi lebih jelas, apa yang ia ambil dan yang ia kembalikan.
 
-In reality, we can't totally avoid "explanatory" comments. There are complex algorithms. And there are smart "tweaks" for purposes of optimization. But generally we should try to keep the code simple and self-descriptive.
+Relitanya, kita tak bisa menghindar total dari komentar "penjelasan". Ada algoritma rumit. Dan ada "tweak" pintar dengan tujuan optimisasi. Tapi umumnya kita harus coba menjaga kodenya simpel dan menjelaskan-diri-sendiri.
 
-## Good comments
+## Komentar baik
 
-So, explanatory comments are usually bad. Which comments are good?
+Jadi, explanatory comments are usually bad. Which comments are good?
 
 Describe the architecture
 : Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) to build high-level architecture diagrams explaining the code. Definitely worth studying.
@@ -160,7 +160,7 @@ Why is the task solved this way?
 Any subtle features of the code? Where they are used?
 : If the code has anything subtle and counter-intuitive, it's definitely worth commenting.
 
-## Summary
+## Kesimpulan
 
 An important sign of a good developer is comments: their presence and even their absence.
 
