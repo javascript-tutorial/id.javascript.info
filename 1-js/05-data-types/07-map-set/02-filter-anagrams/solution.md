@@ -1,6 +1,6 @@
-To find all anagrams, let's split every word to letters and sort them. When letter-sorted, all anagrams are same.
+Untuk menemukan semua anagram, mari kita pecahkan setiap kata menjadi huruf-huruf dan urutkanlah. Ketika huruf-huruf terurut, semua anagram adalah sama. 
 
-For instance:
+Sebagai contoh:
 
 ```
 nap, pan -> anp
@@ -9,7 +9,7 @@ cheaters, hectares, teachers -> aceehrst
 ...
 ```
 
-We'll use the letter-sorted variants as map keys to store only one value per each key:
+Kita akan menggunakan varian yang diurutkan berdasarkan huruf sebagai kunci map untuk menyimpan hanya satu nilai untuk setiap kunci:
 
 ```js run
 function aclean(arr) {
@@ -31,9 +31,9 @@ let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 alert( aclean(arr) );
 ```
 
-Letter-sorting is done by the chain of calls in the line `(*)`.
+Penyortiran huruf dilakukan oleh deretan panggilan di baris `(*)`.
 
-For convenience let's split it into multiple lines:
+Untuk kenyamanan marilah kita pecahkan menjadi beberapa baris:
 
 ```js
 let sorted = arr[i] // PAN
@@ -43,21 +43,21 @@ let sorted = arr[i] // PAN
   .join(''); // anp
 ```
 
-Two different words `'PAN'` and `'nap'` receive the same letter-sorted form `'anp'`.
+Dua kata berbeda `'PAN'` dan`' nap'` mendapatkan form urutan huruf yang sama `'anp'`.
 
-The next line put the word into the map:
+Baris berikutnya menempatkan kata tersebut ke dalam map:
 
 ```js
 map.set(sorted, word);
 ```
 
-If we ever meet a word the same letter-sorted form again, then it would overwrite the previous value with the same key in the map. So we'll always have at maximum one word per letter-form.
+Jika kita pernah bertemu kata dengan urutan huruf yang sama lagi, maka kata itu akan menggantikan nilai sebelumnya dengan kunci yang sama di dalam map. Maka dari itu kita akan selalu mempunyai maksimum satu kata untuk setiap form huruf.
 
-At the end `Array.from(map.values())` takes an iterable over map values (we don't need keys in the result) and returns an array of them.
+Akhirnya `Array.from(map.values())` mengambil iterable atas nilai-nilai map (kita tidak memperlukan kunci-kunci dalam hasilnya) dan mengembalikan array dengan isi tersebut.
 
-Here we could also use a plain object instead of the `Map`, because keys are strings.
+Disini kita juga bisa menggunakan objek biasa daripada `Map`, karena kunci adalah string.
 
-That's how the solution can look:
+Solusinya bisa terlihat seperti ini:
 
 ```js run demo
 function aclean(arr) {

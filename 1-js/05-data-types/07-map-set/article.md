@@ -1,89 +1,89 @@
 
-# Map and Set
+# Map dan Set
 
-Now we've learned about the following complex data structures:
+Sekarang kita telah membelajari struktur data compleks berikut:
 
-- Objects for storing keyed collections.
-- Arrays for storing ordered collections.
+- Objek untuk menyimpan koleksi kunci.
+- Array untuk menyimpan koleksi berurut.
 
-But that's not enough for real life. That's why `Map` and `Set` also exist.
+Tapi itu tidak cukup dalam kehidupan nyata. Itu sebabnya `Map` dan` Set` juga ada.
 
 ## Map
 
-[Map](mdn:js/Map) is a collection of keyed data items, just like an `Object`. But the main difference is that `Map` allows keys of any type.
+[Map](mdn:js/Map) adalah kumpulan item data yang berkunci, seperti `Object`. Tetapi perbedaan utama adalah `Map` membolehkan kunci jenis apa pun.
 
-Methods and properties are:
+Metode dan properti:
 
-- `new Map()` -- creates the map.
-- `map.set(key, value)` -- stores the value by the key.
-- `map.get(key)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
-- `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
-- `map.delete(key)` -- removes the value by the key.
-- `map.clear()` -- removes everything from the map.
-- `map.size` -- returns the current element count.
+- `new Map()` -- menciptakan map.
+- `map.set(key, value)` -- menyimpan nilai dengan kunci.
+- `map.get(key)` -- mengembalikan nilai dengan kunci, `undefined` jika` key` tidak ada di map.
+- `map.has(key)` -- mengembalikan `true` jika` key` ada, `false` sebaliknya.
+- `map.delete(key)` -- menghapus nilai dengan kunci.
+- `map.clear()` -- menghapus semua isi dari map.
+- `map.size` -- mengembalikan jumlah elemen saat ini.
 
-For instance:
+Misalnya:
 
 ```js run
 let map = new Map();
 
-map.set('1', 'str1');   // a string key
-map.set(1, 'num1');     // a numeric key
-map.set(true, 'bool1'); // a boolean key
+map.set('1', 'str1');   // kunci string
+map.set(1, 'num1');     // kunci nomor
+map.set(true, 'bool1'); // kunci boolean
 
-// remember the regular Object? it would convert keys to string
-// Map keeps the type, so these two are different:
+//ingat Object biasa? ia akan mengkonversi kunci menjadi string
+//Map menyimpan tipenya, jadi kedua berikut tidaklah sama:
 alert( map.get(1)   ); // 'num1'
 alert( map.get('1') ); // 'str1'
 
 alert( map.size ); // 3
 ```
 
-As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.
+Seperti yang dapat kita lihat, lain dari objek, kunci tidak dikonversi ke string. Jenis kunci apa pun dimungkinkan.
 
-**Map can also use objects as keys.**
+** Map juga dapat menggunakan objek sebagai kunci. **
 
-For instance:
+Misalnya:
 
 ```js run
 let john = { name: "John" };
 
-// for every user, let's store their visits count
+// Untuk setiap pengguna, mari kita simpan jumlah kunjungan mereka
 let visitsCountMap = new Map();
 
-// john is the key for the map
+// john adalah kunci bagi mapnya
 visitsCountMap.set(john, 123);
 
 alert( visitsCountMap.get(john) ); // 123
 ```
 
-Using objects as keys is one of most notable and important `Map` features. For string keys, `Object` can be fine, but not for object keys.
+Menggunakan objek sebagai kunci adalah salah satu fitur `Map` yang paling terkenal dan penting. Untuk kunci string, `Object` bisa dipakai, tetapi tidak untuk kunci objek.
 
-Let's try:
+Mari kita coba:
 
 ```js run
 let john = { name: "John" };
 
-let visitsCountObj = {}; // try to use an object
+let visitsCountObj = {}; // cobalah memakai objek
 
-visitsCountObj[john] = 123; // try to use john object as the key
+visitsCountObj[john] = 123; // cobalah memakai objek john sebagai kunci
 
 *!*
-// That's what got written!
+// Inilah yang tertulis!
 alert( visitsCountObj["[object Object]"] ); // 123
 */!*
 ```
 
-As `visitsCountObj` is an object, it converts all keys, such as `john` to strings, so we've got the string key `"[object Object]"`. Definitely not what we want.
+Karena `visitsCountObj` adalah sebuah objek, ia mengubah semua kunci, seperti `john` menjadi string, jadi kita mendapatkan kunci string `"[object Object]"`. Jelas bukanlah yang kita inginkan.
 
-```smart header="How `Map` compares keys"
-To test keys for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
+```smart header ="Bagaimana `Map` membandingkan kunci"
+Untuk mengetes kunci untuk kesetaraan, `Map` menggunakan algoritma [SameValueZero] (https://tc39.github.io/ecma262/#sec-samevaluezero). Ini kira-kira sama dengan kesetaraan ketat `===`, tetapi perbedaannya adalah `NaN` dianggap sama dengan `NaN`. Jadi `NaN` bisa digunakan sebagai kunci juga.
 
-This algorithm can't be changed or customized.
+Algoritma ini tidak dapat diubah atau dikustomisasi.
 ```
 
 ````smart header="Chaining"
-Every `map.set` call returns the map itself, so we can "chain" the calls:
+Setiap panggilan `map.set` mengembalikan map itu sendiri, sehingga kami dapat "mem-chain" panggilan-panggilan:
 
 ```js
 map.set('1', 'str1')
@@ -93,15 +93,15 @@ map.set('1', 'str1')
 ````
 
 
-## Iteration over Map
+## Iterasi Atas Map
 
-For looping over a `map`, there are 3 methods:
+Untuk looping atas `map`, ada 3 method:
 
-- `map.keys()` -- returns an iterable for keys,
-- `map.values()` -- returns an iterable for values,
-- `map.entries()` -- returns an iterable for entries `[key, value]`, it's used by default in `for..of`.
+- `map.keys()` - mengembalikan iterable untuk kunci,
+- `map.values()` - mengembalikan iterable untuk nilai,
+- `map.entries()` - mengembalikan iterable untuk entri `[key, value]`, ini digunakan dengan standar di `for..of`.
 
-For instance:
+Misalnya:
 
 ```js run
 let recipeMap = new Map([
@@ -110,41 +110,41 @@ let recipeMap = new Map([
   ['onion',    50]
 ]);
 
-// iterate over keys (vegetables)
+// iterasi atas kunci (vegetables)
 for (let vegetable of recipeMap.keys()) {
   alert(vegetable); // cucumber, tomatoes, onion
 }
 
-// iterate over values (amounts)
+// iterasi atas nilai (amounts)
 for (let amount of recipeMap.values()) {
   alert(amount); // 500, 350, 50
 }
 
-// iterate over [key, value] entries
+// iterasi atas entri-entri [key, value] 
 for (let entry of recipeMap) { // the same as of recipeMap.entries()
   alert(entry); // cucumber,500 (and so on)
 }
 ```
 
-```smart header="The insertion order is used"
-The iteration goes in the same order as the values were inserted. `Map` preserves this order, unlike a regular `Object`.
+```smart header="Urutan insersi digunakan"
+Iterasi berjalan dalam urutan yang sama dengan nilai yang dimasukkan. `Map` mempertahankan urutan ini, tidak seperti `Object` biasa.
 ```
 
-Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
+Selain itu, `Map` memilike method `forEach`, mirip dengan `Array`:
 
 ```js
-// runs the function for each (key, value) pair
+// menjalankan fungsi untuk setiap pasangan (kunci, nilai)
 recipeMap.forEach( (value, key, map) => {
   alert(`${key}: ${value}`); // cucumber: 500 etc
 });
 ```
 
-## Object.entries: Map from Object
+## Object.entries: Map dari Object
 
-When a `Map` is created, we can pass an array (or another iterable) with key/value pairs for initialization, like this:
+Ketika `Map` diciptakan, kita bisa memberi array (atau iterabel lainnya) pasangan kunci/nilai untuk inisialisasi, seperti ini:
 
 ```js run
-// array of [key, value] pairs
+// array berisi pasangan [kunci, nilai]
 let map = new Map([
   ['1',  'str1'],
   [1,    'num1'],
@@ -154,9 +154,9 @@ let map = new Map([
 alert( map.get('1') ); // str1
 ```
 
-If we have a plain object, and we'd like to create a `Map` from it, then we can use built-in method [Object.entries(obj)](mdn:js/Object/entries) that returns an array of key/value pairs for an object exactly in that format.
+Jika kita memiliki objek biasa, dan kita mau menciptakan sebuah `Map` darinya, kita bisa menggunakan method built-in [Object.entries(obj)](mdn:js/Object/entries) yang mengembalikan array daripada pasangan-pasangan kunci/nilai untuk satu objek yang berformat persis sama.
 
-So we can create a map from an object like this:
+Jadi kita bisa menciptakan map dari objek seperti ini:
 
 ```js run
 let obj = {
@@ -171,14 +171,14 @@ let map = new Map(Object.entries(obj));
 alert( map.get('name') ); // John
 ```
 
-Here, `Object.entries` returns the array of key/value pairs: `[ ["name","John"], ["age", 30] ]`. That's what `Map` needs.
+Disini, `Object.entries` mengembalikan array daripada pasangan-pasangan kunci/nilai: `[ ["name","John"], ["age", 30] ]`. Itu yang `Map` perlukan.
 
 
-## Object.fromEntries: Object from Map
+## Object.fromEntries: Object dari Map
 
-We've just seen how to create `Map` from a plain object with `Object.entries(obj)`.
+Kita baru saja menyaksikan cara menciptakan `Map` dari objek biasa dengan `Object.entries(obj)`.
 
-There's `Object.fromEntries` method that does the reverse: given an array of `[key, value]` pairs, it creates an object from them:
+Ada juga method `Object.fromEntries` yang melakukan kebalikkannya: jika diberi array berisi pasangan `[kunci, nilai]`, ia menciptakan objek darinya:
 
 ```js run
 let prices = Object.fromEntries([
@@ -192,11 +192,11 @@ let prices = Object.fromEntries([
 alert(prices.orange); // 2
 ```
 
-We can use `Object.fromEntries` to get an plain object from `Map`.
+Kita bisa menggunakan `Object.fromEntries` untuk mendapatkan objek biasa dari `Map`.
 
-E.g. we store the data in a `Map`, but we need to pass it to a 3rd-party code that expects a plain object.
+Contoh: Kita menyimpan data di dalam `Map`, tapi kita perlu mengirimnya ke kode pihak ketiga yang mengharapkan objek biasa.
 
-Here we go:
+Kita mulai:
 
 ```js run
 let map = new Map();
@@ -205,42 +205,42 @@ map.set('orange', 2);
 map.set('meat', 4);
 
 *!*
-let obj = Object.fromEntries(map.entries()); // make a plain object (*)
+let obj = Object.fromEntries(map.entries()); // ciptakan objek biasa (*)
 */!*
 
-// done!
+// selesai!
 // obj = { banana: 1, orange: 2, meat: 4 }
 
 alert(obj.orange); // 2
 ```
 
-A call to `map.entries()` returns an array of key/value pairs, exactly in the right format for `Object.fromEntries`.
+Panggilan kepada `map.entries()` mengembalikan array daripada pasangan kunci/nilai, persis dalam format yang benar untuk `Object.fromEntries`.
 
-We could also make line `(*)` shorter:
+Kita juga bisa membuat barisan `(*)` lebih pendek:
 ```js
-let obj = Object.fromEntries(map); // omit .entries()
+let obj = Object.fromEntries(map); // hilangkan .entries()
 ```
 
-That's the same, because `Object.fromEntries` expects an iterable object as the argument. Not necessarily an array. And the standard iteration for `map` returns same key/value pairs as `map.entries()`. So we get a plain object with same key/values as the `map`.
+Itu sama, karena `Object.fromEntries` mengharapkan objek iterabel sebagai argumen. Tidak harus sesuatu array. Dan iterasi standar untuk `map` mengembalikan pasangan kunci/nilai yang sama dengan `map.entries()`. Jadi kita mendapatkan objek biasa dengan kunci/nilai yang sama dengan `map`.
 
 ## Set
 
-A `Set` is a special type collection - "set of values" (without keys), where each value may occur only once.
+`Set` adalah tipe koleksi spesial - "set nilai-nilai" (tanpa kunci), dimana setiap nilai hanya dapat terjadi sekali.
 
-Its main methods are:
+Method utamanya adalah:
 
-- `new Set(iterable)` -- creates the set, and if an `iterable` object is provided (usually an array), copies values from it into the set.
-- `set.add(value)` -- adds a value, returns the set itself.
-- `set.delete(value)` -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
-- `set.has(value)` -- returns `true` if the value exists in the set, otherwise `false`.
-- `set.clear()` -- removes everything from the set.
-- `set.size` -- is the elements count.
+- `new Set(iterable)` -- menciptakan set, dan jika objek `iterable` disediakan (biasanya array), menyalin nilai darinya ke set.
+- `set.add(value)` -- menambahkan nilai, mengembalikan set itu sendiri.
+- `set.delete(value)` -- menghapus nilai, mengembalikan `true` jika `value` ada pada saat panggilan berlangsung, jika tidak `false`.
+- `set.has(value)` -- mengembalikan `true` jika nilai ada di set, jika tidak `false`.
+- `set.clear()` -- menghapus semuanya dari set.
+- `set.size` -- adalah hitungan elemen.
 
-The main feature is that repeated calls of `set.add(value)` with the same value don't do anything. That's the reason why each value appears in a `Set` only once.
+Fitur utamanya adalah panggilan berulang `set.add(value)` dengan nilai yang sama tidak melakukan apa-apa. Itulah alasan mengapa setiap nilai hanya muncul dalam `Set` sekali.
 
-For example, we have visitors coming, and we'd like to remember everyone. But repeated visits should not lead to duplicates. A visitor must be "counted" only once.
+Misalnya, ada pengunjung yang datang, dan kami ingin mengingat semua orang. Tetapi kunjungan berulang tidak harus menyebabkan duplikasi. Pengunjung harus "dihitung" hanya sekali.
 
-`Set` is just the right thing for that:
+`Set` adalah hal yang tepat untuk itu:
 
 ```js run
 let set = new Set();
@@ -249,76 +249,76 @@ let john = { name: "John" };
 let pete = { name: "Pete" };
 let mary = { name: "Mary" };
 
-// visits, some users come multiple times
+// kunjungan-kunjungan, beberapa pengguna datang berkali-kali
 set.add(john);
 set.add(pete);
 set.add(mary);
 set.add(john);
 set.add(mary);
 
-// set keeps only unique values
+// set hanya menyimpan nilai-nilai unik
 alert( set.size ); // 3
 
 for (let user of set) {
-  alert(user.name); // John (then Pete and Mary)
+  alert(user.name); // John (lalu Pete dan Mary)
 }
 ```
 
-The alternative to `Set` could be an array of users, and the code to check for duplicates on every insertion using [arr.find](mdn:js/Array/find). But the performance would be much worse, because this method walks through the whole array checking every element. `Set` is much better optimized internally for uniqueness checks.
+Alternatif untuk `Set` dapat berupa array pengguna, dan kode untuk memeriksa duplikat pada setiap insersi menggunakan [arr.find](mdn:js/Array/find). Tetapi kinerjanya akan jauh lebih buruk, karena metode ini menjalani seluruh array memeriksa setiap elemen. `Set` jauh lebih baik dioptimalkan secara internal untuk pemeriksaan keunikan.
 
-## Iteration over Set
+## Iteration atas Set
 
-We can loop over a set either with `for..of` or using `forEach`:
+Kita bisa meng-loop atas set dengan `for..of` atau menggunakan `forEach`:
 
 ```js run
 let set = new Set(["oranges", "apples", "bananas"]);
 
 for (let value of set) alert(value);
 
-// the same with forEach:
+// sama untuk forEach:
 set.forEach((value, valueAgain, set) => {
   alert(value);
 });
 ```
 
-Note the funny thing. The callback function passed in `forEach` has 3 arguments: a `value`, then *the same value* `valueAgain`, and then the target object. Indeed, the same value appears in the arguments twice.
+Ingat keanehannya. Fungsi callback yang dilewatkan dalam `forEach` memiliki 3 argumen: satu `value`, kemudian *nilai yang sama* `valueAgain`, dan kemudian objek target. Memang, nilai yang sama muncul dalam argumen dua kali.
 
-That's for compatibility with `Map` where the callback passed `forEach` has three arguments. Looks a bit strange, for sure. But may help to replace `Map` with `Set` in certain cases with ease, and vice versa.
+Itu untuk kompatibilitas dengan `Map` di mana callback yang dilewati `forEach` memiliki tiga argumen. Terlihat agak aneh, memang. Tetapi dapat membantu mengganti `Map` dengan` Set` dalam kasus-kasus tertentu dengan mudah, dan sebaliknya.
 
-The same methods `Map` has for iterators are also supported:
+Metode yang sama yang dimiliki `Map` untuk iterator juga didukung:
 
-- `set.keys()` -- returns an iterable object for values,
-- `set.values()` -- same as `set.keys()`, for compatibility with `Map`,
-- `set.entries()` -- returns an iterable object for entries `[value, value]`, exists for compatibility with `Map`.
+- `set.keys()` - mengembalikan objek iterable untuk nilai,
+- `set.values()` - sama dengan `set.keys()`, untuk kompatibilitas dengan `Map`,
+- `set.entries()` - mengembalikan objek iterable untuk entri `[nilai, nilai]`, ada untuk kompatibilitas dengan `Map`.
 
-## Summary
+## Ringkasan
 
-`Map` -- is a collection of keyed values.
+`Map` -- adalah kumpulan nilai-nilai berkunci.
 
-Methods and properties:
+Metode dan properti:
 
-- `new Map([iterable])` -- creates the map, with optional `iterable` (e.g. array) of `[key,value]` pairs for initialization.
-- `map.set(key, value)` -- stores the value by the key.
-- `map.get(key)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
-- `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
-- `map.delete(key)` -- removes the value by the key.
-- `map.clear()` -- removes everything from the map.
-- `map.size` -- returns the current element count.
+- `new Map([iterable])` -- membuat map, dengan `iterable` opsional (mis. array) dari pasangan `[key, value]` untuk inisialisasi.
+- `map.set(key, value)` -- menyimpan nilai dengan kunci.
+- `map.get(key)` -- mengembalikan nilai dengan kunci, `undefined` jika `key` tidak ada di map.
+- `map.has(key)` -- mengembalikan `true` jika `key` ada, `false` sebaliknya.
+- `map.delete(key)` -- menghapus nilai dengan kunci.
+- `map.clear()` -- menghapus semuanya dari peta.
+- `map.size` -- mengembalikan jumlah elemen saat ini.
 
-The differences from a regular `Object`:
+Perbedaan dari `Object` biasa:
 
-- Any keys, objects can be keys.
-- Additional convenient methods, the `size` property.
+- Kunci apa saja, objek bisa dijadikan kunci.
+- Metode-metode tambahan untuk kenyamanan, properti `size`.
 
-`Set` -- is a collection of unique values.
+`Set` -- adalah kumpulan nilai-nilai unik.
 
-Methods and properties:
+Metode dan properti:
 
-- `new Set([iterable])` -- creates the set, with optional `iterable` (e.g. array) of values for initialization.
-- `set.add(value)` -- adds a value (does nothing if `value` exists), returns the set itself.
-- `set.delete(value)` -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
-- `set.has(value)` -- returns `true` if the value exists in the set, otherwise `false`.
-- `set.clear()` -- removes everything from the set.
-- `set.size` -- is the elements count.
+- `new Set([iterable])` -- membuat set, dengan nilai opsional `iterable` (mis. array) untuk inisialisasi.
+- `set.add(value)` -- menambahkan nilai (tidak melakukan apa-apa jika `value` ada), mengembalikan set itu sendiri.
+- `set.delete(value)` -- menghapus nilai, mengembalikan `true` jika `value` ada pada saat panggilan berlangsung, jika tidak `false`.
+- `set.has(value)` -- mengembalikan `true` jika nilai ada di set, jika tidak `false`.
+- `set.clear()` -- menghapus semuanya dari set.
+- `set.size` -- adalah hitungan elemen.
 
-Iteration over `Map` and `Set` is always in the insertion order, so we can't say that these collections are unordered, but we can't reorder elements or directly get an element by its number.
+Iterasi atas `Map` dan` Set` selalu dalam urutan insersi, jadi kami tidak dapat mengatakan bahwa koleksi ini tidak berurut, tetapi kami tidak dapat menyusun ulang elemen atau secara langsung mendapatkan elemen dengan nomornya.
