@@ -14,7 +14,7 @@ ear - are - era
 cheaters - hectares - teachers
 ```
 
-Ciptakanlah fungsi `aclean(arr)` yang mengembalikan larik yang bersih dari anagram.
+Ciptakanlah fungsi `aclean(arr)` yang mengembalikan array yang bersih dari anagram.
 
 Sebagai contoh:
 

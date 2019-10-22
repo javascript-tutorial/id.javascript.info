@@ -1,4 +1,4 @@
-Untuk menemukan semua anagram, mari kita pecahkan setiap kata menjadi huruf-huruf dan urutkanlah mereka. Ketika huruf-huruf terurut, semua anagram adalah sama. 
+Untuk menemukan semua anagram, mari kita pecahkan setiap kata menjadi huruf-huruf dan urutkanlah. Ketika huruf-huruf terurut, semua anagram adalah sama. 
 
 Sebagai contoh:
 
@@ -33,7 +33,7 @@ alert( aclean(arr) );
 
 Penyortiran huruf dilakukan oleh deretan panggilan di baris `(*)`.
 
-Untuk kenyamanan marilah kita bagi menjadi beberapa baris:
+Untuk kenyamanan marilah kita pecahkan menjadi beberapa baris:
 
 ```js
 let sorted = arr[i] // PAN
@@ -53,7 +53,7 @@ map.set(sorted, word);
 
 Jika kita pernah bertemu kata dengan urutan huruf yang sama lagi, maka kata itu akan menggantikan nilai sebelumnya dengan kunci yang sama di dalam map. Maka dari itu kita akan selalu mempunyai maksimum satu kata untuk setiap form huruf.
 
-Akhirnya `Array.from(map.values())` mengambil iterable atas nilai-nilai map (kita tidak memperlukan kunci-kunci dalam hasilnya) dan mengembalikan larik dengan isi tersebut.
+Akhirnya `Array.from(map.values())` mengambil iterable atas nilai-nilai map (kita tidak memperlukan kunci-kunci dalam hasilnya) dan mengembalikan array dengan isi tersebut.
 
 Disini kita juga bisa menggunakan obyek biasa daripada `Map`, karena kunci adalah string.
 

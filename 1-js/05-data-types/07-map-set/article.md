@@ -1,12 +1,12 @@
 
 # Map and Set
 
-Now we've learned about the following complex data structures:
+Sekarang kita telah membelajari struktur data compleks berikut:
 
-- Objects for storing keyed collections.
-- Arrays for storing ordered collections.
+- Objek untuk menyimpan koleksi kunci.
+- Array untuk menyimpan koleksi berurut.
 
-But that's not enough for real life. That's why `Map` and `Set` also exist.
+Tapi itu tidak cukup untuk kehidupan nyata. Itu sebabnya `Map` dan` Set` juga ada.
 
 ## Map
 

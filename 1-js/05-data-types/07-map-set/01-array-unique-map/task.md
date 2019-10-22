@@ -4,9 +4,9 @@ importance: 5
 
 # Filter unique array members
 
-Anggaplah `arr` sebagai sebuah larik.
+Anggaplah `arr` sebagai sebuah array.
 
-Ciptakanlah fungsi `unique(arr)` yang harus mengembalikan larik yang berisi nilai-nilai unik dari `arr`.
+Ciptakanlah fungsi `unique(arr)` yang harus mengembalikan array yang berisi nilai-nilai unik dari `arr`.
 
 Sebagai contoh:
 

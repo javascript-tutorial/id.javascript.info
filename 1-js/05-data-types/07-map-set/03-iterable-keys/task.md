@@ -4,7 +4,7 @@ nilai penting: 5
 
 # Kunci-kunci iterable
 
-Kami mau mendapatkan larik daripada `map.keys()` dalam satu variabel lalu mengaplikasikan metode yang larik spesifik kepadanya, contoh `.push`.
+Kami ingin mendapatkan array daripada `map.keys()` dalam satu variabel lalu mengaplikasikan metode yang array spesifik kepadanya, contoh `.push`.
 
 Tapi itu tidak berhasil:
 

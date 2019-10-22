@@ -1,8 +1,7 @@
 
-That's because `map.keys()` returns an iterable, but not an array.
+Itu karena `map.keys()`  mengembalikan iterable, tetapi bukan sebuah array.
 
-We can convert it into an array using `Array.from`:
-
+Kita bisa mengubahnya ke sebuah array menggunakan `Array.from`:
 
 ```js run
 let map = new Map();
