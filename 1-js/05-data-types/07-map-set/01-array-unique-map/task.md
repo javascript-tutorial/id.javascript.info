@@ -4,11 +4,11 @@ importance: 5
 
 # Filter unique array members
 
-Let `arr` be an array.
+Anggaplah `arr` sebagai sebuah larik.
 
-Create a function `unique(arr)` that should return an array with unique items of `arr`.
+Ciptakanlah fungsi `unique(arr)` yang harus mengembalikan larik yang berisi nilai-nilai unik dari `arr`.
 
-For instance:
+Sebagai contoh:
 
 ```js
 function unique(arr) {
@@ -22,6 +22,6 @@ let values = ["Hare", "Krishna", "Hare", "Krishna",
 alert( unique(values) ); // Hare, Krishna, :-O
 ```
 
-P.S. Here strings are used, but can be values of any type.
+P.S. Disini string dipakai sebagai contoh, tetapi nilai dengan tipe apa saja bisa dipakai.
 
-P.P.S. Use `Set` to store unique values.
+P.P.S. Pakailah `Set` untuk menyimpan nilai-nilai yang unik.

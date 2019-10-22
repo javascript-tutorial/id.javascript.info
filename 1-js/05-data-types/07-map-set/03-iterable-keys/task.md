@@ -1,12 +1,12 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Iterable keys
+# Kunci-kunci iterable
 
-We'd like to get an array of `map.keys()` in a variable and then do apply array-specific methods to it, e.g. `.push`.
+Kami mau mendapatkan larik daripada `map.keys()` dalam satu variabel lalu mengaplikasikan metode yang larik spesifik kepadanya, contoh `.push`.
 
-But that doesn't work:
+Tapi itu tidak berhasil:
 
 ```js run
 let map = new Map();
@@ -21,4 +21,4 @@ keys.push("more");
 */!*
 ```
 
-Why? How can we fix the code to make `keys.push` work?
+Mengapa? Bagaimana kita bisa membenarkan kode ini untuk membuat `keys.push` berhasil?
