@@ -41,7 +41,7 @@ alert( map.size ); // 3
 
 Seperti yang dapat kita lihat, lain dari objek, kunci tidak dikonversi ke string. Jenis kunci apa pun dimungkinkan.
 
-** Map juga dapat menggunakan objek sebagai kunci. **
+**Map juga dapat menggunakan objek sebagai kunci.**
 
 Misalnya:
 
@@ -77,7 +77,7 @@ alert( visitsCountObj["[object Object]"] ); // 123
 Karena `visitsCountObj` adalah sebuah objek, ia mengubah semua kunci, seperti `john` menjadi string, jadi kita mendapatkan kunci string `"[object Object]"`. Jelas bukanlah yang kita inginkan.
 
 ```smart header ="Bagaimana `Map` membandingkan kunci"
-Untuk mengetes kunci untuk kesetaraan, `Map` menggunakan algoritma [SameValueZero] (https://tc39.github.io/ecma262/#sec-samevaluezero). Ini kira-kira sama dengan kesetaraan ketat `===`, tetapi perbedaannya adalah `NaN` dianggap sama dengan `NaN`. Jadi `NaN` bisa digunakan sebagai kunci juga.
+Untuk mengetes kunci untuk kesetaraan, `Map` menggunakan algoritma [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). Ini kira-kira sama dengan kesetaraan ketat `===`, tetapi perbedaannya adalah `NaN` dianggap sama dengan `NaN`. Jadi `NaN` bisa digunakan sebagai kunci juga.
 
 Algoritma ini tidak dapat diubah atau dikustomisasi.
 ```
