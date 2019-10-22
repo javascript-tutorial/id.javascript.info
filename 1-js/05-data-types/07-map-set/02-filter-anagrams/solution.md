@@ -43,7 +43,7 @@ let sorted = arr[i] // PAN
   .join(''); // anp
 ```
 
-Dua kata berbeda `'PAN'` dan`' nap'` mendapatkan form urutan huruf yang sama `'anp'`.
+Dua kata berbeda `'PAN'` dan `'nap'` mendapatkan form urutan huruf yang sama `'anp'`.
 
 Baris berikutnya menempatkan kata tersebut ke dalam map:
 
