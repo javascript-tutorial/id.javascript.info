@@ -55,7 +55,7 @@ Jika kita pernah bertemu kata dengan urutan huruf yang sama lagi, maka kata itu 
 
 Akhirnya `Array.from(map.values())` mengambil iterable atas nilai-nilai map (kita tidak memperlukan kunci-kunci dalam hasilnya) dan mengembalikan array dengan isi tersebut.
 
-Disini kita juga bisa menggunakan obyek biasa daripada `Map`, karena kunci adalah string.
+Disini kita juga bisa menggunakan objek biasa daripada `Map`, karena kunci adalah string.
 
 Solusinya bisa terlihat seperti ini:
 

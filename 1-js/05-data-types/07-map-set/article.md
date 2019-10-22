@@ -1,28 +1,28 @@
 
-# Map and Set
+# Map dan Set
 
 Sekarang kita telah membelajari struktur data compleks berikut:
 
 - Objek untuk menyimpan koleksi kunci.
 - Array untuk menyimpan koleksi berurut.
 
-Tapi itu tidak cukup untuk kehidupan nyata. Itu sebabnya `Map` dan` Set` juga ada.
+Tapi itu tidak cukup dalam kehidupan nyata. Itu sebabnya `Map` dan` Set` juga ada.
 
 ## Map
 
-[Map](mdn:js/Map) is a collection of keyed data items, just like an `Object`. But the main difference is that `Map` allows keys of any type.
+[Map](mdn:js/Map) adalah kumpulan item data yang berkunci, seperti `Object`. Tetapi perbedaan utama adalah `Map` membolehkan kunci jenis apa pun.
 
-Methods and properties are:
+Metode dan properti:
 
-- `new Map()` -- creates the map.
-- `map.set(key, value)` -- stores the value by the key.
-- `map.get(key)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
-- `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
-- `map.delete(key)` -- removes the value by the key.
-- `map.clear()` -- removes everything from the map.
-- `map.size` -- returns the current element count.
+- `new Map()` -- menciptakan map.
+- `map.set(key, value)` -- menyimpan nilai dengan kunci.
+- `map.get(key)` -- mengembalikan nilai dengan kunci, `undefined` jika` key` tidak ada di map.
+- `map.has(key)` -- mengembalikan `true` jika` key` ada, `false` sebaliknya.
+- `map.delete(key)` -- menghapus nilai dengan kunci.
+- `map.clear()` -- menghapus semua isi dari map.
+- `map.size` -- mengembalikan jumlah elemen saat ini.
 
-For instance:
+Misalnya:
 
 ```js run
 let map = new Map();
@@ -39,11 +39,11 @@ alert( map.get('1') ); // 'str1'
 alert( map.size ); // 3
 ```
 
-As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.
+Seperti yang dapat kita lihat, lain dari objek, kunci tidak dikonversi ke string. Jenis kunci apa pun dimungkinkan.
 
-**Map can also use objects as keys.**
+** Map juga dapat menggunakan objek sebagai kunci. **
 
-For instance:
+Misalnya:
 
 ```js run
 let john = { name: "John" };
@@ -57,9 +57,9 @@ visitsCountMap.set(john, 123);
 alert( visitsCountMap.get(john) ); // 123
 ```
 
-Using objects as keys is one of most notable and important `Map` features. For string keys, `Object` can be fine, but not for object keys.
+Menggunakan objek sebagai kunci adalah salah satu fitur `Map` yang paling terkenal dan penting. Untuk kunci string, `Object` bisa dipakai, tetapi tidak untuk kunci objek.
 
-Let's try:
+Mari kita coba:
 
 ```js run
 let john = { name: "John" };
