@@ -74,10 +74,10 @@ alert( visitsCountObj["[object Object]"] ); // 123
 */!*
 ```
 
-Karena `visitsCountObj` adalah sebuah objek, ia mengubah semua kunci, seperti `john` menjadi string, jadi kita mendapatkan kunci string `"[object Object]"`. Jelas bukanlah yang kita inginkan.
+Karena `visitsCountObj` adalah sebuah objek, ia mengubah semua kunci, seperti `john` menjadi string, jadi kita mendapatkan kunci string `"[object Object]"`. Jelas bukan yang kita inginkan.
 
-```smart header ="Bagaimana `Map` membandingkan kunci"
-Untuk mengetes kunci untuk kesetaraan, `Map` menggunakan algoritma [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). Ini kira-kira sama dengan kesetaraan ketat `===`, tetapi perbedaannya adalah `NaN` dianggap sama dengan `NaN`. Jadi `NaN` bisa digunakan sebagai kunci juga.
+```smart header="Cara `Map` membandingkan kunci"
+Untuk mengetes kesamaan kunci, `Map` menggunakan algoritma [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). Ini kira-kira sama dengan kesetaraan ketat `===`, tetapi perbedaannya adalah `NaN` dianggap sama dengan `NaN`. Jadi `NaN` bisa digunakan sebagai kunci juga.
 
 Algoritma ini tidak dapat diubah atau dikustomisasi.
 ```
@@ -97,9 +97,9 @@ map.set('1', 'str1')
 
 Untuk looping atas `map`, ada 3 method:
 
-- `map.keys()` - mengembalikan iterable untuk kunci,
-- `map.values()` - mengembalikan iterable untuk nilai,
-- `map.entries()` - mengembalikan iterable untuk entri `[key, value]`, ini digunakan dengan standar di `for..of`.
+- `map.keys()` -- mengembalikan iterable untuk kunci,
+- `map.values()` -- mengembalikan iterable untuk nilai,
+- `map.entries()` -- mengembalikan iterable untuk entri `[key, value]`, ini digunakan dengan standar di `for..of`.
 
 Misalnya:
 
@@ -287,9 +287,9 @@ Itu untuk kompatibilitas dengan `Map` di mana callback yang dilewati `forEach` m
 
 Metode yang sama yang dimiliki `Map` untuk iterator juga didukung:
 
-- `set.keys()` - mengembalikan objek iterable untuk nilai,
-- `set.values()` - sama dengan `set.keys()`, untuk kompatibilitas dengan `Map`,
-- `set.entries()` - mengembalikan objek iterable untuk entri `[nilai, nilai]`, ada untuk kompatibilitas dengan `Map`.
+- `set.keys()` -- mengembalikan objek iterable untuk nilai,
+- `set.values()` -- sama dengan `set.keys()`, untuk kompatibilitas dengan `Map`,
+- `set.entries()` -- mengembalikan objek iterable untuk entri `[nilai, nilai]`, ada untuk kompatibilitas dengan `Map`.
 
 ## Ringkasan
 
