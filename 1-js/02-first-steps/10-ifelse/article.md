@@ -216,11 +216,7 @@ Bergantung pada kondisional `company == 'Netscape' , ekspresi pertama atau kedua
 
 Kita tidak memberikan nilai hasil ke suatu variable di sini. Sebagai gantinya, kita mengeksekusi kode yang berbeda tergantung pada kondisinya.
 
-<<<<<<< HEAD
-**Kami tidak menyarankan menggunakan operator tanda tanya dengan cara seperti di atas.**
-=======
-**It's not recommended to use the question mark operator in this way.**
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+**Tidak disarankan memakai operator tanda tanya dengan cara ini.**
 
 Notasinya memang lebih pendek daripada apabila menggunakan pernyataan `if` , yang mungkin menarik bagi beberapa programmer, tetapi hal ini membuat kode anda lebih susah dibaca.
 
