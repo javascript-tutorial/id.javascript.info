@@ -175,11 +175,7 @@ How does it work? Again, using prototypes. As you might have already guessed, `e
 
 ![](animal-rabbit-static.svg)
 
-<<<<<<< HEAD
-![](animal-rabbit-static.svg)
-=======
 So, `Rabbit extends Animal` creates two `[[Prototype]]` references:
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 1. `Rabbit` function prototypally inherits from `Animal` function.
 2. `Rabbit.prototype` prototypally inherits from `Animal.prototype`.
