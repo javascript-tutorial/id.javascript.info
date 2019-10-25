@@ -131,55 +131,55 @@ There are already enough names.<br>
 One must know when to stop.
 ```
 
-Add a new variable only when absolutely necessary.
+Tambah variabel baru hanya saat diperlukan.
 
-Instead, reuse existing names. Just write new values into them.
+Lebih baik gunakan ulang nama yang sudah ada. Tulis saja nilai baru ke dalamnya.
 
-In a function try to use only variables passed as parameters.
+Di dalam fungsi cobalah hanya memakai variabel yang dioper sebagai parameter.
 
-That would make it really hard to identify what's exactly in the variable *now*. And also where it comes from. The purpose is to develop the intuition and memory of a person reading the code. A person with weak intuition would have to analyze the code line-by-line and track the changes through every code branch.
+Itu akan menyulitkan identifikasi apa yang ada di variabel *sekarang*. Dan juga darimana asalnya. Tujuannya untuk mengembangka intuisi dan memori orang yang membaca kodenya. Orang dengan intuisi lemah akan menganalisa kodenya baris per-baris dan menjejak perubahan ke seluruh cabang kode.
 
-**An advanced variant of the approach is to covertly (!) replace the value with something alike in the middle of a loop or a function.**
+**Varian canggih dari pendekatan ini ialah mengganti diam-diam (!) nilai dengan sesuatu yang serupa di tengah loop atau fungsi.**
 
-For instance:
+Misalnya:
 
 ```js
 function ninjaFunction(elem) {
-  // 20 lines of code working with elem
+  // 20 baris kode berjalan dengan elem
 
   elem = clone(elem);
 
-  // 20 more lines, now working with the clone of the elem!
+  // 20 baris lagi, sekarang berjalan dengan clone dari elem!
 }
 ```
 
-A fellow programmer who wants to work with `elem` in the second half of the function will be surprised... Only during the debugging, after examining the code they will find out that they're working with a clone!
+Sobat programmer yang mau bekerja dengan `elem` di pertengahan kedua dari fungsi akan terkejut... Cuma selama debugging, setelah memeriksa kodenya mereka akan menemukan bahwa mereka bekerja dengan clone!
 
-Seen in code regularly. Deadly effective even against an experienced ninja.
+Terlihat dalam kode secara reguler. Benar-benar efektif bahkan melawan ninja berpengalaman.
 
-## Underscores for fun
+## Underscore untuk kesenangan
 
-Put underscores `_` and `__` before variable names. Like `_name` or `__value`. It would be great if only you knew their meaning. Or, better, add them just for fun, without particular meaning at all. Or different meanings in different places.
+Taruh underscores `_` dan `__` sebelum nama variabel. Seperti `_name` atau `__value`. Akan lebih bagus jika cuma kamu yang tahu artinya. Atau, lebih baik, tambahkan mereka hanya untuk kesenangan, tanpa ada arti sama sekali. Atau arti berbeda di tempat berbeda.
 
-You kill two rabbits with one shot. First, the code becomes longer and less readable, and the second, a fellow developer may spend a long time trying to figure out what the underscores mean.
+Kamu membunuh dua kelinci satu tembakan. Pertama, kodenya jadi lebih panjang dan kurang terbaca, dan kedua, sobat pengembang menghabiskan banyak waktu mencaritahu arti underscores.
 
-A smart ninja puts underscores at one spot of code and evades them at other places. That makes the code even more fragile and increases the probability of future errors.
+Ninja pintar menaruh underscore di satu spot kode dan menghindari mereka di tempat lain. Itu membuat kodenya jadi lebih rapuh dan meningkatkan kemungkinan muncul galat masa depan.
 
-## Show your love
+## Tunjukkan cintamu
 
-Let everyone see how magnificent your entities are! Names like `superElement`, `megaFrame` and `niceItem` will definitely enlighten a reader.
+Biarkan orang melihat betapa indahnya entiti kamu! Nama seperti `superElement`, `megaFrame` dan `niceItem` pasti akan mencerahkan pembacamu.
 
-Indeed, from one hand, something is written: `super..`, `mega..`, `nice..` But from the other hand -- that brings no details. A reader may decide to look for a hidden meaning and meditate for an hour or two of their paid working time.
+Tentu, di satu sisi, satu hal tertulis: `super..`, `mega..`, `nice..` Tapi di sisi lain -- ia tak membawa detil. Pembaca mungkin memutuskan untuk melihat arti tersembunyi dan meditasi selama sejam atau dua jam dari waktu kerja mereka.
 
 
-## Overlap outer variables
+## Tumpang-tindih variabel terluar
 
 ```quote author="Guan Yin Zi"
 When in the light, can't see anything in the darkness.<br>
 When in the darkness, can see everything in the light.
 ```
 
-Use same names for variables inside and outside a function. As simple. No efforts to invent new names.
+Pakai nama yang sama untuk variabel di dalam dan di luar fungsi. Simpelnya. Tak perlu usaha menemukan nama baru.
 
 ```js
 let *!*user*/!* = authenticateUser();
@@ -189,17 +189,17 @@ function render() {
   ...
   ...many lines...
   ...
-  ... // <-- a programmer wants to work with user here and...
+  ... // <-- programmer mau bekerja dengan pengguna di sini dan...
   ...
 }
 ```
 
-A programmer who jumps inside the `render` will probably fail to notice that there's a local `user` shadowing the outer one.
+Programmer yang lompat ke dalam `render` mungkin akan gagal melihat ada `user` lokal yang membayangi user yang terluar.
 
-Then they'll try to work with `user` assuming that it's the external variable, the result of `authenticateUser()`... The trap is sprung! Hello, debugger...
+Lalu mereka akan mencoba bekerja dengan `user` dengan asumsi ia variabel external, hasil `authenticateUser()`... Jebakan muncul! Halo, debugger...
 
 
-## Side-effects everywhere!
+## Efek-samping di manapun!
 
 There are functions that look like they don't change anything. Like `isReady()`, `checkPermission()`, `findTags()`... They are assumed to carry out calculations, find and return the data, without changing anything outside of them. In other words, without "side-effects".
 
@@ -209,12 +209,12 @@ An expression of dazed surprise on the face of your colleague when they see a fu
 
 **Another way to surprise is to return a non-standard result.**
 
-Show your original thinking! Let the call of `checkPermission` return not `true/false`, but a complex object with the results of the check.
+Tunjukan pemikiran orisinilmu! Biarkan panggilan `checkPermission` mengembalikan bukan `true/false`, tapi objek rumit dengan hasil pengecekan.
 
-Those developers who try to write `if (checkPermission(..))`, will wonder why it doesn't work. Tell them: "Read the docs!". And give this article.
+Pengembang itu yang mencoba `if (checkPermission(..))`, akan heran kenapa itu tak bekerja. Katakan ke mereka: "Baca docs!". Dan berikan artikel ini.
 
 
-## Powerful functions!
+## Fungsi yang kuat!
 
 ```quote author="Laozi (Tao Te Ching)"
 The great Tao flows everywhere,<br>
