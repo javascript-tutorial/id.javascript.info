@@ -1,20 +1,20 @@
-# Automated testing with Mocha
+# Pengetesan terotomasi dengan Mocha
 
-Automated testing will be used in further tasks, and it's also widely used in real projects.
+Pengetesan terotomasi akan dipakai di tugas lebih lanjut, dan juga luas dipakai di proyek riil.
 
-## Why we need tests?
+## Kenapa kita butuh tes?
 
-When we write a function, we can usually imagine what it should do: which parameters give which results.
+Saat kita menulis fungsi, kita biasanya akan membayangkan apa yang ia harus lakukan: parameter apa memberikan hasil apa.
 
-During development, we can check the function by running it and comparing the outcome with the expected one. For instance, we can do it in the console.
+Selama pengembangan, kita bisa mengecek fungsi dengan menjalankannya dan membandingkan keluaran yang muncul dengan yang keluaran diharapkan. Misalnya, kita bisa melakukannya di konsol.
 
-If something is wrong -- then we fix the code, run again, check the result -- and so on till it works.
+Jika sesuatu buruk terjadi -- maka kita membetulkan kode, menjalankan lagi, mengecek hasil -- dan begitu terus hingga bekerja.
 
-But such manual "re-runs" are imperfect.
+Tapi proses "jalan-ulang" manual seperti ini tak sempurna.
 
-**When testing a code by manual re-runs, it's easy to miss something.**
+**Ketika pengetesan kode dengan jalan-ulang manual, sangat rentang untuk kelupaan sesuatu.**
 
-For instance, we're creating a function `f`. Wrote some code, testing: `f(1)` works, but `f(2)` doesn't work. We fix the code and now `f(2)` works. Looks complete? But we forgot to re-test `f(1)`. That may lead to an error.
+Misalnya, we're creating a function `f`. Wrote some code, testing: `f(1)` works, but `f(2)` doesn't work. We fix the code and now `f(2)` works. Looks complete? But we forgot to re-test `f(1)`. That may lead to an error.
 
 That's very typical. When we develop something, we keep a lot of possible use cases in mind. But it's hard to expect a programmer to check all of them manually after every change. So it becomes easy to fix one thing and break another one.
 
