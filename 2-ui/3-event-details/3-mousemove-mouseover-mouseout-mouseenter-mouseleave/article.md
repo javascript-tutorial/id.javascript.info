@@ -72,13 +72,6 @@ In case of fast mouse movements, intermediate elements may be ignored, but one t
 
 ## Mouseout when leaving for a child
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-![](mouseover-to-child.svg)
-=======
-An important feature of `mouseout` -- it triggers, when the pointer moves from an element to its descendant.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
-=======
 An important feature of `mouseout` -- it triggers, when the pointer moves from an element to its descendant, e.g. from `#parent` to `#child` in this HTML:
 
 ```html
