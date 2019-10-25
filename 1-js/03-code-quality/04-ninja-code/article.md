@@ -1,61 +1,61 @@
-# Ninja code
+# Kode ninja
 
 
 ```quote author="Confucius"
 Learning without thought is labor lost; thought without learning is perilous.
 ```
 
-Programmer ninjas of the past used these tricks to sharpen the mind of code maintainers.
+Ninja programmer dari masa lalu memakai trik ini untuk mempertajam pikiran maintainer kode.
 
-Code review gurus look for them in test tasks.
+Code review guru mencari-cari mereka dalam tugas pengujian.
 
-Novice developers sometimes use them even better than programmer ninjas.
+Pengembang pemula kadang memakai mereka lebih baik dari ninja programmer.
 
-Read them carefully and find out who you are -- a ninja, a novice, or maybe a code reviewer?
+Baca mereka dengan hati-hati dan cari tahu siapa kamu -- ninja, pemula, atau mungkin code reviewer?
 
 
-```warn header="Irony detected"
-Many try to follow ninja paths. Few succeed.
+```warn header="Ironi terdeteksi"
+Banyak yang mencoba mengikuti jalan ninja. Tapi cuma sedikit yang sukses.
 ```
 
 
-## Brevity is the soul of wit
+## Singkat adalah jiwa kecerdasan
 
-Make the code as short as possible. Show how smart you are.
+Buat kode sependek mungkin. Tunjukkan kepintaranmu.
 
-Let subtle language features guide you.
+Biarkan fitur bahasa halus memandumu.
 
-For instance, take a look at this ternary operator `'?'`:
+Misalnya, perhatikan operator ternary ini `'?'`:
 
 ```js
-// taken from a well-known javascript library
+// diambil dari library javascript terkenal
 i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
 ```
 
-Cool, right? If you write like that, a developer who comes across this line and tries to understand what is the value of `i` is going to have a merry time. Then come to you, seeking for an answer.
+Keren, kan? Kalau kamu menulis begitu, pengembang yang melihat baris ini dan mencoba memahami apa nilai `i` akan merasa senang. Lalu datanglah kamu, mencari jawaban.
 
-Tell them that shorter is always better. Initiate them into the paths of ninja.
+Katakan pada mereka bahwa yang lebih pendek selalu lebih baik that. Inisasikan mereka ke dalam langkah ninja.
 
-## One-letter variables
+## Variabel satu-huruf
 
 ```quote author="Laozi (Tao Te Ching)"
 The Dao hides in wordlessness. Only the Dao is well begun and well
 completed.
 ```
 
-Another way to code faster is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
+Cara lain untuk mengkode cepat ialah memakai nama variabel huruf-tunggal di manapun. Seperti `a`, `b` atau `c`.
 
-A short variable disappears in the code like a real ninja in the forest. No one will be able to find it using "search" of the editor. And even if someone does, they won't be able to "decipher" what the name `a` or `b` means.
+Variabel pendek hiland dalam kode seperti ninja sungguhan di hutan. Tak ada yang mampu mencarinya memakai "pencari" editor. Dan bahkan jika seseorang menemukannya, mereka tak mampu men"decipher" arti nama `a` atau `b`.
 
-...But there's an exception. A real ninja will never use `i` as the counter in a `"for"` loop. Anywhere, but not here. Look around, there are many more exotic letters. For instance, `x` or `y`.
+...Tapi ada pengecualian. Ninja riil tak akan pernah memakai `i` sebagai counter di loop `"for"`. Di tempat lain iya, tapi di sini tidak. Lihat saja, ada banyak huruf exotis. Misalnya, `x` atau `y`.
 
-An exotic variable as a loop counter is especially cool if the loop body takes 1-2 pages (make it longer if you can). Then if someone looks deep inside the loop, they won't be able to quickly figure out that the variable named `x` is the loop counter.
+Variabel exotis sebagai counter loop itu keren terutama jika badan loop memakan 1-2 laman (buat ia lebih panjang lagi jika kamu bisa). Lalu jika ada orang lihat lebih dalam ke loop, mereka tak akan cepat menerka nama variabel `x` sebagai counter loop.
 
-## Use abbreviations
+## Gunakan singkatan
 
-If the team rules forbid the use of one-letter and vague names -- shorten them, make abbreviations.
+Jika aturan tim melarang penggunaan nama satu-huruf dan geje -- perpendek mereka, buat singkatan.
 
-Like this:
+Seperti ini:
 
 - `list` -> `lst`.
 - `userAgent` -> `ua`.
@@ -64,7 +64,7 @@ Like this:
 
 Only the one with truly good intuition will be able to understand such names. Try to shorten everything. Only a worthy person should be able to uphold the development of your code.
 
-## Soar high. Be abstract.
+## Terbang Tinggi. Jadilah abstrak.
 
 ```quote author="Laozi (Tao Te Ching)"
 The great square is cornerless<br>
@@ -73,56 +73,56 @@ The great note is rarified sound,<br>
 The great image has no form.
 ```
 
-While choosing a name try to use the most abstract word. Like `obj`, `data`, `value`, `item`, `elem` and so on.
+Saat memilih nama cobalah pakai kata paling abstrak. Seperti `obj`, `data`, `value`, `item`, `elem` dan seterusnya.
 
-- **The ideal name for a variable is `data`.** Use it everywhere you can. Indeed, every variable holds *data*, right?
+- **Nama ideal untuk variabel ialah `data`.** Pakai itu di manapun kamu bisa. Jelas, tiap variabel memegang *data*, kan?
 
-    ...But what to do if `data` is already taken? Try `value`, it's also universal. After all, a variable eventually gets a *value*.
+    ...Tapi bagaimana jika `data` sudah diambil? Coba `value`, itu juga universal. After all, a variable eventually gets a *value*.
 
-- **Name a variable by its type: `str`, `num`...**
+- **Beri nama variabel berdasarkan tipe: `str`, `num`...**
 
-    Give them a try. A young initiate may wonder -- are such names really useful for a ninja? Indeed, they are!
+    Coba saja mereka. Pemula mungkin heran -- apa nama-nama begini berguna bagi ninja? Tentu!
 
-    Sure, the variable name still means something. It says what's inside the variable: a string, a number or something else. But when an outsider tries to understand the code, they'll be surprised to see that there's actually no information at all! And will ultimately fail to alter your well-thought code.
+    Pasti, nama variabel masih punya arti. Ia menerangkan apa isi variabel: string, number atau yang lain. Tapi saat orang asing mencoba memahami kodenya, mereka akan terkejut melihat tak ada informasi sama sekali! Dan pasti akan gagal mengubah kodemu yang sudah dipikirkan matang-matang.
 
-    The value type is easy to find out by debugging. But what's the meaning of the variable? Which string/number does it store?
+    Tipe nilai mudah dicaritahu dari debugging. Tapi apa arti dari variabel? String/number mana yang disimpan?
 
-    There's just no way to figure out without a good meditation!
+    Tak ada cara mencaritahu tanpa meditasi yang bagus!
 
-- **...But what if there are no more such names?** Just add a number: `data1, item2, elem5`...
+- **...Tapi bagaimana jika tak ada name lagi?** Tambahkan saja angka: `data1, item2, elem5`...
 
-## Attention test
+## Uji perhatian
 
-Only a truly attentive programmer should be able to understand your code. But how to check that?
+Hanya programmer sungguhan bisa memahami kodemu. Tapi bagaimana mengeceknya?
 
-**One of the ways -- use similar variable names, like `date` and `data`.**
+**Salah satu caranya -- pakai nama variabel yang serupa, seperti `date` dan `data`.**
 
-Mix them where you can.
+Campurkan saja mereka sebisamu.
 
-A quick read of such code becomes impossible. And when there's a typo... Ummm... We're stuck for long, time to drink tea.
+Baca cepan kode begini makin mustahil. Dan saat ada typo... Ummm... Kita stuck cukup lama, waktunya minum teh.
 
 
-## Smart synonyms
+## Synonym pintar
 
 ```quote author="Confucius"
 The hardest thing of all is to find a black cat in a dark room, especially if there is no cat.
 ```
 
-Using *similar* names for *same* things makes life more interesting and shows your creativity to the public.
+Memakai nama *serupa* untuk hal *sama* membuat hidup menarik dan menampilkan kreatifitasmu ke publik.
 
-For instance, consider function prefixes. If a function shows a message on the screen -- start it with `display…`, like `displayMessage`. And then if another function shows on the screen something else, like a user name, start it with `show…` (like `showName`).
+Misalnya, pikirkan prefix fungsi. Jika fungsi menunjukkan pesan ke layar -- mulai dengan `display…`, seperti `displayMessage`. Lalu jika fungsi lain menampilkan yang lain di layar, seperti nama pengguna, mulai dengan `show…` (seperti `showName`).
 
-Insinuate that there's a subtle difference between such functions, while there is none.
+Menyindir bahwa ada perbedaan halus antara kedua fungsi, padahal tidaka da.
 
 Make a pact with fellow ninjas of the team: if John starts "showing" functions with `display...` in his code, then Peter could use `render..`, and Ann -- `paint...`. Note how much more interesting and diverse the code became.
 
-...And now the hat trick!
+...Dan sekarang untuk hat trick!
 
-For two functions with important differences -- use the same prefix!
+Untuk dua fungsi dengan perbedaan mencolok -- pakai prefix yang sama!
 
-For instance, the function `printPage(page)` will use a printer. And the function `printText(text)` will put the text on-screen. Let an unfamiliar reader think well over similarly named function `printMessage`: "Where does it put the message? To a printer or on the screen?". To make it really shine, `printMessage(message)` should output it in the new window!
+Misalnya, fungsi `printPage(page)` akan memakai printer. Dan fungsi `printText(text)` akan menaruh teks ke layar. Biarkan pembaca asing berpikir baik tentang fungsi bernama `printMessage`: "Ke mana ia taruh pesannya? Ke printer atau ke layar?". Supaya lebih bersinar, `printMessage(message)` sebaiknya mengoutput itu di jendela baru!
 
-## Reuse names
+## Pakai-ulang nama
 
 ```quote author="Laozi (Tao Te Ching)"
 Once the whole is divided, the parts<br>
@@ -231,7 +231,7 @@ Additional actions should not be obvious from the function name. A true ninja co
 
 Imagine, another developer wants only to check the email, and not output any message. Your function  `validateEmail(email)` that does both will not suit them. So they won't break your meditation by asking anything about it.
 
-## Summary
+## Kesimpulan
 
 All "pieces of advice" above are from the real code... Sometimes, written by experienced developers. Maybe even more experienced than you are ;)
 
