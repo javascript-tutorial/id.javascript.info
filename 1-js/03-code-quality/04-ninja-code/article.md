@@ -201,13 +201,13 @@ Lalu mereka akan mencoba bekerja dengan `user` dengan asumsi ia variabel externa
 
 ## Efek-samping di manapun!
 
-There are functions that look like they don't change anything. Like `isReady()`, `checkPermission()`, `findTags()`... They are assumed to carry out calculations, find and return the data, without changing anything outside of them. In other words, without "side-effects".
+Ada fungsi yang kelihatan tak mengubah apapun. Seperti `isReady()`, `checkPermission()`, `findTags()`... Mereka dikira melakukan kalkulasi, mencari dan menghasilkan data, tanpa mengubah apapun di luar mereka. Dengan kata lain, tanpa "efek-samping".
 
-**A really beautiful trick is to add a "useful" action to them, besides the main task.**
+**Trik yang sangat cantik ialah menambah aksi "berfaedah" ke mereka, selain tugas utamanya.**
 
-An expression of dazed surprise on the face of your colleague when they see a function named `is..`, `check..` or `find...` changing something -- will definitely broaden your boundaries of reason.
+Expresi linglung kaget dari muka kolegamu saat mereka melihat fungsi bernama `is..`, `check..` atau `find...` yang mengubah sesuatu -- pastinya akan memperluas batas alasanmu.
 
-**Another way to surprise is to return a non-standard result.**
+**Cara lain membuat kejutan ialah mengembalikan hasil non-standar.**
 
 Tunjukan pemikiran orisinilmu! Biarkan panggilan `checkPermission` mengembalikan bukan `true/false`, tapi objek rumit dengan hasil pengecekan.
 
@@ -221,20 +221,20 @@ The great Tao flows everywhere,<br>
 both to the left and to the right.
 ```
 
-Don't limit the function by what's written in its name. Be broader.
+Jangan batasi fungsi karena tulisan namanya. Melebarlah.
 
-For instance, a function `validateEmail(email)` could (besides checking the email for correctness) show an error message and ask to re-enter the email.
+Misalnya, fungsi `validateEmail(email)` bisa (selain mengecek keebenaran email) menampilkan pesan galat dan meminta masukan ulang email.
 
-Additional actions should not be obvious from the function name. A true ninja coder will make them not obvious from the code as well.
+Aksi tambahan sebaiknya jangan diperjelas dari nama fungsi. Coder ninja sejati akan membuat mereka tidak jelas dari kodenya juga.
 
-**Joining several actions into one protects your code from reuse.**
+**Menggabung beberapa aksi jadi satu melindungi kodemu dari penggunaan ulang.**
 
-Imagine, another developer wants only to check the email, and not output any message. Your function  `validateEmail(email)` that does both will not suit them. So they won't break your meditation by asking anything about it.
+Bayangkan, pengembang lain mau mengecek email, dan tak menghasilkan pesan apapun. Fungsimu  `validateEmail(email)` yang melakukan keduanya tak akan cocok dengan mereka. Jadi mereka tak akan mengganggu meditasimu dengan menanyakan itu.
 
 ## Kesimpulan
 
-All "pieces of advice" above are from the real code... Sometimes, written by experienced developers. Maybe even more experienced than you are ;)
+Semua "potongan saran" di atas berasal dari real kode sungguhan... Kadang, tertulis dari pengembang berpengalaman. Bahkan lebih berpengalaman dari kamu ;)
 
-- Follow some of them, and your code will become full of surprises.
-- Follow many of them, and your code will become truly yours, no one would want to change it.
-- Follow all, and your code will become a valuable lesson for young developers looking for enlightenment.
+- Ikuti beberapa dari mereka, dan kodemu akan menjadi penuh kejutan.
+- Ikuti banyak dari mereka, dan kodemu akan menjadi milikmu sepenuhnya, tak ada yang mau mengubahnya.
+- Ikuti semua, dan kodemu akan menjadi pelajaran berharga untuk pengembang muda yang mencari pencerahan.
