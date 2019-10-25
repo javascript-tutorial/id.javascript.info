@@ -485,11 +485,8 @@ The reason is simple:
 - Its `[[HomeObject]]` is `rabbit`, as it was created in `rabbit`. There's no way to change `[[HomeObject]]`.
 - The code of `tree.sayHi()` has `super.sayHi()` inside. It goes up from `rabbit` and takes the method from `animal`.
 
-<<<<<<< HEAD
-=======
 Here's the diagram of what happens:
 
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 ![](super-homeobject-wrong.svg)
 
 ### Methods, not function properties
