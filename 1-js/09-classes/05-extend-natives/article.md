@@ -83,10 +83,7 @@ For example, both `Array` and `Date` inherit from `Object`, so their instances h
 Here's the picture structure for `Date` and `Object`:
 
 ![](object-date-inheritance.svg)
-<<<<<<< HEAD
-=======
 
 As you can see, there's no link between `Date` and `Object`. They are independent, only `Date.prototype` inherits from `Object.prototype`.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 That's an important difference of inheritance between built-in objects compared to what we get with `extends`.

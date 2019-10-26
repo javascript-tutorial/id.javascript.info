@@ -1,42 +1,42 @@
-# Automated testing with Mocha
+# Pengetesan terotomasi dengan Mocha
 
-Automated testing will be used in further tasks, and it's also widely used in real projects.
+Pengetesan terotomasi akan dipakai di tugas lebih lanjut, dan juga luas dipakai di proyek riil.
 
-## Why we need tests?
+## Kenapa kita butuh tes?
 
-When we write a function, we can usually imagine what it should do: which parameters give which results.
+Saat kita menulis fungsi, kita biasanya akan membayangkan apa yang ia harus lakukan: parameter apa memberikan hasil apa.
 
-During development, we can check the function by running it and comparing the outcome with the expected one. For instance, we can do it in the console.
+Selama pengembangan, kita bisa mengecek fungsi dengan menjalankannya dan membandingkan keluaran yang muncul dengan yang keluaran diharapkan. Misalnya, kita bisa melakukannya di konsol.
 
-If something is wrong -- then we fix the code, run again, check the result -- and so on till it works.
+Jika sesuatu buruk terjadi -- maka kita membetulkan kode, menjalankan lagi, mengecek hasil -- dan begitu terus hingga bekerja.
 
-But such manual "re-runs" are imperfect.
+Tapi proses "jalan-ulang" manual seperti ini tak sempurna.
 
-**When testing a code by manual re-runs, it's easy to miss something.**
+**Ketika pengetesan kode dengan jalan-ulang manual, sangat rentang untuk kelupaan sesuatu.**
 
-For instance, we're creating a function `f`. Wrote some code, testing: `f(1)` works, but `f(2)` doesn't work. We fix the code and now `f(2)` works. Looks complete? But we forgot to re-test `f(1)`. That may lead to an error.
+Misalnya, kita membuat fungsi `f`. Membuat beberapa kode, mengetes: `f(1)` bekerja, tapi `f(2)` tak bekerja. Kita betulkan kodenya dan sekarang `f(2)` bekerja. Sudah lengkap? Tapi kita lupa mengetes-ulang `f(1)`. Di situ mungkin terjadi galat.
 
-That's very typical. When we develop something, we keep a lot of possible use cases in mind. But it's hard to expect a programmer to check all of them manually after every change. So it becomes easy to fix one thing and break another one.
+Ini sangat tipikal. Saat kita mengembangkan sesuatu, kita menyimpan banyak use case di kepala. Tapi sulit mengharapkan programmer mengecek semuanya secara manual setelah setiap perubahan. Jadi lebih mudah membetulkan satu hal dan merusak hal lainnya.
 
-**Automated testing means that tests are written separately, in addition to the code. They run our functions in various ways and compare results with the expected.**
+**Pengecekan terotomasi artinya tes itu ditulis terpisah, sebagai tambahan ke kode. Mereka menjalankan kode kita dalam berbagai cara dan membandingkan hasil dengan harapan.**
 
 ## Behavior Driven Development (BDD)
 
-Let's start with a technique named [Behavior Driven Development](http://en.wikipedia.org/wiki/Behavior-driven_development) or, in short, BDD.
+Ayo mulai dengan teknik bernama [Behavior Driven Development](http://en.wikipedia.org/wiki/Behavior-driven_development) atau, singkatnya, BDD.
 
-**BDD is three things in one: tests AND documentation AND examples.**
+**BDD adalah tiga hal dalam satu: tes DAN dokumentasi DAN contoh.**
 
-To understand BDD, we'll examine a practical case of development.
+Untuk memahami BDD, kita akan periksa kasus praktik pengembangan.
 
-## Development of "pow": the spec
+## Pengembangan "pow": spek
 
-Let's say we want to make a function `pow(x, n)` that raises `x` to an integer power `n`. We assume that `n≥0`.
+Katakan kita mau membuat fungsi `pow(x, n)` yang menaikkan `x` ke bilangan pangkat `n`. Kita asumsikan `n≥0`.
 
-That task is just an example: there's the `**` operator in JavaScript that can do that, but here we concentrate on the development flow that can be applied to more complex tasks as well.
+Tugas itu cuma contoh: ada operator `**` di JavaScript yang bisa melakukan itu, tapi di sini kita koncentrasi di alur pengembangan yang bisa ditiru di tugas komplex lainnya juga.
 
-Before creating the code of `pow`, we can imagine what the function should do and describe it.
+Sebelum membuat kode `pow`, kita bisa bayangkan apa yang harus dilakukan fungsi itu dan menjelaskannya.
 
-Such description is called a *specification* or, in short, a spec, and contains descriptions of use cases together with tests for them, like this:
+Deskripsi begitu disebut *spesifikasi* atau, singkatnya, spek, dan berisi deskripsi use case bersama dengan tes untuk mereka, seperti ini:
 
 ```js
 describe("pow", function() {
@@ -48,38 +48,38 @@ describe("pow", function() {
 });
 ```
 
-A spec has three main building blocks that you can see above:
+Spek punya tiga blok bangunan utama yang bisa kamu lihat di bawah:
 
 `describe("title", function() { ... })`
-: What functionality we're describing. In our case we're describing the function `pow`. Used to group "workers" -- the `it` blocks.
+: Fungsionalitas apa yang kita jelaskan. Di kasus ini kita akan menjelaskan fungsi `pow`. Dipakai untuk mengelompokkan "pekerja" -- blok `it`.
 
 `it("use case description", function() { ... })`
-: In the title of `it` we *in a human-readable way* describe the particular use case, and the second argument is a function that tests it.
+: Di judul `it` kita *dalam bahasa manusia* menjelaskan use case tertentu, dan argumen kedua ialah fungsi yang mengetes itu.
 
 `assert.equal(value1, value2)`
-: The code inside `it` block, if the implementation is correct, should execute without errors.
+: Kode di dalam blok `it`, jika implementasinya benar, harus berjalan tanpa galat.
 
-    Functions `assert.*` are used to check whether `pow` works as expected. Right here we're using one of them -- `assert.equal`, it compares arguments and yields an error if they are not equal. Here it checks that the result of `pow(2, 3)` equals `8`. There are other types of comparisons and checks, that we'll add later.
+    Fungsi `assert.*` dipakai untuk mengecek apakah `pow` bekerja sesuai harapan. Tepat di sini kita memakai salah satunya -- `assert.equal`, ia membandingkan argumen dan menghasilkan galat jika mereka tak sama. Di sini ia mengecek apakah hasil `pow(2, 3)` sama dengan `8`. Ada tipe perbandingan dan pengecekan lain, yang akan kita tambah nanti.
 
-The specification can be executed, and it will run the test specified in `it` block. We'll see that later.
+Spesifikasi ini bisa diexekusi, dan ia akan menjalankan tes yang dispesifikasi dalam blok `it`. Kita akan lihat nanti.
 
-## The development flow
+## Alur pengembangan
 
-The flow of development usually looks like this:
+Alur pengembangan biasanya seperti ini:
 
-1. An initial spec is written, with tests for the most basic functionality.
-2. An initial implementation is created.
-3. To check whether it works, we run the testing framework [Mocha](http://mochajs.org/) (more details soon) that runs the spec. While the functionality is not complete, errors are displayed. We make corrections until everything works.
-4. Now we have a working initial implementation with tests.
-5. We add more use cases to the spec, probably not yet supported by the implementations. Tests start to fail.
-6. Go to 3, update the implementation till tests give no errors.
-7. Repeat steps 3-6 till the functionality is ready.
+1. Spek inisial ditulis, dengan tes untuk kebanyakan fungsionalitas dasar.
+2. Implementatsi inisial dibuat.
+3. Untuk mengecek apakah ia bekerja, kita jalankan framework pengetesan [Mocha](http://mochajs.org/) (detil lebih segera) yang menjalankan spek. Saat fungsionalitas tak lengkap, galat ditampilkan. Kita buat koreksi hingga semuanya bekerja.
+4. Sekarang kita punya implementasi inisial yang bekerja dengan tes.
+5. Kita tambah use case lain ke spek, mungkin belum didukung implementasinya. Tes mulai gagal.
+6. Pergi ke 3, perbaharui implementasinya hingga tes tak memberikan galat.
+7. Ulangi langkah 3-6 hingga fungsionalitasnya siap.
 
-So, the development is *iterative*. We write the spec, implement it, make sure tests pass, then write more tests, make sure they work etc. At the end we have both a working implementation and tests for it.
+Jadi, pengembangannya *iteratif*. Kita tulis spek, implementasikan, memastikan tes lulus, lalu menulis tes lainnya, memastikan mereka bekerja dll. Akhirnya kita punya implementasi yang bekerja dan tes untuk itu.
 
-Let's see this development flow in our practical case.
+Ayo lihat alur pengembangan ini di kasus praktik kita.
 
-The first step is already complete: we have an initial spec for `pow`. Now, before making the implementation, let's use few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
+Langkap pertama sudah lengkap: kita punya spek inisial untuk `pow`. Sekarang, sebelum membuat implementasinya, ayo pakai beberapa librari JavaScript untuk menjalankan tes, hanya untuk melihat mereka bekerja (mereka semua akan gagal).
 
 ## The spec in action
 

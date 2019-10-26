@@ -97,11 +97,7 @@ new User("Dude").sayHi(); // Hello Dude!
 
 Please note that the call to the parent method `super.say()` from `sayHiMixin` (at lines labelled with `(*)`) looks for the method in the prototype of that mixin, not the class.
 
-<<<<<<< HEAD
-![](mixin-inheritance.svg)
-=======
 Here's the diagram (see the right part):
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 ![](mixin-inheritance.svg)
 

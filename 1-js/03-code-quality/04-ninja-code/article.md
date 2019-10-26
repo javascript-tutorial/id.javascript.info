@@ -1,61 +1,61 @@
-# Ninja code
+# Kode ninja
 
 
 ```quote author="Confucius"
 Learning without thought is labor lost; thought without learning is perilous.
 ```
 
-Programmer ninjas of the past used these tricks to sharpen the mind of code maintainers.
+Ninja programmer dari masa lalu memakai trik ini untuk mempertajam pikiran maintainer kode.
 
-Code review gurus look for them in test tasks.
+Code review guru mencari-cari mereka dalam tugas pengujian.
 
-Novice developers sometimes use them even better than programmer ninjas.
+Pengembang pemula kadang memakai mereka lebih baik dari ninja programmer.
 
-Read them carefully and find out who you are -- a ninja, a novice, or maybe a code reviewer?
+Baca mereka dengan hati-hati dan cari tahu siapa kamu -- ninja, pemula, atau mungkin code reviewer?
 
 
-```warn header="Irony detected"
-Many try to follow ninja paths. Few succeed.
+```warn header="Ironi terdeteksi"
+Banyak yang mencoba mengikuti jalan ninja. Tapi cuma sedikit yang sukses.
 ```
 
 
-## Brevity is the soul of wit
+## Singkat adalah jiwa kecerdasan
 
-Make the code as short as possible. Show how smart you are.
+Buat kode sependek mungkin. Tunjukkan kepintaranmu.
 
-Let subtle language features guide you.
+Biarkan fitur bahasa halus memandumu.
 
-For instance, take a look at this ternary operator `'?'`:
+Misalnya, perhatikan operator ternary ini `'?'`:
 
 ```js
-// taken from a well-known javascript library
+// diambil dari library javascript terkenal
 i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
 ```
 
-Cool, right? If you write like that, a developer who comes across this line and tries to understand what is the value of `i` is going to have a merry time. Then come to you, seeking for an answer.
+Keren, kan? Kalau kamu menulis begitu, pengembang yang melihat baris ini dan mencoba memahami apa nilai `i` akan merasa senang. Lalu datanglah kamu, mencari jawaban.
 
-Tell them that shorter is always better. Initiate them into the paths of ninja.
+Katakan pada mereka bahwa yang lebih pendek selalu lebih baik that. Inisasikan mereka ke dalam langkah ninja.
 
-## One-letter variables
+## Variabel satu-huruf
 
 ```quote author="Laozi (Tao Te Ching)"
 The Dao hides in wordlessness. Only the Dao is well begun and well
 completed.
 ```
 
-Another way to code faster is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
+Cara lain untuk mengkode cepat ialah memakai nama variabel huruf-tunggal di manapun. Seperti `a`, `b` atau `c`.
 
-A short variable disappears in the code like a real ninja in the forest. No one will be able to find it using "search" of the editor. And even if someone does, they won't be able to "decipher" what the name `a` or `b` means.
+Variabel pendek hiland dalam kode seperti ninja sungguhan di hutan. Tak ada yang mampu mencarinya memakai "pencari" editor. Dan bahkan jika seseorang menemukannya, mereka tak mampu men"decipher" arti nama `a` atau `b`.
 
-...But there's an exception. A real ninja will never use `i` as the counter in a `"for"` loop. Anywhere, but not here. Look around, there are many more exotic letters. For instance, `x` or `y`.
+...Tapi ada pengecualian. Ninja riil tak akan pernah memakai `i` sebagai counter di loop `"for"`. Di tempat lain iya, tapi di sini tidak. Lihat saja, ada banyak huruf exotis. Misalnya, `x` atau `y`.
 
-An exotic variable as a loop counter is especially cool if the loop body takes 1-2 pages (make it longer if you can). Then if someone looks deep inside the loop, they won't be able to quickly figure out that the variable named `x` is the loop counter.
+Variabel exotis sebagai counter loop itu keren terutama jika badan loop memakan 1-2 laman (buat ia lebih panjang lagi jika kamu bisa). Lalu jika ada orang lihat lebih dalam ke loop, mereka tak akan cepat menerka nama variabel `x` sebagai counter loop.
 
-## Use abbreviations
+## Gunakan singkatan
 
-If the team rules forbid the use of one-letter and vague names -- shorten them, make abbreviations.
+Jika aturan tim melarang penggunaan nama satu-huruf dan geje -- perpendek mereka, buat singkatan.
 
-Like this:
+Seperti ini:
 
 - `list` -> `lst`.
 - `userAgent` -> `ua`.
@@ -64,7 +64,7 @@ Like this:
 
 Only the one with truly good intuition will be able to understand such names. Try to shorten everything. Only a worthy person should be able to uphold the development of your code.
 
-## Soar high. Be abstract.
+## Terbang Tinggi. Jadilah abstrak.
 
 ```quote author="Laozi (Tao Te Ching)"
 The great square is cornerless<br>
@@ -73,56 +73,56 @@ The great note is rarified sound,<br>
 The great image has no form.
 ```
 
-While choosing a name try to use the most abstract word. Like `obj`, `data`, `value`, `item`, `elem` and so on.
+Saat memilih nama cobalah pakai kata paling abstrak. Seperti `obj`, `data`, `value`, `item`, `elem` dan seterusnya.
 
-- **The ideal name for a variable is `data`.** Use it everywhere you can. Indeed, every variable holds *data*, right?
+- **Nama ideal untuk variabel ialah `data`.** Pakai itu di manapun kamu bisa. Jelas, tiap variabel memegang *data*, kan?
 
-    ...But what to do if `data` is already taken? Try `value`, it's also universal. After all, a variable eventually gets a *value*.
+    ...Tapi bagaimana jika `data` sudah diambil? Coba `value`, itu juga universal. After all, a variable eventually gets a *value*.
 
-- **Name a variable by its type: `str`, `num`...**
+- **Beri nama variabel berdasarkan tipe: `str`, `num`...**
 
-    Give them a try. A young initiate may wonder -- are such names really useful for a ninja? Indeed, they are!
+    Coba saja mereka. Pemula mungkin heran -- apa nama-nama begini berguna bagi ninja? Tentu!
 
-    Sure, the variable name still means something. It says what's inside the variable: a string, a number or something else. But when an outsider tries to understand the code, they'll be surprised to see that there's actually no information at all! And will ultimately fail to alter your well-thought code.
+    Pasti, nama variabel masih punya arti. Ia menerangkan apa isi variabel: string, number atau yang lain. Tapi saat orang asing mencoba memahami kodenya, mereka akan terkejut melihat tak ada informasi sama sekali! Dan pasti akan gagal mengubah kodemu yang sudah dipikirkan matang-matang.
 
-    The value type is easy to find out by debugging. But what's the meaning of the variable? Which string/number does it store?
+    Tipe nilai mudah dicaritahu dari debugging. Tapi apa arti dari variabel? String/number mana yang disimpan?
 
-    There's just no way to figure out without a good meditation!
+    Tak ada cara mencaritahu tanpa meditasi yang bagus!
 
-- **...But what if there are no more such names?** Just add a number: `data1, item2, elem5`...
+- **...Tapi bagaimana jika tak ada name lagi?** Tambahkan saja angka: `data1, item2, elem5`...
 
-## Attention test
+## Uji perhatian
 
-Only a truly attentive programmer should be able to understand your code. But how to check that?
+Hanya programmer sungguhan bisa memahami kodemu. Tapi bagaimana mengeceknya?
 
-**One of the ways -- use similar variable names, like `date` and `data`.**
+**Salah satu caranya -- pakai nama variabel yang serupa, seperti `date` dan `data`.**
 
-Mix them where you can.
+Campurkan saja mereka sebisamu.
 
-A quick read of such code becomes impossible. And when there's a typo... Ummm... We're stuck for long, time to drink tea.
+Baca cepan kode begini makin mustahil. Dan saat ada typo... Ummm... Kita stuck cukup lama, waktunya minum teh.
 
 
-## Smart synonyms
+## Synonym pintar
 
 ```quote author="Confucius"
 The hardest thing of all is to find a black cat in a dark room, especially if there is no cat.
 ```
 
-Using *similar* names for *same* things makes life more interesting and shows your creativity to the public.
+Memakai nama *serupa* untuk hal *sama* membuat hidup menarik dan menampilkan kreatifitasmu ke publik.
 
-For instance, consider function prefixes. If a function shows a message on the screen -- start it with `display…`, like `displayMessage`. And then if another function shows on the screen something else, like a user name, start it with `show…` (like `showName`).
+Misalnya, pikirkan prefix fungsi. Jika fungsi menunjukkan pesan ke layar -- mulai dengan `display…`, seperti `displayMessage`. Lalu jika fungsi lain menampilkan yang lain di layar, seperti nama pengguna, mulai dengan `show…` (seperti `showName`).
 
-Insinuate that there's a subtle difference between such functions, while there is none.
+Menyindir bahwa ada perbedaan halus antara kedua fungsi, padahal tidaka da.
 
 Make a pact with fellow ninjas of the team: if John starts "showing" functions with `display...` in his code, then Peter could use `render..`, and Ann -- `paint...`. Note how much more interesting and diverse the code became.
 
-...And now the hat trick!
+...Dan sekarang untuk hat trick!
 
-For two functions with important differences -- use the same prefix!
+Untuk dua fungsi dengan perbedaan mencolok -- pakai prefix yang sama!
 
-For instance, the function `printPage(page)` will use a printer. And the function `printText(text)` will put the text on-screen. Let an unfamiliar reader think well over similarly named function `printMessage`: "Where does it put the message? To a printer or on the screen?". To make it really shine, `printMessage(message)` should output it in the new window!
+Misalnya, fungsi `printPage(page)` akan memakai printer. Dan fungsi `printText(text)` akan menaruh teks ke layar. Biarkan pembaca asing berpikir baik tentang fungsi bernama `printMessage`: "Ke mana ia taruh pesannya? Ke printer atau ke layar?". Supaya lebih bersinar, `printMessage(message)` sebaiknya mengoutput itu di jendela baru!
 
-## Reuse names
+## Pakai-ulang nama
 
 ```quote author="Laozi (Tao Te Ching)"
 Once the whole is divided, the parts<br>
@@ -131,55 +131,55 @@ There are already enough names.<br>
 One must know when to stop.
 ```
 
-Add a new variable only when absolutely necessary.
+Tambah variabel baru hanya saat diperlukan.
 
-Instead, reuse existing names. Just write new values into them.
+Lebih baik gunakan ulang nama yang sudah ada. Tulis saja nilai baru ke dalamnya.
 
-In a function try to use only variables passed as parameters.
+Di dalam fungsi cobalah hanya memakai variabel yang dioper sebagai parameter.
 
-That would make it really hard to identify what's exactly in the variable *now*. And also where it comes from. The purpose is to develop the intuition and memory of a person reading the code. A person with weak intuition would have to analyze the code line-by-line and track the changes through every code branch.
+Itu akan menyulitkan identifikasi apa yang ada di variabel *sekarang*. Dan juga darimana asalnya. Tujuannya untuk mengembangka intuisi dan memori orang yang membaca kodenya. Orang dengan intuisi lemah akan menganalisa kodenya baris per-baris dan menjejak perubahan ke seluruh cabang kode.
 
-**An advanced variant of the approach is to covertly (!) replace the value with something alike in the middle of a loop or a function.**
+**Varian canggih dari pendekatan ini ialah mengganti diam-diam (!) nilai dengan sesuatu yang serupa di tengah loop atau fungsi.**
 
-For instance:
+Misalnya:
 
 ```js
 function ninjaFunction(elem) {
-  // 20 lines of code working with elem
+  // 20 baris kode berjalan dengan elem
 
   elem = clone(elem);
 
-  // 20 more lines, now working with the clone of the elem!
+  // 20 baris lagi, sekarang berjalan dengan clone dari elem!
 }
 ```
 
-A fellow programmer who wants to work with `elem` in the second half of the function will be surprised... Only during the debugging, after examining the code they will find out that they're working with a clone!
+Sobat programmer yang mau bekerja dengan `elem` di pertengahan kedua dari fungsi akan terkejut... Cuma selama debugging, setelah memeriksa kodenya mereka akan menemukan bahwa mereka bekerja dengan clone!
 
-Seen in code regularly. Deadly effective even against an experienced ninja.
+Terlihat dalam kode secara reguler. Benar-benar efektif bahkan melawan ninja berpengalaman.
 
-## Underscores for fun
+## Underscore untuk kesenangan
 
-Put underscores `_` and `__` before variable names. Like `_name` or `__value`. It would be great if only you knew their meaning. Or, better, add them just for fun, without particular meaning at all. Or different meanings in different places.
+Taruh underscores `_` dan `__` sebelum nama variabel. Seperti `_name` atau `__value`. Akan lebih bagus jika cuma kamu yang tahu artinya. Atau, lebih baik, tambahkan mereka hanya untuk kesenangan, tanpa ada arti sama sekali. Atau arti berbeda di tempat berbeda.
 
-You kill two rabbits with one shot. First, the code becomes longer and less readable, and the second, a fellow developer may spend a long time trying to figure out what the underscores mean.
+Kamu membunuh dua kelinci satu tembakan. Pertama, kodenya jadi lebih panjang dan kurang terbaca, dan kedua, sobat pengembang menghabiskan banyak waktu mencaritahu arti underscores.
 
-A smart ninja puts underscores at one spot of code and evades them at other places. That makes the code even more fragile and increases the probability of future errors.
+Ninja pintar menaruh underscore di satu spot kode dan menghindari mereka di tempat lain. Itu membuat kodenya jadi lebih rapuh dan meningkatkan kemungkinan muncul galat masa depan.
 
-## Show your love
+## Tunjukkan cintamu
 
-Let everyone see how magnificent your entities are! Names like `superElement`, `megaFrame` and `niceItem` will definitely enlighten a reader.
+Biarkan orang melihat betapa indahnya entiti kamu! Nama seperti `superElement`, `megaFrame` dan `niceItem` pasti akan mencerahkan pembacamu.
 
-Indeed, from one hand, something is written: `super..`, `mega..`, `nice..` But from the other hand -- that brings no details. A reader may decide to look for a hidden meaning and meditate for an hour or two of their paid working time.
+Tentu, di satu sisi, satu hal tertulis: `super..`, `mega..`, `nice..` Tapi di sisi lain -- ia tak membawa detil. Pembaca mungkin memutuskan untuk melihat arti tersembunyi dan meditasi selama sejam atau dua jam dari waktu kerja mereka.
 
 
-## Overlap outer variables
+## Tumpang-tindih variabel terluar
 
 ```quote author="Guan Yin Zi"
 When in the light, can't see anything in the darkness.<br>
 When in the darkness, can see everything in the light.
 ```
 
-Use same names for variables inside and outside a function. As simple. No efforts to invent new names.
+Pakai nama yang sama untuk variabel di dalam dan di luar fungsi. Simpelnya. Tak perlu usaha menemukan nama baru.
 
 ```js
 let *!*user*/!* = authenticateUser();
@@ -189,52 +189,52 @@ function render() {
   ...
   ...many lines...
   ...
-  ... // <-- a programmer wants to work with user here and...
+  ... // <-- programmer mau bekerja dengan pengguna di sini dan...
   ...
 }
 ```
 
-A programmer who jumps inside the `render` will probably fail to notice that there's a local `user` shadowing the outer one.
+Programmer yang lompat ke dalam `render` mungkin akan gagal melihat ada `user` lokal yang membayangi user yang terluar.
 
-Then they'll try to work with `user` assuming that it's the external variable, the result of `authenticateUser()`... The trap is sprung! Hello, debugger...
-
-
-## Side-effects everywhere!
-
-There are functions that look like they don't change anything. Like `isReady()`, `checkPermission()`, `findTags()`... They are assumed to carry out calculations, find and return the data, without changing anything outside of them. In other words, without "side-effects".
-
-**A really beautiful trick is to add a "useful" action to them, besides the main task.**
-
-An expression of dazed surprise on the face of your colleague when they see a function named `is..`, `check..` or `find...` changing something -- will definitely broaden your boundaries of reason.
-
-**Another way to surprise is to return a non-standard result.**
-
-Show your original thinking! Let the call of `checkPermission` return not `true/false`, but a complex object with the results of the check.
-
-Those developers who try to write `if (checkPermission(..))`, will wonder why it doesn't work. Tell them: "Read the docs!". And give this article.
+Lalu mereka akan mencoba bekerja dengan `user` dengan asumsi ia variabel external, hasil `authenticateUser()`... Jebakan muncul! Halo, debugger...
 
 
-## Powerful functions!
+## Efek-samping di manapun!
+
+Ada fungsi yang kelihatan tak mengubah apapun. Seperti `isReady()`, `checkPermission()`, `findTags()`... Mereka dikira melakukan kalkulasi, mencari dan menghasilkan data, tanpa mengubah apapun di luar mereka. Dengan kata lain, tanpa "efek-samping".
+
+**Trik yang sangat cantik ialah menambah aksi "berfaedah" ke mereka, selain tugas utamanya.**
+
+Expresi linglung kaget dari muka kolegamu saat mereka melihat fungsi bernama `is..`, `check..` atau `find...` yang mengubah sesuatu -- pastinya akan memperluas batas alasanmu.
+
+**Cara lain membuat kejutan ialah mengembalikan hasil non-standar.**
+
+Tunjukan pemikiran orisinilmu! Biarkan panggilan `checkPermission` mengembalikan bukan `true/false`, tapi objek rumit dengan hasil pengecekan.
+
+Pengembang itu yang mencoba `if (checkPermission(..))`, akan heran kenapa itu tak bekerja. Katakan ke mereka: "Baca docs!". Dan berikan artikel ini.
+
+
+## Fungsi yang kuat!
 
 ```quote author="Laozi (Tao Te Ching)"
 The great Tao flows everywhere,<br>
 both to the left and to the right.
 ```
 
-Don't limit the function by what's written in its name. Be broader.
+Jangan batasi fungsi karena tulisan namanya. Melebarlah.
 
-For instance, a function `validateEmail(email)` could (besides checking the email for correctness) show an error message and ask to re-enter the email.
+Misalnya, fungsi `validateEmail(email)` bisa (selain mengecek keebenaran email) menampilkan pesan galat dan meminta masukan ulang email.
 
-Additional actions should not be obvious from the function name. A true ninja coder will make them not obvious from the code as well.
+Aksi tambahan sebaiknya jangan diperjelas dari nama fungsi. Coder ninja sejati akan membuat mereka tidak jelas dari kodenya juga.
 
-**Joining several actions into one protects your code from reuse.**
+**Menggabung beberapa aksi jadi satu melindungi kodemu dari penggunaan ulang.**
 
-Imagine, another developer wants only to check the email, and not output any message. Your function  `validateEmail(email)` that does both will not suit them. So they won't break your meditation by asking anything about it.
+Bayangkan, pengembang lain mau mengecek email, dan tak menghasilkan pesan apapun. Fungsimu  `validateEmail(email)` yang melakukan keduanya tak akan cocok dengan mereka. Jadi mereka tak akan mengganggu meditasimu dengan menanyakan itu.
 
-## Summary
+## Kesimpulan
 
-All "pieces of advice" above are from the real code... Sometimes, written by experienced developers. Maybe even more experienced than you are ;)
+Semua "potongan saran" di atas berasal dari real kode sungguhan... Kadang, tertulis dari pengembang berpengalaman. Bahkan lebih berpengalaman dari kamu ;)
 
-- Follow some of them, and your code will become full of surprises.
-- Follow many of them, and your code will become truly yours, no one would want to change it.
-- Follow all, and your code will become a valuable lesson for young developers looking for enlightenment.
+- Ikuti beberapa dari mereka, dan kodemu akan menjadi penuh kejutan.
+- Ikuti banyak dari mereka, dan kodemu akan menjadi milikmu sepenuhnya, tak ada yang mau mengubahnya.
+- Ikuti semua, dan kodemu akan menjadi pelajaran berharga untuk pengembang muda yang mencari pencerahan.

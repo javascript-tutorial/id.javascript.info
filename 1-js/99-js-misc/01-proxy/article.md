@@ -38,11 +38,8 @@ As there are no traps, all operations on `proxy` are forwarded to `target`.
 As we can see, without any traps, `proxy` is a transparent wrapper around `target`.
 
 ![](proxy.svg)  
-<<<<<<< HEAD
-=======
 
 `Proxy` is a special "exotic object". It doesn't have own properties. With an empty `handler` it transparently forwards operations to `target`.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 To activate more capabilities, let's add traps.
 
@@ -725,11 +722,7 @@ What's the matter? Maybe we did something wrong with the inheritance?
 
 But if we remove the proxy, then everything will work as expected.
 
-<<<<<<< HEAD
-![](proxy-inherit.svg)
-=======
 The problem is actually in the proxy, in the line `(*)`.
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 1. When we read `admin.name`, as `admin` object doesn't have such own property, the search goes to its prototype.
 2. The prototype is `userProxy`.

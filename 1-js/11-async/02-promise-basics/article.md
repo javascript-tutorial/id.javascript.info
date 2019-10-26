@@ -1,6 +1,6 @@
 # Promise
 
-Imagine that you're a top singer, and fans ask day and night for your upcoming single.
+Bayangkan kamu penyanyi top, dan fans single terbarumu minta siang dan malam.
 
 To get some relief, you promise to send it to them when it's published. You give your fans a list. They can fill in their email addresses, so that when the song becomes available, all subscribed parties instantly receive it. And even if something goes very wrong, say, a fire in the studio, so that you can't publish the song, they will still be notified.
 
@@ -33,11 +33,7 @@ When the executor obtains the result, be it soon or late - doesn't matter, it sh
 
 So to summarize: the executor runs automatically, it should do a job and then call either `resolve` or `reject`.
 
-<<<<<<< HEAD
-![](promise-resolve-reject.svg)
-=======
 The `promise` object returned by `new Promise` constructor has internal properties:
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 - `state` — initially `"pending"`, then changes to either `"fulfilled"` when `resolve` is called or `"rejected"` when `reject` is called.
 - `result` — initially `undefined`, then changes to `value` when `resolve(value)` called or `error` when `reject(error)` is called.
