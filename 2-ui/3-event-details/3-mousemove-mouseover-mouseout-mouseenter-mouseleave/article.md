@@ -79,7 +79,6 @@ An important feature of `mouseout` -- it triggers, when the pointer moves from a
   <div id="child">...</div>
 </div>
 ```
->>>>>>> a0bfa924a17cad8e7fee213904b27dbf57c2dbac
 
 If we're on `#parent` and then move the pointer deeper into `#child`, but we get `mouseout` on `#parent`!
 
