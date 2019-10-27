@@ -81,28 +81,28 @@ Ayo lihat alur pengembangan ini di kasus praktik kita.
 
 Langkap pertama sudah lengkap: kita punya spek inisial untuk `pow`. Sekarang, sebelum membuat implementasinya, ayo pakai beberapa librari JavaScript untuk menjalankan tes, hanya untuk melihat mereka bekerja (mereka semua akan gagal).
 
-## The spec in action
+## Spec dalam aksi
 
-Here in the tutorial we'll be using the following JavaScript libraries for tests:
+Di sini di tutorial ini kita akan memakai librari JavaScript untuk tes:
 
 - [Mocha](http://mochajs.org/) -- the core framework: it provides common testing functions including `describe` and `it` and the main function that runs tests.
 - [Chai](http://chaijs.com) -- the library with many assertions. It allows to use a lot of different assertions, for now we need only `assert.equal`.
 - [Sinon](http://sinonjs.org/) -- a library to spy over functions, emulate built-in functions and more, we'll need it much later.
 
-These libraries are suitable for both in-browser and server-side testing. Here we'll consider the browser variant.
+Librari ini cocok baik untuk pengetesan in-browser dan server-side. Di sini kita akan mempertimbangkan varian peramban.
 
-The full HTML page with these frameworks and `pow` spec:
+Laman HTML lengkap dengan framework ini dan spek `pow`:
 
 ```html src="index.html"
 ```
 
-The page can be divided into five parts:
+Laman ini bisa dibagi jadi lima bagian:
 
-1. The `<head>` -- add third-party libraries and styles for tests.
-2. The `<script>` with the function to test, in our case -- with the code for `pow`.
-3. The tests -- in our case an external script `test.js` that has `describe("pow", ...)` from above.
-4. The HTML element `<div id="mocha">` will be used by Mocha to output results.
-5. The tests are started by the command `mocha.run()`.
+1. `<head>` -- menambah libraru dan gaya pihak-ketiga untuk tes.
+2. `<script>` dengan fungsi untuk dites, di kasus kita -- degngan kode untuk `pow`.
+3. Tes -- di kasus kita script external `test.js` yang punya `describe("pow", ...)` dari atas.
+4. Elemen HTML `<div id="mocha">` akan dipakai untuk mengoutputkan hasil.
+5. Pengetesan dimulai dari command `mocha.run()`.
 
 The result:
 
@@ -112,9 +112,9 @@ As of now, the test fails, there's an error. That's logical: we have an empty fu
 
 For the future, let's note that there are more high-level test-runners, like [karma](https://karma-runner.github.io/) and others, that make it easy to autorun many different tests.
 
-## Initial implementation
+## Implementasi inisial
 
-Let's make a simple implementation of `pow`, for tests to pass:
+Ayo buat implementasi sederhana dari `pow`, supaya tes lulus:
 
 ```js
 function pow(x, n) {
@@ -122,21 +122,21 @@ function pow(x, n) {
 }
 ```
 
-Wow, now it works!
+Wow, sekarang itu bekerja!
 
 [iframe height=250 src="pow-min" border=1 edit]
 
-## Improving the spec
+## Mengimprov spek
 
-What we've done is definitely a cheat. The function does not work: an attempt to calculate `pow(3,4)` would give an incorrect result, but tests pass.
+Apa yang sudah kita lakukan itu pasti curang. Fungsinya tak akan bekerja: percobaan untuk mengkalculasi `pow(3,4)` akan memberi hasil salah, tapi tes lulus.
 
-...But the situation is quite typical, it happens in practice. Tests pass, but the function works wrong. Our spec is imperfect. We need to add more use cases to it.
+...Tapi situasi ini agak tipikal, ia terjadi dalam latihan. Tes lulus, tapi fungsinya salah bekerja. Spek kita tak sempurna. Kita harus menambah use case lagi ke situ.
 
-Let's add one more test to check that `pow(3, 4) = 81`.
+Ayo tambah satu tes lagi untuk mengecek bahwa `pow(3, 4) = 81`.
 
-We can select one of two ways to organize the test here:
+Kita bisa pilih salah satu cara mengorganisasikan tes di sini:
 
-1. The first variant -- add one more `assert` into the same `it`:
+1. Varian pertama -- tambah satu lagi `assert` ke dalam `it` yang sama:
 
     ```js
     describe("pow", function() {
@@ -150,7 +150,7 @@ We can select one of two ways to organize the test here:
 
     });
     ```
-2. The second -- make two tests:
+2. Kedua -- buat dua tes:
 
     ```js
     describe("pow", function() {
@@ -166,27 +166,27 @@ We can select one of two ways to organize the test here:
     });
     ```
 
-The principal difference is that when `assert` triggers an error, the `it` block immediately terminates. So, in the first variant if the first `assert` fails, then we'll never see the result of the second `assert`.
+Perbedaan prinsipal ialah saat `assert` memicu galat, blok `it` segera berhenti. Jadi, di varian pertama jika `assert` pertama gagal, maka kita takkan pernah melihat hasil `assert` kedua.
 
-Making tests separate is useful to get more information about what's going on, so the second variant is better.
+Memisahkan tes berguna untuk mendapat informasi lebih tentang apa yang terjadi, jadi varian kedua lebih baik.
 
-And besides that, there's one more rule that's good to follow.
+Dan selain itu, ada satu lagi aturan yang baik untuk diikuti.
 
-**One test checks one thing.**
+**Satu tes mengecek satu hal.**
 
-If we look at the test and see two independent checks in it, it's better to split it into two simpler ones.
+Jika kita lihat dan melihat dua pengecekan independen di dalamnya, lebih baik memecah itu menjadi dua pengecekan yang lebih simpel.
 
-So let's continue with the second variant.
+Jadi ayo kita lanjut dengan varian kedua.
 
-The result:
+Hasilnya:
 
 [iframe height=250 src="pow-2" edit border="1"]
 
-As we could expect, the second test failed. Sure, our function always returns `8`, while the `assert` expects `27`.
+Seperti yang kita harapkan, tes kedua gagal. Jelas, fungsi kita selalu mengembalikan `8`, sedangkan `assert` mengharapkan `27`.
 
-## Improving the implementation
+## Mengimprov implementasi
 
-Let's write something more real for tests to pass:
+Ayo tulis sesuatu yang lebih riil supaya tes lulus:
 
 ```js
 function pow(x, n) {
@@ -200,7 +200,7 @@ function pow(x, n) {
 }
 ```
 
-To be sure that the function works well, let's test it for more values. Instead of writing `it` blocks manually, we can generate them in `for`:
+Untuk yakin bahwa fungsi bekerja dengan baik, ayo kita tes dia dengan lebih banyak nilai. Daripada menulis blok `it` secara manual, kita bisa menggenerate mereka di `for`:
 
 ```js
 describe("pow", function() {
@@ -219,15 +219,15 @@ describe("pow", function() {
 });
 ```
 
-The result:
+Hasilnya:
 
 [iframe height=250 src="pow-3" edit border="1"]
 
-## Nested describe
+## Deskripsi bersarang
 
-We're going to add even more tests. But before that let's note that the helper function `makeTest` and `for` should be grouped together. We won't need `makeTest` in other tests, it's needed only in `for`: their common task is to check how `pow` raises into the given power.
+Kita akan menambah lebih banyak tes. Tapi sebelum itu mari ingat bahwa fungsi pembantu `makeTest` dan `for` harus digrup bersama. Kita tak akan butuh `makeTest` di tes lain, ia dibutuhkan hanya di `for`: tugas umum mereka ialah mengecek bagaimana `pow` naik ke pangkat yang diberikan.
 
-Grouping is done with a nested `describe`:
+Pengelompokkan selesai dengan `describe` bersarang:
 
 ```js
 describe("pow", function() {
@@ -251,20 +251,20 @@ describe("pow", function() {
   });
 */!*
 
-  // ... more tests to follow here, both describe and it can be added
+  // ... banyak tes untuk diikuti di sini, baik describe dan it bisa ditambah
 });
 ```
 
-The nested `describe` defines a new "subgroup" of tests. In the output we can see the titled indentation:
+`describe` bersarang mendefinisikan tes "subgroup" baru. Di output baru kita bisa lihat indentasi berjudul:
 
 [iframe height=250 src="pow-4" edit border="1"]
 
-In the future we can add more `it` and `describe` on the top level with helper functions of their own, they won't see `makeTest`.
+Di masa depan kita bisa menambah lebih banyak `it` dan `describe` di level tertinggi dengan fungsi pembantu mereka sendiri, mereka takkan melihat `makeTest`.
 
-````smart header="`before/after` and `beforeEach/afterEach`"
-We can setup `before/after` functions that execute before/after running tests, and also `beforeEach/afterEach` functions that execute before/after *every* `it`.
+````smart header="`before/after` dan `beforeEach/afterEach`"
+Kita bisa mengeset fungsi `before/after` yang berjalan sebelum/setelah menjalankan tes, dan juga fungsi `beforeEach/afterEach` yang berjalan sebelum/setelah *setiap* `it`.
 
-For instance:
+Misalnya:
 
 ```js no-beautify
 describe("test", function() {
@@ -281,46 +281,46 @@ describe("test", function() {
 });
 ```
 
-The running sequence will be:
+Sequence yang bekerja akan jadi:
 
 ```
-Testing started – before all tests (before)
-Before a test – enter a test (beforeEach)
+Tes dimulai – sebelum semua tes (before)
+Sebelum tes – masukkan tes (beforeEach)
 1
-After a test – exit a test   (afterEach)
-Before a test – enter a test (beforeEach)
+Setelah tes – keluar tes (afterEach)
+Sebelum tes – masukkan tes (beforeEach)
 2
-After a test – exit a test   (afterEach)
-Testing finished – after all tests (after)
+Setelah tes – keluar tes (afterEach)
+Tes selesai – setelah semua tes (after)
 ```
 
-[edit src="beforeafter" title="Open the example in the sandbox."]
+[edit src="beforeafter" title="Buka contoh di sandbox."]
 
-Usually, `beforeEach/afterEach` and `before/after` are used to perform initialization, zero out counters or do something else between the tests (or test groups).
+Biasanya, `beforeEach/afterEach` dan `before/after` dipakai untuk melakukan inisialisasi, mengnolkan counter atau melakukan sesuatu di antara tes (atau grup tes).
 ````
 
-## Extending the spec
+## Mengextend spek
 
-The basic functionality of `pow` is complete. The first iteration of the development is done. When we're done celebrating and drinking champagne -- let's go on and improve it.
+Fungsional dasar `pow` sudah lengkap. Iterasi pertama pengembangan sudah selesai. Saat kita selesai merayakan dan minum champagne -- ayo kita lanjut dan mengimprovisasinya.
 
-As it was said, the function `pow(x, n)` is meant to work with positive integer values `n`.
+Seperti yang tadi dikatakan, fungsi `pow(x, n)` dimaksudkan untuk bekerja dengan nilai integer positif `n`.
 
-To indicate a mathematical error, JavaScript functions usually return `NaN`. Let's do the same for invalid values of `n`.
+Untuk mengindikasikan galat matematis, fungsi JavaScript biasanya mengembalikan `NaN`. Ayo lakukan hal serupa untuk nilai invalid `n`.
 
-Let's first add the behavior to the spec(!):
+Ayo mulai tambah kelakuan tersebut ke spek(!):
 
 ```js
 describe("pow", function() {
 
   // ...
 
-  it("for negative n the result is NaN", function() {
+  it("untuk n negative hasilnya NaN", function() {
 *!*
     assert.isNaN(pow(2, -1));
 */!*
   });
 
-  it("for non-integer n the result is NaN", function() {
+  it("untuk n non-integer hasilnya NaN", function() {
 *!*
     assert.isNaN(pow(2, 1.5));    
 */!*
@@ -329,26 +329,26 @@ describe("pow", function() {
 });
 ```
 
-The result with new tests:
+Hasilnya dengan tes baru:
 
 [iframe height=530 src="pow-nan" edit border="1"]
 
-The newly added tests fail, because our implementation does not support them. That's how BDD is done: first we write failing tests, and then make an implementation for them.
+Tes yang baru ditambahkan gagal, karena implementasi kita tak mendukung mereka. Itu cara BDD selesai: pertama kita tulis tes yang gagal, lalu buat implementasi untuk mereka.
 
-```smart header="Other assertions"
-Please note the assertion `assert.isNaN`: it checks for `NaN`.
+```smart header="Assersi lain"
+Tolong catat assersi `assert.isNaN`: ia melakukan ecek terhadap `NaN`.
 
-There are other assertions in [Chai](http://chaijs.com) as well, for instance:
+Ada assersi lain di [Chai](http://chaijs.com) juga, misalnya:
 
-- `assert.equal(value1, value2)` -- checks the equality  `value1 == value2`.
-- `assert.strictEqual(value1, value2)` -- checks the strict equality `value1 === value2`.
-- `assert.notEqual`, `assert.notStrictEqual` -- inverse checks to the ones above.
-- `assert.isTrue(value)` -- checks that `value === true`
-- `assert.isFalse(value)` -- checks that `value === false`
-- ...the full list is in the [docs](http://chaijs.com/api/assert/)
+- `assert.equal(value1, value2)` -- mengecek ekualitas  `value1 == value2`.
+- `assert.strictEqual(value1, value2)` -- mengecek ekualitas ketat `value1 === value2`.
+- `assert.notEqual`, `assert.notStrictEqual` -- menginversi cek salah satu di atas.
+- `assert.isTrue(value)` -- mengecek apa `value === true`
+- `assert.isFalse(value)` -- mengecek apa `value === false`
+- ...daftar lengkapnya ada di [docs](http://chaijs.com/api/assert/)
 ```
 
-So we should add a couple of lines to `pow`:
+Jadi kita harus tambah beberapa baris `pow`:
 
 ```js
 function pow(x, n) {
@@ -367,43 +367,43 @@ function pow(x, n) {
 }
 ```
 
-Now it works, all tests pass:
+Sekarang itu bekerja, semua tes lulus:
 
 [iframe height=300 src="pow-full" edit border="1"]
 
 [edit src="pow-full" title="Open the full final example in the sandbox."]
 
-## Summary
+## Kesimpulan
 
-In BDD, the spec goes first, followed by implementation. At the end we have both the spec and the code.
+Dalam BDD, spek mulai pertama, diikuti implementasi. Di akhir kita punya baik spek maupun kode.
 
-The spec can be used in three ways:
+Spek bisa dipakai dalam tiga cara:
 
-1. As **Tests** - they guarantee that the code works correctly.
-2. As **Docs** -- the titles of `describe` and `it` tell what the function does.
-3. As **Examples** -- the tests are actually working examples showing how a function can be used.
+1. Sebagai **Tes** - mereka menjamin kode bekerja dengan benar.
+2. Sebagai **Docs** -- judul `describe` dan `it` menjelaskan apa yang dilakukan fungsi.
+3. Sebagai **Contoh** -- tes sebenarnya contoh kerja yang menjelaskan bagaimana fungsi bisa dipakai.
 
-With the spec, we can safely improve, change, even rewrite the function from scratch and make sure it still works right.
+Dengan spek, kisa bisa secara aman mengimprov, mengubah, bahkan menulis-ulang fungsi dari nol dan memastikan ia masih bekerja dengan baik.
 
-That's especially important in large projects when a function is used in many places. When we change such a function, there's just no way to manually check if every place that uses it still works right.
+Ini terutama penting di proyek besar saat fungsi dipakai di banyak tempat. Saat kita mengubah fungsi begini, tak ada cara untuk mengecek secara manual jika tiap tempat yang menggunakannya masih bekerja dengan baik.
 
-Without tests, people have two ways:
+Tanpa tes, orang punya dua cara:
 
-1. To perform the change, no matter what. And then our users meet bugs, as we probably fail to check something manually.
-2. Or, if the punishment for errors is harsh, as there are no tests, people become afraid to modify such functions, and then the code becomes outdated, no one wants to get into it. Not good for development.
+1. Untuk melakukan perubahan the change, no matter what. And then our users meet bugs, as we probably fail to check something manually.
+2. Atau, jika hukuman untuk galat itu berat, karena tak ada tes, orang menjadi takut memodifikasi fungsi seperti ini, lalu kode menjadi tak mutakhir, tak ada yang mau meneruskannya. Tidak baik untuk pengembangan.
 
-**Automatic testing helps to avoid these problems!**
+**Pengetesan otomatis membantu menghindari masalah ini!**
 
-If the project is covered with tests, there's just no such problem. After any changes, we can run tests and see a lot of checks made in a matter of seconds.
+Jika proyek ini dibahas dengan tes, harusnya tak masalah. Tiap ada perubahan, kita bisa jalankan tes dan melihat banyak pengecekan yang dibuat dengan cepat.
 
-**Besides, a well-tested code has better architecture.**
+**Selain itu, kode oto-tes punya arsitektur lebih baik.**
 
-Naturally, that's because auto-tested code is easier to modify and improve. But there's also another reason.
+Alaminya, itu karena kode oto-tes lebih mudah dimodifikasi dan diimprov. Tapi ada juga alasan lain.
 
-To write tests, the code should be organized in such a way that every function has a clearly described task, well-defined input and output. That means a good architecture from the beginning.
+Untuk menulis tes, kode harus diorganisir sedemikian rupa di mana tiap fungsi punya tugas jelas, input dan output yang terdefinisi dengan baik. Artinya satu arsitektur yang bagus dari awal.
 
-In real life that's sometimes not that easy. Sometimes it's difficult to write a spec before the actual code, because it's not yet clear how it should behave. But in general writing tests makes development faster and more stable.
+Di kehidupan riil kadang tak mudah. Kadang sulit menulis spek sebelum kode aktual, karena belum jelas bagaimana ia harus bersikap. Tapi umumnya menulis tes membuat pengembangan lebih cepat dan lebih stabil.
 
-Later in the tutorial you will meet many tasks with tests baked-in. So you'll see more practical examples.
+Nanti di tutorial ini kamu akan menemui banyak tugas dengan tes yang matang. Jadi kamu akan melihat banyak contoh praktik.
 
-Writing tests requires good JavaScript knowledge. But we're just starting to learn it. So, to settle down everything, as of now you're not required to write tests, but you should already be able to read them even if they are a little bit more complex than in this chapter.
+Menulis tes membutuhkan pengetahuan JavaScript yang baik. Tapi kita baru saja mulai belajar. Jadi, supaya settle semuanya, dari sekarang kamu belum wajib menulis tes, tapi kamu harus sudah bisa membaca mereka meski mereka agak rumit dari yang ada di bab ini.
