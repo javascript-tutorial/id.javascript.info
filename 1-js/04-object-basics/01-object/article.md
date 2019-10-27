@@ -1,60 +1,60 @@
 
-# Objects
+# Objek
 
-As we know from the chapter <info:types>, there are seven data types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+Seperti yang kita tahu dari bab <info:types>, ada tujuh tipe data di JavaScript. Enak dari mereka disebut "primitif", karena nilai mereka berisi cuma satu hal tunggal (entah string atau angka atau apapun).
 
-In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
+Kontrasnya, objek dipakai untuk menyimpan koleksi terkunci dari berbagai data dan entitas rumit lainnya. Di JavaScript, objek menembus hampir tiap aspek bahasa. Jadi kita harus memahami mereka dulu sebelum masuk lebih dalam ke manapun.
 
-An object can be created with figure brackets `{…}` with an optional list of *properties*. A property is a "key: value" pair, where `key` is a string (also called a "property name"), and `value` can be anything.
+Tiap objek bisa dibuat dengan tanda bracket `{…}` dengan daftar *properti* opsional. Properti ialah pasangan "key: value", di mana `key` string (juga disebut "nama properti"), dan `value` bisa apapun.
 
-We can imagine an object as a cabinet with signed files. Every piece of data is stored in its file by the key. It's easy to find a file by its name or add/remove a file.
+Kita bisa bayangkan objek sebagai kabinet dengan file bertanda. Tiap potong data disimpan di dalam filenya dengan kuncinya. Mudah mencari filenya dengan namanya atau menambah/menghapus satu file.
 
 ![](object.svg)
 
-An empty object ("empty cabinet") can be created using one of two syntaxes:
+Objek kosong ("kabinet kosong") bisa dibuat memakai salah satu dari dua syntax:
 
 ```js
-let user = new Object(); // "object constructor" syntax
-let user = {};  // "object literal" syntax
+let user = new Object(); // syntax "konstruktor objek"
+let user = {};  // syntax "literal objek"
 ```
 
 ![](object-user-empty.svg)
 
-Usually, the figure brackets `{...}` are used. That declaration is called an *object literal*.
+Biasanya, tanda bracket `{...}` dipakai. Deklarasi itu disebut *literal objek*.
 
-## Literals and properties
+## Literal dan properti
 
-We can immediately put some properties into `{...}` as "key: value" pairs:
+Kita bisa segera menaruh beberapa properti ke dalam `{...}` sebagai pasangan "key: value":
 
 ```js
-let user = {     // an object
-  name: "John",  // by key "name" store value "John"
-  age: 30        // by key "age" store value 30
+let user = {     // objek
+  name: "John",  // dengan kunci "name" menyimpan nilai "John"
+  age: 30        // dengan kunci "age" menyimpan nilai 30
 };
 ```
 
-A property has a key (also known as "name" or "identifier") before the colon `":"` and a value to the right of it.
+Properti punya kunci (juga disebut "nama" atau "identifier") sebelum colon `":"` dan nilai di sebelah kanannya.
 
-In the `user` object, there are two properties:
+Dalam objek `user`, ada dua properti:
 
-1. The first property has the name `"name"` and the value `"John"`.
-2. The second one has the name `"age"` and the value `30`.
+1. Properti pertama punya nama `"name"` dan nilai `"John"`.
+2. Yang kedua punya nama `"age"` dan nilai `30`.
 
-The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
+Hasil objek `user` bisa dibayangkan sebagai kabinet dengan dua file bertanda dengan label "name" dan "age".
 
 ![user object](object-user.svg)
 
-We can add, remove and read files from it any time.
+Kita bisa tambah, hapus dan baca file darinya kapanpun.
 
-Property values are accessible using the dot notation:
+Nilai properti bisa diakses memakai notasi dot:
 
 ```js
-// get property values of the object:
+// ambil nilai properti objek:
 alert( user.name ); // John
 alert( user.age ); // 30
 ```
 
-The value can be of any type. Let's add a boolean one:
+Nilainya bisa tipe apapun. Ayo tambah nilai boolean:
 
 ```js
 user.isAdmin = true;
@@ -62,7 +62,7 @@ user.isAdmin = true;
 
 ![user object 2](object-user-isadmin.svg)
 
-To remove a property, we can use `delete` operator:
+Untuk menghapus properti, kita bisa pakai operator `delete`:
 
 ```js
 delete user.age;
@@ -70,27 +70,27 @@ delete user.age;
 
 ![user object 3](object-user-delete.svg)
 
-We can also use multiword property names, but then they must be quoted:
+Kita juga bisa memakai nama properti multi-kata, tapi mereka harus diquotasi:
 
 ```js
 let user = {
   name: "John",
   age: 30,
-  "likes birds": true  // multiword property name must be quoted
+  "likes birds": true  // nama properti multi-kata harus diquotasi
 };
 ```
 
 ![](object-user-props.svg)
 
 
-The last property in the list may end with a comma:
+Properti terakhir di daftar bisa berakhir dengan koma:
 ```js
 let user = {
   name: "John",
   age: 30*!*,*/!*
 }
 ```
-That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
+Itu disebut koma "buntut" atau "menggantung". Memudahkan kita menambah/menghapus/memindahkan properti, karena semua barus menjadi mirip.
 
 ## Square brackets
 
