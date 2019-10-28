@@ -1,38 +1,38 @@
-# Garbage collection
+# Pengumpulan sampah (_Garbage collection_)
 
-Memory management in JavaScript is performed automatically and invisibly to us. We create primitives, objects, functions... All that takes memory.
+Manajemen memori di JavaScript dilakukan secara otomatis dan tak terlihat oleh kita. Kita membuat _primitive_, objek, fungsi... Semua yang membutuhkan memori.
 
-What happens when something is not needed any more? How does the JavaScript engine discover it and clean it up?
+Apa yang terjadi ketika sesuatu yang telah kita buat tersebut sudah tidak diperlukan? Bagaimana _engine_ JavaScript menemukan dan membersihkannya?
 
-## Reachability
+## Keterjangkauan (_Reachability_)
 
-The main concept of memory management in JavaScript is *reachability*.
+Konsep utama manajemen memori di JavaScript ialah *keterjangkauan*.
 
-Simply put, "reachable" values are those that are accessible or usable somehow. They are guaranteed to be stored in memory.
+Sederhananya, sebuah nilai yang "terjangkau" adalah mereka yang masih dapat diakses atau dapat digunakan. Mereka dapat dipastikan tersimpan di memori.
 
-1. There's a base set of inherently reachable values, that cannot be deleted for obvious reasons.
+1. Ada sekumpulan nilai-nilai yang terjangkau secara inheren, yang tak dapat dihapus untuk alasan yang jelas.
 
-    For instance:
+    Contohnya:
 
-    - Local variables and parameters of the current function.
-    - Variables and parameters for other functions on the current chain of nested calls.
-    - Global variables.
-    - (there are some other, internal ones as well)
+    - Variabel lokal dan parameter-parameter dari fungsi (yang di eksekusi) saat ini.
+    - Variabel-variabel dan parameter-parameter dari fungsi-fungsi lain yang terkait dengan rantai panggilan bersarang saat ini.
+    - Variabel-variabel global.
+    - (ada beberapa hal lain, yang internal juga)
 
-    These values are called *roots*.
+    Nilai-nilai tadi disebut *roots*.
 
-2. Any other value is considered reachable if it's reachable from a root by a reference or by a chain of references.
+2. Nilai lainnya dianggap terjangkau jika dapat dijangkau dari sebuah _root_ melalui sebuah rujukkan atau rantai rujukkan.
 
-    For instance, if there's an object in a local variable, and that object has a property referencing another object, that object is considered reachable. And those that it references are also reachable. Detailed examples to follow.
+    Contohnya, jika ada sebuah objek dalam sebuah variabel lokal, dan objek tersebut memiliki sebuah _property_ yang merujukkan objek lain, objek tersebut dianggap terjangkau. Dan semua yang dirujukkan olehnya juga terjangkau. Berikut contoh lebih jelasnya.
 
-There's a background process in the JavaScript engine that is called [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that have become unreachable.
+Ada sebuah _background process_ di _engine_ JavaScript yang disebut [_garbage collector_](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). Ia mengamati seluruh objek dan menyingkirkan semua yang sudah tak terjangkau.
 
-## A simple example
+## Contoh Sederhana
 
-Here's the simplest example:
+Berikut adalah contoh paling sederhana:
 
 ```js
-// user has a reference to the object
+// user memiliki rujukkan terhadap objek
 let user = {
   name: "John"
 };
@@ -40,9 +40,9 @@ let user = {
 
 ![](memory-user-john.svg)
 
-Here the arrow depicts an object reference. The global variable `"user"` references the object `{name: "John"}` (we'll call it John for brevity). The `"name"` property of John stores a primitive, so it's painted inside the object.
+Tanda panah disini menggambarkan sebuah rujukkan objek. Variabel global `"user"` merujuk objek `{name: "John"}` (kita sebut John supaya singkat). _Property_ `"name"` dari objek John menyimpan sebuah _primitive_, jadi itu disematkan di dalam objek.
 
-If the value of `user` is overwritten, the reference is lost:
+Jika nilai dari `user` ditimpa, maka rujukkannya hilang:
 
 ```js
 user = null;
@@ -50,14 +50,14 @@ user = null;
 
 ![](memory-user-john-lost.svg)
 
-Now John becomes unreachable. There's no way to access it, no references to it. Garbage collector will junk the data and free the memory.
+Sekarang John menjadi tak terjangkau. Tak ada cara untuk mengaksesnya, tak ada rujukkan terhadapnya. _Garbage collector_ akan membuang data tersebut and membebaskan memori.
 
-## Two references
+## Dua rujukkan
 
-Now let's imagine we copied the reference from `user` to `admin`:
+Sekarang bayangkan kita menyalin rujukkan dari `user` ke `admin`:
 
 ```js
-// user has a reference to the object
+// user memiliki rujukkan terhadap objek
 let user = {
   name: "John"
 };
@@ -69,16 +69,16 @@ let admin = user;
 
 ![](memory-user-john-admin.svg)
 
-Now if we do the same:
+Sekarang jika kita melakukan hal yang sama:
 ```js
 user = null;
 ```
 
-...Then the object is still reachable via `admin` global variable, so it's in memory. If we overwrite `admin` too, then it can be removed.
+...Maka objek "John" tersebut masih bisa dijangkau lewat variabel global `admin`, jadi masih ada di memori. Jika kita menimpa `admin` juga, barulah dapat dihilangkan.
 
-## Interlinked objects
+## Objek-objek yang saling terkait
 
-Now a more complex example. The family:
+Sekarang contoh yang lebih kompleks. Keluarga:
 
 ```js
 function marry(man, woman) {
@@ -98,15 +98,15 @@ let family = marry({
 });
 ```
 
-Function `marry` "marries" two objects by giving them references to each other and returns a new object that contains them both.
+Fungsi `marry` "mengawinkan" dua objek dengan memberikan keduanya rujukkan satu sama lain dan mengembalikan sebuah objek baru yang berisikan kedua objek tersebut.
 
-The resulting memory structure:
+Hasil struktur memorinya ialah :
 
 ![](family.svg)
 
-As of now, all objects are reachable.
+Disini, semua objek terjangkau.
 
-Now let's remove two references:
+Sekarang mari hapus dua rujukkan:
 
 ```js
 delete family.father;
@@ -115,98 +115,98 @@ delete family.mother.husband;
 
 ![](family-delete-refs.svg)
 
-It's not enough to delete only one of these two references, because all objects would still be reachable.
+Tak cukup hanya dengan menghapus salah satu dari dua rujukkan tersebut, karena semua objek masih bisa dijangkau.
 
-But if we delete both, then we can see that John has no incoming reference any more:
+Tetapi jika kita menghapus keduanya, maka dapat kita lihat bahwa John tak lagi memiliki objek yang merujukkannya:
 
 ![](family-no-father.svg)
 
-Outgoing references do not matter. Only incoming ones can make an object reachable. So, John is now unreachable and will be removed from the memory with all its data that also became unaccessible.
+Rujukkan keluar (_outgoing reference_) tidak masalah. Hanya rujukkan masuk (_incoming reference_) yang dapat membuat sebuah objek terjangkau. Jadi, sekarang John tak terjangkau dan akan dihapus dari memori bersama semua datanya yang juga tak dapat diakses.
 
-After garbage collection:
+Setelah _garbage collection_:
 
 ![](family-no-father-2.svg)
 
-## Unreachable island
+## Pulau tak terjangkau
 
-It is possible that the whole island of interlinked objects becomes unreachable and is removed from the memory.
+Mungkin saja satu kumpulan (pulau) objek yang saling tertaut menjadi tak terjangkau dan dihapus dari memori.
 
-The source object is the same as above. Then:
+Objeknya sama seperti diatas. Kemudian:
 
 ```js
 family = null;
 ```
 
-The in-memory picture becomes:
+Gambaran _in-memory_-nya menjadi:
 
 ![](family-no-family.svg)
 
-This example demonstrates how important the concept of reachability is.
+Contoh ini menunjukkan bagaimana pentingnya konsep keterjangkauan (_reachability_).
 
-It's obvious that John and Ann are still linked, both have incoming references. But that's not enough.
+Sudah jelas bahwa John dan Ann masih tertaut, keduanya memiliki rujukkan masuk. Tapi itu saja tak cukup.
 
-The former `"family"` object has been unlinked from the root, there's no reference to it any more, so the whole island becomes unreachable and will be removed.
+Objek `"family"` diatas telah menjadi tak terhubung dengan _root_, tak ada lagi rujukkan terhadapnya, sehingga keseluruhan pulau kumpulan objek tersebut menjadi tak terjangkau dan akan dihapus.
 
-## Internal algorithms
+## Algoritma internal
 
-The basic garbage collection algorithm is called "mark-and-sweep".
+Algoritma _garbage collection_ dasar disebut _"mark-and-sweep"_.
 
-The following "garbage collection" steps are regularly performed:
+Langkah _"garbage collection"_ berikut dilakukan secara teratur:
 
-- The garbage collector takes roots and "marks" (remembers) them.
-- Then it visits and "marks" all references from them.
-- Then it visits marked objects and marks *their* references. All visited objects are remembered, so as not to visit the same object twice in the future.
-- ...And so on until every reachable (from the roots) references are visited.
-- All objects except marked ones are removed.
+- _Garbage collector_ mengambil objek _roots_ dan "menandai" (_marks_ / mengingat) mereka.
+- Kemudian ia mendatangi dan "menandai" semua rujukkannya.
+- Kemudian ia mendatangi objek yang telah ditandai tersebut dan menandai rujukkan *mereka*. Semua objek yang telah dikunjungi akan diingat, agar nantinya tidak mengunjungi objek yang sama dua kali.
+- ...Dan seterusnya sampai semua rujukkan yang dapat dijangkau (dari _roots_) telah dikunjungi.
+- Semua objek kecuali yang ditandai akan dihapus.
 
-For instance, let our object structure look like this:
+Contohnya, semisal kita memiliki struktur objek seperti berikut:
 
 ![](garbage-collection-1.svg)
 
-We can clearly see an "unreachable island" to the right side. Now let's see how "mark-and-sweep" garbage collector deals with it.
+Dapat kita lihat dengan jelas "pulau tak terjangkau" di sisi kanan. Sekarang mari kita lihat bagaimana _"mark-and-sweep" garbage collector_ berurusan dengannya.
 
-The first step marks the roots:
+Langkah pertama menandai _roots_-nya:
 
 ![](garbage-collection-2.svg)
 
-Then their references are marked:
+Kemudian rujukkannya ditandai:
 
 ![](garbage-collection-3.svg)
 
-...And their references, while possible:
+...Dan kemudian rujukkan dalamnya juga, jika masih ada:
 
 ![](garbage-collection-4.svg)
 
-Now the objects that could not be visited in the process are considered unreachable and will be removed:
+Sekarang objek-objek yang tak dapat dikunjungi selama proses berlangsung dianggap tak terjangkau (_unreachable_) dan akan dihapus:
 
 ![](garbage-collection-5.svg)
 
-We can also imagine the process as spilling a huge bucket of paint from the roots, that flows through all references and marks all reachable objects. The unmarked ones are then removed.
+Kita juga bisa membayangkan proses tersebut sebagai menumpahkan ember cat dari _roots_, yang mengalir ke semua rujukkan dan menandai semua objek yang terjangkau. Yang tidak tertandai akan dihapus.
 
-That's the concept of how garbage collection works. JavaScript engines apply many optimizations to make it run faster and not affect the execution.
+Itu merupakan konsep dari bagaimana cara kerja _garbage collection_. _Engines_ JavaScript menerapkan banyak optimisasi untuk membuatnya berjalan lebih cepat dan tanpa mempengaruhi eksekusi.
 
-Some of the optimizations:
+Beberapa optimisasi:
 
-- **Generational collection** -- objects are split into two sets: "new ones" and "old ones". Many  objects appear, do their job and die fast, they can be cleaned up aggressively. Those that survive for long enough, become "old" and are examined less often.
-- **Incremental collection** -- if there are many objects, and we try to walk and mark the whole object set at once, it may take some time and introduce visible delays in the execution. So the engine tries to split the garbage collection into pieces. Then the pieces are executed one by one, separately. That requires some extra bookkeeping between them to track changes, but we have many tiny delays instead of a big one.
-- **Idle-time collection** -- the garbage collector tries to run only while the CPU is idle, to reduce the possible effect on the execution.
+- **Generational collection** -- objek-objek dibagi kedalam dua set: "yang baru" dan "yang lama". Kebanyakan objek muncul, melakukan tugasnya dan mati dengan cepat, mereka dapat dibersihkan secara agresif. Mereka yang bertahan cukup lama, akan menjadi "yang lama" dan tak akan sering diperiksa.
+- **Incremental collection** -- Jika terdapat banyak objek-objek, dan kita mencoba menapaki sambil menandai keseluruhan set objek sekaligus, itu dapat memakan waktu dan menimbulkan keterlambatan yang terlihat dalam eksekusi. Jadi _engine_ akan mencoba untuk memecah proses _garbage collection_ menjadi bagian-bagian kecil. Kemudian bagian-bagian kecil tersebut akan dieksekusi satu-persatu, secara terpisah. Itu memerlukan pencatatan ekstra diantara mereka untuk melacak perubahan, tetapi jadinya kta hanya mengalami keterlambatan kecil yang banyak daripada satuan yang besar.
+- **Idle-time collection** -- _garbage collector_ akan mencoba untuk jalan hanya ketika _CPU_ sedang _idle_, untuk mengurangi kemungkinan efek pada eksekusi.
 
-There exist other optimizations and flavours of garbage collection algorithms. As much as I'd like to describe them here, I have to hold off, because different engines implement different tweaks and techniques. And, what's even more important, things change as engines develop, so studying deeper "in advance", without a real need is probably not worth that. Unless, of course, it is a matter of pure interest, then there will be some links for you below.
+Terdapat optimisasi-optimisasi dan tipe-tipe lain dari algoritma _garbage collection_. Sebesar apapun keinginan untuk menjelaskannya disini, harus kutahan, karena _engines_ yang berbeda mengimplementasikan teknik dan _tweaks_ yang berbeda pula. Dan, yang lebih penting, hal-hal tersebut akan berubah seiring dengan pengembangan _engine_, jadi mempelajarinya lebih dalam "di awal", tanpa kebutuhan yang berarti mungkin akan sia-sia. Kecuali, tentu saja, jika itu merupakan murni masalah ketertarikan, maka ada beberapa tautan untukmu dibawah.
 
-## Summary
+## Ringkasan
 
-The main things to know:
+Hal utama yang perlu diketahui:
 
-- Garbage collection is performed automatically. We cannot force or prevent it.
-- Objects are retained in memory while they are reachable.
-- Being referenced is not the same as being reachable (from a root): a pack of interlinked objects can become unreachable as a whole.
+- Pengumpulan sampah (_Garbage collection_) dilakukan secara otomatis. Kita tidak bisa memaksa ataupun mencegahnya.
+- Objek-objek dipertahankan dalam memori selagi mereka terjangkau (_reachable_).
+- Menjadi yang dirujuk tidak sama dengan menjadi terjangkau (dari sebuah _root_): sekumpulan objek yang saling terkait dapat menjadi tak terjangkau sebagai keseluruhan.
 
-Modern engines implement advanced algorithms of garbage collection.
+_Engine_ modern mengimplementasikan algoritma  _garbage collection_ canggih (_advance_).
 
-A general book "The Garbage Collection Handbook: The Art of Automatic Memory Management" (R. Jones et al) covers some of them.
+Buku "The Garbage Collection Handbook: The Art of Automatic Memory Management" (R. Jones et al) mencakup beberapanya.
 
-If you are familiar with low-level programming, the more detailed information about V8 garbage collector is in the article [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
+Jika kamu familiar dengan pemrograman _low-level_, informasi mendalam tentang _garbage collector_ V8 terdapat pada artikel [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
 
-[V8 blog](https://v8.dev/) also publishes articles about changes in memory management from time to time. Naturally, to learn the garbage collection, you'd better prepare by learning about V8 internals in general and read the blog of [Vyacheslav Egorov](http://mrale.ph) who worked as one of V8 engineers. I'm saying: "V8", because it is best covered with articles in the internet. For other engines, many approaches are similar, but garbage collection differs in many aspects.
+[V8 blog](https://v8.dev/) juga mempublikasikan artikel-artikel tentang ubahan-ubahan dalam manajemen memori dari waktu ke waktu. Tentu saja, untuk belajar proses _garbage collection_, kamu lebih baik mempersiapkan diri dengan belajar tentang _internals_ V8 secara umum dan membaca blog [Vyacheslav Egorov](http://mrale.ph) yang merupakan salah seorang _engineer_ V8. Saya bilang: "V8", karena merupakan yang paling komprehensif di _cover_ oleh artikel-artikel di internet. Untuk _engine_ lainnya, pendekatannya kebanyakan mirip-mirip, tetapi _garbage collection_ berbeda dalam banyak aspek.
 
-In-depth knowledge of engines is good when you need low-level optimizations. It would be wise to plan that as the next step after you're familiar with the language.  
+Pengetahuan mendalam mengenai _engines_ itu bagus ketika membutuhkan optimisasi _low-level_. Tapi akan lebih bijak untuk merencanakan itu sebagai langkah selanjutnya setelah kamu akrab dengan bahasanya (JavaScript).  
