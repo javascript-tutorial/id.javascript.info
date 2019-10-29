@@ -92,7 +92,7 @@ let user = {
 ```
 Itu disebut koma "buntut" atau "menggantung". Memudahkan kita menambah/menghapus/memindahkan properti, karena semua barus menjadi mirip.
 
-## Braket kotak
+## Bracket kotak
 
 Untuk properti multi-kata, akses dot tak bekerja:
 
@@ -286,45 +286,45 @@ let user = {
 
 ## Cek existensi
 
-A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It provides a very common way to test whether the property exists -- to get it and compare vs undefined:
+Satu fitur objek penting ialah kita bisa melakukan akses ke properti. Takkan ada galat jika properti tak ada! Mengakses properti yang tak ada hanya mengembalikan `undefined`. Ia menyediakan cara paling umum untuk mengetes existensi properti -- mengambilnya dan membandingan dengan undefined:
 
 ```js run
 let user = {};
 
-alert( user.noSuchProperty === undefined ); // true means "no such property"
+alert( user.noSuchProperty === undefined ); // true artinya "tak ada properti macam ini"
 ```
 
-There also exists a special operator `"in"` to check for the existence of a property.
+Ada juga operator spesial `"in"` untuk mengecek existensi properti.
 
-The syntax is:
+Syntaxnya:
 ```js
 "key" in object
 ```
 
-For instance:
+Misalnya:
 
 ```js run
 let user = { name: "John", age: 30 };
 
-alert( "age" in user ); // true, user.age exists
-alert( "blabla" in user ); // false, user.blabla doesn't exist
+alert( "age" in user ); // true, user.age ada
+alert( "blabla" in user ); // false, user.blabla tak ada
 ```
 
-Please note that on the left side of `in` there must be a *property name*. That's usually a quoted string.
+Tolong ingat bahwa di sebelah kiri `in` harus ada *nama properti*. Itu biasanya string yang dikuotasi.
 
-If we omit quotes, that would mean a variable containing the actual name will be tested. For instance:
+Jika kita membuang quotasi, itu artinya variabel berisi nama sungguhan akan dites. Misalnya:
 
 ```js run
 let user = { age: 30 };
 
 let key = "age";
-alert( *!*key*/!* in user ); // true, takes the name from key and checks for such property
+alert( *!*key*/!* in user ); // true, mengambil nama dari kunci dan mengecek properti tersebut
 ```
 
-````smart header="Using \"in\" for properties that store `undefined`"
-Usually, the strict comparison `"=== undefined"` check the property existance just fine. But there's a special case when it fails, but `"in"` works correctly.
+````smart header="Menggunakan \"in\" untuk properti yang menyimpan `undefined`"
+Biasanya, pembandingan ketat `"=== undefined"` mengecek existensi properti dengan baik. Tapi ada kasus spesial saat ia gagal, tapi `"in"` bekerja dengan benar.
 
-It's when an object property exists, but stores `undefined`:
+Itu ialah saat ada properti objek, tapi menyimpan `undefined`:
 
 ```js run
 let obj = {
@@ -337,24 +337,24 @@ alert( "test" in obj ); // true, the property does exist!
 ```
 
 
-In the code above, the property `obj.test` technically exists. So the `in` operator works right.
+Di contoh kode di atas, properti `obj.test` ada secara teknis. Tapi operator `in` bekerja dengan baik.
 
-Situations like this happen very rarely, because `undefined` is usually not assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
+Situasi seperti ini jarang terjadi, karena `undefined` biasanya tak ditetapkan. Kita sering memakai `null` untuk nilai "unknown" atau "empty". Jadi operator `in` merupakan tamu exotik dalam kode.
 ````
 
-## The "for..in" loop
+## Loog "for..in"
 
-To walk over all keys of an object, there exists a special form of the loop: `for..in`. This is a completely different thing from the `for(;;)` construct that we studied before.
+Untuk mengitari semua kunci objek, ada bentuk spesial dari loop: `for..in`. Ini sangat berbeda dari konstruksi `for(;;)` yang kita pelajari sebelumnya.
 
-The syntax:
+Syntaxnya:
 
 ```js
 for (key in object) {
-  // executes the body for each key among object properties
+  // mengexekusi badan untuk tiap kunci dalam properti objek
 }
 ```
 
-For instance, let's output all properties of `user`:
+Misalnya, mari mengoutkan semua properti `user`:
 
 ```js run
 let user = {
@@ -371,18 +371,18 @@ for (let key in user) {
 }
 ```
 
-Note that all "for" constructs allow us to declare the looping variable inside the loop, like `let key` here.
+Catat bahwa semua konstruksi "for" membolehkan kita mendeklarasi variabel looping di dalam loop, seperti `let key` di sini.
 
-Also, we could use another variable name here instead of `key`. For instance, `"for (let prop in obj)"` is also widely used.
+Juga, kita bisa memakai nama variabel lain di sini ketimbang `key`. Misalnya, `"for (let prop in obj)"` juga banyak dipakai.
 
 
-### Ordered like an object
+### Berurut seperti objek
 
-Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order they were added? Can we rely on this?
+Apa objek terurut? Dengan kata lain, jika kita meloop satu objek keseluruhan, apa kita mengambil semua properti dengan urutan yang sama saat mereka ditambahkan? Apa kita bisa percaya itu?
 
-The short answer is: "ordered in a special fashion": integer properties are sorted, others appear in creation order. The details follow.
+Jawaban pendeknya ialah: "terurut dalam cara spesial": properti integer terurut, yang lainnya muncul dalam urutan pembuatan. Detilnya mengikuti.
 
-As an example, let's consider an object with the phone codes:
+Misalnya, mari pertimbangkan objek dengan kode telpon:
 
 ```js run
 let codes = {
@@ -400,19 +400,19 @@ for (let code in codes) {
 */!*
 ```
 
-The object may be used to suggest a list of options to the user. If we're making a site mainly for German audience then we probably want `49` to be the first.
+Objek ini digunakan untuk mensugesti daftar opsi ke pengguna. Jika kita membuat situs khusus untuk audiensi Jerman maka kita kemungkinan mau `49` jadi yang pertama.
 
-But if we run the code, we see a totally different picture:
+Tapi jika kita menjalankan kodenya, kita lihat potret yang berbeda:
 
 - USA (1) goes first
 - then Switzerland (41) and so on.
 
-The phone codes go in the ascending sorted order, because they are integers. So we see `1, 41, 44, 49`.
+Kode telpon berurut secara ascending, karena mereka integer. Jadi kita lihat `1, 41, 44, 49`.
 
-````smart header="Integer properties? What's that?"
-The "integer property" term here means a string that can be converted to-and-from an integer without a change.
+````smart header="Properti integer? Apa itu?"
+Istilah "properti integer" di sini artinya string yang bisa dikonversi ke-dan-dari integer tanpa perubahan.
 
-So, "49" is an integer property name, because when it's transformed to an integer number and back, it's still the same. But "+49" and "1.2" are not:
+Jadi, "49" nama properti integer, karena mereka ditransform ke angka integer dan kebalikannya, ia masih sama saja. Tapi "+49" dan "1.2" tidak:
 
 ```js run
 // Math.trunc is a built-in function that removes the decimal part
@@ -422,26 +422,26 @@ alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integ
 ```
 ````
 
-...On the other hand, if the keys are non-integer, then they are listed in the creation order, for instance:
+...Di sisi lain, jika kuncinya non-integer, maka mereka didaftar dalam urutan kreasi, misalnya:
 
 ```js run
 let user = {
   name: "John",
   surname: "Smith"
 };
-user.age = 25; // add one more
+user.age = 25; // tambah satu lagi
 
 *!*
-// non-integer properties are listed in the creation order
+// properti non-integer didaftar dalam order kreasi
 */!*
 for (let prop in user) {
   alert( prop ); // name, surname, age
 }
 ```
 
-So, to fix the issue with the phone codes, we can "cheat" by making the codes non-integer. Adding a plus `"+"` sign before each code is enough.
+Jadi, untuk mengatasi isu kode telpon, kita bisa berbuat "curang" dengan menjadikan kode non-integer. Cukup menambahkan tanda plus `"+"` sebelum tiap kode.
 
-Like this:
+Seperti ini:
 
 ```js run
 let codes = {
@@ -457,30 +457,30 @@ for (let code in codes) {
 }
 ```
 
-Now it works as intended.
+Sekarang itu bekerja sesuai yang diinginkan.
 
-## Copying by reference
+## Mengkopi dengan referensi
 
-One of the fundamental differences of objects vs primitives is that they are stored and copied "by reference".
+Salah satu perbedaan fundamental dari objek vs primitif ialah mereka diurutkan dan dikopi "dengan referensi".
 
-Primitive values: strings, numbers, booleans -- are assigned/copied "as a whole value".
+Nilai primitif: string, angka, boolean -- diset/dikopi "sebagai satu nilai utuh".
 
-For instance:
+Misalnya:
 
 ```js
 let message = "Hello!";
 let phrase = message;
 ```
 
-As a result we have two independent variables, each one is storing the string `"Hello!"`.
+Sebagai hasilnya kita punya dua variabel independen, yang masing-masing menyimpan string `"Hello!"`.
 
 ![](variable-copy-value.svg)
 
-Objects are not like that.
+Objeck tak seperti itu.
 
-**A variable stores not the object itself, but its "address in memory", in other words "a reference" to it.**
+**Variabel tak hanya menyimpan objek itu sendiri, tapi juga "alamatnya di memory", dengan kata lain "referensi" ke situ.**
 
-Here's the picture for the object:
+Berikut gambaran objek:
 
 ```js
 let user = {
@@ -490,25 +490,25 @@ let user = {
 
 ![](variable-contains-reference.svg)
 
-Here, the object is stored somewhere in memory. And the variable `user` has a "reference" to it.
+Di sini, objek disimpan di suatu tempat di memory. Dan variable `user` punya "referensi" ke situ.
 
-**When an object variable is copied -- the reference is copied, the object is not duplicated.**
+**Ketika variabel objek dikopi -- referensi dikopi, objek tak diduplikasi.**
 
-If we imagine an object as a cabinet, then a variable is a key to it. Copying a variable duplicates the key, but not the cabinet itself.
+Jika kita bayangkan objek sebagai kabinet, maka variabel adalah kuncinya. Mengkopi variabel menduplikasi kuncinya, tapi tidak kabinetnya itu sendiri.
 
-For instance:
+Misalnya:
 
 ```js no-beautify
 let user = { name: "John" };
 
-let admin = user; // copy the reference
+let admin = user; // mengkopi referensi
 ```
 
-Now we have two variables, each one with the reference to the same object:
+Kerang kita punya dua variabel, masing-masing dengan referensi ke objek yang sama:
 
 ![](variable-copy-reference.svg)
 
-We can use any variable to access the cabinet and modify its contents:
+Kita bisa memakai variabel apapun untuk mengakses kabinet dan memodifikasi isinya:
 
 ```js run
 let user = { name: 'John' };
