@@ -92,18 +92,18 @@ let user = {
 ```
 Itu disebut koma "buntut" atau "menggantung". Memudahkan kita menambah/menghapus/memindahkan properti, karena semua barus menjadi mirip.
 
-## Square brackets
+## Braket kotak
 
-For multiword properties, the dot access doesn't work:
+Untuk properti multi-kata, akses dot tak bekerja:
 
 ```js run
-// this would give a syntax error
+// ini akan memberi galat syntax
 user.likes birds = true
 ```
 
-That's because the dot requires the key to be a valid variable identifier. That is: no spaces and other limitations.
+Ini karena dot mensyaratkan key merupakan identifier variabel yang valid. Yaitu: tak ada spasi dan limitasi lain.
 
-There's an alternative "square bracket notation" that works with any string:
+Ada alternatif "notasi bracket kotak" yang bekerja dengan string apapun:
 
 ```js run
 let user = {};
@@ -118,20 +118,20 @@ alert(user["likes birds"]); // true
 delete user["likes birds"];
 ```
 
-Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
+Sekarang semuanya oke. Tolong catat bahwa string di dalam bracket diquotasi dengan benar (bisa tipe quotasi apapun).
 
-Square brackets also provide a way to obtain the property name as the result of any expression -- as opposed to a literal string -- like from a variable as follows:
+Bracket kotak juga menyediakan cara memperoleh nama properti sebagai hasil expresi -- lawannya string literal -- seperti dari variabel berikut:
 
 ```js
 let key = "likes birds";
 
-// same as user["likes birds"] = true;
+// sama dengan user["likes birds"] = true;
 user[key] = true;
 ```
 
-Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility.
+Di sini, variabel `key` bisa dikalkulasi saat run-time atau tergantung input user. Lalu kita pakai untuk mengakses properti. Ini memberi kita flexibilitas yang sangat besar.
 
-For instance:
+Misalnya:
 
 ```js run
 let user = {
@@ -141,11 +141,11 @@ let user = {
 
 let key = prompt("What do you want to know about the user?", "name");
 
-// access by variable
-alert( user[key] ); // John (if enter "name")
+// akses dari variabel
+alert( user[key] ); // John (jika mengenter "name")
 ```
 
-The dot notation cannot be used in a similar way:
+Notasi dot tak bisa dipakai dalam cara serupa:
 
 ```js run
 let user = {
@@ -157,40 +157,40 @@ let key = "name";
 alert( user.key ) // undefined
 ```
 
-### Computed properties
+### Properti terkomputasi
 
-We can use square brackets in an object literal. That's called *computed properties*.
+Kita bisa memakai bracket kotak dalam literal objek. Itu disebut *properti terkomputasi*.
 
-For instance:
+Misalnya:
 
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
 
 let bag = {
 *!*
-  [fruit]: 5, // the name of the property is taken from the variable fruit
+  [fruit]: 5, // nama properti diambil dari variabel fruit
 */!*
 };
 
-alert( bag.apple ); // 5 if fruit="apple"
+alert( bag.apple ); // 5 jika fruit="apple"
 ```
 
-The meaning of a computed property is simple: `[fruit]` means that the property name should be taken from `fruit`.
+Arti properti terkomputasi simpel: `[fruit]` artinya nama properti harus diambil dari `fruit`.
 
-So, if a visitor enters `"apple"`, `bag` will become `{apple: 5}`.
+Jadi, jika pengunjung mengenter `"apple"`, `bag` akan menjadi `{apple: 5}`.
 
-Essentially, that works the same as:
+Essensinya, ia bekerja mirip dengan:
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
 let bag = {};
 
-// take property name from the fruit variable
+// ambil nama properti dari variabel fruit
 bag[fruit] = 5;
 ```
 
-...But looks nicer.
+...Tapi lebih manis.
 
-We can use more complex expressions inside square brackets:
+Kita bisa pakai expresi rumit di dalam bracket kotak:
 
 ```js
 let fruit = 'apple';
@@ -199,16 +199,16 @@ let bag = {
 };
 ```
 
-Square brackets are much more powerful than the dot notation. They allow any property names and variables. But they are also more cumbersome to write.
+Bracket kotak jauh lebih kuat dari notasi dot. Mereka membolehkan variabel dan nama properti apapun. Tapi mereka juga lebih rumit untuk ditulis.
 
-So most of the time, when property names are known and simple, the dot is used. And if we need something more complex, then we switch to square brackets.
+Jadi seringnya, saat nama properti diketahui dan simpel, dot dipakai. Dan jika kita butuh sesuatu yang rumit, maka kita ganti ke bracket kotak.
 
 
 
-````smart header="Reserved words are allowed as property names"
-A variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+````smart header="Kata khusus dibolehkan sebagai nama properti"
+Variabel tak bisa punya nama serupa dengan kata khusus-bahasa seperti "for", "let", "return" dll.
 
-But for an object property, there's no such restriction. Any name is fine:
+Tapi untuk properti objek, tak ada batasan. Nama apapun oke:
 
 ```js run
 let obj = {
@@ -220,31 +220,31 @@ let obj = {
 alert( obj.for + obj.let + obj.return );  // 6
 ```
 
-Basically, any name is allowed, but there's a special one: `"__proto__"` that gets special treatment for historical reasons. For instance, we can't set it to a non-object value:
+Pada dasarnya, nama apapun boleh, tapi ada satu yang spesial: `"__proto__"` yang mendapat perlakuan spesial karena alasan historis. Misalnya, kita tak bisa mengeset ia ke nilai non-objek:
 
 ```js run
 let obj = {};
 obj.__proto__ = 5;
-alert(obj.__proto__); // [object Object], didn't work as intended
+alert(obj.__proto__); // [object Object], tak bekerja seperti yang diharapkan
 ```
 
-As we see from the code, the assignment to a primitive `5` is ignored.
+Seperti yang kita lihat dari kode, penetapan ke primitif `5` diabaikan.
 
-That can become a source of bugs and even vulnerabilities if we intend to store arbitrary key-value pairs in an object, and allow a visitor to specify the keys.
+Itu bisa jadi sumber bug dan bahkan kerentanan jika kita sengaja menyimpan sembarang pasangan key-value dalam objek, dan membolehkan pengunjung menspesifikasi kuncinya.
 
-In that case the visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
+Di kasus itu pengunjung bisa memilih `__proto__` sebagai kunci, dan logika penetapan akan hancur (seperti yang ditunjukkan di atas).
 
-There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects.
+Ada cara membuat objek memperlakukan `__proto__` sebagai properti reguler, yang akan kita bahas nanti, tapi pertama kita harus tahu lebih tentang objek.
 
-There's also another data structure [Map](info:map-set), that we'll learn in the chapter <info:map-set>, which supports arbitrary keys.
+Ada juga struktur data lain [Map](info:map-set), yang akan kita pelajari di bab <info:map-set>, yang mendukung sembarang kunci.
 ````
 
 
-## Property value shorthand
+## Steno nilai properti
 
-In real code we often use existing variables as values for property names.
+Di kode riil kita sering memakai variabel sebagai nilai untuk nama properti.
 
-For instance:
+Misalnya:
 
 ```js run
 function makeUser(name, age) {
@@ -259,32 +259,32 @@ let user = makeUser("John", 30);
 alert(user.name); // John
 ```
 
-In the example above, properties have the same names as variables. The use-case of making a property from a variable is so common, that there's a special *property value shorthand* to make it shorter.
+Di contoh di atas, properti punya nama sama dengan variabel. Use-case penggunaan properti dari variabel sangat umum, bahwa ada *steno nilai properti* spesial yang memperpendek itu.
 
-Instead of `name:name` we can just write `name`, like this:
+Ketimbang `name:name` kita bisa menuliskan `name`, seperti ini:
 
 ```js
 function makeUser(name, age) {
 *!*
   return {
-    name, // same as name: name
-    age   // same as age: age
+    name, // sama dengan name: name
+    age   // sama dengan age: age
     // ...
   };
 */!*
 }
 ```
 
-We can use both normal properties and shorthands in the same object:
+Kita bisa pakai baik steno dan properti normal bersamaan dalam satu objek:
 
 ```js
 let user = {
-  name,  // same as name:name
+  name,  // sama dengan name:name
   age: 30
 };
 ```
 
-## Existence check
+## Cek existensi
 
 A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It provides a very common way to test whether the property exists -- to get it and compare vs undefined:
 
