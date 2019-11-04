@@ -11,7 +11,7 @@ Mereka tersedia untuk:
 
 - `Map`
 - `Set`
-- `Array` (except `arr.values()`)
+- `Array`
 
 Objek biasa juga menghadapi method yang mirip, tapi sintaksisnya sedikit berbeda.
 

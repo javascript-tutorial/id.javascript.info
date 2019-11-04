@@ -212,7 +212,7 @@ Tapi kita dapat memaksanya keluar pada waktu apapun menggunakan perintah spesial
 
 Contohnya, perulangan dibawah menanyakan pengguna untuk serangkaian angka, "hentikan" ketika tidak ada angka yang dimasukan:
 
-```js
+```js run
 let sum = 0;
 
 while (true) {

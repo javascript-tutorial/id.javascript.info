@@ -137,7 +137,11 @@ Ada tombol untuk itu di ujung atas panel kanan. Ayo kita ikuti mereka.
 <span class="devtools" style="background-position:-62px -192px"></span> -- "Langkahi atas": jalankan command berikutnya, tapi *jangan masuk ke fungsi*, hotkey `key:F10`.
 : Serupa dengan command "Step" sebelumnya, tapi berbeda jika pernyataan berikutnya berupa panggilan fungsi. Yaitu: bukan built-in, seperti `alert`, tapi fungsi kita sendiri.
 
+<<<<<<< HEAD
     Command "Langkahi" masuk ke dalam dan menjeda exekusi di baris pertama, sedangkan "Langkahi atas" mengexekusi panggilan fungsi bersarang secara tak terlihat, mengabaikan internal fungsi.
+=======
+    The "Step" command goes into it and pauses the execution at its first line, while "Step over" executes the nested function call invisibly, skipping the function internals.
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
     Exekusi kemudian segera dijeda setelah fungsi itu.
 
