@@ -27,7 +27,7 @@ alert(window.gVar); // 5 (menjadi properti objek global)
 
 Mohon jangan bergantung dengan itu! Perilaku ini ada untuk alasan kompatibilitas. Script modern menggunakan [JavaScript modules](info:modules) dimana hal-hal tersebut tidak terjadi.
 
-Jika kita menggunakan `let`, hal teresebut tidak akan terjadi:
+Jika kita menggunakan `let`, hal tersebut tidak akan terjadi:
 
 ```js run untrusted refresh
 let gLet = 5;
@@ -55,6 +55,7 @@ alert(window.currentUser.name); // John
 
 Meskipun begitu, menggunakan variabel global umumnya tidak dianjurkan. Variabel global harus ada sesedikit mungkin. Desain kode dimana fungsi mendapatkan variabel "input" dan mengeluarkan "outcome" tertentu akan lebih jelas, kurang cenderung menghasilkan eror dan lebih mudah untuk dites dibanding jika ia menggunakan variabel luar atau global.
 
+
 ## Menggunakan polyfills
 
 Kita menggunakan objek global untuk mengetes dukungan atas fitur bahasa modern.
@@ -80,7 +81,6 @@ if (!window.Promise) {
 
     Itu termasuk built-in Javascript, seperti `Array` dan nilai-nilai lingkungan-spesifik, seperti `window.innerHeight` -- tinggi window di dalam browser.
 - Objek global mempunyai nama universal `globalThis`.
-  
     ...Tapi lebih sering disebut nama lingkungan-spesifik "old-school", seperti `window` (browser) dan `global` (Node.js).  Karena `globalThis` adalah usulan baru, ia belum didukung di dalam non-Chromium Edge (tapi bisa dipolyfill).
 - Kita harus menyimpan nilai di objek global jika kalau ia benar-benar global untuk projek kita. Dan pertahankan jumlah minimum. 
 - Dalam browser, jika kita tidak menggunakan [modules](info:modules), fungsi global dan variabel ternyatakan `var` menjadi properti objek global.
