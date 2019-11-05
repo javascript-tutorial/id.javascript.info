@@ -1,87 +1,87 @@
 
-# Global object
+# Objek global
 
-The global object provides variables and functions that are available anywhere. By default, those that are built into the language or the environment.
+Objek global menyediakan variabel dan fungsi yang bisa didapatkan dimana saja. Secara default, variabel dan fungsi yang sudah berada didalam bahasanya atau lingkungannya.
 
-In a browser it is named `window`, for Node.js it is `global`, for other environments it may have another name.
+Di dalam browser ia dinamakan `window`, untuk Node.js `global`, untuk lingkungan lainnya ia mungkin mempunyai nama lain.
 
-Recently, `globalThis` was added to the language, as a standardized name for a global object, that should be supported across all environments. In some browsers, namely non-Chromium Edge, `globalThis` is not yet supported, but can be easily polyfilled.
+Akhir-akhir ini, `globalThis` ditambahkan ke bahasanya, sebagai nama standar untuk objek global, yang harus di dukung di semua lingkungan. Di browser tertentu, ya itu non-Chromium Edge, `globalThis` belum didukung, tapi bisa dengan mudah dipolyfill.
 
-We'll use `window` here, assuming that our environment is a browser. If your script may run in other environments, it's better to use `globalThis` instead.
+Kita akan memakai `window` disini, dengan anggapan bahwa lingkungan kita adalah browser. Jika script kamu mungkin digunakan di lingkungan lain, lebih baik menggunakan `globalThis`.
 
-All properties of the global object can be accessed directly:
+Semua properti objek global bisa diakses secara langsung:
 
 ```js run
 alert("Hello");
-// is the same as
+// sama saja dengan
 window.alert("Hello");
 ```
 
-In a browser, global functions and variables declared with `var` (not `let/const`!) become the property of the global object:
+Di dalam browser, fungsi global dan variabel yang dinyatakan dengan `var` (bukan `let/const`!) menjadi properti global objek:
 
 ```js run untrusted refresh
 var gVar = 5;
 
-alert(window.gVar); // 5 (became a property of the global object)
+alert(window.gVar); // 5 (menjadi properti objek global)
 ```
 
-Please don't rely on that! This behavior exists for compatibility reasons. Modern scripts use [JavaScript modules](info:modules) where such thing doesn't happen.
+Mohon jangan bergantung dengan itu! Perilaku ini ada untuk alasan kompatibilitas. Script modern menggunakan [JavaScript modules](info:modules) dimana hal-hal tersebut tidak terjadi.
 
-If we used `let` instead, such thing wouldn't happen:
+Jika kita menggunakan `let`, hal tersebut tidak akan terjadi:
 
 ```js run untrusted refresh
 let gLet = 5;
 
-alert(window.gLet); // undefined (doesn't become a property of the global object)
+alert(window.gLet); // undefined (tidak menjadi properti objek global)
 ```
 
-If a value is so important that you'd like to make it available globally, write it directly as a property:
+Jika sesuatu nilai sangat penting sesampai kamu ingin membuatnya tersedia secara global, tulislah langsung sebagai satu properti:
 
 ```js run
 *!*
-// make current user information global, to let all scripts access it
+// buat info pengguna saat ini global, supaya semua script bisa mengaksesnya
 window.currentUser = {
   name: "John"
 };
 */!*
 
-// somewhere else in code
+// di tempat lain di kode
 alert(currentUser.name);  // John
 
-// or, if we have a local variable with the name "currentUser"
-// get it from window explicitly (safe!)
+// atau jika kita mempunyai variabel lokal dengan nama "currentUser"
+// ambillah secara eksplisit dari window (aman!)
 alert(window.currentUser.name); // John
 ```
 
-That said, using global variables is generally discouraged. There should be as few global variables as possible. The code design where a function gets "input" variables and produces certain "outcome" is clearer, less prone to errors and easier to test than if it uses outer or global variables.
+Meskipun begitu, menggunakan variabel global umumnya tidak dianjurkan. Variabel global harus ada sesedikit mungkin. Desain kode dimana fungsi mendapatkan variabel "input" dan mengeluarkan "outcome" tertentu akan lebih jelas, kurang cenderung menghasilkan eror dan lebih mudah untuk dites dibanding jika ia menggunakan variabel luar atau global.
 
-## Using for polyfills
 
-We use the global object to test for support of modern language features.
+## Menggunakan polyfills
 
-For instance, test if a built-in `Promise` object exists (it doesn't in really old browsers):
+Kita menggunakan objek global untuk mengetes dukungan atas fitur bahasa modern.
+
+Contohnya, tes jika objek built-in `Promise` berada (tidak ada di browser yang sangat tua):
 ```js run
 if (!window.Promise) {
   alert("Your browser is really old!");
 }
 ```
 
-If there's none (say, we're in an old browser), we can create "polyfills": add functions that are not supported by the environment, but exist in the modern standard.
+Jika tidak ada (anggap kita di browser tua), kita bisa menciptakan "polyfills": tambahkan fungsi yang tidak di dukung oleh lingkungan, tapi ada di standar modern.
 
 ```js run
 if (!window.Promise) {
-  window.Promise = ... // custom implementation of the modern language feature
+  window.Promise = ... // implementasi custom dari fitur bahasa modern
 }
 ```
 
-## Summary
+## Ringkasan
 
-- The global object holds variables that should be available everywhere.
+- Objek global menyimpan variabel yang harus tersedia dimana saja.
 
-    That includes JavaScript built-ins, such as `Array` and environment-specific values, such as `window.innerHeight` -- the window height in the browser.
-- The global object has a universal name `globalThis`.
-
-    ...But more often is referred by "old-school" environment-specific names, such as `window` (browser) and `global` (Node.js). As `globalThis` is a recent proposal, it's not supported in non-Chromium Edge (but can be polyfilled).
-- We should store values in the global object only if they're truly global for our project. And keep their number at minimum.
-- In-browser, unless we're using [modules](info:modules), global functions and variables declared with `var` become a property of the global object.
-- To make our code future-proof and easier to understand, we should access properties of the global object directly, as `window.x`.
+    Itu termasuk built-in Javascript, seperti `Array` dan nilai-nilai lingkungan-spesifik, seperti `window.innerHeight` -- tinggi window di dalam browser.
+- Objek global mempunyai nama universal `globalThis`.
+    ...Tapi lebih sering disebut nama lingkungan-spesifik "old-school", seperti `window` (browser) dan `global` (Node.js).  Karena `globalThis` adalah usulan baru, ia belum didukung di dalam non-Chromium Edge (tapi bisa dipolyfill).
+- Kita harus menyimpan nilai di objek global jika kalau ia benar-benar global untuk projek kita. Dan pertahankan jumlah minimum. 
+- Dalam browser, jika kita tidak menggunakan [modules](info:modules), fungsi global dan variabel ternyatakan `var` menjadi properti objek global.
+- Untuk membuat kode kami future-proof dan lebih mudah dimengerti, kita harus mengakses properti dari global objek secara langsung, sebagain `window.x`.
