@@ -1,4 +1,8 @@
+<<<<<<< HEAD:1-js/02-first-steps/15-function-expressions-arrows/article.md
 # Expresi fungsi dan panah
+=======
+# Function expressions
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd:1-js/02-first-steps/15-function-expressions/article.md
 
 Di JavaScript, fungsi bukan "struktur bahasa magis", melaikan satu bentuk nilai spesial.
 
@@ -359,6 +363,7 @@ That's also better for readability, as it's easier to look up `function f(…) {
 ...Tapi jika Deklarasi Fungsi tak cocok untuk beberapa alasan, atau kita butuh deklarasi kondisional (kita sudah lihat contohnya), maka Expresi Fungsi sebaiknya digunakan.
 ```
 
+<<<<<<< HEAD:1-js/02-first-steps/15-function-expressions-arrows/article.md
 
 ## Fungsi panah [#arrow-functions]
 
@@ -461,6 +466,9 @@ Untuk sekarang, kita sudah bisa menggunakan panah fungsi untuk aksi sebaris dan 
 ```
 
 ## Kesimpulan
+=======
+## Summary
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd:1-js/02-first-steps/15-function-expressions/article.md
 
 - Fungsi adalah nilai. Mereka bisa diset, dikopi atau dideklarasi di kode manapun.
 - Jika fungsi dideklarasi sebagai pernyataan terpisah di aliran kode utama, ia disebut "Deklarasi Fungsi".
@@ -470,9 +478,13 @@ Untuk sekarang, kita sudah bisa menggunakan panah fungsi untuk aksi sebaris dan 
 
 Di banyak kasus saat kita harus mendeklarasi fungsi, Deklarasi Fungsi disenangi, karena ia terlihat sebelum deklarasi itu sendiri. Itu memberi kita flexibilitas lebih dalam organisasi kode, dan biasa lebih mudah terbaca.
 
+<<<<<<< HEAD:1-js/02-first-steps/15-function-expressions-arrows/article.md
 Jadi sebaiknya kita gunakan Expresi Fungsi hanya saat Deklarasi Fungsi tak cocok digunakan. Kita sudah melihat beberapa contoh itu di bab ini, dan kita akan melihat lebih lagi nanti.
 
 Panah fungsi lebih praktis untuk satu baris. Mereka ada dalam dua rasa:
 
 1. Tanpa kurung kurawal: `(...args) => expression` -- sisi kanan ialah expresi: fungsi mengevaluasinya dan mengembalikan hasil.
 2. Dengan kurung kurawal: `(...args) => { body }` -- bracket memperbolehkan kita menulis pernyataan ganda di dalam fungsi, tapi kita butuh `return` explisit untuk mengembalikan sesuatu.
+=======
+So we should use a Function Expression only when a Function Declaration is not fit for the task. We've seen a couple of examples of that in this chapter, and will see more in the future.
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd:1-js/02-first-steps/15-function-expressions/article.md

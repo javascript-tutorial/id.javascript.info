@@ -272,7 +272,11 @@ Kita meliput tiga cara membuat fungsi di JavaScript:
 - Parameter bisa punya nilai default: `function sum(a = 1, b = 2) {...}`.
 - Fungsi selalu mengembalikan sesuatu. Jika tak ada pernyataan `return`, maka kembaliannya `undefined`.
 
+<<<<<<< HEAD:1-js/02-first-steps/16-javascript-specials/article.md
 Detil: lihat <info:function-basics>, <info:function-expressions-arrows>.
+=======
+Details: see <info:function-basics>, <info:arrow-functions-basics>.
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd:1-js/02-first-steps/17-javascript-specials/article.md
 
 ## Lebih banyak yang akan datang
 
