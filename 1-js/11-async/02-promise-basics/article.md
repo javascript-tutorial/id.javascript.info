@@ -1,92 +1,93 @@
 # Promise
 
-Bayangkan kamu penyanyi top, dan fans single terbarumu minta siang dan malam.
 
-To get some relief, you promise to send it to them when it's published. You give your fans a list. They can fill in their email addresses, so that when the song becomes available, all subscribed parties instantly receive it. And even if something goes very wrong, say, a fire in the studio, so that you can't publish the song, they will still be notified.
+Bayangkan kamu adalah seorang penyanyi top, dan penggemarmu bertanya siang dan malam untuk *single* terbarumu.
 
-Everyone is happy: you, because the people don't crowd you anymore, and fans, because they won't miss the single.
+Untuk mendapatkan kelegaan, kamu berjanji untuk mengirimkan *single* tersebut kepada mereka ketika diterbitkan. Kamu memberikan sebuah daftar kepada penggemarmu. Mereka dapat mengisi alamat surel mereka, sehingga saat lagu sudah tersedia, semua pihak yang berlangganan langsung menerimanya. Dan bahkan jika ada yang salah, katakanlah, ada kebakaran di dalam studio, sehingga kamu tidak dapat menerbitkan lagu, mereka masih akan diberitahu.
 
-This is a real-life analogy for things we often have in programming:
+Semua orang senang: kamu, karena orang-orang tidak memadati kamu lagi, dan penggemar, karena mereka tidak ketinggalan *single*nya.
 
-1. A "producing code" that does something and takes time. For instance, a code that loads the data over a network. That's a "singer".
-2. A "consuming code" that wants the result of the "producing code" once it's ready. Many functions  may need that result. These are the "fans".
-3. A *promise* is a special JavaScript object that links the "producing code" and the "consuming code" together. In terms of our analogy: this is the "subscription list". The "producing code" takes whatever time it needs to produce the promised result, and the "promise" makes that result available to all of the subscribed code when it's ready.
+Ini adalah analogi di kehidupan nyata untuk hal-hal yang sering kita miliki dalam pemrograman:
 
-The analogy isn't terribly accurate, because JavaScript promises are more complex than a simple subscription list: they have additional features and limitations. But it's fine to begin with.
+1. "Kode produksi" itu melakukan sesuatu dan membutuhkan waktu. Sebagai contoh, sebuah kode yang memuat data melalui jaringan. Itu adalah seorang "penyanyi".
+2. "Kode pengkonsumsi" yang menginginkan hasil dari "kode produksi" setelah siap. Banyak fungsi yang mungkin membutuhkan hasil itu. Ini adalah "penggemar".
+3. *Promise* adalah objek Javascript khusus yang menghubungkan "kode produksi" dan "kode pengkonsumi" secara bersamaan. Dalam analogi kami: ini adalah "daftar berlangganan". "Kode produksi" membutuhkan waktu berapa pun untuk menghasilkan hasil yang dijanjikan, dan "*Promise*" membuat hasil tersebut tersedia untuk semua kode yang berlangganan ketika hasilnya sudah siap.
 
-The constructor syntax for a promise object is:
+Analogi ini tidak terlalu akurat, karena *promise* JavaScript lebih kompleks dari daftar berlangganan sederhana: daftar tersebut memiliki fitur dan batasan tambahan. Tetapi untuk awal tidak apa-apa.
+
+*Syntax constructor* untuk objek *promise* adalah:
 
 ```js
 let promise = new Promise(function(resolve, reject) {
-  // executor (the producing code, "singer")
+  // eksekutor (kode produksi, "penyanyi")
 });
 ```
 
-The function passed to `new Promise` is called the *executor*. When `new Promise` is created, it runs automatically. It contains the producing code, that should eventually produce a result. In terms of the analogy above: the executor is the "singer".
+Fungsi yang dilewatkan ke `new Promise` disebut sebagai *eksekutor*. Ketika `new Promise` dibuat, eksekutor tersebut berjalan secara otomatis. Eksekutor itu berisi kode produksi, yang pada akhirnya harus memproduksi hasil. Dalam analogi di atas: eksekutor adalah "penyanyi".
 
-Its arguments `resolve` and `reject` are callbacks provided by JavaScript itself. Our code is only inside the executor.
+Argumen `resolve` dan `reject` adalah *callback* yang disediakan oleh JavaScript itu sendiri. Kode kita hanya ada di dalam eksekutor.
 
-When the executor obtains the result, be it soon or late - doesn't matter, it should call one of these callbacks:
+Ketika eksekutor mendapatkan hasilnya, baik itu cepat atau lambat - tidak masalah, eksekutor harus memanggil salah satu dari *callback* ini:
 
-- `resolve(value)` — if the job finished successfully, with result `value`.
-- `reject(error)` — if an error occurred, `error` is the error object.
+- `resolve(value)` — jika pekerjaan selesai dengan sukses, dengan hasil `value`.
+- `reject(error)` — jika terjadi kesalahan, `error` adalah objek kesalahan.
 
-So to summarize: the executor runs automatically, it should do a job and then call either `resolve` or `reject`.
+Jadi untuk meringkas: eksekutor berjalan secara otomatis, eksekutor harus melakukan pekerjaan dan kemudian memanggil salah satu dari `resolve` atau `reject`.
 
-The `promise` object returned by `new Promise` constructor has internal properties:
+Objek `promise` yang dikembalikan oleh *constructor* `new Promise` memiliki properti internal:
 
-- `state` — initially `"pending"`, then changes to either `"fulfilled"` when `resolve` is called or `"rejected"` when `reject` is called.
-- `result` — initially `undefined`, then changes to `value` when `resolve(value)` called or `error` when `reject(error)` is called.
+- `state` — pada awalnya `"pending"`, kemudian berubah menjadi `"fulfilled"` saat `resolve` dipanggil atau `"rejected"` ketika `reject` dipanggil.
+- `result` — pada awalnya `undefined`, kemudian berubah menjadi `value` ketika `resolve(value)` dipanggil atau `error` ketika `reject(error)` dipanggil.
 
-So the executor eventually moves `promise` to one of these states:
+Jadi eksekutor akhirnya memindahkan `promise` ke salah satu dari kondisi ini:
 
 ![](promise-resolve-reject.svg)
 
-Later we'll see how "fans" can subscribe to these changes.
+Nanti kita akan melihat bagaimana "penggemar" dapat berlangganan kepada perubahan ini.
 
-Here's an example of a promise constructor and a simple executor function with  "producing code" that takes time (via `setTimeout`):
+Berikut ini contoh *constructor promise* dan fungsi eksekutor sederhana dengan "kode produksi" yang membutuhkan waktu (melalui `setTimeout`):
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
-  // the function is executed automatically when the promise is constructed
+  // fungsi tersebut dieksekusi secara otomatis ketika "promise" dibangun
 
-  // after 1 second signal that the job is done with the result "done"
+  // setelah 1 detik menandakan bahwa pekerjaan selesai dengan hasil "done"
   setTimeout(() => *!*resolve("done")*/!*, 1000);
 });
 ```
 
-We can see two things by running the code above:
+Kita dapat melihat dua hal dengan menjalankan kode di atas:
 
-1. The executor is called automatically and immediately (by `new Promise`).
-2. The executor receives two arguments: `resolve` and `reject` — these functions are pre-defined by the JavaScript engine. So we don't need to create them. We should only call one of them when ready.
+1. Eksekutor dipanggil secara langsung dan otomatis (oleh `new Promise`).
+2. Eksekutor menerima dua argumen: `resolve` dan `reject` — fungsi ini sudah ditentukan sebelumnya oleh mesin JavaScript. Jadi kita tidak perlu membuatnya. Kita hanya harus memanggil salah satu dari dua argumen tersebut ketika siap.
 
-    After one second of "processing" the executor calls `resolve("done")` to produce the result. This changes the state of the `promise` object:
+    Setelah satu detik "memproses" eksekutor memanggil `resolve("done")` untuk memproduksi hasilnya. Ini mengubah status objek `promise`:
 
     ![](promise-resolve-1.svg)
 
-That was an example of a successful job completion, a "fulfilled promise".
+Itu adalah contoh penyelesaian pekerjaan yang sukses, sebuah "*promise fulfilled*".
 
-And now an example of the executor rejecting the promise with an error:
+Dan sekarang adalah contoh eksekutor menolak *promise* dengan sebuah *error*:
 
 ```js
 let promise = new Promise(function(resolve, reject) {
-  // after 1 second signal that the job is finished with an error
+  // setelah 1 detik menandakan bahwa pekerjaan selesai dengan sebuah "error"
   setTimeout(() => *!*reject(new Error("Whoops!"))*/!*, 1000);
 });
 ```
 
-The call to `reject(...)` moves the promise object to `"rejected"` state:
+Panggilan untuk `reject(...)` memindahkan objek *promise* ke status `"rejected"`:
 
 ![](promise-reject-1.svg)
 
-To summarize, the executor should do a job (something that takes time usually) and then call `resolve` or `reject` to change the state of the corresponding promise object.
+Untuk meringkas, eksekutor harus melakukan pekerjaan (sesuatu yang biasanya membutuhkan waktu) dan kemudian memanggil `resolve` atau `reject` untuk mengubah status objek *promise* yang sesuai.
 
-A promise that is either resolved or rejected is called "settled", as opposed to an initially "pending" promise.
+*Promise* yang diputuskan atau ditolak disebut "diselesaikan", sebagai lawan dari *promise* "pending" awalnya.
 
-````smart header="There can be only a single result or an error"
-The executor should call only one `resolve` or one `reject`. Any state change is final.
+````smart header="Hanya ada satu hasil atau sebuah 'error'"
+Eksekutor harus memanggil hanya satu `resolve` atau satu `reject`. Setiap perubahan status adalah final.
 
-All further calls of `resolve` and `reject` are ignored:
+Semua panggilan `resolve` dan `reject` lebih lanjut diabaikan:
 
 ```js
 let promise = new Promise(function(resolve, reject) {
@@ -94,95 +95,95 @@ let promise = new Promise(function(resolve, reject) {
   resolve("done");
 */!*
 
-  reject(new Error("…")); // ignored
-  setTimeout(() => resolve("…")); // ignored
+  reject(new Error("…")); // diabaikan
+  setTimeout(() => resolve("…")); // diabaikan
 });
 ```
 
-The idea is that a job done by the executor may have only one result or an error.
+Idenya adalah bahwa pekerjaan yang dilakukan oleh eksekutor mungkin hanya memiliki satu hasil atau *error*.
 
-Also, `resolve`/`reject` expect only one argument (or none) and will ignore additional arguments.
+Juga, `resolve`/`reject` hanya berharap satu argumen (atau tidak ada) dan akan mengabaikan argumen tambahan.
 ````
 
-```smart header="Reject with `Error` objects"
-In case something goes wrong, the executor should call `reject`. That can be done with any type of argument (just like `resolve`). But it is recommended to use `Error` objects (or objects that inherit from `Error`). The reasoning for that will soon become apparent.
+```smart header="Reject dengan objek `Error`"
+Seandainya terjadi kesalahan, eksekutor harus memanggil `reject`. Itu bisa dilakukan dengan segala jenis argumen (seperti `resolve`). Tetapi direkomendasikan untuk menggunakan objek `Error` (atau objek yang mewarisi dari `Error`). Alasannya akan segera menjadi jelas.
 ```
 
-````smart header="Immediately calling `resolve`/`reject`"
-In practice, an executor usually does something asynchronously and calls `resolve`/`reject` after some time, but it doesn't have to. We also can call `resolve` or `reject` immediately, like this:
+````smart header="Memanggil langsung `resolve`/`reject`"
+Dalam praktiknya, eksekutor biasanya melakukan sesuatu secara *asynchronous* dan memanggil `resolve`/`reject` setelah beberapa waktu, tetapi tidak harus. Kita juga bisa memanggil `resolve` atau `reject` secara langsung, seperti ini:
 
 ```js
 let promise = new Promise(function(resolve, reject) {
-  // not taking our time to do the job
-  resolve(123); // immediately give the result: 123
+  // tidak mengambil waktu kita untuk melakukan pekerjaan itu
+  resolve(123); // secara langsung memberikan hasil: 123
 });
 ```
 
-For instance, this might happen when we start to do a job but then see that everything has already been completed and cached.
+Misalnya, ini mungkin terjadi ketika kita memulai suatu pekerjaan tetapi kemudian melihat segalanya sudah selesai dan di-*cache*.
 
-That's fine. We immediately have a resolved promise.
+Tidak apa-apa. Kita segera menyelesaikan *promise*.
 ````
 
-```smart header="The `state` and `result` are internal"
-The properties `state` and `result` of the Promise object are internal. We can't directly access them. We can use the methods `.then`/`.catch`/`.finally` for that. They are described below.
+```smart header="`State` dan `result` bersifat internal"
+Properti `state` dan `result`    objek Promise bersifat internal. Kita tidak bisa mengakses properti tersebut secara langsung. Kita bisa menggunakan *method* `.then`/`.catch`/`.finally` untuk melakukannya. Penjelasan method-method tersebut ada di bawah ini.
 ```
 
-## Consumers: then, catch, finally
+## Konsumen: then, catch, finally
 
-A Promise object serves as a link between the executor (the "producing code" or "singer") and the consuming functions (the "fans"), which will receive the result or error. Consuming functions can be registered (subscribed) using methods `.then`, `.catch` and `.finally`.
+Objek *Promise* berfungsi sebagai tautan antara eksekutor ("kode produksi" atau "penyanyi") dan fungsi konsumsi ("penggemar"), yang akan menerima hasil atau *error*. Fungsi konsumsi bisa didaftarkan (berlangganan) menggunakan *method* `.then`, `.catch` and `.finally`.
 
 ### then
 
-The most important, fundamental one is `.then`.
+Yang paling penting, yang mendasar adalah `.then`.
 
-The syntax is:
+*Syntax*nya adalah:
 
 ```js
 promise.then(
-  function(result) { *!*/* handle a successful result */*/!* },
-  function(error) { *!*/* handle an error */*/!* }
+  function(result) { *!*/* menangani hasil yang sukses */*/!* },
+  function(error) { *!*/* menangani sebuah "error" */*/!* }
 );
 ```
 
-The first argument of `.then` is a function that runs when the promise is resolved, and receives the result.
+Argumen pertama dari `.then` adalah fungsi yang berjalan ketika *promise* terselesaikan, dan menerima hasil.
 
-The second argument of `.then` is a function that runs when the promise is rejected, and receives the error.
+Argumen kedua dari `.then` adalah fungsi yang berjalan ketika *promise* ditolak, dan menerima *error*.
 
-For instance, here's a reaction to a successfully resolved promise:
+Sebagai contoh, disini reaksi ketika *promise* berhasil diselesaikan:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
   setTimeout(() => resolve("done!"), 1000);
 });
 
-// resolve runs the first function in .then
+// resolve menjalankan fungsi pertama di .then
 promise.then(
 *!*
-  result => alert(result), // shows "done!" after 1 second
+  result => alert(result), // menampilkan "done!" setelah satu detik
 */!*
-  error => alert(error) // doesn't run
+  error => alert(error) // tidak dijalankan
 );
 ```
 
-The first function was executed.
+Fungsi pertama dijalankan.
 
-And in the case of a rejection -- the second one:
+Dan dalam hal penolakan -- yang kedua:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
   setTimeout(() => reject(new Error("Whoops!")), 1000);
 });
 
-// reject runs the second function in .then
+// reject menjalankan fungsi kedua di .then
 promise.then(
-  result => alert(result), // doesn't run
+  result => alert(result), // tidak dijalankan
 *!*
-  error => alert(error) // shows "Error: Whoops!" after 1 second
+  error => alert(error) // menampilkan "Error: Whoops!" setelah satu detik
 */!*
 );
 ```
 
-If we're interested only in successful completions, then we can provide only one function argument to `.then`:
+Jika kita hanya tertarik pada penyelesaian yang berhasil, maka kita hanya dapat menyediakan satu argumen fungsi `.then`:
 
 ```js run
 let promise = new Promise(resolve => {
@@ -190,13 +191,13 @@ let promise = new Promise(resolve => {
 });
 
 *!*
-promise.then(alert); // shows "done!" after 1 second
+promise.then(alert); // menampilkan "done!" setelah satu detik
 */!*
 ```
 
 ### catch
 
-If we're interested only in errors, then we can use `null` as the first argument: `.then(null, errorHandlingFunction)`. Or we can use `.catch(errorHandlingFunction)`, which is exactly the same:
+Jika kita hanya tertarik pada *error*, maka kita dapat menggunakan `null` sebagai argumen pertama: `.then(null, errorHandlingFunction)`. Atau kita dapat menggunakan `.catch(errorHandlingFunction)`, yang mana keduanya sama persis:
 
 
 ```js run
@@ -205,82 +206,82 @@ let promise = new Promise((resolve, reject) => {
 });
 
 *!*
-// .catch(f) is the same as promise.then(null, f)
-promise.catch(alert); // shows "Error: Whoops!" after 1 second
+// .catch(f) sama seperti promise.then(null, f)
+promise.catch(alert); // menampilkan "Error: Whoops!" setelah satu detik
 */!*
 ```
 
-The call `.catch(f)` is a complete analog of `.then(null, f)`, it's just a shorthand.
+Panggilan `.catch(f)` adalah analog lengkap dari `.then(null, f)`, itu hanya sebuah singkatan.
 
 ### finally
 
-Just like there's a `finally` clause in a regular `try {...} catch {...}`, there's `finally` in promises.
+Sama seperti ada klausa `finally` dalam `try {...} catch {...}`, ada `finally` dalam *promises*.
 
-The call `.finally(f)` is similar to `.then(f, f)` in the sense that `f` always runs when the promise is settled: be it resolve or reject.
+Panggilan `.finally(f)` mirip dengan `.then(f, f)` dalam arti bahwa `f` selalu berjalan ketika *promise* diselesaikan: apakah itu *resolve* atau *reject*.
 
-`finally` is a good handler for performing cleanup, e.g. stopping our loading indicators, as they are not needed anymore, no matter what the outcome is.
+`finally` adalah penanganan yang baik untuk melakukan pembersihan, mis. menghentikan indikator pemuatan kita, karena tidak diperlukan lagi, apa pun hasilnya.
 
-Like this:
+Seperti ini:
 
 ```js
 new Promise((resolve, reject) => {
-  /* do something that takes time, and then call resolve/reject */
+  /* lakukan sesuatu yang membutuhkan waktu, dan kemudian panggil resolve/reject */
 })
 *!*
-  // runs when the promise is settled, doesn't matter successfully or not
-  .finally(() => stop loading indicator)
+  // berjalan ketika "promise" diselesaikan, tidak peduli sukses atau tidak
+  .finally(() => hentikan indikator pemuatan)
 */!*
-  .then(result => show result, err => show error)
+  .then(result => munculkan hasil, err => munculkan "error")
 ```
 
-It's not exactly an alias of `then(f,f)` though. There are several important differences:
+Tapi ini bukan alias dari `then(f,f)`. Ada beberapa perbedaan penting:
 
-1. A `finally` handler has no arguments. In `finally` we don't know whether the promise is successful or not. That's all right, as our task is usually to perform "general" finalizing procedures.
-2. A `finally` handler passes through results and errors to the next handler.
+1. *Handler* `finally` tidak memiliki argumen. Didalam `finally` kita tidak tahu apakah *promise* sukses atau tidak. Tidak apa-apa, karena tugas kita biasanya melakukan prosedur penyelesaian "umum".
+2. *Handler* `finally` melewatkan hasil dan *error* ke *handler* selanjutnya.
 
-    For instance, here the result is passed through `finally` to `then`:
+    Misalnya, di sini hasilnya dilewatkan melalui `finally` ke `then`:
     ```js run
     new Promise((resolve, reject) => {
       setTimeout(() => resolve("result"), 2000)
     })
       .finally(() => alert("Promise ready"))
-      .then(result => alert(result)); // <-- .then handles the result
+      .then(result => alert(result)); // <-- .then menangani hasilnya
     ```
 
-    And here there's an error in the promise, passed through `finally` to `catch`:
+    Dan di sini ada *error* di dalam *promise*, dilewatkan melalui `finally` ke `catch`:
 
     ```js run
     new Promise((resolve, reject) => {
       throw new Error("error");
     })
       .finally(() => alert("Promise ready"))
-      .catch(err => alert(err));  // <-- .catch handles the error object
+      .catch(err => alert(err));  // <-- .catch menangani objek "error"
     ```  
 
-    That's very convenient, because `finally` is not meant to process a promise result. So it passes it through.
+    Itu sangat nyaman, karena `finally` tidak dimaksudkan untuk memproses hasil dari *promise*. Jadi itu melewatinya.
 
-    We'll talk more about promise chaining and result-passing between handlers in the next chapter.
+    Kita akan berbicara lebih banyak tentang *chaining promise* dan *passing-result* antara *handler* di bab selanjutnya.
 
-3. Last, but not least, `.finally(f)` is a more convenient syntax than `.then(f, f)`: no need to duplicate the function `f`.
+3. Terakhir, namun tidak kalah pentingnya, *syntax* `.finally(f)` lebih nyaman daripada `.then(f, f)`: tidak perlu menduplikasi fungsi `f`.
 
-````smart header="On settled promises handlers run immediately"
-If a promise is pending, `.then/catch/finally` handlers wait for it. Otherwise, if a promise has already settled, they execute immediately:
+````smart header="Dengan promise yang sudah ditentukan handler segera menjalankannya"
+ Jika *promise* tertunda, *handler* `.then/catch/finally` akan menunggu *promise* tersebut. Jika tidak, jika *promise* sudah selesai, handler langsung menjalankan:
 
 ```js run
-// the promise becomes resolved immediately upon creation
+// "promise" diselesaikan segera setelah dibuat
 let promise = new Promise(resolve => resolve("done!"));
 
-promise.then(alert); // done! (shows up right now)
+promise.then(alert); // done! (muncul sekarang)
 ```
 ````
 
-Next, let's see more practical examples of how promises can help us write asynchronous code.
+Selanjutnya, mari kita lihat contoh-contoh yang lebih praktis tentang bagaimana *promise* dapat membantu kita menulis kode *asynchronous*.
 
 ## Example: loadScript [#loadscript]
 
-We've got the `loadScript` function for loading a script from the previous chapter.
+Kita punya fungsi `loadScript` untuk memuat skrip dari bab sebelumnya.
 
-Here's the callback-based variant, just to remind us of it:
+Inilah varian berbasis *callback*, hanya untuk mengingatkan kita tentang itu:
 
 ```js
 function loadScript(src, callback) {
@@ -294,9 +295,9 @@ function loadScript(src, callback) {
 }
 ```
 
-Let's rewrite it using Promises.
+Mari tulis ulang menggunakan *Promise*.
 
-The new function `loadScript` will not require a callback. Instead, it will create and return a Promise object that resolves when the loading is complete. The outer code can add handlers (subscribing functions) to it using `.then`:
+Fungsi baru `loadScript` tidak akan memerlukan *callback*. Sebagai gantinya, fungsi tersebut akan membuat dan mengembalikkan sebuah objek *Promise* yang diselesaikan ketika pemuatan sudah selesai. Kode yang paling luar dapat menambah *handler* (fungsi berlangganan) dengan menggunakan `.then`:
 
 ```js run
 function loadScript(src) {  
@@ -312,7 +313,7 @@ function loadScript(src) {
 }
 ```
 
-Usage:
+Pemakaian:
 
 ```js run
 let promise = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
@@ -325,12 +326,12 @@ promise.then(
 promise.then(script => alert('Another handler...'));
 ```
 
-We can immediately see a few benefits over the callback-based pattern:
+Kita dapat segera melihat beberapa manfaat melalui pola berbasis *callback*:
 
 
-| Promises | Callbacks |
+| Promise | Callback |
 |----------|-----------|
-| Promises allow us to do things in the natural order. First, we run `loadScript(script)`, and `.then` we write what to do with the result. | We must have a `callback` function at our disposal when calling `loadScript(script, callback)`. In other words, we must know what to do with the result *before* `loadScript` is called. |
-| We can call `.then` on a Promise as many times as we want. Each time, we're adding a new "fan", a new subscribing function, to the "subscription list". More about this in the next chapter: [](info:promise-chaining). | There can be only one callback. |
+| *Promise* memungkinkan kita melakukan hal-hal dalam urutan alami. Pertama, kita menjalankan `loadScript(script)`, dan `.then` kita menulis apa yang harus dilakukan dengan hasilnya. | Kita harus punya fungsi `callback` yang kita miliki saat memanggil `loadScript(script, callback)`. Dengan kata lain, kita harus tau apa yang harus dilakukan dengan hasil *sebelum* `loadScript` dipanggil. |
+| Kita dapat memanggil `.then` pada *Promise* sebanyak yang kita inginkan. Setiap kali, kita tambahkan "fan" baru, fungsi berlangganan baru, ke "daftar berlangganan". Lebih lanjut tentang ini di bab selanjutnya: [](info:promise-chaining). | Hanya ada satu *callback*. |
 
-So promises give us better code flow and flexibility. But there's more. We'll see that in the next chapters.
+Jadi *promise* memberikan kita aliran kode dan fleksibilitas yang lebih baik. Tetapi masih ada lagi. Kita akan melihatnya di bab-bab selanjutnya.

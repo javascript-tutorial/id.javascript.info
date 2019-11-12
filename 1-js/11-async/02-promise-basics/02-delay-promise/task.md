@@ -1,13 +1,13 @@
 
-# Delay with a promise
+# Tunda dengan promise
 
-The built-in function `setTimeout` uses callbacks. Create a promise-based alternative.
+Fungsi bawaan `setTimeout` menggunakan *callbacks*. Buat alternatif berbasis *promise*.
 
-The function `delay(ms)` should return a promise. That promise should resolve after `ms` milliseconds, so that we can add `.then` to it, like this:
+Fungsi `delay(ms)` harus mengembalikkan sebuah *promise*. *Promise* itu harus diselesaikan setelah `ms` milidetik, sehingga kita bisa menambahkan `.then` ke fungsi tersebut, seperti ini:
 
 ```js
 function delay(ms) {
-  // your code
+  // kode kamu
 }
 
 delay(3000).then(() => alert('runs after 3 seconds'));
