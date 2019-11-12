@@ -1,42 +1,42 @@
 
-# Object.keys, values, entries
+# Objek.kunci, nilai, entri
 
-Let's step away from the individual data structures and talk about the iterations over them.
+Mari kita berpaling dari struktur data individual dan membahas iterasi mereka.
 
-In the previous chapter we saw methods `map.keys()`, `map.values()`, `map.entries()`.
+Di bab sebelumnya kita telah melihat method `map.keys()`, `map.values()`, `map.entries()`.
 
-These methods are generic, there is a common agreement to use them for data structures. If we ever create a data structure of our own, we should implement them too.
+Method ini generik, ada persetujuan umum untuk menggunakan mereka untuk struktur data. Jika kita pernah menciptakan struktur data sendiri, kita harus mengimplementasikannya juga.
 
-They are supported for:
+Mereka tersedia untuk:
 
 - `Map`
 - `Set`
-- `Array` (except `arr.values()`)
+- `Array`
 
-Plain objects also support similar methods, but the syntax is a bit different.
+Objek biasa juga menghadapi method yang mirip, tapi sintaksisnya sedikit berbeda.
 
-## Object.keys, values, entries
+## Objek.kunci, nilai-nilai, entri-entri
 
-For plain objects, the following methods are available:
+Untuk objek biasa, method berikut tersedia:
 
-- [Object.keys(obj)](mdn:js/Object/keys) -- returns an array of keys.
-- [Object.values(obj)](mdn:js/Object/values) -- returns an array of values.
-- [Object.entries(obj)](mdn:js/Object/entries) -- returns an array of `[key, value]` pairs.
+- [Object.keys(obj)](mdn:js/Object/keys) -- mengembalikan array kunci.
+- [Object.values(obj)](mdn:js/Object/values) -- mengembalikan array nilai.
+- [Object.entries(obj)](mdn:js/Object/entries) -- mengembalikan array pasangan `[key, value]`.
 
-Please note the distinctions (compared to map for example):
+Perhatikanlah perbedaannya(dibanding map contohnya):
 
 |             | Map              | Object       |
 |-------------|------------------|--------------|
 | Call syntax | `map.keys()`  | `Object.keys(obj)`, but not `obj.keys()` |
 | Returns     | iterable    | "real" Array                     |
 
-The first difference is that we have to call `Object.keys(obj)`, and not `obj.keys()`.
+Perbedaan pertama adalah kita harus memanggil `Object.keys(obj)`, bukan `obj.keys()`.
 
-Why so? The main reason is flexibility. Remember, objects are a base of all complex structures in JavaScript. So we may have an object of our own like `data` that implements its own `data.values()` method. And we still can call `Object.values(data)` on it.
+Mengapa? Alasan pertama adalah fleksibilitas. Ingat, objek adalah dasar dari struktur kompleks di Javascript. Jadi kita mungkin mempunyai objek seperti `data` yang mengimplemen method `data.values()` sendirinya. Dan kita masih bisa memanggil `Object.values(data)` atasnya.
 
-The second difference is that `Object.*` methods return "real" array objects, not just an iterable. That's mainly for historical reasons.
+Alasan kedua adalah method `Object.*` mengembalikan objek array "betulan", bukan hanya iterable. Itu terutama untuk alasan-alasan historis.
 
-For instance:
+Contohnya:
 
 ```js
 let user = {
@@ -49,7 +49,7 @@ let user = {
 - `Object.values(user) = ["John", 30]`
 - `Object.entries(user) = [ ["name","John"], ["age",30] ]`
 
-Here's an example of using `Object.values` to loop over property values:
+Ini adalah contoh pengunaan `Object.values` untuk meng-loop atas nilai-nilai properti:
 
 ```js run
 let user = {
@@ -57,30 +57,30 @@ let user = {
   age: 30
 };
 
-// loop over values
+// loop atas nilai
 for (let value of Object.values(user)) {
   alert(value); // John, then 30
 }
 ```
 
-```warn header="Object.keys/values/entries ignore symbolic properties"
-Just like a `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
+```warn header="Object.keys/values/entries abaikan properti simbolis"
+Seperti `for..in` loop, method ini mengabaikan properti yang menggunakan `Symbol(...)` as keys.
 
-Usually that's convenient. But if we want symbolic keys too, then there's a separate method [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) that returns an array of only symbolic keys. Also, there exist a method [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys.
+Biasanya itu mudah. Tapi jika kita mau kunci simbolis juga, ada method lain [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) yang mengembalikan array berisi kunci simbolis saja. Ada juga method [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) yang mengembalikan semua kunci.
 ```
 
 
-## Transforming objects
+## Mengubah objek
 
-Objects lack many methods that exist for arrays, e.g. `map`, `filter` and others.
+Objek kekurangan banyak method yang ada untuk arrays, contoh `map`, `filter` dan yang lainnya.
 
-If we'd like to apply them, then we can use `Object.entries` followed `Object.fromEntries`:
+Jika kita ingin mengapplikasikan method-method tersebut, kita bisa menggunakan `Object.entries` diikuti oleh `Object.fromEntries`:
 
-1. Use `Object.entries(obj)` to get an array of key/value pairs from `obj`.
-2. Use array methods on that array, e.g. `map`.
-3. Use `Object.fromEntries(array)` on the resulting array to turn it back into an object.
+1. Gunakan `Object.entries(obj)` untuk mendapatkan array pasangan kunci/nilai dari `obj`.
+2. Gunakan method array di array tersebut, contoh `map`. 
+3. Gunakan `Object.fromEntries(array)` di array hasil untuk mengubahnya kembali menjadi objek.
 
-For example, we have an object with prices, and would like to double them:
+Sebagai contoh, kita mempunyai objek dengan harga-harga, dan mau melipat duakan harga-harganya:
 
 ```js run
 let prices = {
@@ -91,7 +91,7 @@ let prices = {
 
 *!*
 let doublePrices = Object.fromEntries(
-  // convert to array, map, and then fromEntries gives back the object
+  // ubah menjadi array, map, lalu fromEntries mengembalikan objeknya
   Object.entries(prices).map(([key, value]) => [key, value * 2])
 );
 */!*
@@ -99,4 +99,4 @@ let doublePrices = Object.fromEntries(
 alert(doublePrices.meat); // 8
 ```   
 
-It may look difficult from the first sight, but becomes easy to understand after you use it once or twice. We can make powerful chains of transforms this way. 
+Mungkin ini terlihat susah pertama kalinya, tetapi ini akan menjadi mudah untuk di mengerti setelah kamu menggunakannya beberapa kali. Kita bisa membuat perantaian hebat dengan cara ini.

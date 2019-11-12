@@ -350,7 +350,11 @@ welcome(); // sekarang ok
 ```smart header="Kapan harus memilih Deklarasi Fungsi versus Expresi Fungsi?"
 Sebagai aturan praktis, saat kita harus mendeklarasi fungsi, hal pertama yang kita pertimbangkan ialah syntax Deklarasi Fungsi. Ia memberi kebebasan lebih dalam bagaimana mengorganisir kode kita, karena kita bisa memanggil fungsi macam ini sebelum mereka dideklarasi.
 
+<<<<<<< HEAD
 Itu juga untuk keterbacaan yang lebih baik, karena lebih mudah melihat `function f(…) {…}` dalam kode ketimbang `let f = function(…) {…}`. Deklarasi Fungsi lebih "eye-catching".
+=======
+That's also better for readability, as it's easier to look up `function f(…) {…}` in the code than `let f = function(…) {…};`. Function Declarations are more "eye-catching".
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 ...Tapi jika Deklarasi Fungsi tak cocok untuk beberapa alasan, atau kita butuh deklarasi kondisional (kita sudah lihat contohnya), maka Expresi Fungsi sebaiknya digunakan.
 ```

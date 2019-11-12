@@ -1,16 +1,16 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Sum the properties
+# Tambahkan propertinya
 
-There is a `salaries` object with arbitrary number of salaries. 
+Ada objek `salaries` berisi beberapa gaji orang-orang.
 
-Write the function `sumSalaries(salaries)` that returns the sum of all salaries using `Object.values` and the `for..of` loop.
+Tulis fungsi `sumSalaries(salaries)` yang mengembalikan jumlah total semua gaji menggunakan `Object.values` dan loop `for..of`.
 
-If `salaries` is empty, then the result must be `0`.
+Jika `salaries` kosong, lalu hasilnya akan `0`.
 
-For instance:
+Contohnya:
 
 ```js
 let salaries = {

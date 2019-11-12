@@ -1,14 +1,14 @@
-The test demonstrates one of the temptations a developer meets when writing tests.
+Tes ini mendemonstrasikan satu dari godaan yang pengembang temui dan saat menulis tes.
 
-What we have here is actually 3 tests, but layed out as a single function with 3 asserts.
+Apa yang kita punya di sini sebenarnya 3 tes, tapi diletakkan sebagai satu fungsi tunngal dengan 3 assert.
 
-Sometimes it's easier to write this way, but if an error occurs, it's much less obvious what went wrong.
+Kadang lebih mudah menulis di cara ini, tapi jika muncul galat, kurang jelas apa yang salah.
 
-If an error happens in the middle of a complex execution flow, then we'll have to figure out the data at that point. We'll actually have to *debug the test*.
+Jika galat terjadi di tengah alur exekusi rumit, maka kita harus caritahu data di poin itu. Kita sebenarnya harus *mendebug tes*.
 
-It would be much better to break the test into multiple `it` blocks with clearly written inputs and outputs.
+Akan jauh lebih baik memecah tes jadi beberapa blok `it` dengan input dan output yang tertulis jelas.
 
-Like this:
+Seperti ini:
 ```js
 describe("Raises x to power n", function() {
   it("5 in the power of 1 equals 5", function() {
@@ -25,9 +25,9 @@ describe("Raises x to power n", function() {
 });
 ```
 
-We replaced the single `it` with `describe` and a group of `it` blocks. Now if something fails we would see clearly what the data was.
+Kita mengganti `it` tunggal dengan `describe` dan grup blok `it`. Sekarang jika sesuatu gagal kita akan lihat jelas apa datanya.
 
-Also we can isolate a single test and run it in standalone mode by writing `it.only` instead of `it`:
+Juga kita bisa mengisolasi tes tunggal dan menjalankannya dalam mode standalone dengan menulis `it.only` ketimbang `it`:
 
 
 ```js

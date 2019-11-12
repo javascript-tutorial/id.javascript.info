@@ -1,5 +1,6 @@
 # Promise
 
+
 Bayangkan kamu adalah seorang penyanyi top, dan penggemarmu bertanya siang dan malam untuk *single* terbarumu.
 
 Untuk mendapatkan kelegaan, kamu berjanji untuk mengirimkan *single* tersebut kepada mereka ketika diterbitkan. Kamu memberikan sebuah daftar kepada penggemarmu. Mereka dapat mengisi alamat surel mereka, sehingga saat lagu sudah tersedia, semua pihak yang berlangganan langsung menerimanya. Dan bahkan jika ada yang salah, katakanlah, ada kebakaran di dalam studio, sehingga kamu tidak dapat menerbitkan lagu, mereka masih akan diberitahu.

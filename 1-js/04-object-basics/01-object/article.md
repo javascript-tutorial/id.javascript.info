@@ -1,60 +1,60 @@
 
-# Objects
+# Objek
 
-As we know from the chapter <info:types>, there are seven data types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+Seperti yang kita tahu dari bab <info:types>, ada tujuh tipe data di JavaScript. Enak dari mereka disebut "primitif", karena nilai mereka berisi cuma satu hal tunggal (entah string atau angka atau apapun).
 
-In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
+Kontrasnya, objek dipakai untuk menyimpan koleksi terkunci dari berbagai data dan entitas rumit lainnya. Di JavaScript, objek menembus hampir tiap aspek bahasa. Jadi kita harus memahami mereka dulu sebelum masuk lebih dalam ke manapun.
 
-An object can be created with figure brackets `{…}` with an optional list of *properties*. A property is a "key: value" pair, where `key` is a string (also called a "property name"), and `value` can be anything.
+Tiap objek bisa dibuat dengan tanda bracket `{…}` dengan daftar *properti* opsional. Properti ialah pasangan "key: value", di mana `key` string (juga disebut "nama properti"), dan `value` bisa apapun.
 
-We can imagine an object as a cabinet with signed files. Every piece of data is stored in its file by the key. It's easy to find a file by its name or add/remove a file.
+Kita bisa bayangkan objek sebagai kabinet dengan file bertanda. Tiap potong data disimpan di dalam filenya dengan kuncinya. Mudah mencari filenya dengan namanya atau menambah/menghapus satu file.
 
 ![](object.svg)
 
-An empty object ("empty cabinet") can be created using one of two syntaxes:
+Objek kosong ("kabinet kosong") bisa dibuat memakai salah satu dari dua syntax:
 
 ```js
-let user = new Object(); // "object constructor" syntax
-let user = {};  // "object literal" syntax
+let user = new Object(); // syntax "konstruktor objek"
+let user = {};  // syntax "literal objek"
 ```
 
 ![](object-user-empty.svg)
 
-Usually, the figure brackets `{...}` are used. That declaration is called an *object literal*.
+Biasanya, tanda bracket `{...}` dipakai. Deklarasi itu disebut *literal objek*.
 
-## Literals and properties
+## Literal dan properti
 
-We can immediately put some properties into `{...}` as "key: value" pairs:
+Kita bisa segera menaruh beberapa properti ke dalam `{...}` sebagai pasangan "key: value":
 
 ```js
-let user = {     // an object
-  name: "John",  // by key "name" store value "John"
-  age: 30        // by key "age" store value 30
+let user = {     // objek
+  name: "John",  // dengan kunci "name" menyimpan nilai "John"
+  age: 30        // dengan kunci "age" menyimpan nilai 30
 };
 ```
 
-A property has a key (also known as "name" or "identifier") before the colon `":"` and a value to the right of it.
+Properti punya kunci (juga disebut "nama" atau "identifier") sebelum colon `":"` dan nilai di sebelah kanannya.
 
-In the `user` object, there are two properties:
+Dalam objek `user`, ada dua properti:
 
-1. The first property has the name `"name"` and the value `"John"`.
-2. The second one has the name `"age"` and the value `30`.
+1. Properti pertama punya nama `"name"` dan nilai `"John"`.
+2. Yang kedua punya nama `"age"` dan nilai `30`.
 
-The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
+Hasil objek `user` bisa dibayangkan sebagai kabinet dengan dua file bertanda dengan label "name" dan "age".
 
 ![user object](object-user.svg)
 
-We can add, remove and read files from it any time.
+Kita bisa tambah, hapus dan baca file darinya kapanpun.
 
-Property values are accessible using the dot notation:
+Nilai properti bisa diakses memakai notasi dot:
 
 ```js
-// get property values of the object:
+// ambil nilai properti objek:
 alert( user.name ); // John
 alert( user.age ); // 30
 ```
 
-The value can be of any type. Let's add a boolean one:
+Nilainya bisa tipe apapun. Ayo tambah nilai boolean:
 
 ```js
 user.isAdmin = true;
@@ -62,7 +62,7 @@ user.isAdmin = true;
 
 ![user object 2](object-user-isadmin.svg)
 
-To remove a property, we can use `delete` operator:
+Untuk menghapus properti, kita bisa pakai operator `delete`:
 
 ```js
 delete user.age;
@@ -70,40 +70,40 @@ delete user.age;
 
 ![user object 3](object-user-delete.svg)
 
-We can also use multiword property names, but then they must be quoted:
+Kita juga bisa memakai nama properti multi-kata, tapi mereka harus diquotasi:
 
 ```js
 let user = {
   name: "John",
   age: 30,
-  "likes birds": true  // multiword property name must be quoted
+  "likes birds": true  // nama properti multi-kata harus diquotasi
 };
 ```
 
 ![](object-user-props.svg)
 
 
-The last property in the list may end with a comma:
+Properti terakhir di daftar bisa berakhir dengan koma:
 ```js
 let user = {
   name: "John",
   age: 30*!*,*/!*
 }
 ```
-That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
+Itu disebut koma "buntut" atau "menggantung". Memudahkan kita menambah/menghapus/memindahkan properti, karena semua barus menjadi mirip.
 
-## Square brackets
+## Bracket kotak
 
-For multiword properties, the dot access doesn't work:
+Untuk properti multi-kata, akses dot tak bekerja:
 
 ```js run
-// this would give a syntax error
+// ini akan memberi galat syntax
 user.likes birds = true
 ```
 
-That's because the dot requires the key to be a valid variable identifier. That is: no spaces and other limitations.
+Ini karena dot mensyaratkan key merupakan identifier variabel yang valid. Yaitu: tak ada spasi dan limitasi lain.
 
-There's an alternative "square bracket notation" that works with any string:
+Ada alternatif "notasi bracket kotak" yang bekerja dengan string apapun:
 
 ```js run
 let user = {};
@@ -118,20 +118,20 @@ alert(user["likes birds"]); // true
 delete user["likes birds"];
 ```
 
-Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
+Sekarang semuanya oke. Tolong catat bahwa string di dalam bracket diquotasi dengan benar (bisa tipe quotasi apapun).
 
-Square brackets also provide a way to obtain the property name as the result of any expression -- as opposed to a literal string -- like from a variable as follows:
+Bracket kotak juga menyediakan cara memperoleh nama properti sebagai hasil expresi -- lawannya string literal -- seperti dari variabel berikut:
 
 ```js
 let key = "likes birds";
 
-// same as user["likes birds"] = true;
+// sama dengan user["likes birds"] = true;
 user[key] = true;
 ```
 
-Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility.
+Di sini, variabel `key` bisa dikalkulasi saat run-time atau tergantung input user. Lalu kita pakai untuk mengakses properti. Ini memberi kita flexibilitas yang sangat besar.
 
-For instance:
+Misalnya:
 
 ```js run
 let user = {
@@ -141,11 +141,11 @@ let user = {
 
 let key = prompt("What do you want to know about the user?", "name");
 
-// access by variable
-alert( user[key] ); // John (if enter "name")
+// akses dari variabel
+alert( user[key] ); // John (jika mengenter "name")
 ```
 
-The dot notation cannot be used in a similar way:
+Notasi dot tak bisa dipakai dalam cara serupa:
 
 ```js run
 let user = {
@@ -157,40 +157,40 @@ let key = "name";
 alert( user.key ) // undefined
 ```
 
-### Computed properties
+### Properti terkomputasi
 
-We can use square brackets in an object literal. That's called *computed properties*.
+Kita bisa memakai bracket kotak dalam literal objek. Itu disebut *properti terkomputasi*.
 
-For instance:
+Misalnya:
 
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
 
 let bag = {
 *!*
-  [fruit]: 5, // the name of the property is taken from the variable fruit
+  [fruit]: 5, // nama properti diambil dari variabel fruit
 */!*
 };
 
-alert( bag.apple ); // 5 if fruit="apple"
+alert( bag.apple ); // 5 jika fruit="apple"
 ```
 
-The meaning of a computed property is simple: `[fruit]` means that the property name should be taken from `fruit`.
+Arti properti terkomputasi simpel: `[fruit]` artinya nama properti harus diambil dari `fruit`.
 
-So, if a visitor enters `"apple"`, `bag` will become `{apple: 5}`.
+Jadi, jika pengunjung mengenter `"apple"`, `bag` akan menjadi `{apple: 5}`.
 
-Essentially, that works the same as:
+Essensinya, ia bekerja mirip dengan:
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
 let bag = {};
 
-// take property name from the fruit variable
+// ambil nama properti dari variabel fruit
 bag[fruit] = 5;
 ```
 
-...But looks nicer.
+...Tapi lebih manis.
 
-We can use more complex expressions inside square brackets:
+Kita bisa pakai expresi rumit di dalam bracket kotak:
 
 ```js
 let fruit = 'apple';
@@ -199,16 +199,16 @@ let bag = {
 };
 ```
 
-Square brackets are much more powerful than the dot notation. They allow any property names and variables. But they are also more cumbersome to write.
+Bracket kotak jauh lebih kuat dari notasi dot. Mereka membolehkan variabel dan nama properti apapun. Tapi mereka juga lebih rumit untuk ditulis.
 
-So most of the time, when property names are known and simple, the dot is used. And if we need something more complex, then we switch to square brackets.
+Jadi seringnya, saat nama properti diketahui dan simpel, dot dipakai. Dan jika kita butuh sesuatu yang rumit, maka kita ganti ke bracket kotak.
 
 
 
-````smart header="Reserved words are allowed as property names"
-A variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+````smart header="Kata khusus dibolehkan sebagai nama properti"
+Variabel tak bisa punya nama serupa dengan kata khusus-bahasa seperti "for", "let", "return" dll.
 
-But for an object property, there's no such restriction. Any name is fine:
+Tapi untuk properti objek, tak ada batasan. Nama apapun oke:
 
 ```js run
 let obj = {
@@ -220,31 +220,31 @@ let obj = {
 alert( obj.for + obj.let + obj.return );  // 6
 ```
 
-Basically, any name is allowed, but there's a special one: `"__proto__"` that gets special treatment for historical reasons. For instance, we can't set it to a non-object value:
+Pada dasarnya, nama apapun boleh, tapi ada satu yang spesial: `"__proto__"` yang mendapat perlakuan spesial karena alasan historis. Misalnya, kita tak bisa mengeset ia ke nilai non-objek:
 
 ```js run
 let obj = {};
 obj.__proto__ = 5;
-alert(obj.__proto__); // [object Object], didn't work as intended
+alert(obj.__proto__); // [object Object], tak bekerja seperti yang diharapkan
 ```
 
-As we see from the code, the assignment to a primitive `5` is ignored.
+Seperti yang kita lihat dari kode, penetapan ke primitif `5` diabaikan.
 
-That can become a source of bugs and even vulnerabilities if we intend to store arbitrary key-value pairs in an object, and allow a visitor to specify the keys.
+Itu bisa jadi sumber bug dan bahkan kerentanan jika kita sengaja menyimpan sembarang pasangan key-value dalam objek, dan membolehkan pengunjung menspesifikasi kuncinya.
 
-In that case the visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
+Di kasus itu pengunjung bisa memilih `__proto__` sebagai kunci, dan logika penetapan akan hancur (seperti yang ditunjukkan di atas).
 
-There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects.
+Ada cara membuat objek memperlakukan `__proto__` sebagai properti reguler, yang akan kita bahas nanti, tapi pertama kita harus tahu lebih tentang objek.
 
-There's also another data structure [Map](info:map-set), that we'll learn in the chapter <info:map-set>, which supports arbitrary keys.
+Ada juga struktur data lain [Map](info:map-set), yang akan kita pelajari di bab <info:map-set>, yang mendukung sembarang kunci.
 ````
 
 
-## Property value shorthand
+## Steno nilai properti
 
-In real code we often use existing variables as values for property names.
+Di kode riil kita sering memakai variabel sebagai nilai untuk nama properti.
 
-For instance:
+Misalnya:
 
 ```js run
 function makeUser(name, age) {
@@ -259,72 +259,72 @@ let user = makeUser("John", 30);
 alert(user.name); // John
 ```
 
-In the example above, properties have the same names as variables. The use-case of making a property from a variable is so common, that there's a special *property value shorthand* to make it shorter.
+Di contoh di atas, properti punya nama sama dengan variabel. Use-case penggunaan properti dari variabel sangat umum, bahwa ada *steno nilai properti* spesial yang memperpendek itu.
 
-Instead of `name:name` we can just write `name`, like this:
+Ketimbang `name:name` kita bisa menuliskan `name`, seperti ini:
 
 ```js
 function makeUser(name, age) {
 *!*
   return {
-    name, // same as name: name
-    age   // same as age: age
+    name, // sama dengan name: name
+    age   // sama dengan age: age
     // ...
   };
 */!*
 }
 ```
 
-We can use both normal properties and shorthands in the same object:
+Kita bisa pakai baik steno dan properti normal bersamaan dalam satu objek:
 
 ```js
 let user = {
-  name,  // same as name:name
+  name,  // sama dengan name:name
   age: 30
 };
 ```
 
-## Existence check
+## Cek existensi
 
-A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It provides a very common way to test whether the property exists -- to get it and compare vs undefined:
+Satu fitur objek penting ialah kita bisa melakukan akses ke properti. Takkan ada galat jika properti tak ada! Mengakses properti yang tak ada hanya mengembalikan `undefined`. Ia menyediakan cara paling umum untuk mengetes existensi properti -- mengambilnya dan membandingan dengan undefined:
 
 ```js run
 let user = {};
 
-alert( user.noSuchProperty === undefined ); // true means "no such property"
+alert( user.noSuchProperty === undefined ); // true artinya "tak ada properti macam ini"
 ```
 
-There also exists a special operator `"in"` to check for the existence of a property.
+Ada juga operator spesial `"in"` untuk mengecek existensi properti.
 
-The syntax is:
+Syntaxnya:
 ```js
 "key" in object
 ```
 
-For instance:
+Misalnya:
 
 ```js run
 let user = { name: "John", age: 30 };
 
-alert( "age" in user ); // true, user.age exists
-alert( "blabla" in user ); // false, user.blabla doesn't exist
+alert( "age" in user ); // true, user.age ada
+alert( "blabla" in user ); // false, user.blabla tak ada
 ```
 
-Please note that on the left side of `in` there must be a *property name*. That's usually a quoted string.
+Tolong ingat bahwa di sebelah kiri `in` harus ada *nama properti*. Itu biasanya string yang dikuotasi.
 
-If we omit quotes, that would mean a variable containing the actual name will be tested. For instance:
+Jika kita membuang quotasi, itu artinya variabel berisi nama sungguhan akan dites. Misalnya:
 
 ```js run
 let user = { age: 30 };
 
 let key = "age";
-alert( *!*key*/!* in user ); // true, takes the name from key and checks for such property
+alert( *!*key*/!* in user ); // true, mengambil nama dari kunci dan mengecek properti tersebut
 ```
 
-````smart header="Using \"in\" for properties that store `undefined`"
-Usually, the strict comparison `"=== undefined"` check the property existance just fine. But there's a special case when it fails, but `"in"` works correctly.
+````smart header="Menggunakan \"in\" untuk properti yang menyimpan `undefined`"
+Biasanya, pembandingan ketat `"=== undefined"` mengecek existensi properti dengan baik. Tapi ada kasus spesial saat ia gagal, tapi `"in"` bekerja dengan benar.
 
-It's when an object property exists, but stores `undefined`:
+Itu ialah saat ada properti objek, tapi menyimpan `undefined`:
 
 ```js run
 let obj = {
@@ -337,24 +337,24 @@ alert( "test" in obj ); // true, the property does exist!
 ```
 
 
-In the code above, the property `obj.test` technically exists. So the `in` operator works right.
+Di contoh kode di atas, properti `obj.test` ada secara teknis. Tapi operator `in` bekerja dengan baik.
 
-Situations like this happen very rarely, because `undefined` is usually not assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
+Situasi seperti ini jarang terjadi, karena `undefined` biasanya tak ditetapkan. Kita sering memakai `null` untuk nilai "unknown" atau "empty". Jadi operator `in` merupakan tamu exotik dalam kode.
 ````
 
-## The "for..in" loop
+## Loog "for..in"
 
-To walk over all keys of an object, there exists a special form of the loop: `for..in`. This is a completely different thing from the `for(;;)` construct that we studied before.
+Untuk mengitari semua kunci objek, ada bentuk spesial dari loop: `for..in`. Ini sangat berbeda dari konstruksi `for(;;)` yang kita pelajari sebelumnya.
 
-The syntax:
+Syntaxnya:
 
 ```js
 for (key in object) {
-  // executes the body for each key among object properties
+  // mengexekusi badan untuk tiap kunci dalam properti objek
 }
 ```
 
-For instance, let's output all properties of `user`:
+Misalnya, mari mengoutkan semua properti `user`:
 
 ```js run
 let user = {
@@ -371,18 +371,18 @@ for (let key in user) {
 }
 ```
 
-Note that all "for" constructs allow us to declare the looping variable inside the loop, like `let key` here.
+Catat bahwa semua konstruksi "for" membolehkan kita mendeklarasi variabel looping di dalam loop, seperti `let key` di sini.
 
-Also, we could use another variable name here instead of `key`. For instance, `"for (let prop in obj)"` is also widely used.
+Juga, kita bisa memakai nama variabel lain di sini ketimbang `key`. Misalnya, `"for (let prop in obj)"` juga banyak dipakai.
 
 
-### Ordered like an object
+### Berurut seperti objek
 
-Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order they were added? Can we rely on this?
+Apa objek terurut? Dengan kata lain, jika kita meloop satu objek keseluruhan, apa kita mengambil semua properti dengan urutan yang sama saat mereka ditambahkan? Apa kita bisa percaya itu?
 
-The short answer is: "ordered in a special fashion": integer properties are sorted, others appear in creation order. The details follow.
+Jawaban pendeknya ialah: "terurut dalam cara spesial": properti integer terurut, yang lainnya muncul dalam urutan pembuatan. Detilnya mengikuti.
 
-As an example, let's consider an object with the phone codes:
+Misalnya, mari pertimbangkan objek dengan kode telpon:
 
 ```js run
 let codes = {
@@ -400,19 +400,19 @@ for (let code in codes) {
 */!*
 ```
 
-The object may be used to suggest a list of options to the user. If we're making a site mainly for German audience then we probably want `49` to be the first.
+Objek ini digunakan untuk mensugesti daftar opsi ke pengguna. Jika kita membuat situs khusus untuk audiensi Jerman maka kita kemungkinan mau `49` jadi yang pertama.
 
-But if we run the code, we see a totally different picture:
+Tapi jika kita menjalankan kodenya, kita lihat potret yang berbeda:
 
 - USA (1) goes first
 - then Switzerland (41) and so on.
 
-The phone codes go in the ascending sorted order, because they are integers. So we see `1, 41, 44, 49`.
+Kode telpon berurut secara ascending, karena mereka integer. Jadi kita lihat `1, 41, 44, 49`.
 
-````smart header="Integer properties? What's that?"
-The "integer property" term here means a string that can be converted to-and-from an integer without a change.
+````smart header="Properti integer? Apa itu?"
+Istilah "properti integer" di sini artinya string yang bisa dikonversi ke-dan-dari integer tanpa perubahan.
 
-So, "49" is an integer property name, because when it's transformed to an integer number and back, it's still the same. But "+49" and "1.2" are not:
+Jadi, "49" nama properti integer, karena mereka ditransform ke angka integer dan kebalikannya, ia masih sama saja. Tapi "+49" dan "1.2" tidak:
 
 ```js run
 // Math.trunc is a built-in function that removes the decimal part
@@ -422,26 +422,26 @@ alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integ
 ```
 ````
 
-...On the other hand, if the keys are non-integer, then they are listed in the creation order, for instance:
+...Di sisi lain, jika kuncinya non-integer, maka mereka didaftar dalam urutan kreasi, misalnya:
 
 ```js run
 let user = {
   name: "John",
   surname: "Smith"
 };
-user.age = 25; // add one more
+user.age = 25; // tambah satu lagi
 
 *!*
-// non-integer properties are listed in the creation order
+// properti non-integer didaftar dalam order kreasi
 */!*
 for (let prop in user) {
   alert( prop ); // name, surname, age
 }
 ```
 
-So, to fix the issue with the phone codes, we can "cheat" by making the codes non-integer. Adding a plus `"+"` sign before each code is enough.
+Jadi, untuk mengatasi isu kode telpon, kita bisa berbuat "curang" dengan menjadikan kode non-integer. Cukup menambahkan tanda plus `"+"` sebelum tiap kode.
 
-Like this:
+Seperti ini:
 
 ```js run
 let codes = {
@@ -457,30 +457,30 @@ for (let code in codes) {
 }
 ```
 
-Now it works as intended.
+Sekarang itu bekerja sesuai yang diinginkan.
 
-## Copying by reference
+## Mengkopi dengan referensi
 
-One of the fundamental differences of objects vs primitives is that they are stored and copied "by reference".
+Salah satu perbedaan fundamental dari objek vs primitif ialah mereka diurutkan dan dikopi "dengan referensi".
 
-Primitive values: strings, numbers, booleans -- are assigned/copied "as a whole value".
+Nilai primitif: string, angka, boolean -- diset/dikopi "sebagai satu nilai utuh".
 
-For instance:
+Misalnya:
 
 ```js
 let message = "Hello!";
 let phrase = message;
 ```
 
-As a result we have two independent variables, each one is storing the string `"Hello!"`.
+Sebagai hasilnya kita punya dua variabel independen, yang masing-masing menyimpan string `"Hello!"`.
 
 ![](variable-copy-value.svg)
 
-Objects are not like that.
+Objeck tak seperti itu.
 
-**A variable stores not the object itself, but its "address in memory", in other words "a reference" to it.**
+**Variabel tak hanya menyimpan objek itu sendiri, tapi juga "alamatnya di memory", dengan kata lain "referensi" ke situ.**
 
-Here's the picture for the object:
+Berikut gambaran objek:
 
 ```js
 let user = {
@@ -490,25 +490,25 @@ let user = {
 
 ![](variable-contains-reference.svg)
 
-Here, the object is stored somewhere in memory. And the variable `user` has a "reference" to it.
+Di sini, objek disimpan di suatu tempat di memory. Dan variable `user` punya "referensi" ke situ.
 
-**When an object variable is copied -- the reference is copied, the object is not duplicated.**
+**Ketika variabel objek dikopi -- referensi dikopi, objek tak diduplikasi.**
 
-If we imagine an object as a cabinet, then a variable is a key to it. Copying a variable duplicates the key, but not the cabinet itself.
+Jika kita bayangkan objek sebagai kabinet, maka variabel adalah kuncinya. Mengkopi variabel menduplikasi kuncinya, tapi tidak kabinetnya itu sendiri.
 
-For instance:
+Misalnya:
 
 ```js no-beautify
 let user = { name: "John" };
 
-let admin = user; // copy the reference
+let admin = user; // mengkopi referensi
 ```
 
-Now we have two variables, each one with the reference to the same object:
+Kerang kita punya dua variabel, masing-masing dengan referensi ke objek yang sama:
 
 ![](variable-copy-reference.svg)
 
-We can use any variable to access the cabinet and modify its contents:
+Kita bisa memakai variabel apapun untuk mengakses kabinet dan memodifikasi isinya:
 
 ```js run
 let user = { name: 'John' };

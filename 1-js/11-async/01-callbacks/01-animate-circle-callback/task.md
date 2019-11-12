@@ -1,15 +1,15 @@
 
-# Animated circle with callback
+# Lingkaran animasi dengan callback
 
-In the task <info:task/animate-circle> an animated growing circle is shown.
+Dalam tugas <info:task/animate-circle> sebuah lingkaran animasi di tampilkan.
 
-Now let's say we need not just a circle, but to show a message inside it. The message should appear *after* the animation is complete (the circle is fully grown), otherwise it would look ugly.
+Sekarang katakan kalau kita tidak hanya butuh lingkaran saja, tetapi juga butuh menampilkan pesan didalamnya. Pesan tersebut harus muncul *setelah* animasi nya selesai (lingkaran nya bergerak secara penuh), kalau tidak itu akan terlihat tidak bagus.
 
-In the solution of the task, the function `showCircle(cx, cy, radius)` draws the circle, but gives no way to track when it's ready.
+Dalam solusi tugas, fungsi `showCircle(cx, cy, radius)` menggambar lingkaran, tetapi tidak memberikan cara untuk melacak-nya ketika sudah selesai.
 
-Add a callback argument: `showCircle(cx, cy, radius, callback)` to be called when the animation is complete. The `callback` should receive the circle `<div>` as an argument.
+Tambahkan sebuah argumen callback: `showCircle(cx, cy, radius, callback)` untuk di panggil ketika animasi-nya sudah selesai. `callback` harusnya menerima `<div>` lingkaran sebagain argumen.
 
-Here's the example:
+Seperti ini contohnya:
 
 ```js
 showCircle(150, 150, 100, div => {
@@ -22,4 +22,4 @@ Demo:
 
 [iframe src="solution" height=260]
 
-Take the solution of the task <info:task/animate-circle> as the base.
+Ambil solusinya untuk tugas <info:task/animate-circle> sebagai dasar.
