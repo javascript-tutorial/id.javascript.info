@@ -1,3 +1,3 @@
-The output is: `1`.
+Keluarannya adalah: `1`.
 
-The second call to `resolve` is ignored, because only the first call of `reject/resolve` is taken into account. Further calls are ignored.
+Panggilan kedua untuk `resolve` diabaikan, karena hanya panggilan pertama `reject/resolve` yang diperhitungkan. Panggilan lebih lanjut diabaikan.
