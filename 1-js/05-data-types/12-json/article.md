@@ -1,10 +1,10 @@
-# JSON methods, toJSON
+# Metode JSON, toJSON
 
-Let's say we have a complex object, and we'd like to convert it into a string, to send it over a network, or just to output it for logging purposes.
+Anggap saja kita memiliki sebuah objek yang kompleks, dan kita ingin mengonversinya menjadi sebuah *string*, mengirimnya melalui sebuah jaringan atau hanya menghasilkan *string* tersebut untuk tujuan pencatatan.
 
-Naturally, such a string should include all important properties.
+Secara alami, *string* seperti contoh di atas seharusnya sudah termasuk semua properti-properti penting di dalamnya.
 
-We could implement the conversion like this:
+Kita bisa mengimplementasikan konversi tersebut seperti ini:
 
 ```js run
 let user = {
@@ -21,18 +21,18 @@ let user = {
 alert(user); // {name: "John", age: 30}
 ```
 
-...But in the process of development, new properties are added, old properties are renamed and removed. Updating such `toString` every time can become a pain. We could try to loop over properties in it, but what if the object is complex and has nested objects in properties? We'd need to implement their conversion as well.
+...Tetapi dalam proses pengembangan, properti-properti baru ditambahkan, properti-properti yang lama diganti nama baru dan dipindahkan. Memperbarui seperti `toStrong` setiap saat bisa jadi sangat menyebalkan. Kita bisa coba untuk memberi properti-properti tersebut perulangan dalam proses pengembangan, tetapi apa yang terjadi jika objeknya kompleks dan memiliki objek yang bersarang (*nested*) dalam propertinya? Kita pastinya perlu untuk mengimplementasikan konversinya juga.
 
-Luckily, there's no need to write the code to handle all this. The task has been solved already.
+Untungnya, (kita) tak perlu untuk menulis kode untuk menangani semua hal ini. Tugas tersebut sudah terpecahkan solusinya.
 
 ## JSON.stringify
 
-The [JSON](http://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) is a general format to represent values and objects. It is described as in [RFC 4627](http://tools.ietf.org/html/rfc4627) standard. Initially it was made for JavaScript, but many other languages have libraries to handle it as well.  So it's easy to use JSON for data exchange when the client uses JavaScript and the server is written on Ruby/PHP/Java/Whatever.
+[JSON](http://en.wikipedia.org/wiki/JSON) (*JavaScript Object Notation*) adalah sebuah format umum yang merepresentasikan nilai-nilai dan objek. JSON dideskripsikan sebagaimana dalam standar [RFC 4627](http://tools.ietf.org/html/rfc4627). Awalnya JSON dibuat untuk JavaScript, tapi banyak bahasa pemrograman lain memiliki *library* untuk menangani JSON juga. Oleh karena itu, kini jadi mudah untuk menggunakan JSON untuk tujuan pertukaran data ketika klien menggunakan JavaScript dan server ditulis menggunakan bahasa pemrograman Ruby/PHP/Java/apapun itu.
 
-JavaScript provides methods:
+JavaScript menyediakan metode-metode seperti:
 
-- `JSON.stringify` to convert objects into JSON.
-- `JSON.parse` to convert JSON back into an object.
+- `JSON.stringify` untuk mengoversi objek menjadi JSON.
+- `JSON.parse` untuk mengonversi balik JSON menjadi sebuah objek.
 
 For instance, here we `JSON.stringify` a student:
 ```js run
@@ -64,35 +64,34 @@ alert(json);
 */!*
 ```
 
-The method `JSON.stringify(student)` takes the object and converts it into a string.
+Metode `JSON.stringify(student)` mengambil objek dan mengonversikan objek tersebut menjadi sebuah *string*.
 
-The resulting `json` string is called a *JSON-encoded* or *serialized* or *stringified* or *marshalled* object. We are ready to send it over the wire or put into a plain data store.
+Hasil *string* `json` disebut sebagai sebuah objek *JSON-encoded* atau *serialized* atau *stringified* atau *marshalled*. Kita kini siap utnuk mengirimnya melalui jaringan atau menyimpannya ke sebuah penyimpanan data.
 
+Mohon diingat bahwa sebuah objek *JSON-encoded* memiliki beberapa perbedaan penting dari objek secara harfiah:
 
-Please note that a JSON-encoded object has several important differences from the object literal:
+- *String* menggunakan tanda kutip. Dalam JSON tidak menggunakan tanda petik atau *backtick*. Jadi `'John'` menjadi `"John"`.
+- Nama-nama properti objek diberi tanda kutip juga. Hal ini wajib dilakukan. Jadi `age:30` menjadi `"age":30`.
 
-- Strings use double quotes. No single quotes or backticks in JSON. So `'John'` becomes `"John"`.
-- Object property names are double-quoted also. That's obligatory. So `age:30` becomes `"age":30`.
+`JSON.stringify` bisa juga bisa diterapkan ke (tipe data) *primitive*.
 
-`JSON.stringify` can be applied to primitives as well.
+JSON mendukung tipe-tipe data berikut ini:
 
-JSON supports following data types:
-
-- Objects `{ ... }`
-- Arrays `[ ... ]`
-- Primitives:
-    - strings,
-    - numbers,
-    - boolean values `true/false`,
+- Objek `{ ... }`
+- *Array* `[ ... ]`
+- *Primitive*:
+    - *string*,
+    - angka (*number*),
+    - nilai-nilai *boolean* `true/false`,
     - `null`.
 
-For instance:
+Sebagai contoh:
 
 ```js run
-// a number in JSON is just a number
+// sebuah number(angka) dalam JSON hanyalah sebuah number
 alert( JSON.stringify(1) ) // 1
 
-// a string in JSON is still a string, but double-quoted
+// sebuah string dalam JSON tetaplah sebuah string, namun diberi tanda kutip
 alert( JSON.stringify('test') ) // "test"
 
 alert( JSON.stringify(true) ); // true
@@ -100,31 +99,31 @@ alert( JSON.stringify(true) ); // true
 alert( JSON.stringify([1, 2, 3]) ); // [1,2,3]
 ```
 
-JSON is data-only language-independent specification, so some JavaScript-specific object properties are skipped by `JSON.stringify`.
+JSON adalah spessifikasi yang hanya terdiri dari data dan tidak terlekat bahasa pemrograman tertentu (*data-only language-independent*), jadi beberapa properti objek yang spesifik pada JavaScript akan dilewati oleh `JSON.stringify`.
 
-Namely:
+Properti-properti objek yang spesifik pada JavaScript tersebut yakni:
 
-- Function properties (methods).
-- Symbolic properties.
-- Properties that store `undefined`.
+- Properti fungsi (metode-metode).
+- Properti simbolis.
+- Propert yang menyimpan `undefined`.
 
 ```js run
 let user = {
-  sayHi() { // ignored
+  sayHi() { // diabaikan
     alert("Hello");
   },
   [Symbol("id")]: 123, // ignored
-  something: undefined // ignored
+  something: undefined // diabaikan
 };
 
-alert( JSON.stringify(user) ); // {} (empty object)
+alert( JSON.stringify(user) ); // {} (objek kosong)
 ```
 
-Usually that's fine. If that's not what we want, then soon we'll see how to customize the process.
+Biasanya hal tersebut tidak masalah. Jika itu tidak kita inginkan, kita akan melihat bagaimana cara untuk meng-kustomisasi proses tersebut.
 
-The great thing is that nested objects are supported and converted automatically.
+Hal bagusnya adalah objek-objek yang *nested* secara otomatis didukung dan dikonversikan.
 
-For instance:
+Contohnya:
 
 ```js run
 let meetup = {
@@ -138,7 +137,7 @@ let meetup = {
 };
 
 alert( JSON.stringify(meetup) );
-/* The whole structure is stringified:
+/* Keseluruhan struktur di-stringify:
 {
   "title":"Conference",
   "room":{"number":23,"participants":["john","ann"]},
@@ -146,9 +145,9 @@ alert( JSON.stringify(meetup) );
 */
 ```
 
-The important limitation: there must be no circular references.
+Batasan penting: tidak boleh ada rujukan/referensi yang sirkular/berputar-putar.
 
-For instance:
+Contohnya:
 
 ```js run
 let room = {
@@ -160,41 +159,41 @@ let meetup = {
   participants: ["john", "ann"]
 };
 
-meetup.place = room;       // meetup references room
-room.occupiedBy = meetup; // room references meetup
+meetup.place = room;       // meetup mereferensikan room 
+room.occupiedBy = meetup; // room mereferensikan meetup
 
 *!*
 JSON.stringify(meetup); // Error: Converting circular structure to JSON
 */!*
 ```
 
-Here, the conversion fails, because of circular reference: `room.occupiedBy` references `meetup`, and `meetup.place` references `room`:
+Disini, konversi gagal, karena adanya referensi yang memutar/sirkular: `room.occupiedBy` mereferensikan ke `meetup`, dan `meetup.place` mereferensikan ke `room`:
 
 ![](json-meetup.svg)
 
 
-## Excluding and transforming: replacer
+## Mengecualikan dan mengubah: *replacer*
 
-The full syntax of `JSON.stringify` is:
+Sintaks lengkap dari `JSON.stringify` adalah:
 
 ```js
 let json = JSON.stringify(value[, replacer, space])
 ```
 
-value
-: A value to encode.
+*value*
+: Sebuah nilai untuk di-*encode*.
 
-replacer
-: Array of properties to encode or a mapping function `function(key, value)`.
+*replacer*
+: *Array* properti untuk di-*encode* atau sebuah fungsi pemetaan `function(key, value)`.
 
-space
-: Amount of space to use for formatting
+*space*
+: Jumlah ruang yang digunakan untuk proses *formatting*.
 
-Most of the time, `JSON.stringify` is used with the first argument only. But if we need to fine-tune the replacement process, like to filter out circular references, we can use the second argument of `JSON.stringify`.
+Seringkali, `JSON.stringify` digunakan dengan hanya sebuah argumen pertama. Tapi jika kita perlu untuk menyetel dengan baik proses pergantian tersebut, seperti menyaring referensi-referensi sirkular, kita dapat menggunakan argumen kedua dari `JSON.stringify`.
 
-If we pass an array of properties to it, only these properties will be encoded.
+Jika kita mengoper sebuah *array* properti ke proses tersebut, hanya properti-properti berikut ini yang akan di-*encode*.
 
-For instance:
+Sebagai contoh:
 
 ```js run
 let room = {
@@ -204,18 +203,18 @@ let room = {
 let meetup = {
   title: "Conference",
   participants: [{name: "John"}, {name: "Alice"}],
-  place: room // meetup references room
+  place: room // meetup mereferensikan room
 };
 
-room.occupiedBy = meetup; // room references meetup
+room.occupiedBy = meetup; // room mereferensikan meetup
 
 alert( JSON.stringify(meetup, *!*['title', 'participants']*/!*) );
 // {"title":"Conference","participants":[{},{}]}
 ```
 
-Here we are probably too strict. The property list is applied to the whole object structure. So the objects in `participants` are empty, because `name` is not in the list.
+Kini kita bisa jadi terlalu ketat (dalam mendeklarasikan). Daftar properti tersbeut diterapkan ke keseluruhan struktur objek. Jadi objek-objek dalam `participants` kosong, karena `name` tidak ada dalam daftar.
 
-Let's include in the list every property except `room.occupiedBy` that would cause the circular reference:
+Mari memasukkan semua properti ke dalam daftar kecuali properti `room.occupiedBy` yang dapat menyebabkan referensi sirkular:
 
 ```js run
 let room = {
@@ -225,10 +224,10 @@ let room = {
 let meetup = {
   title: "Conference",
   participants: [{name: "John"}, {name: "Alice"}],
-  place: room // meetup references room
+  place: room // meetup mereferensikan room
 };
 
-room.occupiedBy = meetup; // room references meetup
+room.occupiedBy = meetup; // room mereferensikan meetup
 
 alert( JSON.stringify(meetup, *!*['title', 'participants', 'place', 'name', 'number']*/!*) );
 /*
@@ -240,13 +239,13 @@ alert( JSON.stringify(meetup, *!*['title', 'participants', 'place', 'name', 'num
 */
 ```
 
-Now everything except `occupiedBy` is serialized. But the list of properties is quite long.
+Kini semuanya kecuali `occupiedBy` sudah di-serialisasi. Tapi daftar propertinya masih cukup panjang.
 
-Fortunately, we can use a function instead of an array as the `replacer`.
+Untungnya, kita bisa menggunakan sebuah fungsi ketimbang sebuah *array* sebagai `replacer`.
 
-The function will be called for every `(key, value)` pair and should return the "replaced" value, which will be used instead of the original one. Or `undefined` if the value is to be skipped.
+Fungsi tersebut akan dipanggil pada setiap pasangan `(key, value)` dan mengembalikan nilai "replaced", yang mana akan digunakan dan bukan nilai aslinya. Atau `undefined` jika nilai tersebut diatur agar dilewatkan.
 
-In our case, we can return `value` "as is" for everything except `occupiedBy`. To ignore `occupiedBy`, the code below returns `undefined`:
+Dalam kasus kita, kita bisa mengembalikan   `value` "as is" untuk semua hal kecuali `occupiedBy`. Untuk mengabaikan `occupiedBy`, kode berikut ini mengembalikan `undefined`:
 
 ```js run
 let room = {
@@ -256,17 +255,17 @@ let room = {
 let meetup = {
   title: "Conference",
   participants: [{name: "John"}, {name: "Alice"}],
-  place: room // meetup references room
+  place: room // meetup mereferensikan room
 };
 
-room.occupiedBy = meetup; // room references meetup
+room.occupiedBy = meetup; // room mereferensikan meetup
 
 alert( JSON.stringify(meetup, function replacer(key, value) {
   alert(`${key}: ${value}`);
   return (key == 'occupiedBy') ? undefined : value;
 }));
 
-/* key:value pairs that come to replacer:
+/* pasangan key:value yang menuju ke replacer:
 :             [object Object]
 title:        Conference
 participants: [object Object],[object Object]
@@ -279,20 +278,20 @@ number:       23
 */
 ```
 
-Please note that `replacer` function gets every key/value pair including nested objects and array items. It is applied recursively. The value of `this` inside `replacer` is the object that contains the current property.
+Mohon diingat, bahwa fungsi `replacer` mendapatkan setiap pasang *key/value* termasuk objek-objek *nested* dan *item* dalam *array*. Hal tersebut dapat diterapakn berulang (*recursive*). Nilai dari `this` dalam `replacer` adalah objek yang mengendung properti yang sekarang.
 
-The first call is special. It is made using a special "wrapper object": `{"": meetup}`. In other words, the first `(key, value)` pair has an empty key, and the value is the target object as a whole. That's why the first line is `":[object Object]"` in the example above.
+Panggilan pertama itu khusus. Panggilan pertama tersebut dibuat menggunakan sebuah "wrapper object" yang khusus: `{"": meetup}`. Dengan kata lain, pasangan `(key, value)` pertama memiliki sebuah kunci kosong, dan nilainya adalah objek sasaran seutuhnya. Itulah mengapa baris pertama dalam contoh di atas adalah `":[object Object]"`.
 
-The idea is to provide as much power for `replacer` as possible: it has a chance to analyze and replace/skip even the whole object if necessary.
+Ide tersebut adalah untuk menyediakan sebanyak mungkin kemampuan pada `replacer`: ide tersebut punya sebuah kesempatan untuk menganalisis dan menggantikan/melewatkan hingga keseluruhan objek jika perlu.
 
 
-## Formatting: space
+## Proses *Formatting*: *space*
 
-The third argument of `JSON.stringify(value, replacer, space)` is the number of spaces to use for pretty formatting.
+Argumen ke-tiga dari `JSON.stringify(value, replacer, space)` adalah jumlah ruang (*space*) yang digunakan untuk *formatting* yang apik.
 
-Previously, all stringified objects had no indents and extra spaces. That's fine if we want to send an object over a network. The `space` argument is used exclusively for a nice output.
+Sebelumnya, semua objek yang di-*stringify* tidak memiliki ruang tambahan. Hal tersebut tidak masalah jika kita ingin mengirim sebuah objek melalui sebuah jaringan. Argumen `space` digunakan secara ekslusif demi sebuah hasil yang apik.
 
-Here `space = 2` tells JavaScript to show nested objects on multiple lines, with indentation of 2 spaces inside an object:
+Di sini `space = 2` memberitahukan JavaScript untuk menunjukkan objek-objek *nested* pada beberapa baris, dengan kedalaman (*indentation*) sebanyak 2 ruang (*space*) di dalam sebuah objek:
 
 ```js run
 let user = {
@@ -305,7 +304,7 @@ let user = {
 };
 
 alert(JSON.stringify(user, null, 2));
-/* two-space indents:
+/* indent dengan dua spasi:
 {
   "name": "John",
   "age": 25,
@@ -316,7 +315,7 @@ alert(JSON.stringify(user, null, 2));
 }
 */
 
-/* for JSON.stringify(user, null, 4) the result would be more indented:
+/* untuk JSON.stringify(user, null, 4) hasilnya kan lebih menjorok ke dalam:
 {
     "name": "John",
     "age": 25,
@@ -328,13 +327,13 @@ alert(JSON.stringify(user, null, 2));
 */
 ```
 
-The `space` parameter is used solely for logging and nice-output purposes.
+Parameter `space` digunakan hanya untuk pencatatan dan tujuan-tujuan yang bertujuan menghasilkan *output* yang apik.
 
-## Custom "toJSON"
+## "toJSON" khusus
 
-Like `toString` for string conversion, an object may provide method `toJSON` for to-JSON conversion. `JSON.stringify` automatically calls it if available.
+Seperti `toString` untuk konversi *string*, sebuah objek dapat menyediakan metode `toJSON` untuk konversi ke JSON. `JSON.stringify` secara otomatis akan memanggil metode tersebut jika tersedia.
 
-For instance:
+Contohnya:
 
 ```js run
 let room = {
@@ -359,9 +358,9 @@ alert( JSON.stringify(meetup) );
 */
 ```
 
-Here we can see that `date` `(1)` became a string. That's because all dates have a built-in `toJSON` method which returns such kind of string.
+Di sini kita bisa lihat bahwa `date` `(1)` menjadi sebuah *string*. Itu karena semua tanggal memiliki sebuah metode `toJSON` yang sudah *built-in* yang mana mengembalikan *string* seperti itu.
 
-Now let's add a custom `toJSON` for our object `room` `(2)`:
+Kini mari menambahkan sebuah `toJSON` khusus untuk objek kita `room` `(2)`:
 
 ```js run
 let room = {
@@ -393,28 +392,28 @@ alert( JSON.stringify(meetup) );
 */
 ```
 
-As we can see, `toJSON` is used both for the direct call `JSON.stringify(room)` and when `room` is nested in another encoded object.
+Seperti yang kita lihat, `toJSON` digunakan untuk memanggil langsung `JSON.stringify(room)` serta ketikan `room` bersarang (*nested*) dalam objek lain yang ter-*encode*.
 
 
 ## JSON.parse
 
-To decode a JSON-string, we need another method named [JSON.parse](mdn:js/JSON/parse).
+Untuk men-*decode* sebuah *string* JSON, kita memerlukan sebuah metode lain bernama [JSON.parse](mdn:js/JSON/parse).
 
-The syntax:
+Sintaksnya:
 ```js
 let value = JSON.parse(str, [reviver]);
 ```
 
-str
-: JSON-string to parse.
+*str*
+: *string* JSON untuk di-*parse*.
 
-reviver
-: Optional function(key,value) that will be called for each `(key, value)` pair and can transform the value.
+*reviver*
+: Fungsi opsional (*key,value*) yang akan dipanggil setiap pasang `(key, value)` dan dapat mengubah nilai.
 
-For instance:
+Sebagai contoh:
 
 ```js run
-// stringified array
+// array yang di-stringify
 let numbers = "[0, 1, 2, 3]";
 
 numbers = JSON.parse(numbers);
@@ -422,7 +421,7 @@ numbers = JSON.parse(numbers);
 alert( numbers[1] ); // 1
 ```
 
-Or for nested objects:
+Atau untuk objek-objek yang *nested*:
 
 ```js run
 let userData = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
@@ -432,40 +431,40 @@ let user = JSON.parse(userData);
 alert( user.friends[1] ); // 1
 ```
 
-The JSON may be as complex as necessary, objects and arrays can include other objects and arrays. But they must obey the same JSON format.
+JSON bisa saja menjadi kompleks seiring jika perlu, objek-objek dan *array* bisa sudah termasuk objek-objek lain serta *array* lain. Namun, mereka (objek dan *array* lain tersebut) harus mematuhi format JSON yang sama.
 
-Here are typical mistakes in hand-written JSON (sometimes we have to write it for debugging purposes):
+Berikut ini adalah beberapa kesalahan umum saat penulisan langsung JSON (terkadang kita harus menuliskannya untuk tujuan *debugging*):
 
 ```js
 let json = `{
-  *!*name*/!*: "John",                     // mistake: property name without quotes
-  "surname": *!*'Smith'*/!*,               // mistake: single quotes in value (must be double)
-  *!*'isAdmin'*/!*: false                  // mistake: single quotes in key (must be double)
-  "birthday": *!*new Date(2000, 2, 3)*/!*, // mistake: no "new" is allowed, only bare values
-  "friends": [0,1,2,3]              // here all fine
+  *!*name*/!*: "John",                     // kesalahan: nama properti tanpa tanda kutip
+  "surname": *!*'Smith'*/!*,               // kesalahan: nilai menggunakan tanda petik (harus tanda kutip)
+  *!*'isAdmin'*/!*: false                  // kesalahan: menggunakan tanda petik pada key (harus tanda kutip)
+  "birthday": *!*new Date(2000, 2, 3)*/!*, // kesalahan: tidak boleh ada "new", hanya berupa nilai saja
+  "friends": [0,1,2,3]              // tidak ada kesalahan
 }`;
 ```
 
-Besides, JSON does not support comments. Adding a comment to JSON makes it invalid.
+Selaain itu semua, JSON tidak mendukung komentar. Menambahkan sebuah komentar ke JSON akan membuat JSON tersebut tidak valid.
 
-There's another format named [JSON5](http://json5.org/), which allows unquoted keys, comments etc. But this is a standalone library, not in the specification of the language.
+Terdapat format lain yang dinamakan [JSON5](http://json5.org/), yang mengizinkan *key* tanpa tanda kutip, adanya komentar dan lain-lain. Tapi ini adalah *library* yang berdiri sendiri, tidak terdapat dalam spesifikasi bahasa pemrograman.
 
-The regular JSON is that strict not because its developers are lazy, but to allow easy, reliable and very fast implementations of the parsing algorithm.
+JSON biasa memang seketat itu bukan karena para pengembangnya malas, tetapi agar implementasinya mudah, dapat diandalkan dan cepat saat proses *parsing* algoritma.
 
-## Using reviver
+## Menggunakan *reviver*
 
-Imagine, we got a stringified `meetup` object from the server.
+Bayangkan, kita mendapat sebuah objek `meetup` yang telah di-*stringify* dari server.
 
-It looks like this:
+Objek tersebut akan terlihat seperti ini:
 
 ```js
-// title: (meetup title), date: (meetup date)
+// title: (judul meetup), date: (tanggal meetup)
 let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
 ```
 
-...And now we need to *deserialize* it, to turn back into JavaScript object.
+...Dan sekarang kita perlu untuk men-deserialisasi (*deserialize*) objek itu, untuk mengembalikannya menjadi objek JavaScript.
 
-Let's do it by calling `JSON.parse`:
+Mari lakukan dengan memamnggil `JSON.parse`:
 
 ```js run
 let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
@@ -477,11 +476,11 @@ alert( meetup.date.getDate() ); // Error!
 */!*
 ```
 
-Whoops! An error!
+Upps! Ada error!
 
-The value of `meetup.date` is a string, not a `Date` object. How could `JSON.parse` know that it should transform that string into a `Date`?
+Nilai dari `meetup.date` adalah sebuah *string*, bukan sebuah objek `Date`. Bagaimana cara `JSON.parse` tahu bahwa ia harus mengubah *string* itu menjadi sebuah `Date`?
 
-Let's pass to `JSON.parse` the reviving function as the second argument, that returns all values "as is", but `date` will become a `Date`:
+Mari oper ke `JSON.parse` fungsi yang digunakan lagi sebagai argumen kedua, yang mengembalikan semua nilai "as is", tetapi `date` akan menjadi sebuah objek `Date` dengan format yang benar:
 
 ```js run
 let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
@@ -493,7 +492,7 @@ let meetup = JSON.parse(str, function(key, value) {
 });
 */!*
 
-alert( meetup.date.getDate() ); // now works!
+alert( meetup.date.getDate() ); // kini bekerja!
 ```
 
 By the way, that works for nested objects as well:
@@ -512,16 +511,16 @@ schedule = JSON.parse(schedule, function(key, value) {
 });
 
 *!*
-alert( schedule.meetups[1].date.getDate() ); // works!
+alert( schedule.meetups[1].date.getDate() ); // berhasil bekerja!
 */!*
 ```
 
 
 
-## Summary
+## Kesimpulan
 
-- JSON is a data format that has its own independent standard and libraries for most programming languages.
-- JSON supports plain objects, arrays, strings, numbers, booleans, and `null`.
-- JavaScript provides methods [JSON.stringify](mdn:js/JSON/stringify) to serialize into JSON and [JSON.parse](mdn:js/JSON/parse) to read from JSON.
-- Both methods support transformer functions for smart reading/writing.
-- If an object has `toJSON`, then it is called by `JSON.stringify`.
+- JSON adalah sebuah format data yang memiliki standar dan *library*-nya sendiri untuk sebagian besar bahasa-bahasa pemrograman.
+- JSON mendukung objek-objek polos, *array*, *string*, angka, *boolean*, dan `null`.
+- JavaScript menyediakan metode-metode [JSON.stringify](mdn:js/JSON/stringify) untuk men-serialisasi objek menjadi JSON serta [JSON.parse](mdn:js/JSON/parse) untuk menbaca objek dari JSON.
+- Kedua metode tersebut mendukung fungsi-fungsi pengubah untuk proses pembacaan (*reading*)/penulisan (*writing*) yang cerdas.
+- Jika sebuah objek memiliki `toJSON`, lalu metode tersebut akan dipanggil oleh `JSON.stringify`.
