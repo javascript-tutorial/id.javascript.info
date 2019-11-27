@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Tidak memasukkan referensi balik
+# Exclude backreferences
 
-Dalam kasus-kasus sederhana tentang referensi sirkular, kita bisa tidak memasukkan sebuah properti tertentu dari proses serialisasi berdasarkan namanya.
+In simple cases of circular references, we can exclude an offending property from serialization by its name.
 
-Namun terkadang kita tidak bisa menggunakan nama saja, sebagaimana bisa saja properti tersebut menggunakan referensi sirkular dan (berfungsi sebagai) properti normal. Jadi kita bisa memeriksa properti berdasarkan nilainya.
+But sometimes we can't just use the name, as it may be used both in circular references and normal properties. So we can check the property by its value.
 
-Tulis fungsi `replacer` untuk me-*stringify* semuanya, tetapi menghilangkan propertii yang me-referensi ke `meetup`:
+Write `replacer` function to stringify everything, but remove properties that reference `meetup`:
 
 ```js run
 let room = {
@@ -22,16 +22,16 @@ let meetup = {
 };
 
 *!*
-// referensi-referensi sirkular
+// circular references
 room.occupiedBy = meetup;
 meetup.self = meetup;
 */!*
 
 alert( JSON.stringify(meetup, function replacer(key, value) {
-  /* kodemu */
+  /* your code */
 }));
 
-/* hasil yang diharapkan yakni:
+/* result should be:
 {
   "title":"Conference",
   "occupiedBy":[{"name":"John"},{"name":"Alice"}],
