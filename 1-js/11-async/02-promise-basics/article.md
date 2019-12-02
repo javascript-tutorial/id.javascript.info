@@ -206,8 +206,13 @@ let promise = new Promise((resolve, reject) => {
 });
 
 *!*
+<<<<<<< HEAD
 // .catch(f) sama seperti promise.then(null, f)
 promise.catch(alert); // menampilkan "Error: Whoops!" setelah satu detik
+=======
+// .catch(f) is the same as .then(null, f)
+promise.catch(alert); // shows "Error: Whoops!" after 1 second
+>>>>>>> 47d186598add3a0ea759615596a12e277ce8fb5a
 */!*
 ```
 

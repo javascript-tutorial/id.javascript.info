@@ -2,10 +2,19 @@
 
 # Pengenalan: callback
 
+<<<<<<< HEAD
 ```warn header="Disini kita menggunakan method dari browser"
 Untuk menunjukkan penggunaan callback, promise dan konsep abstract lainnya, kita akan menggunakan beberapa method dari browser; khususnya, memuat script dan melakukan manipulasi dokumen sederhana.
 
 Jika kamu belum terbiasa dengan method ini, dan penggunaanya didalam contoh membuat bingung, atau jika kamu hanya ingin mengerti lebih baik lagi,kamu mungkin mau membaca beberapa bab dari [bagian selanjutnya](/dokumen) tutorial ini.
+=======
+```warn header="We use browser methods in examples here"
+To demonstrate the use of callbacks, promises and other abstract concepts, we'll be using some browser methods: specifically, loading scripts and performing simple document manipulations.
+
+If you're not familiar with these methods, and their usage in the examples is confusing, you may want to read a few chapters from the [next part](/document) of the tutorial.
+
+Although, we'll try to make things clear anyway. There won't be anything really complex browser-wise.
+>>>>>>> 47d186598add3a0ea759615596a12e277ce8fb5a
 ```
 
 Banyak action didalam JavaScript yang *asynchronous*. Dengan kata lain, kita inisiasi action tersebut sekarang, tetapi action tersebut selesai-nya nanti.
@@ -18,6 +27,8 @@ Coba lihat pada fungsi `loadScript(src)`, yang memuat sebuah script dengan pembe
 
 ```js
 function loadScript(src) {
+  // creates a <script> tag and append it to the page
+  // this causes the script with given src to start loading and run when complete
   let script = document.createElement('script');
   script.src = src;
   document.head.append(script);
@@ -25,10 +36,14 @@ function loadScript(src) {
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Fungsi tersebut menambahkan ke dokumen baru, dibuat secara dinamis, tag `<script src="…">`, browser kemudian memuat dan menjalankannya.
 =======
 It appends to the document the new, dynamically created, tag `<script src="…">`. The browser loads and executes it.
 >>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
+=======
+It appends to the document the new, dynamically created, tag `<script src="…">` with given `src`. The browser automatically starts loading it and executes when complete.
+>>>>>>> 47d186598add3a0ea759615596a12e277ce8fb5a
 
 Kita bisa menggunakan fungsi tersebut seperti ini:
 

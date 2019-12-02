@@ -42,7 +42,11 @@ Hanya komen yang muncul di atas `"use strict"`.
 ```warn header="Tidak ada cara untuk membatalkan `use strict`"
 Tak ada directive seperti `"no use strict"` yang merevert engine ke kelakuan lama.
 
+<<<<<<< HEAD
 Sekali kita masuk strict mode, tak ada jalan kembali.
+=======
+Once we enter strict mode, there's no going back.
+>>>>>>> 47d186598add3a0ea759615596a12e277ce8fb5a
 ```
 
 ## Konsol peramban
