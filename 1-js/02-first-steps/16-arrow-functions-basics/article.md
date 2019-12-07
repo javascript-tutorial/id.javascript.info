@@ -1,16 +1,16 @@
-# Arrow functions, the basics
+# Dasar-dasar fungsi *Arrow*
 
-There's another very simple and concise syntax for creating functions, that's often better than Function Expressions.
+Terdapat sintaks lain yang sangat sederhana dan ringkas untuk membuat fungsi-fungsi, bahkan sering kali lebih baik ketimbang fungsi-fungsi *Expression*.
 
-It's called "arrow functions", because it looks like this:
+Disebut sebagai "fungsi *arrow* (panah)", karena sintaks fungsinya terlihat seperti ini:
 
 ```js
 let func = (arg1, arg2, ...argN) => expression
 ```
 
-...This creates a function `func` that accepts arguments `arg1..argN`, then evaluates the `expression` on the right side with their use and returns its result.
+...Ini membuat sebuah fungsi `func` yang menerima argumen `arg1..argN`, kemudian mengevaluasi `expression` yang ada di sisi kanan serta kegunaannya dan mengembalikan hasilnya.
 
-In other words, it's the shorter version of:
+Dalam kata lain, fungsi tersebut adalah versi yang lebih pendek dari:
 
 ```js
 let func = function(arg1, arg2, ...argN) {
@@ -18,12 +18,12 @@ let func = function(arg1, arg2, ...argN) {
 };
 ```
 
-Let's see a concrete example:
+Mari kita lihat contoh konkritnya:
 
 ```js run
 let sum = (a, b) => a + b;
 
-/* This arrow function is a shorter form of:
+/* Fungsi arrow ini adalah bentuk yang lebih pendek dari:
 
 let sum = function(a, b) {
   return a + b;
@@ -33,22 +33,22 @@ let sum = function(a, b) {
 alert( sum(1, 2) ); // 3
 ```
 
-As you can, see `(a, b) => a + b` means a function that accepts two arguments named `a` and `b`. Upon the execution, it evaluates the expression `a + b` and returns the result.
+Seperti yang bisa dilihat, perhatikan `(a, b) => a + b` berarti sebuah fungsi yang menerima dua argumen yang diberinama `a` dan `b`. Ketika eksekusi, fungsi tersebut mengevaluasi ekpresi `a + b` dan mengembalikan hasilnya.
 
-- If we have only one argument, then parentheses around parameters can be omitted, making that even shorter.
+- Jika kita memiliki satu argumen saja, maka *parentheses* di sekitar parameter bisa diabaikan, membuat sintaksnya jadi semakin pendek.
 
-    For example:
+    Sebagai contoh:
 
     ```js run
     *!*
     let double = n => n * 2;
-    // roughly the same as: let double = function(n) { return n * 2 }
+    // secara kasar sama dengan: let double = function(n) { return n * 2 }
     */!*
 
     alert( double(3) ); // 6
     ```
 
-- If there are no arguments, parentheses will be empty (but they should be present):
+- Jika tidak ada argumen, *parentheses* akan kosong(tapi harus ditunjukkan):
 
     ```js run
     let sayHi = () => alert("Hello!");
@@ -56,9 +56,9 @@ As you can, see `(a, b) => a + b` means a function that accepts two arguments na
     sayHi();
     ```
 
-Arrow functions can be used in the same way as Function Expressions.
+Fungsi-fungsi *arrow* dapat digunakan dengan cara yang sama dengan fungsi ekpresi (*expression*).
 
-For instance, to dynamically create a function:
+Untuk membuat sebuah fungsi secara dinamis contohnya:
 
 ```js run
 let age = prompt("What is your age?", 18);
@@ -67,26 +67,26 @@ let welcome = (age < 18) ?
   () => alert('Hello') :
   () => alert("Greetings!");
 
-welcome(); // ok now
+welcome(); // kini benar
 ```
 
-Arrow functions may appear unfamiliar and not very readable at first, but that quickly changes as the eyes get used to the structure.
+Fungsi-fungsi *arrow* bisa terlihat tidak familiar dan sulit dibaca pada awalnya, namun hal tersebut bisa cepat berubah seiring dengan mata (kita) yang terbiasa dengan struktur tersebut.
 
-They are very convenient for simple one-line actions, when we're just too lazy to write many words.
+Fungsi *arrow* sangat memudahkan untuk sintaks-sintaks sederhana, saat kita terlalu malas untuk menulis banyak kata.
 
-## Multiline arrow functions
+## Fungsi *arrow* multi-baris
 
-The examples above took arguments from the left of `=>` and evaluated the right-side expression with them.
+Contoh-contoh di atas mengambil argumen dari sisi kiri dari `=>` dan mengevaluasi ekpresi di sisi kanan.
 
-Sometimes we need something a little bit more complex, like multiple expressions or statements. It is also possible, but we should enclose them in curly braces. Then use a normal `return` within them.
+Terkadang kita memerlukan sesuatu yang agak sedikit rumit, seperti ekspresi atau pernyataan (*statement*) multi-baris (berbaris-baris). Hal tidaklah tidak mungkin, tapi kita harus menutup ekspresi atau pernyataan tersebut dengan tanda kurung kurawal. Kemudian menggunakan sebuah `return` normal diantaranya.
 
-Like this:
+Seperti ini:
 
 ```js run
-let sum = (a, b) => {  // the curly brace opens a multiline function
+let sum = (a, b) => {  // tanda kurung kurawal membuka fungsi multi-baris
   let result = a + b;
 *!*
-  return result; // if we use curly braces, then we need an explicit "return" 
+  return result; // jika kita menggunakan kurung kurawal, selajutnya kita perlu menuliskan "return" 
 */!*
 };
 
@@ -94,18 +94,18 @@ alert( sum(1, 2) ); // 3
 ```
 
 ```smart header="More to come"
-Here we praised arrow functions for brevity. But that's not all!
+Kini kita memuji fungsi arrow karena keringkasannya. Namun tidak hanya itu!
 
-Arrow functions have other interesting features.
+Fungsi arrow memiliki fitur-fitur menarik lainnya.
 
-To study them in-depth, we first need to get to know some other aspects of JavaScript, so we'll return to arrow functions later in the chapter <info:arrow-functions>.
+Untuk mempelajarinya lebih mendalam, pertama-tama kita perlu untuk mengetahui aspek-aspek lain dari JavaScript, jadi kita akan kembali (mempelajari) fungsi arrow di bab selanjutnya <info:arrow-functions>.
 
-For now, we can already use arrow functions for one-line actions and callbacks.
+Untuk sekarang, kita sudah bisa menggunakan fungsi arrow untuk sintaks-sintaks sebaris dan callback.
 ```
 
-## Summary
+## Ringkasan
 
-Arrow functions are handy for one-liners. They come in two flavors:
+Fungsi-fungsi *arrow* itu memudahkan untuk sintaks-sintaks yang hanya sebaris. Fungsi *arrow* juga hadir dengan dua cara:
 
-1. Without curly braces: `(...args) => expression` -- the right side is an expression: the function evaluates it and returns the result.
-2. With curly braces: `(...args) => { body }` -- brackets allow us to write multiple statements inside the function, but we need an explicit `return` to return something.
+1. Tanpa tanda kurung kurawal: `(...args) => expression` -- sisi kanan adalah sebuah ekspresi: fungsi tersebut mengevaluasi ekspresi dan mengembalikan hasilnya.
+2. Dengan tanda kurung kurawal: `(...args) => { body }` -- tanda kurung kurawal membuat kita bisa menuliskan pernyataan-pernyataan berbaris-baris/multi-baris dalam fungsi tersebut, tapi kita perlu untuk menulsikan `return` untuk mengembalikan (hasil) sesuatu.
