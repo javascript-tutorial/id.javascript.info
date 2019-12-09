@@ -1,6 +1,6 @@
-# Object methods, "this"
+# Metode objek, "this"
 
-Objects are usually created to represent entities of the real world, like users, orders and so on:
+Objek-objek biasanya dibuat untuk merepresentasikan benda di dunia nyata, seperti para pengguna, perintah dan sebagainya:
 
 ```js
 let user = {
@@ -9,13 +9,13 @@ let user = {
 };
 ```
 
-And, in the real world, a user can *act*: select something from the shopping cart, login, logout etc.
+Dan, di dunia nyata, seorang pengguna bisa *bertindak*: memilih sesuatu dari keranjang belanja, *login*, *logout* dan lain-lain.
 
-Actions are represented in JavaScript by functions in properties.
+Tindakan-tindakan direpresentasikan dalam JavaScript dengan fungsi-fungsi dalam properti.
 
-## Method examples
+## Contoh metode
 
-For a start, let's teach the `user` to say hello:
+Sebagai awalan, mari ajarkan `user` untuk bilang hello:
 
 ```js run
 let user = {
@@ -32,15 +32,15 @@ user.sayHi = function() {
 user.sayHi(); // Hello!
 ```
 
-Here we've just used a Function Expression to create the function and assign it to the property `user.sayHi` of the object.
+Di sini kita hanya menggunakan sebuah fungsi ekspresi untuk membuat fungsi dan menugaskannya ke properti `user.sayHi` pada objek.
 
-Then we can call it. The user can now speak!
+Kemudian kita memanggil fungsi tersebut. Kini "pengguna" bisa berbicara!
 
-A function that is the property of an object is called its *method*.
+Sebuah fungsi yang mana merupakan properti dari sebuah objek disebut sebagai *metode*-nya.
 
-So, here we've got a method `sayHi` of the object `user`.
+Jadi, di sini kita memiliki sebuah metode `sayHi` dari objek`user`.
 
-Of course, we could use a pre-declared function as a method, like this:
+Tentu saja, kita bisa menggunakan sebuah fungsi sebagai sebuah metode pra-deklarasi (*pre-declared*), seperti beriktu:
 
 ```js run
 let user = {
@@ -48,12 +48,12 @@ let user = {
 };
 
 *!*
-// first, declare
+// pertama, deklarasi
 function sayHi() {
   alert("Hello!");
 };
 
-// then add as a method
+// lalu tambbahkan sebagai sebuah metodes
 user.sayHi = sayHi;
 */!*
 
@@ -61,16 +61,16 @@ user.sayHi(); // Hello!
 ```
 
 ```smart header="Object-oriented programming"
-When we write our code using objects to represent entities, that's called [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP".
+Ketika kita menulis kode kita menggunakan objek-objek untuk merepresentasikan benda, itulah yang disebut sebagai [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), disingkat menjadi: "OOP".
 
-OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the interaction between them? That's architecture, and there are great books on that topic, like "Design Patterns: Elements of Reusable Object-Oriented Software" by E.Gamma, R.Helm, R.Johnson, J.Vissides or "Object-Oriented Analysis and Design with Applications" by G.Booch, and more.
+OOP itu adalah sebuah pembahasan besar, ilmu yang menarik dari dirinya sendiri. Bagaimana cara memilih (perwujudan) benda yang benar? Bagaimana cara mengatur interaksi di antara benda-benda tersebut? Itulah arsitektur, dan literatur-literatur yang lebih besar lagi tentang topik tersebut, like "Design Patterns: Elements of Reusable Object-Oriented Software" oleh E.Gamma, R.Helm, R.Johnson, J.Vissides atau "Object-Oriented Analysis and Design with Applications" oleh G.Booch, dan masih banyak lagi.
 ```
-### Method shorthand
+### Metode ringkas
 
-There exists a shorter syntax for methods in an object literal:
+Terdapat sebuah sintaks yang lebih pendek untuk metode-metode dalams sebuah penulisan (kode) objek:
 
 ```js
-// these objects do the same
+// objek-objek ini sama
 
 user = {
   sayHi: function() {
@@ -78,31 +78,31 @@ user = {
   }
 };
 
-// method shorthand looks better, right?
+// metode ringkas terlihat lebih bagus, kan?
 user = {
 *!*
-  sayHi() { // same as "sayHi: function()"
+  sayHi() { // sama seperti "sayHi: function()"
 */!*
     alert("Hello");
   }
 };
 ```
 
-As demonstrated, we can omit `"function"` and just write `sayHi()`.
+Seperti yang didemonstrasikan, kita bisa mengabaikan `"function"` dan hanya menuliskan `sayHi()`.
 
-To tell the truth, the notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter. In almost all cases the shorter syntax is preferred.
+Sebenarnya, notasi-notasi tersebut tidak sepenuhnya sama. Ada beberapa perbedaan kecil yang berhubungan dengan *object inheritance* atau pewarisan objek (akan dibahas nanti), tetapi untuk sekarang hal-hal tersebut tidak terlalu penting. Dalam hampir kebanyakan kasus sintaks ringkas lebih disukai.
 
-## "this" in methods
+## "this" dalam metode
 
-It's common that an object method needs to access the information stored in the object to do its job.
+Sudah umum bahwa sebuah metode objek perlu untuk mengakses informasi yang disimpan dalam objek untuk melakukan tugasnya.
 
-For instance, the code inside `user.sayHi()` may need the name of the `user`.
+Contohnya, kode di dalam `user.sayHi()` bisa jadi membutuhkan nama dari `user`.
 
-**To access the object, a method can use the `this` keyword.**
+**Untuk mengakses objek yang bersangkutan, sebuah metode dapat menggunakan kata kunci `this`.**
 
-The value of `this` is the object "before dot", the one used to call the method.
+Nilai dari `this` adalah objek "sebelum (tanda) titik", yang mana sebelumnya memanggil metode tersebut.
 
-For instance:
+Sebagai contoh:
 
 ```js run
 let user = {
@@ -111,7 +111,7 @@ let user = {
 
   sayHi() {
 *!*
-    // "this" is the "current object"
+    // "this" adalah "objek yang sekarang"
     alert(this.name);
 */!*
   }
@@ -121,9 +121,9 @@ let user = {
 user.sayHi(); // John
 ```
 
-Here during the execution of `user.sayHi()`, the value of `this` will be `user`.
+Di sini selama ekseskusi `user.sayHi()`, nilai dari `this` akan menjadi `user`.
 
-Technically, it's also possible to access the object without `this`, by referencing it via the outer variable:
+Secara teknis, memungkingkan juga untuk mengakses objek tanpa `this`, dengan cara mereferensikannya melalui variabel luar:
 
 ```js
 let user = {
@@ -132,16 +132,16 @@ let user = {
 
   sayHi() {
 *!*
-    alert(user.name); // "user" instead of "this"
+    alert(user.name); // menggunakan "user" ketimbang "this"
 */!*
   }
 
 };
 ```
 
-...But such code is unreliable. If we decide to copy `user` to another variable, e.g. `admin = user` and overwrite `user` with something else, then it will access the wrong object.
+...Namun kode yang demikian tidak dapat diandalkan. Jika kita memilih untuk menyalin `user` ke sebuah variabel lain, misalnya `admin = user` dan menimpa `user` dengan hal lain, akhirnya malah akan mengakses objek yang salah.
 
-That's demonstrated below:
+Hal tersebut dicontohkan seperti berikut ini:
 
 ```js run
 let user = {
@@ -150,7 +150,7 @@ let user = {
 
   sayHi() {
 *!*
-    alert( user.name ); // leads to an error
+    alert( user.name ); // akan mengarah ke sebuah error
 */!*
   }
 
@@ -158,18 +158,18 @@ let user = {
 
 
 let admin = user;
-user = null; // overwrite to make things obvious
+user = null; // timpa/overwrite agar terlihat lebih jelas
 
-admin.sayHi(); // Whoops! inside sayHi(), the old name is used! error!
+admin.sayHi(); // Uups! dalam sayHi(), nama yang lama sedang digunakan! error!
 ```
 
-If we used `this.name` instead of `user.name` inside the `alert`, then the code would work.
+Jika kita menggunakan `this.name` ketimbang `user.name` dalam `alert`, maka kodenya akhirnya berfungsi.
 
-## "this" is not bound
+## "this" tidak ditemukan
 
-In JavaScript, keyword `this` behaves unlike most other programming languages. It can be used in any function.
+Dalam JavaScript, kata kunci `this` berperilaku tidak seperti kebanyak bahasa pemrograman lainnya. 'this' juga bisa digunakan dalam fungsi apapun.
 
-There's no syntax error in the following example:
+Tidak ada *syntax error* dalam contoh berikut ini:
 
 ```js
 function sayHi() {
@@ -177,9 +177,9 @@ function sayHi() {
 }
 ```
 
-The value of `this` is evaluated during the run-time, depending on the context.
+Nilai dari `this` dievaluasi selama proses *run-time*, tergantung dari konteksnya.
 
-For instance, here the same function is assigned to two different objects and has different "this" in the calls:
+Contohnya, di sini fungsi yang sama ditugaskan pada dua objek yang berbeda dan memiliki "this" dalam pemanggilannya:
 
 ```js run
 let user = { name: "John" };
@@ -190,23 +190,23 @@ function sayHi() {
 }
 
 *!*
-// use the same function in two objects
+// menggunakan fungsi yang sama dalam dua objek
 user.f = sayHi;
 admin.f = sayHi;
 */!*
 
-// these calls have different this
-// "this" inside the function is the object "before the dot"
+// panggilan-panggilan ini memiliki this yang berbeda
+// "this" dalam fungsi adalah objek "sebelum tanda titik"
 user.f(); // John  (this == user)
 admin.f(); // Admin  (this == admin)
 
-admin['f'](); // Admin (dot or square brackets access the method – doesn't matter)
+admin['f'](); // Admin (tanda titik atau kurung siku mengakses metode tersebut – bukan masalah)
 ```
 
-The rule is simple: if `obj.f()` is called, then `this` is `obj` during the call of `f`. So it's either `user` or `admin` in the example above.
+Aturannya sederhana: jika `obj.f()` dipanggil, maka `this` adalah `obj` selama pemanggilan `f`. Jadi antara `user` atau `admin` pada contoh di atas.
 
-````smart header="Calling without an object: `this == undefined`"
-We can even call the function without an object at all:
+````smart header="Pemanggilan tanpa sebuah objek: `this == undefined`"
+Kita bahkan bisa memanggil fungsi tanpa sebuah objek sama sekali:
 
 ```js run
 function sayHi() {
@@ -216,32 +216,32 @@ function sayHi() {
 sayHi(); // undefined
 ```
 
-In this case `this` is `undefined` in strict mode. If we try to access `this.name`, there will be an error.
+Dalam kasus ini `this` adalah `undefined` di mode *strict*. Jika kita coba untuk mengakses `this.name`, akan menghasilkan sebuah error.
 
-In non-strict mode the value of `this` in such case will be the *global object* (`window` in a browser, we'll get to it later in the chapter [](info:global-object)). This is a historical behavior that `"use strict"` fixes.
+Dalam mode *non-strict* nilai dari `this` dalam kasus demikian akan menjadi *objek global* (`window` dalam sebuah peramban, kita akan membahasnya lebih lanjut dalam bab [](info:global-object)). Ini adalah sebuah perilaku historis yang dibenahi oleh `"use strict"`.
 
-Usually such call is a programming error. If there's `this` inside a function, it expects to be called in an object context.
+Biasanya panggilan yang demikian adalah sebuah kesalahan *programming*. Jika terdapat `this` dalam sebuah fungsi, `this` tersebut kemungkinan besar akan dipanggil dalam konteks sebuah objek.
 ````
 
-```smart header="The consequences of unbound `this`"
-If you come from another programming language, then you are probably used to the idea of a "bound `this`", where methods defined in an object always have `this` referencing that object.
+```smart header="Akibat dari `this` yang tidak terikat"
+Jika kamu berasal dari bahasa pemrograman lain, mungkin saja kamu menggunakan gagasan sebuah "pengikatan (bound) `this`", dimana metode-metode didefinisikan dalam sebuah objek selalu memiliki `this` yang merujuk pada objek itu.
 
-In JavaScript `this` is "free", its value is evaluated at call-time and does not depend on where the method was declared, but rather on what object is "before the dot".
+Dalam JavaScript `this` itu "bebas", nilainya dieveluasi saat waktu pemanggilan dan tidak tergantung pada dimana metode tersebut di deklarasikan, namun lebih pada objek apa yang berada "sebelum (tanda) titik".
 
-The concept of run-time evaluated `this` has both pluses and minuses. On the one hand, a function can be reused for different objects. On the other hand, the greater flexibility creates more possibilities for mistakes.
+Konsep run-time mengeveluasi `this` memiliki kelebihan dan kekurangan sendiri. Di satu sisi, sebuah fungsi bisa digunakan ulang untuk objek-objek yang berbeda. Pada sisi sebaliknya, fleksibilitas yang besar membuat lebih banyak kemungkinan adanya kesalahan-kesalahan.
 
-Here our position is not to judge whether this language design decision is good or bad. We'll understand how to work with it, how to get benefits and avoid problems.
+Di sini posisi kita tidak untuk menghakimi apakah pilihan rancangan bahasa pemrograman ini baik atau buruk. Kita akan mengerti bagaimana bekerja dengan hal itu, serta bagaimana cara mendapatkan keuntungan dari hal tersebut dan menghindari adanya masalah.
+````
+
+## Internal: Jenis Referensi
+
+```warn header="Fitur mendalam bahasa pemrogaman"
+Bagian ini membahas sebuah topik tingkat lanjut, untuk memahami kasus-kasus terkini tertentu dengan lebih baik.
+
+Jika kamu ingin lanjut belajar lebih cepat, pembahasan ini bisa dilewati atau ditunda dulu.
 ```
 
-## Internals: Reference Type
-
-```warn header="In-depth language feature"
-This section covers an advanced topic, to understand certain edge-cases better.
-
-If you want to go on faster, it can be skipped or postponed.
-```
-
-An intricate method call can lose `this`, for instance:
+Sebauh pemanggilan metode yang rumit bisa kehilangan `this`, contohny:
 
 ```js run
 let user = {
@@ -250,40 +250,40 @@ let user = {
   bye() { alert("Bye"); }
 };
 
-user.hi(); // John (the simple call works)
+user.hi(); // John (pemanggilan sederhana berhasil)
 
 *!*
-// now let's call user.hi or user.bye depending on the name
+// kini mari panggil user.hi atau user.bye berdasarkan pada namanya
 (user.name == "John" ? user.hi : user.bye)(); // Error!
 */!*
 ```
 
-On the last line there is a conditional operator that chooses either `user.hi` or `user.bye`. In this case the result is `user.hi`.
+Pada baris terakhir ada sebuah operator kondisional yang memilih antara `user.hi` atau `user.bye`. Pada kasus ini hasilnya adalah `user.hi`.
 
-Then the method is immediately called with parentheses `()`. But it doesn't work correctly!
+Lalu metode tersebut seketika dipanggil dengan *parentheses* `()`. Tapi tidak bisa berjalan dengan benar!
 
-As you can see, the call results in an error, because the value of `"this"` inside the call becomes `undefined`.
+Seperti yang bisa dilihat, panggilan tersebut menghasilkan sebuah error, karena nilai dari `"this"` di dalam panggilan tersebut menjadi `undefined`.
 
-This works (object dot method):
+Kode yang ini berfungsi (objek titik metode):
 ```js
 user.hi();
 ```
 
-This doesn't (evaluated method):
+Kode yang ini tidak berfungsi (metode yang dievaluasi):
 ```js
 (user.name == "John" ? user.hi : user.bye)(); // Error!
 ```
 
-Why? If we want to understand why it happens, let's get under the hood of how `obj.method()` call works.
+Mengapa? Jika kita ingin mengerti mengapa hal demikian terjadi, mari cari tahu lebih dalam bagaimana panggilan `obj.method()` bekerja.
 
-Looking closely, we may notice two operations in `obj.method()` statement:
+Lihat lebih dekat, kita bisa tahu bahwa dua operasi dalam pernyataan `obj.method()`:
 
-1. First, the dot `'.'` retrieves the property `obj.method`.
-2. Then parentheses `()` execute it.
+1. Pertama, tanda titik `'.'` mengambil properti `obj.method`.
+2. Lalu *parentheses* `()` mengeksekusi properti objek tersebut.
 
-So, how does the information about `this` get passed from the first part to the second one?
+Jadi, bagaimana informasi tentang `this` dioper dari bagian pertama ke bagian kedua?
 
-If we put these operations on separate lines, then `this` will be lost for sure:
+Jika kita operasi-operasi ini pada baris kode yang berbeda, maka `this` pastinya akan hilang:
 
 ```js run
 let user = {
@@ -292,42 +292,42 @@ let user = {
 }
 
 *!*
-// split getting and calling the method in two lines
+// memisahkan proses mendapatkan dan pemanggilan metode ke dalam dua baris kode
 let hi = user.hi;
-hi(); // Error, because this is undefined
+hi(); // Error, karena this adalah undefined
 */!*
 ```
 
-Here `hi = user.hi` puts the function into the variable, and then on the last line it is completely standalone, and so there's no `this`.
+Di sini `hi = user.hi` menempatkan fungsi ke dalam variabel, dan kemudian baris terakhir jadi berdiri sendiri sepenuhnya, dan jadinya tidak ada `this`.
 
-**To make `user.hi()` calls work, JavaScript uses a trick -- the dot `'.'` returns not a function, but a value of the special [Reference Type](https://tc39.github.io/ecma262/#sec-reference-specification-type).**
+**Untuk membuat panggilan-panggilan `user.hi()` bekerja, JavaScript menggunakan sebuah trik -- tanda titik `'.'` mengembalikan bukannya sebuah fungsi tapi sebuah nilai dari [Tipe Referensi (*Reference Type*)](https://tc39.github.io/ecma262/#sec-reference-specification-type) yang khusus.**
 
-The Reference Type is a "specification type". We can't explicitly use it, but it is used internally by the language.
+Tipe Reference adalah "tipe spesifikasi". Kita tidak bisa secara ekplisit menggunakannnya, tapi Tipe Referensi digunakan secara internal oleh bahasa pemrograman.
 
-The value of Reference Type is a three-value combination `(base, name, strict)`, where:
+Nilai dari Tipe Referensi adalah sebuah kombianasi dari tiga nilai `(base, name, strict)`, yang mana:
 
-- `base` is the object.
-- `name` is the property name.
-- `strict` is true if `use strict` is in effect.
+- `base` adalah objek.
+- `name` adalah nama properti.
+- `strict` adalah *true* jika `use strict` ada dalam efek.
 
-The result of a property access `user.hi` is not a function, but a value of Reference Type. For `user.hi` in strict mode it is:
+Hasil dari sebuah properti mengakses `user.hi` bukanlah sebuah fungsi, namun sebuah nilai dari Tipe Referensi. Dengan `user.hi` dalam mode *strict* maka:
 
 ```js
 // Reference Type value
 (user, "hi", true)
 ```
 
-When parentheses `()` are called on the Reference Type, they receive the full information about the object and its method, and can set the right `this` (`=user` in this case).
+Ketika *parentheses* `()` dipanggil pada Tipe Referensi, mereka menerima informasi penuh tentang objek serta metodenya, dan dapat mengatur `this` yang tepat (dalam kasus ini `=user`).
 
-Reference type is a special "intermediary" internal type, with the purpose to pass information from dot `.` to calling parentheses `()`.
+Tipe referensi adalah sebuah tipe internal "perantara" yang istimewa "intermediary", dengan tujuan untuk mengoper informasi dari tanda titik `.` untuk memangil *parentheses* `()`.
 
-Any other operation like assignment `hi = user.hi` discards the reference type as a whole, takes the value of `user.hi` (a function) and passes it on. So any further operation "loses" `this`.
+Operasi lain seperti penugasan `hi = user.hi` menyingkirkan tipe referensi sepenuhnya, mengambil nilai dari `user.hi` (sebuah fungsi) dan mengopernya. Jadi operasi apapun yang lebih jauh (akan) "kehilangan" `this`.
 
-So, as the result, the value of `this` is only passed the right way if the function is called directly using a dot `obj.method()` or square brackets `obj['method']()` syntax (they do the same here). Later in this tutorial, we will learn various ways to solve this problem such as [func.bind()](/bind#solution-2-bind).
+Jadi, sebagai hasilnya, nilai dari `this` hanya dioper dengan cara yang tepat jika  fungsi tersebut dipanggil langsung menggunakan sebuah tanda titik `obj.method()` atau sintaks tanda kurung siku `obj['method']()` (keduanya melakukan hals yang sama). Selanjutnya pada tutorial ini, kita akan mempelajari berbagai macam cara untuk mencari solusi permasalah seperti [func.bind()](/bind#solution-2-bind).
 
-## Arrow functions have no "this"
+## Fungsi *arrow* tidak memiliki "this"
 
-Arrow functions are special: they don't have their "own" `this`. If we reference `this` from such a function, it's taken from the outer "normal" function.
+Fungsi-fungsi *arrow* itu istimewa: fungsi tersebut tidak memiliki `this` "milik fungsi itu sendiri". Jika kita mereferensikan `this` dari fungsi demikian, hal itu didapat dari fungsi "normal" di luar.
 
 For instance, here `arrow()` uses `this` from the outer `user.sayHi()` method:
 
@@ -343,18 +343,18 @@ let user = {
 user.sayHi(); // Ilya
 ```
 
-That's a special feature of arrow functions, it's useful when we actually do not want to have a separate `this`, but rather to take it from the outer context. Later in the chapter <info:arrow-functions> we'll go more deeply into arrow functions.
+Itulah fitur istimewa dari fungsi *arrow*, fitur berguna ketika kita benar-benar tidak ingin memiliki sebuah `this` yang terpisah, namun kita mengambilnya dari luar lingkung tersebut. Selanjutnya dalam bab <info:arrow-functions> kita akan mempelajari lebih dalam mengenai fungsi *arrow*.
 
 
-## Summary
+## Ringkasan
 
-- Functions that are stored in object properties are called "methods".
-- Methods allow objects to "act" like `object.doSomething()`.
-- Methods can reference the object as `this`.
+- Fungsi-fungsi yang disimpan dalam properti objek disebut sebagai "metode".
+- Metode membuat objek dapat "bertindak" seperti `object.doSomething()`.
+- Metode bisa mereferensikan ke objek sebagai `this`.
 
-The value of `this` is defined at run-time.
-- When a function is declared, it may use `this`, but that `this` has no value until the function is called.
-- A function can be copied between objects.
-- When a function is called in the "method" syntax: `object.method()`, the value of `this` during the call is `object`.
+Nilai dari `this` didefiniskan saat *run-time*.
+- Ketika sebuah fungsi dideklarasikan, fungsi tersebut bisa menggunakan `this`, tetapi `this` tersebut tidak memiliki nilai sampai fungsi tersebut dipanggil.
+- Sebuah fungsi bisa disalin di antara objek-objek.
+- Ketika sebuah fungsi dipanggil dalam sintaks "metode": `object.method()`, nilai `this` selama pemanggilan adalah `object`.
 
-Please note that arrow functions are special: they have no `this`. When `this` is accessed inside an arrow function, it is taken from outside.
+Mohon diingat bahwa fungsi *arrow* itu istimewa: fungsi tersebut tidak memiliki `this`. Ketika `this` diakses di dalam sebuah fungsi *arrow*, `this` itu diambil dari luar.
