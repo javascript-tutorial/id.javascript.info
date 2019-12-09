@@ -1,31 +1,31 @@
 
-# Symbol type
+# Tipe simbol
 
-By specification, object property keys may be either of string type, or of symbol type. Not numbers, not booleans, only strings or symbols, these two types.
+Menurut spesifikasi spesifikasi, properti-properti kunci objek bisa saja bertipe *string*, atau bertipe simbol. Bukan angka (*number*), bukan *boolean*, hanya *string* atau simbol-simbol, kedua tipe ini.
 
-Till now we've been using only strings. Now let's see the benefits that symbols can give us.
+Hingga kini kita telah menggunakan *string* saja. Mari kita lihat keuntungan-keuntungan apa saja dari simbol yang bisa diberikan ke kita.
 
-## Symbols
+## Simbol-simbol
 
-A "symbol" represents a unique identifier.
+Sebuah "simbol" merepresentasikan sebuah pengidentifikasi yang unik.
 
-A value of this type can be created using `Symbol()`:
+Nilai dari tipe ini dapat dibuat menggunakan `Symbol()`:
 
 ```js
-// id is a new symbol
+// id adalah sebuah simbol baru
 let id = Symbol();
 ```
 
-Upon creation, we can give symbol a description (also called a symbol name), mostly useful for debugging purposes:
+Selama penyusunan, kita bisa memberikan simbol sebuah deskripsi (juga disebut sebagai nama simbol), kebanyakan berguna untuk tujuan-tujuan *debugging*:
 
 ```js run
-// id is a symbol with the description "id"
+// id adalah sebuah simbol dengan deskripsi "id"
 let id = Symbol("id");
 ```
 
-Symbols are guaranteed to be unique. Even if we create many symbols with the same description, they are different values. The description is just a label that doesn't affect anything.
+Simbol-simbol sudah pasti unik. Bahkan jika kita membuat banyak simbol dengan deskripsi yang, mereka memiliki nilai-nilai yang berbeda. Deskripsi hanyalah sebuah label yang tidak mempengaruhi apapun.
 
-For instance, here are two symbols with the same description -- they are not equal:
+Sebagai contoh, berikut ini ada dua simbol dengan deskripsi yang sama -- keduanya tidak sama:
 
 ```js run
 let id1 = Symbol("id");
@@ -36,12 +36,12 @@ alert(id1 == id2); // false
 */!*
 ```
 
-If you are familiar with Ruby or another language that also has some sort of "symbols" -- please don't be misguided. JavaScript symbols are different.
+Jika kamu tidak asing dengan Ruby atau bahasa pemrograman lain yang juga memiliki hal seperti "simbol" -- tolong jangan sampai keliru. Simbol-simbol (di) JavaScript itu berbeda.
 
-````warn header="Symbols don't auto-convert to a string"
-Most values in JavaScript support implicit conversion to a string. For instance, we can `alert` almost any value, and it will work. Symbols are special. They don't auto-convert.
+````warn header="Simbol-simbol tidak dikonversi otomatis menjadi string"
+Kebanyakan nilai-nilai dalam JavaScript mendukung konversi implisit menjadi sebuah string. Contohnya, kita bisa memberi `alert` pada hampir nilai apapun, dan masih akan berfungsi. Simbol itu istimewa. Mereka tidak terkonversi otomatis.
 
-For instance, this `alert` will show an error:
+Sebagai contoh, `alert` ini akan memunculkan sebuah error:
 
 ```js run
 let id = Symbol("id");
@@ -50,17 +50,17 @@ alert(id); // TypeError: Cannot convert a Symbol value to a string
 */!*
 ```
 
-That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not accidentally convert one into another.
+Hal tersebut adalah sebuah "garda bahasa pemrograman" untuk menghadapi adanya kekacauan, karena string dan simbol itu berbeda secara fundamental dan sudah seharusnya tidak akan terkonversi dari satu ke lainnya secara tidak sengaja.
 
-If we really want to show a symbol, we need to explicitly call `.toString()` on it, like here:
+Jika kita benar-benar ingin menunjukkan sebuah simbol, kita perlu secara eskplisit memanggil `.toString()` sintaks tersebut, seperti berikut ini:
 ```js run
 let id = Symbol("id");
 *!*
-alert(id.toString()); // Symbol(id), now it works
+alert(id.toString()); // Symbol(id), sekarang berfungsi
 */!*
 ```
 
-Or get `symbol.description` property to show the description only:
+Atau mengambil properti `symbol.description` untuk menunjuukan deskripsinya saja:
 ```js run
 let id = Symbol("id");
 *!*
@@ -70,16 +70,16 @@ alert(id.description); // id
 
 ````
 
-## "Hidden" properties
+## Properti "tersembunyi" (*hidden*)
 
-Symbols allow us to create "hidden" properties of an object, that no other part of code can accidentally access or overwrite.
+Simbol memungkinkan kita untuk membuat properti-properti yang "tersembunyi" (*hidden*) dari sebuah objek, yang mana tidak akan ada bagian lain dari kode yang bisa mengakses atau meng-*overwrite* tanpa sengaja.
 
-For instance, if we're working with `user` objects, that belong to a third-party code. We'd like to add identifiers to them.
+Sebagai contoh, jika kita bekerja dengan objek-objek `user`, yang dimiliki oleh sebuah kode pihak ketiga. Kita akan menambahkan pengidentifikasi pada objek-objek tersebut.
 
-Let's use a symbol key for it:
+Mari gunakan sebuah kunci simbol untuk hal tersebut:
 
 ```js run
-let user = { // belongs to another code
+let user = { // dimiliki oleh kode lainyya
   name: "John"
 };
 
@@ -87,16 +87,16 @@ let id = Symbol("id");
 
 user[id] = 1;
 
-alert( user[id] ); // we can access the data using the symbol as the key
+alert( user[id] ); // kita bisa mengakses data menggunakan simbol sebagai kunci
 ```
 
-What's the benefit of using `Symbol("id")` over a string `"id"`?
+Apa keuntungan dari menggunakan `Symbol("id")` daripada sebuah *string* `"id"`?
 
-As `user` objects belongs to another code, and that code also works with them, we shouldn't just add any fields to it. That's unsafe. But a symbol cannot be accessed accidentally, the third-party code probably won't even see it, so it's probably all right to do.
+Sebagaimana objek-objek `user` adalah milik kode lain, dan kode itu juga berfungsi dengan objek-objek tadi, kita seharusnya tidak hanya menambahkan ruang apapun di situ. Hal tersebut tidak aman. Tetapi sebuah simbol tidak bisa diakses tanpa sengaja, kode pihak ketiga bahkan tidak akan melihatnya, jadi mungkin tidak masalah jika demikian.
 
-Also, imagine that another script wants to have its own identifier inside `user`, for its own purposes. That may be another JavaScript library, so that the scripts are completely unaware of each other.
+Juga, bayangkan *script* lain ingin memiliki pengidentifikasi sendiri dalam objek `user`, untuk tujuannya masing-masing. Hal tersebut bisa saja *library* JavaScript lainnya, jadi *script-script* tersebut benar-benar tidak menyadari satu sama lainnya.
 
-Then that script can create its own `Symbol("id")`, like this:
+Kemudian *script* tersebut bisa membuat `Symbol("id")`-nya sendiri, seperti berikut ini:
 
 ```js
 // ...
@@ -105,27 +105,27 @@ let id = Symbol("id");
 user[id] = "Their id value";
 ```
 
-There will be no conflict between our and their identifiers, because symbols are always different, even if they have the same name.
+Tidak ada konflik antara pengidentifikasi kita dengan pengidentifikasi mereka, karena simbol selalu berebeda, bahkan jika simbol-simbol itu memiliki nama yang sama.
 
-...But if we used a string `"id"` instead of a symbol for the same purpose, then there *would* be a conflict:
+...Tapi jika kita menggunakan sebuah *string* `"id"` bukan sebuah simbol untuk tujuan yang sama, dengan demikian *akan menjadi* sebuah konflik:
 
 ```js run
 let user = { name: "John" };
 
-// Our script uses "id" property
+// Script kita menggunakan properti "id"
 user.id = "Our id value";
 
-// ...Another script also wants "id" for its purposes...
+// ...Script lain juga menginginkan "id" untuk tujuannya sendiri...
 
 user.id = "Their id value"
-// Boom! overwritten by another script!
+// Boom! properti tertimpa/overwrite oleh script lain!
 ```
 
-### Symbols in a literal
+### Simbol dalam sebuah tulisan
 
-If we want to use a symbol in an object literal `{...}`, we need square brackets around it.
+Jika kita ingin menggunakan sebuah simbol dalam sebuah tulisan objek `{...}`, kita perlu menuliskan simbol tersebut dalam tanda kurung siku.
 
-Like this:
+Seperti ini:
 
 ```js
 let id = Symbol("id");
@@ -133,15 +133,15 @@ let id = Symbol("id");
 let user = {
   name: "John",
 *!*
-  [id]: 123 // not "id: 123"
+  [id]: 123 // bukan "id: 123"
 */!*
 };
 ```
-That's because we need the value from the variable `id` as the key, not the string "id".
+Itu karena kita memerlukan nilai dari variabel `id` sebagai kunci, bukan *string* dari "id".
 
-### Symbols are skipped by for..in
+### Simbol diabaikan menggunakan *for..in*
 
-Symbolic properties do not participate in `for..in` loop.
+Properti-properti simbolis tidak ikut serta dalam pengulangan (*loop*) `for..in`.
 
 For instance:
 
@@ -154,16 +154,16 @@ let user = {
 };
 
 *!*
-for (let key in user) alert(key); // name, age (no symbols)
+for (let key in user) alert(key); // name, age (bukan simbol)
 */!*
 
-// the direct access by the symbol works
+// akses langsung dengan simbol, berfungsi
 alert( "Direct: " + user[id] );
 ```
 
-`Object.keys(user)` also ignores them. That's a part of the general "hiding symbolic properties" principle. If another script or a library loops over our object, it won't unexpectedly access a symbolic property.
+`Object.keys(user)` juga mengabaikannya. Itu adalah bagian dari prinsip umum "menyembunyikan properti simbolis" (*hiding symbolic properties*). Jika *script* lain atau sebuah *library* melakukan pengulanagn pada objek kita, hal tersebut tidak akan mengakses sebuah properti simbolis tanpa diduga.
 
-In contrast, [Object.assign](mdn:js/Object/assign) copies both string and symbol properties:
+Sebaliknya, [Object.assign](mdn:js/Object/assign) menyalin baik *string* properti maupun simbol properti:
 
 ```js run
 let id = Symbol("id");
@@ -176,118 +176,118 @@ let clone = Object.assign({}, user);
 alert( clone[id] ); // 123
 ```
 
-There's no paradox here. That's by design. The idea is that when we clone an object or merge objects, we usually want *all* properties to be copied (including symbols like `id`).
+Tidak ada paradoks di sini. Hal itu sesuai rancangan. Gagasan bahwa ketika kita meng-*clone* sebuah objek atau menyatukan (*merge*) objek-objek, kita biasanya ingin *semua* properti disalin (termasuk simbol seperti `id`).
 
-````smart header="Property keys of other types are coerced to strings"
-We can only use strings or symbols as keys in objects. Other types are converted to strings.
+````smart header="Properti-properti kunci dari tipe lain dipaksa menjadi string"
+Kita hanya bisa menggunakan string atau simbol sebagai kunci dalam objek. Tipe-tipe lain dikonversi menjadi string.
 
-For instance, a number `0` becomes a string `"0"` when used as a property key:
+Sebagai contoh, sebuah angka `0` menjadi sebuah string `"0"` ketika digunakan sebagai properti kunci:
 
 ```js run
 let obj = {
   0: "test" // same as "0": "test"
 };
 
-// both alerts access the same property (the number 0 is converted to string "0")
-alert( obj["0"] ); // test
-alert( obj[0] ); // test (same property)
+// keduanya memberi peringatan akses properti yang sama (angka 0 dikonversi menjadi string "0")
+alert( obj["0"] ); // tes
+alert( obj[0] ); // tes (properti yang sama)
 ```
 ````
 
-## Global symbols
+## Simbol-simbol global
 
-As we've seen, usually all symbols are different, even if they have the same name. But sometimes we want same-named symbols to be same entities. For instance, different parts of our application want to access symbol `"id"` meaning exactly the same property.
+Seperti yang kita lihat, biasanya semua simbol itu berbeda, bahkan jika simbol-simbol tersebut memiliki nama yang sama. Tapi terkadang kita ingin simbol yang bernama sama untuk menjadi barang yang sama pula. Sebagai contoh, bagian-bagian lain dari aplikasi kita ingin mengakses simbol `"id"` yang berarti properti yang sama pula.
 
-To achieve that, there exists a *global symbol registry*. We can create symbols in it and access them later, and it guarantees that repeated accesses by the same name return exactly the same symbol.
+Untuk melaksanakan aksi itu, hadirlah sebuah catatan simbol-simbol global (*global symbol registry*). Kita bisa membuat simbol-simbol di dalamnya dan mengaksesnya nanti, dan hal tersebut menjamin bahwa akses yang berulang oleh nama yang sama (akan) mengembalikan simbol yang sama pula.
 
-In order to read (create if absent) a symbol from the registry, use `Symbol.for(key)`.
+Agar bisa membaca (atau membuat jika belum ada) sebuah simbol dari catatan, gunakan `Symbol.for(key)`.
 
-That call checks the global registry, and if there's a symbol described as `key`, then returns it, otherwise creates a new symbol `Symbol(key)` and stores it in the registry by the given `key`.
+Hal itu memeriksa catatan (simbol) global, dan jika ada sebuah simbol yang dideskripsikan sebagai `key`, lalu mengembalikannya, jika tidak - buatlah sebuah simbol baru `Symbol(key)` dan menyimpan simbol baru tersebut dalam catatan sesuai namanya `key`.
 
-For instance:
+Contohnya:
 
 ```js run
-// read from the global registry
-let id = Symbol.for("id"); // if the symbol did not exist, it is created
+// membaca dari catatan global
+let id = Symbol.for("id"); // jika simbol tidak ada, simbol tersebut akan dibuat
 
-// read it again (maybe from another part of the code)
+// baca simbol tersebut lagi (mungkin dari bagian lain dari kode)
 let idAgain = Symbol.for("id");
 
-// the same symbol
+// simbol yang sama
 alert( id === idAgain ); // true
 ```
 
-Symbols inside the registry are called *global symbols*. If we want an application-wide symbol, accessible everywhere in the code -- that's what they are for.
+Simbol-simbol di dalam catatan (*registry*) disebut sebagai *simbol-simbol global* (*global symbols*). Jika kita ingin sebuah simbol yang berlaku untuk keseluruhan aplikasi, dapat diakses dari mana saja dalam kode -- itulah kegunaan dari simbol global.
 
-```smart header="That sounds like Ruby"
-In some programming languages, like Ruby, there's a single symbol per name.
+```smart header="Simbol global itu seperti dalam Ruby"
+Dalam beberapa bahasa pemrograman, seperti Ruby, hanya ada satu simbol per nama.
 
-In JavaScript, as we can see, that's right for global symbols.
+Dalam JavaScript, seperti yang bisa kita lihat, yakni simbol-simbol global.
 ```
 
 ### Symbol.keyFor
 
-For global symbols, not only `Symbol.for(key)` returns a symbol by name, but there's a reverse call: `Symbol.keyFor(sym)`, that does the reverse: returns a name by a global symbol.
+Untuk simbol-simbol global, tidak hanya `Symbol.for(key)` yang mengembalikan sebuah simbol berdasarkan nama, tetapi ada sebuah panggilan sebaliknya: `Symbol.keyFor(sym)`, sintaks tersebut melakukan hal sebaliknya tadi: mengembalikan sebuah nama berdasarkan sebuah simbol global.
 
-For instance:
+Contohnya:
 
 ```js run
-// get symbol by name
+// mendapatkan simbol bersasarkan nama
 let sym = Symbol.for("name");
 let sym2 = Symbol.for("id");
 
-// get name by symbol
+// mendapatkan nama berdasarkan simbol
 alert( Symbol.keyFor(sym) ); // name
 alert( Symbol.keyFor(sym2) ); // id
 ```
 
-The `Symbol.keyFor` internally uses the global symbol registry to look up the key for the symbol. So it doesn't work for non-global symbols. If the symbol is not global, it won't be able to find it and return `undefined`.
+`Symbol.keyFor` secara internal menggunakan catatan simbol global untuk mencari kunci (*key*) untuk sebuah simbol. Jadi ini tidak bekerja untuk simbol-simbol non-global. Jika simbol tersebut tidak global, simbol tersebut tidak bisa ditemukan dan akan mengembalikan `undefined`.
 
-That said, any symbols have `description` property.
+Seperti yang dikatakan, simbol apapun memiliki properti `description`.
 
-For instance:
+Contohnya:
 
 ```js run
 let globalSymbol = Symbol.for("name");
 let localSymbol = Symbol("name");
 
-alert( Symbol.keyFor(globalSymbol) ); // name, global symbol
-alert( Symbol.keyFor(localSymbol) ); // undefined, not global
+alert( Symbol.keyFor(globalSymbol) ); // name, simbol global
+alert( Symbol.keyFor(localSymbol) ); // undefined, bukan simbol global
 
 alert( localSymbol.description ); // name
 ```
 
-## System symbols
+## Simbol-simbol sistem
 
-There exist many "system" symbols that JavaScript uses internally, and we can use them to fine-tune various aspects of our objects.
+Terdapat banyak simbol-simbol "sistem" yang JavaScript gunakan secara internal, dan kita bisa menggunakan simbol-simbol sistem tersebut untuk mengatur dengan baik berbagai aspek dari objek kita.
 
-They are listed in the specification in the [Well-known symbols](https://tc39.github.io/ecma262/#sec-well-known-symbols) table:
+Simbol-simbol tersebut sudah terdaftar dalam spesifikasi di tabel [Simbol-simbol ternama (*well-known symbols*)](https://tc39.github.io/ecma262/#sec-well-known-symbols):
 
 - `Symbol.hasInstance`
 - `Symbol.isConcatSpreadable`
 - `Symbol.iterator`
 - `Symbol.toPrimitive`
-- ...and so on.
+- ...dan seterusnya.
 
-For instance, `Symbol.toPrimitive` allows us to describe object to primitive conversion. We'll see its use very soon.
+Contohnya, `Symbol.toPrimitive` membuat kita dapat mendeskripsikan objek menjadi hasil konversi yang primitif. Kita akan melihatnya segera.
 
-Other symbols will also become familiar when we study the corresponding language features.
+Simbol-simbol lain akan juga menjadi tidak asing ketika kita sedenang mempelajari fitur-fitur di bahasa pemrograman tersebut.
 
-## Summary
+## Ringkasan
 
-`Symbol` is a primitive type for unique identifiers.
+`Symbol` adalah sebuah jenis primitif dari pengindetifikasi yang unik.
 
-Symbols are created with `Symbol()` call with an optional description (name).
+Simbol-simbol dibuat menggunakan panggilan `Symbol()` dengan sebuah deskripsi (nama).
 
-Symbols are always different values, even if they have the same name. If we want same-named symbols to be equal, then we should use the global registry: `Symbol.for(key)` returns (creates if needed) a global symbol with `key` as the name. Multiple calls of `Symbol.for` with the same `key` return exactly the same symbol.
+Simbols selalu berbeda nilainya, bahkan jika mereka memiliki nama yang sama. Jika kita ingin simbol-simbol yang bernama sama tersebut untuk menjadi (simbol yang) sama, maka kita harus menggunakan catatan (*registry*) global: `Symbol.for(key)` mengembalikan (membuat jika perlu) sebuah simbol global dengan  `key` yang sama dengan namanya. Panggilan-panggilan berganda pada `Symbol.for` dengan `key` yang sama mengenbalikan simbol yang persis sama.
 
-Symbols have two main use cases:
+Simbol memiliki dua alasan utama pada pemakaiannya:
 
-1. "Hidden" object properties.
-    If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be accidentally processed together with other properties. Also it won't be accessed directly, because another script does not have our symbol. So the property will be protected from accidental use or overwrite.
+1. Properti objek yang "tersembunyi".
+    Jika kita ingin menambahkan sebuah properti ke dala sebuah objek yang "dimiliki" oleh *script* lain atau sebuah *library*, kita bisa membuat sebuah simbol dan menggunakannya sebagai sebuah kunci properti. Sebuah properti simbolis tidak muncul dalam `for..in`, jadi hal tersbeut tidak akan tanpa sengaja terproses bersama properti-properti lain. Juga, simbol tidak akan diakses secara langsung, karena *script* tidak memiliki simbol kita. Jadi properti akan terlindungi dari penggunaan yang tak disengaja maupun tertimpa (*overwrite*).
 
-    So we can "covertly" hide something into objects that we need, but others should not see, using symbolic properties.
+    Jadi kita bisa "secara terselubung" menyembunyikan sesuatu ke dalam objek yang kita inginkan, tetapi tidak bisa diliha oleh pihak lain, menggunakn properti simbolis.
 
-2. There are many system symbols used by JavaScript which are accessible as `Symbol.*`. We can use them to alter some built-in behaviors. For instance, later in the tutorial we'll use `Symbol.iterator` for [iterables](info:iterable), `Symbol.toPrimitive` to setup [object-to-primitive conversion](info:object-toprimitive) and so on.
+2. Terdapat banyak simbol sistem yang digunakan oleh oleh JavaScript yang mana dapat diakses sebagai `Symbol.*`. Kita bisa menggunakan simbol-simbol tersebut untuk mengubah beberapa perilaku bawaan (*built-in*). Sebagai contohnya, di tutorial selanjutnya kita akan menggunakan `Symbol.iterator` untuk [*iterables*](info:iterable), `Symbol.toPrimitive` untuk mengatur [konversi objek-ke-primitif](info:object-toprimitive) dan sebagainya.
 
-Technically, symbols are not 100% hidden. There is a built-in method [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) that allows us to get all symbols. Also there is a method named [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys of an object including symbolic ones. So they are not really hidden. But most libraries, built-in functions and syntax constructs don't use these methods.
+Secara teknis, simbol-simbol tidak 100% tersembunyi. Ada sebuah metode bawaan [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) yang membuat kita dapat mendapatkan semua simbol. Juga terdapat sebuah metode yang dinamakan [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) yang mengembalikan *semua* kunci dari sebuah objek termasuk yang kunci yang simbolik. Jadi simbol-simbol tersebut tidak sepenuhnya tersembunyi. Namun untuk sebagian besar *library*, fungsi-fungsi bawaan dan kontruksi sintaks constructs tidak menggunakan metode-metode ini.
