@@ -29,10 +29,19 @@ Tampilan persisnya tools pengembang tergantung versi Chrome kamu. Ia berubah dar
 - Di sini kita bisa melihat pesan error berwarna merah. Di sini, scriptnya mengandung perintah asing "lalala".
 - Di kanan, ada link yang bisa diklik ke sumber `bug.html:12` dengan nomor baris di mana error itu muncul.
 
+<<<<<<< HEAD
 Di bawah pesan error, ada simbol `>` berwarna biru. Ia menandakan "command line" di mana kita bisa mengetik perintah JavaScript. Tekan `key:Enter` untuk menjalankannya (`key:Shift+Enter` untuk menginput perintah multi-baris).
+=======
+Below the error message, there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands. Press `key:Enter` to run them.
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 Sekarang kita bisa melihat error, dan itu sudah cukup untuk permulaan. Kita nanti akan kembali ke tools pengembang dan mengcover debugging lebih dalam di bab <info:debugging-chrome>.
 
+```smart header="Multi-line input"
+Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+
+To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+```
 
 ## Firefox, Edge, dan lainnya
 
@@ -50,6 +59,7 @@ Buka Preferences dan pergi ke "Advanced" pane. Di sana ada checkbox di sebelah b
 
 Sekarang `key:Cmd+Opt+C` bisa mentoggle konsol. Lalu, menu "Develop" muncul pada menu item di atas. Ia punya banyak perintah dan opsi.
 
+<<<<<<< HEAD
 ```smart header="Input baris-ganda"
 Biasanya, ketika kita menaruh sebaris kode ke konsol, dan menekan `key:Enter`, dia akan berjalan.
 
@@ -57,6 +67,9 @@ Untuk menyisipkan lebih dari satu baris, tekan `key:Shift+Enter`. Dengan cara in
 ```
 
 ## Kesimpulan
+=======
+## Summary
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 - Tools pengembang memungkinkan kita melihat error, menjalankan perintah, memeriksa variabel, dan sebagainya.
 - Mereka bisa dibuka dengan `key:F12` untuk kebanyakan peramban di Windows. Chrome di Mac dengan `key:Cmd+Opt+J`, Safari `key:Cmd+Opt+C` (harus diaktifkan terlebih dulu).

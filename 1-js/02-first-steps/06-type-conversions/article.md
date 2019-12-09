@@ -1,6 +1,10 @@
 # Konversi Tipe
 
+<<<<<<< HEAD
 Seringkali, operator dan fungsi otomatis mengkonversi nilai yang diberikan ke mereka ke tipe yang sesuai. 
+=======
+Most of the time, operators and functions automatically convert the values given to them to the right type.
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 Misalnya, `alert` otomatis mengkonversi nilai apapun ke string untuk menampilkannya. Operasi mathematika mengkonversi nilai ke angka.
 
@@ -81,6 +85,7 @@ alert( Number(false) );       // 0
 
 Tolong diingat bahwa kelakuan `null` dan `undefined` berbeda di sini: `null` menjadi nol namun `undefined` menjadi `NaN`.
 
+<<<<<<< HEAD
 ````smart header="Penambahan '+' mengkonkatenasi string"
 Hampir semua operasi matematik mengkonversi nilai ke angka. Pengecualian yang penting ialah penambahan `+`. Jika satu dari nilai yang ditambahkan berupa string, nilai lainnya juga dikonversi ke string.
 
@@ -93,6 +98,9 @@ alert( '1' + 2 ); // '12' (string ke kiri)
 
 Ini cuma terjadi ketika setidaknya satu dari argumen yaitu string. Sebaliknya, nilai dikonversi ke angka.
 ````
+=======
+Most mathematical operators also perform such conversion, we'll see that in the next chapter.
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 ## Boolean Conversion
 
