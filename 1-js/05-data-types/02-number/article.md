@@ -104,33 +104,33 @@ Penggunaan umumnya ialah:
     alert( 123456..toString(36) ); // 2n9c
     ```
 
-```warn header="Two dots to call a method"
-Please note that two dots in `123456..toString(36)` is not a typo. If we want to call a method directly on a number, like `toString` in the example above, then we need to place two dots `..` after it.
+```warn header="Dua dot untuk memanggil metode"
+Tolong ingat bahwa dua dot di `123456..toString(36)` bukan typo. Jika kita mau memanggil langsung metode pada angka, seperti `toString` di contoh di atas, maka kita harus menaruh dua dot `..` setelahnya.
 
-If we placed a single dot: `123456.toString(36)`, then there would be an error, because JavaScript syntax implies the decimal part after the first dot. And if we place one more dot, then JavaScript knows that the decimal part is empty and now goes the method.
+Jika kita menaruh dot tunggal: `123456.toString(36)`, maka akan ada galat, karena syntax JavaScript berimplikasi bahwa bagian desimal setelah dot pertama. Dan jika kita menaruh satu dot lagi, maka JavaScript tahu bahwa bagian desimal kosong dan sekarang pergi ke metode.
 
-Also could write `(123456).toString(36)`.
+Juga bisa menulis `(123456).toString(36)`.
 ```
 
-## Rounding
+## Pembulatan
 
-One of the most used operations when working with numbers is rounding.
+Satu dari operasi paling banyak dipakai saat bekerja dengan angka ialah pembulatan.
 
-There are several built-in functions for rounding:
+Ada beberapa fungsi built-in untuk pembulatan:
 
 `Math.floor`
-: Rounds down: `3.1` becomes `3`, and `-1.1` becomes `-2`.
+: Membulat ke bawah: `3.1` menjadi `3`, dan `-1.1` menjadi `-2`.
 
 `Math.ceil`
-: Rounds up: `3.1` becomes `4`, and `-1.1` becomes `-1`.
+: Membulat ke atas: `3.1` menjadi `4`, dan `-1.1` menjadi `-1`.
 
 `Math.round`
-: Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4` and `-1.1` becomes `-1`.
+: Membulat to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4` and `-1.1` becomes `-1`.
 
 `Math.trunc` (not supported by Internet Explorer)
 : Removes anything after the decimal point without rounding: `3.1` becomes `3`, `-1.1` becomes `-1`.
 
-Here's the table to summarize the differences between them:
+Ini tabel untuk meringkas perbedaan di antara mereka:
 
 |   | `Math.floor` | `Math.ceil` | `Math.round` | `Math.trunc` |
 |---|---------|--------|---------|---------|
@@ -140,43 +140,43 @@ Here's the table to summarize the differences between them:
 |`-1.6`|  `-2`    |   `-1`  |    `-2`  |   `-1`   |
 
 
-These functions cover all of the possible ways to deal with the decimal part of a number. But what if we'd like to round the number to `n-th` digit after the decimal?
+Fungsi ini membahas semua cara yang mungkin untuk berhadapan dengan bagian desimal dari angka. Tapi bagaimana jika kita mau membulatkan angka ke digit `ke-n` setelah desimal?
 
-For instance, we have `1.2345` and want to round it to 2 digits, getting only `1.23`.
+Misalnya, kita punya `1.2345` dan mau membulatkan ke 2 digit, memperoleh `1.23`.
 
-There are two ways to do so:
+Ada dua cara melakukannya:
 
-1. Multiply-and-divide.
+1. Kali-dan-bagi.
 
-    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100`, call the rounding function and then divide it back.
+    Misalnya, untuk membulatkan angka ke digit kedua setelah desimal, kita bisa mengalikan angkanya dengan `100`, panggil fungsi pembulatan lalu membagi itu kembali.
     ```js run
     let num = 1.23456;
 
     alert( Math.floor(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
     ```
 
-2. The method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) rounds the number to `n` digits after the point and returns a string representation of the result.
+2. Metode [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) Membulatkan ke digit `n` setelah poin itu dan mengembalikan representasi string dari hasilnya.
 
     ```js run
     let num = 12.34;
     alert( num.toFixed(1) ); // "12.3"
     ```
 
-    This rounds up or down to the nearest value, similar to `Math.round`:
+    Ini membulatkan ke atas atau ke bawah ke nilai terdekat, serupa dengan `Math.round`:
 
     ```js run
     let num = 12.36;
     alert( num.toFixed(1) ); // "12.4"
     ```
 
-    Please note that result of `toFixed` is a string. If the decimal part is shorter than required, zeroes are appended to the end:
+    Silakan catat hasil dari `toFixed` ialah string. Jika bagian desimal lebih pendek dari yang dibutuhkan, nol ditambahkan di akhir:
 
     ```js run
     let num = 12.34;
-    alert( num.toFixed(5) ); // "12.34000", added zeroes to make exactly 5 digits
+    alert( num.toFixed(5) ); // "12.34000", tambah nol supaya tepat 5 digit
     ```
 
-    We can convert it to a number using the unary plus or a `Number()` call: `+num.toFixed(5)`.
+    Kita bisa mengkonversi itu ke angka menggunakan unary plus atau panggilan `Number()`: `+num.toFixed(5)`.
 
 ## Imprecise calculations
 
@@ -408,7 +408,7 @@ A few examples:
 
 There are more functions and constants in `Math` object, including trigonometry, which you can find in the [docs for the Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object.
 
-## Summary
+## Kesimpulan
 
 To write numbers with many zeroes:
 
