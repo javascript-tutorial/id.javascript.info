@@ -10,11 +10,7 @@ message = 123456;
 
 Bahasa pemrograman yang memperbolehkan hal semacam ini dibsebut "dynamically typed", yang artinya ada tipe data, tapi variabel tak terikat ke tipe data apapun.
 
-<<<<<<< HEAD
 Ada tujuh tipe data dasar di JavaScript. Di sini, kita akan mengcover mereka secara umum dan di bab berikutnya kita akan berbicara tentang setiap dari mereka secara detil.
-=======
-There are eight basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
->>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 ## Number
 
@@ -66,11 +62,9 @@ Nilai numerik spesial formalnya merupakan bagian dari tipe "number". Tentu saja 
 
 Kita akan melihat lebih tentang cara bekerja dengan angka di bab <info:number>.
 
-<<<<<<< HEAD
-=======
 ## BigInt
 
-In JavaScript, the "number" type cannot represent integer values larger than <code>2<sup>53</sup></code> (or less than <code>-2<sup>53</sup></code> for negatives), that's a technical limitation caused by their internal representation. That's about 16 decimal digits, so for most purposes the limitation isn't a problem, but sometimes we need really big numbers, e.g. for cryptography or microsecond-precision timestamps.
+  Di JavaScript, tipe "number" tidak bisa mewakili nilai integer yang lebih dari <code>2<sup>53</sup></code> (atau kurang dari <code>-2<sup>53</sup></code> untuk negatives), itu batasan teknikal yang disebabkan representasi internal mereka. Itu sekitar 16 digit desimal, jadi untuk banyak tujuan limitasi itu bukan masalah, tapi kadang kita butuh butuh big number yang sangat besar, misanya: cryptography or microsecond-precision timestamps.
 
 `BigInt` type was recently added to the language to represent integers of arbitrary length.
 
@@ -87,7 +81,6 @@ As `BigInt` numbers are rarely needed, we devoted them a separate chapter <info:
 Right now `BigInt` is supported in Firefox and Chrome, but not in Safari/IE/Edge.
 ```
 
->>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 ## String
 
 String di JavaScript harus dikelilingi petik.
@@ -104,11 +97,7 @@ Di JavaScript, ada 3 tipe petik.
 2. Petik tunggal: `'Hello'`.
 3. Backtick: <code>&#96;Hello&#96;</code>.
 
-<<<<<<< HEAD
 Petik tunggal dan ganda merupakan petik "simpel". Tak ada perbedaan antara mereka di JavaScript.
-=======
-Double and single quotes are "simple" quotes. There's practically no difference between them in JavaScript.
->>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 Backtick merupakan petik "fungsional lanjutan". Mereka memungkinkan kita mengembed variabel dan expresi ke dalam string dengan membungkus mereka dalam `${…}`, misalnya:
 
@@ -131,22 +120,13 @@ alert( "the result is ${1 + 2}" ); // hasilnya ${1 + 2} (petik ganda tak akan be
 
 Kita akan mengcover string lebih dalam di bab <info:string>.
 
-<<<<<<< HEAD
 ```smart header="Tidak ada tipe *character*."
 Dalam beberapa bahasa, ada tipe "character" spesial untuk karakter tunggal. Misalnya, di bahasa C dan di Java adalah `char`.
-=======
-```smart header="There is no *character* type."
-In some languages, there is a special "character" type for a single character. For example, in the C language and in Java it is called "char".
->>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 Di JavaScript, tak ada tipe semacam itu. Cuma ada satu tipe: `string`. String bisa berisi satu karakter atau lebih.
 ```
 
-<<<<<<< HEAD
 ## Boolean (tipe logika)
-=======
-## Boolean (logical type)
->>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 Tipe boolean cuma punya dua nilai: `true` dan `false`.
 
@@ -264,33 +244,18 @@ Tiga baris terakhir mungkin butuh penjelasan tambahan:
 2. Hasil `typeof null` yaitu `"object"`. Itu salah. Ia merupakan error yang terkenal resmi dalam `typeof`, yang dijaga untuk kompatibilitas. Tentu saja, `null` bukanlah objek. Ia merupakan nilai spesial dengan tipe terpisah miliknya sendiri. Jadi, lagi, ini merupakan error dalam bahasa.
 3. Hasil dari `typeof alert` yaitu `"function"`, karena `alert` merupakan fungsi. Kita akan belajar fungsi di bab berikutnya di mana kita juga akan melihat bahwa tak ada tipe "fungsi" spesial di JavaScript. Fungsi merupakan bagian dari tipe objek. Tapi `typeof` memperlakukan mereka secara berbeda, yang mengembalikan `"fungsi"`. Itu tak sepenuhnya benar, tapi sangat nyaman pada praktiknya.
 
-<<<<<<< HEAD
-
 ## Kesimpulan
 
 Ada 7 tipe data dasar dalam JavaScript.
 
 - `number` untuk angka jenis manapun: integer atau floating-point.
+- `bigint` untuk angka integer dengan panjang sembarang.
 - `string` untuk string. String mungkin punya satu atau lebih karakter, tak ada tipe katakter tunggal terpisah.
 - `boolean` untuk `true`/`false`.
 - `null` untuk nilai tak-diketahui -- tipe mandiri yang punya nilai tunggal `null`.
 - `undefined` untuk nilai yang belum ditetapkan -- tipe mandiri yang punya nilai tunggal `undefined`.
 - `object` untuk struktur data lebih rumit.
 - `symbol` untuk identifier unik.
-=======
-## Summary
-
-There are 8 basic data types in JavaScript.
-
-- `number` for numbers of any kind: integer or floating-point, integers are limited by ±2<sup>53</sup>.
-- `bigint` is for integer numbers of arbitrary length.
-- `string` for strings. A string may have one or more characters, there's no separate single-character type.
-- `boolean` for `true`/`false`.
-- `null` for unknown values -- a standalone type that has a single value `null`.
-- `undefined` for unassigned values -- a standalone type that has a single value `undefined`.
-- `object` for more complex data structures.
-- `symbol` for unique identifiers.
->>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 Operator `typeof` memungkinkan kita melihat tipe mana yang disimpan dalam variable.
 
