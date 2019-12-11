@@ -1,8 +1,4 @@
-<<<<<<< HEAD:1-js/02-first-steps/15-function-expressions-arrows/article.md
-# Expresi fungsi dan panah
-=======
-# Function expressions
->>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd:1-js/02-first-steps/15-function-expressions/article.md
+# Expresi fungsi
 
 Di JavaScript, fungsi bukan "struktur bahasa magis", melaikan satu bentuk nilai spesial.
 
@@ -354,121 +350,12 @@ welcome(); // sekarang ok
 ```smart header="Kapan harus memilih Deklarasi Fungsi versus Expresi Fungsi?"
 Sebagai aturan praktis, saat kita harus mendeklarasi fungsi, hal pertama yang kita pertimbangkan ialah syntax Deklarasi Fungsi. Ia memberi kebebasan lebih dalam bagaimana mengorganisir kode kita, karena kita bisa memanggil fungsi macam ini sebelum mereka dideklarasi.
 
-<<<<<<< HEAD
 Itu juga untuk keterbacaan yang lebih baik, karena lebih mudah melihat `function f(…) {…}` dalam kode ketimbang `let f = function(…) {…}`. Deklarasi Fungsi lebih "eye-catching".
-=======
-That's also better for readability, as it's easier to look up `function f(…) {…}` in the code than `let f = function(…) {…};`. Function Declarations are more "eye-catching".
->>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 ...Tapi jika Deklarasi Fungsi tak cocok untuk beberapa alasan, atau kita butuh deklarasi kondisional (kita sudah lihat contohnya), maka Expresi Fungsi sebaiknya digunakan.
 ```
 
-<<<<<<< HEAD:1-js/02-first-steps/15-function-expressions-arrows/article.md
-
-## Fungsi panah [#arrow-functions]
-
-Ada lagi syntax yang lebih simpel dan ringkas untuk membuat fungsi, ia lebih baik dari Expresi Fungsi. Ia disebut "fungsi panah", karena rupanya seperti ini:
-
-
-```js
-let func = (arg1, arg2, ...argN) => expression
-```
-
-...Ini membuat fungsi `func` yang punya argumen `arg1..argN`, mengevaluasi `expression` di sisi kanan dengan penggunaan mereka dan mengembalikan hasilnya.
-
-Dengan kata lain, kasarnya ia sama saja dengan:
-
-```js
-let func = function(arg1, arg2, ...argN) {
-  return expression;
-};
-```
-
-...Tapi lebih ringkas.
-
-Ayo kita lihat contoh:
-
-```js run
-let sum = (a, b) => a + b;
-
-/* Fungsi panah ialah bentuk pendek dari:
-
-let sum = function(a, b) {
-  return a + b;
-};
-*/
-
-alert( sum(1, 2) ); // 3
-
-```
-
-Jika kita cuma punya satu argumen, maka tanda kurung sekitar parameter bisa dibuang, membuatnya lebih pendek lagi:
-
-```js run
-// sama dengan
-// let double = function(n) { return n * 2 }
-*!*
-let double = n => n * 2;
-*/!*
-
-alert( double(3) ); // 6
-```
-
-Jika tak ada argumen, tanda kurung sebaiknya kosong (tapi mereka harus ada):
-
-```js run
-let sayHi = () => alert("Hello!");
-
-sayHi();
-```
-
-Panah fungsi bisa digunakan dengan cara yang sama dengan Expresi Fungsi.
-
-Misalnya, ini contoh yang ditulis ulang dengan `welcome()`:
-
-```js run
-let age = prompt("What is your age?", 18);
-
-let welcome = (age < 18) ?
-  () => alert('Hello') :
-  () => alert("Greetings!");
-
-welcome(); // ok now
-```
-
-Fungsi panah mungkin terlihat asing dan tak mudah terbaca pertama kali, tapi itu cepat berubah seiring mata memandangi strukturnya.
-
-Mereka sangat nyaman untuk aksi sebaris simpel, saat kita malas banget untuk menulis banyak kata.
-
-```smart header="Fungsi panah baris-ganda"
-
-Contoh di atas mengambil argumen dari kiri `=>` dan mengealuasi expresi sisi kanan expression dengan mereka.
-
-kadang kita butuh sesuatu yang lebih komplex, seperti pernyataan atau expresi ganda. Itu juga memungkinkan, tapi sebaiknya kita melampirkan mereka dalam kurung kurawal. Lalu gunakan `return` normal di dalamnya.
-
-Seperti ini:
-
-```js run
-let sum = (a, b) => {  // kurung kurawal membuka fungsi baris-ganda
-  let result = a + b;
-*!*
-  return result; // jika kita menggunakan kurung kurawal, gunakan return untuk mendapatkan hasil
-*/!*
-};
-
-alert( sum(1, 2) ); // 3
-```
-
-```smart header="Ada lagi"
-Di sini kita memuji fungsi panah karena keringkasan. Tapi belum selesai! Fungsi panah punya fitur menarik lain. Kita akan kembali ke mereka nanti di bab <info:arrow-functions>.
-
-Untuk sekarang, kita sudah bisa menggunakan panah fungsi untuk aksi sebaris dan callback.
-```
-
 ## Kesimpulan
-=======
-## Summary
->>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd:1-js/02-first-steps/15-function-expressions/article.md
 
 - Fungsi adalah nilai. Mereka bisa diset, dikopi atau dideklarasi di kode manapun.
 - Jika fungsi dideklarasi sebagai pernyataan terpisah di aliran kode utama, ia disebut "Deklarasi Fungsi".
@@ -480,11 +367,6 @@ Di banyak kasus saat kita harus mendeklarasi fungsi, Deklarasi Fungsi disenangi,
 
 <<<<<<< HEAD:1-js/02-first-steps/15-function-expressions-arrows/article.md
 Jadi sebaiknya kita gunakan Expresi Fungsi hanya saat Deklarasi Fungsi tak cocok digunakan. Kita sudah melihat beberapa contoh itu di bab ini, dan kita akan melihat lebih lagi nanti.
-
-Panah fungsi lebih praktis untuk satu baris. Mereka ada dalam dua rasa:
-
-1. Tanpa kurung kurawal: `(...args) => expression` -- sisi kanan ialah expresi: fungsi mengevaluasinya dan mengembalikan hasil.
-2. Dengan kurung kurawal: `(...args) => { body }` -- bracket memperbolehkan kita menulis pernyataan ganda di dalam fungsi, tapi kita butuh `return` explisit untuk mengembalikan sesuatu.
 =======
 So we should use a Function Expression only when a Function Declaration is not fit for the task. We've seen a couple of examples of that in this chapter, and will see more in the future.
 >>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd:1-js/02-first-steps/15-function-expressions/article.md
