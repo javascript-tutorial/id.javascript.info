@@ -1,16 +1,16 @@
-# Numbers
+# Angka
 
-In modern JavaScript, there are two types of numbers:
+Dalam JavaScript modern, ada dua tipe angka:
 
-1. Regular numbers in JavaScript are stored in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), also known as "double precision floating point numbers". These are numbers that we're using most of the time, and we'll talk about them in this chapter.
+1. Angka regular di JavaScript yang disimpan dalam format 64-bit [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), juga dikenal sebagai "angka double precision floating point". Inilah angka yang kita paling sering kita pakai, dan kita akan bahas tentang mereka di bab ini.
 
-2. BigInt numbers, to represent integers of arbitrary length. They are sometimes needed, because a regular number can't exceed <code>2<sup>53</sup></code> or be less than <code>-2<sup>53</sup></code>. As bigints are used in few special areas, we devote them a special chapter <info:bigint>.
+2. Angka BigInt, untuk mewakili integer dengan panjang sembarang. Mereka kadang dibutuhkan, karena angka regular tak bisa lebih dari <code>2<sup>53</sup></code> atau kurang dari <code>-2<sup>53</sup></code>. Karena bigint dipakai di sedikit area spesial, kita khususkan mereka bab spesial <info:bigint>.
 
-So here we'll talk about regular numbers. Let's expand our knowledge of them.
+Jadi di sini kita akan bahas angka regular. Ayo perluas pengetahuan kita tentang mereka.
 
-## More ways to write a number
+## Cara lain menulis angka
 
-Imagine we need to write 1 billion. The obvious way is:
+Bayangkan kita harus menulis 1 milyar. Cara jelasnya begini:
 
 ```js
 let billion = 1000000000;
