@@ -355,7 +355,7 @@ Itu juga untuk keterbacaan yang lebih baik, karena lebih mudah melihat `function
 ...Tapi jika Deklarasi Fungsi tak cocok untuk beberapa alasan, atau kita butuh deklarasi kondisional (kita sudah lihat contohnya), maka Expresi Fungsi sebaiknya digunakan.
 ```
 
-## Summary
+## Kesimpulan
 
 - Fungsi adalah nilai. Mereka bisa diset, dikopi atau dideklarasi di kode manapun.
 - Jika fungsi dideklarasi sebagai pernyataan terpisah di aliran kode utama, ia disebut "Deklarasi Fungsi".

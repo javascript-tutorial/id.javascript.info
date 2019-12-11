@@ -81,18 +81,7 @@ alert( Number(false) );       // 0
 
 Tolong diingat bahwa kelakuan `null` dan `undefined` berbeda di sini: `null` menjadi nol namun `undefined` menjadi `NaN`.
 
-````smart header="Penambahan '+' mengkonkatenasi string"
-Hampir semua operasi matematik mengkonversi nilai ke angka. Pengecualian yang penting ialah penambahan `+`. Jika satu dari nilai yang ditambahkan berupa string, nilai lainnya juga dikonversi ke string.
-
-Maka, ia mengkonkatenasi (menggabungkan) mereka:
-
-```js run
-alert( 1 + '2' ); // '12' (string ke kanan)
-alert( '1' + 2 ); // '12' (string ke kiri)
-```
-
-Ini cuma terjadi ketika setidaknya satu dari argumen yaitu string. Sebaliknya, nilai dikonversi ke angka.
-````
+Hampir semua operasi matematik melakukan konversi semacam ini, yang akan kita lihat di bab berikutnya.
 
 ## Boolean Conversion
 

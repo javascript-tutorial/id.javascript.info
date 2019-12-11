@@ -38,7 +38,7 @@ Engine sangat rumit. Tapi basicnya mudah.
 2. Lalu ia mengkonversi ("mengkompilasi") script tersebut menjadi bahasa mesin.
 3. Dan kemudian kode mesin berjalan, lumayan cepat.
 
-Engine melakukan optimisasi di setiap langkah proses. Dia bahkan memperhatikan script yang telah dikompilasi saat sedang berjalan, menganalisa data yang mengalir di dalam, dan melakukan optimisasi ke kode mesin berdasarkan pengetahuan itu. Ketika selesai, script berjalan lumayan cepat.
+Engine melakukan optimisasi di setiap langkah proses. Dia bahkan memperhatikan script yang telah dikompilasi saat sedang berjalan, menganalisa data yang mengalir di dalam, dan melakukan optimisasi ke kode mesin berdasarkan pengetahuan itu.
 ```
 
 ## Apa yang bisa dilakukan *in-browser JavaScript*?

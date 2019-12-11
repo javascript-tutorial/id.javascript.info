@@ -6,6 +6,8 @@
 Untuk menunjukkan penggunaan callback, promise dan konsep abstract lainnya, kita akan menggunakan beberapa method dari browser; khususnya, memuat script dan melakukan manipulasi dokumen sederhana.
 
 Jika kamu belum terbiasa dengan method ini, dan penggunaanya didalam contoh membuat bingung, atau jika kamu hanya ingin mengerti lebih baik lagi,kamu mungkin mau membaca beberapa bab dari [bagian selanjutnya](/dokumen) tutorial ini.
+
+Meski, kita akan mencoba memperjelas situasi ini. Takkan ada yang sebijaksana browser komplex yang rumit.
 ```
 
 Banyak action didalam JavaScript yang *asynchronous*. Dengan kata lain, kita inisiasi action tersebut sekarang, tetapi action tersebut selesai-nya nanti.
@@ -18,13 +20,15 @@ Coba lihat pada fungsi `loadScript(src)`, yang memuat sebuah script dengan pembe
 
 ```js
 function loadScript(src) {
+  // creates a <script> tag and append it to the page
+  // this causes the script with given src to start loading and run when complete
   let script = document.createElement('script');
   script.src = src;
   document.head.append(script);
 }
 ```
 
-Fungsi tersebut menambahkan ke dokumen baru, dibuat secara dinamis, tag `<script src="…">`, browser kemudian memuat dan menjalankannya.
+Fungsi tersebut menambahkan ke dokumen baru, dibuat secara dinamis, tag `<script src="…">` dengan `src` yang diberikan. Browser kemudian secara otomatis memuat dan menjalankannya ketika lengkap.
 
 Kita bisa menggunakan fungsi tersebut seperti ini:
 
@@ -33,9 +37,9 @@ Kita bisa menggunakan fungsi tersebut seperti ini:
 loadScript('/my/script.js');
 ```
 
-Script tersebut dijalankan secara "asynchronously",dimulai dengan memuat nya sekarang, namun dijalankan nanti, ketika fungsi tersebut sudah selesai.
+Script tersebut dijalankan secara "asynchronously", dimulai dengan memuatnya sekarang, namun dijalankan nanti, ketika fungsi tersebut sudah selesai.
 
-Jika ada kode lain di bawah `loadScript(…)`, maka tidak akan menunggu sampai pemuatan script selesai.
+Jika ada kode lain di bawah `loadScript(…)`, ia tidak akan menunggu sampai pemuatan script selesai.
 
 ```js
 loadScript('/my/script.js');
@@ -98,7 +102,7 @@ function loadScript(src, callback) {
 *!*
 loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script => {
   alert(`Cool, the ${script.src} is loaded`);
-  alert( _ ); // fungsi di deklarasikan didalam script yang sudah dimuat
+  alert( _ ); // fungsi dideklarasi di dalam script yang dimuat
 });
 */!*
 ```
@@ -299,7 +303,7 @@ Lihat? Itu sama saja, dan tidak ada sarang yang dalam sekarang karena kita buat 
 
 Ini berfungsi, tetapi kode-nya terlihat seperti sebuah spreadsheet yang terkoyak. Itu sulit di baca, dan kamu mungkin memperhatikan kalau yang satu butuh untuk eye-jump antara potongan lainnya saat di baca. Itu tidak nyaman, khususnya jika pembaca tidak terbiasa dengan kode dan tidak tahu harus kemana saat eye-jump.
 
-Juga, fungsi yang bernama `step*` semuanya digunakan sekali saja, mereka dibuat hanya untuk menghindari "pyramid of doom." Tidak ada satupun yang digunakan kembali di luar rantai action. Jadi ada sedikit namespace  yang berantakan disini.
+Juga, fungsi yang bernama `step*` semuanya digunakan sekali saja, mereka dibuat hanya untuk menghindari "pyramid of doom." Tidak ada satupun yang digunakan kembali di luar rantai action. Jadi ada sedikit namespace yang berantakan disini.
 
 Kita ingin memiliki sesuatu yang lebih baik.
 
