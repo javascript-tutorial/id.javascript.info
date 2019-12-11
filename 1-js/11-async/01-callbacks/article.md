@@ -2,19 +2,12 @@
 
 # Pengenalan: callback
 
-<<<<<<< HEAD
 ```warn header="Disini kita menggunakan method dari browser"
 Untuk menunjukkan penggunaan callback, promise dan konsep abstract lainnya, kita akan menggunakan beberapa method dari browser; khususnya, memuat script dan melakukan manipulasi dokumen sederhana.
 
 Jika kamu belum terbiasa dengan method ini, dan penggunaanya didalam contoh membuat bingung, atau jika kamu hanya ingin mengerti lebih baik lagi,kamu mungkin mau membaca beberapa bab dari [bagian selanjutnya](/dokumen) tutorial ini.
-=======
-```warn header="We use browser methods in examples here"
-To demonstrate the use of callbacks, promises and other abstract concepts, we'll be using some browser methods: specifically, loading scripts and performing simple document manipulations.
 
-If you're not familiar with these methods, and their usage in the examples is confusing, you may want to read a few chapters from the [next part](/document) of the tutorial.
-
-Although, we'll try to make things clear anyway. There won't be anything really complex browser-wise.
->>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
+Meski, kita akan mencoba memperjelas situasi ini. Takkan ada yang sebijaksana browser komplex yang rumit.
 ```
 
 Banyak action didalam JavaScript yang *asynchronous*. Dengan kata lain, kita inisiasi action tersebut sekarang, tetapi action tersebut selesai-nya nanti.
