@@ -16,75 +16,75 @@ Bayangkan kita harus menulis 1 milyar. Cara jelasnya begini:
 let billion = 1000000000;
 ```
 
-But in real life, we usually avoid writing a long string of zeroes as it's easy to mistype. Also, we are lazy. We will usually write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
+Tapi di kehidupan nyata, kita biasanya menghindari menulis string nol yang panjang karena rentan terjadi kesalahan. Selain itu, kita malas. Kita biasanya akan menulis sesuatu seperti `"1bn"` untuk milyar atau `"7.3bn"` untuk 7 milyar 300 juta. Sama halnya dengan angka besar lainnya.
 
-In JavaScript, we shorten a number by appending the letter `"e"` to the number and specifying the zeroes count:
+Di JavaScript, kita perpendek angka dengan menambah huruf `"e"` ke angka dan menspesifikasi jumlah nol:
 
 ```js run
-let billion = 1e9;  // 1 billion, literally: 1 and 9 zeroes
+let billion = 1e9;  // 1 milyar, literalnya: 1 dan 9 nol
 
-alert( 7.3e9 );  // 7.3 billions (7,300,000,000)
+alert( 7.3e9 );  // 7.3 milyar (7,300,000,000)
 ```
 
-In other words, `"e"` multiplies the number by `1` with the given zeroes count.
+Dengan kata lain, `"e"` kalikan angkanya dengan `1` dengan jumlah nol yang diberikan.
 
 ```js
 1e3 = 1 * 1000
 1.23e6 = 1.23 * 1000000
 ```
 
-Now let's write something very small. Say, 1 microsecond (one millionth of a second):
+Sekarang ayo tulis sesuatu lebih kecil. Katakan, 1 microsecond (sepersejuta second):
 
 ```js
 let ms = 0.000001;
 ```
 
-Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could say the same as:
+Sama seperti sebelumnya, memakai `"e"` bisa membantu. Jika kita ingin menghindari menulis nol eksplisit, kita bisa katakan hal yang sama:
 
 ```js
-let ms = 1e-6; // six zeroes to the left from 1
+let ms = 1e-6; // enam nol di sebelah kiri dari 1
 ```
 
-If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.  
+Jika kita hitung nol di `0.000001`, ada 6 dari mereka. Jadi alaminya `1e-6`.  
 
-In other words, a negative number after `"e"` means a division by 1 with the given number of zeroes:
+Dengan kata lain, angka negatif setelah `"e"` artinya pembagian 1 dengan jumlah nol yang diberikan:
 
 ```js
-// -3 divides by 1 with 3 zeroes
+// -3 membagi 1 dengan 3 nol
 1e-3 = 1 / 1000 (=0.001)
 
-// -6 divides by 1 with 6 zeroes
+// -6 membagi 1 dengan 6 nol
 1.23e-6 = 1.23 / 1000000 (=0.00000123)
 ```
 
-### Hex, binary and octal numbers
+### Hex, angka binary dan octal
 
-[Hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) numbers are widely used in JavaScript to represent colors, encode characters, and for many other things. So naturally, there exists a shorter way to write them: `0x` and then the number.
+Angka [Hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) secara luas dipakai di JavaScript untuk mewakili warna, encode karakter, dan banyak hal lain. Alaminya, ada cara lebih singkat menulis mereka: `0x` kemudian angkanya.
 
-For instance:
+Misalnya:
 
 ```js run
 alert( 0xff ); // 255
-alert( 0xFF ); // 255 (the same, case doesn't matter)
+alert( 0xFF ); // 255 (sama, case diabaikan)
 ```
 
-Binary and octal numeral systems are rarely used, but also supported using the `0b` and `0o` prefixes:
+Sistem numeral binary dan octal jarang dipakai, tapi juga didukung menggunakan prefix `0b` dan `0o`:
 
 
 ```js run
-let a = 0b11111111; // binary form of 255
-let b = 0o377; // octal form of 255
+let a = 0b11111111; // bentuk binary dari 255
+let b = 0o377; // bentuk octal dari 255
 
-alert( a == b ); // true, the same number 255 at both sides
+alert( a == b ); // true, angka sama 255 dari kedua sisi
 ```
 
-There are only 3 numeral systems with such support. For other numeral systems, we should use the function `parseInt` (which we will see later in this chapter).
+Cuma ada 3 sistem numeral dengan dukungan begitu. Untuk sistem numeral lain, kita sebaiknya memakai fungsi `parseInt` (yang akan kita lihat nanti di bab ini).
 
 ## toString(base)
 
-The method `num.toString(base)` returns a string representation of `num` in the numeral system with the given `base`.
+Metode `num.toString(base)` mengembalikan representasi string dari `num` di sistem numeral dengan `base` yang diberikan.
 
-For example:
+Misalnya:
 ```js run
 let num = 255;
 
@@ -92,13 +92,13 @@ alert( num.toString(16) );  // ff
 alert( num.toString(2) );   // 11111111
 ```
 
-The `base` can vary from `2` to `36`. By default it's `10`.
+`base` bisa bervariasi dari `2` hingga `36`. Defaultnya `10`.
 
-Common use cases for this are:
+Penggunaan umumnya ialah:
 
-- **base=16** is used for hex colors, character encodings etc, digits can be `0..9` or `A..F`.
-- **base=2** is mostly for debugging bitwise operations, digits can be `0` or `1`.
-- **base=36** is the maximum, digits can be `0..9` or `A..Z`. The whole latin alphabet is used to represent a number. A funny, but useful case for `36` is when we need to turn a long numeric identifier into something shorter, for example to make a short url. Can simply represent it in the numeral system with base `36`:
+- **base=16** dipakai untuk warna hex, character encoding dll, digit bisa `0..9` atau `A..F`.
+- **base=2** paling banyak untuk mendebug operasi bitwise, digit bisa `0` atau `1`.
+- **base=36** ini maximum, digit bisa `0..9` atau `A..Z`. Seluruh alfabet latin dipakai untuk merepresentasi angka. Hal lucu, tapi berguna untuk `36` ialah saat kita harus mengubah identifier numerik panjang ke dalam sesuatu yang lebih pendek, misalnya untuk membuat url pendek. Bisa direpresentasikan dalam sistem `36`:
 
     ```js run
     alert( 123456..toString(36) ); // 2n9c
