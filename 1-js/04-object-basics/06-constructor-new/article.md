@@ -1,17 +1,17 @@
-# Constructor, operator "new"
+# Konstruktor, operator "new"
 
-The regular `{...}` syntax allows to create one object. But often we need to create many similar objects, like multiple users or menu items and so on.
+Sintaks reguler `{...}` memungkinkan kita untuk membuat satu objek. Tapi seringkali kita perlu untuk membuat banyak objek-objek serupa, seperti pengguna atau *item* menu berganda dan sebagainya.
 
-That can be done using constructor functions and the `"new"` operator.
+Hal tersebut dapat diselesaikan dengan menggunakan fungsi konstruktor dan operator `"new"`.
 
-## Constructor function
+## Fungsi konstruktor
 
-Constructor functions technically are regular functions. There are two conventions though:
+Fungsi konstruktor secara teknis adalah fungsi biasa. Terdapat dua persetujuan sebelumnya, yakni:
 
-1. They are named with capital letter first.
-2. They should be executed only with `"new"` operator.
+1. Fungsi tersebut diberi nama dengan huruf kapital terlebih dulu.
+2. Fungsi tersebut harus dieksekusi dengan hanya menggunakan operator `"new"`.
 
-For instance:
+Sebagai contoh:
 
 ```js run
 function User(name) {
@@ -27,31 +27,31 @@ alert(user.name); // Jack
 alert(user.isAdmin); // false
 ```
 
-When a function is executed with `new`, it does the following steps:
+Ketika sebuah fungsi dieksekusi dengan menggunakan `new`, fungsi tersebut melakukan tahapan-tahapan berikut ini:
 
-1. A new empty object is created and assigned to `this`.
-2. The function body executes. Usually it modifies `this`, adds new properties to it.
-3. The value of `this` is returned.
+1. Sebuah objek kosong yang dibuat dan diserahkan ke `this`.
+2. Bagian utama fungsi tersebut bereksekusi. Biasanya memodifikasi `this`, menambahkan properti baru ke `this`.
+3. Nilai dari `this` dikembalikan.
 
-In other words, `new User(...)` does something like:
+Dengan kata lain, `new User(...)` berjalan seperti ini:
 
 ```js
 function User(name) {
 *!*
-  // this = {};  (implicitly)
+  // this = {};  (secara implisit)
 */!*
 
-  // add properties to this
+  // menambahkan properti ke this
   this.name = name;
   this.isAdmin = false;
 
 *!*
-  // return this;  (implicitly)
+  // mengembalikan this;  (secara implisit)
 */!*
 }
 ```
 
-So `let user = new User("Jack")` gives the same result as:
+Jadi `let user = new User("Jack")` memberikan hasil yang sama seperti halnya:
 
 ```js
 let user = {
@@ -60,134 +60,134 @@ let user = {
 };
 ```
 
-Now if we want to create other users, we can call `new User("Ann")`, `new User("Alice")` and so on. Much shorter than using literals every time, and also easy to read.
+Sekarang jika kita ingin membuat *user* lain, kita bisa memanggil `new User("Ann")`, `new User("Alice")` dan seterusnya. Lebih pendek penulisannya daripada menulis langsung sintaks baru setiap ingin membuat *user* baru, serta lebih mudah dibaca.
 
-That's the main purpose of constructors -- to implement reusable object creation code.
+Itulah tujuan utama dari konstruktor -- untuk mengimplementasikan kode pembuatan objek yang dapat dipakai ulang (*reusable*).
 
-Let's note once again -- technically, any function can be used as a constructor. That is: any function can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
+Mari ingat sekali lagi -- secara teknis, fungsi apapun dapat digunakan sebagai sebuah konstruktor. Hal tersebut berarti: fungsi apapun dapat dijalankan dengan `new`, dan bisa mengeksekusi algoritma di atas. "Huruf kapital dulu" adalah kesepakatan umum, untuk membuatnya lebih jelas bahwa sebuah fungsi untuk dijalankan dengan `new`.
 
-````smart header="new function() { ... }"
-If we have many lines of code all about creation of a single complex object, we can wrap them in constructor function, like this:
+````smart header="function() { ... } baru"
+Jika kita memiliki banyak baris kode tentang pembuatan sebuah objek tunggal yang kompleks, kita dapat membungkus kode tersebut dalam fungsi konstruktor, seperti ini:
 
 ```js
 let user = new function() {
   this.name = "John";
   this.isAdmin = false;
 
-  // ...other code for user creation
-  // maybe complex logic and statements
-  // local variables etc
+  // ...kode lain untuk pembuatan user
+  // bisa jadi lebih rumit logika dan pernyataannya
+  // variabel lokal dan lain-lain.
 };
 ```
 
-The constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
+Konstruktor tersebut tidak dapat dipanggil lagi, karena tidak disimpan dimanapun, hanya dibuat dan dipanggil. Jadi trik ini ditujukan untuk mengenkapsulasi kode yang mengonstruksi objek tunggal, tanpa penggunaan di masa yang akan datang.
 ````
 
 ## Constructor mode test: new.target
 
-```smart header="Advanced stuff"
-The syntax from this section is rarely used, skip it unless you want to know everything.
+```smart header="Pembahasan tingkat lanjut"
+Sintaks dari bagian ini jarang digunakan, lewati saja kecuali kamu ingin mengetahui semuanya.
 ```
 
-Inside a function, we can check whether it was called with `new` or without it, using a special `new.target` property.
+Di dalam sebuah fungsi, kita dapat memeriksa apakah fungsi tersebut dipanggil dengan atau tanpa `new`, dengan cara menggunakan sebuah properti khusus `new.target`.
 
-It is empty for regular calls and equals the function if called with `new`:
+Fungsi tersebut kosong untuk panggilan-panggilan reguler dan menyamai fungsi jika dipanggil dengan `new`:
 
 ```js run
 function User() {
   alert(new.target);
 }
 
-// without "new":
+// tanpa "new":
 *!*
 User(); // undefined
 */!*
 
-// with "new":
+// dengan "new":
 *!*
-new User(); // function User { ... }
+new User(); // fungsi User { ... }
 */!*
 ```
 
-That can be used inside the function to know whether it was called with `new`, "in constructor mode", or without it, "in regular mode".
+Sintaks itu dapat digunakan di dalam fungsi tersebut untuk mengetahui apakah fungsi dipanggil dengan `new`, "dalam mode konstruktor", atau tanpa `new`, "dalam mode reguler".
 
-We can also make both `new` and regular calls to do the same, like this:
+Kita juga bisa membuat baik panggilan dengan `new` serta panggilan reguler untuk melakukan hal yang sama, seperti ini:
 
 ```js run
 function User(name) {
-  if (!new.target) { // if you run me without new
-    return new User(name); // ...I will add new for you
+  if (!new.target) { // jika kamu menjalankanku tanpa new
+    return new User(name); // ...aku akan menambahkan new untukmu
   }
 
   this.name = name;
 }
 
-let john = User("John"); // redirects call to new User
+let john = User("John"); // mengarahkan ulang panggilan ke User baru
 alert(john.name); // John
 ```
 
-This approach is sometimes used in libraries to make the syntax more flexible. So that people may call the function with or without `new`, and it still works.
+Pendekatan ini terkadang digunakan dalam *library* untuk membuat sintaks lebih fleksibel. Jadi orang-orang bisa memanggil fungsi dengan atau tanap `new`, dan masih bisa berfungsi.
 
-Probably not a good thing to use everywhere though, because omitting `new` makes it a bit less obvious what's going on. With `new` we all know that the new object is being created.
+Mungkin saja bukanlah hal baik untuk menggunakan pendekatan tersebut dimana saja, karena melewatkan `new` membuat kurang jelas sintaks atau kode yang sedang berjalan. Dengan `new` kita semua tahu bahwa objek baru sedang dibuat.
 
-## Return from constructors
+## Hasil *return* dari konstruktor
 
-Usually, constructors do not have a `return` statement. Their task is to write all necessary stuff into `this`, and it automatically becomes the result.
+Biasanya, konstruktor tidak memiliki sebuah pernyataan `return`. Tugas konstruktor adalah untuk menulis semua hal-hal yang dibutuhkan ke dalam `this`, dan hal tersebut secara otomatis menjadi hasil.
 
-But if there is a `return` statement, then the rule is simple:
+Tetapi jika ada sebuah pernyataan `return`, maka aturannya sederhana:
 
-- If `return` is called with an object, then the object is returned instead of `this`.
-- If `return` is called with a primitive, it's ignored.
+- Jika `return` dipanggil dengan sebuah objek, maka objek tersebut dikembalikan sebagai ganti `this`.
+- Jika `return` dipanggil dengan sebuah *primitive*, panggilan tersebut diabaikan.
 
-In other words, `return` with an object returns that object, in all other cases `this` is returned.
+Dalam kata lain, `return` dengan sebuah objek mengembalikan objek itu, dalam semua kasus lainnya `this` dikembalikan.
 
-For instance, here `return` overrides `this` by returning an object:
+Sebagai contoh, di sini `return` mengambil alih `this` dengan cara mengembalikan sebuah objek:
 
 ```js run
 function BigUser() {
 
   this.name = "John";
 
-  return { name: "Godzilla" };  // <-- returns this object
+  return { name: "Godzilla" };  // <-- mengembalikan objek this
 }
 
-alert( new BigUser().name );  // Godzilla, got that object
+alert( new BigUser().name );  // Godzilla, dapat objeknya
 ```
 
-And here's an example with an empty `return` (or we could place a primitive after it, doesn't matter):
+Dan berikut ini adalah sebuah contoh dengan sebuah `return` kosong (atau bisa kita tempatkan dengan sebuah *primitive* setelahnya, tidak dipermasalahkan):
 
 ```js run
 function SmallUser() {
 
   this.name = "John";
 
-  return; // <-- returns this
+  return; // <-- mengembalikan this
 }
 
 alert( new SmallUser().name );  // John
 ```
 
-Usually constructors don't have a `return` statement. Here we mention the special behavior with returning objects mainly for the sake of completeness.
+Biasanya konstruktor tidak memiliki sebuah pernyataan `return`. Di sini kita menyebutkan perilaku khusus dengan cara mengembalikan objek dengan tujuan utamanya yakni hanya untuk melengkapi saja.
 
-````smart header="Omitting parentheses"
-By the way, we can omit parentheses after `new`, if it has no arguments:
+````smart header="Mengabaikan parentheses"
+Omong-omong, kita bisa mengabaikan parentheses setelah `new`, jika tidak memiliki argumen:
 
 ```js
-let user = new User; // <-- no parentheses
-// same as
+let user = new User; // <-- tanpa parentheses
+// sama seperti
 let user = new User();
 ```
 
-Omitting parentheses here is not considered a "good style", but the syntax is permitted by specification.
+Mengabaikan parentheses di sini tidak dipandang sebagai sebuah "gaya yang baik", tetapi sintaks tersebut diperbolehkan oleh spesifikasi.
 ````
 
-## Methods in constructor
+## Metode dalam konstruktor
 
-Using constructor functions to create objects gives a great deal of flexibility. The constructor function may have parameters that define how to construct the object, and what to put in it.
+Menggunakan fungsi-fungsi konstruktor untuk membuat objek memberikan sebuah fleksibilitas yang amat baik. Fungsi konstruktor bisa jadi memiliki parameter yang mendefinisikan bagaimana cara untuk mengonstruksi objek tersebut, serta hal apa yang dimasukkan ke objek tersebut.
 
-Of course, we can add to `this` not only properties, but methods as well.
+Tentu saja, kita bisa menambahkan ke `this` tidak hanya properti, tapi metode juga.
 
-For instance, `new User(name)` below creates an object with the given `name` and the method `sayHi`:
+Sebagai contoh, `new User(name)` di bawah membuat sebuah objek dengan `name` yang diberikan dan metode `sayHi`:
 
 ```js run
 function User(name) {
@@ -212,19 +212,19 @@ john = {
 */
 ```
 
-To create complex objects, there's a more advanced syntax, [classes](info:classes), that we'll cover later.
+Untuk membuat objek yang kompleks, ada sintaks tingkat lanjut, yaitu [classes](info:classes), yang akan kita bahas nanti.
 
-## Summary
+## Ringkasan
 
-- Constructor functions or, briefly, constructors, are regular functions, but there's a common agreement to name them with capital letter first.
-- Constructor functions should only be called using `new`. Such a call implies a creation of empty `this` at the start and returning the populated one at the end.
+- Fungsi konstruktor, atau secara singkat, konstruktor, adalah fungsi reguler, tetapi ada sebuah kesepakatan umum untuk memberi nama konstruktor dengan huruf kapital terlebih dahulu.
+- Fungsi konstruktor seharusnya hanya bisa dipanggil menggunakan `new`. Panggilan yang demkian berarti sebuah pembuatan `this` kosong pada awalnya dan mengembalikan `this` yang sudah berisi di akhir.
 
-We can use constructor functions to make multiple similar objects.
+Kita bisa menggunakan fungsi konstruktor untuk membuat objek-objek serupa sekaligus.
 
-JavaScript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
+JavaScript menyediakan fungsi konstruktor untuk banyak objek bawaan di bahasa pemrograman: seperti `Date` untuk penanggalan, `Set` untuk kumpulan/rangkaian dan banyak lainnya yang akan kita pelajari.
 
-```smart header="Objects, we'll be back!"
-In this chapter we only cover the basics about objects and constructors. They are essential for learning more about data types and functions in the next chapters.
+```smart header="Objek, kita akan kembali!"
+Dalam bab ini kita hanya membahas dasar-dasar tentang objek dan konstruktor. Objek dan konstruktor adalah dasar penting untuk mempelajari lebih banyak tentang tipe data dan fungsi dalam bab-bab selanjutnya.
 
-After we learn that, we return to objects and cover them in-depth in the chapters <info:prototypes> and <info:classes>.
+Setelah kita mempelajari itu, kita kembali ke objek dan membahas objek lebih mendalam lagi di bab <info:prototypes> dan <info:classes>.
 ```
