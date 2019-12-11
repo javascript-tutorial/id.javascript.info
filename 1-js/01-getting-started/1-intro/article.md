@@ -38,11 +38,7 @@ Engine sangat rumit. Tapi basicnya mudah.
 2. Lalu ia mengkonversi ("mengkompilasi") script tersebut menjadi bahasa mesin.
 3. Dan kemudian kode mesin berjalan, lumayan cepat.
 
-<<<<<<< HEAD
 Engine melakukan optimisasi di setiap langkah proses. Dia bahkan memperhatikan script yang telah dikompilasi saat sedang berjalan, menganalisa data yang mengalir di dalam, dan melakukan optimisasi ke kode mesin berdasarkan pengetahuan itu. Ketika selesai, script berjalan lumayan cepat.
-=======
-The engine applies optimizations at each step of the process. It even watches the compiled script as it runs, analyzes the data that flows through it, and further optimizes the machine code based on that knowledge.
->>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd
 ```
 
 ## Apa yang bisa dilakukan *in-browser JavaScript*?
