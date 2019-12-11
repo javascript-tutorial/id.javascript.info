@@ -1,93 +1,93 @@
 
-# Object to primitive conversion
+# Konversi objek menjadi *primitive*
 
-What happens when objects are added `obj1 + obj2`, subtracted `obj1 - obj2` or printed using `alert(obj)`?
+Apa yang terjadi ketika objek-objek ditamahkan `obj1 + obj2`, dikurangi `obj1 - obj2` atau dicetak menggunakan `alert(obj)`?
 
-In that case, objects are auto-converted to primitives, and then the operation is carried out.
+Dalam kasus itu, objek-objek secara otomatis dikonversi menjadi *primitive*, dan setelahnya operasi tersebut dilakukan.
 
-In the chapter <info:type-conversions> we've seen the rules for numeric, string and boolean conversions of primitives. But we left a gap for objects. Now, as we know about methods and symbols it becomes possible to fill it.
+Dalam bab <info:type-conversions> kita sudah tahu aturan-aturan untuk konversi numerik, *string* dan *boolean* dari *primitive*. Tetapi kita meninggalkan sebuah celah untuk objek. Kini, sebagaimana yang kita tahu tentang metode dan simbol, hal-hal tersebut memungkinkan kita untuk mengisi celah tersebut.
 
-1. All objects are `true` in a boolean context. There are only numeric and string conversions.
-2. The numeric conversion happens when we subtract objects or apply mathematical functions. For instance, `Date` objects (to be covered in the chapter <info:date>) can be subtracted, and the result of `date1 - date2` is the time difference between two dates.
-3. As for the string conversion -- it usually happens when we output an object like `alert(obj)` and in similar contexts.
+1. Semua objek adalah `true` dalam sebuah konteks *boolean*. Hanya ada konversi numerik dan *string* numerik saja.
+2. Konversi numerik terjadi ketika kita mengurangi objek atau menerapkan fungsi matermatika. Contohnya, objek `Date` (akan dibahas di bab <info:date>) dapat dikurangi, dan hasil dari `date1 - date2` adalah selisih waktu di antara kedua tanggal tersebut.
+3. Sedangkan untuk konversi *string* -- biasanya terjadi ketika kita mengeluarkan hasil sebuah objek seperti `alert(obj)` dan dalam konteks yang serupa.
 
-## ToPrimitive
+## *ToPrimitive*
 
-We can fine-tune string and numeric conversion, using special object methods.
+Kita dapat menyetel dengan baik konversi *string* dan konversi numerik, menggunakan metode-metode objek khusus.
 
-There are three variants of type conversion, so-called "hints", described in the [specification](https://tc39.github.io/ecma262/#sec-toprimitive):
+Terdapat tiga varian konversi tipe (data), disebut juga
+ "*hints*" ("petunjuk"), dideskripsikan dalam [spesifikasi](https://tc39.github.io/ecma262/#sec-toprimitive):
 
 `"string"`
-: For an object-to-string conversion, when we're doing an operation on an object that expects a string, like `alert`:
+: untuk sebuah konversi objek-ke-string, ketika kita melakukan sebuah operasi pada sebuah objek yang diharapkan (menghasilkan) sebuah *string*, seperti `alert`:
 
     ```js
     // output
     alert(obj);
 
-    // using object as a property key
+    // menggunakan objek sebagai properti kunci
     anotherObj[obj] = 123;
     ```
 
 `"number"`
-: For an object-to-number conversion, like when we're doing maths:
+: untuk sebuah konversi objk-ke-angka, seperti ketika kita melakukan (operasi) matematika:
 
     ```js
-    // explicit conversion
+    // konversi eksplisit
     let num = Number(obj);
 
-    // maths (except binary plus)
+    // operasi matematika (kecuali biner tambah)
     let n = +obj; // unary plus
     let delta = date1 - date2;
 
-    // less/greater comparison
+    // perbandingan lebih besar/lebih kecil
     let greater = user1 > user2;
     ```
 
 `"default"`
-: Occurs in rare cases when the operator is "not sure" what type to expect.
+: terjadi dalam kasus yang jarang ketika operator "tidak yakin" tipe (data) apa yang akan dihasilkan.
 
-    For instance, binary plus `+` can work both with strings (concatenates them) and numbers (adds them), so both strings and numbers would do. So if the a binary plus gets an object as an argument, it uses the `"default"` hint to convert it.
+    Sebagai contohnya,  (tanda) tambah biner `+` dapat bekerja dengan string (menggabungkannya) dan angka-angka (menambahkannya), jadi baik string dan angka tetap bisa dioperasikan. Jadi jika sebuah (tanda) tambah biner mendapatkan sebuah objek sebagai argumen, ia menggunakan petunjuk `"default"` untuk mengonversinya.
 
-    Also, if an object is compared using `==` with a string, number or a symbol, it's also unclear which conversion should be done, so the `"default"` hint is used.
+    Dan juga, jika sebuah objek dibandingkan menggunakan `==` dengan sebuah string, angka atau sebuah simbol, hal tersebut juga tidak jelas mana konversi yang harus dilakukan, jadi digunakanlah petunjuk `"default"`.
 
     ```js
-    // binary plus uses the "default" hint
+    // (tanda) tambah biner menggunakan petunjuk "default" hint
     let total = obj1 + obj2;
 
-    // obj == number uses the "default" hint
+    // obj == number menggunakan petunjuk "default"
     if (user == 1) { ... };
     ```
 
-    The greater and less comparison operators, such as `<` `>`, can work with both strings and numbers too. Still, they use the `"number"` hint, not `"default"`. That's for historical reasons.
+    Operator perbandingan lebih/semakin banyak dan lebih/semakin sedikit, seperti `<` `>`, dapat bekerja dengan string maupun angka. Namun tetap saja, operasi itu menggunakan petunjuk `"number"`, bukan `"default"`. Hal tersebut untuk alasan-alasan historis.
 
-    In practice though, we don't need to remember these peculiar details, because all built-in objects except for one case (`Date` object, we'll learn it later) implement `"default"` conversion the same way as `"number"`. And we can do the same.
+    Dalam praktiknya, kita tidak perlu mengingat detil-detil ini, semua objek-objek bawaan (built-in) kecuali untuk satu kasus (objek `Date`, kita akan mempelajarinya nanti) mengimplementasi konversi `"default"` sama halnya dengan `"number"`. Dan kita akan melakukan hal yang sama.
 
-```smart header="No `\"boolean\"` hint"
-Please note -- there are only three hints. It's that simple.
+```smart header="Tidak ada petunjuk `\"boolean\"` "
+Mohon diingat -- hanya ada tiga petunjuk. Sesederhana itu.```
 
-There is no "boolean" hint (all objects are `true` in boolean context) or anything else. And if we treat `"default"` and `"number"` the same, like most built-ins do, then there are only two conversions.
-```
+Tidak ada petunjuk "boolean" (semua objek adalah `true` dalam konteks *boolean*) atau apapun itu. Dan jika kita memperlakukan `"default"` dan `"number"` dengan sama, seperti kebanyakkan bawaan lakukan, maka kemudian hanya ada dua konversi.
 
 **To do the conversion, JavaScript tries to find and call three object methods:**
 
-1. Call `obj[Symbol.toPrimitive](hint)` - the method with the symbolic key `Symbol.toPrimitive` (system symbol), if such method exists,
-2. Otherwise if hint is `"string"`
-    - try `obj.toString()` and `obj.valueOf()`, whatever exists.
-3. Otherwise if hint is `"number"` or `"default"`
-    - try `obj.valueOf()` and `obj.toString()`, whatever exists.
+1. Panggil `obj[Symbol.toPrimitive](hint)` - metode dengan kunci simbolik `Symbol.toPrimitive` (simbol sistem), jika metode demikian memang ada,
+2. Namun jika petunjuknya adalah `"string"`
+    - cobalah `obj.toString()` atau `obj.valueOf()`, apapun yang ada.
+3. Namun jika petunjuknya adalah `"number"` atau `"default"`
+    - cobalah `obj.valueOf()` dan `obj.toString()`, apapun yang ada.
 
 ## Symbol.toPrimitive
 
-Let's start from the first method. There's a built-in symbol named `Symbol.toPrimitive` that should be used to name the conversion method, like this:
+Mari mulai dari metode pertama. Terdapat simbol bawaan yang bernama `Symbol.toPrimitive` yang digunakan untuk menamakan metode konversi, seperti ini:
 
 ```js
 obj[Symbol.toPrimitive] = function(hint) {
-  // must return a primitive value
-  // hint = one of "string", "number", "default"
+  // harus mengembalikan sebuah nilai primitive
+  // hint/petunjuk = salah satu antara "string", "number", "default"
 };
 ```
 
-For instance, here `user` object implements it:
+Sebagai contoh, di sini objek `user` mengimplementasikannya:
 
 ```js run
 let user = {
@@ -100,59 +100,59 @@ let user = {
   }
 };
 
-// conversions demo:
-alert(user); // hint: string -> {name: "John"}
-alert(+user); // hint: number -> 1000
-alert(user + 500); // hint: default -> 1500
+// demonstrasi konversi:
+alert(user); // hint/petunjuk: string -> {name: "John"}
+alert(+user); // hint/petunjuk: number -> 1000
+alert(user + 500); // hint/petunjuk: default -> 1500
 ```
 
-As we can see from the code, `user` becomes a self-descriptive string or a money amount depending on the conversion. The single method `user[Symbol.toPrimitive]` handles all conversion cases.
+Seperti yang bisa kita lihat dari kode tersebut, `user` menjadi sebuah *string* yang *self-descriptive* (menggambarkan dirinya sendiri) atau sejumlah uang tergantung dari konversinya. Metode tunggal `user[Symbol.toPrimitive]` tersebut menangani semua kasus konversi.
 
 
 ## toString/valueOf
 
-Methods `toString` and `valueOf` come from ancient times. They are not symbols (symbols did not exist that long ago), but rather "regular" string-named methods. They provide an alternative "old-style" way to implement the conversion.
+Metode-metode `toString` dan `valueOf` berasal dari zaman dulu. Metode-metode tersebut bukanlah simbol (simbol belum ada waktu itu), melainkan metode-metode "reguler" yang dinamakan (dengan) *string*. Kedua metode itu menyediakan sebuah cara alternatif "gaya lawas" untuk mengimplementasikan konversi.
 
-If there's no `Symbol.toPrimitive` then JavaScript tries to find them and try in the order:
+Jika tidak ada `Symbol.toPrimitive` maka JavaScript mencoba untuk menemukan metode tersebut dan mencoba keduanya dengan urutan:
 
-- `toString -> valueOf` for "string" hint.
-- `valueOf -> toString` otherwise.
+- `toString -> valueOf` untuk petunjuk "string".
+- `valueOf -> toString` jika sebaliknya.
 
-These methods must return a primitive value. If `toString` or `valueOf` returns an object, then it's ignored (same as if there were no method).
+Dua metode ini harus mengembalikan sebuah nilai *primitive*. Jika `toString` atau `valueOf` mengembalikan sebuah objek, maka objek tersebut diabaikan (sama halnya jika tidak ada metode).
 
-By default, a plain object has following `toString` and `valueOf` methods:
+Secara mendasar (standar), sebuah objek polos memiliki metode `toString` dan `valueOf` berikut ini:
 
-- The `toString` method returns a string `"[object Object]"`.
-- The `valueOf` method returns the object itself.
+- Metode `toString` mengembalikan sebuah *string* `"[object Object]"`.
+- Metode `valueOf` mengembalikan objek itu sendiri.
 
-Here's the demo:
+Berikut ini contohnya:
 
 ```js run
 let user = {name: "John"};
 
-alert(user); // [object Object]
+alert(user); // [objek Object]
 alert(user.valueOf() === user); // true
 ```
 
-So if we try to use an object as a string, like in an `alert` or so, then by default we see `[object Object]`.
+Jadi jika kita coba untuk menggunakan sebuah objek sebagai sebuah *string*, seperti dalam sebuah `alert` atau sejenisnya, maka secara standar kita melihat `[object Object]`.
 
-And the default `valueOf` is mentioned here only for the sake of completeness, to avoid any confusion. As you can see, it returns the object itself, and so is ignored. Don't ask me why, that's for historical reasons. So we can assume it doesn't exist.
+Dan standar dari `valueOf` disebutkan di sini hanya demi tujuan melengkapi saja, untuk menghindari kebingungan. Seperti yang bisa dilihat, metode tesebut mengembalikan objeknya sendiri, dan juga mengabaikannya. Jangan tanya mengapa demikian, itulah alasan-alasan historisnya. Jadi kita anggap hal tersebut tidak ada.
 
-Let's implement these methods.
+Mari implementasikan metode-metode berikut ini.
 
-For instance, here `user` does the same as above using a combination of `toString` and `valueOf` instead of `Symbol.toPrimitive`:
+Sebagai contoh, di sini `user` melakukan hal yag sama seperti di atas menggunakan sebuah kombinasi `toString` serta `valueOf` ketimbang menggunakan `Symbol.toPrimitive`:
 
 ```js run
 let user = {
   name: "John",
   money: 1000,
 
-  // for hint="string"
+  // untuk hint/petunjuk="string"
   toString() {
     return `{name: "${this.name}"}`;
   },
 
-  // for hint="number" or "default"
+  // untuk hint/petunjuk="number" atau "default"
   valueOf() {
     return this.money;
   }
@@ -164,9 +164,9 @@ alert(+user); // valueOf -> 1000
 alert(user + 500); // valueOf -> 1500
 ```
 
-As we can see, the behavior is the same as the previous example with `Symbol.toPrimitive`.
+Seperti yang bisa kita lihat, perilaku tersebut sama dengan contoh sebelumnya dengan menggunakan `Symbol.toPrimitive`.
 
-Often we want a single "catch-all" place to handle all primitive conversions. In this case, we can implement `toString` only, like this:
+Seringkali kita ingin sebuah wadah tunggal yang "menangkap semua" untuk menangani semua konversi *primitive*. Dalam kasus ini, kita bisa mengimplementasikan `toString` saja, seperti berikut ini:
 
 ```js run
 let user = {
@@ -181,15 +181,15 @@ alert(user); // toString -> John
 alert(user + 500); // toString -> John500
 ```
 
-In the absence of `Symbol.toPrimitive` and `valueOf`, `toString` will handle all primitive conversions.
+Dalam ketidakberadaan `Symbol.toPrimitive` dan `valueOf`, `toString` akan menangani semua konversi *primitive*.
 
-## Return types
+## Tipe *return* (kembalian)
 
-The important thing to know about all primitive-conversion methods is that they do not necessarily return the "hinted" primitive.
+Hal penting yang harus diketahui tentang semua metode-metode konversi ke-*primitive* adalah bahwa metode-metode tersebut tidak selalu mengembalikan *primitive* "yang diberikan petunjuk".
 
-There is no control whether `toString` returns exactly a string, or whether `Symbol.toPrimitive` method returns a number for a hint `"number"`.
+Tidak ada kendali apakah `toString` mengembalikan tepat sebuah *string*, atau apakah metode `Symbol.toPrimitive` mengembalikan sebuah angka untuk petunjuk `"number"`.
 
-The only mandatory thing: these methods must return a primitive, not an object.
+Satu-satunya hal wajib adalah: metode-metode ini harus mengembalikan sebuah *primitive*, bukan sebuah objek.
 
 ```smart header="Historical notes"
 For historical reasons, if `toString` or `valueOf` returns an object, there's no error, but such value is ignored (like if the method didn't exist). That's because in ancient times there was no good "error" concept in JavaScript.
@@ -197,31 +197,31 @@ For historical reasons, if `toString` or `valueOf` returns an object, there's no
 In contrast, `Symbol.toPrimitive` *must* return a primitive, otherwise there will be an error.
 ```
 
-## Further conversions
+## Konversi lebih jauh
 
-As we know already, many operators and functions perform type conversions, e.g. multiplication `*` converts operands to numbers.
+Seperti yang kita sudah tahu, banyak operator dan fungsi melakukan konversi-konversi tipe (data), misal perkalian `*` mengonversi *operand* menjadi angka-angka.
 
-If we pass an object as an argument, then there are two stages:
-1. The object is converted to a primitive (using the rules described above).
-2. If the resulting primitive isn't of the right type, it's converted.
+Jika kita mengoper sebuah objek sebagai sebuah argumen, maka terdapat dua tahap:
+1. Objek tersebut dikonversi ke sebuah *primitive* (menggunakan aturan-aturan dideskripsikan di atas).
+2. Jika menghasilkan *primitive* dari tipe (data) yang tidak tepat, makan itu dikonversikan.
 
-For instance:
+Contohnya:
 
 ```js run
 let obj = {
-  // toString handles all conversions in the absence of other methods
+  // toString menangani semua konversi selama tidak ada metode lain
   toString() {
     return "2";
   }
 };
 
-alert(obj * 2); // 4, object converted to primitive "2", then multiplication made it a number
+alert(obj * 2); // 4, objek dikonversi jadi primitive "2", kemudian perkalian membuatnya menjadi sebuah angka
 ```
 
-1. The multiplication `obj * 2` first converts the object to primitive (that's a string `"2"`).
-2. Then `"2" * 2` becomes `2 * 2` (the string is converted to number).
+1. Perkalian `obj * 2` pertama mengonversi objek menjadi primitive (yakni sebuah *string* `"2"`).
+2. Lalu `"2" * 2` menjadi `2 * 2` (*string* dikonversi menjadi angka).
 
-Binary plus will concatenate strings in the same situation, as it gladly accepts a string:
+(Tanda) tambah biner akan merentetkan/merangkai *string* dalam situasi yang sama, selama operasi tersebut menerima sebuah *string*:
 
 ```js run
 let obj = {
@@ -230,26 +230,26 @@ let obj = {
   }
 };
 
-alert(obj + 2); // 22 ("2" + 2), conversion to primitive returned a string => concatenation
+alert(obj + 2); // 22 ("2" + 2), konversi ke primitive mengembalikan sebuah string => perentetan (concatenation)
 ```
 
-## Summary
+## Ringkasan
 
-The object-to-primitive conversion is called automatically by many built-in functions and operators that expect a primitive as a value.
+Konversi objek-ke-primitive secara otomatis dipanggil oleh banyak fungsi-fungsi serta operator bawaan (*built-in*) yang mengharapkan hasil *primitive* sebagai sebuah nilai.
 
-There are 3 types (hints) of it:
-- `"string"` (for `alert` and other operations that need a string)
-- `"number"` (for maths)
-- `"default"` (few operators)
+Terdapat 3 tipe (*hint*) di situ:
+- `"string"` (untuk `alert` dan operasi lain yang membutuhkan sebuah *string*)
+- `"number"` (untuk matematika)
+- `"default"` (beberapa operator)
 
-The specification describes explicitly which operator uses which hint. There are very few operators that "don't know what to expect" and use the `"default"` hint. Usually for built-in objects `"default"` hint is handled the same way as `"number"`, so in practice the last two are often merged together.
+Spesifikasi tersebut mendeskripsikan secara eksplisit operator mana yang menggunakan petunjuk (*hint*) yang mana. Sangat sedikit operator yang "tidak tahu untuk memperkirakan/menghasilkan (tipe) apa" dan menggunakan petunjuk `"default"`. Biasanya petunjuk `"default"` objek-objek bawaan ditangani sama seperti `"number"`, jadi pada latihan - dua hal terakhir itu sering kali dijadikan satu bersamaan.
 
-The conversion algorithm is:
+Konversi algoritma tersebut yakni:
 
-1. Call `obj[Symbol.toPrimitive](hint)` if the method exists,
-2. Otherwise if hint is `"string"`
-    - try `obj.toString()` and `obj.valueOf()`, whatever exists.
-3. Otherwise if hint is `"number"` or `"default"`
-    - try `obj.valueOf()` and `obj.toString()`, whatever exists.
+1. Memanggil `obj[Symbol.toPrimitive](hint)` jika metodenya ada,
+2. Sebaliknya jika petunjuknya adalah `"string"`
+    - cobalah `obj.toString()` dan `obj.valueOf()`, apapun yang ada.
+3. Selain kondisi di atas jika petunjuknya adalah `"number"` atau `"default"`
+    - coba `obj.valueOf()` dan `obj.toString()`, atau apapun yang ada.
 
-In practice, it's often enough to implement only `obj.toString()` as a "catch-all" method for all conversions that return a "human-readable" representation of an object, for logging or debugging purposes.  
+Dalam latihan, cukup sering untuk mengimplementasikan `obj.toString()` saja sebagai sebuah metode yang "menangkap semuanya" untuk semua konversi yang mengembalikan sebuah representasi sebuah objek yang "mudah dibaca manusia", untuk tujuan-tujuan pencatatan serta *debugging*.  
