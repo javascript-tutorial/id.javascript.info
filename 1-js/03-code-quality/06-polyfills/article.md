@@ -24,12 +24,8 @@ Sebenarnya, ada dua bagian dari Babel:
 
 2. Polyfill itu sendiri.
 
-<<<<<<< HEAD
    Fitur-fitur baru bisa saja memasukkan fungsi-fungsi built-in dan constructs jenis baru.
    Transpiler, utilitas penerjemah dari poin 1 diatas, menulis fungsi-fungsi built-in dan constructs ini kembali kedalam perintah stardard dari JavaScript.
-=======
-1. First, the transpiler program, which rewrites the code. The developer runs it on their own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build systems like [webpack](http://webpack.github.io/) provide means to run transpiler automatically on every code change, so that it's very easy to integrate into development process.
->>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
    Seperti disebutkan diatas, JavaScript adalah sebuah bahasa pemrograman yang sangat dinamis. Skrip-skrip baru terus ditambahkan kedalam JavaScript dengan tujuan untuk membuat fungsi-fungsi baru menjadi dapat dibaca oleh penerjemah JavaScript standar.
 
