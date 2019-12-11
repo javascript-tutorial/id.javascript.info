@@ -10,7 +10,7 @@ Ada juga kasus di mana kita harus explisit mengkonversi nilai ke tipe yang dihar
 Di bab ini, kita takkan mengcover objek. Daripada itu, kita akan belajar primitives dulu. Lalu, setelah kita belajar tentang objek, kita akan lihat cara konversi objek bekerja di bab <info:object-toprimitive>.
 ```
 
-## String Conversion
+## Konversi String
 
 Konversi string terjadi ketika kita butuh bentuk string dari nilai.
 
@@ -30,7 +30,7 @@ alert(typeof value); // string
 
 Konversi string kebanyakan jelas. `false` menjadi `"false"`, `null` menjadi `"null"`, dll.
 
-## Numeric Conversion
+## Konversi Numerik
 
 Konversi numerik terjadi otomatis dalam fungsi dan expresi matematis.
 
@@ -83,7 +83,7 @@ Tolong diingat bahwa kelakuan `null` dan `undefined` berbeda di sini: `null` men
 
 Hampir semua operasi matematik melakukan konversi semacam ini, yang akan kita lihat di bab berikutnya.
 
-## Boolean Conversion
+## Konversi Boolean
 
 Konversi boolean ialah yang paling simpel.
 
