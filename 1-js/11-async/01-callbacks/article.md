@@ -24,11 +24,7 @@ function loadScript(src) {
 }
 ```
 
-<<<<<<< HEAD
 Fungsi tersebut menambahkan ke dokumen baru, dibuat secara dinamis, tag `<script src="…">`, browser kemudian memuat dan menjalankannya.
-=======
-It appends to the document the new, dynamically created, tag `<script src="…">`. The browser loads and executes it.
->>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 Kita bisa menggunakan fungsi tersebut seperti ini:
 
@@ -37,15 +33,9 @@ Kita bisa menggunakan fungsi tersebut seperti ini:
 loadScript('/my/script.js');
 ```
 
-<<<<<<< HEAD
 Script tersebut dijalankan secara "asynchronously",dimulai dengan memuat nya sekarang, namun dijalankan nanti, ketika fungsi tersebut sudah selesai.
 
 Jika ada kode lain di bawah `loadScript(…)`, maka tidak akan menunggu sampai pemuatan script selesai.
-=======
-The script is executed "asynchronously", as it starts loading now, but runs later, when the function has already finished.
-
-If there's any code below `loadScript(…)`, it doesn't wait until the script loading finishes.
->>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 ```js
 loadScript('/my/script.js');
@@ -107,13 +97,8 @@ function loadScript(src, callback) {
 
 *!*
 loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script => {
-<<<<<<< HEAD
   alert(`Cool, the ${script.src} is loaded`);
   alert( _ ); // fungsi di deklarasikan didalam script yang sudah dimuat
-=======
-  alert(`Cool, the script ${script.src} is loaded`);
-  alert( _ ); // function declared in the loaded script
->>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 });
 */!*
 ```
@@ -244,11 +229,7 @@ Dalam kode di atas:
 2. Kita muat `2.js`, kemudian jika tidak ada error.
 3. Kita muat `3.js`, jika tidak ada error -- lakukan sesuatu yang lain `(*)`.
 
-<<<<<<< HEAD
 Saat pemanggilan jadi lebih bersarang, kode akan menjadi lebih dalam dan semakin susah untuk diatur, khususnya jika kita punya kode asli daripada `...`, itu mungkin berisi loop yang lebih, pernyataan bersyarat dan seterusnya.
-=======
-As calls become more nested, the code becomes deeper and increasingly more difficult to manage, especially if we have real code instead of `...` that may include more loops, conditional statements and so on.
->>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 Ini kadang disebut "callback hell" atau "pyramid of doom."
 
@@ -318,11 +299,7 @@ Lihat? Itu sama saja, dan tidak ada sarang yang dalam sekarang karena kita buat 
 
 Ini berfungsi, tetapi kode-nya terlihat seperti sebuah spreadsheet yang terkoyak. Itu sulit di baca, dan kamu mungkin memperhatikan kalau yang satu butuh untuk eye-jump antara potongan lainnya saat di baca. Itu tidak nyaman, khususnya jika pembaca tidak terbiasa dengan kode dan tidak tahu harus kemana saat eye-jump.
 
-<<<<<<< HEAD
 Juga, fungsi yang bernama `step*` semuanya digunakan sekali saja, mereka dibuat hanya untuk menghindari "pyramid of doom." Tidak ada satupun yang digunakan kembali di luar rantai action. Jadi ada sedikit namespace  yang berantakan disini.
-=======
-Also, the functions named `step*` are all of single use, they are created only to avoid the "pyramid of doom." No one is going to reuse them outside of the action chain. So there's a bit of namespace cluttering here.
->>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 Kita ingin memiliki sesuatu yang lebih baik.
 
