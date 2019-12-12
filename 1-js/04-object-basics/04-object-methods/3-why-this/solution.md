@@ -1,22 +1,21 @@
 
-Here's the explanations.
+Ini dia penjelasannya.
 
-1. That's a regular object method call.
+1. Itu adalah sebuah panggilan metode objek biasa.
 
-2. The same, brackets do not change the order of operations here, the dot is first anyway.
+2. Sama halnya, tanda kurung kurawa tidak merubah urutan operasi di sini, lagi pula tanda titik lah yang pertama di urutan operasi.
 
-3. Here we have a more complex call `(expression).method()`. The call works as if it were split into two lines:
+3. Di sini kita memiliki sebuah panggilan yang lebih kompleks lagi yakni `(expression).method()`. Pagnggilan tersebut bekerja sebagaimana jika panggilan itu dipisah menjadi dua baris kode:
 
     ```js no-beautify
-    f = obj.go; // calculate the expression
-    f();        // call what we have
+    f = obj.go; // mengkalkulasi ekspresi
+    f();        // memanggil apa yang kita punya 
     ```
 
-    Here `f()` is executed as a function, without `this`.
+    Di sini `f()` dieksekusi sebagai sebuah fungsi, tanpa `this`.
 
-4. The similar thing as `(3)`, to the left of the dot `.` we have an expression.
+4. Hal serupa pada panggilan `(3)`, di sebelah kiri tanda titik `.` kita memiliki sebuah ekspresi.
 
-To explain the behavior of `(3)` and `(4)` we need to recall that property accessors (dot or square brackets) return a value of the Reference Type.  
+Untuk menjelaskan perilaku panggilan `(3)` dan `(4)` kita perlu memanggil ulang, yang mana properti pengakses (tanda titik atau tanda kurung siku) mengembalikan sebuah nilai dari tipe referensi (*Reference Type*).  
 
-Any operation on it except a method call (like assignment `=` or `||`) turns it into an ordinary value, which does not carry the information allowing to set `this`.
-
+Operasi apapun kecuali sebuah panggilan metode (seperti penugasan `=` atau `||`) membuat membuat ekspresi tersebut menjadi sebuah nilai biasa, yang tidak membawa informasi yang memungkinkan untuk menentukan `this`.

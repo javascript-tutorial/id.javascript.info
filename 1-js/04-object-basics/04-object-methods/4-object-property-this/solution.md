@@ -1,6 +1,6 @@
-**Answer: an error.**
+**Jawaban: error.**
 
-Try it:
+Coba ini:
 ```js run
 function makeUser() {
   return {
@@ -11,18 +11,18 @@ function makeUser() {
 
 let user = makeUser();
 
-alert( user.ref.name ); // Error: Cannot read property 'name' of undefined
+alert( user.ref.name ); // Error: Tidak bisa membaca properti 'name' dari undefined
 ```
 
-That's because rules that set `this` do not look at object definition. Only the moment of call matters.
+Hal itu karena aturan-aturan yang mengatur `this` tidak melihat definisi objek. Yang penting hanya momen saat panggilan terjadi.
 
-Here the value of `this` inside `makeUser()` is `undefined`, because it is called as a function, not as a method with "dot" syntax.
+Di sini nilai dari `this` dalam `makeUser()` adalah `undefined`, karena dipanggil sebagai sebuah fungsi, tidak sebagai sebuah metode dengan sintaks "tanda titik".
 
-The value of `this` is one for the whole function, code blocks and object literals do not affect it.
+Nilai `this` adalah satu untuk keseluruhan fungsi, blok kode serta penulisan objek tidak mempengaruhi nilai tersebut.
 
-So `ref: this` actually takes current `this` of the function.
+Jadi `ref: this` sebenarnya mengambil `this` yang sekarang dari fungsi tersebut.
 
-Here's the opposite case:
+Berikut ini contoh kasus kebalikannya:
 
 ```js run
 function makeUser() {
@@ -41,4 +41,4 @@ let user = makeUser();
 alert( user.ref().name ); // John
 ```
 
-Now it works, because `user.ref()` is a method. And the value of `this` is set to the object before dot `.`.
+Kini kode itu berfugsi, karena `user.ref()` adalah sebuah metode. Dan nilai dari `this` ditentukan ke objek sebelum tanda titik `.`.

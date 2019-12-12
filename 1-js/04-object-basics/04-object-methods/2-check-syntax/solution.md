@@ -1,6 +1,6 @@
 **Error**!
 
-Try it:
+Coba ini:
 
 ```js run
 let user = {
@@ -11,19 +11,19 @@ let user = {
 (user.go)() // error!
 ```
 
-The error message in most browsers does not give us much of a clue about what went wrong.
+Pesan error pada kebanyakan peramban tidak memberitahukan kita cukup petunjuk tentang hal apa yang salah.
 
-**The error appears because a semicolon is missing after `user = {...}`.**
+**Error muncul karena tidak adanya sebuah titik koma setelah `user = {...}`.**
 
-JavaScript does not auto-insert a semicolon before a bracket `(user.go)()`, so it reads the code like:
+JavaScript tidak secara otomatis menyisipkan sebuah tanda titik koma setelah tanda kurung kurawa `(user.go)()`, jadi JavaScript membaca kode seperti ini:
 
 ```js no-beautify
 let user = { go:... }(user.go)()
 ```
 
-Then we can also see that such a joint expression is syntactically a call of the object `{ go: ... }` as a function with the argument `(user.go)`. And that also happens on the same line with `let user`, so the `user` object has not yet even been defined, hence the error.
+Lalu kita juga bisa melihat bahwa ekspresi gabungan semacam itu adalah sebuah panggilan objek `{ go: ... }` secara sintaks yang juga sebagai sebuah fungsi dengan argumen `(user.go)`. Dan hal tersebut juga terjadi pada baris yang sama dengan `let user`, jadi objek `user` belum didefinisikan, oleh karena itu terjadi error.
 
-If we insert the semicolon, all is fine:
+Jika kita menyisipkan tanda titik koma, semuanya akan baik-baik saja:
 
 ```js run
 let user = {
@@ -34,4 +34,4 @@ let user = {
 (user.go)() // John
 ```
 
-Please note that brackets around `(user.go)` do nothing here. Usually they setup the order of operations, but here the dot `.` works first anyway, so there's no effect. Only the semicolon thing matters.
+Tolong ingat bahwa tanda kurung kurawa yang merangkap `(user.go)` tidak melakukan apapun di sini. Biasanya  Biasanya tanda kurung kurawa mengatur urutan operasi, tapi di sini tanda titik-lah (`.`) yang berjalan terlebih dulu, jadi tidak ada pengaruh apapun. Hanya tanda titik koma yang berpengaruh.

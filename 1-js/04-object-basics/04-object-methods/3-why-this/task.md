@@ -2,11 +2,11 @@ importance: 3
 
 ---
 
-# Explain the value of "this"
+# Jelaskan nilai dari "this"
 
-In the code below we intend to call `obj.go()` method 4 times in a row.
+Dalam kode di bawah ini kita bermaksud untuk memanggil metode `obj.go()` sebanyak 4 kali sekaligus.
 
-But calls `(1)` and `(2)` works differently from `(3)` and `(4)`. Why?
+Tapi panggilan `(1)` dan `(2)` bekerja berbeda dibanding dengan `(3)` dan `(4)`. Mengapa demikian?
 
 ```js run no-beautify
 let obj, method;
@@ -15,9 +15,9 @@ obj = {
   go: function() { alert(this); }
 };
 
-obj.go();               // (1) [object Object]
+obj.go();               // (1) [objek Object]
 
-(obj.go)();             // (2) [object Object]
+(obj.go)();             // (2) [objek Object]
 
 (method = obj.go)();    // (3) undefined
 
