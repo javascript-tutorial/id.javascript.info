@@ -13,7 +13,7 @@ null === +"\n0\n" → false
 Beberapa alasan:
 
 1. Sudah jelas, true.
-2. Pembandingan kamus, jadi false.
+2. Pembandingan kamus, jadi false. `"a"` lebih kecil dari `"p"`.
 3. Lagi, pembandingan kamus, karakter pertama `"2"` lebih besar dari karakter pertama `"1"`.
 4. Nilai `null` dan `undefined` selalu bernilai sama.
 5. Equalitas ketat memang ketat. Tipe berbeda dari kedua sisi menghasilkan false.

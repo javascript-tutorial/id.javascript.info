@@ -36,7 +36,7 @@ Penyortiran huruf dilakukan oleh deretan panggilan di baris `(*)`.
 Untuk kenyamanan marilah kita pecahkan menjadi beberapa baris:
 
 ```js
-let sorted = arr[i] // PAN
+let sorted = word // PAN
   .toLowerCase() // pan
   .split('') // ['p','a','n']
   .sort() // ['a','n','p']

@@ -62,6 +62,25 @@ Nilai numerik spesial formalnya merupakan bagian dari tipe "number". Tentu saja 
 
 Kita akan melihat lebih tentang cara bekerja dengan angka di bab <info:number>.
 
+## BigInt
+
+  Di JavaScript, tipe "number" tidak bisa mewakili nilai integer yang lebih dari <code>2<sup>53</sup></code> (atau kurang dari <code>-2<sup>53</sup></code> untuk negatives), itu batasan teknikal yang disebabkan representasi internal mereka. Itu sekitar 16 digit desimal, jadi untuk banyak tujuan limitasi itu bukan masalah, tapi kadang kita butuh butuh big number yang sangat besar, misanya: cryptography or microsecond-precision timestamps.
+
+`BigInt` type was recently added to the language to represent integers of arbitrary length.
+
+A `BigInt` is created by appending `n` to the end of an integer literal:
+
+```js
+// the "n" at the end means it's a BigInt
+const bigInt = 1234567890123456789012345678901234567890n;
+```
+
+As `BigInt` numbers are rarely needed, we devoted them a separate chapter <info:bigint>.
+
+```smart header="Compatability issues"
+Right now `BigInt` is supported in Firefox and Chrome, but not in Safari/IE/Edge.
+```
+
 ## String
 
 String di JavaScript harus dikelilingi petik.
@@ -69,7 +88,7 @@ String di JavaScript harus dikelilingi petik.
 ```js
 let str = "Hello";
 let str2 = 'Single quotes are ok too';
-let phrase = `can embed ${str}`;
+let phrase = `can embed another ${str}`;
 ```
 
 Di JavaScript, ada 3 tipe petik.
@@ -198,6 +217,8 @@ typeof undefined // "undefined"
 
 typeof 0 // "number"
 
+typeof 10n // "bigint"
+
 typeof true // "boolean"
 
 typeof "foo" // "string"
@@ -223,12 +244,12 @@ Tiga baris terakhir mungkin butuh penjelasan tambahan:
 2. Hasil `typeof null` yaitu `"object"`. Itu salah. Ia merupakan error yang terkenal resmi dalam `typeof`, yang dijaga untuk kompatibilitas. Tentu saja, `null` bukanlah objek. Ia merupakan nilai spesial dengan tipe terpisah miliknya sendiri. Jadi, lagi, ini merupakan error dalam bahasa.
 3. Hasil dari `typeof alert` yaitu `"function"`, karena `alert` merupakan fungsi. Kita akan belajar fungsi di bab berikutnya di mana kita juga akan melihat bahwa tak ada tipe "fungsi" spesial di JavaScript. Fungsi merupakan bagian dari tipe objek. Tapi `typeof` memperlakukan mereka secara berbeda, yang mengembalikan `"fungsi"`. Itu tak sepenuhnya benar, tapi sangat nyaman pada praktiknya.
 
-
 ## Kesimpulan
 
 Ada 7 tipe data dasar dalam JavaScript.
 
 - `number` untuk angka jenis manapun: integer atau floating-point.
+- `bigint` untuk angka integer dengan panjang sembarang.
 - `string` untuk string. String mungkin punya satu atau lebih karakter, tak ada tipe katakter tunggal terpisah.
 - `boolean` untuk `true`/`false`.
 - `null` untuk nilai tak-diketahui -- tipe mandiri yang punya nilai tunggal `null`.
