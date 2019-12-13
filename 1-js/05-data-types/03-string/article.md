@@ -394,11 +394,7 @@ Ada 3 cara untuk mengambil sebuah substring di Javascript: `substring`, `substr`
 
     ```js run
     let str = "st*!*ringify*/!*";
-<<<<<<< HEAD
     alert( str.slice(2) ); // ringify, dari posisi kedua sampai terakhir
-=======
-    alert( str.slice(2) ); // 'ringify', from the 2nd position till the end
->>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
     ```
 
     Nilai negatif untuk `start/end` juga bisa digunakan. Nilai negatif berarti posisinya dihitung dari akhir string:
@@ -406,13 +402,8 @@ Ada 3 cara untuk mengambil sebuah substring di Javascript: `substring`, `substr`
     ```js run
     let str = "strin*!*gif*/!*y";
 
-<<<<<<< HEAD
     // mulai dari posisi ke-4 dari kanan, berakhir di posisi pertama dari kanan
     alert( str.slice(-4, -1) ); // gif
-=======
-    // start at the 4th position from the right, end at the 1st from the right
-    alert( str.slice(-4, -1) ); // 'gif'
->>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
     ```
 
 `str.substring(start [, end])`
@@ -444,22 +435,14 @@ Ada 3 cara untuk mengambil sebuah substring di Javascript: `substring`, `substr`
 
     ```js run
     let str = "st*!*ring*/!*ify";
-<<<<<<< HEAD
     alert( str.substr(2, 4) ); // ring, dari posisi ke-2 ambil 4 karakter
-=======
-    alert( str.substr(2, 4) ); // 'ring', from the 2nd position get 4 characters
->>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
     ```
 
     Parameter pertama mungkin bernilai negatif, untuk menghitung dari akhir string:
 
     ```js run
     let str = "strin*!*gi*/!*fy";
-<<<<<<< HEAD
     alert( str.substr(-4, 2) ); // gi, dari posisi ke-4 ambil 2 karakter
-=======
-    alert( str.substr(-4, 2) ); // 'gi', from the 4th position get 2 characters
->>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
     ```
 
 Mari kita review cara-cara tersebut untuk menghindari kebingungan:

@@ -29,10 +29,15 @@ Tampilan persisnya tools pengembang tergantung versi Chrome kamu. Ia berubah dar
 - Di sini kita bisa melihat pesan error berwarna merah. Di sini, scriptnya mengandung perintah asing "lalala".
 - Di kanan, ada link yang bisa diklik ke sumber `bug.html:12` dengan nomor baris di mana error itu muncul.
 
-Di bawah pesan error, ada simbol `>` berwarna biru. Ia menandakan "command line" di mana kita bisa mengetik perintah JavaScript. Tekan `key:Enter` untuk menjalankannya (`key:Shift+Enter` untuk menginput perintah multi-baris).
+Di bawah pesan error, ada simbol `>` berwarna biru. Ia menandakan "command line" di mana kita bisa mengetik perintah JavaScript. Tekan `key:Enter` untuk menjalankannya.
 
 Sekarang kita bisa melihat error, dan itu sudah cukup untuk permulaan. Kita nanti akan kembali ke tools pengembang dan mengcover debugging lebih dalam di bab <info:debugging-chrome>.
 
+```smart header="Multi-line input"
+Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+
+To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+```
 
 ## Firefox, Edge, dan lainnya
 
@@ -49,12 +54,6 @@ Buka Preferences dan pergi ke "Advanced" pane. Di sana ada checkbox di sebelah b
 ![safari](safari.png)
 
 Sekarang `key:Cmd+Opt+C` bisa mentoggle konsol. Lalu, menu "Develop" muncul pada menu item di atas. Ia punya banyak perintah dan opsi.
-
-```smart header="Input baris-ganda"
-Biasanya, ketika kita menaruh sebaris kode ke konsol, dan menekan `key:Enter`, dia akan berjalan.
-
-Untuk menyisipkan lebih dari satu baris, tekan `key:Shift+Enter`. Dengan cara ini kamu bisa mengenter fragment yang panjang dari kode JavaScript.
-```
 
 ## Kesimpulan
 

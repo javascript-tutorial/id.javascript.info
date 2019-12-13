@@ -10,7 +10,7 @@ Ada juga kasus di mana kita harus explisit mengkonversi nilai ke tipe yang dihar
 Di bab ini, kita takkan mengcover objek. Daripada itu, kita akan belajar primitives dulu. Lalu, setelah kita belajar tentang objek, kita akan lihat cara konversi objek bekerja di bab <info:object-toprimitive>.
 ```
 
-## String Conversion
+## Konversi String
 
 Konversi string terjadi ketika kita butuh bentuk string dari nilai.
 
@@ -30,7 +30,7 @@ alert(typeof value); // string
 
 Konversi string kebanyakan jelas. `false` menjadi `"false"`, `null` menjadi `"null"`, dll.
 
-## Numeric Conversion
+## Konversi Numerik
 
 Konversi numerik terjadi otomatis dalam fungsi dan expresi matematis.
 
@@ -81,20 +81,9 @@ alert( Number(false) );       // 0
 
 Tolong diingat bahwa kelakuan `null` dan `undefined` berbeda di sini: `null` menjadi nol namun `undefined` menjadi `NaN`.
 
-````smart header="Penambahan '+' mengkonkatenasi string"
-Hampir semua operasi matematik mengkonversi nilai ke angka. Pengecualian yang penting ialah penambahan `+`. Jika satu dari nilai yang ditambahkan berupa string, nilai lainnya juga dikonversi ke string.
+Hampir semua operasi matematik melakukan konversi semacam ini, yang akan kita lihat di bab berikutnya.
 
-Maka, ia mengkonkatenasi (menggabungkan) mereka:
-
-```js run
-alert( 1 + '2' ); // '12' (string ke kanan)
-alert( '1' + 2 ); // '12' (string ke kiri)
-```
-
-Ini cuma terjadi ketika setidaknya satu dari argumen yaitu string. Sebaliknya, nilai dikonversi ke angka.
-````
-
-## Boolean Conversion
+## Konversi Boolean
 
 Konversi boolean ialah yang paling simpel.
 
