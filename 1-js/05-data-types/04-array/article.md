@@ -1,31 +1,31 @@
-# Arrays
+# *Array*
 
-Objects allow you to store keyed collections of values. That's fine.
+Objek mengizinkanmu untuk menyimpan koleksi-koleksi tertulis dari nilai. Itu bagus.
 
-But quite often we find that we need an *ordered collection*, where we have a 1st, a 2nd, a 3rd element and so on. For example, we need that to store a list of something: users, goods, HTML elements etc.
+Namun seringkali kita menemukan bahwa kita butuh sebuah *koleksi yang tertata*, dimana kita memiliki elemen ke-1, ke-2, ke-3 dan seterusnya. Sebagai contohnya, kita butuh menyimpan sebuah daftat sesuatu: pengguna, barang, elemen HTML, dan lain-lain.
 
-It is not convenient to use an object here, because it provides no methods to manage the order of elements. We can’t insert a new property “between” the existing ones. Objects are just not meant for such use.
+Tidaklah nyaman untuk menggunakan sebuah objek di kasus ini, karena objek tidak menyediakan metode untuk mengelola elemen. Kita tidak bisa memasukkan sebuah properti baru "di antara" properti yang sudah dulu ada. Objek memang tidak tujukan untuk penggunaan yang demikian.
 
-There exists a special data structure named `Array`, to store ordered collections.
+ADa sebuah struktur data spesial yang dinamakan `Array`, untuk menyimpan koleksi-koleksi yang tertata.
 
-## Declaration
+## Deklarasi
 
-There are two syntaxes for creating an empty array:
+Terdapat dua sintaks untuk membuat sebuah *array* kosong:
 
 ```js
 let arr = new Array();
 let arr = [];
 ```
 
-Almost all the time, the second syntax is used. We can supply initial elements in the brackets:
+Hampir tiap waktu, sintaks kedua lah yang digunakan. Kita bisa menyediakan elemen-elemen awal dalam tanda:
 
 ```js
 let fruits = ["Apple", "Orange", "Plum"];
 ```
 
-Array elements are numbered, starting with zero.
+Elemen-elemen *array* itu diberi (urutan) nomor, mulai dari nol.
 
-We can get an element by its number in square brackets:
+Kita bisa mendapatkan sebuah elemen menggunakan nomor elemen itu dalam tanda kurung siku:
 
 ```js run
 let fruits = ["Apple", "Orange", "Plum"];
@@ -35,19 +35,19 @@ alert( fruits[1] ); // Orange
 alert( fruits[2] ); // Plum
 ```
 
-We can replace an element:
+Kita bisa mengganti sebuah elemen:
 
 ```js
-fruits[2] = 'Pear'; // now ["Apple", "Orange", "Pear"]
+fruits[2] = 'Pear'; // kini ["Apple", "Orange", "Pear"]
 ```
 
-...Or add a new one to the array:
+...Atau menambakan elemen baru ke *array*:
 
 ```js
-fruits[3] = 'Lemon'; // now ["Apple", "Orange", "Pear", "Lemon"]
+fruits[3] = 'Lemon'; // kini ["Apple", "Orange", "Pear", "Lemon"]
 ```
 
-The total count of the elements in the array is its `length`:
+Jumlah elemen di dalam sebuah *array* adalah `length` (panjang) dari *array* tersebut:
 
 ```js run
 let fruits = ["Apple", "Orange", "Plum"];
@@ -55,7 +55,7 @@ let fruits = ["Apple", "Orange", "Plum"];
 alert( fruits.length ); // 3
 ```
 
-We can also use `alert` to show the whole array.
+Kita juga bisa menggunakan `alert` untuk menampilkan keseluruhan *array*.
 
 ```js run
 let fruits = ["Apple", "Orange", "Plum"];
@@ -63,24 +63,24 @@ let fruits = ["Apple", "Orange", "Plum"];
 alert( fruits ); // Apple,Orange,Plum
 ```
 
-An array can store elements of any type.
+Sebuah *array* dapat menyimpan elemen dari tipe (data) apapun.
 
-For instance:
+Contohnya:
 
 ```js run no-beautify
-// mix of values
+// nilai-nilai campuran
 let arr = [ 'Apple', { name: 'John' }, true, function() { alert('hello'); } ];
 
-// get the object at index 1 and then show its name
+// mendapatkan objek pada indeks 1 dan menampilkan namanya
 alert( arr[1].name ); // John
 
-// get the function at index 3 and run it
+// mendapatkan fungsi pada indeks 3 dan menjalankannya
 arr[3](); // hello
 ```
 
 
-````smart header="Trailing comma"
-An array, just like an object, may end with a comma:
+````smart header="Tanda koma yang membuntuti"
+Sebuah array, seperti halnya sebuh objek, diakhir dengan tanda koma:
 ```js
 let fruits = [
   "Apple",
@@ -89,57 +89,57 @@ let fruits = [
 ];
 ```
 
-The "trailing comma" style makes it easier to insert/remove items, because all lines become alike.
+Gaya "tanda koma yang membuntuti" membuat lebih mudah untuk memasukkan/menghilangkan item dari sebuah array, karena semua baris serupa.
 ````
 
 
-## Methods pop/push, shift/unshift
+## Metode *pop*/*push*, *shift*/*unshift*
 
-A [queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) is one of the most common uses of an array. In computer science, this means an ordered collection of elements which supports two operations:
+Sebuah [antrian (*queue*)](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) adalah bentuk penggunaan paling umum sebuah *array*. Dalam *computer science*, hal ini berarti sebuah koleksi elemen yang tertata yang mendukung dua operasi:
 
-- `push` appends an element to the end.
-- `shift` get an element from the beginning, advancing the queue, so that the 2nd element becomes the 1st.
+- `push` menambahkan sebuah elemen di akhir antrian.
+- `shift` mengambil sebuah elemen di awal antrian, memajukan antrian elemen, jadi elemen urutan ke-2 menjadi urutan pertama1.
 
 ![](queue.svg)
 
-Arrays support both operations.
+*Array* sudah mendukung kedua operasi tersebut.
 
-In practice we need it very often. For example, a queue of messages that need to be shown on-screen.
+Dalam latihan yang kita sering kali memerlukannya. Contohnya, sebuah antrian pesan yang perlu ditampilkan di layar.
 
-There's another use case for arrays -- the data structure named [stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)).
+Ada kasus kegunaan lain untuk *array* -- struktur data yang dinamakan [tumpukan *(stack)*](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)).
 
-It supports two operations:
+*Stack* mendukung dua operasi, yakni:
 
-- `push` adds an element to the end.
-- `pop` takes an element from the end.
+- `push` menambahkan sebuah elemen di akhir tumpukan.
+- `pop` mengambil sebuah elemen di akhir tumpukan.
 
-So new elements are added or taken always from the "end".
+Jadi elemen-elemen baru ditambahkan atau diambil selalu dari "akhir" tumpukan.
 
-A stack is usually illustrated as a pack of cards: new cards are added to the top or taken from the top:
+Sebuah *stack* biasanya diilustrasikan sebagai sebuah *pack* kartu: kartu-kartu baru ditambahkan di atas tumpukan atau diambil dari atas tumpukan *pack* kartu tersebut:
 
 ![](stack.svg)
 
-For stacks, the latest pushed item is received first, that's also called LIFO (Last-In-First-Out) principle. For queues, we have FIFO (First-In-First-Out).
+Untuk *stack*, elemen terakhir yang di-*push* diterima lebih dulu, hal itu juga disebut sebagai prinsip LIFO (*Last-In-First-Out*) atau "terakhir masuk, pertama keluar". Sedangkan untuk *queue*, kita memiliki prinsip (*First-In-First-Out*) atau "pertama masuk, pertama keluar".
 
-Arrays in JavaScript can work both as a queue and as a stack. They allow you to add/remove elements both to/from the beginning or the end.
+*Array* dalam JavaScript dapat bekerja baik sebagai sebuah *queue* maupun *stack*. Keduanya membuat kamu bisa menambahkan/menghilangkan elemen baik dari/ke awal ataupun akhir.
 
-In computer science the data structure that allows it is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
+Dalam *computer science* struktur data yang memungkinkan kita bisa melakukan hal-hal demikian disebut sebagai [*deque* (*double-ended queue*)](https://en.wikipedia.org/wiki/Double-ended_queue).
 
-**Methods that work with the end of the array:**
+**Metode yang berfungsi dengan bagian akhir dari _array_:**
 
 `pop`
-: Extracts the last element of the array and returns it:
+: Mengekstrak elemen terakhir dari *array* dan mengembalikan hasilnya:
 
     ```js run
     let fruits = ["Apple", "Orange", "Pear"];
 
-    alert( fruits.pop() ); // remove "Pear" and alert it
+    alert( fruits.pop() ); // menghilangkan "Pear" dan memberi alert
 
     alert( fruits ); // Apple, Orange
     ```
 
 `push`
-: Append the element to the end of the array:
+: Mendorong elemen ke bagian akhir *array*:
 
     ```js run
     let fruits = ["Apple", "Orange"];
@@ -149,23 +149,23 @@ In computer science the data structure that allows it is called [deque](https://
     alert( fruits ); // Apple, Orange, Pear
     ```
 
-    The call `fruits.push(...)` is equal to `fruits[fruits.length] = ...`.
+    Panggilan `fruits.push(...)` sama dengan `fruits[fruits.length] = ...`.
 
-**Methods that work with the beginning of the array:**
+**Metode yang berfungsi dengan bagian awal dari _array_:**
 
 `shift`
-: Extracts the first element of the array and returns it:
+: Mengekstrak elemen pertama dari *array* dan mengembalikannya:
 
     ```js
     let fruits = ["Apple", "Orange", "Pear"];
 
-    alert( fruits.shift() ); // remove Apple and alert it
+    alert( fruits.shift() ); // menghilangkan Apple dan memberi alert
 
     alert( fruits ); // Orange, Pear
     ```
 
 `unshift`
-: Add the element to the beginning of the array:
+: Menambahkan elemen ke bagian awal *array*:
 
     ```js
     let fruits = ["Orange", "Pear"];
@@ -175,7 +175,7 @@ In computer science the data structure that allows it is called [deque](https://
     alert( fruits ); // Apple, Orange, Pear
     ```
 
-Methods `push` and `unshift` can add multiple elements at once:
+Metode `push` dan `unshift` dapat menambahkan beberapa elemen sekaligus:
 
 ```js run
 let fruits = ["Apple"];
@@ -187,97 +187,97 @@ fruits.unshift("Pineapple", "Lemon");
 alert( fruits );
 ```
 
-## Internals
+## Internal *array*
 
-An array is a special kind of object. The square brackets used to access a property `arr[0]` actually come from the object syntax. That's essentially the same as `obj[key]`, where `arr` is the object, while numbers are used as keys.
+Sebuah *array* adalah objek yang spesial. Tanda kurung siku digunakan untuk mengakses sebuah properti `arr[0]` sebenarnya berasal dari sintaks objek. Hal itu secara mendasar sama seperti `obj[key]`, dimana `arr` adalah objek, sedangkan angka-angka digunakan selayaknya kunci.
 
-They extend objects providing special methods to work with ordered collections of data and also the `length` property. But at the core it's still an object.
+Sintaks tersebut memperpanjang objek yang menyediakan metode khusus untuk berfungsi dengan koleksi-koleksi data yang tertata serta properti `length`. Tetapi pada intinya, *array* tetaplah sebuah objek.
 
-Remember, there are only 7 basic types in JavaScript. Array is an object and thus behaves like an object.
+Ingat, ada 7 tipe (data) dasar dalamJavaScript. *Array* adalah sebuah objek dan oleh karena itu berperilaku selayaknya sebuah objek.
 
-For instance, it is copied by reference:
+Sebagai contoh, *array* disalin oleh referensi:
 
 ```js run
 let fruits = ["Banana"]
 
-let arr = fruits; // copy by reference (two variables reference the same array)
+let arr = fruits; // salinan dari referensi (dua variabel mereferensikan array yang sama)
 
 alert( arr === fruits ); // true
 
-arr.push("Pear"); // modify the array by reference
+arr.push("Pear"); // modiikasi array oleh referensi
 
-alert( fruits ); // Banana, Pear - 2 items now
+alert( fruits ); // Banana, Pear - 2 elemen sekarang
 ```
 
-...But what makes arrays really  special is their internal representation. The engine tries to store its elements in the contiguous memory area, one after another, just as depicted on the illustrations in this chapter, and there are other optimizations as well, to make arrays work really fast.
+...Namun apa yang membuat *array* benar-benar istimewa adalah representasi internalnya. Mesin berusaha untuk menyimpan elemen *array* ke dalam area memori yang berdampingan, satu dengan yang lainnya, sepereti yang digambarkan pada ilustrasi di bab ini, serta ada cara optimasi lainnya, untuk membuat *array* bekerja lebih cepat lagi.
 
 But they all break if we quit working with an array as with an "ordered collection" and start working with it as if it were a regular object.
 
-For instance, technically we can do this:
+Contohnya, secara teknis kita dapat melakukan hal berikut ini:
 
 ```js
-let fruits = []; // make an array
+let fruits = []; // membuat sebuah array
 
-fruits[99999] = 5; // assign a property with the index far greater than its length
+fruits[99999] = 5; // menugaskan sebuah properti dengan indeks yang jauh lebih panjang dari length/panjang indeks
 
-fruits.age = 25; // create a property with an arbitrary name
+fruits.age = 25; // membuat sebuah properti dengan nama yang dapat berubah-ubah
 ```
 
-That's possible, because arrays are objects at their base. We can add any properties to them.
+Hal itu memungkinkan, karena *array* adalah objek pada dasarnya. Kita bisa menambahkan properti apapun ke *array*.
 
-But the engine will see that we're working with the array as with a regular object. Array-specific optimizations are not suited for such cases and will be turned off, their benefits disappear.
+Tetapi mesin akan melihat bahwa kita sedang *array* sebagai sebuah objek reguler. Optimasi yang khusus untuk *array* tidaklah cocok untuk kasus demikian dan akan dihentikan serta hilang pula keuntungannya.
 
-The ways to misuse an array:
+Cara-cara penggunaan *array* yang salah yakni:
 
-- Add a non-numeric property like `arr.test = 5`.
-- Make holes, like: add `arr[0]` and then `arr[1000]` (and nothing between them).
-- Fill the array in the reverse order, like `arr[1000]`, `arr[999]` and so on.
+- Menambahkan sebuah properti non-numerik seperti `arr.test = 5`.
+- Membuat celah-celah kosong, seperti: menambahkan `arr[0]` dan kemudian `arr[1000]` (dan tanpa ada apapun di antara kedua indeks tersebut).
+- Mengisi sebuah *array* dalam urutan yang terbalik, seperti `arr[1000]`, `arr[999]` dan seterusnya.
 
-Please think of arrays as special structures to work with the *ordered data*. They provide special methods for that. Arrays are carefully tuned inside JavaScript engines to work with contiguous ordered data, please use them this way. And if you need arbitrary keys, chances are high that you actually require a regular object `{}`.
+Tolong pikirkan *array* sebagai sebuah struktur istimewa untuk bekerja dengan *data yang tersusun*. *Array* menyediakan metode khusus untuk hal tersebut. *Array* dikembangkan secara hati-hati dalam mesin JavaScript untuk bekerja dengan data yang tersusun berdampingan, mohon gunakan *array* dengan cara demikian. Dan jika kamu membutuhkan kunci-kunci yang dapat diubah-ubah, besar kemungkinan bahwa kamu sebenarnya butuh sebuah objek reguler `{}`.
 
-## Performance
+## Performa
 
-Methods `push/pop` run fast, while `shift/unshift` are slow.
+Metode `push/pop` berjalan cepat, sedangkan `shift/unshift` lamban.
 
 ![](array-speed.svg)
 
-Why is it faster to work with the end of an array than with its beginning? Let's see what happens during the execution:
+Mengapa bekerja dengan bagian akhir sebuah *array* ketimbang bagian depannya? Mari lihat apa yang terjadi sewaktu eksekusi:
 
 ```js
-fruits.shift(); // take 1 element from the start
+fruits.shift(); // mengambil 1 elemen dari bagian awal
 ```
 
-It's not enough to take and remove the element with the number `0`. Other elements need to be renumbered as well.
+Tidaklah cukup mengambil dan menghapus elemen dengan angka `0`. Elemen lainnya juga perlu diberi angka pula.
 
-The `shift` operation must do 3 things:
+Operasi `shift` harus menjalankan 3 hal:
 
-1. Remove the element with the index `0`.
-2. Move all elements to the left, renumber them from the index `1` to `0`, from `2` to `1` and so on.
-3. Update the `length` property.
+1. Menghapus elemen dengan indeks `0`.
+2. Memindahkan semua elemen ke kiri, memberi nomor ulang semua elemen dari indeks `1` ke `0`, dari `2` ke `1` dan seterusnya.
+3. Memperbarui properti `length`.
 
 ![](array-shift.svg)
 
-**The more elements in the array, the more time to move them, more in-memory operations.**
+**Semakin banyak elemen dalam _array_, semakin banyak waktu yang dibutuhkan untuk memindahkan elemen-elemen tersebut, semakin banyak operasi dalam memori.**
 
-The similar thing happens with `unshift`: to add an element to the beginning of the array, we need first to move existing elements to the right, increasing their indexes.
+Hal serupa terjadi dengan `unshift`: untuk menambahkan sebuah elemen ke bagian awal *array*, kita perlu pertama-tama memindahkan elemen yang ada ke kanan, menambah indeksnya.
 
-And what's with `push/pop`? They do not need to move anything. To extract an element from the end, the `pop` method cleans the index and shortens `length`.
+Dan ada apa dengan `push/pop`? Metode tersebut tidak perlu untuk memindahkan apapun. Untuk mengekstrak sebuah elemen dari bagian akhir, metode `pop` membersihkan indeks dan memendekkan `length`.
 
-The actions for the `pop` operation:
+Sintaks untuk operasi `pop` yakni:
 
 ```js
-fruits.pop(); // take 1 element from the end
+fruits.pop(); // mengambil 1 elemen dari bagian akhir
 ```
 
 ![](array-pop.svg)
 
-**The `pop` method does not need to move anything, because other elements keep their indexes. That's why it's blazingly fast.**
+**Metode `pop` tidak perlu memindahkan apapun, karena elemen lain tetap pada indeks masing-masing. Itulah mengapa metode tersebut sangat cepat.**
 
-The similar thing with the `push` method.
+Hal serupa juga terjadi dengan metode `push`.
 
-## Loops
+## Pengulangan (*loop*)
 
-One of the oldest ways to cycle array items is the `for` loop over indexes:
+Salah satu cara tertua untuk mensirkulasi elemen-elemen *array* adalah dengan pengulangan indeks dengan `for`:
 
 ```js run
 let arr = ["Apple", "Orange", "Pear"];
@@ -289,20 +289,20 @@ for (let i = 0; i < arr.length; i++) {
 }
 ```
 
-But for arrays there is another form of loop, `for..of`:
+Tetapi untuk *array* ada bentuk dari pengulangan lain, `for..of`:
 
 ```js run
 let fruits = ["Apple", "Orange", "Plum"];
 
-// iterates over array elements
+// beralih pada elemen array
 for (let fruit of fruits) {
   alert( fruit );
 }
 ```
 
-The `for..of` doesn't give access to the number of the current element, just its value, but in most cases that's enough. And it's shorter.
+Metode `for..of` tidak memberikan akses pada nomor elemen yang sekarang, hanya nilainya saja, tetapi dalam kebanyakan kasus hal tersebut cukup. Dan lebih pendek.
 
-Technically, because arrays are objects, it is also possible to use `for..in`:
+Secara teknis, karena *array* adalah objek, *array* juga memungkinkan untuk menggunakan `for..in`:
 
 ```js run
 let arr = ["Apple", "Orange", "Pear"];
@@ -314,22 +314,22 @@ for (let key in arr) {
 }
 ```
 
-But that's actually a bad idea. There are potential problems with it:
+Namun sebenernya hal itu adalah ide buruk. Ada beberapa masalah-masalah potensial:
 
-1. The loop `for..in` iterates over *all properties*, not only the numeric ones.
+1. Pengulangan `for..in` beralih pada *semua properti*, tidak hanya yang numerik saja.
 
-    There are so-called "array-like" objects in the browser and in other environments, that *look like arrays*. That is, they have `length` and indexes properties, but they may also have other non-numeric properties and methods, which we usually don't need. The `for..in` loop will list them though. So if we need to work with array-like objects, then these "extra" properties can become a problem.
+    Terdapat apa yang disebut sebagai objek "seperti *array*" dalam peramban serta lingkungan lainnya, yang *terlihat seperti array*. Objek tersebut, memiliki `length` dan properti yang ber-indeks, namun juga bisa memiliki properti non-numerik lain serta metode-metode, yang mana biasanya tidak kita butuhkan. Pengulangan `for..in` akan mendaftarkan properti tersebut. Jadi kita perlu bekerja dengan objek-objek yang seperti *array*, lalu properti-properti "ekstra" ini akan menjadi sebuah masalah.
 
-2. The `for..in` loop is optimized for generic objects, not arrays, and thus is 10-100 times slower. Of course, it's still very fast. The speedup may only matter in bottlenecks. But still we should be aware of the difference.
+2. Pengulangan `for..in` dioptimasi untuk objek-objek umum (*generic*), bukan *array*, dan 10-100 kali lebih lambat. Tentu saja, pengulangan tersebut masih begitu cepat. Percepatannya mungkin saja berpengaruh saat kondisi kemacetan saja. Namun tetap kita harus menyadari perbedaannya.
 
-Generally, we shouldn't use `for..in` for arrays.
+Secara umum, kita tidak seharusnya menggunakan `for..in` *array*.
 
 
-## A word about "length"
+## Sebuah kata untuk "length"
 
-The `length` property automatically updates when we modify the array. To be precise, it is actually not the count of values in the array, but the greatest numeric index plus one.
+Properti `length` secara otomatis diperbarui ketika kita memodifikasi *array*. Lebih tepatnya, `length` bukanlah jumlah nilai yang ada dalam *array*, tapi angka indeks terbesar ditambah satu.
 
-For instance, a single element with a large index gives a big length:
+Contohnya, sebuah elemen tunggal dengan indeks yang besar juga menghasilkan panjang atau `length` yang besar:
 
 ```js run
 let fruits = [];
@@ -338,54 +338,54 @@ fruits[123] = "Apple";
 alert( fruits.length ); // 124
 ```
 
-Note that we usually don't use arrays like that.
+Catat bahwa kita biasanya tidak menggunakan *array* seperti itu.
 
-Another interesting thing about the `length` property is that it's writable.
+Hal menarik lain tentang properti `length` adalah bahwa properti tersebut juga dapat dituliskan.
 
-If we increase it manually, nothing interesting happens. But if we decrease it, the array is truncated. The process is irreversible, here's the example:
+Jika kita menambahnya secara manual, tidak hal menarik yang terjadi. Tapi jika kita menguranginya, *array* tersebut terpotong. Prosesnya tidak dapat dibalikkan (seperti semula), berikut ini contohnya:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
 
-arr.length = 2; // truncate to 2 elements
+arr.length = 2; // memotong hingga 2 elemen
 alert( arr ); // [1, 2]
 
-arr.length = 5; // return length back
-alert( arr[3] ); // undefined: the values do not return
+arr.length = 5; // mengembalikan length/panjang
+alert( arr[3] ); // undefined: nilai tidak dapat dikembalikan
 ```
 
-So, the simplest way to clear the array is: `arr.length = 0;`.
+Jadi, cara paling sederhana untuk membersihkan *array* adalah yakni dengan: `arr.length = 0;`.
 
 
 ## new Array() [#new-array]
 
-There is one more syntax to create an array:
+Ada satu sintaks lagi untuk membuat sebuah *array*:
 
 ```js
 let arr = *!*new Array*/!*("Apple", "Pear", "etc");
 ```
 
-It's rarely used, because square brackets `[]` are shorter. Also there's a tricky feature with it.
+Sintaks tersebut jarang digunakan, karena tanda kurung siku `[]` lebih pendek. Juga terdapat sebuah fitur yang sukar di dalamnya.
 
-If `new Array` is called with a single argument which is a number, then it creates an array *without items, but with the given length*.
+Jika `new Array` dipanggil dengan sebuah argumen tunggal yang mana adalah sebuah angka, maka sintaks tersebut akan membuat sebuah *array* yang *tanpa elemen, namun dengan panjang sesuai yang diberikan*.
 
-Let's see how one can shoot themself in the foot:
+Mari lihat bagaimana orang-orang bisa terjebak dengan hal ini:
 
 ```js run
-let arr = new Array(2); // will it create an array of [2] ?
+let arr = new Array(2); // akankah membuat sebuah array berisi [2] ?
 
-alert( arr[0] ); // undefined! no elements.
+alert( arr[0] ); // undefined! tidak ada elemen.
 
-alert( arr.length ); // length 2
+alert( arr.length ); // length atau panjangnya adalah 2
 ```
 
-In the code above, `new Array(number)` has all elements `undefined`.
+Dalam kode di atas, `new Array(number)` memiliki semua elemen yang `undefined`.
 
-To evade such surprises, we usually use square brackets, unless we really know what we're doing.
+Untuk menghindari kejutan-kejutan yang demikian, kita biasanya menggunakan tanda kurung siku, kecuali kita benar-benar tahu kode apa yang sedang kita tulis.
 
-## Multidimensional arrays
+## *Array* multidimensi
 
-Arrays can have items that are also arrays. We can use it for multidimensional arrays, for example to store matrices:
+*Array* dapat memiliki isi yang juga merupakan *array*. Kita bisa menggunakannya untuk *array* multidimensi, sebagai contoh untuk menyimpan matriks:
 
 ```js run
 let matrix = [
@@ -394,14 +394,14 @@ let matrix = [
   [7, 8, 9]
 ];
 
-alert( matrix[1][1] ); // 5, the central element
+alert( matrix[1][1] ); // 5, elemen pusat
 ```
 
 ## toString
 
-Arrays have their own implementation of `toString` method that returns a comma-separated list of elements.
+*Array* memiliki implementasi metode `toString`-nya sendiri yang mengembalikan daftar elemen yang dipisahkan oleh tanda koma.
 
-For instance:
+Contoh:
 
 
 ```js run
@@ -411,7 +411,7 @@ alert( arr ); // 1,2,3
 alert( String(arr) === '1,2,3' ); // true
 ```
 
-Also, let's try this:
+Coba juga contoh berikut ini:
 
 ```js run
 alert( [] + 1 ); // "1"
@@ -419,9 +419,9 @@ alert( [1] + 1 ); // "11"
 alert( [1,2] + 1 ); // "1,21"
 ```
 
-Arrays do not have `Symbol.toPrimitive`, neither a viable `valueOf`, they implement only `toString` conversion, so here `[]` becomes an empty string, `[1]` becomes `"1"` and `[1,2]` becomes `"1,2"`.
+*Array* tidak memiliki `Symbol.toPrimitive`, begitu juga `valueOf` dapat diandalkan, *array* hanya mengimplentasikan konversi`toString`, jadi di sini `[]` menjadi sebuah *string* kosong, `[1]` menjadi `"1"` dan `[1,2]` menjadi `"1,2"`.
 
-When the binary plus `"+"` operator adds something to a string, it converts it to a string as well, so the next step looks like this:
+Ketika operator tanda tambah biner `"+"` menambahkan sesuatu pada sebuah *string*, operator tersebut mengonversi hal yang ditambahkan tadi menjadi sebuah *string* juga, jadi langkah selanjutnya akan terlihat seperti berikut ini:
 
 ```js run
 alert( "" + 1 ); // "1"
@@ -429,35 +429,35 @@ alert( "1" + 1 ); // "11"
 alert( "1,2" + 1 ); // "1,21"
 ```
 
-## Summary
+## Ringkasan
 
-Array is a special kind of object, suited to storing and managing ordered data items.
+*Array* adalah sebuah objek berjenis khusus, cocok untuk menyimpan dan mengelola data yang tersusun.
 
-- The declaration:
+- Deklarasinya:
 
     ```js
-    // square brackets (usual)
+    // tanda kurung siku (seperti biasa)
     let arr = [item1, item2...];
 
-    // new Array (exceptionally rare)
+    // new Array (pengecualian yang jarang)
     let arr = new Array(item1, item2...);
     ```
 
-    The call to `new Array(number)` creates an array with the given length, but without elements.
+    Panggilan `new Array(number)` membuat sebuah *array* dengan panjang indeks (*length*) yang diberikan, tetapi tanpa elemen.
 
-- The `length` property is the array length or, to be precise, its last numeric index plus one. It is auto-adjusted by array methods.
-- If we shorten `length` manually, the array is truncated.
+- Properti `length` adalah panjang *array* atau, lebih tepatnya, angka indeks terakhir plus satu. Hal tersebut secara otomatis diatur dengan metode *array*.
+- Jika kita memendekkan `length` secara manuak, *array* tersebut akan terpotong.
 
-We can use an array as a deque with the following operations:
+Kita bisa menggunakan sebuah *array* sebagai sebuah *deque* dengan operasi sebagai berikut:
 
-- `push(...items)` adds `items` to the end.
-- `pop()` removes the element from the end and returns it.
-- `shift()` removes the element from the beginning and returns it.
-- `unshift(...items)` adds `items` to the beginning.
+- `push(...items)` menambahkan `items` ke bagian akhir *array*.
+- `pop()` menghilangkan elemen dari bagian akhir *array* dan mengembalikannya.
+- `shift()` menghilangkan elemen dari bagian awal *array* dan mengembalikannya.
+- `unshift(...items)` menambahkan `items` ke bagian awal *array*.
 
-To loop over the elements of the array:
-  - `for (let i=0; i<arr.length; i++)` -- works fastest, old-browser-compatible.
-  - `for (let item of arr)` -- the modern syntax for items only,
-  - `for (let i in arr)` -- never use.
+Untuk membuat pengulangan (*loop*) elemen *array*:
+  - `for (let i=0; i<arr.length; i++)` -- bekerja paling cepat, kompatibel dengan peramban lama.
+  - `for (let item of arr)` -- sintaks modern untuk *item* saja,
+  - `for (let i in arr)` -- tidak pernah digunakan.
 
-We will return to arrays and study more methods to add, remove, extract elements and sort arrays in the chapter <info:array-methods>.
+Kita akan kembali membahas *array* dan mempelajari lebih banyak metode untuk menambahkan, menghilangkan, mengekstrak elemen serta mengurutkan *array* di bab <info:array-methods>.
