@@ -1,43 +1,43 @@
-# Slow solution
+# Solusi lamban
 
-We can calculate all possible subsums.
+Kita dapat menghitung semua semua sub-penjumlahan yang memungkinkan.
 
-The simplest way is to take every element and calculate sums of all subarrays starting from it.
+Cara paling sederhana adalah dengan cara mengambil setiap elemen dan menghitung jumlah semua *subarray* dimulai dari situ.
 
-For instance, for `[-1, 2, 3, -9, 11]`:
+Contohnya, untuk `[-1, 2, 3, -9, 11]`:
 
 ```js no-beautify
-// Starting from -1:
+// Dimulai dari -1:
 -1
 -1 + 2
 -1 + 2 + 3
 -1 + 2 + 3 + (-9)
 -1 + 2 + 3 + (-9) + 11
 
-// Starting from 2:
+// Dimulai dari 2:
 2
 2 + 3
 2 + 3 + (-9)
 2 + 3 + (-9) + 11
 
-// Starting from 3:
+// Dimulai dari 3:
 3
 3 + (-9)
 3 + (-9) + 11
 
-// Starting from -9
+// Dimulai dari -9
 -9
 -9 + 11
 
-// Starting from 11
+// Dimulai dari 11
 11
 ```
 
-The code is actually a nested loop: the external loop over array elements, and the internal counts subsums starting with the current element.
+Kode tersebut sebenarnya adalah sebuah pengulangan *nested* (atau *nested* loop):  pengulangan eksternal elemen-elemen *array*, dan yang internal menghitung sub-jumlah dengan elemen yang sekarang.
 
 ```js run
 function getMaxSubSum(arr) {
-  let maxSum = 0; // if we take no elements, zero will be returned
+  let maxSum = 0; // jika kita tidak mengambil elemen apapaun, angka nol akan dikembalikan
 
   for (let i = 0; i < arr.length; i++) {
     let sumFixedStart = 0;
@@ -57,25 +57,25 @@ alert( getMaxSubSum([1, 2, 3]) ); // 6
 alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 ```
 
-The solution has a time complexety of [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation). In other words, if we increase the array size 2 times, the algorithm will work 4 times longer.
+Solusi tersebut memiliki waktu penyelesaian [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation). Dalam kata lain, jika kita menambah ukuran *array* 2 kali lipat, algoritma akan bekerja 4 kali lipat lebih lama.
 
-For big arrays (1000, 10000 or more items) such algorithms can lead to a serious sluggishness.
+Untuk *array* yang besar (1000, 10000 *item* atau lebih) algoritma yang demikian akan mengarah pada kelambanan yang parah.
 
-# Fast solution
+# Solusi cepat
 
-Let's walk the array and keep the current partial sum of elements in the variable `s`. If `s` becomes negative at some point, then assign `s=0`. The maximum of all such `s` will be the answer.
+Mari jalankan *array* tersebut dan simpan hasil penjumlahkan parsial elemen yang sekarang di dalam variabel `s`. Jika `s` menjadi negatif pada beberapa titik, maka tugaskan `s=0`. Nilai maksimum dari semua `s` tersebut akan menjadi jawabannya.
 
-If the description is too vague, please see the code, it's short enough:
+Jika deskripsi tersebut terlalu samar, mohon perhatikan kodenya, yang ternyata cukup pendek:
 
 ```js run demo
 function getMaxSubSum(arr) {
   let maxSum = 0;
   let partialSum = 0;
 
-  for (let item of arr) { // for each item of arr
-    partialSum += item; // add it to partialSum
-    maxSum = Math.max(maxSum, partialSum); // remember the maximum
-    if (partialSum < 0) partialSum = 0; // zero if negative
+  for (let item of arr) { // untuk setiap item arr
+    partialSum += item; // menambahkannya ke partialSum
+    maxSum = Math.max(maxSum, partialSum); // ingat nilai maxksimum
+    if (partialSum < 0) partialSum = 0; // nol jika negatif
   }
 
   return maxSum;
@@ -89,6 +89,6 @@ alert( getMaxSubSum([1, 2, 3]) ); // 6
 alert( getMaxSubSum([-1, -2, -3]) ); // 0
 ```
 
-The algorithm requires exactly 1 array pass, so the time complexity is O(n).
+Algoritma tersebut membutuhkan tepat 1 *array* yang lolos, jadi waktu penyelesaian adalah O(n).
 
-You can find more detail information about the algorithm here: [Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem). If it's still not obvious why that works, then please trace the algorithm on the examples above, see how it works, that's better than any words.
+Kamu dapat menemukan informasi yang lebih rinci tentang algoritma di sini: [Masalah *subarray* maksimum](http://en.wikipedia.org/wiki/Maximum_subarray_problem). Jika masih kurang jelas bagaimana hal tersebut bekerja, maka mohon menelusuri algoritma pada contoh di atas, perhatikan bagaimana algoritmanya bekerja, itulah cara yang paling baik.

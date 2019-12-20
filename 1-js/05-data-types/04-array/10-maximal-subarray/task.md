@@ -2,15 +2,15 @@ importance: 2
 
 ---
 
-# A maximal subarray
+# *Subarray* maksimum
 
-The input is an array of numbers, e.g. `arr = [1, -2, 3, 4, -9, 6]`.
+Input adalah sebuah *array* angka, e.g. `arr = [1, -2, 3, 4, -9, 6]`.
 
-The task is: find the contiguous subarray of `arr` with the maximal sum of items.
+Tugasnya adalah: menemukan *subarray* `arr` yang berdampingan dengan nilai maksimal penjumlahan *item* yang ada.
 
-Write the function `getMaxSubSum(arr)` that will return that sum.
+Tulis fungsi `getMaxSubSum(arr)` yang akan mengembalikan nilai penjumlahan tersebut.
 
-For instance: 
+Sebagai contoh: 
 
 ```js
 getMaxSubSum([-1, *!*2, 3*/!*, -9]) = 5 (the sum of highlighted items)
@@ -21,10 +21,10 @@ getMaxSubSum([*!*100*/!*, -9, 2, -3, 5]) = 100
 getMaxSubSum([*!*1, 2, 3*/!*]) = 6 (take all)
 ```
 
-If all items are negative, it means that we take none (the subarray is empty), so the sum is zero:
+Jika semua *item* adalah negatif, hal tersebut berarti kita tidak mengambil apapun (*subarray* kosong), jadi jumlahnya sama dengan nol:
 
 ```js
 getMaxSubSum([-1, -2, -3]) = 0
 ```
 
-Please try to think of a fast solution: [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation) or even O(n) if you can.
+Mohon coba untuk memikirkan sebuah solusi cepat: [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation) atau bahkan O(n) jika bisa.
