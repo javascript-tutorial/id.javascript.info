@@ -2,18 +2,18 @@ importance: 3
 
 ---
 
-# Is array copied?
+# Apakah *array* disalin?
 
-What is this code going to show?
+Apa yang kode ini akan tunjukkan?
 
 ```js
 let fruits = ["Apples", "Pear", "Orange"];
 
-// push a new value into the "copy"
+// push sebuah nilai baru ke "copy"
 let shoppingCart = fruits;
 shoppingCart.push("Banana");
 
-// what's in fruits?
+// apa yang ada di dalam fruits?
 alert( fruits.length ); // ?
 ```
 

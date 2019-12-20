@@ -2,14 +2,14 @@ importance: 4
 
 ---
 
-# Sum input numbers
+# Menjumlahkan angka yang di-input
 
-Write the function `sumInput()` that:
+Tuliskan fungsi `sumInput()` yang:
 
-- Asks the user for values using `prompt` and stores the values in the array.
-- Finishes asking when the user enters a non-numeric value, an empty string, or presses "Cancel".
-- Calculates and returns the sum of array items.
+- Meminta nilai dari dengan menggunakan `prompt` dan menyimpan nilai tersebut dalam *array*.
+- Berhenti meminta nilai dari pengguna ketika pengguna memasukkan nilai non-numerik, sebuah *string* kosong, atau menekan "Cancel".
+- Hitung dan mengembalikan hasil penjumlahan *item* dalam *array*.
 
-P.S. A zero `0` is a valid number, please don't stop the input on zero.
+Catatan. Sebuah nol `0` adalah angka yang valid, mohon tidak menghentikan input pada angka nol.
 
 [demo]

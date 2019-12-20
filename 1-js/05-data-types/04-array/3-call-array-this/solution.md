@@ -1,6 +1,6 @@
-The call `arr[2]()` is syntactically the good old `obj[method]()`, in the role of `obj` we have `arr`, and in the role of `method` we have `2`.
+Panggilan `arr[2]()` secara sintaks adalah  `obj[method]()` yang sudah ada dari lama, dalam peran sebagai `obj` kita memiliki `arr`, dan dalam peran sebagai `method` kita memiliki `2`.
 
-So we have a call of the function `arr[2]` as an object method. Naturally, it receives `this` referencing the object `arr` and outputs the array:
+Jadi kita memiliki sebuah panggilan fungsi `arr[2]` sebagai sebuah metode objek. Secara alami, fungsi terebut menerima `this` yang mereferensikan ke `arr` and menghasilakn *array* berikut:
 
 ```js run
 let arr = ["a", "b"];
@@ -12,4 +12,4 @@ arr.push(function() {
 arr[2](); // "a","b",function
 ```
 
-The array has 3 values: initially it had two, plus the function. 
+*Array* tersebut memiliki 3 nilai: sejak awal *array* tersebut memiliki dua nilai, plus fungsi. 
