@@ -1,4 +1,4 @@
-# Destructuring assignment
+# Destrukturisasi Penugasan
 
 Dua stuktur data yang paling banyak digunakan di Javascript adalah `Object` dan `Array`
 
