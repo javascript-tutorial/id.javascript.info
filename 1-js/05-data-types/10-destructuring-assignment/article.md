@@ -1,25 +1,25 @@
 # Destructuring assignment
 
-The two most used data structures in JavaScript are `Object` and `Array`.
+Dua stuktur data yang paling banyak digunakan di Javascript adalah `Object` dan `Array`
 
-Objects allow us to create a single entity that stores data items by key, and arrays allow us to gather data items into an ordered collection.
+Objek memungkinkan kita untuk membuat entitas tunggal yang menyimpan data item berdasarkan kunci, dan array memungkinkan kita untuk mengumpulkan data item menjadi koleksi yang terurut.
 
-But when we pass those to a function, it may need not an object/array as a whole, but rather individual pieces.
+Tetapi ketika kita meneruskannya ke suatu fungsi, itu mungkin tidak perlu objek / array secara keseluruhan, melainkan potongan individual.
 
-*Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes that's more convenient. Destructuring also works great with complex functions that have a lot of parameters, default values, and so on.
+*Destructuring assignment* adalah sebuah sintaks spesial yang memungkinkan kita untuk "membongkar" array atau objek menjadi variabel yang banyak, kadang-kadang itu memang lebih nyaman. Destrukturisasi juga berfungsi baik dengan fungsi-fungsi kompleks yang mempunyai banyak parameter, nilai default, dan sebagainya.
 
-## Array destructuring
+## Destrukturisasi Array
 
-An example of how the array is destructured into variables:
+Contoh bagaimana array di-destrukturisasi menjadi variabel:
 
 ```js
-// we have an array with the name and surname
+// kita mempunyai array dengan nama, dan nama keluarga
 let arr = ["Ilya", "Kantor"]
 
 *!*
 // destructuring assignment
-// sets firstName = arr[0]
-// and surname = arr[1]
+// atur firstName = arr[0]
+// dan surname = arr[1]
 let [firstName, surname] = arr;
 */!*
 
@@ -27,18 +27,18 @@ alert(firstName); // Ilya
 alert(surname);  // Kantor
 ```
 
-Now we can work with variables instead of array members.
+Sekarang kita bisa bekerja dengan variabel bukan anggota array.
 
-It looks great when combined with `split` or other array-returning methods:
+Ini terlihat hebat ketika dikombinasikan dengan `split` atau metode pengembalian array lainnya:
 
 ```js
 let [firstName, surname] = "Ilya Kantor".split(' ');
 ```
 
-````smart header="\"Destructuring\" does not mean \"destructive\"."
-It's called "destructuring assignment," because it "destructurizes" by copying items into variables. But the array itself is not modified.
+````smart header="\"Destructuring\" bukan berarti \"destructive\"."
+Ini disebut "destructuring assignment," karena "destructurizes" dengan menyalin item kedalam variabel. Tetapi array itu sendiri tidak dimodifikasi.
 
-It's just a shorter way to write:
+Ini hanya cara singkat untuk menulis:
 ```js
 // let [firstName, surname] = arr;
 let firstName = arr[0];
@@ -46,24 +46,24 @@ let surname = arr[1];
 ```
 ````
 
-````smart header="Ignore elements using commas"
-Unwanted elements of the array can also be thrown away via an extra comma:
+````smart header="Hindari elemen menggunakan koma"
+Elemen yang tidak diinginkan di array juga bisa di buang dengan sebuah koma tambahan:
 
 ```js run
 *!*
-// second element is not needed
+// elemen kedua tidak dibutuhkan
 let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 */!*
 
 alert( title ); // Consul
 ```
 
-In the code above, the second element of the array is skipped, the third one is assigned to `title`, and the rest of the array items is also skipped (as there are no variables for them).
+Pada kode diatas, elemen kedua dari array dilewati, yang ketiga ditetapkan untuk `title`, dan sisa item array juga dilewati (karena tidak ada variabel untuknya).
 ````
 
-````smart header="Works with any iterable on the right-side"
+````smart header="Bekerja dengan iterabel apapun di sisi kanan"
 
-...Actually, we can use it with any iterable, not only arrays:
+... Sebenarnya, kita bisa mengggunakan itu untuk iterasi apapun, bukan hanya array:
 
 ```js
 let [a, b, c] = "abc"; // ["a", "b", "c"]
@@ -73,11 +73,11 @@ let [one, two, three] = new Set([1, 2, 3]);
 ````
 
 
-````smart header="Assign to anything at the left-side"
+````smart header="Menetapkan ke apa saja pada sisi kiri"
 
-We can use any "assignables" at the left side.
+Kita bisa menggunakan "penetapan" apa saja pada sisi kiri.
 
-For instance, an object property:
+Misalnya, sebuah properti objek:
 ```js run
 let user = {};
 [user.name, user.surname] = "Ilya Kantor".split(' ');
@@ -87,11 +87,11 @@ alert(user.name); // Ilya
 
 ````
 
-````smart header="Looping with .entries()"
+````smart header="Pengulangan dengan .entries()"
 
-In the previous chapter we saw the [Object.entries(obj)](mdn:js/Object/entries) method.
+Di bagian sebelumnya kita melihat metode [Object.entries(obj)](mdn:js/Object/entries).
 
-We can use it with destructuring to loop over keys-and-values of an object:
+Kita bisa menggunakan itu untuk destrukturisasi untuk melompati kunci-dan-nilai sebuah objek:
 
 ```js run
 let user = {
@@ -107,7 +107,7 @@ for (let [key, value] of Object.entries(user)) {
 }
 ```
 
-...And the same for a map:
+...Dan sama untuk sebuah map:
 
 ```js run
 let user = new Map();
@@ -121,9 +121,9 @@ for (let [key, value] of user) {
 }
 ```
 ````
-### The rest '...'
+### Sisanya '...'
 
-If we want not just to get first values, but also to gather all that follows -- we can add one more parameter that gets "the rest" using three dots `"..."`:
+Jika kita ingin tidak hanya mendapatkan nilai pertama, tetapi juga untuk mengumpulkan semua yang mengikuti -- kita dapat menambahkan satu parameter lagi dan mendapat "the rest" menggunakan tiga titik `"..."`:
 
 ```js run
 let [name1, name2, *!*...rest*/!*] = ["Julius", "Caesar", *!*"Consul", "of the Roman Republic"*/!*];
@@ -132,18 +132,18 @@ alert(name1); // Julius
 alert(name2); // Caesar
 
 *!*
-// Note that type of `rest` is Array.
+// Catatan bahwa tipe dari `rest` adalah Array.
 alert(rest[0]); // Consul
 alert(rest[1]); // of the Roman Republic
 alert(rest.length); // 2
 */!*
 ```
 
-The value of `rest` is the array of the remaining array elements. We can use any other variable name in place of `rest`, just make sure it has three dots before it and goes last in the destructuring assignment.
+Nilai dari `rest` adalah array dari elemen array yang tersisa. Kita bisa menggunakan variabel lain apapun pada `rest`, hanya pastikan memiliki tiga titik sebelum itu dan pergi terakhir di penetapan destrukturisasi.
 
-### Default values
+### Nilai default
 
-If there are fewer values in the array than variables in the assignment, there will be no error. Absent values are considered undefined:
+Jika ada lebih sedikit nilai dalam array daripada variabel dalam penugasan, tidak akan ada kesalahan. Nilai absen dianggap undefined:
 
 ```js run
 *!*
@@ -154,24 +154,25 @@ alert(firstName); // undefined
 alert(surname); // undefined
 ```
 
-If we want a "default" value to replace the missing one, we can provide it using `=`:
+Jika kita ingin sebuah nilai "default" untuk mengganti yang hilang, kita bisa menyediakan menggunakan `=`:
 
 ```js run
 *!*
-// default values
+// nilai default
 let [name = "Guest", surname = "Anonymous"] = ["Julius"];
 */!*
 
-alert(name);    // Julius (from array)
-alert(surname); // Anonymous (default used)
+alert(name);    // Julius (dari array)
+alert(surname); // Anonymous (digunakan default)
 ```
 
-Default values can be more complex expressions or even function calls. They are evaluated only if the value is not provided.
+Nilai default bisa berupa ekspresi yang lebih kompleks atau bahkan panggilan fungsi
+Default values can be more complex expressions or even function calls. Mereka dievaluasi hanya jika nilainya tidak diberikan.
 
-For instance, here we use the `prompt` function for two defaults. But it will run only for the missing one:
+Sebagai contoh, di sini kita menggunakan fungsi `prompt` untuk dua default. Tapi itu hanya akan berjalan untuk yang hilang:
 
 ```js run
-// runs only prompt for surname
+// prompt hanya berjalan untuk nama keluarga (surname)
 let [name = prompt('name?'), surname = prompt('surname?')] = ["Julius"];
 
 alert(name);    // Julius (from array)
@@ -180,19 +181,19 @@ alert(surname); // whatever prompt gets
 
 
 
-## Object destructuring
+## Destrukturisasi objek
 
-The destructuring assignment also works with objects.
+Penugasan destrukturisasi juga bekerja dengan objek.
 
-The basic syntax is:
+Sintaks dasarnya adalah:
 
 ```js
 let {var1, var2} = {var1:…, var2:…}
 ```
 
-We have an existing object at the right side, that we want to split into variables. The left side contains a "pattern" for corresponding properties. In the simple case, that's a list of variable names in `{...}`.
+Kita memiliki objek yang ada di sisi kanan, yang ingin kita pisah menjadi beberapa variabel. Sisi kiri berisi "pola" untuk properti yang sesuai. Dalam kasus sederhana, itu adalah daftar nama variabel di `{...}`.
 
-For instance:
+Contohnya:
 
 ```js run
 let options = {
@@ -210,16 +211,16 @@ alert(width);  // 100
 alert(height); // 200
 ```
 
-Properties `options.title`, `options.width` and `options.height` are assigned to the corresponding variables. The order does not matter. This works too:
+Properti `options.title`, `options.width` dan `options.height` ditugaskan ke variabel yang sesuai. Urutannya tidak masalah. Ini juga berfungsi:
 
 ```js
-// changed the order in let {...}
+// mengganti urutan di let {...}
 let {height, width, title} = { title: "Menu", height: 200, width: 100 }
 ```
 
-The pattern on the left side may be more complex and specify the mapping between properties and variables.
+Pola di sisi kiri mungkin lebih kompleks dan menentukan pemetaan antara properti dan variabel.
 
-If we want to assign a property to a variable with another name, for instance, `options.width` to go into the variable named `w`, then we can set it using a colon:
+Jika kita ingin menetapkan properti ke variabel dengan nama lain, misalnya, `options.width` untuk masuk ke variabel bernama` w`, maka kita dapat mengaturnya menggunakan tanda titik dua:
 
 ```js run
 let options = {
@@ -242,9 +243,9 @@ alert(w);      // 100
 alert(h);      // 200
 ```
 
-The colon shows "what : goes where". In the example above the property `width` goes to `w`, property `height` goes to `h`, and `title` is assigned to the same name.
+Kolon menunjukkan "apa : pergi kemana". Dalam contoh di atas properti `width` pergi ke` w`, properti `height` pergi ke` h`, dan `title` ditugaskan ke nama yang sama.
 
-For potentially missing properties we can set default values using `"="`, like this:
+Untuk properti yang berpotensi hilang, kita dapat menetapkan nilai default menggunakan `" = "`, seperti ini:
 
 ```js run
 let options = {
@@ -260,9 +261,9 @@ alert(width);  // 100
 alert(height); // 200
 ```
 
-Just like with arrays or function parameters, default values can be any expressions or even function calls. They will be evaluated if the value is not provided.
+Sama seperti dengan array atau parameter fungsi, nilai default dapat berupa ekspresi atau bahkan panggilan fungsi. Mereka akan dievaluasi jika nilainya tidak diberikan.
 
-In the code below `prompt` asks for `width`, but not for `title`:
+Dalam kode di bawah ini `prompt` meminta` width`, tetapi tidak untuk `title`:
 
 ```js run
 let options = {
@@ -274,10 +275,10 @@ let {width = prompt("width?"), title = prompt("title?")} = options;
 */!*
 
 alert(title);  // Menu
-alert(width);  // (whatever the result of prompt is)
+alert(width);  // (apapun hasil dari prompt)
 ```
 
-We also can combine both the colon and equality:
+Kita juga dapat menggabungkan titik dua dan persamaan:
 
 ```js run
 let options = {
@@ -293,7 +294,7 @@ alert(w);      // 100
 alert(h);      // 200
 ```
 
-If we have a complex object with many properties, we can extract only what we need:
+Jika kita memiliki objek yang kompleks dengan banyak properti, kita hanya dapat mengekstrak apa yang kita butuhkan:
 
 ```js run
 let options = {
@@ -302,19 +303,19 @@ let options = {
   height: 200
 };
 
-// only extract title as a variable
+// hanya ekstrak judul sebagai variabel
 let { title } = options;
 
 alert(title); // Menu
 ```
 
-### The rest pattern "..."
+### Pola sisanya "..."
 
-What if the object has more properties than we have variables? Can we take some and then assign the "rest" somewhere?
+Bagaimana jika objek memiliki lebih banyak properti daripada variabel yang kita miliki? Bisakah kita mengambil beberapa dan kemudian menetapkan "sisanya" di suatu tempat?
 
-We can use the rest pattern, just like we did with arrays. It's not supported by some older browsers (IE, use Babel to polyfill it), but works in modern ones.
+Kita bisa menggunakan pola 'rest', seperti yang kita lakukan dengan array. Itu tidak didukung oleh beberapa browser tua (IE, gunakan Babel untuk mem-polyfill itu) tapi berjalan di yang modern.
 
-It looks like this:
+Terlihat seperti ini:
 
 ```js run
 let options = {
@@ -324,57 +325,57 @@ let options = {
 };
 
 *!*
-// title = property named title
-// rest = object with the rest of properties
+// title = properti bernama judul
+// rest = objek dengan sisa properti
 let {title, ...rest} = options;
 */!*
 
-// now title="Menu", rest={height: 200, width: 100}
+// sekarang title="Menu", rest={height: 200, width: 100}
 alert(rest.height);  // 200
 alert(rest.width);   // 100
 ```
 
-````smart header="Gotcha if there's no `let`"
-In the examples above variables were declared right in the assignment: `let {…} = {…}`. Of course, we could use existing variables too, without `let`. But there's a catch.
+````smart header="Gotcha jika tidak ada `let`"
+Dalam contoh-contoh di atas, variabel dinyatakan tepat dalam penugasan: `let {...} = {...}`. Tentu saja, kita bisa menggunakan variabel yang ada juga, tanpa `let`. Tapi ada tangkapan.
 
-This won't work:
+Ini tidak akan berfungsi:
 ```js run
 let title, width, height;
 
-// error in this line
+// kesalahan di baris ini
 {title, width, height} = {title: "Menu", width: 200, height: 100};
 ```
 
-The problem is that JavaScript treats `{...}` in the main code flow (not inside another expression) as a code block. Such code blocks can be used to group statements, like this:
+Masalahnya adalah bahwa JavaScript memperlakukan `{...}` dalam aliran kode utama (tidak di dalam ekspresi lain) sebagai blok kode. Blok kode seperti itu dapat digunakan untuk pernyataan grup, seperti ini:
 
 ```js run
 {
-  // a code block
+  // sebuah kode blok
   let message = "Hello";
   // ...
   alert( message );
 }
 ```
 
-So here JavaScript assumes that we have a code block, that's why there's an error. We want destructuring instead.
+Jadi di sini JavaScript mengasumsikan bahwa kita memiliki blok kode, itu sebabnya ada kesalahan. Kita ingin mendekstukturisasi.
 
-To show JavaScript that it's not a code block, we can wrap the expression in parentheses `(...)`:
+Untuk memperlihatkan JavaScript bahwa itu bukan blok kode, kita dapat membungkus ekspresi dalam tanda kurung `(...)`:
 
 ```js run
 let title, width, height;
 
-// okay now
+// oke sekarang
 *!*(*/!*{title, width, height} = {title: "Menu", width: 200, height: 100}*!*)*/!*;
 
 alert( title ); // Menu
 ```
 ````
 
-## Nested destructuring
+## Destrukturisasi bersarang
 
-If an object or an array contain other nested objects and arrays, we can use more complex left-side patterns to extract deeper portions.
+Jika suatu objek atau array berisi objek dan array bersarang lainnya, kita dapat menggunakan pola sisi kiri yang lebih kompleks untuk mengekstraksi bagian yang lebih dalam.
 
-In the code below `options` has another object in the property `size` and an array in the property `items`. The pattern at the left side of the assignment has the same structure to extract values from them:
+Dalam kode di bawah ini `options` memiliki objek lain di properti` size` dan sebuah array di properti `items`. Pola di sisi kiri penugasan memiliki struktur yang sama untuk mengekstrak nilai dari mereka:
 
 ```js run
 let options = {
@@ -386,14 +387,14 @@ let options = {
   extra: true   
 };
 
-// destructuring assignment split in multiple lines for clarity
+// tugas dekstukturisasi dibagi dalam beberapa baris untuk kejelasan
 let {
-  size: { // put size here
+  size: { // letakkan ukuran di sini
     width,
     height
   },
-  items: [item1, item2], // assign items here
-  title = "Menu" // not present in the object (default value is used)
+  items: [item1, item2], // tetapkan item di sini
+  title = "Menu" // tidak ada dalam objek (nilai default digunakan)
 } = options;
 
 alert(title);  // Menu
@@ -403,19 +404,20 @@ alert(item1);  // Cake
 alert(item2);  // Donut
 ```
 
-All properties of `options` object except `extra` that is absent in the left part, are assigned to corresponding variables:
+
+Semua properti objek `options` kecuali` extra` yang tidak ada di bagian kiri, ditetapkan ke variabel yang sesuai:
 
 ![](destructuring-complex.svg)
 
-Finally, we have `width`, `height`, `item1`, `item2` and `title` from the default value.
+Akhirnya, kita memiliki `width`,` height`, `item1`,` item2` dan `title` dari nilai default.
 
-Note that there are no variables for `size` and `items`, as we take their content instead.
+Perhatikan bahwa tidak ada variabel untuk `size` dan` item`, karena kita mengambil kontennya.
 
-## Smart function parameters
+## Parameter fungsi cerdas
 
-There are times when a function has many parameters, most of which are optional. That's especially true for user interfaces. Imagine a function that creates a menu. It may have a width, a height, a title, items list and so on.
+Ada kalanya suatu fungsi memiliki banyak parameter, yang sebagian besar bersifat opsional. Itu terutama berlaku untuk antarmuka pengguna. Bayangkan sebuah fungsi yang menciptakan menu. Mungkin memiliki lebar, tinggi, judul, daftar item dan sebagainya.
 
-Here's a bad way to write such function:
+Berikut cara yang buruk untuk menulis fungsi tersebut:
 
 ```js
 function showMenu(title = "Untitled", width = 200, height = 100, items = []) {
@@ -423,32 +425,32 @@ function showMenu(title = "Untitled", width = 200, height = 100, items = []) {
 }
 ```
 
-In real-life, the problem is how to remember the order of arguments. Usually IDEs try to help us, especially if the code is well-documented, but still... Another problem is how to call a function when most parameters are ok by default.
+Dalam kehidupan nyata, masalahnya adalah bagaimana cara mengingat urutan argumen. Biasanya IDE mencoba membantu kita, terutama jika kodenya didokumentasikan dengan baik, tetapi masih ... Masalah lain adalah bagaimana memanggil fungsi ketika sebagian besar parameter ok secara default.
 
-Like this?
+Soperti ini?
 
 ```js
-// undefined where default values are fine
+// tidak ditentukan dimana nilai default baik-baik saja
 showMenu("My Menu", undefined, undefined, ["Item1", "Item2"])
 ```
 
-That's ugly. And becomes unreadable when we deal with more parameters.
+Itu jelek. Dan menjadi tidak dapat dibaca ketika kita berurusan dengan lebih banyak parameter.
 
-Destructuring comes to the rescue!
+Destrukturisasi datang untuk menyelamatkan!
 
-We can pass parameters as an object, and the function immediately destructurizes them into variables:
+Kita dapat melewatkan parameter sebagai objek, dan fungsinya segera merusaknya menjadi variabel:
 
 ```js run
-// we pass object to function
+// kita meneruskan objek ke fungsi
 let options = {
   title: "My menu",
   items: ["Item1", "Item2"]
 };
 
-// ...and it immediately expands it to variables
+// ...dan segera memperluasnya ke variabel
 function showMenu(*!*{title = "Untitled", width = 200, height = 100, items = []}*/!*) {
-  // title, items – taken from options,
-  // width, height – defaults used
+  // title, items – diambil dari options,
+  // width, height – standar yang digunakan
   alert( `${title} ${width} ${height}` ); // My Menu 200 100
   alert( items ); // Item1, Item2
 }
@@ -456,7 +458,7 @@ function showMenu(*!*{title = "Untitled", width = 200, height = 100, items = []}
 showMenu(options);
 ```
 
-We can also use more complex destructuring with nested objects and colon mappings:
+Kita juga dapat menggunakan perusakan yang lebih kompleks dengan objek bersarang dan pemetaan titik dua:
 
 ```js run
 let options = {
@@ -467,9 +469,9 @@ let options = {
 *!*
 function showMenu({
   title = "Untitled",
-  width: w = 100,  // width goes to w
-  height: h = 200, // height goes to h
-  items: [item1, item2] // items first element goes to item1, second to item2
+  width: w = 100,  // width menjadi w
+  height: h = 200, // height menjadi h
+  items: [item1, item2] // element pertama items menjadi item1, kedua menjadi item2
 }) {
 */!*
   alert( `${title} ${w} ${h}` ); // My Menu 100 200
@@ -480,7 +482,7 @@ function showMenu({
 showMenu(options);
 ```
 
-The full syntax is the same as for a destructuring assignment:
+Sintaks lengkapnya sama dengan untuk tugas penataan:
 ```js
 function({
   incomingProperty: varName = defaultValue
@@ -488,17 +490,17 @@ function({
 })
 ```
 
-Then, for an object of parameters, there will be a variable `varName` for property `incomingProperty`, with `defaultValue` by default.
+Kemudian, untuk objek parameter, akan ada variabel `varName` untuk properti` incomingProperty`, dengan `defaultValue` secara default.
 
-Please note that such destructuring assumes that `showMenu()` does have an argument. If we want all values by default, then we should specify an empty object:
+Harap perhatikan bahwa destrukturisasi seperti itu mengasumsikan bahwa `showMenu ()` memang memiliki argumen. Jika kita menginginkan semua nilai secara default, maka kita harus menentukan objek kosong:
 
 ```js
-showMenu({}); // ok, all values are default
+showMenu({}); // ok, semua nilai adalah default
 
-showMenu(); // this would give an error
+showMenu(); // ini akan memberikan kesalahan
 ```
 
-We can fix this by making `{}` the default value for the whole object of parameters:
+Kita dapat memperbaikinya dengan menjadikan `{}` nilai default untuk seluruh objek parameter:
 
 ```js run
 function showMenu({ title = "Menu", width = 100, height = 200 }*!* = {}*/!*) {
@@ -508,26 +510,26 @@ function showMenu({ title = "Menu", width = 100, height = 200 }*!* = {}*/!*) {
 showMenu(); // Menu 100 200
 ```
 
-In the code above, the whole arguments object is `{}` by default, so there's always something to destructurize.
+Dalam kode di atas, objek argumen keseluruhan adalah `{}` secara default, jadi selalu ada sesuatu untuk distrukturisasi.
 
-## Summary
+## Ringkasan
 
-- Destructuring assignment allows for instantly mapping an object or array onto many variables.
-- The full object syntax:
+- Penugasan destrukturisasi memungkinkan untuk memetakan objek atau array secara instan ke banyak variabel.
+- Sintaks lengkap objek:
     ```js
     let {prop : varName = default, ...rest} = object
     ```
 
-    This means that property `prop` should go into the variable `varName` and, if no such property exists, then the `default` value should be used.
+    Ini berarti properti `prop` harus masuk ke variabel` varName` dan, jika tidak ada properti seperti itu, maka nilai `default` harus digunakan.
 
-    Object properties that have no mapping are copied to the `rest` object.
+    Properti objek yang tidak memiliki pemetaan disalin ke objek `rest`.
 
-- The full array syntax:
+- Sintaks lengkap array:
 
     ```js
     let [item1 = default, item2, ...rest] = array
     ```
 
-    The first item goes to `item1`; the second goes into `item2`, all the rest makes the array `rest`.
+    Item pertama masuk ke `item1`; yang kedua masuk ke `item2`, sisanya membuat array `rest`.
 
-- It's possible to extract data from nested arrays/objects, for that the left side must have the same structure as the right one.
+- Dimungkinkan untuk mengekstraksi data dari array / objek bersarang, untuk itu sisi kiri harus memiliki struktur yang sama dengan yang benar.
