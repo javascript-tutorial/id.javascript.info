@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Destructuring assignment
+# Destrukturisasi penugasan
 
-We have an object:
+Kita mempunyai sebuah objek:
 
 ```js
 let user = {
@@ -13,18 +13,18 @@ let user = {
 };
 ```
 
-Write the destructuring assignment that reads:
+Tulis destrukturisasi penugasan yang terbaca:
 
-- `name` property into the variable `name`.
-- `years` property into the variable `age`.
-- `isAdmin` property into the variable `isAdmin` (false, if no such property)
+- `name` properti menjadi variabel `name`.
+- `years` properti menjadi variabel `age`.
+- `isAdmin` properti menjadi variabel `isAdmin` (false, jika tidak ada properti seperti itu)
 
-Here's an example of the values after your assignment:
+Berikut adalah contoh nilai setelah penugasan Anda:
 
 ```js
 let user = { name: "John", years: 30 };
 
-// your code to the left side:
+// kode Anda ke sisi kiri:
 // ... = user
 
 alert( name ); // John
