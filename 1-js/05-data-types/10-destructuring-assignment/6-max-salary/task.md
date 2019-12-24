@@ -1,4 +1,4 @@
-kepentingan: 5
+nilai penting: 5
 
 ---
 
