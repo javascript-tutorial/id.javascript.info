@@ -1,14 +1,14 @@
 
-Let's examine what's done inside `makeArmy`, and the solution will become obvious.
+Mari kita lihat apa yang terjadi di dalam `makeArmy`, dan jawabannya akan menjadi jelas.
 
-1. It creates an empty array `shooters`:
+1. Fungsi tersebut membuat array kosong `shooters`:
 
     ```js
     let shooters = [];
     ```
-2. Fills it in the loop via `shooters.push(function...)`.
+2. Mengisinya lewat loop dengan `shooters.push(function...)`.
 
-    Every element is a function, so the resulting array looks like this:
+    Setiap elemen adalah sebuah fungsi, jadi array akhirnya terlihat seperti ini:
 
     ```js no-beautify
     shooters = [
@@ -25,25 +25,25 @@ Let's examine what's done inside `makeArmy`, and the solution will become obviou
     ];
     ```
 
-3. The array is returned from the function.
+3. Array tersebut dikembalikan dari fungsi.
 
-Then, later, the call to `army[5]()` will get the element `army[5]` from the array (it will be a function) and call it.
+Lalu, panggilan ke `army[5]()` akan mengambil elemen `army[5]` dari arraynya (yang berisi fungsi) dan memanggilnya.
 
-Now why all such functions show the same?
+Sekarang, kenapa fungsi-fungsi tersebut memunculkan keluaran yang sama?
 
-That's because there's no local variable `i` inside `shooter` functions. When such a function is called, it takes `i` from its outer lexical environment.
+Itu karena tidak ada variabel lokal `i` di dalam fungsi `shooter`. Ketika fungsi tersebut dipanggil, fungsi tersebut mengambil `i` dari lingkungan leksikal luar.
 
-What will be the value of `i`?
+Jadi apa nilai dari `i`?
 
-If we look at the source:
+Jika kita lihat kodenya:
 
 ```js
 function makeArmy() {
   ...
   let i = 0;
   while (i < 10) {
-    let shooter = function() { // shooter function
-      alert( i ); // should show its number
+    let shooter = function() { // fungsi shooter
+      alert( i ); // seharusnya memunculkan angkanya
     };
     ...
   }
@@ -51,11 +51,11 @@ function makeArmy() {
 }
 ```
 
-...We can see that it lives in the lexical environment associated with the current `makeArmy()` run. But when `army[5]()` is called, `makeArmy` has already finished its job, and `i` has the last value: `10` (the end of `while`).
+...Kita bisa lihat bahwa `i` hidup di lingkungan leksikal yang berhubungan dengan fungsi `makeArmy()`. Tetapi ketika `army[5]()` dipanggil, `makeArmy` sudah selesai dipanggil, dan `i` memiliki nilai terakhir: `10` (nilai terakhir dari `while`).
 
-As a result, all `shooter` functions get from the outer lexical envrironment the same, last value `i=10`.
+Sebagai hasilnya, semua fungsi `shooter` menemukan `i` dari lingkungan leksikal luar yang sama, dengan nilai `i=10`.
 
-We can fix it by moving the variable definition into the loop:
+Kita dapat memperbaikinya dengan memindahkan definisi variabel ke dalam perulangan:
 
 ```js run demo
 function makeArmy() {
@@ -65,8 +65,8 @@ function makeArmy() {
 *!*
   for(let i = 0; i < 10; i++) {
 */!*
-    let shooter = function() { // shooter function
-      alert( i ); // should show its number
+    let shooter = function() { // fungsi shooter
+      alert( i ); // seharusnya memunculkan angkanya
     };
     shooters.push(shooter);
   }
@@ -80,15 +80,15 @@ army[0](); // 0
 army[5](); // 5
 ```
 
-Now it works correctly, because every time the code block in `for (let i=0...) {...}` is executed, a new Lexical Environment is created for it, with the corresponding variable `i`.
+Sekarang sudah bekerja dengan benar, karena setiap kali blok kode di dalam `for (let i=0...) {...}` dijalankan, sebuah lingkungan leksikal baru terbuat, dengan masing-masing variabel `i`.
 
-So, the value of `i` now lives a little bit closer. Not in `makeArmy()` Lexical Environment, but in the Lexical Environment that corresponds the current loop iteration. That's why now it works.
+Jadi, nilai dari `i` sekarang hidup lebih dekat. Tidak di lingkungan leksikal `makeArmy()`, tetapi di lingkungan leksikal yang sesuai dengan iterasi perulangan yang sekarang. Itu kenapa sekarang sudah bekerja dengan benar.
 
 ![](lexenv-makearmy.svg)
 
-Here we rewrote `while` into `for`.
+Di sini kita mengganti `while` menjadi `for`.
 
-Another trick could be possible, let's see it for better understanding of the subject:
+Satu trik lain juga mungkin, mari kita lihat agar kita lebih paham dengan topik ini:
 
 ```js run
 function makeArmy() {
@@ -99,8 +99,8 @@ function makeArmy() {
 *!*
     let j = i;
 */!*
-    let shooter = function() { // shooter function
-      alert( *!*j*/!* ); // should show its number
+    let shooter = function() { // fungsi shooter
+      alert( *!*j*/!* ); // seharusnya memunculkan angkanya
     };
     shooters.push(shooter);
     i++;
@@ -115,6 +115,6 @@ army[0](); // 0
 army[5](); // 5
 ```
 
-The `while` loop, just like `for`, makes a new Lexical Environment for each run. So here we make sure that it gets the right value for a `shooter`.
+Perulangan `while`, seperti `for`, membuat lingkungan leksikal setiap kali dijalankan. Jadi kita memastikan untuk mendapatkan nilai yang benar untuk sebuah `shooter`.
 
-We copy `let j = i`. This makes a loop body local `j` and copies the value of `i` to it. Primitives are copied "by value", so we actually get a complete independent copy of `i`, belonging to the current loop iteration.
+Kita menyalin `let j = i`. Ini membuat variabel lokal perulangan `j` dan menyalin nilai `i` ke dalamnya. Nilai primitif disalin "dengan nilai", jadi kita sebenarnya mendapatkan salian independen dari `i`, yang menjadi miliki dari iterasi perulangan yang sekarang.

@@ -1,12 +1,12 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Army of functions
+# Pasukan-pasukan fungsi
 
-The following code creates an array of `shooters`.
+Kode berikut membuat array dari `shooters`.
 
-Every function is meant to output its number. But something is wrong...
+Setiap fungsi diinginkan untuk mengeluarkan angkanya sendiri. Tetapi ada yang salah...
 
 ```js run
 function makeArmy() {
@@ -14,8 +14,8 @@ function makeArmy() {
 
   let i = 0;
   while (i < 10) {
-    let shooter = function() { // shooter function
-      alert( i ); // should show its number
+    let shooter = function() { // fungsi shooter
+      alert( i ); // seharusnya mengeluarkan angkanya sendiri
     };
     shooters.push(shooter);
     i++;
@@ -26,10 +26,10 @@ function makeArmy() {
 
 let army = makeArmy();
 
-army[0](); // the shooter number 0 shows 10
-army[5](); // and number 5 also outputs 10...
-// ... all shooters show 10 instead of their 0, 1, 2, 3...
+army[0](); // shooter ke 0 mengeluarkan 10
+army[5](); // dan yang ke 5 juga mengeluarkan 10...
+// ... semua shooters mengeluarkan 10 tetapi tidak 0, 1, 2, 3...
 ```
 
-Why do all of the shooters show the same value? Fix the code so that they work as intended.
+Kenapa semua shooters mengeluarkan nilai yang sama? Perbaiki kode di atas sehingga dapat bekerja secara benar.
 

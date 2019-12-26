@@ -1,7 +1,7 @@
 
-Surely it will work just fine.
+Tentu saja hal tersebut akan bekerja.
 
-Both nested functions are created within the same outer Lexical Environment, so they share access to the same `count` variable:
+Kedua fungsi bersarang dibuat dengan lingkungan leksikal yang sama, jadi mereka membagi akses ke variabel `count` yang sama:
 
 ```js run
 function Counter() {

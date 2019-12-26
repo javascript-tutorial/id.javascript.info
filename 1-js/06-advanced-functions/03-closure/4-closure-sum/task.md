@@ -1,14 +1,14 @@
-importance: 4
+nilai penting: 4
 
 ---
 
-# Sum with closures
+# Penjumlahan dengan closure
 
-Write function `sum` that works like this: `sum(a)(b) = a+b`.
+Buatlah sebuah fungsi `sum` yang bekerja seperti ini: `sum(a)(b) = a+b`.
 
-Yes, exactly this way, using double parentheses (not a mistype).
+Ya, seperti ini, dengan kurung ganda (bukan salah ketik).
 
-For instance:
+Sebagai contoh:
 
 ```js
 sum(1)(2) = 3
