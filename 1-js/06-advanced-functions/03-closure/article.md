@@ -1,4 +1,4 @@
-<!-- TODO: proofread -->
+
 # Closure
 
 Javascript adalah sebuah bahasa pemrograman yang sangat berorientasi fungsi. Hal tersebut memberi kita banyak kebebasan. Sebuah fungsi dapat dibuat secara dinamis, disalin ke variabel atau dilempar sebagai sebuah argumen ke fungsi lain lalu dipanggil dari tempat yang lain.
