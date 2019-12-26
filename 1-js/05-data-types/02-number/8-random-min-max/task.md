@@ -1,14 +1,14 @@
-importance: 2
+nilai penting: 2
 
 ---
 
-# A random number from min to max
+# Sebuah angka acak dari min ke max
 
-The built-in function `Math.random()` creates a random value from `0` to `1` (not including `1`).
+Fungsi bawaan `Math.random()` membuat sebuah angka acak dari `0` ke `1` (tidak termasuk `1`).
 
-Write the function `random(min, max)` to generate a random floating-point number from `min` to `max` (not including `max`).
+Tulis fungsi `random(min, max)` untuk menghasilkan angka floating-point acak dari `min` ke` max` (tidak termasuk `max`).
 
-Examples of its work:
+Contoh kerjanya:
 
 ```js
 alert( random(1, 5) ); // 1.2345623452

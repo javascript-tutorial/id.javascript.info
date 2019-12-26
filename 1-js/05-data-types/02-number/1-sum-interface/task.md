@@ -1,11 +1,11 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Sum numbers from the visitor
+# Jumlahkan angka dari pengunjung
 
-Create a script that prompts the visitor to enter two numbers and then shows their sum.
+Buat skrip yang meminta pengunjung untuk memasukkan dua angka dan kemudian menunjukkan jumlah mereka.
 
 [demo]
 
-P.S. There is a gotcha with types.
+N.B. Ada gotcha dengan tipe.
