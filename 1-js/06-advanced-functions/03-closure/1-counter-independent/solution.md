@@ -1,5 +1,5 @@
-The answer: **0,1.**
+Jawaban: **0,1.**
 
-Functions `counter` and `counter2` are created by different invocations of `makeCounter`.
+Fungsi `counter` dan `counter2` dibuat dengan panggilan fungsi `makeCounter` yang berbeda.
 
-So they have independent outer Lexical Environments, each one has its own `count`.
+Jadi mereka memiliki lingkungan leksikal yang berbeda, dengan `count` mereka masing-masing.

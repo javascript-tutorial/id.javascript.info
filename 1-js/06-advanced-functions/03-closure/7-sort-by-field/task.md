@@ -1,10 +1,10 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Sort by field
+# Urutkan berdasarkan field
 
-We've got an array of objects to sort:
+Kita memiliki array objek untuk diurutkan:
 
 ```js
 let users = [
@@ -14,23 +14,23 @@ let users = [
 ];
 ```
 
-The usual way to do that would be:
+Cara yang biasa dilakukan yaitu:
 
 ```js
-// by name (Ann, John, Pete)
+// berdasarkan name (Ann, John, Pete)
 users.sort((a, b) => a.name > b.name ? 1 : -1);
 
-// by age (Pete, Ann, John)
+// berdasarkan age (Pete, Ann, John)
 users.sort((a, b) => a.age > b.age ? 1 : -1);
 ```
 
-Can we make it even less verbose, like this?
+Apakah kita dapat membuatnya lebih ringkas, seperti ini?
 
 ```js
 users.sort(byField('name'));
 users.sort(byField('age'));
 ```
 
-So, instead of writing a function, just put `byField(fieldName)`.
+Jadi, daripada menulis sebuah fungsi, cukup tulis `byField(fieldName)`.
 
-Write the function `byField` that can be used for that.
+Tulislah fungsi `byField` yang dapat digunakan untuk itu.

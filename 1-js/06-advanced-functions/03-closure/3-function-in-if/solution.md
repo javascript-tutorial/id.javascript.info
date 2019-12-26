@@ -1,3 +1,3 @@
-The result is **an error**.
+Hasilnya yaitu **sebuah error**.
 
-The function `sayHi` is declared inside the `if`, so it only lives inside it. There is no `sayHi` outside.
+Fungsi `sayHi` dideklarasikan di dalam `if`, jadi fungsi tersebut hanya hidup di dalamnya. Tidak ada fungsi `sayHi` di luar.

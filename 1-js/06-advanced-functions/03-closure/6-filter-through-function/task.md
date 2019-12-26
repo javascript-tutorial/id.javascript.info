@@ -1,25 +1,25 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Filter through function
+# Filter dengan fungsi
 
-We have a built-in method `arr.filter(f)` for arrays. It filters all elements through the function `f`. If it returns `true`, then that element is returned in the resulting array.
+Kita memiliki method bawaan `arr.filter(f)` untuk array. Method tersebut menyaring seluruh elemen menggunakan fungsi `f`. Apabila mengembalikan `true`, maka elemen tersebut dikembalikan di array hasil.
 
-Make a set of "ready to use" filters:
+Buatlah filter "yang siap pakai":
 
-- `inBetween(a, b)` -- between `a` and `b` or equal to them (inclusively).
-- `inArray([...])` -- in the given array.
+- `inBetween(a, b)` -- antara `a` dan `b` atau sama dengan (inklusif).
+- `inArray([...])` -- terkandung di dalam array.
 
-The usage must be like this:
+Penggunaannya harus seperti ini:
 
-- `arr.filter(inBetween(3,6))` -- selects only values between 3 and 6.
-- `arr.filter(inArray([1,2,3]))` -- selects only elements matching with one of the members of `[1,2,3]`.
+- `arr.filter(inBetween(3,6))` -- menyimpan hanya nilai di antara 3 dan 6.
+- `arr.filter(inArray([1,2,3]))` -- menyimpan elemen apabila sama dengan salah satu dari `[1,2,3]`.
 
-For instance:
+Sebagai contoh:
 
 ```js
-/* .. your code for inBetween and inArray */
+/* .. implementasi inBetween dan inArray */
 let arr = [1, 2, 3, 4, 5, 6, 7];
 
 alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6

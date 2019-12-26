@@ -1,12 +1,12 @@
-For the second parentheses to work, the first ones must return a function.
+Agar kurung kedua berhasil, yang pertama harus mengembalikan sebuah fungsi.
 
-Like this:
+Seperti ini:
 
 ```js run
 function sum(a) {
 
   return function(b) {
-    return a + b; // takes "a" from the outer lexical environment
+    return a + b; // mengambil "a" dari lingkungan leksikal luar
   };
 
 }

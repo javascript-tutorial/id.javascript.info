@@ -1,12 +1,12 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Counter object
+# Objek counter
 
-Here a counter object is made with the help of the constructor function.
+Disini kita memiliki objek counter yang dibuat dengan bantuan fungsi konstruktor.
 
-Will it work? What will it show?
+Apakah hal tersebut akan bekerja? Apa yang akan muncul?
 
 ```js
 function Counter() {
