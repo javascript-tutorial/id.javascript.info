@@ -7,7 +7,13 @@ Untuk mendapatkan kelegaan, kamu berjanji untuk mengirimkan *single* tersebut ke
 
 Semua orang senang: kamu, karena orang-orang tidak memadati kamu lagi, dan penggemar, karena mereka tidak ketinggalan *single*nya.
 
+<<<<<<< HEAD
 Ini adalah analogi di kehidupan nyata untuk hal-hal yang sering kita miliki dalam pemrograman:
+=======
+1. A "producing code" that does something and takes time. For instance, some code that loads the data over a network. That's a "singer".
+2. A "consuming code" that wants the result of the "producing code" once it's ready. Many functions  may need that result. These are the "fans".
+3. A *promise* is a special JavaScript object that links the "producing code" and the "consuming code" together. In terms of our analogy: this is the "subscription list". The "producing code" takes whatever time it needs to produce the promised result, and the "promise" makes that result available to all of the subscribed code when it's ready.
+>>>>>>> 28ed5a3f7df9e015cf81c126423c76c9408d7117
 
 1. "Kode produksi" itu melakukan sesuatu dan membutuhkan waktu. Sebagai contoh, sebuah kode yang memuat data melalui jaringan. Itu adalah seorang "penyanyi".
 2. "Kode pengkonsumsi" yang menginginkan hasil dari "kode produksi" setelah siap. Banyak fungsi yang mungkin membutuhkan hasil itu. Ini adalah "penggemar".
@@ -23,7 +29,11 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
+<<<<<<< HEAD
 Fungsi yang dilewatkan ke `new Promise` disebut sebagai *eksekutor*. Ketika `new Promise` dibuat, eksekutor tersebut berjalan secara otomatis. Eksekutor itu berisi kode produksi, yang pada akhirnya harus memproduksi hasil. Dalam analogi di atas: eksekutor adalah "penyanyi".
+=======
+The function passed to `new Promise` is called the *executor*. When `new Promise` is created, the executor runs automatically. It contains the producing code which should eventually produce the result. In terms of the analogy above: the executor is the "singer".
+>>>>>>> 28ed5a3f7df9e015cf81c126423c76c9408d7117
 
 Argumen `resolve` dan `reject` adalah *callback* yang disediakan oleh JavaScript itu sendiri. Kode kita hanya ada di dalam eksekutor.
 
@@ -32,7 +42,11 @@ Ketika eksekutor mendapatkan hasilnya, baik itu cepat atau lambat - tidak masala
 - `resolve(value)` — jika pekerjaan selesai dengan sukses, dengan hasil `value`.
 - `reject(error)` — jika terjadi kesalahan, `error` adalah objek kesalahan.
 
+<<<<<<< HEAD
 Jadi untuk meringkas: eksekutor berjalan secara otomatis, eksekutor harus melakukan pekerjaan dan kemudian memanggil salah satu dari `resolve` atau `reject`.
+=======
+So to summarize: the executor runs automatically, it should do a job, and then call either `resolve` or `reject`.
+>>>>>>> 28ed5a3f7df9e015cf81c126423c76c9408d7117
 
 Objek `promise` yang dikembalikan oleh *constructor* `new Promise` memiliki properti internal:
 
@@ -273,6 +287,10 @@ let promise = new Promise(resolve => resolve("done!"));
 
 promise.then(alert); // done! (muncul sekarang)
 ```
+
+Note that this is different, and more powerful than the real life "subscription list" scenario. If the singer has already released their song and then a person signs up on the subscription list, they probably won't receive that song. Subscriptions in real life must be done prior to the event.
+
+Promises are more flexible. We can add handlers any time: if the result is already there, our handlers get it immediately.
 ````
 
 Selanjutnya, mari kita lihat contoh-contoh yang lebih praktis tentang bagaimana *promise* dapat membantu kita menulis kode *asynchronous*.
