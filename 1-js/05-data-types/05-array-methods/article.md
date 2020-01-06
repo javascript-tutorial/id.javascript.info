@@ -431,7 +431,6 @@ Metode `arr.sort(fn)` mengimplementasikan sebuah algoritma pengurutan yang umum.
 
 Algoritma tersebut dapat membandingkan sebuah elemen dengan banyak elemen lainnya dalam proses ini, tapi algoritma itu akan mencoba membuat sedikit mungkin perbandingan.
 
-
 ````smart header="Sebuah fungsi perbandingan dapat mengembalikan angka manapun"
 Sebenarnya, sebuah fungsi perbandingan hanya perlu untuk mengembalikan sebuah angka positif untuk mengatakan "lebih besar (dari)" dan angka negatif untuk mengatakan "kurang (dari)".
 
@@ -455,6 +454,7 @@ arr.sort( (a, b) => a - b );
 
 Fungsi ini berfungsi samahalnya dengan metode versi yang lebih panjang di atasnya.
 ````
+
 
 ### *reverse*
 
@@ -530,7 +530,7 @@ Metode [arr.reduce](mdn:js/Array/reduce) dan metode [arr.reduceRight](mdn:js/Arr
 Sintaksnya yakni:
 
 ```js
-let value = arr.reduce(function(previousValue, item, index, array) {
+let value = arr.reduce(function(accumulator, item, index, array) {
   // ...
 }, [initial]);
 ```

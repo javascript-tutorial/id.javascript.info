@@ -1,10 +1,10 @@
-importance: 4
+nilai penting: 4
 
 ---
 
-# An occasional infinite loop
+# Lingkaran tak terbatas tak berkala
 
-This loop is infinite. It never ends. Why?
+Loop ini tidak terbatas. Tidak pernah berakhir. Mengapa?
 
 ```js
 let i = 0;

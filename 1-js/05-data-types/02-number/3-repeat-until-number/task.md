@@ -1,14 +1,14 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Repeat until the input is a number
+# Ulangi sampai masukan adalah sebuah angka
 
-Create a function `readNumber` which prompts for a number until the visitor enters a valid numeric value.
+Buatlah sebuah fungsi `readNumber` yang meminta (prompts) nomor hingga pengunjung memasukkan nilai numerik yang valid.
 
-The resulting value must be returned as a number.
+Nilai yang dihasilkan harus dikembalikan sebagai angka.
 
-The visitor can also stop the process by entering an empty line or pressing "CANCEL". In that case, the function should return `null`.
+Pengunjung juga dapat menghentikan proses dengan memasukkan baris kosong atau menekan "BATAL". Dalam hal ini, fungsi tersebut harus mengembalikan `null`.
 
 [demo]
 

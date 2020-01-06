@@ -1,12 +1,12 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Are counters independent?
+# Apakah para counter independen?
 
-Here we make two counters: `counter` and `counter2` using the same `makeCounter` function.
+Di sini kita membuat dua counter: `counter` dan `counter2` menggunakan fungsi `makeCounter` yang sama.
 
-Are they independent? What is the second counter going to show? `0,1` or `2,3` or something else?
+Apakah mereka independen? Apa yang akan counter kedua munculkan? `0,1` atau `2,3` atau yang lainnya?
 
 ```js
 function makeCounter() {
