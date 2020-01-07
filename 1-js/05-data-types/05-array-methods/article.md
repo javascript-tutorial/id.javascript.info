@@ -1,175 +1,175 @@
-# Array methods
+# Metode *array*
 
-Arrays provide a lot of methods. To make things easier, in this chapter they are split into groups.
+*Array* menyediakan begitu banyak metode. Untuk mempermudah, dalam bab ini metode-metode tersebut dibagi menjadi beberapa kelompok.
 
-## Add/remove items
+## Menambahkan/menghapus *item*
 
-We already know methods that add and remove items from the beginning or the end:
+Kita sudah tahu metode-metode yang menambahkan dan menghapus *item* dari bagian awal atau akhir *array*:
 
-- `arr.push(...items)` -- adds items to the end,
-- `arr.pop()` -- extracts an item from the end,
-- `arr.shift()` -- extracts an item from the beginning,
-- `arr.unshift(...items)` -- adds items to the beginning.
+- `arr.push(...items)` -- menambahkan *item* ke bagian akhir,
+- `arr.pop()` -- mengekstrak sebuah *item* dari bagian akhir,
+- `arr.shift()` -- mengekstrak sebuah *item* dari bagian awal,
+- `arr.unshift(...items)` -- menambahkan *item* ke bagian awal.
 
-Here are a few others.
+Berikut ini ada beberapa metode lainnya.
 
-### splice
+### *splice*
 
-How to delete an element from the array?
+Bagaimana cara untuk menghapus sebuah elemen dari *array*?
 
-The arrays are objects, so we can try to use `delete`:
+*Array* merupakan objek, jadi kita bisa coba menggunakan `delete`:
 
 ```js run
 let arr = ["I", "go", "home"];
 
-delete arr[1]; // remove "go"
+delete arr[1]; // menghapus "go"
 
 alert( arr[1] ); // undefined
 
-// now arr = ["I",  , "home"];
+// kini arr = ["I",  , "home"];
 alert( arr.length ); // 3
 ```
 
-The element was removed, but the array still has 3 elements, we can see that `arr.length == 3`.
+Elemen tersebut telah dihapus, tetapi *array* itu masih memiliki 3 elemen, kita bisa melihat bahwa `arr.length == 3`.
 
-That's natural, because `delete obj.key` removes a value by the `key`. It's all it does. Fine for objects. But for arrays we usually want the rest of elements to shift and occupy the freed place. We expect to have a shorter array now.
+Hal itu alami, karena `delete obj.key` menghilangkan sebuah nilai berdasarkan `key`. Itulah yang dilakukannya. Tidak masalah bagi objek. Tapi untuk *array* kita biasanya ingin elemen yang tersisa untuk bergeser dan mengisi ruang yang dikosongkan tadi. Kita ingin memiliki sebuah *array* yang lebih pendek sekarang.
 
-So, special methods should be used.
+Jadi, metode khusus harus digunakan.
 
-The [arr.splice(start)](mdn:js/Array/splice) method is a swiss army knife for arrays. It can do everything: insert, remove and replace elements.
+Metode [arr.splice(start)](mdn:js/Array/splice) adalahs sebuah fungsi serbaguna untuk *array*. *Splice* bisa melakukan banyak hal: memasukkan, menghilangkan serta mengganti elemen.
 
-The syntax is:
+Sintaksnya yakni:
 
 ```js
 arr.splice(index[, deleteCount, elem1, ..., elemN])
 ```
 
-It starts from the position `index`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
+Dimulai dari posisi `index`: menghapus elemen `deleteCount` dan kemudian memasukkan `elem1, ..., elemN` di tempatnya masing-masing. Mengembalikan *array* yang tersusun atas elemen yang dihapus.
 
-This method is easy to grasp by examples.
+Metode ini mudah untuk dipahami melalui contoh.
 
-Let's start with the deletion:
+Mari mulai dengan penghapusan:
 
 ```js run
 let arr = ["I", "study", "JavaScript"];
 
 *!*
-arr.splice(1, 1); // from index 1 remove 1 element
+arr.splice(1, 1); // dari indeks 1 menghapus 1 elemen
 */!*
 
 alert( arr ); // ["I", "JavaScript"]
 ```
 
-Easy, right? Starting from the index `1` it removed `1` element.
+Mudah, kan? Mulai dari indeks `1` metode ini menghilangkan elemen di indeks `1`.
 
-In the next example we remove 3 elements and replace them with the other two:
+Dalam contoh selanjutnya kita menghilangkan 3 element dan menggantinya dengan 2 elemen lain:
 
 ```js run
 let arr = [*!*"I", "study", "JavaScript",*/!* "right", "now"];
 
-// remove 3 first elements and replace them with another
+// menghilangkan 3 elemen pertama dan menggantinya dengan yang lain
 arr.splice(0, 3, "Let's", "dance");
 
-alert( arr ) // now [*!*"Let's", "dance"*/!*, "right", "now"]
+alert( arr ) // sekarang [*!*"Let's", "dance"*/!*, "right", "now"]
 ```
 
-Here we can see that `splice` returns the array of removed elements:
+Di sini kita dapat melihat bahwa `splice` mengembalikan *array* yang berisi elemen terhapus:
 
 ```js run
 let arr = [*!*"I", "study",*/!* "JavaScript", "right", "now"];
 
-// remove 2 first elements
+// menghilangkan 2 elemen pertama
 let removed = arr.splice(0, 2);
 
-alert( removed ); // "I", "study" <-- array of removed elements
+alert( removed ); // "I", "study" <-- array yang berisi elemen-elemen yang dihapus
 ```
 
-The `splice` method is also able to insert the elements without any removals. For that we need to set `deleteCount` to `0`:
+Metode `splice` juga mampu memasukkan elemen tanpa menghilangkan elemen apapun yang ada sebelumnya. Untuk itu kita perlu mengatur `deleteCount` menjadi `0`:
 
 ```js run
 let arr = ["I", "study", "JavaScript"];
 
-// from index 2
-// delete 0
-// then insert "complex" and "language"
+// dari indeks 2
+// menghapus 0
+// kemudian masukkan "complex" dan "language"
 arr.splice(2, 0, "complex", "language");
 
 alert( arr ); // "I", "study", "complex", "language", "JavaScript"
 ```
 
-````smart header="Negative indexes allowed"
-Here and in other array methods, negative indexes are allowed. They specify the position from the end of the array, like here:
+````smart header="Indeks berangka negatif diperbolehkan"
+Di sini dan di metode array lainnya, indeks (berangka) negatif diperbolehkan. Indeks-indeks tersebut menspesifikasikan posisi dari bagian akhir sebuah array, seperti ini:
 
 ```js run
 let arr = [1, 2, 5];
 
-// from index -1 (one step from the end)
-// delete 0 elements,
-// then insert 3 and 4
+// dari indeks -1 (satu langkah dari bagian akhir)
+// menghaous 0 element,
+// lalu memasukka 3 dan 4
 arr.splice(-1, 0, 3, 4);
 
 alert( arr ); // 1,2,3,4,5
 ```
 ````
 
-### slice
+### *slice*
 
-The method [arr.slice](mdn:js/Array/slice) is much simpler than similar-looking `arr.splice`.
+Metode [arr.slice](mdn:js/Array/slice) lebih sederhana daripada metode serupa sebelumnya yakni `arr.splice`.
 
-The syntax is:
+Sintaksnya adalah:
 
 ```js
 arr.slice([start], [end])
 ```
 
-It returns a new array copying to it all items from index `start` to `end` (not including `end`). Both `start` and `end` can be negative, in that case position from array end is assumed.
+Metode ini mengembalikan sebuah sebuah *array* baru hasil salinan semua *item* yang ada dari indeks `start` hingga `end` (indeks `end` tidak termasuk). Baik `start` maupun `end` bisa saja negatif, dalam kasus tersebut posisi dari bagian akhir *array* sudah diasumsikan/diperkirakan.
 
-It's similar to a string method `str.slice`, but instead of substrings it makes subarrays.
+Mirip dengan metode *string* `str.slice`, namun membuat *subarray* bukan *substring*.
 
-For instance:
+Contohnya:
 
 ```js run
 let arr = ["t", "e", "s", "t"];
 
-alert( arr.slice(1, 3) ); // e,s (copy from 1 to 3)
+alert( arr.slice(1, 3) ); // e,s (disalin dari 1 sampai 3)
 
-alert( arr.slice(-2) ); // s,t (copy from -2 till the end)
+alert( arr.slice(-2) ); // s,t (disalin dari -2 sampai bagian akhir)
 ```
 
-We can also call it without arguments: `arr.slice()` creates a copy of `arr`. That's often used to obtain a copy for further transformations that should not affect the original array.
+Kita juga bisa memanggil metode tersebut tanpa argumen: `arr.slice()` membuat sebuah salinan dari `arr`. Cara demikian seringkali digunakan untuk mendapatkan sebuah salinan untuk transformasi yang lebih jauh tanpa mempengaruhi *array* yang asli.
 
-### concat
+### *concat*
 
-The method [arr.concat](mdn:js/Array/concat) creates a new array that includes values from other arrays and additional items.
+Metode [arr.concat](mdn:js/Array/concat) membuat sebuah *array* baru yang sudah termasuk nilai-nilai dari *array* lainnya serta *item-item* tambahan.
 
-The syntax is:
+Sintaksnya sebagai berikut:
 
 ```js
 arr.concat(arg1, arg2...)
 ```
 
-It accepts any number of arguments -- either arrays or values.
+Sintaks tersebut menerima berapapun argumen -- bisa jadi *array* atau nilai.
 
-The result is a new array containing items from `arr`, then `arg1`, `arg2` etc.
+Hasilnya adalah sebuah *array* yang berisi *item* dari `arr`, kemudian `arg1`, `arg2` dan sebagainya.
 
-If an argument `argN` is an array, then all its elements are copied. Otherwise, the argument itself is copied.
+Jika sebuah argumen `argN` adalah sebuah *array*, makan semua elemennya akan disalin. Jika tidak, argumen itu sendiri yang akan disalin.
 
-For instance:
+Sebagai contoh:
 
 ```js run
 let arr = [1, 2];
 
-// create an array from: arr and [3,4]
+// membuat sebuah array dari: arr dan [3,4]
 alert( arr.concat([3, 4]) ); // 1,2,3,4
 
-// create an array from: arr and [3,4] and [5,6]
+// membuat sebuah array dari: arr dan [3,4] dan [5,6]
 alert( arr.concat([3, 4], [5, 6]) ); // 1,2,3,4,5,6
 
-// create an array from: arr and [3,4], then add values 5 and 6
+// membuat sebuah array dari: arr dan [3,4], lalu menambahkan nilai 5 dan 6
 alert( arr.concat([3, 4], 5, 6) ); // 1,2,3,4,5,6
 ```
 
-Normally, it only copies elements from arrays. Other objects, even if they look like arrays, are added as a whole:
+Normalnya, metode ini hanya menyalin elemen-elemen dari *array*. Objek lainnya, bahkan jika objek-objek tersebut terlihat seperti *array*, akan ditambahkan secara keseluruhan:
 
 ```js run
 let arr = [1, 2];
@@ -179,10 +179,10 @@ let arrayLike = {
   length: 1
 };
 
-alert( arr.concat(arrayLike) ); // 1,2,[object Object]
+alert( arr.concat(arrayLike) ); // 1,2,[oobjek Object]
 ```
 
-...But if an array-like object has a special `Symbol.isConcatSpreadable` property, then it's treated as an array by `concat`: its elements are added instead:
+...Tetapi jika sebuah objek mirip *array* memiliki sebuah properti khusus `Symbol.isConcatSpreadable`, maka objek tersebut diperlakukan sebagai sebuah *array* dengan `concat`: elemennya ditambahkan:
 
 ```js run
 let arr = [1, 2];
@@ -199,25 +199,25 @@ let arrayLike = {
 alert( arr.concat(arrayLike) ); // 1,2,something,else
 ```
 
-## Iterate: forEach
+## *Iterate*: forEach
 
-The [arr.forEach](mdn:js/Array/forEach) method allows to run a function for every element of the array.
+Metode [arr.forEach](mdn:js/Array/forEach) membuat kita dapat menjalankan sebuah fungsi untuk setiap elemen yang ada di dalam *array*.
 
-The syntax:
+Sintaksnya:
 ```js
 arr.forEach(function(item, index, array) {
   // ... do something with item
 });
 ```
 
-For instance, this shows each element of the array:
+Sebagai contoh, kode berikut ini menampilkan tiap elemen dalam *array*:
 
 ```js run
-// for each element call alert
+// untuk setiap (for each) elemen memanggil alert
 ["Bilbo", "Gandalf", "Nazgul"].forEach(alert);
 ```
 
-And this code is more elaborate about their positions in the target array:
+Dan kode ini lebih rinci tentang posisi elemen-elemen tersebut dalam *array* yang dituju:
 
 ```js run
 ["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
@@ -225,22 +225,22 @@ And this code is more elaborate about their positions in the target array:
 });
 ```
 
-The result of the function (if it returns any) is thrown away and ignored.
+Hasil dari fungsi tersebut (jika mengembalikan sesuatu) dibuang dan diabaikan.
 
 
-## Searching in array
+## Mencari dalam *array*
 
-Now let's cover methods that search in an array.
+Kini mari membahas metode-metode yang bertugas mencari dalam *array*.
 
-### indexOf/lastIndexOf and includes
+### *indexOf/lastIndexOf* dan *includes*
 
-The methods [arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/lastIndexOf) and [arr.includes](mdn:js/Array/includes) have the same syntax and do essentially the same as their string counterparts, but operate on items instead of characters:
+Metode [arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/lastIndexOf) dan [arr.includes](mdn:js/Array/includes) memiliki sintaks yang sama dan pada dasarnya keduanya melakukan fungsi yang samahave the same syntax, namun untuk mengoperasikannya perlu ditujukan *item* bukan karakter:
 
-- `arr.indexOf(item, from)` -- looks for `item` starting from index `from`, and returns the index where it was found, otherwise `-1`.
-- `arr.lastIndexOf(item, from)` -- same, but looks for from right to left.
-- `arr.includes(item, from)` -- looks for `item` starting from index `from`, returns `true` if found.
+- `arr.indexOf(item, from)` -- mencari `item` dimulai dari indeks `from`, dan mengembalikan indeks dimana *item* yang dicari itu ditemukan, jika tidak akan mengembalikan `-1`.
+- `arr.lastIndexOf(item, from)` -- serupa, namun mencari dari kiri ke kanan.
+- `arr.includes(item, from)` -- mencari `item` dimulai dari indeks `from`, mengembalkikan `true` jika yang dicari itu ditemukan.
 
-For instance:
+Contohnya:
 
 ```js run
 let arr = [1, 0, false];
@@ -252,41 +252,41 @@ alert( arr.indexOf(null) ); // -1
 alert( arr.includes(1) ); // true
 ```
 
-Note that the methods use `===` comparison. So, if we look for `false`, it finds exactly `false` and not the zero.
+Perlu diperhatikan bahwa metode tersebut menggunakan perbandingan `===`. Jadi, jika kita mencari `false`, metode ini akan tepat mencari `false` dan bukan nol.
 
-If we want to check for inclusion, and don't want to know the exact index, then `arr.includes` is preferred.
+Jika kita ingin memeriksa pencantuman, dan tidak ingin tahu indeks yang persis, maka direkomendasikan menggunakan `arr.includes`.
 
-Also, a very minor difference of `includes` is that it correctly handles `NaN`, unlike `indexOf/lastIndexOf`:
+Juga, perbedaan kecil dari `includes` yakni metode ini menangani `NaN` dengan tepat, tidak seperti `indexOf/lastIndexOf`:
 
 ```js run
 const arr = [NaN];
-alert( arr.indexOf(NaN) ); // -1 (should be 0, but === equality doesn't work for NaN)
-alert( arr.includes(NaN) );// true (correct)
+alert( arr.indexOf(NaN) ); // -1 (seharusnya 0, tetapi tanda persamaan === tidak berfungsi pada NaN)
+alert( arr.includes(NaN) );// true (benar)
 ```
 
-### find and findIndex
+### *find* dan *findIndex*
 
-Imagine we have an array of objects. How do we find an object with the specific condition?
+Bayangkan kita memiliki sebuah *array* berisi objek. Bagaimana cata kita menemukan sebuah objek dengan kondisi tertentu?
 
-Here the [arr.find(fn)](mdn:js/Array/find) method comes in handy.
+Berikut ini ada metode [arr.find(fn)](mdn:js/Array/find) yang dapat mudah digunakan.
 
-The syntax is:
+Sintaksnya:
 ```js
 let result = arr.find(function(item, index, array) {
-  // if true is returned, item is returned and iteration is stopped
-  // for falsy scenario returns undefined
+  // jika true dikembalikan, item dikembalikan dan pengulangan dihentinkan
+  // untuk skenario palsu akan mengembalikan undefined
 });
 ```
 
-The function is called for elements of the array, one after another:
+Fungsi tersebut dipanggil untuk elemen-elemen dalam *array*, satu sama lainnya:
 
-- `item` is the element.
-- `index` is its index.
-- `array` is the array itself.
+- `item` adalah elemen.
+- `index` adalah indeks elemen tersebut.
+- `array` adalah *array* itu sendiri.
 
-If it returns `true`, the search is stopped, the `item` is returned. If nothing found, `undefined` is returned.
+Jika fungsi tersebut mengembalikan `true`, pencarian dihentikan, lalu `item` akan dikembalikan. Jika tidak ditemukan apa-apa, `undefined` yang dikembalikan.
 
-For example, we have an array of users, each with the fields `id` and `name`. Let's find the one with `id == 1`:
+Sebagai contoh, kita memiliki sebuah *array* berisi elemen pengguna, tiap pengguna memiliki *field*  `id` dan `name`. Mari cari pengguna dengan `id == 1`:
 
 ```js run
 let users = [
@@ -300,28 +300,28 @@ let user = users.find(item => item.id == 1);
 alert(user.name); // John
 ```
 
-In real life arrays of objects is a common thing, so the `find` method is very useful.
+Pada kehidupan nayata *array* berisi objek adalah hal yang umum, jadi metode `find` sangatlah berguna.
 
-Note that in the example we provide to `find` the function `item => item.id == 1` with one argument. That's typical, other arguments of this function are rarely used.
+Ingat bahwa contoh yang kami berikan untuk mencari (`find`) fungsi `item => item.id == 1` hanya dengan satu argumen. Ini adalah hal umum, argumen lainnya pada fungsi lainnya jarang digunakan.
 
-The [arr.findIndex](mdn:js/Array/findIndex) method is essentially the same, but it returns the index where the element was found instead of the element itself and `-1` is returned when nothing is found.
+Metode [arr.findIndex](mdn:js/Array/findIndex) pada dasarnya sama, namun mengembalikan indeks dimana elemen tersebut ditemukan bukan elemen itu sendiri serta mengembalikan `-1` ketika tidak ditemukan apapun.
 
-### filter
+### *filter*
 
-The `find` method looks for a single (first) element that makes the function return `true`.
+Metode `find` mencari sebuah elemen tunggal (pertama) yang akan membuat fungsi tersebut mengembalikan `true`.
 
-If there may be many, we can use [arr.filter(fn)](mdn:js/Array/filter).
+Jika ada banyak elemen demikian, kita bisa menggunakan[arr.filter(fn)](mdn:js/Array/filter).
 
-The syntax is similar to `find`, but `filter` returns an array of all matching elements:
+Sintaksnya mirip dengan `find`, tetapi `filter` mengembalikan *array* yang berisi elemen-elemen yang cocok:
 
 ```js
 let results = arr.filter(function(item, index, array) {
-  // if true item is pushed to results and the iteration continues
-  // returns empty array if nothing found
+  // jika true item di-push ke hasil dan pengulangan berlanjut
+  // mengembalikan array kosong jika tidak ditemukan apapun
 });
 ```
 
-For instance:
+Sebagai contoh:
 
 ```js run
 let users = [
@@ -330,65 +330,65 @@ let users = [
   {id: 3, name: "Mary"}
 ];
 
-// returns array of the first two users
+// mengembalikan array dua user pertama
 let someUsers = users.filter(item => item.id < 3);
 
 alert(someUsers.length); // 2
 ```
 
-## Transform an array
+## Mengubah *array*
 
-Let's move on to methods that transform and reorder an array.
+Mari lanjutkan ke metode-metode yang mengubah dan mengatur ulang *array*.
 
-### map
+### *map*
 
-The [arr.map](mdn:js/Array/map) method is one of the most useful and often used.
+Metode [arr.map](mdn:js/Array/map) adalah salah satu metode yang paling berguna dan paling sering digunakan.
 
-It calls the function for each element of the array and returns the array of results.
+Metode ini memanggil fungsi untuk tiap elemen di *array* dan mengembalikan hasilnya dalam bentuk *array*.
 
-The syntax is:
+Sintaksnya yakni:
 
 ```js
 let result = arr.map(function(item, index, array) {
-  // returns the new value instead of item
+  // mengembalikan nilai baru, bukan item
 });
 ```
 
-For instance, here we transform each element into its length:
+Sebagai contoh, di sini kita mengubah setiap elemen menjadi panjang (*length*) dari *string* elemen tersebut:
 
 ```js run
 let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length);
 alert(lengths); // 5,7,6
 ```
 
-### sort(fn)
+### *sort*(fn)
 
-The call to [arr.sort()](mdn:js/Array/sort) sorts the array *in place*, changing its element order.
+Panggilan [arr.sort()](mdn:js/Array/sort) menata *array* *dalam wadah*, mengubah urutan elemen yang ada.
 
-It also returns the sorted array, but the returned value is usually ignored, as `arr` itself is modified.
+Metode ini juga mengembalikan *array* yang sudah tertata, tetapi nilai yang dikembalikan biasanya diabaikan, mengingat `arr` itu sendiri sudah termodifikasi/diubah.
 
-For instance:
+Contohnya:
 
 ```js run
 let arr = [ 1, 2, 15 ];
 
-// the method reorders the content of arr
+// metode tersebut mengurutkan ulang konten arr
 arr.sort();
 
 alert( arr );  // *!*1, 15, 2*/!*
 ```
 
-Did you notice anything strange in the outcome?
+Apa kamu menyadari adanya keanehan dari hasil di atas?
 
-The order became `1, 15, 2`. Incorrect. But why?
+Urutannya menjadi `1, 15, 2`. Tidak benar. Tapi mengapa demikian?
 
-**The items are sorted as strings by default.**
+**_Item-item_ tersebut diurutkan sebagai *string* secara pada dasarnya.**
 
-Literally, all elements are converted to strings for comparisons. For strings, lexicographic ordering is applied and indeed `"2" > "15"`.
+Secara harfiah, semua elemen dikonversi menjadi *string* untuk dibandingkan. Sedangkan pada *string*, berlaku pengurutan leksikograpis dan memang benar bahwa `"2" > "15"`.
 
-To use our own sorting order, we need to supply a function as the argument of `arr.sort()`.
+Untuk menggunakan urutan penataan kita sendiri, kita perlu memberikan sebuah fungsi sebagai argumen pada `arr.sort()`.
 
-The function should compare two arbitrary values and return:
+Fungsi tersebut harus membandingkan dua nilai yang berubah-ubah dan mengembalikan (hasilnya):
 ```js
 function compare(a, b) {
   if (a > b) return 1; // if the first value is greater than the second
@@ -397,7 +397,7 @@ function compare(a, b) {
 }
 ```
 
-For instance, to sort as numbers:
+Contoh, untuk mengurutkan elemen sebagai angka:
 
 ```js run
 function compareNumeric(a, b) {
@@ -415,13 +415,13 @@ arr.sort(compareNumeric);
 alert(arr);  // *!*1, 2, 15*/!*
 ```
 
-Now it works as intended.
+Kini metode tersebu berfungsi seperti yang diinginkan.
 
-Let's step aside and think what's happening. The `arr` can be array of anything, right? It may contain numbers or strings or objects or whatever. We have a set of *some items*. To sort it, we need an *ordering function* that knows how to compare its elements. The default is a string order.
+Mari berhenti sejenak dan pikirkan apa yang terjadi. `arr` bisa jadi *array* berisi apapun, benar? *Array* itu bisa saja berisi angka atau *string* atau objek atau apapun. Kita memiliki sekumpulan *beberapa item*. Untuk mengurutkannya, kita perlu sebuah *fungsi pengurutan* yang tahu bagaimana cara untuk membandingkan elemen-elemen. Setelan awalnya adalah sebuah urutan *string*.
 
-The `arr.sort(fn)` method implements a generic sorting algorithm. We don't need to care how it internally works (an optimized [quicksort](https://en.wikipedia.org/wiki/Quicksort) most of the time). It will walk the array, compare its elements using the provided function and reorder them, all we need is to provide the `fn` which does the comparison.
+Metode `arr.sort(fn)` mengimplementasikan sebuah algoritma pengurutan yang umum. Kita tidak perlu benar-benar tahu bagaimana algoritma itu bekerja (sebuah [cara cepat/*quicksort*](https://en.wikipedia.org/wiki/Quicksort) yang sudah teroptimasi sepanjang waktu). Algoritma itu akan menyusuri *array*, membandungkan elemen-elemennya menggunakan fungsi yang diberikan dan mengurutkan ulang elemen-elemen tersebut, yang perlu kita lakukan yakni memberikan `fn` yang mana akan melakukan operasi perbandingan.
 
-By the way, if we ever want to know which elements are compared -- nothing prevents from alerting them:
+*Ngomong-omong*, jika kita pernah ingin tahu elemen mana saja yang dibandingkan -- cukup dengan cara memberi *alert*:
 
 ```js run
 [1, -2, 15, 2, 0, 8].sort(function(a, b) {
@@ -429,12 +429,12 @@ By the way, if we ever want to know which elements are compared -- nothing preve
 });
 ```
 
-The algorithm may compare an element with multiple others in the process, but it tries to make as few comparisons as possible.
+Algoritma tersebut dapat membandingkan sebuah elemen dengan banyak elemen lainnya dalam proses ini, tapi algoritma itu akan mencoba membuat sedikit mungkin perbandingan.
 
-````smart header="A comparison function may return any number"
-Actually, a comparison function is only required to return a positive number to say "greater" and a negative number to say "less".
+````smart header="Sebuah fungsi perbandingan dapat mengembalikan angka manapun"
+Sebenarnya, sebuah fungsi perbandingan hanya perlu untuk mengembalikan sebuah angka positif untuk mengatakan "lebih besar (dari)" dan angka negatif untuk mengatakan "kurang (dari)".
 
-That allows to write shorter functions:
+Hal tersebut membuat penulisan fungsi jadi lebih pendek:
 
 ```js run
 let arr = [ 1, 2, 15 ];
@@ -445,37 +445,22 @@ alert(arr);  // *!*1, 2, 15*/!*
 ```
 ````
 
-````smart header="Arrow functions for the best"
-Remember [arrow functions](info:arrow-functions-basics)? We can use them here for neater sorting:
+````smart header="Fungsi arrow yang terbaik"
+Ingat [fungsi arrow](info:arrow-functions-basics)? Kita dapat menggunakan fungsi arrow di sini untuk pengurutan yang lebih rapi:
 
 ```js
 arr.sort( (a, b) => a - b );
 ```
 
-This works exactly the same as the longer version above.
+Fungsi ini berfungsi samahalnya dengan metode versi yang lebih panjang di atasnya.
 ````
 
-````smart header="Use `localeCompare` for strings"
-Remember [strings](info:string#correct-comparisons) comparison algorithm? It compares letters by their codes by default.
 
-For many alphabets, it's better to use `str.localeCompare` method to correctly sort letters, such as `Ö`.
+### *reverse*
 
-For example, let's sort a few countries in German:
+Metode [arr.reverse](mdn:js/Array/reverse) membalikkan urutan elemen di dalam `arr`.
 
-```js run
-let countries = ['Österreich', 'Andorra', 'Vietnam'];
-
-alert( countries.sort( (a, b) => a > b ? 1 : -1) ); // Andorra, Vietnam, Österreich (wrong)
-
-alert( countries.sort( (a, b) => a.localeCompare(b) ) ); // Andorra,Österreich,Vietnam (correct!)
-```
-````
-
-### reverse
-
-The method [arr.reverse](mdn:js/Array/reverse) reverses the order of elements in `arr`.
-
-For instance:
+Contohnya:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
@@ -484,15 +469,15 @@ arr.reverse();
 alert( arr ); // 5,4,3,2,1
 ```
 
-It also returns the array `arr` after the reversal.
+Metode ini juga mengembalikan *array* `arr` setelah proses pembalikan.
 
-### split and join
+### *split* dan *join*
 
-Here's the situation from real life. We are writing a messaging app, and the person enters the comma-delimited list of receivers: `John, Pete, Mary`. But for us an array of names would be much more comfortable than a single string. How to get it?
+Ini adalah situasi dari dunia nyata. Kita menulis sebuah aplikasi olahpesan, dan orang tersebut memasukkan ke dalam daftar penerima yang dipisahkan oleh tanda koma, antara lain: `John, Pete, Mary`. Namun bagi kita *array* yang berisi nama akan jauh lebih apik ketimbang sebuah *string*. Jadi bagaiman cara mendapatkannya?
 
-The [str.split(delim)](mdn:js/String/split) method does exactly that. It splits the string into an array by the given delimiter `delim`.
+Metode [str.split(delim)](mdn:js/String/split) melakukan tepat hal yang dijelaskan di atas. Metode ini memisahkan *string* ke dalam *array* dengan *delimiter* (pemisah) `delim`.
 
-In the example below, we split by a comma followed by space:
+Dalam contoh berikut ini, kita memisahkan elemen dengan tanda koma yang diikuti oleh spasi:
 
 ```js run
 let names = 'Bilbo, Gandalf, Nazgul';
@@ -500,11 +485,11 @@ let names = 'Bilbo, Gandalf, Nazgul';
 let arr = names.split(', ');
 
 for (let name of arr) {
-  alert( `A message to ${name}.` ); // A message to Bilbo  (and other names)
+  alert( `A message to ${name}.` ); // Sebuah pesan untuk (serta nama-nama lainnya)
 }
 ```
 
-The `split` method has an optional second numeric argument -- a limit on the array length. If it is provided, then the extra elements are ignored. In practice it is rarely used though:
+Metode `split` memiliki argumen numerik oposional kedua -- sebuah batas pada panjang (*length*) *array*. Jika batasan itu diberikan, maka elemen ekstra (lebih dari batas panjang *array* yang diberikan) akan diabaikan. Dalam praktiknya, hal ini jarang digunakan:
 
 ```js run
 let arr = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
@@ -512,8 +497,8 @@ let arr = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
 alert(arr); // Bilbo, Gandalf
 ```
 
-````smart header="Split into letters"
-The call to `split(s)` with an empty `s` would split the string into an array of letters:
+````smart header="Pisah menjadi huruf"
+Panggilan `split(s)` dengan `s` yang kosong akan memisahkan string menjadi array yang berisi huruf-huruf:
 
 ```js run
 let str = "test";
@@ -522,27 +507,27 @@ alert( str.split('') ); // t,e,s,t
 ```
 ````
 
-The call [arr.join(glue)](mdn:js/Array/join) does the reverse to `split`. It creates a string of `arr` items joined by `glue` between them.
+Panggilan [arr.join(glue)](mdn:js/Array/join) melalukan pembalikan ke `split`. Panggilan ini membuat sebuah *string item-item* `arr` digabungkan oleh `glue` (lem) diantara *item* tersebut.
 
-For instance:
+Contohnya:
 
 ```js run
 let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
 
-let str = arr.join(';'); // glue the array into a string using ;
+let str = arr.join(';'); // menempelkan/me-lem isi array menjadi sebuah string menggunakan ;
 
 alert( str ); // Bilbo;Gandalf;Nazgul
 ```
 
-### reduce/reduceRight
+### *reduce*/reduceRight
 
-When we need to iterate over an array -- we can use `forEach`, `for` or `for..of`.
+Ketika kita perlu mengulang-ulang sebuah *array* -- kita dapat menggunakan `forEach`, `for` atau `for..of`.
 
-When we need to iterate and return the data for each element -- we can use `map`.
+Ketika kita perlu mengulang dan mengembalikan data setiap elemen -- kita menggunakan `map`.
 
-The methods [arr.reduce](mdn:js/Array/reduce) and [arr.reduceRight](mdn:js/Array/reduceRight) also belong to that breed, but are a little bit more intricate. They are used to calculate a single value based on the array.
+Metode [arr.reduce](mdn:js/Array/reduce) dan metode [arr.reduceRight](mdn:js/Array/reduceRight) juga termasuk ke dalam kelompok metode-metode tadi, tapi ada sedikit lebih rumit. Kedua metode ini digunakan untuk menghitung sebuah nilai tunggal berdasarkan *array*.
 
-The syntax is:
+Sintaksnya yakni:
 
 ```js
 let value = arr.reduce(function(accumulator, item, index, array) {
@@ -550,24 +535,22 @@ let value = arr.reduce(function(accumulator, item, index, array) {
 }, [initial]);
 ```
 
-The function is applied to all array elements one after another and "carries on" its result to the next call.
+Fungsi di atas diterapkan pada semua elemen *array* satu sama lainnya dan "melanjutkan" hasil perhitungannya ke panggilan berikutnya.
 
-Arguments:
+Argument-argumennya yakni:
 
-- `accumulator` -- is the result of the previous function call, equals `initial` the first time (if `initial` is provided).
-- `item` -- is the current array item.
-- `index` -- is its position.
-- `array` -- is the array.
+- `previousValue` -- adalah hasil dari dari pemanggilan fungsi sebelumnya, sama dengan `initial` pertama kalinya (jika `initial` diberikan).
+- `item` -- adalah *item array* yang sekarang.
+- `index` -- adalah posisi *item* tersebut.
+- `array` -- adalah *array*-nya.
 
-As function is applied, the result of the previous function call is passed to the next one as the first argument.
+Jika fungsi sudah diterapkan, masil dari panggilan fungsi sebelumnya dioper ke panggilan selanjutnya sebagai argumen pertama.
 
-So, the first argument is essentially the accumulator that stores the combined result of all previous executions. And at the end it becomes the result of `reduce`.
+Memang terdengar rumit, tapi tidak seperti yang kamu pikirkan tentang argumen pertama sebagai "akumulator" yang menyimpan dan menggabungkan jasil dari semua eksekusi sebelumnya. Serta pada akhirnya, itu menjadi hasil dari `reduce`.
 
-Sounds complicated?
+Cara termudah untuk memahami metode ini adalah dengan melihat contohnya.
 
-The easiest way to grasp that is by example.
-
-Here we get a sum of an array in one line:
+Di sini kita mendapat jumlah dari sebuah *array* dalam satu baris:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
@@ -577,19 +560,19 @@ let result = arr.reduce((sum, current) => sum + current, 0);
 alert(result); // 15
 ```
 
-The function passed to `reduce` uses only 2 arguments, that's typically enough.
+Fungsi yang dioper ke `reduce` hanya menggunakan 2 argumen,  itu cukup khas.
 
-Let's see the details of what's going on.
+Mari lihat rincian dari apa yang terjadi.
 
-1. On the first run, `sum` is the `initial` value (the last argument of `reduce`), equals `0`, and `current` is the first array element, equals `1`. So the function result is `1`.
-2. On the second run, `sum = 1`, we add the second array element (`2`) to it and return.
-3. On the 3rd run, `sum = 3` and we add one more element to it, and so on...
+1. Pada *run* pertama, `sum` adalah nilai `initial` (argumen terakhir dari `reduce`), sama dengan `0`, dan `current` adalah elemen pertama *array* tersebut, yang sama dengan `1`. Jadi hasil fungsi tersebut adalah `1`.
+2. Pada *run* ke-dua, `sum = 1`, kita tambahkan elemen kedua dari *array* (`2`) dan mengembalikan hasilnya.
+3. Pada *run* ke-tiga, `sum = 3` dan kita menambahkan satu elemen lagi, dan seterusnya...
 
-The calculation flow:
+Alur perhitungannya:
 
 ![](reduce.svg)
 
-Or in the form of a table, where each row represents a function call on the next array element:
+ATau dalam bentuk sebuah tabel, dimana setiap baris merepresentasikan sebuah panggilan fungsi pada elemen *array* selanjutnya:
 
 |   |`sum`|`current`|result|
 |---|-----|---------|---------|
@@ -599,52 +582,53 @@ Or in the form of a table, where each row represents a function call on the next
 |the fourth call|`6`|`4`|`10`|
 |the fifth call|`10`|`5`|`15`|
 
-Here we can clearly see how the result of the previous call becomes the first argument of the next one.
+Di sini kita bisa dengan jelas melihat bagaimana hasil dari panggilan sebelumnya menjadi argumen pertama pada panggilan berikutnya.
 
-We also can omit the initial value:
+Kita bisa juga mengjilangkan nilai awal (*initial*):
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
 
-// removed initial value from reduce (no 0)
+// menghilangkan nilai awal dari reduce (bukan 0)
 let result = arr.reduce((sum, current) => sum + current);
 
 alert( result ); // 15
 ```
 
-The result is the same. That's because if there's no initial, then `reduce` takes the first element of the array as the initial value and starts the iteration from the 2nd element.
+Hasilnya sama. Itu karena tidak ada nilai awal, maka `reduce` mengambil elemen pertama *array* sebagai nilai awal dan memulai pengulangan dari elemen ke-dua.
 
-The calculation table is the same as above, minus the first row.
+Tabel perhitungan tersebut sama dengan yang di atas, tanpa baris pertama.
 
-But such use requires an extreme care. If the array is empty, then `reduce` call without initial value gives an error.
+Akan tetapi, penggunaan yang demikian membutuhkan perhatian lebih. Jika *array* kosong, maka panggilan `reduce` tanpa nilai awal akan menghasilkan error.
 
-Here's an example:
+Berikut ini contohnya:
 
 ```js run
 let arr = [];
 
-// Error: Reduce of empty array with no initial value
-// if the initial value existed, reduce would return it for the empty arr.
+// Error: Reduce dari array kosong tanpa nilai awal
+// jika nilai awalnya ada, reduce akan mengembalikannya pada  arr yang kosong.
 arr.reduce((sum, current) => sum + current);
 ```
 
-So it's advised to always specify the initial value.
 
-The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same, but goes from right to left.
+Jadi sangat disarankan untuk selalu menspesifikasikan nilai awal.
+
+Metode [arr.reduceRight](mdn:js/Array/reduceRight) melaksanakan hal yang sama, tapi beroperasi dari kanan ke kiri.
 
 
 ## Array.isArray
 
-Arrays do not form a separate language type. They are based on objects.
+*Array* tidak membentuk sebuah bahasa tipe sendiri. *Array* terbentuk berdasarkan objek.
 
-So `typeof` does not help to distinguish a plain object from an array:
+Jadi `typeof` tidak membantu membedakan sebuah objek polos dari sebuah *array*:
 
 ```js run
-alert(typeof {}); // object
-alert(typeof []); // same
+alert(typeof {}); // objek
+alert(typeof []); // sama
 ```
 
-...But arrays are used so often that there's a special method for that: [Array.isArray(value)](mdn:js/Array/isArray). It returns `true` if the `value` is an array, and `false` otherwise.
+...Tetapi *array* serung diguakan hingga ada metode khusus untuk hal ini: [Array.isArray(value)](mdn:js/Array/isArray). Metode ini mengembalikan `true` jika `value` adalah sebuah *array*, dan `false` jika sebaliknya.
 
 ```js run
 alert(Array.isArray({})); // false
@@ -652,25 +636,25 @@ alert(Array.isArray({})); // false
 alert(Array.isArray([])); // true
 ```
 
-## Most methods support "thisArg"
+## Kebanyakan metode mendukung "thisArg"
 
-Almost all array methods that call functions -- like `find`, `filter`, `map`, with a notable exception of `sort`, accept an optional additional parameter `thisArg`.
+Hamppir semua metode *array* yang memanggil fungsi -- seperti `find`, `filter`, `map`, dengan pengecualian `sort`, menerima paramater tambahan yakni `thisArg`.
 
-That parameter is not explained in the sections above, because it's rarely used. But for completeness we have to cover it.
+Parameter itu tidak dijelaskan pada bab sebelumnya, karena jarang digunakan. Tetapi demi kelengkapan kita harus menutupi metodenya.
 
-Here's the full syntax of these methods:
+Berikut ini adalah sintkas lengkap dari metode-metode tersebut:
 
 ```js
 arr.find(func, thisArg);
 arr.filter(func, thisArg);
 arr.map(func, thisArg);
 // ...
-// thisArg is the optional last argument
+// thisArg adalah argumen akhir yang oposional
 ```
 
-The value of `thisArg` parameter becomes `this` for `func`.
+Nilai dari paramater `thisArg` menjadi `this` untuk `func`.
 
-For example, here we use a method of `army` object as a filter, and `thisArg` passes the context:
+Contohnya, di sini kita menggunakan metode dengan objek `army` sebagai penyaringnya, dan `thisArg` mengoper konteksnya:
 
 ```js run
 let army = {
@@ -689,7 +673,7 @@ let users = [
 ];
 
 *!*
-// find users, for who army.canJoin returns true
+// cari user, dari army.canJoin yang megembalikan true
 let soldiers = users.filter(army.canJoin, army);
 */!*
 
@@ -698,58 +682,58 @@ alert(soldiers[0].age); // 20
 alert(soldiers[1].age); // 23
 ```
 
-If in the example above we used `users.filter(army.canJoin)`, then `army.canJoin` would be called as a standalone function, with `this=undefined`, thus leading to an instant error.
+Jika dalam contoh di atas kita menggunakan `users.filter(army.canJoin)`, maka `army.canJoin` akan bisa dipanggil sebagai fungsi yang berdisi sendiri, dengan `this=undefined`, itu smeua berujung pada error seketika.
 
-A call to `users.filter(army.canJoin, army)` can be replaced with `users.filter(user => army.canJoin(user))`, that does the same. The former is used more often, as it's a bit easier to understand for most people.
+Sebuah panggilan ke `users.filter(army.canJoin, army)` bisa diganti dengan `users.filter(user => army.canJoin(user))`, yang mana melakukan hal yang sama. Metode yang pertama (`users.filter(army.canJoin, army)`) lebih sering digunakan, karena sedikit lebih mudah dimengerti oleh banyak orang.
 
-## Summary
+## Ringkasa
 
-A cheat sheet of array methods:
+*Cheat sheet* tentang metode-metode *array*:
 
-- To add/remove elements:
-  - `push(...items)` -- adds items to the end,
-  - `pop()` -- extracts an item from the end,
-  - `shift()` -- extracts an item from the beginning,
-  - `unshift(...items)` -- adds items to the beginning.
-  - `splice(pos, deleteCount, ...items)` -- at index `pos` delete `deleteCount` elements and insert `items`.
-  - `slice(start, end)` -- creates a new array, copies elements from position `start` till `end` (not inclusive) into it.
-  - `concat(...items)` -- returns a new array: copies all members of the current one and adds `items` to it. If any of `items` is an array, then its elements are taken.
+- Untuk menambah/menghilangkan elemen:
+  - `push(...items)` -- menambah *item* ke bagian akhir,
+  - `pop()` -- mengekstrak sebuah *item* dari bagian akhir,
+  - `shift()` -- mengekstrak sebuah *item* dari bagian awal,
+  - `unshift(...items)` -- menambah *item* ke bagian awal.
+  - `splice(pos, deleteCount, ...items)` -- pada indeks `pos` menghapus elemen `deleteCount` dam memasukkan `items`.
+  - `slice(start, end)` -- membuat *array* baru, menyalin elemen dari posisi `start` hingga `end` (tidak inklusif) ke dalam *array* baru tersebut.
+  - `concat(...items)` --mengembalikan sebuah *array* baru: menyalin semua anggota *array* yang sekarang dan menambahkan `items` ke dalamnya. Jika `items` adalah sebuah *array*, maka elemennya yang akan diambil.
 
-- To search among elements:
-  - `indexOf/lastIndexOf(item, pos)` -- look for `item` starting from position `pos`, return the index or `-1` if not found.
-  - `includes(value)` -- returns `true` if the array has `value`, otherwise `false`.
-  - `find/filter(func)` -- filter elements through the function, return first/all values that make it return `true`.
-  - `findIndex` is like `find`, but returns the index instead of a value.
+- Untuk mencari di antara elemen-elemen:
+  - `indexOf/lastIndexOf(item, pos)` -- mencari `item` mulai dari posisi `pos`, mengembalikan indeksnya atau `-1` jika tidak ditemukan.
+  - `includes(value)` -- mengembalikan `true` jika *array* memiliki `value`, jika tidak akan mengembalikan `false`.
+  - `find/filter(func)` -- menyaring elemen dengan menggunakan fungsi, mengembalikan nilai awal/semua nilai yang membuat hasil *return*-nya menjadi `true`.
+  - `findIndex` seperti `find`, namun mengembalikan indeks bukan nilai.
 
-- To iterate over elements:
-  - `forEach(func)` -- calls `func` for every element, does not return anything.
+- Untuk mengulang elemen:
+  - `forEach(func)` -- memanggil `func` untuk setiap elemen, tidak mengembalikan apapun.
 
-- To transform the array:
-  - `map(func)` -- creates a new array from results of calling `func` for every element.
-  - `sort(func)` -- sorts the array in-place, then returns it.
-  - `reverse()` -- reverses the array in-place, then returns it.
-  - `split/join` -- convert a string to array and back.
-  - `reduce(func, initial)` -- calculate a single value over the array by calling `func` for each element and passing an intermediate result between the calls.
+- Untuk mengubah *array*:
+  - `map(func)` -- membuat sebuah *array* dari hasil pemanggilan `func` untuk setiap elemen.
+  - `sort(func)` -- mengurutkan *array* dalam-tempatnya, lalu mengembalikan hasilnya.
+  - `reverse()` -- membalikkan *array* dalam-tempatnya, lalu mengembalikan hasilnya.
+  - `split/join` -- mengonversi sebuah *string* menjadi *array* dan sebaliknya.
+  - `reduce(func, initial)` -- menghitung sebuah nilai tunggal pada *array* dengan cara memanggil `func` untuk setiap elemen dan mengoper hasil tersebut di antara panggilan.
 
-- Additionally:
-  - `Array.isArray(arr)` checks `arr` for being an array.
+- Sebagai tambahan:
+  - `Array.isArray(arr)` memeriksa apakah `arr` merupakan *array* atau bukan.
 
-Please note that methods `sort`, `reverse` and `splice` modify the array itself.
+Tolong diingat bahwa metode `sort`, `reverse` dan `splice` memodifikasi *array* itu sendiri.
 
-These methods are the most used ones, they cover 99% of use cases. But there are few others:
+Metode-metode ini adalah yang paling sering digunakan, mencakupi 99% kasus penggunaan. Namun masih ada beberapa metode lainnya:
 
-- [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) checks the array.
+- [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) memeriksa *array* terseebut.
 
-  The function `fn` is called on each element of the array similar to `map`. If any/all results are `true`, returns `true`, otherwise `false`.
+  Fungsi `fn` dipanggil pada tiap elemen *array* yang serupa dengan `map`. Jika beberapa/semua hasilnya `true`, maka akan mengembalikan `true`, jika tidak maka akan mengembalikan `false`.
 
-- [arr.fill(value, start, end)](mdn:js/Array/fill) -- fills the array with repeating `value` from index `start` to `end`.
+- [arr.fill(value, start, end)](mdn:js/Array/fill) -- mengisi *array* dengan mengulang `value` dari indeks `start` hingga `end`.
 
-- [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- copies its elements from position `start` till position `end` into *itself*, at position `target` (overwrites existing).
+- [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- menyalin elemen dari posisi `start` hingga posisi `end` ke dalam *array itu sendiri*, pada posisi `target` (menumpuk/*overwrite* elemen yang ada).
 
-For the full list, see the [manual](mdn:js/Array).
+Untuk daftar lengkapnya, lihat [manual](mdn:js/Array).
 
-From the first sight it may seem that there are so many methods, quite difficult to remember. But actually that's much easier.
+Sejak pandangan pertama mungkin terlihat ada begitu banyak metode, cukup sulit untuk diingat. Namun sebenarnya hal itu jauh lebih mudah.
 
-Look through the cheat sheet just to be aware of them. Then solve the tasks of this chapter to practice, so that you have experience with array methods.
+Lihat *cheat sheet* hanya untuk sekedar tahu semua metode tersebut. Lalu selesaikan *task* bab ini sebagai latihan, jadi kamu memiliki pengalaman mengenai metode *array*.
 
-Afterwards whenever you need to do something with an array, and you don't know how -- come here, look at the cheat sheet and find the right method. Examples will help you to write it correctly. Soon you'll automatically remember the methods, without specific efforts from your side.
+Sesudah itu kapan pun kamu perlu melakukan sesuatu dengan *array*, dan tidak tahu bagaimana caranya -- datanglah ke halaman ini, lihat *cheat sheet* dan temukan metode yang tepat. Contoh-contoh yang diberikan akan membantumu dalam penulisan sintaks yang benar. Setelah itu kamu akan secara otomatis mengingat metode-metode tersebut, tanpa usaha yang terlalu rumit.
