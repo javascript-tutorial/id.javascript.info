@@ -1,71 +1,70 @@
 
-# The old "var"
+# Si Tua "var"
 
-```smart header="This article is for understanding old scripts"
-The information in this article is useful for understanding old scripts.
-
-That's not how we write a new code.
+```smart header="Artikel ini untuk memahami script lama"
+Informasi yang terdapat di artikel ini berguna untuk memahami script lama.
+Hal itu bukanlah cara kita menulis kode baru.
 ```
 
-In the very first chapter about [variables](info:variables), we mentioned three ways of variable declaration:
-
+Di bab paling awal tentang [variabel](info:variables), kami menyebutkan tiga cara untuk deklarasi variabel:
 1. `let`
 2. `const`
 3. `var`
 
-`let` and `const` behave exactly the same way in terms of Lexical Environments.
+`let` dan `const` berperilaku dengan cara yang sama persis dalam hal lingkup leksikal.
 
-But `var` is a very different beast, that originates from very old times. It's generally not used in modern scripts, but still lurks in the old ones.
+Tetapi `var` adalah mahluk buas yang sanggat berbeda, berasal dari masa lalu. Umumnya tidak digunakan dalam scripts modern, tetapi masih mengintai.
 
-If you don't plan on meeting such scripts you may even skip this chapter or postpone it, but then there's a chance that it bites you later.
+Jika anda tidak berencana untuk bertemu dengan scripts seperti itu, anda mungkin harus melewatkan atau menunda bab ini, tetapi ada kemungkinan ia mengigit anda suatu saat nanti.
 
-From the first sight, `var` behaves similar to `let`. That is, declares a variable:
+Dari sekilas pandang , `var` berperilaku mirip dengan `let`, Deklarasi sebuah variabel:
 
 ```js run
 function sayHi() {
-  var phrase = "Hello"; // local variable, "var" instead of "let"
+  var phrase = "Hello"; // variabel lokal, "var" dari pada "let"
 
   alert(phrase); // Hello
 }
 
 sayHi();
 
-alert(phrase); // Error, phrase is not defined
+alert(phrase); // Error, frasa tidak didefinisikan
 ```
 
-...But here are the differences.
+... Tetapi inilah perbedaanya.
 
-## "var" has no block scope
+## "var" tidak memiliki ruang lingkup blok
 
-Variables, declared with `var`, are either function-wide or global. They are visible through blocks.
+Variabel, dideklarasikan dengan `var`, baik function-wide ataupun global. Mereka terlihat melalui blok.
 
-For instance:
+Contohnya:
+
 
 ```js run
 if (true) {
-  var test = true; // use "var" instead of "let"
+  var test = true; // gunakan "var" daripada "let"
 }
 
 *!*
-alert(test); // true, the variable lives after if
+alert(test); // benar, variabel ada setelah if
 */!*
 ```
 
-As `var` ignores code blocks, we've got a global variable `test`.
+Karena `var` mengabaikan blok kode , kita mendapatkan global variabel `test`.
 
-If we used `let test` instead of `var test`, then the variable would only be visible inside `if`:
+Jika kita menggunakan `let test` daripada `var test`, maka variabel hanya akan terlihat di dalam `if`:
 
 ```js run
 if (true) {
-  let test = true; // use "let"
+  let test = true; // gunakan "let"
 }
 
 *!*
-alert(test); // Error: test is not defined
+alert(test); // Error: test tidak didefinisikan
 */!*
 ```
 
-The same thing for loops: `var` cannot be block- or loop-local:
+Hal yang sama juga untuk loop: `var` tidak dapat berupa blok atau loop-lokal:
 
 ```js
 for (var i = 0; i < 10; i++) {
@@ -73,11 +72,11 @@ for (var i = 0; i < 10; i++) {
 }
 
 *!*
-alert(i); // 10, "i" is visible after loop, it's a global variable
+alert(i); // 10, "i" terlihat setelah loop, itu adalah global variabel
 */!*
 ```
 
-If a code block is inside a function, then `var` becomes a function-level variable:
+Jika blok kode ada di dalam fungsi, maka `var` menjadi variabel tingkat fungsi:
 
 ```js run
 function sayHi() {
@@ -85,22 +84,21 @@ function sayHi() {
     var phrase = "Hello";
   }
 
-  alert(phrase); // works
+  alert(phrase); // bekerja
 }
 
 sayHi();
-alert(phrase); // Error: phrase is not defined (Check the Developer Console)
+alert(phrase); // Error: frasa tidak terdefinisi (periksa Developer Console)
 ```
 
-As we can see, `var` pierces through `if`, `for` or other code blocks. That's because a long time ago in JavaScript blocks had no Lexical Environments. And `var` is a remnant of that.
+Seperti yang bisa kita lihat `var` menembus `if`, `for` atau blok kode lainnya. Itu karena sejak dahulu di blok Javascript tidak memiliki Lingkungan Leksikal. dan `var` adalah sisanya. 
 
-## "var" declarations are processed at the function start
+## Deklarasi "var" diproses saat menjalankan fungsi
 
-`var` declarations are processed when the function starts (or script starts for globals).
+Deklarasi `var` diproses ketika fungsi dimulai (atau skrip dijalankan untuk global).
 
-In other words, `var` variables are defined from the beginning of the function, no matter where the definition is (assuming that the definition is not in the nested function).
-
-So this code:
+Dengan kata lain, variabel `var` didefinisikan dari awal fungsi, tidak peduli di manapun definisi tersebut ( dengan asumsi definisi tidak didalam fungsi bersarang).
+Jadi kode ini:
 
 ```js run
 function sayHi() {
@@ -115,7 +113,7 @@ function sayHi() {
 sayHi();
 ```
 
-...Is technically the same as this (moved `var phrase` above):
+...Secara teknis sama dengan ini (memindahkan `var pharse` di atas):
 
 ```js run
 function sayHi() {
@@ -130,7 +128,7 @@ function sayHi() {
 sayHi();
 ```
 
-...Or even as this (remember, code blocks are ignored):
+...Atau bahkan seperti ini (Ingat, blok kode diabaikan):
 
 ```js run
 function sayHi() {
@@ -147,13 +145,12 @@ function sayHi() {
 sayHi();
 ```
 
-People also call such behavior "hoisting" (raising), because all `var` are "hoisted" (raised) to the top of the function.
+Orang-orang juga menyebut perilaku seperti ini "hoisting", karena semua `var` "hoisted" (diangkat) ke bagian atas fungsi.
 
-So in the example above, `if (false)` branch never executes, but that doesn't matter. The `var` inside it is processed in the beginning of the function, so at the moment of `(*)` the variable exists.
+Sehingga dalam contoh di atas, cabang `if (false)` tidak pernah dijalankan, tetapi itu tidak masalah. `var` di dalamnya diproses di awal fungsi, jadi pada saat `(*)` variabel ada. 
+**Pendeklarasian hoisted, sedangkan penugasan (assigment) tidak.**
 
-**Declarations are hoisted, but assignments are not.**
-
-That's better to demonstrate with an example, like this:
+Lebih baik mendemonstrasikan dengan contoh, seperti ini:
 
 ```js run
 function sayHi() {
@@ -167,40 +164,36 @@ function sayHi() {
 sayHi();
 ```
 
-The line `var phrase = "Hello"` has two actions in it:
+Pada baris `var pharse = "Hello"` memiliki dua aksi didalamnya:
+1. Deklarasi variabel `var`
+2. Penugasan variabel `=`.
 
-1. Variable declaration `var`
-2. Variable assignment `=`.
-
-The declaration is processed at the start of function execution ("hoisted"), but the assignment always works at the place where it appears. So the code works essentially like this:
-
+Deklarasi diproses pada awal pelaksanaan fungsi ("hoisted"), tetapi penugasan selalu bekerja di tempat mucul. sehingga pada dasarnya kode bekerja seperti ini: 
 ```js run
 function sayHi() {
 *!*
-  var phrase; // declaration works at the start...
+  var phrase; // deklarasi bekerja di awal...
 */!*
 
-  alert(phrase); // undefined
+  alert(phrase); // tidak terdefinisi
 
 *!*
-  phrase = "Hello"; // ...assignment - when the execution reaches it.
+  phrase = "Hello"; // ...penugasan - saat penugasan mencapainya.
 */!*
 }
 
 sayHi();
 ```
 
-Because all `var` declarations are processed at the function start, we can reference them at any place. But variables are undefined until the assignments.
+Karena semua deklarasi `var` diproses pada awal fungsi, kita dapat mendeferensikanya dimana saja. tetapi variabel tidak terdefinisi sampai penugasan.
 
-In both examples above `alert` runs without an error, because the variable `phrase` exists. But its value is not yet assigned, so it shows `undefined`.
+Dalam kedua contoh diatas `alert` bekerja tanpa error, karena ada variabel `pharse`. Tetapi karena nilainya belum ditetapkan, sehingga menampilkan `undefined`.
 
 ### IIFE
 
-As in the past there was only `var`, and it has no block-level visibility, programmers invented a way to emulate it. What they did was called "immediately-invoked function expressions" (abbreviated as IIFE).
-
-That's not something we should use nowadays, but you can find them in old scripts.
-
-An IIFE looks like this:
+Karena di masa lalu hanya ada `var`, dan ia tidak memiliki visibilitas tingkat blok, programmer menemukan cara untuk menirunya. cara mereka melakukanya dinamakan “immediately-invoked function expressions” (disingkat IIFE). 
+Itu bukanlah sesuatu yang harus kita gunakan saat ini, tetapi anda dapat menemukannya di skip lama
+Sebuah IIFE terlihat seperti ini:
 
 ```js run
 (function() {
@@ -212,13 +205,12 @@ An IIFE looks like this:
 })();
 ```
 
-Here a Function Expression is created and immediately called. So the code executes right away and has its own private variables.
+Disini ekspresi fungsi dibuat dan segera dipangil. Sehingga kode dieksekusi segera dan memiliki variabel pribadi sendiri.
 
-The Function Expression is wrapped with parenthesis `(function {...})`, because when JavaScript meets `"function"` in the main code flow, it understands it as the start of a Function Declaration. But a Function Declaration must have a name, so this kind of code will give an error:
-
+Fungsi ekspresi dibungkus dengan tanda kurung `(function {...})`, karena ketika Javascript bertemu `"function"` dalam aliran kode utama, ia memahaminya sebagai awal dari Deklarasi Fungsi. tetapi sebuah Deklarasi Fungsi harus memiliki nama, sehingga kode seperti ini akan menghasilkan error:
 ```js run
-// Try to declare and immediately call a function
-function() { // <-- Error: Unexpected token (
+// Coba untuk mendeklarasikan dan segera memanggil fungsi 
+function() { // <-- Error: Token tidak diharapkan (
 
   let message = "Hello";
 
@@ -227,48 +219,47 @@ function() { // <-- Error: Unexpected token (
 }();
 ```
 
-Even if we say: "okay, let's add a name", that won't work, as JavaScript does not allow Function Declarations to be called immediately:
-
+Bahkan jika kita mengatakan: "Ok, mari tambahkan nama", hal itu tidak dapat bekerja, karena Javascript tidak mengizinkan Deklarasi Fungsi dipanggil segera:
 ```js run
-// syntax error because of parentheses below
+// syntax error karena frasa dibawah
 function go() {
 
-}(); // <-- can't call Function Declaration immediately
+}(); // <-- tidak dapat segera memanggil deklarasi fungsi
 ```
 
-So, the parentheses around the function is a trick to show JavaScript that the function is created in the context of another expression, and hence it's a Function Expression: it needs no name and can be called immediately.
+Jadi, tanda kurung di sekitar fungsi adalah trik untuk menunjukan Javascript bahwa fungsi dibuat dalam konteks ekxpresi lain, dan karenanya merupakan ekspresi fungsi: tidak memerlukan nama dan segera dipanggil.
 
-There exist other ways besides parentheses to tell JavaScript that we mean a Function Expression:
+Ada beberapa cara lain selain tanda kurung untuk memberi tahu Javascript bahwa yang dimaksud adalah Ekspresi fungsi:
 
 ```js run
-// Ways to create IIFE
+// Cara membuat IIFE
 
 (function() {
-  alert("Parentheses around the function");
+  alert("kurung disekitar fungsi");
 }*!*)*/!*();
 
 (function() {
-  alert("Parentheses around the whole thing");
+  alert("kurung disekitar semuanya");
 }()*!*)*/!*;
 
 *!*!*/!*function() {
-  alert("Bitwise NOT operator starts the expression");
+  alert("Operator Bitwise NOT memulai ekspresi");
 }();
 
 *!*+*/!*function() {
-  alert("Unary plus starts the expression");
+  alert("Unary plus memulai ekspresi");
 }();
 ```
 
-In all the above cases we declare a Function Expression and run it immediately. Let's note again: nowadays there's no reason to write such code.
+Dalam semua kasus diatas kami mendeklarasikan sebuah Ekspresi fungsi dan menjalankanya segera. Mari catat kembali: Saat ini tidak ada alasan untuk menulis kode seperti itu.
 
-## Summary
+## Kesimpulan
 
-There are two main differences of `var` compared to `let/const`:
+Ada dua perbedaan utama dari `var` dibandingkan dengan `let/const`;
 
-1. `var` variables have no block scope, they are visible minimum at the function level.
-2. `var` declarations are processed at function start (script start for globals).
+1. `var` variabel tidak memiliki ruang lingkup blok, mereka terlihat minimum pada tingkat fungsi.
+2. Deklarasi `var` diproses saat fungsi dimulai (skrip dimulai untuk global).
 
-There's one more very minor difference related to the global object, that we'll cover in the next chapter.
+Ada satu perbedaan kecil terkait objek global, yang akan kita bahas pada bab selanjutnya.
 
-These differences make `var` worse than `let` most of the time. Block-level variables is such a great thing. That's why `let` was introduced in the standard long ago, and is now a major way (along with `const`) to declare a variable.
+Perbedaan-perbedaan ini membuat `var` lebih buruk daripada` let` hampir di setiap waktu. Variabel block-level adalah hal yang bagus. Itu sebabnya `let` diperkenalkan dalam standar sejak dahulu, dan sekarang merupakan cara utama (bersama dengan` const`) untuk mendeklarasikan variabel.
