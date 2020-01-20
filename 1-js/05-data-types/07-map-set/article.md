@@ -41,7 +41,17 @@ alert( map.size ); // 3
 
 Seperti yang dapat kita lihat, lain dari objek, kunci tidak dikonversi ke string. Jenis kunci apa pun dimungkinkan.
 
+<<<<<<< HEAD
 **Map juga dapat menggunakan objek sebagai kunci.**
+=======
+```smart header="`map[key]` isn't the right way to use a `Map`"
+Although `map[key]` also works, e.g. we can set `map[key] = 2`, this is treating `map` as a plain JavaScript object, so it implies all corresponding limitations (no object keys and so on).
+
+So we should use `map` methods: `set`, `get` and so on.
+```
+
+**Map can also use objects as keys.**
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 Misalnya:
 
