@@ -266,7 +266,7 @@ Dapat dimungkinkan kehadiran banyak kata `return` pada suatu fungsi tunggal. Mis
 
 ```js run
 function checkAge(age) {
-  if (age > 18) {
+  if (age >= 18) {
 *!*
     return true;
 */!*

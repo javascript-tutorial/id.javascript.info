@@ -43,12 +43,18 @@ Ketika eksekutor mendapatkan hasilnya, baik itu cepat atau lambat - tidak masala
 - `reject(error)` — jika terjadi kesalahan, `error` adalah objek kesalahan.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Jadi untuk meringkas: eksekutor berjalan secara otomatis, eksekutor harus melakukan pekerjaan dan kemudian memanggil salah satu dari `resolve` atau `reject`.
 =======
 So to summarize: the executor runs automatically, it should do a job, and then call either `resolve` or `reject`.
 >>>>>>> 28ed5a3f7df9e015cf81c126423c76c9408d7117
 
 Objek `promise` yang dikembalikan oleh *constructor* `new Promise` memiliki properti internal:
+=======
+So to summarize: the executor runs automatically and performs a job. Then it should call `resolve` if it was succssful or `reject` if there was an error.
+
+The `promise` object returned by the `new Promise` constructor has internal properties:
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 - `state` — pada awalnya `"pending"`, kemudian berubah menjadi `"fulfilled"` saat `resolve` dipanggil atau `"rejected"` ketika `reject` dipanggil.
 - `result` — pada awalnya `undefined`, kemudian berubah menjadi `value` ketika `resolve(value)` dipanggil atau `error` ketika `reject(error)` dipanggil.
@@ -72,8 +78,13 @@ let promise = new Promise(function(resolve, reject) {
 
 Kita dapat melihat dua hal dengan menjalankan kode di atas:
 
+<<<<<<< HEAD
 1. Eksekutor dipanggil secara langsung dan otomatis (oleh `new Promise`).
 2. Eksekutor menerima dua argumen: `resolve` dan `reject` — fungsi ini sudah ditentukan sebelumnya oleh mesin JavaScript. Jadi kita tidak perlu membuatnya. Kita hanya harus memanggil salah satu dari dua argumen tersebut ketika siap.
+=======
+1. The executor is called automatically and immediately (by `new Promise`).
+2. The executor receives two arguments: `resolve` and `reject`. These functions are pre-defined by the JavaScript engine, so we don't need to create them. We should only call one of them when ready.
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
     Setelah satu detik "memproses" eksekutor memanggil `resolve("done")` untuk memproduksi hasilnya. Ini mengubah status objek `promise`:
 
@@ -94,7 +105,11 @@ Panggilan untuk `reject(...)` memindahkan objek *promise* ke status `"rejected"`
 
 ![](promise-reject-1.svg)
 
+<<<<<<< HEAD
 Untuk meringkas, eksekutor harus melakukan pekerjaan (sesuatu yang biasanya membutuhkan waktu) dan kemudian memanggil `resolve` atau `reject` untuk mengubah status objek *promise* yang sesuai.
+=======
+To summarize, the executor should perform a job (usually something that takes time) and then call `resolve` or `reject` to change the state of the corresponding promise object.
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 *Promise* yang diputuskan atau ditolak disebut "diselesaikan", sebagai lawan dari *promise* "pending" awalnya.
 
@@ -181,7 +196,11 @@ promise.then(
 
 Fungsi pertama dijalankan.
 
+<<<<<<< HEAD
 Dan dalam hal penolakan -- yang kedua:
+=======
+And in the case of a rejection, the second one:
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
@@ -220,8 +239,13 @@ let promise = new Promise((resolve, reject) => {
 });
 
 *!*
+<<<<<<< HEAD
 // .catch(f) sama seperti promise.then(null, f)
 promise.catch(alert); // menampilkan "Error: Whoops!" setelah satu detik
+=======
+// .catch(f) is the same as promise.then(null, f)
+promise.catch(alert); // shows "Error: Whoops!" after 1 second
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 */!*
 ```
 
@@ -269,8 +293,13 @@ Tapi ini bukan alias dari `then(f,f)`. Ada beberapa perbedaan penting:
       throw new Error("error");
     })
       .finally(() => alert("Promise ready"))
+<<<<<<< HEAD
       .catch(err => alert(err));  // <-- .catch menangani objek "error"
     ```  
+=======
+      .catch(err => alert(err));  // <-- .catch handles the error object
+    ```
+>>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
     Itu sangat nyaman, karena `finally` tidak dimaksudkan untuk memproses hasil dari *promise*. Jadi itu melewatinya.
 
@@ -318,7 +347,7 @@ Mari tulis ulang menggunakan *Promise*.
 Fungsi baru `loadScript` tidak akan memerlukan *callback*. Sebagai gantinya, fungsi tersebut akan membuat dan mengembalikkan sebuah objek *Promise* yang diselesaikan ketika pemuatan sudah selesai. Kode yang paling luar dapat menambah *handler* (fungsi berlangganan) dengan menggunakan `.then`:
 
 ```js run
-function loadScript(src) {  
+function loadScript(src) {
   return new Promise(function(resolve, reject) {
     let script = document.createElement('script');
     script.src = src;
