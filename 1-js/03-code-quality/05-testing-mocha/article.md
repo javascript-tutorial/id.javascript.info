@@ -182,11 +182,7 @@ Hasilnya:
 
 [iframe height=250 src="pow-2" edit border="1"]
 
-<<<<<<< HEAD
-Seperti yang kita harapkan, tes kedua gagal. Jelas, fungsi kita selalu mengembalikan `8`, sedangkan `assert` mengharapkan `27`.
-=======
-As we could expect, the second test failed. Sure, our function always returns `8`, while the `assert` expects `81`.
->>>>>>> e92bb83e995dfea982dcdc5065036646bfca13f0
+Seperti yang kita harapkan, tes kedua gagal. Jelas, fungsi kita selalu mengembalikan `8`, sedangkan `assert` mengharapkan `81`.
 
 ## Mengimprov implementasi
 
