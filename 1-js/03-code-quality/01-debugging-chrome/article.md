@@ -4,11 +4,7 @@ Sebelum menulis kode lebih komplex, ayo kita bahas tentang mendebug.
 
 [Mendebug](https://en.wikipedia.org/wiki/Debugging) ialah proses mencari dan membetulkan galat di dalam script. Semua peramban modern dan kebanyakan lingkungan lain mendukung debugging tools -- UI spesial di developer tools yang membuat debugging jauh lebih mudah. Ia juga membolehkan menjejak kode pelan-pelan untuk melihat apa yang sebenarnya terjadi.
 
-<<<<<<< HEAD
 Kita akan menggunakan Chrome di sini, karena ia punya cukup fitur, kebanyakan peramban lain punya proses serupa`.
-=======
-We'll be using Chrome here, because it has enough features, most other browsers have a similar process.
->>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 ## Panel "Sources"
 
@@ -28,19 +24,11 @@ Klik itu dan pilih `hello.js` di tree view. Inilah yang mestinya muncul:
 
 ![](chrome-tabs.svg)
 
-<<<<<<< HEAD
-Di sini kita bisa melihat tiga zona:
+Panel Sources punya 3 bagian:
 
-1. **Zona sumberdaya** melist HTML, JavaScript, CSS dan file lainnya, termasuk image yang dilampirkan ke laman. Extensi Chrome juga muncul di sini.
-2. **Zona sumber** menampilkan kode sumber.
-3. **Zona informasi dan kontrol** untuk debugging, kita akan mengexplorasi itu segera.
-=======
-The Sources panel has 3 parts:
-
-1. The **File Navigator** pane lists HTML, JavaScript, CSS and other files, including images that are attached to the page. Chrome extensions may appear here too.
-2. The **Code Editor** pane shows the source code.
-3. The **JavaScript Debugging** pane is for debugging, we'll explore it soon.
->>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
+1. Pane **File Navigator** melist HTML, JavaScript, CSS, dan file lainnya, termasuk image yang dilampirkan ke laman. Extensi Chrome bisa muncul juga di sini.
+2. Pane **Editor Kode** menampilkan kode sumber.
+3. Pane **Javascript Debugging** untuk debugging, kita akan mengexplorasi itu segera.
 
 Sekarang kamu bisa mengklik toggler yang sama <span class="devtools" style="background-position:-200px -76px"></span> lagi untuk menyembunyikan daftar sumber daya dan memberi spasi ke kode.
 
