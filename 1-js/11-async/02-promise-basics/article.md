@@ -7,14 +7,6 @@ Untuk mendapatkan kelegaan, kamu berjanji untuk mengirimkan *single* tersebut ke
 
 Semua orang senang: kamu, karena orang-orang tidak memadati kamu lagi, dan penggemar, karena mereka tidak ketinggalan *single*nya.
 
-<<<<<<< HEAD
-Ini adalah analogi di kehidupan nyata untuk hal-hal yang sering kita miliki dalam pemrograman:
-=======
-1. A "producing code" that does something and takes time. For instance, some code that loads the data over a network. That's a "singer".
-2. A "consuming code" that wants the result of the "producing code" once it's ready. Many functions  may need that result. These are the "fans".
-3. A *promise* is a special JavaScript object that links the "producing code" and the "consuming code" together. In terms of our analogy: this is the "subscription list". The "producing code" takes whatever time it needs to produce the promised result, and the "promise" makes that result available to all of the subscribed code when it's ready.
->>>>>>> 28ed5a3f7df9e015cf81c126423c76c9408d7117
-
 1. "Kode produksi" itu melakukan sesuatu dan membutuhkan waktu. Sebagai contoh, sebuah kode yang memuat data melalui jaringan. Itu adalah seorang "penyanyi".
 2. "Kode pengkonsumsi" yang menginginkan hasil dari "kode produksi" setelah siap. Banyak fungsi yang mungkin membutuhkan hasil itu. Ini adalah "penggemar".
 3. *Promise* adalah objek Javascript khusus yang menghubungkan "kode produksi" dan "kode pengkonsumi" secara bersamaan. Dalam analogi kami: ini adalah "daftar berlangganan". "Kode produksi" membutuhkan waktu berapa pun untuk menghasilkan hasil yang dijanjikan, dan "*Promise*" membuat hasil tersebut tersedia untuk semua kode yang berlangganan ketika hasilnya sudah siap.
@@ -29,11 +21,7 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
-<<<<<<< HEAD
-Fungsi yang dilewatkan ke `new Promise` disebut sebagai *eksekutor*. Ketika `new Promise` dibuat, eksekutor tersebut berjalan secara otomatis. Eksekutor itu berisi kode produksi, yang pada akhirnya harus memproduksi hasil. Dalam analogi di atas: eksekutor adalah "penyanyi".
-=======
-The function passed to `new Promise` is called the *executor*. When `new Promise` is created, the executor runs automatically. It contains the producing code which should eventually produce the result. In terms of the analogy above: the executor is the "singer".
->>>>>>> 28ed5a3f7df9e015cf81c126423c76c9408d7117
+Fungsi yang dilewatkan ke `new Promise` disebut sebagai *exekutor*. Ketika `new Promise` dibuat, exekutor tersebut berjalan secara otomatis. Exekutor itu berisi kode produksi, yang pada akhirnya harus memproduksi hasil. Dalam analogi di atas: exekutor adalah "penyanyi".
 
 Argumen `resolve` dan `reject` adalah *callback* yang disediakan oleh JavaScript itu sendiri. Kode kita hanya ada di dalam eksekutor.
 
@@ -42,8 +30,6 @@ Ketika eksekutor mendapatkan hasilnya, baik itu cepat atau lambat - tidak masala
 - `resolve(value)` — jika pekerjaan selesai dengan sukses, dengan hasil `value`.
 - `reject(error)` — jika terjadi kesalahan, `error` adalah objek kesalahan.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 Jadi untuk meringkas: eksekutor berjalan secara otomatis, eksekutor harus melakukan pekerjaan dan kemudian memanggil salah satu dari `resolve` atau `reject`.
 =======
 So to summarize: the executor runs automatically, it should do a job, and then call either `resolve` or `reject`.
@@ -78,13 +64,8 @@ let promise = new Promise(function(resolve, reject) {
 
 Kita dapat melihat dua hal dengan menjalankan kode di atas:
 
-<<<<<<< HEAD
-1. Eksekutor dipanggil secara langsung dan otomatis (oleh `new Promise`).
-2. Eksekutor menerima dua argumen: `resolve` dan `reject` — fungsi ini sudah ditentukan sebelumnya oleh mesin JavaScript. Jadi kita tidak perlu membuatnya. Kita hanya harus memanggil salah satu dari dua argumen tersebut ketika siap.
-=======
-1. The executor is called automatically and immediately (by `new Promise`).
-2. The executor receives two arguments: `resolve` and `reject`. These functions are pre-defined by the JavaScript engine, so we don't need to create them. We should only call one of them when ready.
->>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
+1. Exekutor dipanggil secara langsung dan otomatis (oleh `new Promise`).
+2. Exekutor menerima dua argumen: `resolve` dan `reject` — fungsi ini sudah ditentukan sebelumnya oleh mesin JavaScript. Jadi kita tak perlu membuatnya. Kita hanya harus memanggil salah satu dari dua argumen tersebut ketika siap.
 
     Setelah satu detik "memproses" eksekutor memanggil `resolve("done")` untuk memproduksi hasilnya. Ini mengubah status objek `promise`:
 
@@ -105,11 +86,7 @@ Panggilan untuk `reject(...)` memindahkan objek *promise* ke status `"rejected"`
 
 ![](promise-reject-1.svg)
 
-<<<<<<< HEAD
-Untuk meringkas, eksekutor harus melakukan pekerjaan (sesuatu yang biasanya membutuhkan waktu) dan kemudian memanggil `resolve` atau `reject` untuk mengubah status objek *promise* yang sesuai.
-=======
-To summarize, the executor should perform a job (usually something that takes time) and then call `resolve` or `reject` to change the state of the corresponding promise object.
->>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
+Untuk meringkas, eksekutor harus melakukan pekerjaan (sesuatu yang biasanya membutuhkan waktu) dan kemudian memanggil `resolve` atau `reject` untuk mengubah state objek *promise* yang sesuai.
 
 *Promise* yang diputuskan atau ditolak disebut "diselesaikan", sebagai lawan dari *promise* "pending" awalnya.
 
@@ -196,11 +173,7 @@ promise.then(
 
 Fungsi pertama dijalankan.
 
-<<<<<<< HEAD
 Dan dalam hal penolakan -- yang kedua:
-=======
-And in the case of a rejection, the second one:
->>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
@@ -239,13 +212,8 @@ let promise = new Promise((resolve, reject) => {
 });
 
 *!*
-<<<<<<< HEAD
 // .catch(f) sama seperti promise.then(null, f)
 promise.catch(alert); // menampilkan "Error: Whoops!" setelah satu detik
-=======
-// .catch(f) is the same as promise.then(null, f)
-promise.catch(alert); // shows "Error: Whoops!" after 1 second
->>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 */!*
 ```
 
@@ -293,13 +261,8 @@ Tapi ini bukan alias dari `then(f,f)`. Ada beberapa perbedaan penting:
       throw new Error("error");
     })
       .finally(() => alert("Promise ready"))
-<<<<<<< HEAD
-      .catch(err => alert(err));  // <-- .catch menangani objek "error"
+      .catch(err => alert(err));  // <-- .catch menangani objek galat
     ```  
-=======
-      .catch(err => alert(err));  // <-- .catch handles the error object
-    ```
->>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
 
     Itu sangat nyaman, karena `finally` tidak dimaksudkan untuk memproses hasil dari *promise*. Jadi itu melewatinya.
 
