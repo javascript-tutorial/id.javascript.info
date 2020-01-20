@@ -109,11 +109,7 @@ loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', s
 
 Itu disebut gaya "callback-based" dalam pemrograman asynchronous. Sebuah fungsi yang melakukan sesuatu secara asynchronous harus menyediakan sebuah argumen `callback` dimana kita meletakkan fungsi untuk dijalankan setelah selesai.
 
-<<<<<<< HEAD
-Disini kita melakukannya didalam `loadScript`, tetapi tentu saja, ini pendekatan secara umum.
-=======
-Here we did it in `loadScript`, but of course it's a general approach.
->>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
+Di sini kita melakukannya dalam `loadScript`, tapi tentu saja ini pendekatan secara umum.
 
 ## Callback didalam callback
 
