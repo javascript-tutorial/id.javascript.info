@@ -1,4 +1,4 @@
-Jawabanya: `1`.
+Jawabannya: `1`.
 
 ```js run
 let i = 3;
@@ -8,18 +8,18 @@ while (i) {
 }
 ```
 
-Setiap pengulangan mengurangi `i`  oleh `1`. Cek `while(i)` menghentikan perulangan ketika `i = 0`.
+Setiap pengulangan mengurangi `i`  dengan `1`. pengecekan `while(i)` menghentikan perulangan ketika `i = 0`.
 
-Oleh karena itu, langkah-langkah perulangan membentuk urutan berikut ("perulangan terbuka"):
+Oleh karena itu, langkah-langkah perulangan membentuk urutan sebagai berikut ("loop unrolled"):
 
 ```js
 let i = 3;
 
-alert(i--); // menampilkan 3, mengurangi i ke 2
+alert(i--); // menampilkan 3, mengurangi i menjadi 2
 
-alert(i--) // menampilkan 2, mengurangi i ke 1
+alert(i--) // menampilkan 2, mengurangi i menjadi 1
 
-alert(i--) // menampilkan 1, mengurangi i ke 0
+alert(i--) // menampilkan 1, mengurangi i menjadi 0
 
-// selesai while(i) cek menghentikan pengulangan
+// selesai, pengecekan while(i) menghentikan pengulangan
 ```

@@ -1,4 +1,4 @@
-nilai penting: 3
+importance: 3
 
 ---
 
@@ -8,7 +8,7 @@ Angka integer lebih dari `1` disebut [bilangan prima](https://en.wikipedia.org/w
 
 Dengan kata lain, `n > 1` adalah prima jika tidak dapat dibagi secara merata oleh apapun kecuali `1` dan `n`.
 
-Contohnya, `5` adalah prima, karna tidak bisa dibagi tanpa sisa oleh `2`, `3` and `4`.
+Contohnya, `5` adalah prima, karna tidak bisa dibagi tanpa sisa oleh `2`, `3` dan `4`.
 
 **Tulis kode yang menghasilkan bilangan prima dalam interval dari `2` sampai `n`.**
 

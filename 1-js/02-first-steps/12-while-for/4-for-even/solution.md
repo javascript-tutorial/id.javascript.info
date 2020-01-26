@@ -8,4 +8,4 @@ for (let i = 2; i <= 10; i++) {
 }
 ```
 
-Kita menggunakan operator "modulo" `%` untuk mendapatkan sisanya dan untuk mengecek kegenapan disini.
+Kita menggunakan operator "modulo" `%` untuk mendapatkan nilai sisa dan untuk mengecek kegenapan disini.

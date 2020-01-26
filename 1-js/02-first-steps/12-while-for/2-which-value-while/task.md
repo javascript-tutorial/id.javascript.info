@@ -1,10 +1,10 @@
-nilai penting: 4
+importance: 4
 
 ---
 
 # Nilai mana yang ditampilkan perulangan while?
 
-Setiap perulangan, tulis nilai yang dikeluarkan dan bandingkan dengan solusinya.
+Untuk setiap iterasi, tulis nilai mana yang dikeluarkan dan bandingkan dengan solusinya.
 
 Kedua perulangan `alert` nilai yang sama, atau tidak?
 
