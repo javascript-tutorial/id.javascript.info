@@ -321,8 +321,13 @@ let key = "age";
 alert( *!*key*/!* in user ); // true, mengambil nama dari kunci dan mengecek properti tersebut
 ```
 
+<<<<<<< HEAD
 ````smart header="Menggunakan \"in\" untuk properti yang menyimpan `undefined`"
 Biasanya, pembandingan ketat `"=== undefined"` mengecek existensi properti dengan baik. Tapi ada kasus spesial saat ia gagal, tapi `"in"` bekerja dengan benar.
+=======
+````smart header="Using \"in\" for properties that store `undefined`"
+Usually, the strict comparison `"=== undefined"` check the property existence just fine. But there's a special case when it fails, but `"in"` works correctly.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
 Itu ialah saat ada properti objek, tapi menyimpan `undefined`:
 
