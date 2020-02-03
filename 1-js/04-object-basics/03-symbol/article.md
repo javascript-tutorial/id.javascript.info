@@ -18,8 +18,13 @@ let id = Symbol();
 
 Selama penyusunan, kita bisa memberikan simbol sebuah deskripsi (juga disebut sebagai nama simbol), kebanyakan berguna untuk tujuan-tujuan *debugging*:
 
+<<<<<<< HEAD
 ```js run
 // id adalah sebuah simbol dengan deskripsi "id"
+=======
+```js
+// id is a symbol with the description "id"
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 let id = Symbol("id");
 ```
 
