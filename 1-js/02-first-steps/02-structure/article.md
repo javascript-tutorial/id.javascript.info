@@ -94,7 +94,11 @@ Tapi itu harus jadi dua pernyataan terpisah, bukan satu. Penyatuan macam ini sal
 
 Kami sarankan menaruh titik koma di antara pernyataan meski mereka dipisahkan garis baru. Ini aturan yang diterima secara luas oleh komunitas. Harap diingat sekali lagi bahwa -- *bisa saja* menanggalkan titik koma di banyak kesempatan. Tapi akan lebih aman -- terutama untuk pemula -- untuk menggunakan mereka.
 
+<<<<<<< HEAD
 ## Komen
+=======
+## Comments [#code-comments]
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 Seiring waktu berjalan, program menjadi lebih rumit. Dan dibutuhkan *komen* yang menjelaskan kode apa itu dan kenapa.
 

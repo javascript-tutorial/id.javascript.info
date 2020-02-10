@@ -18,8 +18,13 @@ let id = Symbol();
 
 Selama penyusunan, kita bisa memberikan simbol sebuah deskripsi (juga disebut sebagai nama simbol), kebanyakan berguna untuk tujuan-tujuan *debugging*:
 
+<<<<<<< HEAD
 ```js run
 // id adalah sebuah simbol dengan deskripsi "id"
+=======
+```js
+// id is a symbol with the description "id"
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 let id = Symbol("id");
 ```
 
@@ -178,6 +183,7 @@ alert( clone[id] ); // 123
 
 Tidak ada paradoks di sini. Hal itu sesuai rancangan. Gagasan bahwa ketika kita meng-*clone* sebuah objek atau menyatukan (*merge*) objek-objek, kita biasanya ingin *semua* properti disalin (termasuk simbol seperti `id`).
 
+<<<<<<< HEAD
 ````smart header="Properti-properti kunci dari tipe lain dipaksa menjadi string"
 Kita hanya bisa menggunakan string atau simbol sebagai kunci dalam objek. Tipe-tipe lain dikonversi menjadi string.
 
@@ -195,6 +201,9 @@ alert( obj[0] ); // tes (properti yang sama)
 ````
 
 ## Simbol-simbol global
+=======
+## Global symbols
+>>>>>>> 10c7807f49122f475f7cda5d07a324247091c080
 
 Seperti yang kita lihat, biasanya semua simbol itu berbeda, bahkan jika simbol-simbol tersebut memiliki nama yang sama. Tapi terkadang kita ingin simbol yang bernama sama untuk menjadi barang yang sama pula. Sebagai contoh, bagian-bagian lain dari aplikasi kita ingin mengakses simbol `"id"` yang berarti properti yang sama pula.
 
