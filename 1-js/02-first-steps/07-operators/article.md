@@ -138,12 +138,21 @@ Di sini adalah extrak dari [tabel presedensi](https://developer.mozilla.org/en/J
 | Presedensi | Nama | Tanda |
 |------------|------|------|
 | ... | ... | ... |
+<<<<<<< HEAD
 | 16 | plus unary | `+` |
 | 16 | negasi unary | `-` |
 | 14 | perkalian | `*` |
 | 14 | pembagian | `/` |
 | 13 | penambahan | `+` |
 | 13 | pengurangan | `-` |
+=======
+| 17 | unary plus | `+` |
+| 17 | unary negation | `-` |
+| 15 | multiplication | `*` |
+| 15 | division | `/` |
+| 13 | addition | `+` |
+| 13 | subtraction | `-` |
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 | ... | ... | ... |
 | 3 | penetapan | `=` |
 | ... | ... | ... |
