@@ -138,17 +138,30 @@ Di sini adalah extrak dari [tabel presedensi](https://developer.mozilla.org/en/J
 | Presedensi | Nama | Tanda |
 |------------|------|------|
 | ... | ... | ... |
+<<<<<<< HEAD
 | 16 | plus unary | `+` |
 | 16 | negasi unary | `-` |
 | 14 | perkalian | `*` |
 | 14 | pembagian | `/` |
 | 13 | penambahan | `+` |
 | 13 | pengurangan | `-` |
+=======
+| 17 | unary plus | `+` |
+| 17 | unary negation | `-` |
+| 15 | multiplication | `*` |
+| 15 | division | `/` |
+| 13 | addition | `+` |
+| 13 | subtraction | `-` |
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 | ... | ... | ... |
 | 3 | penetapan | `=` |
 | ... | ... | ... |
 
+<<<<<<< HEAD
 Seperti yang kita lihat, "plus unary" punya prioritas `16` yang lebih tinggi dari `13` "penambahan" (plus binary). Itulah kenapa, dalam expresi `"+apples + +oranges"`, plus unary bekerja sebelum penambahan.
+=======
+As we can see, the "unary plus" has a priority of `17` which is higher than the `13` of "addition" (binary plus). That's why, in the expression `"+apples + +oranges"`, unary pluses work before the addition.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 ## Penetapan
 

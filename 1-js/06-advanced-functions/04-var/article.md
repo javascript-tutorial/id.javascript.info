@@ -150,7 +150,11 @@ Orang-orang juga menyebut perilaku seperti ini "hoisting", karena semua `var` "h
 Sehingga dalam contoh di atas, cabang `if (false)` tidak pernah dijalankan, tetapi itu tidak masalah. `var` di dalamnya diproses di awal fungsi, jadi pada saat `(*)` variabel ada. 
 **Pendeklarasian hoisted, sedangkan penugasan (assigment) tidak.**
 
+<<<<<<< HEAD
 Lebih baik mendemonstrasikan dengan contoh, seperti ini:
+=======
+That's best demonstrated with an example:
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 ```js run
 function sayHi() {

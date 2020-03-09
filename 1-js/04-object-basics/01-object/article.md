@@ -1,7 +1,11 @@
 
 # Objek
 
+<<<<<<< HEAD
 Seperti yang kita tahu dari bab <info:types>, ada tujuh tipe data di JavaScript. Enak dari mereka disebut "primitif", karena nilai mereka berisi cuma satu hal tunggal (entah string atau angka atau apapun).
+=======
+As we know from the chapter <info:types>, there are eight data types in JavaScript. Seven of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 Kontrasnya, objek dipakai untuk menyimpan koleksi terkunci dari berbagai data dan entitas rumit lainnya. Di JavaScript, objek menembus hampir tiap aspek bahasa. Jadi kita harus memahami mereka dulu sebelum masuk lebih dalam ke manapun.
 
@@ -101,7 +105,13 @@ Untuk properti multi-kata, akses dot tak bekerja:
 user.likes birds = true
 ```
 
+<<<<<<< HEAD
 Ini karena dot mensyaratkan key merupakan identifier variabel yang valid. Yaitu: tak ada spasi dan limitasi lain.
+=======
+JavaScript doesn't understand that. It thinks that we address `user.likes`, and then gives a syntax error when comes across unexpected `birds`.
+
+The dot requires the key to be a valid variable identifier. That implies: contains no spaces, doesn't start with a digit and doesn't include special characters (`$` и `_` are allowed).
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 Ada alternatif "notasi bracket kotak" yang bekerja dengan string apapun:
 
@@ -203,6 +213,7 @@ Bracket kotak jauh lebih kuat dari notasi dot. Mereka membolehkan variabel dan n
 
 Jadi seringnya, saat nama properti diketahui dan simpel, dot dipakai. Dan jika kita butuh sesuatu yang rumit, maka kita ganti ke bracket kotak.
 
+<<<<<<< HEAD
 
 
 ````smart header="Kata khusus dibolehkan sebagai nama properti"
@@ -241,6 +252,9 @@ Ada juga struktur data lain [Map](info:map-set), yang akan kita pelajari di bab 
 
 
 ## Steno nilai properti
+=======
+## Property value shorthand
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 Di kode riil kita sering memakai variabel sebagai nilai untuk nama properti.
 
@@ -284,7 +298,67 @@ let user = {
 };
 ```
 
+<<<<<<< HEAD
 ## Cek existensi
+=======
+## Property names limitations
+
+Property names (keys) must be either strings or symbols (a special type for identifiers, to be covered later).
+
+Other types are automatically converted to strings.
+
+For instance, a number `0` becomes a string `"0"` when used as a property key:
+
+```js run
+let obj = {
+  0: "test" // same as "0": "test"
+};
+
+// both alerts access the same property (the number 0 is converted to string "0")
+alert( obj["0"] ); // test
+alert( obj[0] ); // test (same property)
+```
+
+**Reserved words are allowed as property names.**
+
+As we already know, a variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+
+But for an object property, there's no such restriction. Any name is fine:
+
+```js run
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+};
+
+alert( obj.for + obj.let + obj.return );  // 6
+```
+
+We can use any string as a key, but there's a special property named `__proto__` that gets special treatment for historical reasons.
+
+For instance, we can't set it to a non-object value:
+
+```js run
+let obj = {};
+obj.__proto__ = 5; // assign a number
+alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended
+```
+
+As we see from the code, the assignment to a primitive `5` is ignored.
+
+The nature of `__proto__` will be revealed in detail later in the chapter [](info:prototype-inheritance).
+
+As for now, it's important to know that such behavior of `__proto__` can become a source of bugs and even vulnerabilities if we intend to store user-provided keys in an object.
+
+The problem is that a visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
+
+There are two workarounds for the problem:
+1. Modify the object's behavior to treat `__proto__` as a regular property. We'll learn how to do it in the chapter [](info:prototype-methods).
+2. Using [Map](info:map-set) data structure which supports arbitrary keys. We'll learn it in the chapter <info:map-set>.
+
+## Property existence test, "in" operator
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 Satu fitur objek penting ialah kita bisa melakukan akses ke properti. Takkan ada galat jika properti tak ada! Mengakses properti yang tak ada hanya mengembalikan `undefined`. Ia menyediakan cara paling umum untuk mengetes existensi properti -- mengambilnya dan membandingan dengan undefined:
 
@@ -321,8 +395,13 @@ let key = "age";
 alert( *!*key*/!* in user ); // true, mengambil nama dari kunci dan mengecek properti tersebut
 ```
 
+<<<<<<< HEAD
 ````smart header="Menggunakan \"in\" untuk properti yang menyimpan `undefined`"
 Biasanya, pembandingan ketat `"=== undefined"` mengecek existensi properti dengan baik. Tapi ada kasus spesial saat ia gagal, tapi `"in"` bekerja dengan benar.
+=======
+````smart header="Using \"in\" for properties that store `undefined`"
+Usually, the strict comparison `"=== undefined"` check the property existence just fine. But there's a special case when it fails, but `"in"` works correctly.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 Itu ialah saat ada properti objek, tapi menyimpan `undefined`:
 

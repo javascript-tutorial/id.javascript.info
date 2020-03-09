@@ -63,7 +63,11 @@ Kemampuan JavaScript yang ada di dalam browser terbatas demi keamanan pengguna. 
 
 Contoh keterbatasan tersebut meliputi:
 
+<<<<<<< HEAD
 - JavaScript pada halaman web tak boleh membaca/mengubah file semaunya pada hard disk, mengcopy script tersebut, atau mengeksekusi program. Ia tak punya akses langsung ke OS system functions.
+=======
+- JavaScript on a webpage may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS functions.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
     Browser-browser modern memperbolehkan JavaScript mengakses file, tapi aksesnya dibatasi dan tersedia hanya jika pengguna melakukan hal tertentu, misalnya seperti "menjatuhkan" file ke dalam jendela browser atau memilih file via tag `<input>`.
 
