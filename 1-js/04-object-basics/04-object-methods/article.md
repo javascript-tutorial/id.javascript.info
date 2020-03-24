@@ -63,7 +63,11 @@ user.sayHi(); // Hello!
 ```smart header="Object-oriented programming"
 Ketika kita menulis kode kita menggunakan objek-objek untuk merepresentasikan benda, itulah yang disebut sebagai [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), disingkat menjadi: "OOP".
 
+<<<<<<< HEAD
 OOP itu adalah sebuah pembahasan besar, ilmu yang menarik dari dirinya sendiri. Bagaimana cara memilih (perwujudan) benda yang benar? Bagaimana cara mengatur interaksi di antara benda-benda tersebut? Itulah arsitektur, dan literatur-literatur yang lebih besar lagi tentang topik tersebut, like "Design Patterns: Elements of Reusable Object-Oriented Software" oleh E.Gamma, R.Helm, R.Johnson, J.Vissides atau "Object-Oriented Analysis and Design with Applications" oleh G.Booch, dan masih banyak lagi.
+=======
+OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the interaction between them? That's architecture, and there are great books on that topic, like "Design Patterns: Elements of Reusable Object-Oriented Software" by E. Gamma, R. Helm, R. Johnson, J. Vissides or "Object-Oriented Analysis and Design with Applications" by G. Booch, and more.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 ```
 ### Metode ringkas
 

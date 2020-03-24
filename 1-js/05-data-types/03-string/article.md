@@ -534,7 +534,11 @@ Algoritma yang "benar" untuk melakukan perbandingan string lebih kompleks dari k
 
 Jadi, browser harus tahu bahasa yang digunakan untuk perbandingan.
 
+<<<<<<< HEAD
 Beruntungnya, semua browser modern (IE10- memerlukan library tambahan [Intl.JS](https://github.com/andyearnshaw/Intl.js/)) mendukung standar internasionalisasi [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
+=======
+Luckily, all modern browsers (IE10- requires the additional library [Intl.js](https://github.com/andyearnshaw/Intl.js/)) support the internationalization standard [ECMA-402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 
 Hal tersebut menyediakan cara spesial untuk membandingkan stringi di berbeda bahasa, mengikuti peraturan mereka.
 

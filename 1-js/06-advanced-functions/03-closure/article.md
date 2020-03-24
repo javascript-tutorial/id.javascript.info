@@ -345,7 +345,11 @@ let arr = [f(), f(), f()];
 
 Sebuah objek lingkungan leksikal mati apabila sudah tidak dapat dicapai (sperti objek lainnya). Dengan kata lain, objek tersebut hidup selama masih ada setidaknya satu fungsi bersarang yang mengacunya.
 
+<<<<<<< HEAD
 Di kode berikut, setelah fungsi bersarang itu dihapus, Lingkungan Lexikal lingkupannya (serta `value`-nya) dibersihkan dari memori;
+=======
+In the code below, after the nested function is removed, its enclosing Lexical Environment (and hence the `value`) is cleaned from memory:
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 
 ```js
 function f() {

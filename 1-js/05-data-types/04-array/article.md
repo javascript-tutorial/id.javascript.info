@@ -123,7 +123,11 @@ Untuk *stack*, elemen terakhir yang di-*push* diterima lebih dulu, hal itu juga 
 
 *Array* dalam JavaScript dapat bekerja baik sebagai sebuah *queue* maupun *stack*. Keduanya membuat kamu bisa menambahkan/menghilangkan elemen baik dari/ke awal ataupun akhir.
 
+<<<<<<< HEAD
 Dalam *computer science* struktur data yang memungkinkan kita bisa melakukan hal-hal demikian disebut sebagai [*deque* (*double-ended queue*)](https://en.wikipedia.org/wiki/Double-ended_queue).
+=======
+In computer science the data structure that allows this, is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 
 **Metode yang berfungsi dengan bagian akhir dari _array_:**
 

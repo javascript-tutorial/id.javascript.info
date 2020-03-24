@@ -256,7 +256,7 @@ Untuk nilai genap dari `i`, perintah `continue` mengentikan menjalankan badan da
 ````smart header="Perintah `continue` membantu mengurangi penyarangan"
 Sebuah perulangan yang menampilkan nilai ganjil dapat terlihat seperti ini:
 
-```js
+```js run
 for (let i = 0; i < 10; i++) {
 
   if (i % 2) {
@@ -268,7 +268,11 @@ for (let i = 0; i < 10; i++) {
 
 Dari sudut pandang teknis, ini identik dengan contoh diatas. Tentunya, kita dapat membungkus kode dalam sebuah blok `if` daripada menggunakan `continue`.
 
+<<<<<<< HEAD
 Tapi efek sampinya, ini membuat penyarangan satu level lebih (`alert` dipanggil didalam kurung kurawal). Jika kode didalam `if` lebih panjang dari beberapa baris, itu mungkin mengurangi keterbacaan keseluruhan.
+=======
+But as a side-effect, this created one more level of nesting (the `alert` call inside the curly braces). If the code inside of `if` is longer than a few lines, that may decrease the overall readability.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 ````
 
 ````warn header="Tidak ada `break/continue` ke sisi kanan '?'"
