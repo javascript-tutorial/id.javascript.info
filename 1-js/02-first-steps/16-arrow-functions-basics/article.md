@@ -67,7 +67,11 @@ let welcome = (age < 18) ?
   () => alert('Hello') :
   () => alert("Greetings!");
 
+<<<<<<< HEAD
 welcome(); // kini benar
+=======
+welcome();
+>>>>>>> 62299ed853674c4fd1427cd310516d5535bce648
 ```
 
 Fungsi-fungsi *arrow* bisa terlihat tidak familiar dan sulit dibaca pada awalnya, namun hal tersebut bisa cepat berubah seiring dengan mata (kita) yang terbiasa dengan struktur tersebut.

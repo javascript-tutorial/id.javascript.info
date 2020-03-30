@@ -18,8 +18,13 @@ let id = Symbol();
 
 Selama penyusunan, kita bisa memberikan simbol sebuah deskripsi (juga disebut sebagai nama simbol), kebanyakan berguna untuk tujuan-tujuan *debugging*:
 
+<<<<<<< HEAD
 ```js run
 // id adalah sebuah simbol dengan deskripsi "id"
+=======
+```js
+// id is a symbol with the description "id"
+>>>>>>> 62299ed853674c4fd1427cd310516d5535bce648
 let id = Symbol("id");
 ```
 
@@ -178,6 +183,7 @@ alert( clone[id] ); // 123
 
 Tidak ada paradoks di sini. Hal itu sesuai rancangan. Gagasan bahwa ketika kita meng-*clone* sebuah objek atau menyatukan (*merge*) objek-objek, kita biasanya ingin *semua* properti disalin (termasuk simbol seperti `id`).
 
+<<<<<<< HEAD
 ````smart header="Properti-properti kunci dari tipe lain dipaksa menjadi string"
 Kita hanya bisa menggunakan string atau simbol sebagai kunci dalam objek. Tipe-tipe lain dikonversi menjadi string.
 
@@ -195,6 +201,9 @@ alert( obj[0] ); // tes (properti yang sama)
 ````
 
 ## Simbol-simbol global
+=======
+## Global symbols
+>>>>>>> 62299ed853674c4fd1427cd310516d5535bce648
 
 Seperti yang kita lihat, biasanya semua simbol itu berbeda, bahkan jika simbol-simbol tersebut memiliki nama yang sama. Tapi terkadang kita ingin simbol yang bernama sama untuk menjadi barang yang sama pula. Sebagai contoh, bagian-bagian lain dari aplikasi kita ingin mengakses simbol `"id"` yang berarti properti yang sama pula.
 
@@ -241,7 +250,11 @@ alert( Symbol.keyFor(sym) ); // name
 alert( Symbol.keyFor(sym2) ); // id
 ```
 
+<<<<<<< HEAD
 `Symbol.keyFor` secara internal menggunakan catatan simbol global untuk mencari kunci (*key*) untuk sebuah simbol. Jadi ini tidak bekerja untuk simbol-simbol non-global. Jika simbol tersebut tidak global, simbol tersebut tidak bisa ditemukan dan akan mengembalikan `undefined`.
+=======
+The `Symbol.keyFor` internally uses the global symbol registry to look up the key for the symbol. So it doesn't work for non-global symbols. If the symbol is not global, it won't be able to find it and returns `undefined`.
+>>>>>>> 62299ed853674c4fd1427cd310516d5535bce648
 
 Seperti yang dikatakan, simbol apapun memiliki properti `description`.
 

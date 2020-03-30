@@ -324,7 +324,11 @@ Harap dicatat bahwa string kosong atau spasi-saja diperlakukan sebagai `0` dalam
 
 ```smart header="Dibandingkan dengan `Object.is`"
 
+<<<<<<< HEAD
 Ada metode bawaan khusus [Object.is](mdn:js/Object/is) yang membandingkan nilai seperti `===`, tetapi lebih dapat diandalkan untuk dua kasus:
+=======
+There is a special built-in method [`Object.is`](mdn:js/Object/is) that compares values like `===`, but is more reliable for two edge cases:
+>>>>>>> 62299ed853674c4fd1427cd310516d5535bce648
 
 1. Ini bekerja dengan `NaN`: `Object.is(NaN, NaN) === true`, itu hal yang bagus.
 2. Nilai `0` and `-0` adalah berbeda: `Object.is(0, -0) === false`, secara teknis adalah benar, karena secara internal nomor tersebut memiliki bit tanda yang mungkin berbeda bahkan jika semua bit lainnya nol.
@@ -417,9 +421,15 @@ Untuk menulis angka dengan banyak nol:
 
 Untuk sistem angka yang berbeda:
 
+<<<<<<< HEAD
 - Dapat menulis angka secara langsung dalam sistem hex (`0x`), oktal (`0o`) dan sistem biner (`0b`)
 - `parseInt(str, base)` mem-parsing string `str` menjadi bilangan bulat dalam sistem angka dengan diberikan `base`, `2 ≤ base ≤ 36`.
 - `num.toString(base)` mengonversi angka menjadi string dalam sistem angka dengan diberikan `base`.
+=======
+- Can write numbers directly in hex (`0x`), octal (`0o`) and binary (`0b`) systems.
+- `parseInt(str, base)` parses the string `str` into an integer in numeral system with given `base`, `2 ≤ base ≤ 36`.
+- `num.toString(base)` converts a number to a string in the numeral system with the given `base`.
+>>>>>>> 62299ed853674c4fd1427cd310516d5535bce648
 
 Untuk mengkonversi nilai seperti `12pt` dan `100px` menjadi sebuah angka:
 
