@@ -34,4 +34,8 @@ let user = {
 (user.go)() // John
 ```
 
+<<<<<<< HEAD
 Tolong ingat bahwa tanda kurung kurawa yang merangkap `(user.go)` tidak melakukan apapun di sini. Biasanya  Biasanya tanda kurung kurawa mengatur urutan operasi, tapi di sini tanda titik-lah (`.`) yang berjalan terlebih dulu, jadi tidak ada pengaruh apapun. Hanya tanda titik koma yang berpengaruh.
+=======
+Please note that parentheses around `(user.go)` do nothing here. Usually they setup the order of operations, but here the dot `.` works first anyway, so there's no effect. Only the semicolon thing matters.
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622

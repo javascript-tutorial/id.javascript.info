@@ -81,6 +81,7 @@ let x = 5;
 x = "John";
 ```
 
+<<<<<<< HEAD
 Ada 7 tipe data:
 
 - `number` untuk angka floating-point dan integer,
@@ -89,6 +90,17 @@ Ada 7 tipe data:
 - `null` -- tipe dengan nilai tunggal `null`, artinya "kosong" atau "tidak eksis",
 - `undefined` -- tipe dengan nilai tunggal `undefined`, artinya "tak ditetapkan",
 - `object` dan `symbol` -- untuk struktur data komplex dan identifier unik, kita belum mempelajari mereka sekarang.
+=======
+There are 8 data types:
+
+- `number` for both floating-point and integer numbers,
+- `bigint` for integer numbers of arbitrary length,
+- `string` for strings,
+- `boolean` for logical values: `true/false`,
+- `null` -- a type with a single value `null`, meaning "empty" or "does not exist",
+- `undefined` -- a type with a single value `undefined`, meaning "not assigned",
+- `object` and `symbol` -- for complex data structures and unique identifiers, we haven't learnt them yet.
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622
 
 Operator `typeof` mengembalikan tipe untuk satu nilai, dengan dua pengecualian:
 ```js

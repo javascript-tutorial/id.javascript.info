@@ -117,7 +117,7 @@ Beberapa varian `case` yang berbagi kode yang sama bisa dikelompokkan.
 Misalnya, jika kita ingin kode yang sama berjalan untuk `case 3` dan `case 5`:
 
 ```js run no-beautify
-let a = 2 + 2;
+let a = 3;
 
 switch (a) {
   case 4:
