@@ -1,22 +1,22 @@
-To get the number of seconds, we can generate a date using the current day and time 00:00:00, then substract it from "now".
+Untuk mendapatkan jumlah detik, kita harus membuat sebuah tanggal menggunakan hari yang sedang berlangsung dan waktu 00:00:00, dan mengurangi waktu "saat ini" dengannya.
 
-The difference is the number of milliseconds from the beginning of the day, that we should divide by 1000 to get seconds:
+Perbedaan yang didapat adalah angka dalam milidetik sejak permulaan hari, yang harus dibagi dengan 1000 agar menjadi detik:
 
 ```js run
 function getSecondsToday() {
-  let now = new Date();
+  let sekarang = new Date();
 
-  // create an object using the current day/month/year
-  let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  // Buat sebuah objek menggunakan hari/bulan/tahun saat ini
+  let hariIni = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-  let diff = now - today; // ms difference
-  return Math.round(diff / 1000); // make seconds
+  let beda = sekarang - hariIni; // beda dalam milidetik
+  return Math.round(beda / 1000); // ubah menjadi detik
 }
 
 alert( getSecondsToday() );
 ```
 
-An alternative solution would be to get hours/minutes/seconds and convert them to seconds:
+Solusi alternatif adalah cari jam/menit/detik dan ubah menjadi detik:
 
 ```js run
 function getSecondsToday() {

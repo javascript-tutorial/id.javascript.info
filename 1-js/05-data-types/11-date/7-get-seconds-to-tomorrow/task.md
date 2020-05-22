@@ -1,15 +1,15 @@
-importance: 5
+Tingkat kepentingan: 5
 
 ---
 
-# How many seconds till tomorrow?
+# Berapa detik lagi sampai besok?
 
-Create a function `getSecondsToTomorrow()` that returns the number of seconds till tomorrow.
+Buat sebuah fungsi `getSecondsToTomorrow()` yang mengembalikan jumlah detik yang tersisa hingga esok hari.
 
-For instance, if now is `23:00`, then:
+Sebagai contoh, jika sekarang `23:00`, maka:
 
 ```js
 getSecondsToTomorrow() == 3600
 ```
 
-P.S. The function should work at any day, the "today" is not hardcoded.
+P.S. Fungsi haruslah berjalan untuk semua hari, sehingga "hari ini" tidak bisa dalam bentuk hard-code.
