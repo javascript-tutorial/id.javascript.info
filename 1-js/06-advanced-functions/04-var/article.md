@@ -150,7 +150,11 @@ Orang-orang juga menyebut perilaku seperti ini "hoisting", karena semua `var` "h
 Sehingga dalam contoh di atas, cabang `if (false)` tidak pernah dijalankan, tetapi itu tidak masalah. `var` di dalamnya diproses di awal fungsi, jadi pada saat `(*)` variabel ada. 
 **Pendeklarasian hoisted, sedangkan penugasan (assigment) tidak.**
 
+<<<<<<< HEAD
 Lebih baik mendemonstrasikan dengan contoh, seperti ini:
+=======
+That's best demonstrated with an example:
+>>>>>>> cd2c7ce3c8f033e6f7861ed1b126552e41ba3e31
 
 ```js run
 function sayHi() {
@@ -209,8 +213,13 @@ Disini ekspresi fungsi dibuat dan segera dipangil. Sehingga kode dieksekusi sege
 
 Fungsi ekspresi dibungkus dengan tanda kurung `(function {...})`, karena ketika Javascript bertemu `"function"` dalam aliran kode utama, ia memahaminya sebagai awal dari Deklarasi Fungsi. tetapi sebuah Deklarasi Fungsi harus memiliki nama, sehingga kode seperti ini akan menghasilkan error:
 ```js run
+<<<<<<< HEAD
 // Coba untuk mendeklarasikan dan segera memanggil fungsi 
 function() { // <-- Error: Token tidak diharapkan (
+=======
+// Try to declare and immediately call a function
+function() { // <-- Error: Function statements require a function name
+>>>>>>> cd2c7ce3c8f033e6f7861ed1b126552e41ba3e31
 
   let message = "Hello";
 
