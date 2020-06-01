@@ -1,7 +1,11 @@
 
 # Objek
 
+<<<<<<< HEAD
 Seperti yang kita tahu dari bab <info:types>, ada tujuh tipe data di JavaScript. Enak dari mereka disebut "primitif", karena nilai mereka berisi cuma satu hal tunggal (entah string atau angka atau apapun).
+=======
+As we know from the chapter <info:types>, there are eight data types in JavaScript. Seven of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 
 Kontrasnya, objek dipakai untuk menyimpan koleksi terkunci dari berbagai data dan entitas rumit lainnya. Di JavaScript, objek menembus hampir tiap aspek bahasa. Jadi kita harus memahami mereka dulu sebelum masuk lebih dalam ke manapun.
 
@@ -92,7 +96,35 @@ let user = {
 ```
 Itu disebut koma "buntut" atau "menggantung". Memudahkan kita menambah/menghapus/memindahkan properti, karena semua barus menjadi mirip.
 
+<<<<<<< HEAD
 ## Bracket kotak
+=======
+````smart header="Object with const can be changed"
+Please note: an object declared as `const` *can* be modified.
+
+For instance:
+
+```js run
+const user = {
+  name: "John"
+};
+
+*!*
+user.name = "Pete"; // (*)
+*/!*
+
+alert(user.name); // Pete
+```
+
+It might seem that the line `(*)` would cause an error, but no. The `const` fixes the value of `user`, but not its contents.
+
+The `const` would give an error only if we try to set `user=...` as a whole.
+
+There's another way to make constant object properties, we'll cover it later in the chapter <info:property-descriptors>.
+````
+
+## Square brackets
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 
 Untuk properti multi-kata, akses dot tak bekerja:
 
@@ -101,7 +133,13 @@ Untuk properti multi-kata, akses dot tak bekerja:
 user.likes birds = true
 ```
 
+<<<<<<< HEAD
 Ini karena dot mensyaratkan key merupakan identifier variabel yang valid. Yaitu: tak ada spasi dan limitasi lain.
+=======
+JavaScript doesn't understand that. It thinks that we address `user.likes`, and then gives a syntax error when comes across unexpected `birds`.
+
+The dot requires the key to be a valid variable identifier. That implies: contains no spaces, doesn't start with a digit and doesn't include special characters (`$` and `_` are allowed).
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 
 Ada alternatif "notasi bracket kotak" yang bekerja dengan string apapun:
 
@@ -159,7 +197,11 @@ alert( user.key ) // undefined
 
 ### Properti terkomputasi
 
+<<<<<<< HEAD
 Kita bisa memakai bracket kotak dalam literal objek. Itu disebut *properti terkomputasi*.
+=======
+We can use square brackets in an object literal, when creating an object. That's called *computed properties*.
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 
 Misalnya:
 
@@ -203,6 +245,7 @@ Bracket kotak jauh lebih kuat dari notasi dot. Mereka membolehkan variabel dan n
 
 Jadi seringnya, saat nama properti diketahui dan simpel, dot dipakai. Dan jika kita butuh sesuatu yang rumit, maka kita ganti ke bracket kotak.
 
+<<<<<<< HEAD
 
 
 ````smart header="Kata khusus dibolehkan sebagai nama properti"
@@ -241,6 +284,9 @@ Ada juga struktur data lain [Map](info:map-set), yang akan kita pelajari di bab 
 
 
 ## Steno nilai properti
+=======
+## Property value shorthand
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 
 Di kode riil kita sering memakai variabel sebagai nilai untuk nama properti.
 
@@ -250,7 +296,7 @@ Misalnya:
 function makeUser(name, age) {
   return {
     name: name,
-    age: age
+    age: age,
     // ...other properties
   };
 }
@@ -267,8 +313,13 @@ Ketimbang `name:name` kita bisa menuliskan `name`, seperti ini:
 function makeUser(name, age) {
 *!*
   return {
+<<<<<<< HEAD
     name, // sama dengan name: name
     age   // sama dengan age: age
+=======
+    name, // same as name: name
+    age,  // same as age: age
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
     // ...
   };
 */!*
@@ -284,9 +335,63 @@ let user = {
 };
 ```
 
+<<<<<<< HEAD
 ## Cek existensi
 
 Satu fitur objek penting ialah kita bisa melakukan akses ke properti. Takkan ada galat jika properti tak ada! Mengakses properti yang tak ada hanya mengembalikan `undefined`. Ia menyediakan cara paling umum untuk mengetes existensi properti -- mengambilnya dan membandingan dengan undefined:
+=======
+
+## Property names limitations
+
+As we already know, a variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+
+But for an object property, there's no such restriction:
+
+```js run
+// these properties are all right
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+};
+
+alert( obj.for + obj.let + obj.return );  // 6
+```
+
+In short, there are no limitations on property names. They can be any strings or symbols (a special type for identifiers, to be covered later).
+
+Other types are automatically converted to strings.
+
+For instance, a number `0` becomes a string `"0"` when used as a property key:
+
+```js run
+let obj = {
+  0: "test" // same as "0": "test"
+};
+
+// both alerts access the same property (the number 0 is converted to string "0")
+alert( obj["0"] ); // test
+alert( obj[0] ); // test (same property)
+```
+
+There's a minor gotcha with a special property named `__proto__`. We can't set it to a non-object value:
+
+```js run
+let obj = {};
+obj.__proto__ = 5; // assign a number
+alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended
+```
+
+As we see from the code, the assignment to a primitive `5` is ignored.
+
+We'll cover the special nature of `__proto__` in [subsequent chapters](info:prototype-inheritance), and suggest the [ways to fix](info:prototype-methods) such behavior.
+
+## Property existence test, "in" operator
+
+A notable feature of objects in JavaScript, compared to many other languages, is that it's possible to access any property. There will be no error if the property doesn't exist!
+
+Reading a non-existing property just returns `undefined`. So we can easily test whether the property exists:
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 
 ```js run
 let user = {};
@@ -294,7 +399,11 @@ let user = {};
 alert( user.noSuchProperty === undefined ); // true artinya "tak ada properti macam ini"
 ```
 
+<<<<<<< HEAD
 Ada juga operator spesial `"in"` untuk mengecek existensi properti.
+=======
+There's also a special operator `"in"` for that.
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 
 Syntaxnya:
 ```js
@@ -312,17 +421,30 @@ alert( "blabla" in user ); // false, user.blabla tak ada
 
 Tolong ingat bahwa di sebelah kiri `in` harus ada *nama properti*. Itu biasanya string yang dikuotasi.
 
+<<<<<<< HEAD
 Jika kita membuang quotasi, itu artinya variabel berisi nama sungguhan akan dites. Misalnya:
+=======
+If we omit quotes, that means a variable, it should contain the actual name to be tested. For instance:
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 
 ```js run
 let user = { age: 30 };
 
 let key = "age";
+<<<<<<< HEAD
 alert( *!*key*/!* in user ); // true, mengambil nama dari kunci dan mengecek properti tersebut
 ```
 
 ````smart header="Menggunakan \"in\" untuk properti yang menyimpan `undefined`"
 Biasanya, pembandingan ketat `"=== undefined"` mengecek existensi properti dengan baik. Tapi ada kasus spesial saat ia gagal, tapi `"in"` bekerja dengan benar.
+=======
+alert( *!*key*/!* in user ); // true, property "age" exists
+```
+
+Why does the `in` operator exist? Isn't it enough to compare against `undefined`?
+
+Well, most of the time the comparison with `undefined` works fine. But there's a special case when it fails, but `"in"` works correctly.
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 
 Itu ialah saat ada properti objek, tapi menyimpan `undefined`:
 
@@ -336,11 +458,18 @@ alert( obj.test ); // it's undefined, so - no such property?
 alert( "test" in obj ); // true, the property does exist!
 ```
 
+<<<<<<< HEAD
 
 Di contoh kode di atas, properti `obj.test` ada secara teknis. Tapi operator `in` bekerja dengan baik.
 
 Situasi seperti ini jarang terjadi, karena `undefined` biasanya tak ditetapkan. Kita sering memakai `null` untuk nilai "unknown" atau "empty". Jadi operator `in` merupakan tamu exotik dalam kode.
 ````
+=======
+In the code above, the property `obj.test` technically exists. So the `in` operator works right.
+
+Situations like this happen very rarely, because `undefined` should not be explicitly assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
+
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 
 ## Loog "for..in"
 
@@ -375,8 +504,12 @@ Catat bahwa semua konstruksi "for" membolehkan kita mendeklarasi variabel loopin
 
 Juga, kita bisa memakai nama variabel lain di sini ketimbang `key`. Misalnya, `"for (let prop in obj)"` juga banyak dipakai.
 
+<<<<<<< HEAD
 
 ### Berurut seperti objek
+=======
+### Ordered like an object
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 
 Apa objek terurut? Dengan kata lain, jika kita meloop satu objek keseluruhan, apa kita mengambil semua properti dengan urutan yang sama saat mereka ditambahkan? Apa kita bisa percaya itu?
 
@@ -459,6 +592,7 @@ for (let code in codes) {
 
 Sekarang itu bekerja sesuai yang diinginkan.
 
+<<<<<<< HEAD
 ## Mengkopi dengan referensi
 
 Salah satu perbedaan fundamental dari objek vs primitif ialah mereka diurutkan dan dikopi "dengan referensi".
@@ -715,6 +849,8 @@ There's a standard algorithm for deep cloning that handles the case above and mo
 
 
 
+=======
+>>>>>>> 69e44506c3e9dac74c282be37b55ba7ff122ae74
 ## Summary
 
 Objects are associative arrays with several special features.
@@ -731,10 +867,6 @@ Additional operators:
 - To delete a property: `delete obj.prop`.
 - To check if a property with the given key exists: `"key" in obj`.
 - To iterate over an object: `for (let key in obj)` loop.
-
-Objects are assigned and copied by reference. In other words, a variable stores not the "object value", but a "reference" (address in memory) for the value. So copying such a variable or passing it as a function argument copies that reference, not the object. All operations via copied references (like adding/removing properties) are performed on the same single object.
-
-To make a "real copy" (a clone) we can use `Object.assign` or  [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
 What we've studied in this chapter is called a "plain object", or just `Object`.
 
