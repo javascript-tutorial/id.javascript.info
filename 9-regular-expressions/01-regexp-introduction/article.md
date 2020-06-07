@@ -1,14 +1,14 @@
 # Pola dan flag
 
-Expresi reguler merupakan cara yang kuat untuk mencari dan mengganti dalam teks.
+Ekspresi reguler merupakan cara ampuh untuk mencari dan mengganti string.
 
-Di JavaScript, mereka tersedia via objek [RegExp](mdn:js/RegExp), dan bisa diintegrasi dalam metode string.
+Di JavaScript, mereka tersedia melalui objek [RegExp](mdn:js/RegExp) dan juga terintegrasi dalam metode string.
 
-## Expresi Reguler
+## Ekspresi Reguler
 
-Expresi reguler ("regexp", atau hanya "reg") terdiri dari *pola* dan *flag* opsional.
+Ekspresi reguler ("regexp", atau hanya "reg") terdiri dari *pola* dan *flag* opsional.
 
-Ada dua syntax yang bisa dipakai untuk membuat objek expresi reguler.
+Ada dua syntax yang bisa dipakai untuk membuat objek ekspresi reguler.
 
 Syntax panjang:
 
@@ -23,13 +23,13 @@ regexp = /pattern/; // tanpa flag
 regexp = /pattern/gmi; // dengan flag g,m dan i (untuk segera ditutup)
 ```
 
-Garis miring `pattern:/.../` memberitahu JavaScript bahwa kita sedang membuat expresi regular. Mereka memiliki peran yang sama dengan tanda petik untuk *string*.
+Garis miring `pattern:/.../` memberitahu JavaScript bahwa kita sedang membuat ekspresi regular. Mereka memiliki peran yang sama dengan tanda petik untuk *string*.
 
-Untuk kedua kasus `regexp` menjadi object kelas `RegExp` built-in.
+Untuk kedua kasus di atas `regexp` menjadi instance dari built-in object kelas `RegExp`.
 
-Perbedaan utama antara kedua syntax ini iadalah garis miring `pattern:/.../` melarang penyisipan expresi (seperti string dengan `${...}`). Mereka benar-benar static.
+Perbedaan utama antara kedua syntax ini adalah garis miring `pattern:/.../` melarang penyisipan ekspresi (seperti string dengan `${...}`). Mereka benar-benar static.
 
-Garis miring digunakan saat kita tahu expresi regular saat menulis kode -- dan itu situasi paling umum. Sedangkan `RegExp baru`, lebih sering dipakai saat kita harus membuat regexp baru "on the fly" dari string yang digenerate secara dinamis. Misalnya:
+Garis miring digunakan saat kita tahu ekspresi regular saat menulis kode -- dan itu situasi paling umum. Sedangkan `RegExp baru`, lebih sering dipakai saat kita harus membuat regexp baru "on the fly" dari string yang dihasilkan secara dinamis. Misalnya:
 
 ```js
 let tag = prompt("What tag do you want to find?", "h2");
