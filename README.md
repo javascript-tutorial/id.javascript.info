@@ -15,7 +15,7 @@ We also want to collaborate with others in this tutorial.
 
 Is there something wrong? Are there topics missing? Explain to everyone, submit as PR. 👏
 
-**You can edit text in any editor. **This tutorial uses the "markdown" format which is sophisticated, easy to understand. If you want to see how it looks on-site, there is a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
+**You can edit text in any editor.** This tutorial uses the "markdown" format which is sophisticated, easy to understand. If you want to see how it looks on-site, there is a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
 
 A list of contributors is available at <https://javascript.info/about#contributors>.
 
