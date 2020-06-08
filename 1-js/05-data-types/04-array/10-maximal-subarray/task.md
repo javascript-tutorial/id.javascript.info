@@ -10,15 +10,19 @@ Tugasnya adalah: menemukan *subarray* `arr` yang berdampingan dengan nilai maksi
 
 Tulis fungsi `getMaxSubSum(arr)` yang akan mengembalikan nilai penjumlahan tersebut.
 
+<<<<<<< HEAD
 Sebagai contoh: 
+=======
+For instance:
+>>>>>>> d35baee32dcce127a69325c274799bb81db1afd8
 
 ```js
-getMaxSubSum([-1, *!*2, 3*/!*, -9]) = 5 (the sum of highlighted items)
-getMaxSubSum([*!*2, -1, 2, 3*/!*, -9]) = 6
-getMaxSubSum([-1, 2, 3, -9, *!*11*/!*]) = 11
-getMaxSubSum([-2, -1, *!*1, 2*/!*]) = 3
-getMaxSubSum([*!*100*/!*, -9, 2, -3, 5]) = 100
-getMaxSubSum([*!*1, 2, 3*/!*]) = 6 (take all)
+getMaxSubSum([-1, *!*2, 3*/!*, -9]) == 5 (the sum of highlighted items)
+getMaxSubSum([*!*2, -1, 2, 3*/!*, -9]) == 6
+getMaxSubSum([-1, 2, 3, -9, *!*11*/!*]) == 11
+getMaxSubSum([-2, -1, *!*1, 2*/!*]) == 3
+getMaxSubSum([*!*100*/!*, -9, 2, -3, 5]) == 100
+getMaxSubSum([*!*1, 2, 3*/!*]) == 6 (take all)
 ```
 
 Jika semua *item* adalah negatif, hal tersebut berarti kita tidak mengambil apapun (*subarray* kosong), jadi jumlahnya sama dengan nol:
