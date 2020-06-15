@@ -198,7 +198,11 @@ let prices = Object.fromEntries([
 alert(prices.orange); // 2
 ```
 
+<<<<<<< HEAD
 Kita bisa menggunakan `Object.fromEntries` untuk mendapatkan objek biasa dari `Map`.
+=======
+We can use `Object.fromEntries` to get a plain object from `Map`.
+>>>>>>> b52aa942a8e9b75ba8a65124c22593171e273bb6
 
 Contoh: Kita menyimpan data di dalam `Map`, tapi kita perlu mengirimnya ke kode pihak ketiga yang mengharapkan objek biasa.
 
@@ -220,7 +224,11 @@ let obj = Object.fromEntries(map.entries()); // ciptakan objek biasa (*)
 alert(obj.orange); // 2
 ```
 
+<<<<<<< HEAD
 Panggilan kepada `map.entries()` mengembalikan array daripada pasangan kunci/nilai, persis dalam format yang benar untuk `Object.fromEntries`.
+=======
+A call to `map.entries()` returns an iterable of key/value pairs, exactly in the right format for `Object.fromEntries`.
+>>>>>>> b52aa942a8e9b75ba8a65124c22593171e273bb6
 
 Kita juga bisa membuat barisan `(*)` lebih pendek:
 ```js

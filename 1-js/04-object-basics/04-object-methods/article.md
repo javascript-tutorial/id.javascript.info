@@ -63,7 +63,11 @@ user.sayHi(); // Hello!
 ```smart header="Object-oriented programming"
 Ketika kita menulis kode kita menggunakan objek-objek untuk merepresentasikan benda, itulah yang disebut sebagai [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), disingkat menjadi: "OOP".
 
+<<<<<<< HEAD
 OOP itu adalah sebuah pembahasan besar, ilmu yang menarik dari dirinya sendiri. Bagaimana cara memilih (perwujudan) benda yang benar? Bagaimana cara mengatur interaksi di antara benda-benda tersebut? Itulah arsitektur, dan literatur-literatur yang lebih besar lagi tentang topik tersebut, like "Design Patterns: Elements of Reusable Object-Oriented Software" oleh E.Gamma, R.Helm, R.Johnson, J.Vissides atau "Object-Oriented Analysis and Design with Applications" oleh G.Booch, dan masih banyak lagi.
+=======
+OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the interaction between them? That's architecture, and there are great books on that topic, like "Design Patterns: Elements of Reusable Object-Oriented Software" by E. Gamma, R. Helm, R. Johnson, J. Vissides or "Object-Oriented Analysis and Design with Applications" by G. Booch, and more.
+>>>>>>> b52aa942a8e9b75ba8a65124c22593171e273bb6
 ```
 ### Metode ringkas
 
@@ -233,6 +237,7 @@ Konsep run-time mengeveluasi `this` memiliki kelebihan dan kekurangan sendiri. D
 Di sini posisi kita tidak untuk menghakimi apakah pilihan rancangan bahasa pemrograman ini baik atau buruk. Kita akan mengerti bagaimana bekerja dengan hal itu, serta bagaimana cara mendapatkan keuntungan dari hal tersebut dan menghindari adanya masalah.
 ````
 
+<<<<<<< HEAD
 ## Internal: Jenis Referensi
 
 ```warn header="Fitur mendalam bahasa pemrogaman"
@@ -326,6 +331,9 @@ Operasi lain seperti penugasan `hi = user.hi` menyingkirkan tipe referensi sepen
 Jadi, sebagai hasilnya, nilai dari `this` hanya dioper dengan cara yang tepat jika  fungsi tersebut dipanggil langsung menggunakan sebuah tanda titik `obj.method()` atau sintaks tanda kurung siku `obj['method']()` (keduanya melakukan hals yang sama). Selanjutnya pada tutorial ini, kita akan mempelajari berbagai macam cara untuk mencari solusi permasalah seperti [func.bind()](/bind#solution-2-bind).
 
 ## Fungsi *arrow* tidak memiliki "this"
+=======
+## Arrow functions have no "this"
+>>>>>>> b52aa942a8e9b75ba8a65124c22593171e273bb6
 
 Fungsi-fungsi *arrow* itu istimewa: fungsi tersebut tidak memiliki `this` "milik fungsi itu sendiri". Jika kita mereferensikan `this` dari fungsi demikian, hal itu didapat dari fungsi "normal" di luar.
 

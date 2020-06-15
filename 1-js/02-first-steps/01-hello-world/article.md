@@ -45,8 +45,13 @@ Tag `<script>` mengandung kode JavaScript yang otomatis dieksekusi ketika peramb
 
 Tag `<script>` punya beberapa attribut yang jarang dipakai akhir-akhir ini tapi masih bisa ditemukan dalam kode lama:
 
+<<<<<<< HEAD
 Atribut `type`: <code>&lt;script <u>type</u>=...&gt;</code>
 : Standar HTML lawas, HTML4, mengharuskan script memiliki `type`. Biasanya `type="text/javascript"`. Sekarang sudah tak diperlukan. Selain itu, standar HTML modern, HTML5, menguubah total makna atribut ini. Sekarang, ia bisa digunakan untuk modul JavaScript. Tapi itu topik berat; kita akan membahas modul di bagian lain dari tutorial ini.
+=======
+The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
+: The old HTML standard, HTML4, required a script to have a `type`. Usually it was `type="text/javascript"`. It's not required anymore. Also, the modern HTML standard totally changed the meaning of this attribute. Now, it can be used for JavaScript modules. But that's an advanced topic, we'll talk about modules in another part of the tutorial.
+>>>>>>> b52aa942a8e9b75ba8a65124c22593171e273bb6
 
 Atribut `language`: <code>&lt;script <u>language</u>=...&gt;</code>
 : Atribut ini untuk menampilkan bahasa script. Atribut ini tak lagi dibutuhkan karena JavaScript adalah bahasa default. Tak usah menggunakan itu lagi.
@@ -78,7 +83,7 @@ Di sini, `/path/to/script.js` adalah jalur absolut ke file script dari root siti
 Kamu bisa memasang URL penuh juga. Misalnya:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
 ```
 
 Untuk menempelkan beberapa script, gunakan tag berlapis:
