@@ -1,6 +1,14 @@
 # Tipe data
 
+<<<<<<< HEAD
 Variabel di JavaScript bisa mengandung data apapun. Satu variabel awalnya string bisa berubah jadi angka:
+=======
+A value in JavaScript is always of a certain type. For example, a string or a number.
+
+There are eight basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
+
+We can put any type in a variable. For example, a variable can at one moment be a string and then store a number:
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
 
 ```js
 // no error
@@ -8,9 +16,13 @@ let message = "hello";
 message = 123456;
 ```
 
+<<<<<<< HEAD
 Bahasa pemrograman yang memperbolehkan hal semacam ini dibsebut "dynamically typed", yang artinya ada tipe data, tapi variabel tak terikat ke tipe data apapun.
 
 Ada tujuh tipe data dasar di JavaScript. Di sini, kita akan mengcover mereka secara umum dan di bab berikutnya kita akan berbicara tentang setiap dari mereka secara detil.
+=======
+Programming languages that allow such things, such as JavaScript, are called "dynamically typed", meaning that there exist data types, but variables are not bound to any of them.
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
 
 ## Number
 
@@ -64,21 +76,27 @@ Kita akan melihat lebih tentang cara bekerja dengan angka di bab <info:number>.
 
 ## BigInt
 
+<<<<<<< HEAD
   Di JavaScript, tipe "number" tidak bisa mewakili nilai integer yang lebih dari <code>2<sup>53</sup></code> (atau kurang dari <code>-2<sup>53</sup></code> untuk negatives), itu batasan teknikal yang disebabkan representasi internal mereka. Itu sekitar 16 digit desimal, jadi untuk banyak tujuan limitasi itu bukan masalah, tapi kadang kita butuh butuh big number yang sangat besar, misanya: cryptography or microsecond-precision timestamps.
+=======
+In JavaScript, the "number" type cannot represent integer values larger than <code>(2<sup>53</sup>-1)</code> (that's `9007199254740991`), or less than <code>-(-2<sup>53</sup>-1)</code> for negatives. It's a technical limitation caused by their internal representation.
+
+For most purposes that's quite enough, but sometimes we need really big numbers, e.g. for cryptography or microsecond-precision timestamps.
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
 
 `BigInt` type was recently added to the language to represent integers of arbitrary length.
 
-A `BigInt` is created by appending `n` to the end of an integer literal:
+A `BigInt` value is created by appending `n` to the end of an integer:
 
 ```js
 // the "n" at the end means it's a BigInt
 const bigInt = 1234567890123456789012345678901234567890n;
 ```
 
-As `BigInt` numbers are rarely needed, we devoted them a separate chapter <info:bigint>.
+As `BigInt` numbers are rarely needed, we don't cover them here, but devoted them a separate chapter <info:bigint>. Read it when you need such big numbers.
 
 ```smart header="Compatability issues"
-Right now `BigInt` is supported in Firefox and Chrome, but not in Safari/IE/Edge.
+Right now `BigInt` is supported in Firefox/Chrome/Edge, but not in Safari/IE.
 ```
 
 ## String
@@ -163,7 +181,11 @@ Di JavaScript, `null` tidak "mereferensi ke objek yang tak ada" atau "null point
 
 Ia cuma nilai spesial yang mewakili "hampa", "kosong" atau "nilai tak-diketahui".
 
+<<<<<<< HEAD
 Kode di atas menyatakan bahwa `age` tak diketahui atau kosong untuk beberapa alasan.
+=======
+The code above states that `age` is unknown.
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
 
 ## Nilai "undefined"
 
@@ -174,30 +196,50 @@ Arti `undefined` ialah "nilai yang tak ditetapkan".
 Jika variabel dideklarasi, namun tak ditetapkan, maka nilainya `undefined`:
 
 ```js run
-let x;
+let age;
 
+<<<<<<< HEAD
 alert(x); // menampilkan "undefined"
 ```
 
 Secara teknis, mungkin saja menetapkan `undefined` ke variabel apapun:
-
-```js run
-let x = 123;
-
-x = undefined;
-
-alert(x); // "undefined"
+=======
+alert(age); // shows "undefined"
 ```
 
+Technically, it is possible to explicitly assign `undefined` to a variable:
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
+
+```js run
+let age = 100;
+
+// change the value to undefined
+age = undefined;
+
+alert(age); // "undefined"
+```
+
+<<<<<<< HEAD
 ...Tapi kita tidak menyarankan itu. Normalnya, kita gunakan `null` untuk menetapkan nilai "kosong" atau "tak-diketahui" ke variabel, dan kita gunakan `undefined` untuk pengecekan seperti melihat apakah variabel telah ditetapkan.
+=======
+...But we don't recommend doing that. Normally, one uses `null` to assign an "empty" or "unknown" value to a variable, while `undefined` is reserved as a default initial value for unassigned things.
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
 
 ## Objek dan Simbol
 
 Tipe `object` itu special.
 
+<<<<<<< HEAD
 Semua tipe lain disebut "primitive" karena nilainya bisa mengandung sesuatu yang tunggal (bisa jadi string atau angka atau apapun). Sebaliknya, objek digunakan untuk menyimpan koleksi data dan entitas lebih rumit. Kita akan berhadapan dengannya nanti di bab <info:object> setelah kita belajar tentang primitive.
 
 Tipe `symbol` digunakan untuk membuat identifier unik untuk objek. Kita harus menyebutkannya demi kelengkapan, tapi kita akan mempelajarinya setelah objek.
+=======
+All other types are called "primitive" because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections of data and more complex entities.
+
+Being that important, objects deserve a special treatment. We'll deal with them later in the chapter <info:object>, after we learn more about primitives.
+
+The `symbol` type is used to create unique identifiers for objects. We have to mention it here for the sake of completeness, but also postpone the details till we know objects.
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
 
 ## Operator typeof [#type-typeof]
 
@@ -240,14 +282,21 @@ typeof alert // "function"  (3)
 
 Tiga baris terakhir mungkin butuh penjelasan tambahan:
 
+<<<<<<< HEAD
 1. `Math` ialah objek built-in yang menyediakan operasi matematik. Kita akan belajar itu di bab <info:number>. Di sini, ia cuma sekedar contoh dari objek.
 2. Hasil `typeof null` yaitu `"object"`. Itu salah. Ia merupakan error yang terkenal resmi dalam `typeof`, yang dijaga untuk kompatibilitas. Tentu saja, `null` bukanlah objek. Ia merupakan nilai spesial dengan tipe terpisah miliknya sendiri. Jadi, lagi, ini merupakan error dalam bahasa.
 3. Hasil dari `typeof alert` yaitu `"function"`, karena `alert` merupakan fungsi. Kita akan belajar fungsi di bab berikutnya di mana kita juga akan melihat bahwa tak ada tipe "fungsi" spesial di JavaScript. Fungsi merupakan bagian dari tipe objek. Tapi `typeof` memperlakukan mereka secara berbeda, yang mengembalikan `"fungsi"`. Itu tak sepenuhnya benar, tapi sangat nyaman pada praktiknya.
+=======
+1. `Math` is a built-in object that provides mathematical operations. We will learn it in the chapter <info:number>. Here, it serves just as an example of an object.
+2. The result of `typeof null` is `"object"`. That's an officially recognized error in `typeof` behavior, coming from the early days of JavaScript and kept for compatibility. Definitely, `null` is not an object. It is a special value with a separate type of its own.
+3. The result of `typeof alert` is `"function"`, because `alert` is a function. We'll study functions in the next chapters where we'll also see that there's no special "function" type in JavaScript. Functions belong to the object type. But `typeof` treats them differently, returning `"function"`. That also comes from the early days of JavaScript. Technically, such behavior isn't correct, but can be convenient in practice.
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
 
 ## Kesimpulan
 
 Ada 7 tipe data dasar dalam JavaScript.
 
+<<<<<<< HEAD
 - `number` untuk angka jenis manapun: integer atau floating-point.
 - `bigint` untuk angka integer dengan panjang sembarang.
 - `string` untuk string. String mungkin punya satu atau lebih karakter, tak ada tipe katakter tunggal terpisah.
@@ -256,6 +305,16 @@ Ada 7 tipe data dasar dalam JavaScript.
 - `undefined` untuk nilai yang belum ditetapkan -- tipe mandiri yang punya nilai tunggal `undefined`.
 - `object` untuk struktur data lebih rumit.
 - `symbol` untuk identifier unik.
+=======
+- `number` for numbers of any kind: integer or floating-point, integers are limited by ±2<sup>53</sup>.
+- `bigint` is for integer numbers of arbitrary length.
+- `string` for strings. A string may have zero or more characters, there's no separate single-character type.
+- `boolean` for `true`/`false`.
+- `null` for unknown values -- a standalone type that has a single value `null`.
+- `undefined` for unassigned values -- a standalone type that has a single value `undefined`.
+- `object` for more complex data structures.
+- `symbol` for unique identifiers.
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
 
 Operator `typeof` memungkinkan kita melihat tipe mana yang disimpan dalam variable.
 

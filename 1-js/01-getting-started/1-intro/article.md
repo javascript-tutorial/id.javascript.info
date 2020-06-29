@@ -4,7 +4,11 @@ Mari kita lihat apa yang spesial dari JavaScript, apa saja yang bisa kita buat m
 
 ## Apa itu JavaScript?
 
+<<<<<<< HEAD
 *JavaScript* awalnya dibuat untuk *"membuat halaman web menjadi hidup"*.
+=======
+*JavaScript* was initially created to "make web pages alive".
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
 
 Program yang ada dalam bahasa ini disebut *script*. Script ini bisa ditulis langsung ke dalam kode HTML dari sebuah web dan berjalan otomatis saat halaman dimuat.
 
@@ -63,7 +67,11 @@ Kemampuan JavaScript yang ada di dalam browser terbatas demi keamanan pengguna. 
 
 Contoh keterbatasan tersebut meliputi:
 
+<<<<<<< HEAD
 - JavaScript pada halaman web tak boleh membaca/mengubah file semaunya pada hard disk, mengcopy script tersebut, atau mengeksekusi program. Ia tak punya akses langsung ke OS system functions.
+=======
+- JavaScript on a webpage may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS functions.
+>>>>>>> 340ce4342100f36bb3c4e42dbe9ffa647d8716c8
 
     Browser-browser modern memperbolehkan JavaScript mengakses file, tapi aksesnya dibatasi dan tersedia hanya jika pengguna melakukan hal tertentu, misalnya seperti "menjatuhkan" file ke dalam jendela browser atau memilih file via tag `<input>`.
 
