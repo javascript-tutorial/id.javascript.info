@@ -11,6 +11,7 @@ Di bab paling awal tentang [variabel](info:variables), kami menyebutkan tiga car
 2. `const`
 3. `var`
 
+<<<<<<< HEAD
 `let` dan `const` berperilaku dengan cara yang sama persis dalam hal lingkup leksikal.
 
 Tetapi `var` adalah mahluk buas yang sanggat berbeda, berasal dari masa lalu. Umumnya tidak digunakan dalam scripts modern, tetapi masih mengintai.
@@ -25,15 +26,29 @@ function sayHi() {
 
   alert(phrase); // Hello
 }
+=======
+The `var` declaration is similar to `let`. Most of the time we can replace `let` by `var` or vice-versa and expect things to work:
 
-sayHi();
+```js run
+var message = "Hi";
+alert(message); // Hi
+```
+>>>>>>> 445bda39806050acd96f87166a7c97533a0c67e9
 
+But internally `var` is a very different beast, that originates from very old times. It's generally not used in modern scripts, but still lurks in the old ones.
+
+<<<<<<< HEAD
 alert(phrase); // Error, frasa tidak didefinisikan
 ```
 
 ... Tetapi inilah perbedaanya.
 
 ## "var" tidak memiliki ruang lingkup blok
+=======
+If you don't plan on meeting such scripts you may even skip this chapter or postpone it.
+
+On the other hand, it's important to understand differences when migrating old scripts from `var` to `let`, to avoid odd errors.
+>>>>>>> 445bda39806050acd96f87166a7c97533a0c67e9
 
 Variabel, dideklarasikan dengan `var`, baik function-wide ataupun global. Mereka terlihat melalui blok.
 
@@ -93,7 +108,31 @@ alert(phrase); // Error: frasa tidak terdefinisi (periksa Developer Console)
 
 Seperti yang bisa kita lihat `var` menembus `if`, `for` atau blok kode lainnya. Itu karena sejak dahulu di blok Javascript tidak memiliki Lingkungan Leksikal. dan `var` adalah sisanya. 
 
+<<<<<<< HEAD
 ## Deklarasi "var" diproses saat menjalankan fungsi
+=======
+## "var" tolerates redeclarations
+
+If we declare the same variable with `let` twice in the same scope, that's an error:
+
+```js run
+let user;
+let user; // SyntaxError: 'user' has already been declared
+```
+
+With `var`, we can redeclare a variable any number of times. If we use `var` with an already-declared variable, it's just ignored:
+
+```js run
+var user = "Pete";
+
+var user = "John"; // this "var" does nothing (already declared)
+// ...it doesn't trigger an error
+
+alert(user); // John
+```
+
+## "var" variables can be declared below their use
+>>>>>>> 445bda39806050acd96f87166a7c97533a0c67e9
 
 Deklarasi `var` diproses ketika fungsi dimulai (atau skrip dijalankan untuk global).
 
@@ -150,7 +189,11 @@ Orang-orang juga menyebut perilaku seperti ini "hoisting", karena semua `var` "h
 Sehingga dalam contoh di atas, cabang `if (false)` tidak pernah dijalankan, tetapi itu tidak masalah. `var` di dalamnya diproses di awal fungsi, jadi pada saat `(*)` variabel ada. 
 **Pendeklarasian hoisted, sedangkan penugasan (assigment) tidak.**
 
+<<<<<<< HEAD
 Lebih baik mendemonstrasikan dengan contoh, seperti ini:
+=======
+That's best demonstrated with an example:
+>>>>>>> 445bda39806050acd96f87166a7c97533a0c67e9
 
 ```js run
 function sayHi() {
@@ -209,8 +252,13 @@ Disini ekspresi fungsi dibuat dan segera dipangil. Sehingga kode dieksekusi sege
 
 Fungsi ekspresi dibungkus dengan tanda kurung `(function {...})`, karena ketika Javascript bertemu `"function"` dalam aliran kode utama, ia memahaminya sebagai awal dari Deklarasi Fungsi. tetapi sebuah Deklarasi Fungsi harus memiliki nama, sehingga kode seperti ini akan menghasilkan error:
 ```js run
+<<<<<<< HEAD
 // Coba untuk mendeklarasikan dan segera memanggil fungsi 
 function() { // <-- Error: Token tidak diharapkan (
+=======
+// Try to declare and immediately call a function
+function() { // <-- Error: Function statements require a function name
+>>>>>>> 445bda39806050acd96f87166a7c97533a0c67e9
 
   let message = "Hello";
 

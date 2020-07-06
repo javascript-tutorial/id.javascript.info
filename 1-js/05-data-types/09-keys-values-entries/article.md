@@ -74,7 +74,11 @@ Biasanya itu mudah. Tapi jika kita mau kunci simbolis juga, ada method lain [Obj
 
 Objek kekurangan banyak method yang ada untuk arrays, contoh `map`, `filter` dan yang lainnya.
 
+<<<<<<< HEAD
 Jika kita ingin mengapplikasikan method-method tersebut, kita bisa menggunakan `Object.entries` diikuti oleh `Object.fromEntries`:
+=======
+If we'd like to apply them, then we can use `Object.entries` followed by `Object.fromEntries`:
+>>>>>>> 445bda39806050acd96f87166a7c97533a0c67e9
 
 1. Gunakan `Object.entries(obj)` untuk mendapatkan array pasangan kunci/nilai dari `obj`.
 2. Gunakan method array di array tersebut, contoh `map`. 
