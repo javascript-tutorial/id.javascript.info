@@ -125,6 +125,7 @@ Jelaskan arsitekturnya
 Parameter dan kegunaan fungsi dokumen
 : Ada syntax spesial [JSDoc](http://en.wikipedia.org/wiki/JSDoc) untuk mendokumentasi fungsi: kegunaan, parameter, nilai kembalian.
 
+<<<<<<< HEAD
     Misalnya:
     ```js
     /**
@@ -144,6 +145,27 @@ Parameter dan kegunaan fungsi dokumen
     Oya, banyak editor seperti [WebStorm](https://www.jetbrains.com/webstorm/) bisa memahami mereka juga dan memakai mereka untuk menyediakan autocomplete dan beberapa pengecekan-kode otomatis.
 
     Juga, Ada tool seperti [JSDoc 3](https://github.com/jsdoc3/jsdoc) yang bisa menggenerate dokumentasi-HTML dari komentar. Kamu bisa baca informasi lebih tentang JSDoc di <http://usejsdoc.org/>.
+=======
+For instance:
+```js
+/**
+ * Returns x raised to the n-th power.
+ *
+ * @param {number} x The number to raise.
+ * @param {number} n The power, must be a natural number.
+ * @return {number} x raised to the n-th power.
+ */
+function pow(x, n) {
+  ...
+}
+```
+
+Such comments allow us to understand the purpose of the function and use it the right way without looking in its code.
+
+By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) can understand them as well and use them to provide autocomplete and some automatic code-checking.
+
+Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
+>>>>>>> c3a11c85e54153ebb137b5541b1d1f751c804439
 
 Kenapa tugas ini diselesaikan begini?
 : Apa yang tertulis itu penting. Tapi apa yang *tak* tertilis mungkin lebih penting lagi untuk memahami yang terjadi. Kenapa tugas ini diselesaikan tepat seperti ini? Kodenya tak memberikan jawaban.
