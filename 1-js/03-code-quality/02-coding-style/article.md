@@ -86,7 +86,7 @@ Misalnya:
 ```js
 // backtick quote ` memperbolehkan memecah string jadi beberapa baris
 let str = `
-  Ecma International's TC39 is a group of JavaScript developers,
+  ECMA International's TC39 is a group of JavaScript developers,
   implementers, academics, and more, collaborating with the community
   to maintain and evolve the definition of JavaScript.
 `;
@@ -285,8 +285,13 @@ Tentu saja, tim bisa saja  menulis panduan gaya mereka sendiri, tapi biasanya me
 
 Beberapa pilihan populer:
 
+<<<<<<< HEAD
 - [Panduan Gaya JavaScript Google](https://google.github.io/styleguide/javascriptguide.xml)
 - [Panduan Gaya JavaScript Airbnb](https://github.com/airbnb/javascript)
+=======
+- [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
+- [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+>>>>>>> ae1171069c2e50b932d030264545e126138d5bdc
 - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
 - [StandardJS](https://standardjs.com/)
 - (plus banyak lainnya)

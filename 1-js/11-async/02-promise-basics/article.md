@@ -25,11 +25,16 @@ Fungsi yang dilewatkan ke `new Promise` disebut sebagai *exekutor*. Ketika `new 
 
 Argumen `resolve` dan `reject` adalah *callback* yang disediakan oleh JavaScript itu sendiri. Kode kita hanya ada di dalam eksekutor.
 
+<<<<<<< HEAD
 Ketika eksekutor mendapatkan hasilnya, baik itu cepat atau lambat - tidak masalah, eksekutor harus memanggil salah satu dari *callback* ini:
+=======
+When the executor obtains the result, be it soon or late, doesn't matter, it should call one of these callbacks:
+>>>>>>> ae1171069c2e50b932d030264545e126138d5bdc
 
 - `resolve(value)` — jika pekerjaan selesai dengan sukses, dengan hasil `value`.
 - `reject(error)` — jika terjadi kesalahan, `error` adalah objek kesalahan.
 
+<<<<<<< HEAD
 Jadi untuk meringkas: eksekutor berjalan secara otomatis, eksekutor harus melakukan pekerjaan dan kemudian memanggil salah satu dari `resolve` atau `reject`.
 =======
 So to summarize: the executor runs automatically, it should do a job, and then call either `resolve` or `reject`.
@@ -41,6 +46,11 @@ So to summarize: the executor runs automatically and performs a job. Then it sho
 
 The `promise` object returned by the `new Promise` constructor has internal properties:
 >>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
+=======
+So to summarize: the executor runs automatically and attempts to perform a job. When it is finished with the attempt it calls `resolve` if it was successful or `reject` if there was an error.
+
+The `promise` object returned by the `new Promise` constructor has these internal properties:
+>>>>>>> ae1171069c2e50b932d030264545e126138d5bdc
 
 - `state` — pada awalnya `"pending"`, kemudian berubah menjadi `"fulfilled"` saat `resolve` dipanggil atau `"rejected"` ketika `reject` dipanggil.
 - `result` — pada awalnya `undefined`, kemudian berubah menjadi `value` ketika `resolve(value)` dipanggil atau `error` ketika `reject(error)` dipanggil.
