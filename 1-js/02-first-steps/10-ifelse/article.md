@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Operator untuk Pernyataan Bersyarat: if, '?'
+=======
+# Conditional branching: if, '?'
+>>>>>>> b0464bb32c8efc2a98952e05f363f61eca1a99a2
 
 Terkadang, kita perlu melakukan tindakan berbeda berdasarkan kondisi yang berbeda.
 

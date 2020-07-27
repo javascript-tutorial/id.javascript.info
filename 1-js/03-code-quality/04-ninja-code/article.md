@@ -43,7 +43,11 @@ The Dao hides in wordlessness. Only the Dao is well begun and well
 completed.
 ```
 
+<<<<<<< HEAD
 Cara lain untuk mengkode cepat ialah memakai nama variabel huruf-tunggal di manapun. Seperti `a`, `b` atau `c`.
+=======
+Another way to code shorter is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
+>>>>>>> b0464bb32c8efc2a98952e05f363f61eca1a99a2
 
 Variabel pendek hiland dalam kode seperti ninja sungguhan di hutan. Tak ada yang mampu mencarinya memakai "pencari" editor. Dan bahkan jika seseorang menemukannya, mereka tak mampu men"decipher" arti nama `a` atau `b`.
 
