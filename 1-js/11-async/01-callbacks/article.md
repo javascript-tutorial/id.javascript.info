@@ -10,9 +10,15 @@ Jika kamu belum terbiasa dengan method ini, dan penggunaanya didalam contoh memb
 Meski, kita akan mencoba memperjelas situasi ini. Takkan ada yang sebijaksana browser komplex yang rumit.
 ```
 
+<<<<<<< HEAD
 Banyak action didalam JavaScript yang *asynchronous*. Dengan kata lain, kita inisiasi action tersebut sekarang, tetapi action tersebut selesai-nya nanti.
 
 Sebagai contoh, kita bisa atur action tersebut menggunakan `setTimeout`.
+=======
+Many functions are provided by JavaScript host environments that allow you to schedule *asynchronous* actions. In other words, actions that we initiate now, but they finish later.
+
+For instance, one such function is the `setTimeout` function.
+>>>>>>> cdf382de4cf3ed39ca70cb7df60c4c4886f2d22e
 
 Contoh-contoh lain dari action asynchronous di kehidupan nyata, misalnya memuat script dan module (kita akan bahas di bab selanjutnya).
 
