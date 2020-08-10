@@ -1,7 +1,7 @@
 
 # Iterables
 
-*Iterable* objects is a generalization of arrays. That's a concept that allows to make any object useable in a `for..of` loop.
+*Iterable* objects is a generalization of arrays. That's a concept that allows us to make any object useable in a `for..of` loop.
 
 Of course, Arrays are iterable. But there are many other built-in objects, that are iterable as well. For instance, strings are also iterable.
 
@@ -12,7 +12,7 @@ If an object isn't technically an array, but represents a collection (list, set)
 
 We can easily grasp the concept of iterables by making one of our own.
 
-For instance, we have an object, that is not an array, but looks suitable for `for..of`.
+For instance, we have an object that is not an array, but looks suitable for `for..of`.
 
 Like a `range` object that represents an interval of numbers:
 
@@ -224,12 +224,12 @@ let arr = Array.from(range);
 alert(arr); // 1,2,3,4,5 (array toString conversion works)
 ```
 
-The full syntax for `Array.from` allows to provide an optional "mapping" function:
+The full syntax for `Array.from` also allows us to provide an optional "mapping" function:
 ```js
 Array.from(obj[, mapFn, thisArg])
 ```
 
-The optional second argument `mapFn` can be a function that will be applied to each element before adding to the array, and `thisArg` allows to set `this` for it.
+The optional second argument `mapFn` can be a function that will be applied to each element before adding it to the array, and `thisArg` allows us to set `this` for it.
 
 For instance:
 
@@ -294,7 +294,7 @@ Objects that can be used in `for..of` are called *iterable*.
 
 - Technically, iterables must implement the method named `Symbol.iterator`.
     - The result of `obj[Symbol.iterator]` is called an *iterator*. It handles the further iteration process.
-    - An iterator must have the method named `next()` that returns an object `{done: Boolean, value: any}`, here `done:true` denotes the iteration end, otherwise the `value` is the next value.
+    - An iterator must have the method named `next()` that returns an object `{done: Boolean, value: any}`, here `done:true` denotes the end of the iteration process, otherwise the `value` is the next value.
 - The `Symbol.iterator` method is called automatically by `for..of`, but we also can do it directly.
 - Built-in iterables like strings or arrays, also implement `Symbol.iterator`.
 - String iterator knows about surrogate pairs.

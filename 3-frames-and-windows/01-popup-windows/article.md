@@ -154,7 +154,7 @@ Windows may freely access content of each other only if they come from the same 
 Otherwise, e.g. if the main window is from `site.com`, and the popup from `gmail.com`, that's impossible for user safety reasons. For the details, see chapter <info:cross-window-communication>.
 ```
 
-## Accessing window from popup   
+## Accessing window from popup
 
 A popup may access the "opener" window as well using `window.opener` reference. It is `null` for all windows except popups.
 
@@ -268,7 +268,7 @@ If we're going to open a popup, a good practice is to inform the user about it. 
 - Browsers block `open` calls from the code outside of user actions. Usually a notification appears, so that a user may allow them.
 - Browsers open a new tab by default, but if sizes are provided, then it'll be a popup window.
 - The popup may access the opener window using the `window.opener` property.
-- The main window and the popup can freely read and modify each other if they havee the same origin. Otherwise, they can change location of each other and [exchange messages.
+- The main window and the popup can freely read and modify each other if they have the same origin. Otherwise, they can change location of each other and [exchange messages](info:cross-window-communication).
 
 To close the popup: use `close()` call. Also the user may close them (just like any other windows). The `window.closed` is `true` after that.
 

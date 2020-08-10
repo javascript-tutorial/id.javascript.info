@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 # Lingkup variabel
 
 Javascript adalah satu bahasa pemrograman yang sangat berorientasi fungsi. Itu memberi kita banyak kebebasan. Satu fungsi dapat dibuat secara dinamis, dioper sebagai argumen ke fungsi lain dan dipanggil dari tempat yang sama sekali berbeda kemudian.
@@ -6,6 +7,19 @@ Javascript adalah satu bahasa pemrograman yang sangat berorientasi fungsi. Itu m
 Kita sudah tahu bahwa suatu fungsi dapat mengakses variabel di luarnya.
 
 Sekarang ayo kita perluas pengetahuan kita untuk meliputi skenari yang lebih komplex.
+=======
+# Variable scope, closure
+
+JavaScript is a very function-oriented language. It gives us a lot of freedom. A function can be created at any moment, passed as an argument to another function, and then called from a totally different place of code later.
+
+We already know that a function can access variables outside of it ("outer" variables).
+
+But what happens if outer variables change since a function is created? Will the function get newer values or the old ones?
+
+And if a function is passed along as a parameter and called from another place of code, will it get access to outer variables at the new place?
+
+Let's expand our knowledge to understand these scenarios and more complex ones.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 ```smart header="Kita akan bahas tentang variabel `let/const` di sini"
 Di JavaScript, ada 3 cara mendeklarasi variabel: `let`, `const` (cara-cara modern), dan `var` (sisa masa lalu).
@@ -181,11 +195,19 @@ Ini kode yang sedikit lebih panjang:
 
 Kotak persegi panjang di sisi kanan mendemonstrasikan bagaimana Lingkungan Lexikal global berganti selama exekusi:
 
+<<<<<<< HEAD
 1. Ketika script berjalan, Lingkungan Lexikal di-pre-populasi dengan semua variabel yang terdeklarasi.
     - Awalnya, mereka di state "Belum terinisialisir". Itu state internal spesial, yang berarti bahwa engine tahu tentang variabelnya, tapi tak akan mengijinkan penggunaan itu sebelum `let`. Ini hampir sama saja dengan variabel itu tak ada.
 2. Lalu definisi `let phrase` muncul. Tak ada penetapan dulu, jadi nilainya `undefined`. Kita sudah bisa pakai variabel ini di momen ini.
 3. `phrase` diberikan nilai.
 4. `phrase` mengganti nilai.
+=======
+1. When the script starts, the Lexical Environment is pre-populated with all declared variables.
+    - Initially, they are in the "Uninitialized" state. That's a special internal state, it means that the engine knows about the variable, but it cannot be referenced until it has been declared with `let`. It's almost the same as if the variable didn't exist.
+2. Then `let phrase` definition appears. There's no assignment yet, so its value is `undefined`. We can use the variable from this point forward.
+3. `phrase` is assigned a value.
+4. `phrase` changes the value.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 Apapun terlihat simpel untuk sekarang, ya kan?
 
@@ -286,7 +308,11 @@ Lalu, saat `counter()` dipanggil, Lingkungan Lexikal baru dibuat untuk panggilan
 
 ![](closure-makecounter-nested-call.svg)
 
+<<<<<<< HEAD
 Sekarang ketika kode di dalam `counter()` mencari variabel `count`, ia pertama memeriksa Lingkungan Lexikal miliknya sendiri (kosong, karena tak ada variabel lokal di sana), lalu Lingkungan Lexikal dari panggilan `makeCounter()` luar, di mana ia ditemukan dan berubah.
+=======
+Now when the code inside `counter()` looks for `count` variable, it first searches its own Lexical Environment (empty, as there are no local variables there), then the Lexical Environment of the outer `makeCounter()` call, where it finds and changes it.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 **Variabel diperbarui di Lingkungan Lexikal di mana ia tinggal.**
 
@@ -345,7 +371,11 @@ let arr = [f(), f(), f()];
 
 Sebuah objek lingkungan leksikal mati apabila sudah tidak dapat dicapai (sperti objek lainnya). Dengan kata lain, objek tersebut hidup selama masih ada setidaknya satu fungsi bersarang yang mengacunya.
 
+<<<<<<< HEAD
 Di kode berikut, setelah fungsi bersarang itu dihapus, Lingkungan Lexikal lingkupannya (serta `value`-nya) dibersihkan dari memori;
+=======
+In the code below, after the nested function is removed, its enclosing Lexical Environment (and hence the `value`) is cleaned from memory:
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 ```js
 function f() {

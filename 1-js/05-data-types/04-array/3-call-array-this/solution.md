@@ -9,7 +9,7 @@ arr.push(function() {
   alert( this );
 })
 
-arr[2](); // "a","b",function
+arr[2](); // a,b,function(){...}
 ```
 
 *Array* tersebut memiliki 3 nilai: sejak awal *array* tersebut memiliki dua nilai, plus fungsi. 
