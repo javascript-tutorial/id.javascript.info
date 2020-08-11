@@ -15,7 +15,7 @@ Untuk contoh:
 
 Sekarang semuanya perlahan menjadi bagian dari sejarah, akan tetapi kita masih bisa menemukannya di dalam skrip-skrip lama.
 
-Sistem modul tingkat bahasa muncul sebagai standar pada tahun 2015, secara bertahap berkembang sejak saat itu, dan sekarang telah didukung oleh kebanyakan peramban(browser) dan Node.js. Jadi kita akan mempelajarinya.
+Sistem modul tingkat bahasa muncul sebagai standar pada tahun 2015, secara bertahap berkembang sejak saat itu, dan sekarang telah didukung oleh kebanyakan peramban (browser) dan Node.js. Jadi kita akan mempelajarinya.
 
 ## Apakah itu modul?
 
@@ -26,7 +26,7 @@ Modul bisa saling memuat modul lainnya dan menggunakan instruksi spesial `export
 - `export` label kata kunci variabel dan fungsi yang seharusnya dapat diakses dari luar modul ini.
 - `import` memperbolehkan untuk mengambil fungsionalitas dari modul lainnya.
 
-For instance, if we have a file `sayHi.js` exporting a function:
+Untuk contoh, jika kita mempunyai sebuah file `sayHi.js` mengekspor sebuah fungsi:
 
 ```js
 // 📁 sayHi.js
@@ -35,7 +35,7 @@ export function sayHi(user) {
 }
 ```
 
-...Then another file may import and use it:
+...Lalu file lainnya mengimpor dan menggunakannya:
 
 ```js
 // 📁 main.js
@@ -45,27 +45,27 @@ alert(sayHi); // function...
 sayHi('John'); // Hello, John!
 ```
 
-The `import` directive loads the module by path `./sayHi.js` relative the current file and assigns exported function `sayHi` to the corresponding variable.
+Instruksi `import` memuat modul dari `./sayHi.js`, membuat relasi dengan file tersebut dan menetapkan fungsi yang diekspor `sayHi` pada variabel yang sesuai.
 
-Let's run the example in-browser.
+Ayo kita coba contohnya didalam peramban.
 
-As modules support special keywords and features, we must tell the browser that a script should be treated as a module, by using the attribute `<script type="module">`.
+Sebagaimana modul mendukung kata kunci dan fitur spesial, kita harus memberitahu peramban bahwa skripnya harus diperlakukan sebagai sebuah modul, dengan menggunakan atribut `<script type="modul">`.
 
-Like this:
+Seperti ini:
 
 [codetabs src="say" height="140" current="index.html"]
 
-The browser automatically fetches and evaluates the imported module (and its imports if needed), and then runs the script.
+Peramban akan secara otomatis mengambil dan mengevaluasi modul yang diimpor (dan impor yang ada didalam modul tersebut jika perlu), dan lalu menjalankan skripnya.
 
-## Core module features
+## Fitur utama modul
 
-What's different in modules, compared to "regular" scripts?
+Apa yang berbeda dalam modul jika dibandingkan dengan skrip biasa ("regular scripts")?
 
-There are core features, valid both for browser and server-side JavaScript.
+Terdapat beberapa fitur utama, keduanya sah dan benar untuk peramban dan Javascript sisi server.
 
-### Always "use strict"
+### Selalu menggunakan "use strict"
 
-Modules always `use strict`, by default. E.g. assigning to an undeclared variable will give an error.
+Dasarnya, modul selalu menggunakan `use strict`. Misalnya, menempatkan nilai pada sebuah variabel yang belum di deklarasikan akan mengeluarkan sebuah error.
 
 ```html run
 <script type="module">
@@ -73,27 +73,28 @@ Modules always `use strict`, by default. E.g. assigning to an undeclared variabl
 </script>
 ```
 
-### Module-level scope
+### Cakupan pada modul
 
-Each module has its own top-level scope. In other words, top-level variables and functions from a module are not seen in other scripts.
+Setiap modul memiliki cakupannya masing-masing. Dengan kata lain, variabel dan fungsi yang memiliki cakupan tertinggi didalam sebuah modul tidak akan terlihat di skrip lain.
 
-In the example below, two scripts are imported, and `hello.js` tries to use `user` variable declared in `user.js`, and fails:
+Pada contoh dibawah, diimpor dua skrip, dan `hello.js` mencoba menggunakan variabel `user` yang di deklarasikan di `user.js` dan gagal:
 
 [codetabs src="scopes" height="140" current="index.html"]
 
-Modules are expected to `export` what they want to be accessible from outside and `import` what they need.
+Modul mengharapkan untuk `export` apa yang mereka inginkan untuk dapat diakses dari luar dan `import` apa yang mereka butuhkan.
 
-So we should import `user.js` into `hello.js` and get the required functionality from it instead of relying on global variables.
+Jadi kita harus mengimpor `user.js` didalam `hello.js` dan mendapatkan fungsionalitas yang dibutuhkan daripada mengandalkan variabel global.
 
-That's the correct variant:
+Ini adalah versi yang benar:
 
 [codetabs src="scopes-working" height="140" current="hello.js"]
 
 In the browser, independent top-level scope also exists for each `<script type="module">`:
+Didalam peramban, juga memiliki cakupan tertinggi untuk setiap `<script type="module:>`:
 
 ```html run
 <script type="module">
-  // The variable is only visible in this module script
+  // Variabel ini hanya terlihat di skrip modul ini
   let user = "John";
 </script>
 
@@ -104,15 +105,16 @@ In the browser, independent top-level scope also exists for each `<script type="
 </script>
 ```
 
-If we really need to make a window-level global variable, we can explicitly assign it to `window` and access as `window.user`. But that's an exception requiring a good reason.
+Jika kita benar-benar membutuhkan global variabel dengan tingkat window, kita bisa dengan jelas mendefinisikannya didalam `window` dan mengakses sebagai `window.user`. Akan tetapi itu menjadi sebuah pengecualian dan membutuhkan alasan yang bagus untuk melakukannya.
 
-### A module code is evaluated only the first time when imported
+### Kode sebuah modul dievaluasi hanya pada saat pertama kali diimpor
 
-If the same module is imported into multiple other places, its code is executed only the first time, then exports are given to all importers.
+Jika modul yang sama diimpor berkali-kali didalam bagian yang lain, kode didalam modul tersebut hanya dieksekusi sekali, lalu mengekspor pada bagian lain yang mengimpor modul tersebut.
 
-That has important consequences. Let's see that on examples.
+Hal itu memiliki konsekuensi yang penting. Ayo lihat didalam contoh.
 
 First, if executing a module code brings side-effects, like showing a message, then importing it multiple times will trigger it only once -- the first time:
+Pertama, jika mengeksekusi sebuah kode modul membawa efek samping, seperti menampilkan sebuah pesan, lalu mengimpor sebuah modul berkali-kali hanya membuat modul tersebut dijalankan sekali -- yaitu pada pertama kali:
 
 ```js
 // 📁 alert.js
@@ -120,7 +122,7 @@ alert("Module is evaluated!");
 ```
 
 ```js
-// Import the same module from different files
+// Mengimpor modul yang sama di file yang berbeda
 
 // 📁 1.js
 import `./alert.js`; // Module is evaluated!
