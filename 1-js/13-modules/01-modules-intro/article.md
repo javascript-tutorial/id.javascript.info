@@ -1,30 +1,30 @@
 
-# Modules, introduction
+# Modul, Pengenalan
 
-As our application grows bigger, we want to split it into multiple files, so called "modules". A module usually contains a class or a library of functions.
+Seiring dengan berkembangnya aplikasi kita, kita ingin membaginya kedalam beberapa file, kita bisa gunakan modul (Modules). Sebuah modul biasanya mengandung sebuah kelas (class) atau sebuah library dari fungsi.
 
-For a long time, JavaScript existed without a language-level module syntax. That wasn't a problem, because initially scripts were small and simple, so there was no need.
+Sudah sejak lama, Javascript ada tanpa sebuah sintaks modul tingkat bahasa (bahasa tingkat tinggi). Tapi itu bukanlah masalah, karena mulanya skrip cukup kecil dan sederhana, jadi hal itu tidak diperlukan.
 
-But eventually scripts became more and more complex, so the community invented a variety of ways to organize code into modules, special libraries to load modules on demand.
+Akan tetapi pada akhirnya skrip mulai menjadi lebih rumit, jadi komunitas menciptakan berbagai cara untuk mengorganisasikan kode menjadi modul, library spesial untuk memuat modulpun menjadi kebutuhan.
 
-For instance:
+Untuk contoh:
 
-- [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition) -- one of the most ancient module systems, initially implemented by the library [require.js](http://requirejs.org/).
-- [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1) -- the module system created for Node.js server.
-- [UMD](https://github.com/umdjs/umd) -- one more module system, suggested as a universal one, compatible with AMD and CommonJS.
+- [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition) -- salah satu sistem modul paling kuno, awalnya diterapkan dengan library [require.js](http://requirejs.org/).
+- [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1) -- Modul sistem yang dibuat untuk server Node.js
+- [UMD](https://github.com/umdjs/umd) -- satu lagi sistem modul, disarankan sebagai universal, cocok dengan AMD dan CommonJS.
 
-Now all these slowly become a part of history, but we still can find them in old scripts.
+Sekarang semuanya perlahan menjadi bagian dari sejarah, akan tetapi kita masih bisa menemukannya di dalam skrip-skrip lama.
 
-The language-level module system appeared in the standard in 2015, gradually evolved since then, and is now supported by all major browsers and in Node.js. So we'll study it from now on.
+Sistem modul tingkat bahasa muncul sebagai standar pada tahun 2015, secara bertahap berkembang sejak saat itu, dan sekarang telah didukung oleh kebanyakan peramban(browser) dan Node.js. Jadi kita akan mempelajarinya.
 
-## What is a module?
+## Apakah itu modul?
 
-A module is just a file. One script is one module.
+Sebuah modul hanyalah sebuah file. Satu skrip adalah satu modul.
 
-Modules can load each other and use special directives `export` and `import` to interchange functionality, call functions of one module from another one:
+Modul bisa saling memuat modul lainnya dan menggunakan instruksi spesial `export` dan `import` untuk saling bertukan fungsionalitas, panggil fungsi di satu modul dari modul lainnya:
 
-- `export` keyword labels variables and functions that should be accessible from outside the current module.
-- `import` allows to import functionality from other modules.
+- `export` label kata kunci variabel dan fungsi yang seharusnya dapat diakses dari luar modul ini.
+- `import` memperbolehkan untuk mengambil fungsionalitas dari modul lainnya.
 
 For instance, if we have a file `sayHi.js` exporting a function:
 
