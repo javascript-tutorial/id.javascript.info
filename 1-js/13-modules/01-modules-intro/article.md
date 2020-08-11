@@ -113,8 +113,7 @@ Jika modul yang sama diimpor berkali-kali didalam bagian yang lain, kode didalam
 
 Hal itu memiliki konsekuensi yang penting. Ayo lihat didalam contoh.
 
-First, if executing a module code brings side-effects, like showing a message, then importing it multiple times will trigger it only once -- the first time:
-Pertama, jika mengeksekusi sebuah kode modul membawa efek samping, seperti menampilkan sebuah pesan, lalu mengimpor sebuah modul berkali-kali hanya membuat modul tersebut dijalankan sekali -- yaitu pada pertama kali:
+Pertama, jika mengeksekusi sebuah kode modul akan menjalankan sebuah aksi, seperti menampilkan sebuah pesan, lalu mengimpor sebuah modul berkali-kali hanya membuat modul tersebut dijalankan sekali -- yaitu pada pertama kali:
 
 ```js
 // 📁 alert.js
