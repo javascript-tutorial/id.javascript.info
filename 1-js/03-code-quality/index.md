@@ -1,3 +1,3 @@
-# Code quality
+# Kualitas *code*
 
-This chapter explains coding practices that we'll use further in the development. 
+Bab ini menjelaskan tentang *coding practices* yang akan kita selanjutnya gunakan di proses *development*.
