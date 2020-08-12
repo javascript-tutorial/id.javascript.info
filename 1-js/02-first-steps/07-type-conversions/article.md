@@ -6,15 +6,10 @@ Misalnya, `alert` otomatis mengkonversi nilai apapun ke string untuk menampilkan
 
 Ada juga kasus di mana kita harus explisit mengkonversi nilai ke tipe yang diharapkan.
 
-<<<<<<< HEAD:1-js/02-first-steps/06-type-conversions/article.md
 ```smart header="Belum bicara objek dulu"
-Di bab ini, kita takkan mengcover objek. Daripada itu, kita akan belajar primitives dulu. Lalu, setelah kita belajar tentang objek, kita akan lihat cara konversi objek bekerja di bab <info:object-toprimitive>.
-=======
-```smart header="Not talking about objects yet"
-In this chapter, we won't cover objects. For now we'll just be talking about primitives.
+Di bab ini, kita takkan mengcover objek. Daripada itu, kita akan belajar primitives dulu.
 
-Later, after we learn about objects, in the chapter <info:object-toprimitive> we'll see how objects fit in.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/02-first-steps/07-type-conversions/article.md
+Lalu, setelah kita belajar tentang objek, kita akan lihat cara konversi objek bekerja di bab <info:object-toprimitive>.
 ```
 
 ## Konversi String

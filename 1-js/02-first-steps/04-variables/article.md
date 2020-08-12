@@ -80,14 +80,9 @@ let user = 'John'
 
 Secara teknis, semua varian ini melakukan hal yang sama. Jadi, cuma masaleh selera personal dan estetika saja.
 
-<<<<<<< HEAD
 
 ````smart header="`var` ketimbang `let`"
 Di script jadul, kamu mungkin juga menemukan katakunci lain: `var` ketimbang `let`:
-=======
-````smart header="`var` instead of `let`"
-In older scripts, you may also find another keyword: `var` instead of `let`:
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 ```js
 *!*var*/!* message = 'Hello';
@@ -140,27 +135,23 @@ alert(hello); // Hello world!
 alert(message); // Hello world!
 ```
 
-<<<<<<< HEAD
-```smart header="Bahasa functional"
-Menarik untuk diingat bahwa ada bahasa pemrograman [fungsional](https://en.wikipedia.org/wiki/Functional_programming), seperti [Scala](http://www.scala-lang.org/) atau [Erlang](http://www.erlang.org/), yang melarang perubahan nilai variabel.
-=======
-````warn header="Declaring twice triggers an error"
-A variable should be declared only once.
+````warn header="Mendeklarasikan variabel dua kali akan menciptakan error"
+Sebuah variabel seharusnya di deklarasikan hanya sekali.
 
-A repeated declaration of the same variable is an error:
+Mendeklarasikan variabel berkali kali akan menciptakan error:
 
 ```js run
 let message = "This";
 
 // repeated 'let' leads to an error
+// deklarasi 'let' berulang akan mengembalikan sebuah error
 let message = "That"; // SyntaxError: 'message' has already been declared
 ```
-So, we should declare a variable once and then refer to it without `let`.
+Jadi, kita harus mendeklarasikan variabel sekali dan menggunakan variabel tersebut tanpa menggunakan 'let'.
 ````
 
-```smart header="Functional languages"
-It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
+```smart header="Bahasa fungsional"
+Ini sangat menarik untuk diperhatikan bahwa ada bahasa pemrograman [fungsional](https://en.wikipedia.org/wiki/Functional_programming), seperti [Scala](http://www.scala-lang.org/) atau [Erlang](http://www.erlang.org/) yang melarang merubah nilai dari variabel.
 
 Di dalam bahasa macam ini, sekali nilai disimpan "dalam box", ia akan di sana selamanya. Jika kita harus menyimpan sesuatu yang lain, bahasa tersebut memaksa kita membuat box baru (mendeklarasi variabel baru). Kita tak bisa menggunakan ulang yang lama.
 
@@ -214,11 +205,7 @@ let имя = '...';
 let 我 = '...';
 ```
 
-<<<<<<< HEAD
-Secara teknis, tak ada galat di sini, nama-nama begitu boleh, tapi ada tradisi internasional untuk menggunakan Inggris dalam nama variabel. Meski jika kita menulis script kecil, ia akan punya nyawa yang panjang. Orang-orang dari negara lain mungkin harus membaca beberapa kali.
-=======
-Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
+Secara teknis, tak ada error di sini, nama-nama begitu boleh digunakan, tapi ada tradisi internasional untuk menggunakan bahasa Inggris dalam nama variabel. Meski jika kita menulis script kecil, kemungkinan variabelnya akan digunakan terus-menerus. Dan juga orang-orang dari negara lain mungkin harus membaca beberapa kali.
 ````
 
 ````warn header="Nama-nama yang dikecualikan"

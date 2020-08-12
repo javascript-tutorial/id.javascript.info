@@ -94,11 +94,7 @@ Tapi itu harus jadi dua pernyataan terpisah, bukan satu. Penyatuan macam ini sal
 
 Kami sarankan menaruh titik koma di antara pernyataan meski mereka dipisahkan garis baru. Ini aturan yang diterima secara luas oleh komunitas. Harap diingat sekali lagi bahwa -- *bisa saja* menanggalkan titik koma di banyak kesempatan. Tapi akan lebih aman -- terutama untuk pemula -- untuk menggunakan mereka.
 
-<<<<<<< HEAD
-## Komen
-=======
-## Comments [#code-comments]
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
+## Komentar [#komentar pada sebuah kode]
 
 Seiring waktu berjalan, program menjadi lebih rumit. Dan dibutuhkan *komen* yang menjelaskan kode apa itu dan kenapa.
 
@@ -139,13 +135,8 @@ alert('Hello');
 alert('World');
 ```
 
-<<<<<<< HEAD
 ```smart header="Gunakan hotkey!"
 Di banyak editor, sebaris kode bisa dikomen dengan menekan hotkey `key:Ctrl+/` untuk komen baris-tunggal dan sesuatu macam `key:Ctrl+Shift+/` -- untuk komen multibaris (pilih sepotong kode dan tekan hotkeynya). Untuk Mac, coba `key:Cmd` ketimbang `key:Ctrl`.
-=======
-```smart header="Use hotkeys!"
-In most editors, a line of code can be commented out by pressing the `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). For Mac, try `key:Cmd` instead of `key:Ctrl` and `key:Option` instead of `key:Shift`.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 ```
 
 ````warn header="Komen bersarang tidak didukung!"

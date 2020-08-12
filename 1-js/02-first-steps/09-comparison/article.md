@@ -1,34 +1,21 @@
 # Perbandingan
 
-<<<<<<< HEAD:1-js/02-first-steps/08-comparison/article.md
-Kita tahu banyak operator perbandingan dari matematika:
+Kita tahu beberapa operator pembanding dari matematika.
 
-- Lebih besar/kecil dari: <code>a &gt; b</code>, <code>a &lt; b</code>.
-- Lebih besar/kecil dari atau sama dengan: <code>a &gt;= b</code>, <code>a &lt;= b</code>.
-- Sama dengan: `a == b` (please note the double equals sign `=`. A single symbol `a = b` would mean an assignment).
-- Tidak sama dengan. Dalam matematika notasinya ialah <code>&ne;</code>, tapi di JavaScript ia ditulis sebagai penetapan dengan tanda exklamasi sebelumnya: <code>a != b</code>.
-=======
-We know many comparison operators from maths.
+Didalam Javascript operator-operator itu ditulis seperi ini:
 
-In JavaScript they are written like this:
+- Lebih besar/kurang dari: <code>a &gt; b</code>, <code>a &lt; b</code>.
+- Lebih besar/kurang dari atau sama: <code>a &gt;= b</code>, <code>a &lt;= b</code>.
+- Sama dengan: `a == b`, perhatikan tanda dua `=` digunakan untuk test persamaan, jika menggunakan satu `=` seperti `a = b` itu adalah sebuah asignment atau memasukan nilai kedalam variabel.
+- Tidak sama dengan: Didalam matematika notasinya seperti <code>&ne;</code>, tetapi didalam Javascript ditulis seperti <code>a != b</code>.
 
-- Greater/less than: <code>a &gt; b</code>, <code>a &lt; b</code>.
-- Greater/less than or equals: <code>a &gt;= b</code>, <code>a &lt;= b</code>.
-- Equals: `a == b`, please note the double equality sign `==` means the equality test, while a single one `a = b` means an assignment.
-- Not equals. In maths the notation is <code>&ne;</code>, but in JavaScript it's written as <code>a != b</code>.
+Didalam artikel ini kita akan belajar lebih lanjut tentang perbedaan tipe dari perbandingan, bagaimana cara Javascript membuatnya, termasuk sifat-sifat penting.
 
-In this article we'll learn more about different types of comparisons, how JavaScript makes them, including important peculiarities. 
-
-At the end you'll find a good recipe to avoid "javascript quirks"-related issues.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/02-first-steps/09-comparison/article.md
+Diakhir nanti kamu akan menemukan hal yang bagus untuk menghindari masalah yang berhubungan dengan "kebiasaan Javascript".
 
 ## Boolean ialah hasilnya
 
-<<<<<<< HEAD:1-js/02-first-steps/08-comparison/article.md
-Seperti semua operator lain, perbandingan mengembalikan nilai. Dalam hal ini, nilainya boolean.
-=======
-All comparison operators return a boolean value:
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/02-first-steps/09-comparison/article.md
+Semua operator pembanding mengembalikan nilai boolean:
 
 - `true` -- berarti "ya", "betul" atau "fakta".
 - `false` -- berarti "tidak", "salah" atau "bukan fakta".
@@ -211,7 +198,6 @@ Kita dapatkan hasil ini karena:
 - Pembandingan `(1)` dan `(2)` menghasilkan `false` karena `undefined` dikonversi ke `NaN` dan `NaN` merupakan numerik spesial yang mengembalikan `false` untuk semua pembandingan.
 - Pengecekan equalitas `(3)` mengembalikan `false` karena `undefined` hanya sama dengan `null` dan tidak dengan nilai lain manapun.
 
-<<<<<<< HEAD:1-js/02-first-steps/08-comparison/article.md
 ### Hindari problem
 
 Kenapa kita menggunakan contoh ini? Haruskah kita ingat semua keanehan ini? Tidak juga. Sebenarnya, hal tricky macam ini akan menjadi akrab seiring waktu, tapi ada cara solid untuk menghindari masalah dengan mereka:
@@ -219,14 +205,6 @@ Kenapa kita menggunakan contoh ini? Haruskah kita ingat semua keanehan ini? Tida
 Perlakukan pembandingan manapun dengan `undefined/null` kecuali equalitas ketat `===` dengan hati-hati.
 
 Jangan gunakan pembandingan `>= > < <=` dengan variabel yang bisa jadi `null/undefined`, kecuali kamu paham apa yang kamu lakukan. Jika variabel bisa punya nilai ini, cek mereka secara terpisah.
-=======
-### Avoid problems
-
-Why did we go over these examples? Should we remember these peculiarities all the time? Well, not really. Actually, these tricky things will gradually become familiar over time, but there's a solid way to avoid problems with them:
-
-- Treat any comparison with `undefined/null` except the strict equality `===` with exceptional care.
-- Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`, unless you're really sure of what you're doing. If a variable can have these values, check for them separately.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/02-first-steps/09-comparison/article.md
 
 ## Kesimpulan
 
