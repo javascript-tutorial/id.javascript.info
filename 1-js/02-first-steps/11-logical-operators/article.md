@@ -89,36 +89,21 @@ Dengan kata lain, rantai OR `"||"` mengembalikan nilai truthy pertama atau yang 
 Misalnya:
 
 ```js run
-<<<<<<< HEAD
 alert( 1 || 0 ); // 1 (1 truthy)
 alert( true || 'no matter what' ); // (true ialah truthy)
 
 alert( null || 1 ); // 1 (1 ialah nilai truthy pertama)
 alert( null || 0 || 1 ); // 1 (nilai truthy pertama)
 alert( undefined || null || 0 ); // 0 (semua falsy, mengembalikan nilai terakhir)
-=======
-alert( 1 || 0 ); // 1 (1 is truthy)
-
-alert( null || 1 ); // 1 (1 is the first truthy value)
-alert( null || 0 || 1 ); // 1 (the first truthy value)
-
-alert( undefined || null || 0 ); // 0 (all falsy, returns the last value)
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 ```
 
 Hal ini menjadikan penggunaan yang menarik dibanding "OR booleanpure, classical, boolean-only OR".
 
 1. **Dapatkan nilai truthy dari daftar variabel atau expresi.**
 
-<<<<<<< HEAD
-    Bayangkan kita punya daftar variabel yang bisa berisi data atau `null/undefined`. Bagaimana cara kita mencari data pertama?
+    Untuk contoh, kita punya variabel `firstName`, `lastName` dan `nickName`, semuanya bersifat opsional.
 
-    Kita bisa gunakan OR `||`:
-=======
-    For instance, we have `firstName`, `lastName` and `nickName` variables, all optional.
-
-    Let's use OR `||` to choose the one that has the data and show it (or `anonymous` if nothing set):
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
+    Kita gunakan OR `||` untuk memilih satu-satunya yang memiliki data dan menampilkannya (atau `anonymous` jika belum ada yang ditentukan atau di set):
 
     ```js run
     let firstName = "";
@@ -128,58 +113,28 @@ Hal ini menjadikan penggunaan yang menarik dibanding "OR booleanpure, classical,
     *!*
     alert( firstName || lastName || nickName || "Anonymous"); // SuperCoder
     */!*
-<<<<<<< HEAD
-
-    alert( name ); // memilih "John" – nilai truthy pertama
     ```
 
-    Jika kedua `currentUser` dan `defaultUser` sama-sama falsy, `"unnamed"` akan menjadi hasilnya.
-2. **Evaluasi short-circuit.**
+    Jika semua variabel bernilai falsy, `Anonymous` akan muncul.
 
-    Operand bukan hanya nilai, tapi juga expresi sembarang. OR mengevaluasi dan menguji mereka dari kiri ke kanan. Evaluasinya berhenti ketika nilai truthy tercapai, dan nilainya dikembalikan. Proses ini disebut "evaluasi short-circuit" karena ia berjalan sependek mungkin dari kiri ke kanan.
+2. **Evaluasi Short-circuit.**
 
-    Ini jelas-jelas terlihat ketika expresi yang diberikan sebagai argumen kedua punya efek samping seperti penetapan variabel.
+    Fitur lainnya dari operator OR `||` adalah evaluasi "short-circuit".
 
-    Di contoh di bawah, `x` tidak ditetapkan:
-=======
-    ```
+    Itu berarti bahwa `||` memproses argumennya sampai nilai pertama bersifat truthy tercapai, lalu nilainya dikembalikan langsung, bahkan tanpa menyentuh argumen lainnya.
 
-    If all variables were falsy, `Anonymous` would show up.
+    Pentingnya dari fitur ini menjadi jelas jika sebuah operan bukan hanya sebuah nilai, tapi sebuah ekspresi yang melakukan aksi, seperti assignment sebuah variabel atau sebuah pemanggilan fungsi.
 
-2. **Short-circuit evaluation.**
-
-    Another feature of OR `||` operator is the so-called "short-circuit" evaluation.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
-
-    It means that `||` processes its arguments until the first truthy value is reached, and then the value is returned immediately, without even touching the other argument.
-
-    That importance of this feature becomes obvious if an operand isn't just a value, but an expression with a side effect, such as a variable assignment or a function call.
-
-<<<<<<< HEAD
-    alert(x); // undefined, karena (x = 1) tak dievaluasi
-    ```
-
-    Jika, argumen pertama `false`, `||` mengevaluasi nilai kedua, maka penetapan ini:
-=======
-    In the example below, only the second message is printed:
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
+    Didalam contoh dibawah, hanya pesan kedua yang di jalankan:
 
     ```js run no-beautify
     *!*true*/!* || alert("not printed");
     *!*false*/!* || alert("printed");
     ```
 
-<<<<<<< HEAD
-    Penetapan merupakan hal simpel. Bisa jadi ada efek samping, yang tak akan muncul jika evaluasinya tidak mencapainya.
+    Di baris pertama, operator OR `||` langsung berhenti mengevaluasi karena nilai pertama bersifat `true`, jadi `alert`nya tidak berjalan.
 
-    Seperti yang bisa kita lihat, use case macam ini ialah "cara terpendek melakukan `if`". Operand pertama dikonversi ke boolean. Jika ia false, yang kedua dievaluasi.
-
-    Seringkali, lebih baik menggunakan `if` "reguler" supaya kodenya mudah dipahami, tapi kadang bisa jadi berguna.
-=======
-    In the first line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` isn't run.
-
-    Sometimes, people use this feature to execute commands only if the condition on the left part is falsy.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
+    Terkadang, orang-orang menggunakan fitur ini untuk mengeksekusi perintah hanya jika kondisi di paling kiri bersifat falsy.
 
 ## && (AND)
 
@@ -268,12 +223,9 @@ Presedensi operator AND `&&` lebih tinggi dari OR `||`.
 Jadi kode `a && b || c && d` esensinya sama dengan jika expresi `&&` dibungkus tanda kurung: `(a && b) || (c && d)`.
 ````
 
-<<<<<<< HEAD
-Sama seperti OR, operator `&&` kadang bisa menggantikan `if`.
-=======
-````warn header="Don't replace `if` with || or &&"
+````warn header="Jangan ganti `if` dengan || atau &&"
 Sometimes, people use the AND `&&` operator as a "shorter to write `if`".
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
+Terkadang, orang-orang menggunakan operator AND `&&` untuk "memperpendek instruksi `if`".
 
 Misalnya:
 
@@ -293,15 +245,9 @@ let x = 1;
 if (x > 0) alert( 'Greater than zero!' );
 ```
 
-<<<<<<< HEAD
-Varian dengan `&&` muncul lebih pendek. Tapi `if` lebih jelas dan cenderung lebih mudah terbaca.
-
-Jadi kita rekomendasi menggunakan setiap konstruksi untuk tujuannya: gunakan `if` jika kita ingin if dan gunakan `&&` jika kita ingin AND.
-=======
-Although, the variant with `&&` appears shorter, `if` is more obvious and tends to be a little bit more readable. So we recommend using every construct for its purpose: use `if` if we want if and use `&&` if we want AND.
+Walaupun, versi dengan `&&` muncul lebih pendek, `if` menjadi jelas dan sedikit lebih mudah dibaca. Jadi kita merekomendasikan menggunakannya untuk setiap kebutuhan: gunakan `if` jika kita ingin if dan gunakan `&&` jika kita ingin AND.
 ````
 
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 ## ! (NOT)
 
