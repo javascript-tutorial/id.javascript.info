@@ -1,18 +1,18 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Fix the addition
+# Benarkan penambahan
 
-Here's a code that asks the user for two numbers and shows their sum.
+Ini adalah kode yang menanyakan pengguna untuk memasukan dua angka dan menampilkan jumlahnya.
 
-It works incorrectly. The output in the example below is `12` (for default prompt values).
+Kodenya tidak berjalan dengan semestinya. Keluaran dari contoh kode dibawah adalah `12` (nilai dimasukan secara default didalam kotak prompt).
 
-Why? Fix it. The result should be `3`.
+Kenapa? Benarkan. Hasilnya haruslah `3`.
 
 ```js run
-let a = prompt("First number?", 1);
-let b = prompt("Second number?", 2);
+let a = prompt("Angka pertama?", 1);
+let b = prompt("Angka kedua?", 2);
 
 alert(a + b); // 12
 ```

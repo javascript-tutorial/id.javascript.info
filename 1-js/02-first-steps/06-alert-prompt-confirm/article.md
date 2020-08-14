@@ -43,7 +43,7 @@ Misalnya:
 ```js run
 let age = prompt('Berapakah umut anda?', 100);
 
-alert(`Umur Anda ${age} tahun`); // Unur Anda 100 tahun!
+alert(`Umur Anda ${age} tahun`); // Umur Anda 100 tahun!
 ```
 
 ```warn header="In IE: selalu isikan nilai `default`"

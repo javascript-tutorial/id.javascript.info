@@ -19,7 +19,7 @@ Contoh:
 
 <body>
 
-  <p>Before the script...</p>
+  <p>Kode ini ditulis sebelum skrip...</p>
 
 *!*
   <script>
@@ -27,7 +27,7 @@ Contoh:
   </script>
 */!*
 
-  <p>...After the script.</p>
+  <p>...Kode ini ditulis setelah skrip.</p>
 
 </body>
 
@@ -106,7 +106,7 @@ Ini tak akan berjalan:
 
 ```html
 <script *!*src*/!*="file.js">
-  alert(1); // the content is ignored, because src is set
+  alert(1); // konten diabaikan karena 'src' telah di set
 </script>
 ```
 

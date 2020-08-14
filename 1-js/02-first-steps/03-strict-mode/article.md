@@ -87,5 +87,4 @@ Untuk sekarang, kita harus mengetahui tentang `use strict` secara dasar.
 
 Di bagian selanjutnya, selagi kita belajar tentang fitur jadi Javascript, kita akan melihat beberapa perbedaan diantara *strict mode* dan mode lama. Beruntungnya, tidak dapat terdapat banyak perbedaan dan sebenarnya keduanya sangat bermanfaat.
 
-All examples in this tutorial assume strict mode unless (very rarely) specified otherwise.
 Seluruh contoh di tutorial ini menggunakan *strict mode* kecuali (sangat jarang) dituliskan sebaliknya.

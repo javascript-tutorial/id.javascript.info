@@ -1,7 +1,7 @@
 Dalam kode di bawah, tiap baris berkorespondensi ke item di dalam daftar tugas.
 
 ```js run
-let admin, name; // can declare two variables at once
+let admin, name; // bisa mendeklarasikan dua variabel sekaligus
 
 name = "John";
 

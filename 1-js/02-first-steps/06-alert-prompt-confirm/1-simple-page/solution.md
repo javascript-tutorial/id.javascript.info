@@ -1,7 +1,7 @@
 Kode JavaScript:
 
 ```js demo run
-let name = prompt("What is your name?", "");
+let name = prompt("Siapakah nama Anda?", "");
 alert(name);
 ```
 
@@ -15,7 +15,7 @@ Laman penuh:
   <script>
     'use strict';
 
-    let name = prompt("What is your name?", "");
+    let name = prompt("Siapakah nama Anda?", "");
     alert(name);
   </script>
 

@@ -1,32 +1,32 @@
-The reason is that prompt returns user input as a string.
+Alasannya adalah karena kotak *prompt* mengembalikan inputan dari user sebagai string.
 
-So variables have values `"1"` and `"2"` respectively.
+Jadi nilai dari masing-masing variabel adalah `"1"` dan `"2"`.
 
 ```js run
-let a = "1"; // prompt("First number?", 1);
-let b = "2"; // prompt("Second number?", 2);
+let a = "1"; // prompt("Angka pertama?", 1);
+let b = "2"; // prompt("Angka kedua?", 2);
 
 alert(a + b); // 12
 ```
 
-What we should to is to convert strings to numbers before `+`. For example, using `Number()` or prepending them with `+`.
+Apa yang kita harus lakukan untuk mengubah string menjadi angka sebelum `+`, gunakan `Number()` atau menambahkannya dengan `+`.
 
-For example, right before `prompt`:
+Contoh, tepat sebelum `prompt`:
 
 ```js run
-let a = +prompt("First number?", 1);
-let b = +prompt("Second number?", 2);
+let a = +prompt("Angka pertama?", 1);
+let b = +prompt("Angka kedua?", 2);
 
 alert(a + b); // 3
 ```
 
-Or in the `alert`:
+Atau didalam `alert`:
 
 ```js run
-let a = prompt("First number?", 1);
-let b = prompt("Second number?", 2);
+let a = prompt("Angka pertama?", 1);
+let b = prompt("Angka kedua?", 2);
 
 alert(+a + +b); // 3
 ```
 
-Using both unary and binary `+` in the latest code. Looks funny, doesn't it?
+Menggunakan *unary* dan *binary* `+` dicontoh kode terakhir terlihat lucu, kan?

@@ -370,7 +370,7 @@ Ringkasnya:
     let counter = 0;
     counter++;
     ++counter;
-    alert( counter ); // 2, the lines above did the same
+    alert( counter ); // 2, kedua counter diatas melakukan hal yang serupa.
     ```
 - Jika kita ingin menaikkan nilai *dan* langsung memakai hasil dari operator, kita butuh bentuk prefix:
 
@@ -404,9 +404,9 @@ alert( 2 * counter++ ); // 2, karena counter++ mengembalikan nilai "lama"
 
 Meski secara teknis OK, notasi macam ini biasanya membuat kode kurang dapat dibaca. Satu baris melakukan banyak hal -- tak baik.
 
-Sambil membaca kode, a fast "vertical" eye-scan can easily miss something like `counter++` and it won't be obvious that the variable increased.
+Sambil membaca kode, dan melihatnya secara sekilas kita bisa saja melewatkan kode seperti `counter++` dan tidak akan jelas bahwa nilai variabel telah bertambah.
 
-We advise a style of "one line -- one action":
+Jadi direkomendasikan menuliskan kode dengan gaya "satu baris -- satu aksi":
 
 ```js run
 let counter = 1;
