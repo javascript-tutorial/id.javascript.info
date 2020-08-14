@@ -181,7 +181,7 @@ Misal ada beberapa nilai di-AND-kan:
 result = value1 && value2 && value3;
 ```
 
-The AND `&&` operator does the following:
+Yang dilakukan operator AND `&&` adalah sebagai berikut:
 
 - Mengevaluasi operand dari kiri ke kanan.
 - Untuk tiap operand, konversi ia ke boolean. Jika hasilnya `false`, stop dan kembalikan nilai original operand tersebut.
@@ -224,7 +224,6 @@ Jadi kode `a && b || c && d` esensinya sama dengan jika expresi `&&` dibungkus t
 ````
 
 ````warn header="Jangan ganti `if` dengan || atau &&"
-Sometimes, people use the AND `&&` operator as a "shorter to write `if`".
 Terkadang, orang-orang menggunakan operator AND `&&` untuk "memperpendek instruksi `if`".
 
 Misalnya:
