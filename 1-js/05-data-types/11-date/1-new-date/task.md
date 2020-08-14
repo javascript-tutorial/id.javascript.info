@@ -1,9 +1,9 @@
-importance: 5
+Tingkat kepentingan: 5
 
 ---
 
-# Create a date
+# Buat sebuah tanggal
 
-Create a `Date` object for the date: Feb 20, 2012, 3:12am. The time zone is local.
+Buat sebuah objek `Date` untuk tanggal: Feb 20, 2012, 3:12am. Zona waktu lokal.
 
-Show it using `alert`.
+Tampilkan menggunakan `alert`.
