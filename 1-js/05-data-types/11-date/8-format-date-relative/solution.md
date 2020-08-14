@@ -1,79 +1,78 @@
-untuk mendapatkan waktu dari `tanggal` hingga saat ini -- Mari kita kurangi tanggal tersebut.
+To get the time from `date` till now -- let's substract the dates.
 
 ```js run demo
-function formatTanggal(tanggal) {
-  let beda = new Date() - tanggal; // beda dalam milidetik
+function formatDate(date) {
+  let diff = new Date() - date; // the difference in milliseconds
 
-  if (beda < 1000) { // kurang dari 1 detik
-    return 'sekarang';
+  if (diff < 1000) { // less than 1 second
+    return 'right now';
   }
 
-  let detik = Math.floor(beda / 1000); // ubah beda menjadi detik
+  let sec = Math.floor(diff / 1000); // convert diff to seconds
 
-  if (detik < 60) {
-    return detik + ' detik lalu';
+  if (sec < 60) {
+    return sec + ' sec. ago';
   }
 
-  let menit = Math.floor(beda / 60000); // ubah beda menjadi menit
-  if (menit < 60) {
-    return menit + ' menit lalu';
+  let min = Math.floor(diff / 60000); // convert diff to minutes
+  if (min < 60) {
+    return min + ' min. ago';
   }
 
-  // format tanggal
+  // format the date
   // add leading zeroes to single-digit day/month/hours/minutes
-  // tambahkan awalan 0 untuk hari/bulan/jam/menit dalam apabila 1 digit.
-  let d = tanggal;
+  let d = date;
   d = [
     '0' + d.getDate(),
     '0' + (d.getMonth() + 1),
     '' + d.getFullYear(),
     '0' + d.getHours(),
     '0' + d.getMinutes()
-  ].map(komponen => komponen.slice(-2)); // ambil 2 digit terakhir untuk setiap komponen
+  ].map(component => component.slice(-2)); // take last 2 digits of every component
 
-  // gabungkan semua komponen menjadi tanggal
+  // join the components into date
   return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
 }
 
-alert( formatTanggal(new Date(new Date - 1)) ); // "sekarang"
+alert( formatDate(new Date(new Date - 1)) ); // "right now"
 
-alert( formatTanggal(new Date(new Date - 30 * 1000)) ); // "30 detik lalu"
+alert( formatDate(new Date(new Date - 30 * 1000)) ); // "30 sec. ago"
 
-alert( formatTanggal(new Date(new Date - 5 * 60 * 1000)) ); // "5 menit lalu"
+alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 min. ago"
 
-// tanggal kemarin seperti 31.12.2016, 20:00
-alert( formatTanggal(new Date(new Date - 86400 * 1000)) );
+// yesterday's date like 31.12.2016 20:00
+alert( formatDate(new Date(new Date - 86400 * 1000)) );
 ```
 
-Solusi alternatif:
+Alternative solution:
 
 ```js run
-function formatTanggal(tanggal) {
-  let hariDalamBulan = tanggal.getDate();
-  let bulan = tanggal.getMonth() + 1;
-  let tahun = tanggal.getFullYear();
-  let jam = tanggal.getHours();
-  let menit = tanggal.getMinutes();
-  let bedaMs = new Date() - tanggal;
-  let bedaDetik = Math.round(bedaMs / 1000);
-  let bedaMenit = bedaDetik / 60;
-  let bedaJam = bedaMenit / 60;
+function formatDate(date) {
+  let dayOfMonth = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  let hour = date.getHours();
+  let minutes = date.getMinutes();
+  let diffMs = new Date() - date;
+  let diffSec = Math.round(diffMs / 1000);
+  let diffMin = diffSec / 60;
+  let diffHour = diffMin / 60;
 
   // formatting
-  tahun = tahun.toString().slice(-2);
-  bulan = bulan < 10 ? '0' + bulan : bulan;
-  hariDalamBulan = hariDalamBulan < 10 ? '0' + hariDalamBulan : hariDalamBulan;
-  jam = jam < 10 ? '0' + jam : jam;
-  menit = menit < 10 ? '0' + menit : menit;
+  year = year.toString().slice(-2);
+  month = month < 10 ? '0' + month : month;
+  dayOfMonth = dayOfMonth < 10 ? '0' + dayOfMonth : dayOfMonth;
+  hour = hour < 10 ? '0' + hour : hour;
+  minutes = minutes < 10 ? '0' + minutes : minutes;
 
-  if (bedaDetik < 1) {
-    return 'sekarang';  
-  } else if (bedaMenit < 1) {
-    return `${bedaDetik} detik lalu`
-  } else if (bedaJam < 1) {
-    return `${bedaMenit} menit lalu`
+  if (diffSec < 1) {
+    return 'right now';  
+  } else if (diffMin < 1) {
+    return `${diffSec} sec. ago`
+  } else if (diffHour < 1) {
+    return `${diffMin} min. ago`
   } else {
-    return `${hariDalamBulan}.${bulan}.${tahun} ${jam}:${menit}`
+    return `${dayOfMonth}.${month}.${year} ${hour}:${minutes}`
   }
 }
 ```

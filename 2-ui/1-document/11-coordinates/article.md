@@ -91,7 +91,7 @@ In practice though, `elem.getBoundingClientRect()` always returns positive width
 ```warn header="Internet Explorer and Edge: no support for `x/y`"
 Internet Explorer and Edge don't support `x/y` properties for historical reasons.
 
-So we can either make a polywill (add getters in `DomRect.prototype`) or just use `top/left`, as they are always the same as `x/y` for positive `width/height`, in particular in the result of `elem.getBoundingClientRect()`.
+So we can either make a polyfill (add getters in `DomRect.prototype`) or just use `top/left`, as they are always the same as `x/y` for positive `width/height`, in particular in the result of `elem.getBoundingClientRect()`.
 ```
 
 ```warn header="Coordinates right/bottom are different from CSS position properties"
@@ -216,6 +216,8 @@ function getCoords(elem) {
 
   return {
     top: box.top + window.pageYOffset,
+    right: box.right + window.pageXOffset,
+    bottom: box.bottom + window.pageYOffset,
     left: box.left + window.pageXOffset
   };
 }

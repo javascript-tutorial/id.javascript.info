@@ -1,4 +1,4 @@
-# Operator untuk Pernyataan Bersyarat: if, '?'
+# Kondisi bercabang: if, '?'
 
 Terkadang, kita perlu melakukan tindakan berbeda berdasarkan kondisi yang berbeda.
 

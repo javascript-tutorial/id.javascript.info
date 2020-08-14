@@ -1,143 +1,141 @@
-# Tanggal dan waktu
+# Date and time
 
-Ayo berkenalan dengan objek *built-in* terbaru: [Date](mdn:js/Date). Digunakan untuk menyimpan tanggal, waktu, dan menyediakan metode untuk mengatur tanggal dan waktu.
+Let's meet a new built-in object: [Date](mdn:js/Date). It stores the date, time and provides methods for date/time management.
 
-Sebagai contoh, kita bisa menggunakannya untuk menyimpan pembuatan/perubahan waktu, menghitung waktu, atau untuk menunjukkan tanggal yang sedang berlangsung.
+For instance, we can use it to store creation/modification times, to measure time, or just to print out the current date.
 
-## Pembuatan
+## Creation
 
-Untuk membuat objek `Date` baru, panggil `new Date()` dengan menggunakan salah satu argumen berikut:
+To create a new `Date` object call `new Date()` with one of the following arguments:
 
 `new Date()`
-: Tanpa argumen -- membuat sebuah objek `Date` menggunakan tanggal dan waktu yang sedang berlangsung:
+: Without arguments -- create a `Date` object for the current date and time:
 
     ```js run
     let now = new Date();
-    alert( now ); // menunjukkan tanggal/waktu yang sedang berlangsung 
+    alert( now ); // shows current date/time
     ```
 
-`new Date(milidetik)`
-: Membuat objek `Date` dengan waktu yang sama dengan jumlah milidetik (1/1000 detik) yang telah berlalu setelah 1 Januari 1970 UTC+0.
+`new Date(milliseconds)`
+: Create a `Date` object with the time equal to number of milliseconds (1/1000 of a second) passed after the Jan 1st of 1970 UTC+0.
 
     ```js run
-    // 0 berarti 01.01.1970 UTC+0
+    // 0 means 01.01.1970 UTC+0
     let Jan01_1970 = new Date(0);
     alert( Jan01_1970 );
 
-    // Sekarang tambahkan 24 jam, menjadi 02.01.1970 UTC+0
+    // now add 24 hours, get 02.01.1970 UTC+0
     let Jan02_1970 = new Date(24 * 3600 * 1000);
     alert( Jan02_1970 );
     ```
 
-    Sebuah angka integer mewakili jumlah milidetik yang telah berlalu sejak awal 1970 dinamakan *timestamp*. 
+    An integer number representing the number of milliseconds that has passed since the beginning of 1970 is called a *timestamp*.
 
-    Merupakan perwakilan angka yang ringan untuk sebuah tanggal. Kita dapat membuat tanggal dari timestamp menggunakan `new Date(timestamp)` dan merubah objek `Date` yang telah ada menjadi timestamp menggunakan  metode `date.getTime()` (lihat di bawah).
+    It's a lightweight numeric representation of a date. We can always create a date from a timestamp using `new Date(timestamp)` and convert the existing `Date` object to a timestamp using the `date.getTime()` method (see below).
 
-    Tanggal sebelum 01.01.1970 mempunyai nilai timestamp negatif, e.g.:
-    
+    Dates before 01.01.1970 have negative timestamps, e.g.:
     ```js run
-    // 31 Des 1969
+    // 31 Dec 1969
     let Dec31_1969 = new Date(-24 * 3600 * 1000);
     alert( Dec31_1969 );
     ```
 
 `new Date(datestring)`
-: Apabila mempunyai satu argumen, dan merupakan sebuah string, maka akan diurai secara otomatis. Menggunakan algoritma yang sama dengan `Date.parse`, yang akan kita bahas nanti.
+: If there is a single argument, and it's a string, then it is parsed automatically. The algorithm is the same as `Date.parse` uses, we'll cover it later.
 
     ```js run
     let date = new Date("2017-01-26");
     alert(date);
-    // Waktu tidak ditentukan, sehingga diasumsikan menjadi tengah malam GMT dan
-    // disesuaikan dengan zona waktu dimana kode ini berjalan
-    // sehingga hasilnya dapat menjadi
-    // Thu Jan 26 2017 07:00:00 GMT+0700 (Western Indonesia Time) 
-    // atau
-    // Wed Jan 25 2017 04:00:00 GMT-0800 (Pacific Standard Time)
+    // The time is not set, so it's assumed to be midnight GMT and
+    // is adjusted according to the timezone the code is run in
+    // So the result could be
+    // Thu Jan 26 2017 11:00:00 GMT+1100 (Australian Eastern Daylight Time)
+    // or
+    // Wed Jan 25 2017 16:00:00 GMT-0800 (Pacific Standard Time)
     ```
 
-`new Date(tahun, bulan, tanggal, jam, menit, detik, ms)`
-: Membuat tanggal dari komponen yang diberikan di zona waktu lokal. Hanya dua argumen pertama yang wajib diberikan.
+`new Date(year, month, date, hours, minutes, seconds, ms)`
+: Create the date with the given components in the local time zone. Only the first two arguments are obligatory.
 
-    - `tahun` harus terdiri dari 4 digit: `2013` boleh, `98` tidak boleh.
-    - `bulan` dihitung mulai dari `0` (Jan), sampai `11` (Des).
-    - Parameter `tanggal` merupakan hari pada bulan, apabila kosong akan diasumsikan sebagai `1`.
-    - Apabila `jam/menit/detik/ms` kosong, maka akan diasumsikan sebagai `0`.
+    - The `year` must have 4 digits: `2013` is okay, `98` is not.
+    - The `month` count starts with `0` (Jan), up to `11` (Dec).
+    - The `date` parameter is actually the day of month, if absent then `1` is assumed.
+    - If `hours/minutes/seconds/ms` is absent, they are assumed to be equal `0`.
 
-    Sebagai contoh:
+    For instance:
 
     ```js
     new Date(2011, 0, 1, 0, 0, 0, 0); // 1 Jan 2011, 00:00:00
-    new Date(2011, 0, 1); // Sama seperti contoh di atas, jam dan lainnya akan 0 secara default
+    new Date(2011, 0, 1); // the same, hours etc are 0 by default
     ```
 
-    Presisi minimal adalah 1 ms (1/1000 detik):
+    The minimal precision is 1 ms (1/1000 sec):
 
     ```js run
     let date = new Date(2011, 0, 1, 2, 3, 4, 567);
     alert( date ); // 1.01.2011, 02:03:04.567
     ```
 
-## Mengakses komponen tanggal
+## Access date components
 
-Ada beberapa metode untuk mengakses tahun, bulan dan sebagainya dari objek `Date`:
+There are methods to access the year, month and so on from the `Date` object:
 
 [getFullYear()](mdn:js/Date/getFullYear)
-: Mendapatkan nilai tahun (4 digit)
+: Get the year (4 digits)
 
 [getMonth()](mdn:js/Date/getMonth)
-: Mendapatkan nilai bulan, **dari 0 sampai 11**.
+: Get the month, **from 0 to 11**.
 
 [getDate()](mdn:js/Date/getDate)
-: Mendapatkan nilai hari dari satu bulan, dari 1 sampai 31, nama dari metodenya memang terlihat sedikit aneh.
+: Get the day of month, from 1 to 31, the name of the method does look a little bit strange.
 
 [getHours()](mdn:js/Date/getHours), [getMinutes()](mdn:js/Date/getMinutes), [getSeconds()](mdn:js/Date/getSeconds), [getMilliseconds()](mdn:js/Date/getMilliseconds)
-: Mendapatkan nilai komponen waktu yang sesuai.
+: Get the corresponding time components.
 
-```warn header="Bukan `getYear()`, tapi `getFullYear()`"
-Banyak mesin JavaScript mengimplementasikan metode non-standar `getYear()`. Metode ini sudah usang. Terkadang mengembalikan nilai tahun sebagai 2-digit. Ada `getFullYear()` untuk tahun. 
+```warn header="Not `getYear()`, but `getFullYear()`"
+Many JavaScript engines implement a non-standard method `getYear()`. This method is deprecated. It returns 2-digit year sometimes. Please never use it. There is `getFullYear()` for the year.
 ```
 
-Sebagai tambahan, kita dapat mengambil nilai hari dari satu minggu:
+Additionally, we can get a day of week:
 
 [getDay()](mdn:js/Date/getDay)
-: Mendapatkan hari dari satu minggu, dari `0` (Minggu) sampai `6` (Sabtu).  Hari pertama selalu Minggu, di beberapa negara tidak begitu namun tidak bisa diubah.
+: Get the day of week, from `0` (Sunday) to `6` (Saturday). The first day is always Sunday, in some countries that's not so, but can't be changed.
 
-**Semua metode di atas mengembalikan komponen relatif dengan zona waktu lokal**
+**All the methods above return the components relative to the local time zone.**
 
-Dan ada juga metode pasangan untuk UTC, yang mengembalikan hari, bulan, tahun dan sebagainya untuk zona waktu UTC+0: [getUTCFullYear()](mdn:js/Date/getUTCFullYear), [getUTCMonth()](mdn:js/Date/getUTCMonth), [getUTCDay()](mdn:js/Date/getUTCDay). Hanya masukkan `"UTC"` tepat setelah `"get"`.
+There are also their UTC-counterparts, that return day, month, year and so on for the time zone UTC+0: [getUTCFullYear()](mdn:js/Date/getUTCFullYear), [getUTCMonth()](mdn:js/Date/getUTCMonth), [getUTCDay()](mdn:js/Date/getUTCDay). Just insert the `"UTC"` right after `"get"`.
 
-Apabila zona waktu lokal anda bergeser relatif dengan UTC, maka kode di bawah akan menunjukkan jam yang berbeda:
+If your local time zone is shifted relative to UTC, then the code below shows different hours:
 
 ```js run
-// tanggal yang sedang berlangsung
+// current date
 let date = new Date();
 
-// jam yang sedang berlangsung pada zona waktu anda
+// the hour in your current time zone
 alert( date.getHours() );
 
-// jam pada zona waktu UTC+0 (waktu London tanpa daylight savings)
+// the hour in UTC+0 time zone (London time without daylight savings)
 alert( date.getUTCHours() );
 ```
 
-Selain metode yang diberikan, ada dua metode spesial yang tidak mempunyai varian untuk UTC:
+Besides the given methods, there are two special ones that do not have a UTC-variant:
 
 [getTime()](mdn:js/Date/getTime)
-: Mengembalikan timestamp untuk tanggal -- sejumlah angka dalam milidetik yang telah berlalu sejak 1 Januari 1970 UTC+0.
+: Returns the timestamp for the date -- a number of milliseconds passed from the January 1st of 1970 UTC+0.
 
 [getTimezoneOffset()](mdn:js/Date/getTimezoneOffset)
-: Mengembalikan perbedaan antara zona waktu lokal dengan UTC dalam hitungan menit:
+: Returns the difference between UTC and the local time zone, in minutes:
 
     ```js run
-    // jika anda dalam zona waktu UTC-1, mengeluarkan output 60
-    // jika anda dalam zona waktu UTC+3, mengeluarkan output -180
+    // if you are in timezone UTC-1, outputs 60
+    // if you are in timezone UTC+3, outputs -180
     alert( new Date().getTimezoneOffset() );
 
     ```
 
-## Pengaturan komponen tanggal
+## Setting date components
 
 The following methods allow to set date/time components:
-Metode-metode berikut ini dapat digunakan untuk mengatur komponen tanggal/waktu:
 
 - [`setFullYear(year, [month], [date])`](mdn:js/Date/setFullYear)
 - [`setMonth(month, [date])`](mdn:js/Date/setMonth)
@@ -146,38 +144,38 @@ Metode-metode berikut ini dapat digunakan untuk mengatur komponen tanggal/waktu:
 - [`setMinutes(min, [sec], [ms])`](mdn:js/Date/setMinutes)
 - [`setSeconds(sec, [ms])`](mdn:js/Date/setSeconds)
 - [`setMilliseconds(ms)`](mdn:js/Date/setMilliseconds)
-- [`setTime(milliseconds)`](mdn:js/Date/setTime) (mengatur seluruh set tanggal dalam milidetik sejak 01.01.1970 UTC)
+- [`setTime(milliseconds)`](mdn:js/Date/setTime) (sets the whole date by milliseconds since 01.01.1970 UTC)
 
-Setiap metode selain `setTime()` mempunyai varian UTC, sebagai contoh: `setUTCHours()`.
+Every one of them except `setTime()` has a UTC-variant, for instance: `setUTCHours()`.
 
-Seperti yang kita lihat, beberapa metode dapat mengatur beberapa komponen sekaligus, contohnya `setHours`. Komponen yang tidak disebutkan berarti tidak dimodifikasi.
+As we can see, some methods can set multiple components at once, for example `setHours`. The components that are not mentioned are not modified.
 
-Sebagai contoh:
+For instance:
 
 ```js run
 let today = new Date();
 
 today.setHours(0);
-alert(today); // masih today,  tapi jam berubah menjadi 0.
+alert(today); // still today, but the hour is changed to 0
 
 today.setHours(0, 0, 0, 0);
-alert(today); // masih today, sekarang menjadi tepat 00:00:00.
+alert(today); // still today, now 00:00:00 sharp.
 ```
 
-## Koreksi otomatis
+## Autocorrection
 
-*Koreksi otomatis* adalah fitur yang sangat berguna dari objek `Date`. Kita bisa memasang nilai di luar batas, dan akan terkoreksi secara otomatis.
+The *autocorrection* is a very handy feature of `Date` objects. We can set out-of-range values, and it will auto-adjust itself.
 
-Sebagai contoh:
+For instance:
 
 ```js run
 let date = new Date(2013, 0, *!*32*/!*); // 32 Jan 2013 ?!?
-alert(date); // ...adalah 1st Feb 2013!
+alert(date); // ...is 1st Feb 2013!
 ```
 
-Komponen tanggal yang lewat dari batas akan terdistribusi secara otomatis.
+Out-of-range date components are distributed automatically.
 
-Misalnya anda perlu menambahkan tanggal "28 Feb 2016" sebanyak 2 hari. Bisa saja menjadi "2 Mar" atau "1 Mar" apabila tahun kabisat. Kita tidak perlu memikirkannya. Tambahkan saja 2 hari. Objek `Date` akan mengerjakan sisanya:
+Let's say we need to increase the date "28 Feb 2016" by 2 days. It may be "2 Mar" or "1 Mar" in case of a leap-year. We don't need to think about it. Just add 2 days. The `Date` object will do the rest:
 
 ```js run
 let date = new Date(2016, 1, 28);
@@ -188,72 +186,71 @@ date.setDate(date.getDate() + 2);
 alert( date ); // 1 Mar 2016
 ```
 
-Fitur tersebut sering digunakan untuk mengambil nilai tanggal setelah periode waktu yang diberikan. Sebagai contoh, kita akan mengambil nilai tanggal "70 detik setelah sekarang":
+That feature is often used to get the date after the given period of time. For instance, let's get the date for "70 seconds after now":
 
 ```js run
 let date = new Date();
 date.setSeconds(date.getSeconds() + 70);
 
-alert( date ); // menunjukkan tanggal yang tepat
+alert( date ); // shows the correct date
 ```
 
-Kita juga dapat memasang 0 atau bahkan nilai negatif. Sebagai contoh:
+We can also set zero or even negative values. For example:
 
 ```js run
 let date = new Date(2016, 0, 2); // 2 Jan 2016
 
-date.setDate(1); // memasang hari 1 dalam satu bulan
+date.setDate(1); // set day 1 of month
 alert( date );
 
-date.setDate(0); // hari minimal adalah 1, jadi diasumsikan sebagai hari terakhir dari bulan sebelumnya
-alert( date ); // 31 Des 2015
+date.setDate(0); // min day is 1, so the last day of the previous month is assumed
+alert( date ); // 31 Dec 2015
 ```
 
 ## Date to number, date diff
-## Tanggal ke angka, perbedaan tanggal
 
-Ketika sebuah objek `Date` dikonversi ke angka, akan menjadi timestamp yang sama dengan `date.getTime()`:
+When a `Date` object is converted to number, it becomes the timestamp same as `date.getTime()`:
 
 ```js run
 let date = new Date();
-alert(+date); // Angka dalam milidetik sama seperti date.getTime()
+alert(+date); // the number of milliseconds, same as date.getTime()
 ```
 
-Efek samping yang penting: tanggal bisa dikurangi, dan hasilnya adalah perbedaan dalam ms.
+The important side effect: dates can be subtracted, the result is their difference in ms.
 
-Ini bisa digunakan untung perhitungan waktu:
+That can be used for time measurements:
 
 ```js run
-let start = new Date(); // mulai perhitungan waktu
+let start = new Date(); // start measuring time
 
-// melakukan perhitungan
+// do the job
 for (let i = 0; i < 100000; i++) {
   let doSomething = i * i * i;
 }
 
-let end = new Date(); // mengakhiri perhitungan waktu
+let end = new Date(); // end measuring time
 
-alert( `Pengulangan memakan waktu ${end - start} ms` );
+alert( `The loop took ${end - start} ms` );
 ```
 
 ## Date.now()
 
-Jika kita ingin menghitung waktu, kita tidak memerlukan objek `Date`.
+If we only want to measure time, we don't need the `Date` object.
 
-Ada metode spesial `Date.now()` yang mengembalikan timestamp yang berlangsung.
+There's a special method `Date.now()` that returns the current timestamp.
 
-Secara semantik sama seperti `new Date().getTime()`, tapi tidak membuat objek `Date` perantara. Sehingga lebih cepat dan tidak menambahkan beban pada garbage collection.
+It is semantically equivalent to `new Date().getTime()`, but it doesn't create an intermediate `Date` object. So it's faster and doesn't put pressure on garbage collection.
 
-Ini sering digunakan untuk kenyamanan atau ketika performa menjadi penting, seperti dalam games dalam JavaScript atau aplikasi khusus lainnya.
+It is used mostly for convenience or when performance matters, like in games in JavaScript or other specialized applications.
 
-Sehingga ini mungkin lebih baik:
+So this is probably better:
 
 ```js run
 *!*
-let start = Date.now(); // milidetik dihitung sejak 1 Jan 1970
+let start = Date.now(); // milliseconds count from 1 Jan 1970
 */!*
 
-// melakukan perhitungan
+// do the job
 for (let i = 0; i < 100000; i++) {
   let doSomething = i * i * i;
 }
@@ -262,20 +259,19 @@ for (let i = 0; i < 100000; i++) {
 let end = Date.now(); // done
 */!*
 
-alert( `Pengulangan memakan waktu ${end - start} ms` ); // mengurangi angka, bukan tanggal
+alert( `The loop took ${end - start} ms` ); // subtract numbers, not dates
 ```
 
 ## Benchmarking
 
-Jika kita memerlukan benchmark yang dapat diandalkan untuk fungsi yang CPU-hungry, kita harus berhati-hati.
+If we want a reliable benchmark of CPU-hungry function, we should be careful.
 
-Sebagai contoh, ukur dua fungsi yang menghitung perbedaan antara dua tanggal: mana yang lebih cepat?
+For instance, let's measure two functions that calculate the difference between two dates: which one is faster?
 
 Such performance measurements are often called "benchmarks".
-Perhitungan performa seperti ini biasa disebut "benchmarks".
 
 ```js
-// kita punya date1 dan date2, fungsi mana yang mengembalikan perbedaan waktu dalam ms yang lebih cepat?
+// we have date1 and date2, which function faster returns their difference in ms?
 function diffSubtract(date1, date2) {
   return date2 - date1;
 }
@@ -286,13 +282,13 @@ function diffGetTime(date1, date2) {
 }
 ```
 
-Dua fungsi ini melakukan hal yang sama persis, namun satu fungsi menggunakan `date.getTime()` secara eksplisit untuk mendapatkan tanggal dalam ms, dan yang lain mengandalkan transformasi tanggal ke angka. Hasilnya hampir selalu sama.
+These two do exactly the same thing, but one of them uses an explicit `date.getTime()` to get the date in ms, and the other one relies on a date-to-number transform. Their result is always the same.
 
-Jadi, mana yang lebih cepat?
+So, which one is faster?
 
-Ide pertama yang mungkin adalah menjalankan fungsi tersebut berturut-turut dan hitung perbedaan waktunya. Dalam kasus ini, fungsi-fungsinya sangat sederhana, sehingga kita harus melakukannya minimal 100000 pengulangan.
+The first idea may be to run them many times in a row and measure the time difference. For our case, functions are very simple, so we have to do it at least 100000 times.
 
-Lakukan perhitungan:
+Let's measure:
 
 ```js run
 function diffSubtract(date1, date2) {
@@ -312,23 +308,23 @@ function bench(f) {
   return Date.now() - start;
 }
 
-alert( 'Waktu dari diffSubtract: ' + bench(diffSubtract) + 'ms' );
-alert( 'Waktu dari diffGetTime: ' + bench(diffGetTime) + 'ms' );
+alert( 'Time of diffSubtract: ' + bench(diffSubtract) + 'ms' );
+alert( 'Time of diffGetTime: ' + bench(diffGetTime) + 'ms' );
 ```
 
-Wow! Menggunakan `getTime()` lebih cepat! Ini dikarenakan tidak ada konversi tipe, sehingga mesin lebih mudah untuk mengoptimalkannya.
+Wow! Using `getTime()` is so much faster! That's because there's no type conversion, it is much easier for engines to optimize.
 
-Okay, kita sudah punya sesuatu. Namun itu belum dianggap benchmark yang bagus.
+Okay, we have something. But that's not a good benchmark yet.
 
-Bayangkan saat menjalankan `bench(diffSubtract)` CPU sedang menjalankan sesuatu secara parallel, dan memakan sumber daya. Dan pada saat menjalankan `bench(diffGetTime)` pekerjaan tersebut sudah selesai.
+Imagine that at the time of running `bench(diffSubtract)` CPU was doing something in parallel, and it was taking resources. And by the time of running `bench(diffGetTime)` that work has finished.
 
-Skenario yang nyata pada multi-process OS yang modern.
+A pretty real scenario for a modern multi-process OS.
 
-Sebagai hasilnya, benchmark pertama akan menggunakan sumber daya CPU yang lebih sedikit daripada yang kedua. Ini akan berakibat kepada hasil yang salah.
+As a result, the first benchmark will have less CPU resources than the second. That may lead to wrong results.
 
-*Untuk benchmarking yand dapat diandalkan, semua percobaan benchmark harus dilakukan berulang kali.*
+**For more reliable benchmarking, the whole pack of benchmarks should be rerun multiple times.**
 
-Sebagai contoh, seperti ini:
+For example, like this:
 
 ```js run
 function diffSubtract(date1, date2) {
@@ -352,54 +348,53 @@ let time1 = 0;
 let time2 = 0;
 
 *!*
-// jalankan bench(upperSlice) dan bench(upperLoop) masing-masing 10 kali bergantian
+// run bench(upperSlice) and bench(upperLoop) each 10 times alternating
 for (let i = 0; i < 10; i++) {
   time1 += bench(diffSubtract);
   time2 += bench(diffGetTime);
 }
 */!*
 
-alert( 'Total waktu untuk diffSubtract: ' + time1 );
-alert( 'Total waktu untuk diffGetTime: ' + time2 );
+alert( 'Total time for diffSubtract: ' + time1 );
+alert( 'Total time for diffGetTime: ' + time2 );
 ```
 
-Mesin JavaScript modern mulai mengaplikasikan optimisasi lebih canggih hanya untuk "hot code" yang tereksekusi berulang kali (tidak perlu untuk mengoptimasi sesuatu yang jarang dilakukan). Sehingga, untuk contoh di atas, eksekusi pertama tidak terlalu dioptimasi. Kita mungkin perlu menambahkan percobaan pemanasan:
+Modern JavaScript engines start applying advanced optimizations only to "hot code" that executes many times (no need to optimize rarely executed things). So, in the example above, first executions are not well-optimized. We may want to add a heat-up run:
 
 ```js
-// Tambahkan untuk "pemanasan" sebelum menjalankan pengulangan utama
+// added for "heating up" prior to the main loop
 bench(diffSubtract);
 bench(diffGetTime);
 
-// lakukan benchmark
+// now benchmark
 for (let i = 0; i < 10; i++) {
   time1 += bench(diffSubtract);
   time2 += bench(diffGetTime);
 }
 ```
 
-```warn header="Berhati-hati ketika melakukan microbenchmarking"
+```warn header="Be careful doing microbenchmarking"
 Modern JavaScript engines perform many optimizations. They may tweak results of "artificial tests" compared to "normal usage", especially when we benchmark something very small, such as how an operator works, or a built-in function. So if you seriously want to understand performance, then please study how the JavaScript engine works. And then you probably won't need microbenchmarks at all.
-Mesin JavaScript modern melakukan banyak optimasi. Sehingga memungkinkan akan mengubah hasil dari "test buatan" dibandingkan "pemakaian normal", khususnya ketika kita melakukan benchmark pada sesuatu yang sangat kecil, seperti bagaimana operator bekerja, atau fungsi bawaan. Sehingga apabila anda serius ingin memahami performa, maka tolong pelajari bagaimana mesin JavaScript bekerja. Dan kemudian anda mungkin tidak memerlukan microbenchmark sama sekali.
 
-Sejumlah artikel bagus mengenai V8 dapat ditemukan di <http://mrale.ph>.
+The great pack of articles about V8 can be found at <http://mrale.ph>.
 ```
 
-## Date.parse dari sebuah string
+## Date.parse from a string
 
-Metode [Date.parse(str)](mdn:js/Date/parse) dapat membaca tanggal dari sebuah string.
+The method [Date.parse(str)](mdn:js/Date/parse) can read a date from a string.
 
-Format string harus seperti: `YYYY-MM-DDTHH:mm:ss.sssZ`, dimana:
+The string format should be: `YYYY-MM-DDTHH:mm:ss.sssZ`, where:
 
-- `YYYY-MM-DD` -- adalah tanggal: tahun-bulan-hari.
-- Karakter `"T"` digunakan sebagai pembatas.
-- `HH:mm:ss.sss` -- adalah waktu: jam, menit, detik, dan milidetik.
-- Karakter `'Z'` adalah opsional yang menandakan zona waktu dalam format `+-hh:mm`. Satu karakter `Z` mempunyai arti UTC+0.
+- `YYYY-MM-DD` -- is the date: year-month-day.
+- The character `"T"` is used as the delimiter.
+- `HH:mm:ss.sss` -- is the time: hours, minutes, seconds and milliseconds.
+- The optional `'Z'` part denotes the time zone in the format `+-hh:mm`. A single letter `Z` that would mean UTC+0.
 
-varian pendek juga bisa digunakan, seperti `YYYY-MM-DD` atau `YYYY-MM` atau bahkan `YYYY`.
+Shorter variants are also possible, like `YYYY-MM-DD` or `YYYY-MM` or even `YYYY`.
 
-Pemanggilan `Date.parse(str)` akan mengubah string pada format yang diberikan dan mengembalikan timestamp (angka dalam milidetik dimulai sejak 1970 UTC+0). Apabila format tidak valid, akan mengembalikan `NaN`.
+The call to `Date.parse(str)` parses the string in the given format and returns the timestamp (number of milliseconds from 1 Jan 1970 UTC+0). If the format is invalid, returns `NaN`.
 
-Sebagai contoh:
+For instance:
 
 ```js run
 let ms = Date.parse('2012-01-26T13:51:50.417-07:00');
@@ -407,7 +402,7 @@ let ms = Date.parse('2012-01-26T13:51:50.417-07:00');
 alert(ms); // 1327611110417  (timestamp)
 ```
 
-Kita dapat membuat sebuah objek `new Date` secara instan dari timestamp:
+We can instantly create a `new Date` object from the timestamp:
 
 ```js run
 let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
@@ -415,25 +410,24 @@ let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
 alert(date);  
 ```
 
-## Ringkasan
+## Summary
 
-- Tanggal dan waktu di JavaScript diwakili oleh objek [Date](mdn:js/Date). Kita tidak dapat membuat "hanya tanggal" atau "hanya waktu": Objek `Date` selalu membuat keduanya.
-- Bulan dihitung mulai dari 0 (ya, Januari adalah bulan ke-0).
-- Hari dalam satu minggu pada `getDay()` juga dihitung dari 0 (yaitu Minggu).
-- `Date` terkoreksi otomatis ketika diberikan komponen di luar batas. Berguna untuk penambahan/pengurangan hari/bulan/jam.
-- Tanggal dapat dikurangi, dan mendapatkan perbedaannya dalam milidetik. Ini dikarenakan sebuah `Date` menjadi timestamp ketika dikonversi ke angka.
-- Gunakan `Date.now()` untuk mendapatkan timestamp yang sedang berlangsung dengan cepat.
+- Date and time in JavaScript are represented with the [Date](mdn:js/Date) object. We can't create "only date" or "only time": `Date` objects always carry both.
+- Months are counted from zero (yes, January is a zero month).
+- Days of week in `getDay()` are also counted from zero (that's Sunday).
+- `Date` auto-corrects itself when out-of-range components are set. Good for adding/subtracting days/months/hours.
+- Dates can be subtracted, giving their difference in milliseconds. That's because a `Date` becomes the timestamp when converted to a number.
+- Use `Date.now()` to get the current timestamp fast.
 
-Mohon diingat bahwa tidak sama dengan sistem lainnya, timestamp pada JavaScript adalah dalam milidetik, bukan detik.
+Note that unlike many other systems, timestamps in JavaScript are in milliseconds, not in seconds.
 
-Terkadang kita perlu perhitungan waktu yang lebih presisi. JavaScript sendiri tidak mempunyai cara untuk mengitung waktu dalam mikrodetik (1 per sejuta dari 1 detik), tapi environment pada umumnya menyediakannya. Sebagai contoh, browser punya [performance.now()](mdn:api/Performance/now) yang mengembalikan angka dalam milidetik dimulai dari awal halaman terpasang dengan presisi mikrodetik (3 digit setelah koma):
-
+Sometimes we need more precise time measurements. JavaScript itself does not have a way to measure time in microseconds (1 millionth of a second), but most environments provide it. For instance, browser has [performance.now()](mdn:api/Performance/now) that gives the number of milliseconds from the start of page loading with microsecond precision (3 digits after the point):
 
 ```js run
 alert(`Loading started ${performance.now()}ms ago`);
-// Seperti: "Loading started 34731.26000000001ms ago"
-// .26 adalah mikrodetik (260 mikrodetik)
-// lebih dari 3 digit setelah koma adalah error pada presisi, hanya 3 angka pertama yang benar
+// Something like: "Loading started 34731.26000000001ms ago"
+// .26 is microseconds (260 microseconds)
+// more than 3 digits after the decimal point are precision errors, but only the first 3 are correct
 ```
 
 Node.js has `microtime` module and other ways. Technically, almost any device and environment allows to get more precision, it's just not in `Date`.

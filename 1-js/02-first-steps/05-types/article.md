@@ -1,16 +1,18 @@
 # Tipe data
 
-Variabel di JavaScript bisa mengandung data apapun. Satu variabel awalnya string bisa berubah jadi angka:
+Dalam Javascript terdapat beberapa tipe data yang dapat digunakan, sebuah *string* atau sebuah *number*
+
+Terdapat delapan tipe data dasar dalam Javascript. Disini, kita akan mempelajarinya dan di bagian selanjutnya kita akan mempelajarinya secara detail.
+
+Kita bisa menggunakan tipe apa saja didalam sebuah variabel. Contoh, Untuk sesaat sebuah variabel bisa saja memiliki tipe data *string* dan selanjutnya variabel tersebut menyimpan *number*:
 
 ```js
-// no error
+// Tidak ada error
 let message = "hello";
 message = 123456;
 ```
 
-Bahasa pemrograman yang memperbolehkan hal semacam ini dibsebut "dynamically typed", yang artinya ada tipe data, tapi variabel tak terikat ke tipe data apapun.
-
-Ada tujuh tipe data dasar di JavaScript. Di sini, kita akan mengcover mereka secara umum dan di bab berikutnya kita akan berbicara tentang setiap dari mereka secara detil.
+Bahasa pemrograman yang mendukung hal semacam ini, seperti Javascript, disebut dengan "dynamically typed", berarti terdapat tipe data, akan tetapi variabel tidak terikat pada tipe data apapun.
 
 ## Number
 
@@ -64,21 +66,23 @@ Kita akan melihat lebih tentang cara bekerja dengan angka di bab <info:number>.
 
 ## BigInt
 
-  Di JavaScript, tipe "number" tidak bisa mewakili nilai integer yang lebih dari <code>2<sup>53</sup></code> (atau kurang dari <code>-2<sup>53</sup></code> untuk negatives), itu batasan teknikal yang disebabkan representasi internal mereka. Itu sekitar 16 digit desimal, jadi untuk banyak tujuan limitasi itu bukan masalah, tapi kadang kita butuh butuh big number yang sangat besar, misanya: cryptography or microsecond-precision timestamps.
+Didalam Javascript, tipe data "number" tidak bisa mengandung nilai lebih dari <code>(2<sup>53</sup>-1)</code> (sama dengan `9007199254740991`) atau kurang dari <code>-(2<sup>53</sup>-1)</code>. Itu adalah batasan teknik yang dibuat.
 
-`BigInt` type was recently added to the language to represent integers of arbitrary length.
+Untuk kebanyakan kebutuhan sebenarnya sudah cukup, dan terkadang kita membutuhkan nilai yang lebih besar, contohnya untuk kriptografy atau perhitungan waktu microsecond.
 
-A `BigInt` is created by appending `n` to the end of an integer literal:
+Tipe data `BigInt` lalu ditambahkan kedalam Javascript untuk menampilkan nilai *integer* yang sangat panjang.
+
+Tipe data `BigInt` dibuat dengan menambahkan `n` diakhir dari nilai sebuah *integer*.
 
 ```js
-// the "n" at the end means it's a BigInt
+// arti dari "n" pada akhir menandakan bahwa contoh dibawah adalah sebuah `BigInt`
 const bigInt = 1234567890123456789012345678901234567890n;
 ```
 
-As `BigInt` numbers are rarely needed, we devoted them a separate chapter <info:bigint>.
+Sebenarnya `BigInt` jarang dibutuhkan, kita tidak akan mempelajarinya disini, tetapi akan dipisahkan didalam bagian <info:bigint>. Baca saja saat kamu membutuhkan nilai *integer* yang sangat panjang.
 
-```smart header="Compatability issues"
-Right now `BigInt` is supported in Firefox and Chrome, but not in Safari/IE/Edge.
+```smart header="Masalah Kompabilitas"
+Sekarang `BigInt` sudah didukung oleh Firefox/Chrome/Edge, tapi tidak didalam Safari/Internet Explorer.
 ```
 
 ## String
@@ -163,7 +167,7 @@ Di JavaScript, `null` tidak "mereferensi ke objek yang tak ada" atau "null point
 
 Ia cuma nilai spesial yang mewakili "hampa", "kosong" atau "nilai tak-diketahui".
 
-Kode di atas menyatakan bahwa `age` tak diketahui atau kosong untuk beberapa alasan.
+Kode diatas mengatakan bahwa `age` tidak diketahui.
 
 ## Nilai "undefined"
 
@@ -174,30 +178,33 @@ Arti `undefined` ialah "nilai yang tak ditetapkan".
 Jika variabel dideklarasi, namun tak ditetapkan, maka nilainya `undefined`:
 
 ```js run
-let x;
+let age;
 
-alert(x); // menampilkan "undefined"
+alert(age); // menampilkan "undefined"
 ```
 
-Secara teknis, mungkin saja menetapkan `undefined` ke variabel apapun:
+Secara teknis, kita bisa secara jelas menetapkan `undefined` kedalam sebuah variabel:
 
 ```js run
-let x = 123;
+let age = 100;
 
-x = undefined;
+// mengubah nilai menjadi undefined
+age = undefined;
 
-alert(x); // "undefined"
+alert(age); // "undefined"
 ```
 
-...Tapi kita tidak menyarankan itu. Normalnya, kita gunakan `null` untuk menetapkan nilai "kosong" atau "tak-diketahui" ke variabel, dan kita gunakan `undefined` untuk pengecekan seperti melihat apakah variabel telah ditetapkan.
+...Tapi kita tidak menyarankan itu. Normalnya, kita gunakan `null` untuk menetapkan nilai "kosong" atau "tak-diketahui" ke variabel, dan kita gunakan `undefined` untuk pengecekan seperti melihat apakah nilai dari variabel telah ditetapkan.
 
 ## Objek dan Simbol
 
 Tipe `object` itu special.
 
-Semua tipe lain disebut "primitive" karena nilainya bisa mengandung sesuatu yang tunggal (bisa jadi string atau angka atau apapun). Sebaliknya, objek digunakan untuk menyimpan koleksi data dan entitas lebih rumit. Kita akan berhadapan dengannya nanti di bab <info:object> setelah kita belajar tentang primitive.
+Seluruh tipe data lainnya disebut "primitive" karena hanya bisa mengandung satu buah nilai (entah itu sebuah string ataupun number atau lainnya). Sebaliknnya, object digunakan untuk menyimpan koleksi dari data dan entitas lainnya.
 
-Tipe `symbol` digunakan untuk membuat identifier unik untuk objek. Kita harus menyebutkannya demi kelengkapan, tapi kita akan mempelajarinya setelah objek.
+Objek itu penting, objek membutuhkan perlakuan yang spesial. Kita akan pelajari objek lebih lanjut di bagian <info:object>, setelah kita pelajari lebih lanjut tentang tipe data primitif.
+
+Tipe `symbol` digunakan untuk menciptakan identifier unik untuk sebuah objek. Untuk kelengkapan kita akan menyebutkannya disini, tetapi akan ditunda hingga kita tahu tentang objek
 
 ## Operator typeof [#type-typeof]
 
@@ -248,14 +255,14 @@ Tiga baris terakhir mungkin butuh penjelasan tambahan:
 
 Ada 7 tipe data dasar dalam JavaScript.
 
-- `number` untuk angka jenis manapun: integer atau floating-point.
-- `bigint` untuk angka integer dengan panjang sembarang.
-- `string` untuk string. String mungkin punya satu atau lebih karakter, tak ada tipe katakter tunggal terpisah.
+- `number` untuk nomor dengan bentuk apapun: integer ataupun nilai yang memiliki nilai desimal, batas dari integer adalah ±2<sup>53</sup>.
+- `bigint` untuk nomor integer yang sangat panjang.
+- `string` untuk string. Sebuah string mungkin memiliki 0 atau lebih karakter, tidak ada tipe data untuk string yang memiliki panjang 1 karakter.
 - `boolean` untuk `true`/`false`.
-- `null` untuk nilai tak-diketahui -- tipe mandiri yang punya nilai tunggal `null`.
-- `undefined` untuk nilai yang belum ditetapkan -- tipe mandiri yang punya nilai tunggal `undefined`.
-- `object` untuk struktur data lebih rumit.
-- `symbol` untuk identifier unik.
+- `null` untuk nilai yang tidak diketahui -- sebuah tipe data mandiri yang memiliki satu nilai yaitu `null`.
+- `undefined` untuk nilai yang tidak ada atau tidak diberikan nilai -- sebuah tipe data mandiri yang memiliki satu nilai yaitu `null`.
+- `object` untuk struktur data yang lebih rumit.
+- `symbol` untuk identifier atau pengenal yang unik.
 
 Operator `typeof` memungkinkan kita melihat tipe mana yang disimpan dalam variable.
 

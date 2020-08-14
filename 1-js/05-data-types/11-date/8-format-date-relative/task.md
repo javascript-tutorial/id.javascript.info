@@ -1,25 +1,25 @@
-Tingkat kepentingan: 4
+importance: 4
 
 ---
 
-# Format tanggal relatif
+# Format the relative date
 
-Tulis sebuah fungsi `formatDate(tanggal)` yang akan mengubah `tanggal` sebagai berikut:
+Write a function `formatDate(date)` that should format `date` as follows:
 
-- Jika sejak `tanggal` berlalu kurang dari 1 detik, maka `"sekarang"`.
-- Jika tidak, jika sejak `tanggal` berlalu kurang dari 1 menit, maka `"n menit lalu"`.
-- Jika tidak, jika kurang dari 1 jam, maka` "m jam lalu"`.
-- Jika tidak, maka tunjukkan tanggal secara penuh dalam format date in the format `"DD.MM.YY HH:mm"`. Yaitu: `"hari.bulan.tahun jam:menit"`, semua dalam format 2-digit, e.g. `31.12.16 10:00`.
+- If since `date` passed less than 1 second, then `"right now"`.
+- Otherwise, if since `date` passed less than 1 minute, then `"n sec. ago"`.
+- Otherwise, if less than an hour, then `"m min. ago"`.
+- Otherwise, the full date in the format `"DD.MM.YY HH:mm"`. That is: `"day.month.year hours:minutes"`, all in 2-digit format, e.g. `31.12.16 10:00`.
 
-Sebagai contoh:
+For instance:
 
 ```js
-alert( formatTanggal(new Date(new Date - 1)) ); // "sekarang"
+alert( formatDate(new Date(new Date - 1)) ); // "right now"
 
-alert( formatTanggal(new Date(new Date - 30 * 1000)) ); // "30 detik lalu"
+alert( formatDate(new Date(new Date - 30 * 1000)) ); // "30 sec. ago"
 
-alert( formatTanggal(new Date(new Date - 5 * 60 * 1000)) ); // "5 menit lalu"
+alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 min. ago"
 
-// tanggal kemarin seperti 31.12.16, 20:00
-alert( formatTanggal(new Date(new Date - 86400 * 1000)) );
+// yesterday's date like 31.12.16 20:00
+alert( formatDate(new Date(new Date - 86400 * 1000)) );
 ```
