@@ -32,7 +32,7 @@ switch(x) {
 
 ## Contoh
 
-Contoh `switch` (kode yang diexekusi dihighlight):
+Contoh `switch` (kode yang dieksekusi dihighlight):
 
 ```js run
 let a = 2 + 2;
