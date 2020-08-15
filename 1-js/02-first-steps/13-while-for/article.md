@@ -268,11 +268,7 @@ for (let i = 0; i < 10; i++) {
 
 Dari sudut pandang teknis, ini identik dengan contoh diatas. Tentunya, kita dapat membungkus kode dalam sebuah blok `if` daripada menggunakan `continue`.
 
-<<<<<<< HEAD:1-js/02-first-steps/12-while-for/article.md
-Tapi efek sampinya, ini membuat penyarangan satu level lebih (`alert` dipanggil didalam kurung kurawal). Jika kode didalam `if` lebih panjang dari beberapa baris, itu mungkin mengurangi keterbacaan keseluruhan.
-=======
-But as a side-effect, this created one more level of nesting (the `alert` call inside the curly braces). If the code inside of `if` is longer than a few lines, that may decrease the overall readability.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/02-first-steps/13-while-for/article.md
+Tapi sebagai efeknya, hal ini akan menciptakan kode lebih dalam satu tingkat (pemanggilan `alert` didalam kurung kurawal). Jika kode didalam `if` lebih panjang beberapa baris, hal itu akan membuat tingkat keterbacaan kode menjadi berkurang.
 ````
 
 ````warn header="Tidak ada `break/continue` ke sisi kanan '?'"
