@@ -43,11 +43,7 @@ The Dao hides in wordlessness. Only the Dao is well begun and well
 completed.
 ```
 
-<<<<<<< HEAD
 Cara lain untuk mengkode cepat ialah memakai nama variabel huruf-tunggal di manapun. Seperti `a`, `b` atau `c`.
-=======
-Another way to code shorter is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 Variabel pendek hiland dalam kode seperti ninja sungguhan di hutan. Tak ada yang mampu mencarinya memakai "pencari" editor. Dan bahkan jika seseorang menemukannya, mereka tak mampu men"decipher" arti nama `a` atau `b`.
 
@@ -66,7 +62,7 @@ Seperti ini:
 - `browser` -> `brsr`.
 - ...etc
 
-Only the one with truly good intuition will be able to understand such names. Try to shorten everything. Only a worthy person should be able to uphold the development of your code.
+Hanya orang-orang yang memiliki intuisi bagus yang akan mengerti nama-nama seperti itu. Cobalah untuk memendekan segalanya. Hanya orang-orang yang layak yang bisa bertahan dengan perkembangan kodemu.
 
 ## Terbang Tinggi. Jadilah abstrak.
 
@@ -81,7 +77,7 @@ Saat memilih nama cobalah pakai kata paling abstrak. Seperti `obj`, `data`, `val
 
 - **Nama ideal untuk variabel ialah `data`.** Pakai itu di manapun kamu bisa. Jelas, tiap variabel memegang *data*, kan?
 
-    ...Tapi bagaimana jika `data` sudah diambil? Coba `value`, itu juga universal. After all, a variable eventually gets a *value*.
+    ...Tapi bagaimana jika `data` sudah diambil? Coba `value`, itu juga universal. Setelahnya, sebuah variabel akhirnya mendapatkan sebuah *nilai*.
 
 - **Beri nama variabel berdasarkan tipe: `str`, `num`...**
 
@@ -118,7 +114,7 @@ Misalnya, pikirkan prefix fungsi. Jika fungsi menunjukkan pesan ke layar -- mula
 
 Menyindir bahwa ada perbedaan halus antara kedua fungsi, padahal tidaka da.
 
-Make a pact with fellow ninjas of the team: if John starts "showing" functions with `display...` in his code, then Peter could use `render..`, and Ann -- `paint...`. Note how much more interesting and diverse the code became.
+Buatlah sebuah team kawan ninja: jika John mulai *menampilkan* fungsi dengan `display...` didalam kodenya, lalu Peter menggunakan `render...`, dan Ann -- `paint...`. Perhatikan akan seberapa menarik dan berbedakah nantinya.
 
 ...Dan sekarang untuk hat trick!
 
