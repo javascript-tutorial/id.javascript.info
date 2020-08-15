@@ -285,13 +285,8 @@ Tentu saja, tim bisa saja  menulis panduan gaya mereka sendiri, tapi biasanya me
 
 Beberapa pilihan populer:
 
-<<<<<<< HEAD
 - [Panduan Gaya JavaScript Google](https://google.github.io/styleguide/javascriptguide.xml)
 - [Panduan Gaya JavaScript Airbnb](https://github.com/airbnb/javascript)
-=======
-- [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
-- [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
 - [StandardJS](https://standardjs.com/)
 - (plus banyak lainnya)
