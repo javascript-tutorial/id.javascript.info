@@ -1,12 +1,12 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Check for emptiness
+# cek kekosongan
 
-Write the function `isEmpty(obj)` which returns `true` if the object has no properties, `false` otherwise.
+Tulislah sebuah fungsi `isEmpty(obj)` yang mana akan mengembalikan `true` jika objek tidak memiliki properti dan `false` jika sebaliknya.
 
-Should work like that:
+Harus bekerja seperti ini:
 
 ```js
 let schedule = {};
