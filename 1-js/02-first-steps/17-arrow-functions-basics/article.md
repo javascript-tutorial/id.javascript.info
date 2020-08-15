@@ -67,11 +67,7 @@ let welcome = (age < 18) ?
   () => alert('Hello') :
   () => alert("Greetings!");
 
-<<<<<<< HEAD:1-js/02-first-steps/16-arrow-functions-basics/article.md
-welcome(); // kini benar
-=======
 welcome();
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/02-first-steps/17-arrow-functions-basics/article.md
 ```
 
 Fungsi-fungsi *arrow* bisa terlihat tidak familiar dan sulit dibaca pada awalnya, namun hal tersebut bisa cepat berubah seiring dengan mata (kita) yang terbiasa dengan struktur tersebut.

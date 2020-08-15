@@ -81,26 +81,15 @@ let x = 5;
 x = "John";
 ```
 
-<<<<<<< HEAD:1-js/02-first-steps/17-javascript-specials/article.md
-Ada 7 tipe data:
+Terdapat 8 tipe data:
 
-- `number` untuk angka floating-point dan integer,
+- `number` untuk floating-point(bilangan pecahan) dan integer,
+- `bigint` untuk integer yang sangat panjang,
 - `string` untuk string,
-- `boolean` untuk nilai logika: `true/false`,
-- `null` -- tipe dengan nilai tunggal `null`, artinya "kosong" atau "tidak eksis",
-- `undefined` -- tipe dengan nilai tunggal `undefined`, artinya "tak ditetapkan",
-- `object` dan `symbol` -- untuk struktur data komplex dan identifier unik, kita belum mempelajari mereka sekarang.
-=======
-There are 8 data types:
-
-- `number` for both floating-point and integer numbers,
-- `bigint` for integer numbers of arbitrary length,
-- `string` for strings,
-- `boolean` for logical values: `true/false`,
-- `null` -- a type with a single value `null`, meaning "empty" or "does not exist",
-- `undefined` -- a type with a single value `undefined`, meaning "not assigned",
-- `object` and `symbol` -- for complex data structures and unique identifiers, we haven't learnt them yet.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/02-first-steps/18-javascript-specials/article.md
+- `boolean` untuk nilai logik: `true/false`,
+- `null` tipe data dengan nilai tunggal `null`, yang sama dengan "empty/kosong" atau "does not exist/tidak ada nilai",
+- `undefined` -- tipe data dengan nilai tunggal `undefined`, yang sama dengan "not assigned/belum didefinisikan",
+- `object` dan `symbol` -- untuk struktur data yang kompleks dan identifier unik, sampai saat ini kita belum belajar ini.
 
 Operator `typeof` mengembalikan tipe untuk satu nilai, dengan dua pengecualian:
 ```js
@@ -144,7 +133,7 @@ JavaScript mendukung operator berikut:
 Arithmatika
 : Regular: `* + - /`, juga `%` untuk remainder dan `**` untuk pangkat bilangan.
 
-    The binary plus `+` concatenates strings. And if any of the operands is a string, the other one is converted to string too:
+    Operator biner plus `+` menggabungkan string. Dan juka ada operan yang string, maka yang lainnya akan diubah menjadi string juga:
 
     ```js run
     alert( '1' + 2 ); // '12', string
@@ -163,33 +152,29 @@ Kondisional
 Operator logika
 : Logika AND `&&` dan OR `||` menyajikan evaluasi sirkuit-pendek dan mengembalikan nilai di mana ia berhenti. Logika NOT `!` mengkonversi operand ke tipe boolean dan mengembalikan nilai kebalikannya.
 
-<<<<<<< HEAD:1-js/02-first-steps/17-javascript-specials/article.md
-Pembandingan
-=======
-Nullish coalescing operator
-: The `??` operator provides a way to choose a defined value from a list of variables. The result of `a ?? b` is `a` unless it's `null/undefined`, then `b`.
+Nullish coalescing operator/Operator penggabung nullish
+: Operator `??` menyediakan cara untuk memilih nilai yang terdefinisikan dari sebuah daftar variabel. Hasil dari `a ?? b` adalah a kecuali jika nilainya `null/undefined`, lalu `b`.
 
-Comparisons
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/02-first-steps/18-javascript-specials/article.md
-: Equality check `==` for values of different types converts them to a number (except `null` and `undefined` that equal each other and nothing else), so these are equal:
+Perbandingan
+: Persamaan nilai `==` dari type yang berbeda akan mengubahnya menjadi angka (kecuali `null` dan `undefined` yang sama dengan nilai itu sendiri), jadi contoh dibawah adalah sama: 
 
     ```js run
     alert( 0 == false ); // true
     alert( 0 == '' ); // true
     ```
 
-    Other comparisons convert to a number as well.
+    Pembandingan lainnya tentu saja mengubah nilainya menjadi angka.
 
-    The strict equality operator `===` doesn't do the conversion: different types always mean different values for it.
+    Operator pembanding `===` tidak melakukan perubahan tipe: untuk operator pembanding ini, berbeda tipe sama dengan berbeda nilai.
 
-    Values `null` and `undefined` are special: they equal `==` each other and don't equal anything else.
+    Nilai `null` dan `undefined` adalah spesial: mereka sama `==` satu sama lainnya dan tidak sama dengan nilai lain manapun.
 
-    Greater/less comparisons compare strings character-by-character, other types are converted to a number.
+    Pembanding lebih/kurang dari membandingkan string karakter-demi-karakter, tipe lain akan diubah menjadi angka.
 
-Other operators
-: There are few others, like a comma operator.
+Operator lainnya
+: Ada beberapa operator lainnya, seperti operator koma.
 
-More in: <info:operators>, <info:comparison>, <info:logical-operators>, <info:nullish-coalescing-operator>.
+Lebih lanjut di: <info:operators>, <info:comparison>, <info:logical-operators>, <info:nullish-coalescing-operator>.
 
 ## Loop
 
@@ -230,12 +215,8 @@ let age = prompt('Your age?', 18);
 
 switch (age) {
   case 18:
-<<<<<<< HEAD:1-js/02-first-steps/17-javascript-specials/article.md
-    alert("Won't work"); // hasil prompt ialah string, bukan angka
-=======
-    alert("Won't work"); // the result of prompt is a string, not a number
+    alert("Won't work"); // hasil dari prompt adalah string, bukan angka
     break;
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/02-first-steps/18-javascript-specials/article.md
 
   case "18":
     alert("This works!");
