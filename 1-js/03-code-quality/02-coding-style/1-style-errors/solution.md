@@ -2,7 +2,7 @@
 Kamu bisa perhatikan berikut:
 
 ```js no-beautify
-function pow(x,n)  // <- tak ada spasi between arguments
+function pow(x,n)  // <- tak ada spasi diantara arguments
 {  // <- menemukan bracket di baris terpisah
   let result=1;   // <- tak ada spasi sebelum atau setelah =
   for(let i=0;i<n;i++) {result*=x;}   // <- tak ada spasi
@@ -10,19 +10,11 @@ function pow(x,n)  // <- tak ada spasi between arguments
   return result;
 }
 
-<<<<<<< HEAD
-let x=prompt("x?",''), n=prompt("n?",'') // <-- secara teknis memungkinkan,
-// tapi lebih baik buat 2 baris, juga tak ada spasi dan kehilangan ;
-if (n<0)  // <- tak ada spasi di dalam (n < 0), dan harus ada baris extra line di atasnya
-{   // <- menemukan bracket di baris baru
-  // di bawah - baris panjang bisa dipisah menjadi baris ganda untuk keterbacaan lebih baik
-=======
-let x=prompt("x?",''), n=prompt("n?",'') // <-- technically possible,
-// but better make it 2 lines, also there's no spaces and missing ;
-if (n<=0)  // <- no spaces inside (n <= 0), and should be extra line above it
-{   // <- figure bracket on a separate line
-  // below - long lines can be split into multiple lines for improved readability
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
+let x=prompt("x?",''), n=prompt("n?",'') // <-- secara teknis bisa saja
+// tapi akan lebih baik jika dibuat dua baris, juga jangan gunakan spasi dan jangan lupa tanda ;
+if (n<=0)  // <- tidak ada spasi didalam (n <= 0), dan harus ada baris tambahan diatasnya
+{   // <- pembuka kurung kurawal di baris baru
+  // dibawah - baris yang panjang dapat dibagi menjadi beberapa baris untuk menambah keterbacaan kode
   alert(`Power ${n} is not supported, please enter an integer number greater than zero`);
 }
 else // <- bisa menulisnya di baris tunggal seperti "} else {"
