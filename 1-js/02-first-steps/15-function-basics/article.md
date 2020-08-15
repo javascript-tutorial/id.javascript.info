@@ -214,18 +214,11 @@ Di Javascript, parameter default dievaluasi tiap kali fungsi dipanggil tanpa par
 Pada contoh di atas, `anotherFunction()` dipanggil tiap kali `showMessage()` dipanggil tanpa parameter `text`.
 ```
 
-<<<<<<< HEAD:1-js/02-first-steps/14-function-basics/article.md
-````smart header="Parameter default gaya-lama"
-Gaya lama Javascript tidak mendukung parameter default. Jadi ada cara alternatif untuk mendukung hal tersebut yang bisa kalian temui pada skrip-skrip lama.
+### Alternatif nilai default parameter
 
-Sebagai gambaran, suatu penetapan nilai yang jelas untuk nilai `undefined`:
-=======
-### Alternative default parameters
+Terkadang akan dapat dimengerti untuk memberikan nilai default untuk variabel bukan didalam deklarasi fungsi, tapi di tahap selanjutnya, didalam proses eksekusinya.
 
-Sometimes it makes sense to set default values for parameters not in the function declaration, but at a later stage, during its execution.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/02-first-steps/15-function-basics/article.md
-
-To check for an omitted parameter, we can compare it with `undefined`:
+Untuk memeriksa parameter yang tidak ada, kita bisa membandingkannya dengan `undefined`:
 
 ```js run
 function showMessage(text) {
@@ -241,29 +234,20 @@ function showMessage(text) {
 showMessage(); // empty message
 ```
 
-<<<<<<< HEAD:1-js/02-first-steps/14-function-basics/article.md
-...Atau operator `||`
+...Atau kita bisa menggunakan operator `||`:
 
 ```js
-function showMessage(from, text) {
-  // Jika teks adalah bernilai falsy, maka teks akan bernilai "standar"
-  text = text || 'no text given';
-=======
-...Or we could use the `||` operator:
-
-```js
-// if text parameter is omitted or "" is passed, set it to 'empty'
+// jika teks parameter tidak ada atau "", set variabel ke 'empty'
 function showMessage(text) {
   text = text || 'empty';
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/02-first-steps/15-function-basics/article.md
   ...
 }
 ```
 
-Modern JavaScript engines support the [nullish coalescing operator](info:nullish-coalescing-operator) `??`, it's better when falsy values, such as `0`, are considered regular:
+Javascript yang modern mendukung [nullish coalescing operator/operator penggabung nullish](info:nullish-coalescing-operator) `??`, akan lebih baik jika nilai falsy, seperti `0`, dianggap biasa:
 
 ```js run
-// if there's no "count" parameter, show "unknown"
+// jika tidak ada parameter "count", tampilkan "unknown"
 function showCount(count) {
   alert(count ?? "unknown");
 }
@@ -333,8 +317,7 @@ function showMovie(age) {
 
 Pada contoh kode di atas, jika `checkAge(age)` mengembalikan nilai `false`, maka `showMovie` tidak akan memproses `alert`.
 
-````smart header="A function with an empty `return` or without it returns `undefined`"
-Jika fungsi tidak mengembalikan nilai, hal ini sama saja dengan mengembalikan nilai `undefined`:
+````smart header="Jika fungsi tidak mengembalikan nilai, hal ini sama saja dengan mengembalikan nilai `undefined`"
 
 ```js run
 function doNothing() { /* kosong */ }
@@ -353,7 +336,8 @@ alert( doNothing() === undefined ); // true
 ```
 ````
 
-````warn header="Never add a newline between `return` and the value"
+````warn header="Jangan tambahkan baris baru diantara `return` dan nilainya"
+
 Untuk ekspresi yang lebih panjang pada penggunaan `return`, ini mungkin akan menciptakan suatu penulisan yang singkat untuk menuliskannya pada baris yang berbeda, seperti contoh berikut:
 
 ```js
@@ -408,7 +392,7 @@ checkPermission(..) // pengecekkan terhadap ijin, mengembalikan true/false
 
 Dengan awalan yang tertera, secara sekilas pada nama fungsi memberikan pemahaman tindakan apa yang dilakukan dan nilai apa yang dikembalikan.
 
-```smart header="One function -- one action"
+```smart header="Satu fungsi -- Satu aksi"
 Fungsi sebaiknya mengerjakan apa yang telah ditulis pada namanya, tidak lebih.
 
 Dua tindakan independen biasanya berasal dari dua fungsi, walaupun mereka dipanggil secara bersamaan (pada kasus ini, kita mampu membuat fuungsi ketiga yang memanggil keduanya).
