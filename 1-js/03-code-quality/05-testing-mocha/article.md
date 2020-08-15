@@ -85,9 +85,9 @@ Langkap pertama sudah lengkap: kita punya spek inisial untuk `pow`. Sekarang, se
 
 Di sini di tutorial ini kita akan memakai librari JavaScript untuk tes:
 
-- [Mocha](http://mochajs.org/) -- the core framework: it provides common testing functions including `describe` and `it` and the main function that runs tests.
-- [Chai](http://chaijs.com) -- the library with many assertions. It allows to use a lot of different assertions, for now we need only `assert.equal`.
-- [Sinon](http://sinonjs.org/) -- a library to spy over functions, emulate built-in functions and more, we'll need it much later.
+- [Mocha](http://mochajs.org/) -- inti framework: menyediakan fungsi testing umum `describe` dan `it` dan fungsi utama yang menjalankan test.
+- [Chai](http://chaijs.com) -- library dengan banyak penambahan. Ini membuatmu bisa untuk menggunakan banyak penambahan yang berbeda, untuk sekarang kita hanya membutuhkan `assert.equal`.
+- [Sinon](http://sinonjs.org/) -- sebuah library untuk memata-matai fungsi, meniru fungsi bawaan dan lainnya, kita akan butuh ini nanti.
 
 Librari ini cocok baik untuk pengetesan in-browser dan server-side. Di sini kita akan mempertimbangkan varian peramban.
 
@@ -104,13 +104,13 @@ Laman ini bisa dibagi jadi lima bagian:
 4. Elemen HTML `<div id="mocha">` akan dipakai untuk mengoutputkan hasil.
 5. Pengetesan dimulai dari command `mocha.run()`.
 
-The result:
+Hasilnya:
 
 [iframe height=250 src="pow-1" border=1 edit]
 
-As of now, the test fails, there's an error. That's logical: we have an empty function code in `pow`, so `pow(2,3)` returns `undefined` instead of `8`.
+Untuk sekarang, test gagal, ada error. Disitulah logikanya: kita mempunyai sebuah fungsi kosong didalam kode `pow`, jadi `pow(2,3)` mengembalikan `undefined` daripada `8`.
 
-For the future, let's note that there are more high-level test-runners, like [karma](https://karma-runner.github.io/) and others, that make it easy to autorun many different tests.
+Untuk dimasa mendatang, catat baik-baik akan ada penjalan test tingkat tinggi, seperti [karma](https://karma-runner.github.io/) dan lainnya, yang akan memudahkan kita untuk mengotomasi berbagai macam test.
 
 ## Implementasi inisial
 
