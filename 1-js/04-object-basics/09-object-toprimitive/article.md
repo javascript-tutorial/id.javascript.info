@@ -47,11 +47,7 @@ Terdapat tiga varian konversi tipe (data), disebut juga
 `"default"`
 : terjadi dalam kasus yang jarang ketika operator "tidak yakin" tipe (data) apa yang akan dihasilkan.
 
-<<<<<<< HEAD:1-js/04-object-basics/05-object-toprimitive/article.md
     Sebagai contohnya,  (tanda) tambah biner `+` dapat bekerja dengan string (menggabungkannya) dan angka-angka (menambahkannya), jadi baik string dan angka tetap bisa dioperasikan. Jadi jika sebuah (tanda) tambah biner mendapatkan sebuah objek sebagai argumen, ia menggunakan petunjuk `"default"` untuk mengonversinya.
-=======
-    For instance, binary plus `+` can work both with strings (concatenates them) and numbers (adds them), so both strings and numbers would do. So if a binary plus gets an object as an argument, it uses the `"default"` hint to convert it.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/04-object-basics/09-object-toprimitive/article.md
 
     Dan juga, jika sebuah objek dibandingkan menggunakan `==` dengan sebuah string, angka atau sebuah simbol, hal tersebut juga tidak jelas mana konversi yang harus dilakukan, jadi digunakanlah petunjuk `"default"`.
 

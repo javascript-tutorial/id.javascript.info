@@ -18,13 +18,8 @@ let id = Symbol();
 
 Selama penyusunan, kita bisa memberikan simbol sebuah deskripsi (juga disebut sebagai nama simbol), kebanyakan berguna untuk tujuan-tujuan *debugging*:
 
-<<<<<<< HEAD:1-js/04-object-basics/03-symbol/article.md
-```js run
-// id adalah sebuah simbol dengan deskripsi "id"
-=======
 ```js
-// id is a symbol with the description "id"
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/04-object-basics/08-symbol/article.md
+// id adalah simbol dengan deskripsi "id"
 let id = Symbol("id");
 ```
 
@@ -126,11 +121,7 @@ user.id = "Their id value"
 // Boom! properti tertimpa/overwrite oleh script lain!
 ```
 
-<<<<<<< HEAD:1-js/04-object-basics/03-symbol/article.md
-### Simbol dalam sebuah tulisan
-=======
-### Symbols in an object literal
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/04-object-basics/08-symbol/article.md
+### Simbol didalam objek literal
 
 Jika kita ingin menggunakan sebuah simbol dalam sebuah tulisan objek `{...}`, kita perlu menuliskan simbol tersebut dalam tanda kurung siku.
 
@@ -142,11 +133,7 @@ let id = Symbol("id");
 let user = {
   name: "John",
 *!*
-<<<<<<< HEAD:1-js/04-object-basics/03-symbol/article.md
-  [id]: 123 // bukan "id: 123"
-=======
-  [id]: 123 // not "id": 123
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/04-object-basics/08-symbol/article.md
+  [id]: 123 // bukan "id": 123
 */!*
 };
 ```
@@ -191,27 +178,7 @@ alert( clone[id] ); // 123
 
 Tidak ada paradoks di sini. Hal itu sesuai rancangan. Gagasan bahwa ketika kita meng-*clone* sebuah objek atau menyatukan (*merge*) objek-objek, kita biasanya ingin *semua* properti disalin (termasuk simbol seperti `id`).
 
-<<<<<<< HEAD:1-js/04-object-basics/03-symbol/article.md
-````smart header="Properti-properti kunci dari tipe lain dipaksa menjadi string"
-Kita hanya bisa menggunakan string atau simbol sebagai kunci dalam objek. Tipe-tipe lain dikonversi menjadi string.
-
-Sebagai contoh, sebuah angka `0` menjadi sebuah string `"0"` ketika digunakan sebagai properti kunci:
-
-```js run
-let obj = {
-  0: "test" // same as "0": "test"
-};
-
-// keduanya memberi peringatan akses properti yang sama (angka 0 dikonversi menjadi string "0")
-alert( obj["0"] ); // tes
-alert( obj[0] ); // tes (properti yang sama)
-```
-````
-
-## Simbol-simbol global
-=======
-## Global symbols
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/04-object-basics/08-symbol/article.md
+## Simbol global
 
 Seperti yang kita lihat, biasanya semua simbol itu berbeda, bahkan jika simbol-simbol tersebut memiliki nama yang sama. Tapi terkadang kita ingin simbol yang bernama sama untuk menjadi barang yang sama pula. Sebagai contoh, bagian-bagian lain dari aplikasi kita ingin mengakses simbol `"id"` yang berarti properti yang sama pula.
 
@@ -258,11 +225,7 @@ alert( Symbol.keyFor(sym) ); // name
 alert( Symbol.keyFor(sym2) ); // id
 ```
 
-<<<<<<< HEAD:1-js/04-object-basics/03-symbol/article.md
-`Symbol.keyFor` secara internal menggunakan catatan simbol global untuk mencari kunci (*key*) untuk sebuah simbol. Jadi ini tidak bekerja untuk simbol-simbol non-global. Jika simbol tersebut tidak global, simbol tersebut tidak bisa ditemukan dan akan mengembalikan `undefined`.
-=======
-The `Symbol.keyFor` internally uses the global symbol registry to look up the key for the symbol. So it doesn't work for non-global symbols. If the symbol is not global, it won't be able to find it and returns `undefined`.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/04-object-basics/08-symbol/article.md
+`Simbol.keyFor` secara internal menggunakan simbol registry global untuk mencari key/kunci dari simbolnya. Jadi itu tidak akan bekerja dengan simbol non-global. Jika simbolnya bukan global, itu tidak akan bisa menemukannya dan akan mengembalikan `undefined`.
 
 Seperti yang dikatakan, simbol apapun memiliki properti `description`.
 
