@@ -1,25 +1,25 @@
-# Object copying, references
+# Menyalin objek, referensi
 
-One of the fundamental differences of objects vs primitives is that they are stored and copied "by reference".
+Salah satu perbedaan dasar dari objek dan tipe primitif adalah untuk menyimpan dan menyalin "dengan referensi/*by reference*".
 
-Primitive values: strings, numbers, booleans -- are assigned/copied "as a whole value".
+nilai primitif: string, angka, boolean -- akan disalin "seluruh nilainya".
 
-For instance:
+contoh:
 
 ```js
 let message = "Hello!";
 let phrase = message;
 ```
 
-As a result we have two independent variables, each one is storing the string `"Hello!"`.
+Sebagai hasilnya kita punya dua variabel yang berdiri sendiri, dan keduanya menyimpan nilai string `"Hello!"`.
 
 ![](variable-copy-value.svg)
 
-Objects are not like that.
+Objek tidak seperti itu.
 
-**A variable stores not the object itself, but its "address in memory", in other words "a reference" to it.**
+**Sebuah variabel tidak menyimpan objek itu sendiri, akan tetapi "disimpan didalam memori", dengan kata lain "mereferensi" kepadanya (ke data didalam memori).**
 
-Here's the picture for the object:
+Dibawah adalah gambar untuk sebuah objek:
 
 ```js
 let user = {
@@ -29,23 +29,23 @@ let user = {
 
 ![](variable-contains-reference.svg)
 
-Here, the object is stored somewhere in memory. And the variable `user` has a "reference" to it.
+Disini, objek disimpan di suatu tempat didalam memori. Dan variabel `user` punya "referensi" ke data objek yang berada didalam memori itu.
 
-**When an object variable is copied -- the reference is copied, the object is not duplicated.**
+**Ketika sebuah variabel objek disalin -- referensinya akan tersalin, objeknya tidak terduplikasi.**
 
-For instance:
+Contoh:
 
 ```js no-beautify
 let user = { name: "John" };
 
-let admin = user; // copy the reference
+let admin = user; // menyalin referensinya
 ```
 
-Now we have two variables, each one with the reference to the same object:
+Kita sekarang punya dua variabel, masing-masing mereferensi ke objek yang sama:
 
 ![](variable-copy-reference.svg)
 
-We can use any variable to access the object and modify its contents:
+Kita bisa menggunakan variabel apapun untuk mengakses objek dan memodifikasi konten didalamnya:
 
 ```js run
 let user = { name: 'John' };
@@ -53,52 +53,52 @@ let user = { name: 'John' };
 let admin = user;
 
 *!*
-admin.name = 'Pete'; // changed by the "admin" reference
+admin.name = 'Pete'; // mengganti admin dengan menggunakan "referensi"
 */!*
 
-alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
+alert(*!*user.name*/!*); // 'Pete', perubahan akan terlihat pada "user"
 ```
 
-The example above demonstrates that there is only one object. As if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use another key (`user`) we can see changes.
+Contoh diatas mendemonstrasikan bahwa disana hanya ada satu objek. Seperti jika kita punya sebuah lemari dengan dua kunci dan satunya (`admin`) digunakan untuk masuk kedalamnya. Lalu, jika kita nanti menggunakan kunci lainnya (`user`) kita bisa melihat perubahannya.
 
-## Comparison by reference
+## Perbandingan dengan referensi
 
-The equality `==` and strict equality `===` operators for objects work exactly the same.
+Operator pembanding `==` dan pembanding ketat `===` untuk objek bekerja sama saja.
 
-**Two objects are equal only if they are the same object.**
+**Dua objek adalah sama jika mereka objek yang sama.**
 
-Here two variables reference the same object, thus they are equal:
+Dibawah adalah dua variabel yang mereferensi ke objek yang sama, dengan demikian mereka sama:
 
 ```js run
 let a = {};
-let b = a; // copy the reference
+let b = a; // menyalin referensi
 
-alert( a == b ); // true, both variables reference the same object
+alert( a == b ); // true, kedua variabel mereferensi ke objek yang sama
 alert( a === b ); // true
 ```
 
-And here two independent objects are not equal, even though both are empty:
+Dan dibawah adalah dua objek yang berdiri sendiri, tidaklah sama, walaupun keduanya kosong:
 
 ```js run
 let a = {};
-let b = {}; // two independent objects
+let b = {}; // dua objek yang berdiri sendiri
 
 alert( a == b ); // false
 ```
 
-For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons occur very rarely, usually as a result of a coding mistake.
+Untuk perbandingan seperti `obj1 > obj2` atau untuk perbandingan dengan sebuah nilai primitif `obj == 5`, objek akan diubah dahulu menjadi primitif. Kita akan belajar bagaimana perubahan objek sebentar lagi, akan tetapi sebenarnya, perbandingan seperti itu muncul sangat jarang, biasanya hanya sebuah hasil dari kesalahan koding.
 
-## Cloning and merging, Object.assign
+## Penggandaan dan penggabungan, Object.assign
 
-So, copying an object variable creates one more reference to the same object.
+Jadi, menyalin sebuah variabel objek akan menciptakan satu lagi referensi kepada objek yang sama.
 
-But what if we need to duplicate an object? Create an independent copy, a clone?
+Tapi bagaimana jika kita butuh untuk menduplikasi objek? Membuat salinan yang berdiri sendiri, menggandakan atau meng-klon?
 
-That's also doable, but a little bit more difficult, because there's no built-in method for that in JavaScript. Actually, that's rarely needed. Copying by reference is good most of the time.
+Hal itu juga bisa dilakukan, tapi sedikit lebih sulit, karena tidak ada method bawaan untuk hal itu di javascript. Sebenarnya, hal itu juga jarang dibutuhkan. Di kebanyakan waktu, menyalin referensinya sudah cukup.
 
-But if we really want that, then we need to create a new object and replicate the structure of the existing one by iterating over its properties and copying them on the primitive level.
+Tapi bagaimana jika kita benar-benar ingin hal itu, lalu kita membutuhkan untuk menciptakan sebuah objek dan mengulangi struktur dari objek yang sama dengan meng-iterasi propertinya dan menyalin mereka didalam level primitif.
 
-Like this:
+Seperti ini:
 
 ```js run
 let user = {
@@ -107,34 +107,35 @@ let user = {
 };
 
 *!*
-let clone = {}; // the new empty object
+let clone = {}; // objek kosong baru
 
-// let's copy all user properties into it
+// salin semua properti user kedalamnya
 for (let key in user) {
   clone[key] = user[key];
 }
 */!*
 
-// now clone is a fully independent object with the same content
-clone.name = "Pete"; // changed the data in it
+// sekarang clone adalah sebuah objek yang berdiri sendiri dengan konten yang sama
+clone.name = "Pete"; // ubah data didalamnya
 
-alert( user.name ); // still John in the original object
+alert( user.name ); // masih John didalam objek yang asli
 ```
 
-Also we can use the method [Object.assign](mdn:js/Object/assign) for that.
+Juga kita bisa menggunakan method [Object.assign](mdn:js/Object/assign) untuk itu.
 
-The syntax is:
+sintaksnya adalah:
 
 ```js
 Object.assign(dest, [src1, src2, src3...])
 ```
 
-- The first argument `dest` is a target object.
-- Further arguments `src1, ..., srcN` (can be as many as needed) are source objects.
-- It copies the properties of all source objects `src1, ..., srcN` into the target `dest`. In other words, properties of all arguments starting from the second are copied into the first object.
-- The call returns `dest`.
+- Argumen pertama `dest` adalah sebuah objek target.
+- Argumen selanjutnya `src1, ..., srcN` (bisa sebanyak yang dibutuhkan) adalah objek sumber.
+- Itu akan menyalin properti dari seluruh objek sumber `src1, ..., srcN` kedalam target `dest`. Dengan kata lain, properti dari semua argumen dimulai dari argumen kedua akan disalin kedalam object pertama.
+- Setelah pemanggilan akan mengembalikan `dest`.
 
-For instance, we can use it to merge several objects into one:
+
+Contoh, kita bisa menggunakan untuk menggabungkan beberapa objek menjadi satu:
 ```js
 let user = { name: "John" };
 
@@ -142,24 +143,24 @@ let permissions1 = { canView: true };
 let permissions2 = { canEdit: true };
 
 *!*
-// copies all properties from permissions1 and permissions2 into user
+// menyalin seluruh properti dari permission1 dan permission2 kedalam user
 Object.assign(user, permissions1, permissions2);
 */!*
 
-// now user = { name: "John", canView: true, canEdit: true }
+// sekarang user = { name: "John", canView: true, canEdit: true }
 ```
 
-If the copied property name already exists, it gets overwritten:
+Jika nama dari properti yang disali sudah ada, propertinya akan ditimpa:
 
 ```js run
 let user = { name: "John" };
 
 Object.assign(user, { name: "Pete" });
 
-alert(user.name); // now user = { name: "Pete" }
+alert(user.name); // sekarang user = { name: "Pete" }
 ```
 
-We also can use `Object.assign` to replace `for..in` loop for simple cloning:
+Kita juga bisa menggunakan `Object.assign` untuk mengganti perulangan `for...in` untuk penggandaan yang sederhana.
 
 ```js
 let user = {
@@ -172,11 +173,11 @@ let clone = Object.assign({}, user);
 */!*
 ```
 
-It copies all properties of `user` into the empty object and returns it.
+Kode diatas akan menyalin seluruh properti dari `user` kedalam objek yang kosong dan mengembalikan/me-return hasilnya.
 
-## Nested cloning
+## Penggandaan bercabang / Nested cloning
 
-Until now we assumed that all properties of `user` are primitive. But properties can be references to other objects. What to do with them?
+Sampai sekarang kita telah berasumsi bahwa seluruh properti dari `user` adalah primitif. Tapi properti bisa di referensi ke objek lainnya. Apa yang harus dilakukan dengan mereka?
 
 Like this:
 ```js run
@@ -192,6 +193,7 @@ alert( user.sizes.height ); // 182
 ```
 
 Now it's not enough to copy `clone.sizes = user.sizes`, because the `user.sizes` is an object, it will be copied by reference. So `clone` and `user` will share the same sizes:
+Sekarang hal itu tidak cukup untuk menyalin `clone.sizes = user.sizes`, karena `user.sizes` adalah sebuah objek, itu akan tersalin secara referensi. Jadi `clone` dan `user` akan berbagi objek yang sama:
 
 Like this:
 
@@ -206,23 +208,24 @@ let user = {
 
 let clone = Object.assign({}, user);
 
-alert( user.sizes === clone.sizes ); // true, same object
+alert( user.sizes === clone.sizes ); // true, objek yang sama
 
-// user and clone share sizes
-user.sizes.width++;       // change a property from one place
-alert(clone.sizes.width); // 51, see the result from the other one
+// user dan clone akan berbagi objek yang sama
+user.sizes.width++;       // ganti properti dari satu tempat
+alert(clone.sizes.width); // 51, melihat hasilnya ditempat yang lain
 ```
 
-To fix that, we should use the cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
+Untuk membenarkan hal itu, kita harus menggunakan perulangan kloning yang memeriksa setip nilai dari `user[key]` dan, jika itu adalah sebuah objek, lalu duplikasi strukturnya juga. Hal itu dinamakan dengan "deep cloning".
 
-There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](https://html.spec.whatwg.org/multipage/structured-data.html#safe-passing-of-structured-data).
+Ada sebuah standar algoritma untuk melakukan deep cloning yang menangani kasus diatas dan kasus yang lebih rumit, dinamakan dengan [Structured cloning algorithm / algoritma kloning terstruktur](https://html.spec.whatwg.org/multipage/structured-data.html#safe-passing-of-structured-data)
 
-We can use recursion to implement it. Or, not to reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
+Kita bisa menggunakan rekursi untuk mengimplementasikannya. Atau, jangan ambil pusing, ambil implementasi yang sudah ada, contoh [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) jari librari javascript [lodash](https://lodash.com).
 
-## Summary
+## Ringkasan
 
-Objects are assigned and copied by reference. In other words, a variable stores not the "object value", but a "reference" (address in memory) for the value. So copying such a variable or passing it as a function argument copies that reference, not the object.
+objek dibuat dan disalin dengan menggunakan referensi. Dengan kata lain, sebuah variable menyimpan bukanlah "nilai objek", tapi sebuah "referensi" (address/alamat di memori) untuk nilainya. Jadi menyalin sebuah variabel atau memindahkannya sebagai fungsi argumen akan menyalin referensinya, bukan objeknya.
 
-All operations via copied references (like adding/removing properties) are performed on the same single object.
+Semua operasi yang disalin dengan menggunakan referensi (seperti menambah/menghapus properti) dilakukan didalam satu objek yang sama.
 
 To make a "real copy" (a clone) we can use `Object.assign` for the so-called "shallow copy" (nested objects are copied by reference) or a "deep cloning" function, such as [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+Untuk membuat "salinan asli" (sebuah klon/clone) kita bisa menggunakan `Object.assign` untuk yang disebut "shallow copy/penyalinan tingkat dasar" (objek bercabang disalin menggunakan referensi) atau fungsi "deep cloning", seperti [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
