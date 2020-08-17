@@ -4,13 +4,13 @@ importance: 5
 
 # Buat Kalkulator baru
 
-Buatlah sebuah fungsi konstruktor `Calculator` that creates objects with 3 methods:
+Buatlah sebuah fungsi konstruktor `Calculator` yang membuat objek dengan 3 method:
 
-- `read()` asks for two values using `prompt` and remembers them in object properties.
-- `sum()` returns the sum of these properties.
-- `mul()` returns the multiplication product of these properties.
+- `read()` tanyakan dua nilai menggunakan `prompt dan masukan mereka kedalam properti objek.
+- `sum()` mengembalikan jumlah dari properti-properti.
+- `mul()` mengembalikan perkalian produk dari properti-properti.
 
-For instance:
+Contoh:
 
 ```js
 let calculator = new Calculator();

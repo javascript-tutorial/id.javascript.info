@@ -23,11 +23,7 @@ Sederhananya, sebuah nilai yang "terjangkau" adalah mereka yang masih dapat diak
 
 2. Nilai lainnya dianggap terjangkau jika dapat dijangkau dari sebuah _root_ melalui sebuah rujukkan atau rantai rujukkan.
 
-<<<<<<< HEAD:1-js/04-object-basics/02-garbage-collection/article.md
-    Contohnya, jika ada sebuah objek dalam sebuah variabel lokal, dan objek tersebut memiliki sebuah _property_ yang merujukkan objek lain, objek tersebut dianggap terjangkau. Dan semua yang dirujukkan olehnya juga terjangkau. Berikut contoh lebih jelasnya.
-=======
-    For instance, if there's an object in a global variable, and that object has a property referencing another object, that object is considered reachable. And those that it references are also reachable. Detailed examples to follow.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/04-object-basics/03-garbage-collection/article.md
+    Contoh, jika terdapat sebuah objek didalam global variabel, dan objek tersebut memiliki sebuah properti yang mereferensi objek lain, objek itu dianggap dapat dijangkau. Dan referensinya juga bisa dijangkau. Contoh lengkap dibawah ini.
 
 Ada sebuah _background process_ di _engine_ JavaScript yang disebut [_garbage collector_](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). Ia mengamati seluruh objek dan menyingkirkan semua yang sudah tak terjangkau.
 

@@ -63,11 +63,7 @@ user.sayHi(); // Hello!
 ```smart header="Object-oriented programming"
 Ketika kita menulis kode kita menggunakan objek-objek untuk merepresentasikan benda, itulah yang disebut sebagai [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), disingkat menjadi: "OOP".
 
-<<<<<<< HEAD
-OOP itu adalah sebuah pembahasan besar, ilmu yang menarik dari dirinya sendiri. Bagaimana cara memilih (perwujudan) benda yang benar? Bagaimana cara mengatur interaksi di antara benda-benda tersebut? Itulah arsitektur, dan literatur-literatur yang lebih besar lagi tentang topik tersebut, like "Design Patterns: Elements of Reusable Object-Oriented Software" oleh E.Gamma, R.Helm, R.Johnson, J.Vissides atau "Object-Oriented Analysis and Design with Applications" oleh G.Booch, dan masih banyak lagi.
-=======
-OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the interaction between them? That's architecture, and there are great books on that topic, like "Design Patterns: Elements of Reusable Object-Oriented Software" by E. Gamma, R. Helm, R. Johnson, J. Vissides or "Object-Oriented Analysis and Design with Applications" by G. Booch, and more.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
+OOP adalah hal besar, sebuah sains yang sangat menarik. Bagaimana cara memilih entitas yang benar? bagaimana cara mengorganisir interaksi diantara mereka? Itulah arsitektur, dan terdapat buku yang bagus untuk topik itu, seperti "Design Patterns: Elements of Reusable Object-Oriented Software" oleh E. Gamma, R. Helm, R. Johnson, J. Vissides atau "Object-Oriented Analysis and Design with Applications" by G. Booch, and more.
 ```
 ### Metode ringkas
 
@@ -237,103 +233,7 @@ Konsep run-time mengeveluasi `this` memiliki kelebihan dan kekurangan sendiri. D
 Di sini posisi kita tidak untuk menghakimi apakah pilihan rancangan bahasa pemrograman ini baik atau buruk. Kita akan mengerti bagaimana bekerja dengan hal itu, serta bagaimana cara mendapatkan keuntungan dari hal tersebut dan menghindari adanya masalah.
 ````
 
-<<<<<<< HEAD
-## Internal: Jenis Referensi
-
-```warn header="Fitur mendalam bahasa pemrogaman"
-Bagian ini membahas sebuah topik tingkat lanjut, untuk memahami kasus-kasus terkini tertentu dengan lebih baik.
-
-Jika kamu ingin lanjut belajar lebih cepat, pembahasan ini bisa dilewati atau ditunda dulu.
-```
-
-Sebauh pemanggilan metode yang rumit bisa kehilangan `this`, contohny:
-
-```js run
-let user = {
-  name: "John",
-  hi() { alert(this.name); },
-  bye() { alert("Bye"); }
-};
-
-user.hi(); // John (pemanggilan sederhana berhasil)
-
-*!*
-// kini mari panggil user.hi atau user.bye berdasarkan pada namanya
-(user.name == "John" ? user.hi : user.bye)(); // Error!
-*/!*
-```
-
-Pada baris terakhir ada sebuah operator kondisional yang memilih antara `user.hi` atau `user.bye`. Pada kasus ini hasilnya adalah `user.hi`.
-
-Lalu metode tersebut seketika dipanggil dengan *parentheses* `()`. Tapi tidak bisa berjalan dengan benar!
-
-Seperti yang bisa dilihat, panggilan tersebut menghasilkan sebuah error, karena nilai dari `"this"` di dalam panggilan tersebut menjadi `undefined`.
-
-Kode yang ini berfungsi (objek titik metode):
-```js
-user.hi();
-```
-
-Kode yang ini tidak berfungsi (metode yang dievaluasi):
-```js
-(user.name == "John" ? user.hi : user.bye)(); // Error!
-```
-
-Mengapa? Jika kita ingin mengerti mengapa hal demikian terjadi, mari cari tahu lebih dalam bagaimana panggilan `obj.method()` bekerja.
-
-Lihat lebih dekat, kita bisa tahu bahwa dua operasi dalam pernyataan `obj.method()`:
-
-1. Pertama, tanda titik `'.'` mengambil properti `obj.method`.
-2. Lalu *parentheses* `()` mengeksekusi properti objek tersebut.
-
-Jadi, bagaimana informasi tentang `this` dioper dari bagian pertama ke bagian kedua?
-
-Jika kita operasi-operasi ini pada baris kode yang berbeda, maka `this` pastinya akan hilang:
-
-```js run
-let user = {
-  name: "John",
-  hi() { alert(this.name); }
-}
-
-*!*
-// memisahkan proses mendapatkan dan pemanggilan metode ke dalam dua baris kode
-let hi = user.hi;
-hi(); // Error, karena this adalah undefined
-*/!*
-```
-
-Di sini `hi = user.hi` menempatkan fungsi ke dalam variabel, dan kemudian baris terakhir jadi berdiri sendiri sepenuhnya, dan jadinya tidak ada `this`.
-
-**Untuk membuat panggilan-panggilan `user.hi()` bekerja, JavaScript menggunakan sebuah trik -- tanda titik `'.'` mengembalikan bukannya sebuah fungsi tapi sebuah nilai dari [Tipe Referensi (*Reference Type*)](https://tc39.github.io/ecma262/#sec-reference-specification-type) yang khusus.**
-
-Tipe Reference adalah "tipe spesifikasi". Kita tidak bisa secara ekplisit menggunakannnya, tapi Tipe Referensi digunakan secara internal oleh bahasa pemrograman.
-
-Nilai dari Tipe Referensi adalah sebuah kombianasi dari tiga nilai `(base, name, strict)`, yang mana:
-
-- `base` adalah objek.
-- `name` adalah nama properti.
-- `strict` adalah *true* jika `use strict` ada dalam efek.
-
-Hasil dari sebuah properti mengakses `user.hi` bukanlah sebuah fungsi, namun sebuah nilai dari Tipe Referensi. Dengan `user.hi` dalam mode *strict* maka:
-
-```js
-// Reference Type value
-(user, "hi", true)
-```
-
-Ketika *parentheses* `()` dipanggil pada Tipe Referensi, mereka menerima informasi penuh tentang objek serta metodenya, dan dapat mengatur `this` yang tepat (dalam kasus ini `=user`).
-
-Tipe referensi adalah sebuah tipe internal "perantara" yang istimewa "intermediary", dengan tujuan untuk mengoper informasi dari tanda titik `.` untuk memangil *parentheses* `()`.
-
-Operasi lain seperti penugasan `hi = user.hi` menyingkirkan tipe referensi sepenuhnya, mengambil nilai dari `user.hi` (sebuah fungsi) dan mengopernya. Jadi operasi apapun yang lebih jauh (akan) "kehilangan" `this`.
-
-Jadi, sebagai hasilnya, nilai dari `this` hanya dioper dengan cara yang tepat jika  fungsi tersebut dipanggil langsung menggunakan sebuah tanda titik `obj.method()` atau sintaks tanda kurung siku `obj['method']()` (keduanya melakukan hals yang sama). Selanjutnya pada tutorial ini, kita akan mempelajari berbagai macam cara untuk mencari solusi permasalah seperti [func.bind()](/bind#solution-2-bind).
-
-## Fungsi *arrow* tidak memiliki "this"
-=======
-## Arrow functions have no "this"
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
+## Fungsi arrow tidak memiliki "this"
 
 Fungsi-fungsi *arrow* itu istimewa: fungsi tersebut tidak memiliki `this` "milik fungsi itu sendiri". Jika kita mereferensikan `this` dari fungsi demikian, hal itu didapat dari fungsi "normal" di luar.
 
