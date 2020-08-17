@@ -192,9 +192,9 @@ Tidak ada kendali apakah `toString` mengembalikan tepat sebuah *string*, atau ap
 Satu-satunya hal wajib adalah: metode-metode ini harus mengembalikan sebuah *primitive*, bukan sebuah objek.
 
 ```smart header="Historical notes"
-For historical reasons, if `toString` or `valueOf` returns an object, there's no error, but such value is ignored (like if the method didn't exist). That's because in ancient times there was no good "error" concept in JavaScript.
+Untuk alasan yang sudah lama, jika `toString` atau `valueOf` mengembalikan sebuah objek, tidak akan muncul error, akan tetapi nilai seperti itu akan diabaikan (seperti juka methodnya tidak ada). Itu karena dahulu tidak ada konsep "error" yang bagus didalam javascript.
 
-In contrast, `Symbol.toPrimitive` *must* return a primitive, otherwise there will be an error.
+Jelasnya, `Symbol.toPrimitive` *harus* mengembalikan sebuah primitif, jika tidak maka akan terjadi error.
 ```
 
 ## Konversi lebih jauh
