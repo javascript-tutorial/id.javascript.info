@@ -10,11 +10,7 @@ Tugasnya adalah: menemukan *subarray* `arr` yang berdampingan dengan nilai maksi
 
 Tulis fungsi `getMaxSubSum(arr)` yang akan mengembalikan nilai penjumlahan tersebut.
 
-<<<<<<< HEAD
 Sebagai contoh: 
-=======
-For instance:
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 ```js
 getMaxSubSum([-1, *!*2, 3*/!*, -9]) == 5 (the sum of highlighted items)
