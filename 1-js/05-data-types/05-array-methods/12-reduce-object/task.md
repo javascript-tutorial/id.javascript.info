@@ -1,14 +1,14 @@
-importance: 4
+nilai penting: 4
 
 ---
 
-# Create keyed object from array
+# Buatlah objek dengan kunci dari array
 
-Let's say we received an array of users in the form `{id:..., name:..., age... }`.
+Anggaplah kita menerima sebuah array dari user didalam form `{id:..., name:..., age... }`.
 
-Create a function `groupById(arr)` that creates an object from it, with `id` as the key, and array items as values.
+Buatlah sebuah fungsi `groupById(arr)` yang membuat sebuah objek, dengan `id` sebagai key/kunci, dan item array sebagai nilai
 
-For example:
+Contoh:
 
 ```js
 let users = [
@@ -20,7 +20,7 @@ let users = [
 let usersById = groupById(users);
 
 /*
-// after the call we should have:
+// Setelah pemanggilan kita harus mempunyai:
 
 usersById = {
   john: {id: 'john', name: "John Smith", age: 20},
@@ -30,8 +30,8 @@ usersById = {
 */
 ```
 
-Such function is really handy when working with server data.
+Fungsi seperti itu sangat berguna ketika bekerja dengan data dari server.
 
-In this task we assume that `id` is unique. There may be no two array items with the same `id`.
+Ditugas ini kita asumsikan bahwa `id` adalah unik. Tidak mungkin memiliki dua item array dengan `id` yang sama.
 
-Please use array `.reduce` method in the solution.
+Tolong gunakan metode array `.reduce` didalam solusi.
