@@ -121,30 +121,26 @@ for (let [key, value] of user) {
 }
 ```
 ````
-<<<<<<< HEAD
-### Sisanya '...'
-=======
 
-```smart header="Swap variables trick"
-A well-known trick for swapping values of two variables:
+```smart header="Trik menukar variabel"
+Trik yang paling diketahui untuk menukar nilai dari dua variabel:
 
 ```js run
 let guest = "Jane";
 let admin = "Pete";
 
-// Swap values: make guest=Pete, admin=Jane
+// Tukar nilai: buat guest=Pete, admin=Jane
 [guest, admin] = [admin, guest];
 
-alert(`${guest} ${admin}`); // Pete Jane (successfully swapped!)
+alert(`${guest} ${admin}`); // Pete Jane (penukaran berhasil!)
 ```
 
-Here we create a temporary array of two variables and immediately destructure it in swapped order.
+Disini kita membuat array sementara untuk dua variabel dan langsung memisahkannya dengan urutan penukaran.
 
-We can swap more than two variables this way.
+Kita bisa menukar lebih daripada dua variabel dengan cara ini.
 
 
-### The rest '...'
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
+### Sisanya '...'
 
 Jika kita ingin tidak hanya mendapatkan nilai pertama, tetapi juga untuk mengumpulkan semua yang mengikuti -- kita dapat menambahkan satu parameter lagi dan mendapat "the rest" menggunakan tiga titik `"..."`:
 
@@ -198,8 +194,8 @@ Sebagai contoh, di sini kita menggunakan fungsi `prompt` untuk dua default. Tapi
 // prompt hanya berjalan untuk nama keluarga (surname)
 let [name = prompt('name?'), surname = prompt('surname?')] = ["Julius"];
 
-alert(name);    // Julius (from array)
-alert(surname); // whatever prompt gets
+alert(name);    // Julius (dari array)
+alert(surname); // apapun yang prompt dapatkan
 ```
 
 
