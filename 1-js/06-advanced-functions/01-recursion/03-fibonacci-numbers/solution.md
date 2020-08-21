@@ -1,6 +1,6 @@
-The first solution we could try here is the recursive one.
+Solusi pertama kita harus coba adalah rekursi.
 
-Fibonacci numbers are recursive by definition:
+Angka fibonacci adalah rekursi dari definisinya:
 
 ```js run
 function fib(n) {
@@ -9,14 +9,14 @@ function fib(n) {
 
 alert( fib(3) ); // 2
 alert( fib(7) ); // 13
-// fib(77); // will be extremely slow!
+// fib(77); // akan sangat lambat!
 ```
 
-...But for big values of `n` it's very slow. For instance, `fib(77)` may hang up the engine for some time eating all CPU resources.
+...Tapi untuk nilai besar dari `n` akanlah sangat lambat. Contoh, `fib(77)` mungkin akan memberatkan mesinnya dan untuk beberapa saat akan menggunakan seluruh sumberdaya CPU.
 
-That's because the function makes too many subcalls. The same values are re-evaluated again and again.
+Itu karena fungsinya memanggil terlalu banyak pemanggilan. Nilai yang sama akan terus di evaluasi lagi dan lagi.
 
-For instance, let's see a piece of calculations for `fib(5)`:
+Contoh, kita lihat satu potongan dari kalkulasi untuk `fib(5)`:
 
 ```js no-beautify
 ...
@@ -25,68 +25,68 @@ fib(4) = fib(3) + fib(2)
 ...
 ```
 
-Here we can see that the value of `fib(3)` is needed for both `fib(5)` and `fib(4)`. So `fib(3)` will be called and evaluated two times completely independently.
+Disini kita bisa melihat nilai dari `fib(3)` dibutuhkan untuk `fib(5)` dan `fib(4)`. Jadi `fib(3)` akan dipanggil dan dievaluasi dua kali secara bergantian.
 
-Here's the full recursion tree:
+Ini adalah pohon rekursi penuh:
 
 ![fibonacci recursion tree](fibonacci-recursion-tree.svg)
 
-We can clearly notice that `fib(3)` is evaluated two times and `fib(2)` is evaluated three times. The total amount of computations grows much faster than `n`, making it enormous even for `n=77`.
+Kita dengan jelas bisa memperhatikan bahwa `fib(3)` dievaluasi dua kali dan `fib(2)` di evaluasi tiga kali. Total dari komputasi akan terus membesar secara cepat lebih dari `n`, membuatnya besar sekali bahkan untuk `n=77`.
 
-We can optimize that by remembering already-evaluated values: if a value of say `fib(3)` is calculated once, then we can just reuse it in future computations.
+Kita bisa mengoptimasinya dengan mengingat nilai yang telah dievaluasi: jika sebuah nilai katakan `fib(3)` dikalkulasi sekali, lalu kita bisa menggunakan nilainya lagi di komputasi selanjutnya.
 
-Another variant would be to give up recursion and use a totally different loop-based algorithm.
+Varian lainnya haruslah menyerah dengan rekursi dan menggunakan algoritma lain yang benar-benar berbeda.
 
-Instead of going from `n` down to lower values, we can make a loop that starts from `1` and `2`, then gets `fib(3)` as their sum, then `fib(4)` as the sum of two previous values, then `fib(5)` and goes up and up, till it gets to the needed value. On each step we only need to remember two previous values.
+Daripada memulai dari `n` ke nilai yang dibawahnya, kota bisa membuat perulangan dimulai dari `1` dan `2`, lalu mendapatkan `fib(3)` sebagai nilai penambahan mereka, lalu `fib(4)` sebagai nilai penambahan dua bilangan sebelumnya, lalu `fib(5)` dan terus naik, sampai itu mencapai nilai yang dibutuhkan. Untuk setiap langkah kita hanya membutuhkan nilai dari kedua bilangan sebelumnya.
 
-Here are the steps of the new algorithm in details.
+Ini adalah detail langkah dari algoritma baru.
 
-The start:
+Mulai:
 
 ```js
-// a = fib(1), b = fib(2), these values are by definition 1
+// a = fib(1), b = fib(2), nilai-nilai ini adalah definisi dari 1
 let a = 1, b = 1;
 
-// get c = fib(3) as their sum
+// get c = fib(3) sebagai penambahan mereka
 let c = a + b;
 
-/* we now have fib(1), fib(2), fib(3)
+/* sekarang kita punya fib(1), fib(2), fib(3)
 a  b  c
 1, 1, 2
 */
 ```
 
-Now we want to get `fib(4) = fib(2) + fib(3)`.
+sekarang kita ingin mendapatkan `fib(4) = fib(2) + fib(3)`.
 
-Let's shift the variables: `a,b` will get `fib(2),fib(3)`, and `c` will get their sum:
+Lalu kita ubah variabelnya: `a,b` akan mendapatkan `fib(2),fib(3)`, dan `c` akan mendapatkan penambahan mereka:
 
 ```js no-beautify
 a = b; // now a = fib(2)
 b = c; // now b = fib(3)
 c = a + b; // c = fib(4)
 
-/* now we have the sequence:
+/* sekarang kita punya urutannya:
    a  b  c
 1, 1, 2, 3
 */
 ```
 
-The next step gives another sequence number:
+Langkah selanjutnya akan memberikan urutan angka lainnya:
 
 ```js no-beautify
 a = b; // now a = fib(3)
 b = c; // now b = fib(4)
 c = a + b; // c = fib(5)
 
-/* now the sequence is (one more number):
+/* sekarang urutannya adalah (satu angka lagi):
       a  b  c
 1, 1, 2, 3, 5
 */
 ```
 
-...And so on until we get the needed value. That's much faster than recursion and involves no duplicate computations.
+...Dan seterusnya sampai kita mendapatkan nilai yang dibutuhkan. Itu lebih cepat daripada rekursi dan tidak melibatkan duplikasi komputasi
 
-The full code:
+Semua kodenya:
 
 ```js run
 function fib(n) {
@@ -105,6 +105,6 @@ alert( fib(7) ); // 13
 alert( fib(77) ); // 5527939700884757
 ```
 
-The loop starts with `i=3`, because the first and the second sequence values are hard-coded into variables `a=1`, `b=1`.
+Perulangak dimulai dari `i=3`, karena yang urutan nilai pertama dan kedua sudah dikode (hard-coded) kedalam variabel `a=1`, `b=1`.
 
-The approach is called [dynamic programming bottom-up](https://en.wikipedia.org/wiki/Dynamic_programming).
+Pendekatan ini dipanggil dengan [dynamic programming bottom-up](https://en.wikipedia.org/wiki/Dynamic_programming).
