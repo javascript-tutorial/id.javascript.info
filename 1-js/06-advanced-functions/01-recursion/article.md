@@ -1,18 +1,18 @@
-# Recursion and stack
+# Rekursi dan tumpukan (Recursion and stack)
 
-Let's return to functions and study them more in-depth.
+Ayo kita kembali ke fungsi dan belajar tentanya lebih dalam lagi.
 
-Our first topic will be *recursion*.
+Topik pertama kita adalah *rekursi*.
 
-If you are not new to programming, then it is probably familiar and you could skip this chapter.
+Jika programming bukanlah hal baru untukmu, maka kamu mungkin familiar dan kamu bisa melewatkan bab ini.
 
-Recursion is a programming pattern that is useful in situations when a task can be naturally split into several tasks of the same kind, but simpler. Or when a task can be simplified into an easy action plus a simpler variant of the same task. Or, as we'll see soon, to deal with certain data structures.
+Rekursi adalah pola programming yang sangat berguna didalam situasi dimana sebuah task bisa secara natural dibagi menjadi beberapa task yang memiliki jenis yang sama, tapi lebih sederhana. Atau ketika task bisa dibuat lebih sederhana menjadi sebuah aksi ditambah varian yang lebih sederhana dari beberapa task yang serupa.
 
-When a function solves a task, in the process it can call many other functions. A partial case of this is when a function calls *itself*. That's called *recursion*.
+ketika sebuah fungsi menyelesaikan sebuah task, didalam proses itu bisa memanggila beberapa fungsi lainnya. Sebagian kasus dari ini ketika sebuah fungsi memanggil *dirinya sendiri*. Itulah yang disebut rekursi.
 
-## Two ways of thinking
+## Cara berfikir dua arah
 
-For something simple to start with -- let's write a function `pow(x, n)` that raises `x` to a natural power of `n`. In other words, multiplies `x` by itself `n` times.
+Untuk sesuatu yang sederhana dimulai dengan -- ayo kita buat sebuah fungsi `pow(x, n)` yang menaikan `x` dengan pangkat dari `n`. Dengan kata lain, mengkalikan `x` dengan dirinya sendiri sebanyak `n` kali.
 
 ```js
 pow(2, 2) = 4
@@ -20,15 +20,15 @@ pow(2, 3) = 8
 pow(2, 4) = 16
 ```
 
-There are two ways to implement it.
+Terdapat dua cara untuk mengimplementasikan hal itu.
 
-1. Iterative thinking: the `for` loop:
+1. Pemikiran interaktif: perulangan `for`:
 
     ```js run
     function pow(x, n) {
       let result = 1;
 
-      // multiply result by x n times in the loop
+      // kalikan hasil dari x n kali didalam perulangan
       for (let i = 0; i < n; i++) {
         result *= x;
       }
@@ -39,7 +39,7 @@ There are two ways to implement it.
     alert( pow(2, 3) ); // 8
     ```
 
-2. Recursive thinking: simplify the task and call self:
+2. Pemikiran rekursif: sederhanakan tugasnya dan panggil diri-sendiri:
 
     ```js run
     function pow(x, n) {
@@ -53,9 +53,9 @@ There are two ways to implement it.
     alert( pow(2, 3) ); // 8
     ```
 
-Please note how the recursive variant is fundamentally different.
+Ingat baik-baik bagaimana varian rekursif secara dasar berbeda.
 
-When `pow(x, n)` is called, the execution splits into two branches:
+Ketika `pow(x, n)` dipanggil, eksekusinya dibagi menjadi dua cabang:
 
 ```js
               if n==1  = x
@@ -65,27 +65,27 @@ pow(x, n) =
               else     = x * pow(x, n - 1)
 ```
 
-1. If `n == 1`, then everything is trivial. It is called *the base* of recursion, because it immediately produces the obvious result: `pow(x, 1)` equals `x`.
-2. Otherwise, we can represent `pow(x, n)` as `x * pow(x, n - 1)`. In maths, one would write <code>x<sup>n</sup> = x * x<sup>n-1</sup></code>. This is called *a recursive step*: we transform the task into a simpler action (multiplication by `x`) and a simpler call of the same task (`pow` with lower `n`). Next steps simplify it further and further until `n` reaches `1`.
+1. Jika `n == 1`, maka semuanya menjadi tidak penting. Itulah yang dipanggil dengan *dasar* dari rekursi, karena itu langsung menghasilkan nilai yang jelas `pow(x, 1)` sama dengan `x`.
+2. Sebaliknya, kita bisa merepresentasikan `pow(x, n)` sebagai `x * pow(x, n - 1)`. Didalam matematika, satu akan ditulis <code>x<sup>n</sup> = x * x<sup>n-1</sup></code>. Ini yang dipanggil dengan *Langkah rekursif*: kita mengubah tugas/task menjadi aksi yang lebih sederhana (perkalian dengan `x`) dan sebuah pemanggilan yang lebih sederhana dari tugas/task yang sama (`pow` dengan menurunkan `n`). Langkah selanjutnya menyederhanakan itu lebih jauh sampai `n` mencapai `1`.
 
-We can also say that `pow` *recursively calls itself* till `n == 1`.
+Kita bisa berkata bahwa `pow` *secara rekursif memanggil dirinya sendiri sampai `n == 1`.
 
 ![recursive diagram of pow](recursion-pow.svg)
 
 
-For example, to calculate `pow(2, 4)` the recursive variant does these steps:
+Contoh, untuk mengkalkulasi `pow(2, 4)` varian rekursi melakukan langkah-langkah ini:
 
 1. `pow(2, 4) = 2 * pow(2, 3)`
 2. `pow(2, 3) = 2 * pow(2, 2)`
 3. `pow(2, 2) = 2 * pow(2, 1)`
 4. `pow(2, 1) = 2`
 
-So, the recursion reduces a function call to a simpler one, and then -- to even more simpler, and so on, until the result becomes obvious.
+Jadi, rekursi mengurangi sebuah pemanggilan fungsi menjadi yang lebih sederhana, dan lalu -- bahkan lebih sederhana, dan seterusnya, sampai hasilnya menjadi jelas.
 
-````smart header="Recursion is usually shorter"
-A recursive solution is usually shorter than an iterative one.
+````smart header="Rekursi biasanya lebih pendek"
+Solusi rekursi biasanya lebih pendek daripada sebuah iterasi.
 
-Here we can rewrite the same using the conditional operator `?` instead of `if` to make `pow(x, n)` more terse and still very readable:
+Disini kita bisa menulis ulang menggunakan operator konsional `?` daripada `if` untuk membuat `pow(x, n)` lebih pendek dan tetap mudah dibaca:
 
 ```js run
 function pow(x, n) {
@@ -94,36 +94,37 @@ function pow(x, n) {
 ```
 ````
 
-The maximal number of nested calls (including the first one) is called *recursion depth*. In our case, it will be exactly `n`.
+Angka maksimal dari pemanggilan bercabang (termasuk yang pertama) dipanggil dengan *kedalaman rekursi/recursion depth*. Di kasus kita, itu akan persis `n`.
 
-The maximal recursion depth is limited by JavaScript engine. We can rely on it being 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
+Maksimal kedalaman rekursi dibatasi oleh mesin Javascript. Kita bisa berkata bahwa itu mungkin 10000, beberapa mesin bisa lebih tapi 100000 mungkin sudah diluar batas dari kebanyakan mesin. Terdapat optimasi otomatis yang membantu meringankan ini("optimasi tail calls"), tapi mereka belum sepenuhnya didukung di semuanya dan hanya bekerja pada kasus yang sederhana.
 
-That limits the application of recursion, but it still remains very wide. There are many tasks where recursive way of thinking gives simpler code, easier to maintain.
+Itu membatasi aplikasi dari rekursi, tapi itu tetaplah cukup besar. Disana terdapat task dimana cara berfikir rekursif membuat kode lebih sederhana, dan lebih mudah diperlihara.
 
-## The execution context and stack
+## Konteks eksekusi dan tumpukan
 
-Now let's examine how recursive calls work. For that we'll look under the hood of functions.
 
-The information about the process of execution of a running function is stored in its *execution context*.
+Sekarang ayo kita membahas bagaimana pemanggilan rekursi bekerja. Untuk itu kita akan melihat isi dari fungsi.
 
-The [execution context](https://tc39.github.io/ecma262/#sec-execution-contexts) is an internal data structure that contains details about the execution of a function: where the control flow is now, the current variables, the value of `this` (we don't use it here) and few other internal details.
+Informasi tentang proses dari eksekusi dari sebuah fungsi yang berjalan disimpan didalam *konteks eksekusi*nya.
 
-One function call has exactly one execution context associated with it.
+[Execution context](https://tc39.github.io/ecma262/#sec-execution-contexts) adalah sebuah struktur data internal yang mengandung detail tentang eksekusinya dari sebuah fungsi: dimana alur kontrolnya adalah sekarang, variabel yang sekarang, nilai dari `this` (kita tidak akan mengunakan ini disini) dan beberapa detail internal lainnya.
 
-When a function makes a nested call, the following happens:
+Satu pemanggilan fungsi mempunyai tepat satu konteks eksekusi yang terkait dengannya.
 
-- The current function is paused.
-- The execution context associated with it is remembered in a special data structure called *execution context stack*.
-- The nested call executes.
-- After it ends, the old execution context is retrieved from the stack, and the outer function is resumed from where it stopped.
+Ketika sebuah fungsi melakukan pemanggilan bercabang, Hal berikut terjadi:
 
-Let's see what happens during the `pow(2, 3)` call.
+- Fungsi yang sekarang dihentikan sementara -- paused.
+- Konteks eksekusi yang terkait dengannya diingat dalam sebuah struktur data spesial dipanggil dengan *tumpukan konteks eksekusi*.
+- Pemanggilan bercabang dieksekusi.
+- Setelah itu selesai, eksekusi konteks yang lama diterima dari tumpukan, dan fungsi terluar dilanjutkan dari mana itu berhenti.
+
+Ayo kita lihat apa yang terjadi selama pemanggilan `pow(2, 3)`.
 
 ### pow(2, 3)
 
-In the beginning of the call `pow(2, 3)` the execution context will store variables: `x = 2, n = 3`, the execution flow is at line `1` of the function.
+Di awal pemanggilan `pow(2, 3)` konteks eksekusi akan menyimpan variabel: `x = 2, n = 3`, alur eksekusi berada pada baris `1` dari fungsi.
 
-We can sketch it as:
+Kita bisa menggambarkannya seperti:
 
 <ul class="function-execution-context-list">
   <li>
@@ -132,7 +133,7 @@ We can sketch it as:
   </li>
 </ul>
 
-That's when the function starts to execute. The condition `n == 1` is false, so the flow continues into the second branch of `if`:
+Itu ketika fungsi mulai dieksekusi. Kondisinya `n == 1` adalah false, jadi alurnya berlanjut ke cabang kedua dari `if`:
 
 ```js run
 function pow(x, n) {
@@ -149,7 +150,7 @@ alert( pow(2, 3) );
 ```
 
 
-The variables are same, but the line changes, so the context is now:
+Variabelnya juga sama, tapi barisnya berubah, jadi konteksnya sekarang:
 
 <ul class="function-execution-context-list">
   <li>
@@ -158,19 +159,20 @@ The variables are same, but the line changes, so the context is now:
   </li>
 </ul>
 
-To calculate `x * pow(x, n - 1)`, we need to make a subcall of `pow` with new arguments `pow(2, 2)`.
+Untuk mengkalkulasikan `x * pow(x, n -1)`, kita perlu membuat subcall dari `pow` dengan argumen baru `pow(2, 2)`.
 
 ### pow(2, 2)
 
-To do a nested call, JavaScript remembers the current execution context in the *execution context stack*.
+Untuk melakukan pemanggilan bercabang, javascript mengingat konteks eksekusi yang sekarang didalam *tumpukan konteks eksekusi*.
 
-Here we call the same function `pow`, but it absolutely doesn't matter. The process is the same for all functions:
+Disini kita memanggil fungsi yang sama `pow`, tapi itu tidaklah penting. Prosesnya sama untuk semua fungsi:
 
-1. The current context is "remembered" on top of the stack.
-2. The new context is created for the subcall.
-3. When the subcall is finished -- the previous context is popped from the stack, and its execution continues.
+1. Konteks yang sekarang telah "mengingat" tumpukan teratas.
+2. Konteks baru dibuat untuk subcall.
+3. Ketika subcall telah selesai -- konteks sebelumnya dikeluarkan dari tumpukan, dan eksekusinya dilanjutkan.
 
 Here's the context stack when we entered the subcall `pow(2, 2)`:
+Disini tumpukan konteks ketika kita memasuki subcallnya `pow(2, 2)`;
 
 <ul class="function-execution-context-list">
   <li>
@@ -183,21 +185,21 @@ Here's the context stack when we entered the subcall `pow(2, 2)`:
   </li>
 </ul>
 
-The new current execution context is on top (and bold), and previous remembered contexts are below.
+Konteks eksekusi baru yang sekarang berada di atas (dan jelas), dan konteks yang sebelumnya berada dibawah.
 
-When we finish the subcall -- it is easy to resume the previous context, because it keeps both variables and the exact place of the code where it stopped.
+Ketika kita menyelesaikan subcall -- itu akan mudah untuk melanjutkan konteks sebelumnya, karena itu tetap menyimpan kedua variabel dan tempat yang tepat dimana kode itu berhenti.
 
 ```smart
-Here in the picture we use the word "line", as our example there's only one subcall in line, but generally a single line of code may contain multiple subcalls, like `pow(…) + pow(…) + somethingElse(…)`.
+Disini dialam gambar kita gunakan kata "line", sebagai contoh disana terdapat satu subcall didalam baris, tapi secara umum sebuah baris dari kode mungkin mengandung subcall ganda, seperti `pow(…) + pow(…) + somethingElse(…)`.
 
-So it would be more precise to say that the execution resumes "immediately after the subcall".
+Jadi itu harus menjadi lebih presisi untuk dikatakan eksekusi berlanjut "langsung seterlah subcall".
 ```
 
 ### pow(2, 1)
 
-The process repeats: a new subcall is made at line `5`, now with arguments `x=2`, `n=1`.
+Prosesnya diulangi: subcall baru dibuat pada baris `5`, sekarang dengan argumen `x=2`, `n=1`.
 
-A new execution context is created, the previous one is pushed on top of the stack:
+Sebuah konteks eksekusi baru dibuat, yang sebelumnya didorong dari atas tumpukan:
 
 <ul class="function-execution-context-list">
   <li>
@@ -214,11 +216,11 @@ A new execution context is created, the previous one is pushed on top of the sta
   </li>
 </ul>
 
-There are 2 old contexts now and 1 currently running for `pow(2, 1)`.
+Disana terdapat 2 konteks lama sekarang dan 1 sedang berjalan untuk `pow(2, 1)`.
 
-### The exit
+### Keluar
 
-During the execution of `pow(2, 1)`, unlike before, the condition `n == 1` is truthy, so the first branch of `if` works:
+Selama eksekusi dari `pow(2, 1)`, tidak seperti sebelumnya, kondisi `n == 1` sekarang bernilai true, jadi cabang pertama dari `if` bekerja:
 
 ```js
 function pow(x, n) {
@@ -232,9 +234,9 @@ function pow(x, n) {
 }
 ```
 
-There are no more nested calls, so the function finishes, returning `2`.
+Disana sekarang tidak ada lagi pemanggilan bercabang, jadi fungsinya selesai, mengembalikan `2`.
 
-As the function finishes, its execution context is not needed anymore, so it's removed from the memory. The previous one is restored off the top of the stack:
+Setelah fungsinya selesai, konteks eksekusinya tidak dibutuhkan lagi, jadi itu akan dihilangkan dari memori. Satu yang sebelumnya dikembalikan dari atas tumpukan:
 
 
 <ul class="function-execution-context-list">
@@ -248,9 +250,9 @@ As the function finishes, its execution context is not needed anymore, so it's r
   </li>
 </ul>
 
-The execution of `pow(2, 2)` is resumed. It has the result of the subcall `pow(2, 1)`, so it also can finish the evaluation of `x * pow(x, n - 1)`, returning `4`.
+Eksekusi dari `pow(2, 2)` dilanjutkan. Itu telah mempunyai hasil dari subcall `pow(2, 1)`, jadi itu bisa menyelesaikan evaluasi dari `x * pow(x, n - 1)`, mengembalikan `4`.
 
-Then the previous context is restored:
+Konteks sebelumnya dikembalikan:
 
 <ul class="function-execution-context-list">
   <li>
@@ -259,15 +261,15 @@ Then the previous context is restored:
   </li>
 </ul>
 
-When it finishes, we have a result of `pow(2, 3) = 8`.
+Ketika itu selesai, kita mempunyai hasil dari `pow(2, 3) = 8`.
 
-The recursion depth in this case was: **3**.
+Dalam kasus ini kedalaman rekursinya adalah: **3**.
 
-As we can see from the illustrations above, recursion depth equals the maximal number of context in the stack.
+Seperti yang bisa kita lihat dari ilustrasi diatas, kedalaman rekursi sama dengan nilai maksimal dari konteks didalam tumpukan.
 
-Note the memory requirements. Contexts take memory. In our case, raising to the power of `n` actually requires the memory for `n` contexts, for all lower values of `n`.
+Catatan kebutuhan memori. Konteks memakan memori. Didalam kasus ini, menaikan dengan pangkat dari `n` sebenarnya membutuhkan memori sebanyak `n` konteks, untuk semua nilai terendah dari `n`.
 
-A loop-based algorithm is more memory-saving:
+Algoritma berbasis perulangan lebih menghemat memori:
 
 ```js
 function pow(x, n) {
@@ -281,19 +283,19 @@ function pow(x, n) {
 }
 ```
 
-The iterative `pow` uses a single context changing `i` and `result` in the process. Its memory requirements are small, fixed and do not depend on `n`.
+Interatif `pow` menggunakan konteks tunggal mengganti `i` dan `result` didalam prosesnya. Kebutuhan memorinya kecil, tidak berubah-ubah dan tidak tergantung kepada `n`.
 
-**Any recursion can be rewritten as a loop. The loop variant usually can be made more effective.**
+**Rekursi apapun bisa ditulis ulang sebagai perulangan. Varian perulangan biasanya bisa dibuat lebih efektif.**
 
-...But sometimes the rewrite is non-trivial, especially when function uses different recursive subcalls depending on conditions and merges their results or when the branching is more intricate. And the optimization may be unneeded and totally not worth the efforts.
+...Tapi terkadang menulis ulang bukanlah hal yang sepele, terutama ketika fungsi menggunakan pemanggilan rekursif yang berbeda tergantung dari kondisi dan menyatukan hasil mereka atau cabangnya lebih rumit. Dan optimasinya mungkin tidak dibutuhkan dan benar-benar menghabiskan tenaga.
 
-Recursion can give a shorter code, easier to understand and support. Optimizations are not required in every place, mostly we need a good code, that's why it's used.
+Rekursi bisa memberikan kode yang lebih pendek, lebih mudah dimengerti dan didukung. Optimasi tidak dibutuhkan di setiap tempat, kebanyakan kita butuh kode yang bagus, itulah kenapa itu digunakan.
 
-## Recursive traversals
+## Rekursif traversal
 
-Another great application of the recursion is a recursive traversal.
+Penerapan bagus lainnya dari rekursi adalah rekursif traversal.
 
-Imagine, we have a company. The staff structure can be presented as an object:
+Bayangkan, kita punya sebuah perusahaan. Struktur karyawannya bisa dipresentasikan sebagai sebuah objek:
 
 ```js
 let company = {
@@ -322,34 +324,35 @@ let company = {
 };
 ```
 
-In other words, a company has departments.
+Dengan kata lain, perusahaannya mempunyai departemen.
 
-- A department may have an array of staff. For instance, `sales` department has 2 employees: John and Alice.
-- Or a department may split into subdepartments, like `development` has two branches: `sites` and `internals`. Each of them has their own staff.
-- It is also possible that when a subdepartment grows, it divides into subsubdepartments (or teams).
+- Sebuah departemen mungkin mempunyai sebuah array untuk staf. Contoh, departemen `sales` mempunyai dua karyawan John dan Alice.
+- Atau sebuah departemen mungkin dibagi menjadi sub-departemen, like `development` mempunyai dua cabang: `sites` dan `internals`. Untuk masin-masing memiliki stafnya masing-masing.
+- Hal yang mungkin terjadi adalah ketika sub-departemennya berkembang, itu akan terbagi menjadi sub-sub-departemen (tau tim).
 
-    For instance, the `sites` department in the future may be split into teams for `siteA` and `siteB`. And they, potentially, can split even more. That's not on the picture, just something to have in mind.
+    Contoh, departemen `sites` di masa depan mungkin akan terbagi menjadi tim `siteA` dan `siteB`. Dan mereka, memiliki kemungkinan, terbagi lagi. Itu bukanlah sebuah gambaran, hanya sesuatu yang bisa terfikirkan.
 
-Now let's say we want a function to get the sum of all salaries. How can we do that?
+Sekarang kita ingin sebuah fungsi untuk mendapatkan jumlah dari seluruh gaji. Bagaiman kita melakukannya?
 
-An iterative approach is not easy, because the structure is not simple. The first idea may be to make a `for` loop over `company` with nested subloop over 1st level departments. But then we need more nested subloops to iterate over the staff in 2nd level departments like `sites`... And then another subloop inside those for 3rd level departments that might appear in the future? If we put 3-4 nested subloops in the code to traverse a single object, it becomes rather ugly.
+Sebuah pendekatan iteratif tidaklah mudah, karena strukturnya tidak sederhana. Pertama mungkin untuk membuat perulangan `for`didalam `company` dengan sub-perulangan bercabang didalam departemen level 1. Tapi kita butuh lebih banyak sub-perulangan untuk mengiterasi staf didalam departemen level 2 seperti `sites`... Dan lalu sub-perulangan lainnya didalam departemen level 3 yang mungkin muncul di masa mendatang? Jika kita menggunakan 3-4 sub-perulangan didalam kode untuk menjelajahi objek tunggal, itu akan terlihat jelek.
 
-Let's try recursion.
+Ayo kita coba rekursi.
 
-As we can see, when our function gets a department to sum, there are two possible cases:
+Seperti yang bisa kita lihat, ketika fungsi mendapatkan departemen untuk dijumlahkan, disana terdapat dua kemungkinan:
 
-1. Either it's a "simple" department with an *array* of people -- then we can sum the salaries in a simple loop.
-2. Or it's *an object* with `N` subdepartments -- then we can make `N` recursive calls to get the sum for each of the subdeps and combine the results.
+1. Antara itu adalah sebuah departemen "simpel" dengan sebuah array dari orang -- lalu kita bisa menjumlahkan gajinya dengan perulangan yang sederhana.
+2. Atau itu adalah *sebuah objek* dengan `N` sub-departemen -- maka kita bisa membuat pemanggilan rekursif `N` untuk mendapatkan jumlah untuk setiap sub-departemen dan menjumlahkan hasilnya.
 
-The 1st case is the base of recursion, the trivial case, when we get an array.
+Dalam kasus pertama adalah dasar dari rekursi, kasus biasa, ketika kita mendapatkan sebuah array.
 
-The 2nd case when we get an object is the recursive step. A complex task is split into subtasks for smaller departments. They may in turn split again, but sooner or later the split will finish at (1).
+Kasus kedua ketika kita mendapatkan sebuah objek adalah langkah rekursif. Sebuah task yang kompleks dibagi menjadi sub-task untuk departemen yang lebih kecil. Mereka mungkin nanti akan terbagi lagi, tapi cepat atau lambat pembagiannya akan selesai pada (1).
 
-The algorithm is probably even easier to read from the code:
+x
+Algoritmanya mungkin lebih mudah untuk dibaca dari kodenya:
 
 
 ```js run
-let company = { // the same object, compressed for brevity
+let company = { // objek yang sama, dikompresi untuk keringkasan
   sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 1600 }],
   development: {
     sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
@@ -357,15 +360,15 @@ let company = { // the same object, compressed for brevity
   }
 };
 
-// The function to do the job
+// Fungsinya melakukan pekerjaannya
 *!*
 function sumSalaries(department) {
-  if (Array.isArray(department)) { // case (1)
-    return department.reduce((prev, current) => prev + current.salary, 0); // sum the array
-  } else { // case (2)
+  if (Array.isArray(department)) { // kasus (1)
+    return department.reduce((prev, current) => prev + current.salary, 0); // jumlahkan arraynya
+  } else { // kasus (2)
     let sum = 0;
     for (let subdep of Object.values(department)) {
-      sum += sumSalaries(subdep); // recursively call for subdepartments, sum the results
+      sum += sumSalaries(subdep); // secara rekursif memanggil sub-departemen, jumlahkan hasilnya
     }
     return sum;
   }
@@ -375,62 +378,62 @@ function sumSalaries(department) {
 alert(sumSalaries(company)); // 7700
 ```
 
-The code is short and easy to understand (hopefully?). That's the power of recursion. It also works for any level of subdepartment nesting.
+Kodenya pendek dan mudah untuk dimengerti (semoga?). Itulah kemampuan dari rekursi. Itu juga bekerja untuk level apapun dari sub-departemen bercabang.
 
-Here's the diagram of calls:
+Ini adalah diagram dari pemanggilannya:
 
 ![recursive salaries](recursive-salaries.svg)
 
-We can easily see the principle: for an object `{...}` subcalls are made, while arrays `[...]` are the "leaves" of the recursion tree, they give immediate result.
+Kita bisa dengan mudah melihat prinsipnya: untuk sebuah objek sub-pemanggilan `{...}` dibuat, semerata array `[...]` adalah daun dari pohon rekursi, mereka memberikan hasil secara langsung.
 
-Note that the code uses smart features that we've covered before:
+Ingat bahwa kodenya menggunakan fitur pintar yang sudah kita bahas sebelumnya:
 
-- Method `arr.reduce` explained in the chapter <info:array-methods> to get the sum of the array.
-- Loop `for(val of Object.values(obj))` to iterate over object values: `Object.values` returns an array of them.
+- Metode `arr.reduce` menjelaskan didalam bab <info:array-methods> untuk mendapatkan jumlah dari array.
+- Perulangan `for(val of Object.values(obj))` untuk mengiterasi nilai didalam objek: `Object.values` mengembalikan sebuah array darinya.
 
 
-## Recursive structures
+## Struktur rekursif
 
-A recursive (recursively-defined) data structure is a structure that replicates itself in parts.
+Sebuah struktur data rekursif (ditetapkan secara rekursif) adalah sebuah struktur yang mengulangi dirinya-sendiri dalam beberapa bagian.
 
-We've just seen it in the example of a company structure above.
+Kita juga telah melihatnya didalam contoh struktur perusahaan diatas.
 
-A company *department* is:
-- Either an array of people.
-- Or an object with *departments*.
+Sebuah *departemen* perusahaan adalah:
+- Diantara sebuah array dari orang-orang
+- Atau sebuah objek dengan *departemen*.
 
-For web-developers there are much better-known examples: HTML and XML documents.
+Untuk seorang pengembang-web disana terdapat contoh yang lebih baik: HTML dan dokumen XML.
 
-In the HTML document, an *HTML-tag* may contain a list of:
-- Text pieces.
-- HTML-comments.
-- Other *HTML-tags* (that in turn may contain text pieces/comments or other tags etc).
+Didalam dokumen HTML, sebuah *tag-HTML* mungkin mengandung daftar dari:
+- Potongan-potongan text.
+- Komentar-komentar HTML.
+- *Tag-HTML* Lainnya (itu mungkin saja mengandung potongan text/komentar atau tag lainnya).
 
-That's once again a recursive definition.
+Itu sekali lagi adalah definisi rekursif.
 
-For better understanding, we'll cover one more recursive structure named "Linked list" that might be a better alternative for arrays in some cases.
+Untuk pemahaman lebih baik, kita akan memperlajari satu lagi struktur rekursif bernama "Linked list" itu mungkin sebuah alternatif yang bagus untuk array dalam beberapa kasus.
 
 ### Linked list
 
-Imagine, we want to store an ordered list of objects.
+Bayangkan, kita ingin menyimpan sebuah daftar terstruktur didalam sebuah objek.
 
-The natural choice would be an array:
+Pilihan naturalnya mungkin sebuah array:
 
 ```js
 let arr = [obj1, obj2, obj3];
 ```
 
-...But there's a problem with arrays. The "delete element" and "insert element" operations are expensive. For instance, `arr.unshift(obj)` operation has to renumber all elements to make room for a new `obj`, and if the array is big, it takes time. Same with `arr.shift()`.
+...Tapi disana terdapat sebuah masalah dengan array. Operasi "delete element" dan "insert elemen" sangatlah mahal. Contoh, operasi `arr.unshift(obj)` harus memberikan nomor baru untuk membuat ruang untuk `obj` baru, dan jika arraynya sangat besar, itu akan memakan waktu. Sama dengan `arr.shift()`.
 
-The only structural modifications that do not require mass-renumbering are those that operate with the end of array: `arr.push/pop`. So an array can be quite slow for big queues, when we have to work with the beginning.
+Satu-satunya modifikasi struktural yang tidak membutuhkan penomoran secara besar-besaran adalah itu yang beroperasi dengan akhiran dari array: `arr.push/pop`. Jadi sebuah array bisa menjadi cukup lambat untuk antrian yang panjang, ketika kita harus bekerja dengan awalannya.
 
-Alternatively, if we really need fast insertion/deletion, we can choose another data structure called a [linked list](https://en.wikipedia.org/wiki/Linked_list).
+Alternatifnya, jika kita benar-benar membutuhkan memasukan/menghapus dengan cepat, kiat bisa memilih data struktur lainnya bernama [linked list](https://en.wikipedia.org/wiki/Linked_list).
 
-The *linked list element* is recursively defined as an object with:
+*Element linked list* didefinisikan secara rekursif sebagai sebuah objek dengan:
 - `value`.
-- `next` property referencing the next *linked list element* or `null` if that's the end.
+- `next` properti yang mereferensi *elemen linked list* selanjutnya atau `null` jika sudah mencapai akhir.
 
-For instance:
+Contoh:
 
 ```js
 let list = {
@@ -448,11 +451,11 @@ let list = {
 };
 ```
 
-Graphical representation of the list:
+Representasi grafikal dari sebuah list:
 
 ![linked list](linked-list.svg)
 
-An alternative code for creation:
+Alternatif kode untuk pembuatan:
 
 ```js no-beautify
 let list = { value: 1 };
@@ -462,9 +465,9 @@ list.next.next.next = { value: 4 };
 list.next.next.next.next = null;
 ```
 
-Here we can even more clearly see that there are multiple objects, each one has the `value` and `next` pointing to the neighbour. The `list` variable is the first object in the chain, so following `next` pointers from it we can reach any element.
+Disini kita bisa melihat lebih jelas bahwa disana terdapat beberapa objek, masing-masing memiliki `value` dan `next` mengarah ke objek disisinya. Variabel `list` adalah objek pertama didalam rantainya, jadi pointer `next` selanjutnya dari itu bisa kita dapat dari elemen apapun.
 
-The list can be easily split into multiple parts and later joined back:
+List-nya bisa dengan mudah dibagi menjadi beberapa bagian dan lalu disatukan kembali:
 
 ```js
 let secondList = list.next.next;
@@ -473,15 +476,15 @@ list.next.next = null;
 
 ![linked list split](linked-list-split.svg)
 
-To join:
+Untuk menyatukan:
 
 ```js
 list.next.next = secondList;
 ```
 
-And surely we can insert or remove items in any place.
+Dan tentu saja kita bisa memasukan atau menghapus item dari manapun.
 
-For instance, to prepend a new value, we need to update the head of the list:
+Contoh, untuk memasukan nilai baru, kita harus memperbaharui awalan dari list-nya:
 
 ```js
 let list = { value: 1 };
@@ -490,14 +493,14 @@ list.next.next = { value: 3 };
 list.next.next.next = { value: 4 };
 
 *!*
-// prepend the new value to the list
+// memasukan nilai baru kedalam list-nya
 list = { value: "new item", next: list };
 */!*
 ```
 
 ![linked list](linked-list-0.svg)
 
-To remove a value from the middle, change `next` of the previous one:
+Untuk menghapus nilai dari tengah, ganti `next` dengan yang sebelumnya:
 
 ```js
 list.next = list.next.next;
@@ -505,38 +508,38 @@ list.next = list.next.next;
 
 ![linked list](linked-list-remove-1.svg)
 
-We made `list.next` jump over `1` to value `2`. The value `1` is now excluded from the chain. If it's not stored anywhere else, it will be automatically removed from the memory.
+Kita membuat `list.next` melompati `1` menuju nilai `2`. Nilai `1` sekarang tidak termasuk dari rentetannya. Jika itu tidak tersimpan dimanapun, itu akan secara otomatis dihapus dari memori.
 
-Unlike arrays, there's no mass-renumbering, we can easily rearrange elements.
+Tidak seperti array, disana tidak terdapat penomoran urang secara besar-besaran, kita bisa dengan mudah menyusun kembali elemen-elemennya.
 
-Naturally, lists are not always better than arrays. Otherwise everyone would use only lists.
+Umumnya, list tidak selalu lebih baik daripada array. Sebaliknya semua orang harusnya hanya menggunakan list.
 
-The main drawback is that we can't easily access an element by its number. In an array that's easy: `arr[n]` is a direct reference. But in the list we need to start from the first item and go `next` `N` times to get the Nth element.
+Kekurangannya adalah kita tidak bisa dengan mudah mengakses sebuah elemen dengan nomornya. Didalam sebuah array kita bisa dengan mudah: `arr[n]` adalah sebuah referensi langsung. Tapi didalam list kita harus memulai dari item pertama dan maju `next` `N` kali untuk mendapatkan elemen ke Nth.
 
-...But we don't always need such operations. For instance, when we need a queue or even a [deque](https://en.wikipedia.org/wiki/Double-ended_queue) -- the ordered structure that must allow very fast adding/removing elements from both ends, but access to its middle is not needed.
+...Tapi kita tidak selalu butuh operasi seperti itu. Contoh, ketika kita membutuhkan sebuah antrian atau bahkan [deque](https://en.wikipedia.org/wiki/Double-ended_queue) -- struktur urutannya harus mengijinkan penambahan/penghapusan elemen dengan cepat dari kedua sisi tapi akses kedalam bagian tengah tidak dibutuhkan.
 
-Lists can be enhanced:
-- We can add property `prev` in addition to `next` to reference the previous element, to move back easily.
-- We can also add a variable named `tail` referencing the last element of the list (and update it when adding/removing elements from the end).
-- ...The data structure may vary according to our needs.
+List bisa ditingkatkan:
+- Kita bisa menambahkan properti `prev` didalam penambahan untuk `next` untuk mereferensikan elemen sebelumnya, untuk berpindah mundur dengan mudah.
+- Kita juga bisa menambahkan sebuah variabel bernama `tail` mereferensi elemen terakhir dari list (dan memperbaharuinya ketika menambahkan/menghapus elemen dari ujung terakhir).
+- Struktur data mungkin bervariasi tergantung dari kebutuhan kita.
 
-## Summary
+## Rangkuman
 
-Terms:
-- *Recursion*  is a programming term that means calling a function from itself. Recursive functions can be used to solve tasks in elegant ways.
+Istilah:
+- *Rekursi* adalah sebuah istilah programming yang berarti memanggil fungsi dari dirinya sendiri. Fungsi rekursi bisa digunakan untuk memecahkan tugas dengan cara yang elegan.
 
-    When a function calls itself, that's called a *recursion step*. The *basis* of recursion is function arguments that make the task so simple that the function does not make further calls.
+    Ketika sebuah fungsi memanggil dirinya sendiri, itulah yang disebut dengan *langkah rekursi*. *Dasar* dari rekursi adalah sebuah argumen fungsi yang membuat task menjadi lebih sederhana yang dimana fungsinya tidak membuat pemanggilan lebih jauh.
 
-- A [recursively-defined](https://en.wikipedia.org/wiki/Recursive_data_type) data structure is a data structure that can be defined using itself.
+- Sebuah struktur data [didefinisikan secara rekursif](https://en.wikipedia.org/wiki/Recursive_data_type) adalah struktur data yang bisa mendefinisikan menggunakan dirinya sendiri.
 
-    For instance, the linked list can be defined as a data structure consisting of an object referencing a list (or null).
+    Contoh, linked list bisa didefinisikan sebagai sebuah struktur data yang terdiri dari sebuah objek yang mereferensi sebuah list (atau null).
 
     ```js
     list = { value, next -> list }
     ```
 
-    Trees like HTML elements tree or the department tree from this chapter are also naturally recursive: they branch and every branch can have other branches.
+    Pohon seperti pohon elemen HTML atau pohon departemen dari bab ini juga secara natural rekursif: cabang mereka dan setuap cabang mempunyai cabang lainnya.
 
-    Recursive functions can be used to walk them as we've seen in the `sumSalary` example.
+    Fungsi rekursif bisa digunakan untuk menyusurinya seperti yang telah kita lihat didalam contoh `sumSalary`.
 
-Any recursive function can be rewritten into an iterative one. And that's sometimes required to optimize stuff. But for many tasks a recursive solution is fast enough and easier to write and support.
+Fungsi rekursif manapun bisa ditulis ulang menggunakan iterasi. Dan itu terkadang membutuhkan hal-hal optimasi. Tapi untuk kebanyakan task sebuah solusi rekursif cukup cepat dan mudah untuk ditulis dan didukung.
