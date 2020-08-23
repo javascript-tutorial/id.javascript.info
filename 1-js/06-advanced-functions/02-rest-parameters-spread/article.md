@@ -1,20 +1,20 @@
-# Rest parameters and spread syntax
+# Parameter rest dan sintaks spread
 
-Many JavaScript built-in functions support an arbitrary number of arguments.
+Banyak fungsi bawaan Javascript yang mendukung argumen dengan angka yang panjang.
 
-For instance:
+Contoh:
 
-- `Math.max(arg1, arg2, ..., argN)` -- returns the greatest of the arguments.
-- `Object.assign(dest, src1, ..., srcN)` -- copies properties from `src1..N` into `dest`.
-- ...and so on.
+- `Math.max(arg1, arg2, ..., argN)` -- mengembalikan nilai terbesar dari argumen.
+- `Object.assign(dest, src1, ..., srcN)` -- menyalin properti dari `src1..N` kedalam `dest`.
+- ...dan lainnya.
 
-In this chapter we'll learn how to do the same. And also, how to pass arrays to such functions as parameters.
+Didalam bab ini kita akan belajar bagaimana cara untuk melakukan hal yang sama, bagaimana cara untuk mengirim array kepada fungsi seperti itu sebagai parameter.
 
-## Rest parameters `...`
+## Parameter rest `...`
 
-A function can be called with any number of arguments, no matter how it is defined.
+Sebuah fungsi dapat dipanggil dengan jumlah argumen berapapun, tidak peduli bagaimana itu didefinisikan.
 
-Like here:
+Seperti ini:
 ```js run
 function sum(a, b) {
   return a + b;
@@ -23,14 +23,14 @@ function sum(a, b) {
 alert( sum(1, 2, 3, 4, 5) );
 ```
 
-There will be no error because of "excessive" arguments. But of course in the result only the first two will be counted.
+Disana tidak akan terdapat error karena argumen "berlebihan". Tapi tentu saja hasilnya hanya dua angka pertama yang dihitung.
 
-The rest of the parameters can be included in the function definition by using three dots `...` followed by the name of the array that will contain them. The dots literally mean "gather the remaining parameters into an array".
+Sisa parameternya bisa digunakan didalam fungsi dengan menggunakan tiga titik `...` diikuti nama dari array yang akan berisi mereka. Titik secara harfiah berarti "kumpulkan sisa parameter didalam array".
 
-For instance, to gather all arguments into array `args`:
+Contoh, untuk mengumpulkan seluruh argumen menjadi array `args`:
 
 ```js run
-function sumAll(...args) { // args is the name for the array
+function sumAll(...args) { // args adalah nama dari arraynya
   let sum = 0;
 
   for (let arg of args) sum += arg;
@@ -43,15 +43,15 @@ alert( sumAll(1, 2) ); // 3
 alert( sumAll(1, 2, 3) ); // 6
 ```
 
-We can choose to get the first parameters as variables, and gather only the rest.
+Kita bisa memilih untuk mendapatkan parameter pertama sebagai variabel, dan sisanya dikumpulkan.
 
-Here the first two arguments go into variables and the rest go into `titles` array:
+Disini dua parameter pertama akan dimasukan kedalam variabel dan sisanya akan masuk kedalam array `titles`:
 
 ```js run
 function showName(firstName, lastName, ...titles) {
   alert( firstName + ' ' + lastName ); // Julius Caesar
 
-  // the rest go into titles array
+  // sisanya masuk kedalam array titles
   // i.e. titles = ["Consul", "Imperator"]
   alert( titles[0] ); // Consul
   alert( titles[1] ); // Imperator
@@ -61,8 +61,8 @@ function showName(firstName, lastName, ...titles) {
 showName("Julius", "Caesar", "Consul", "Imperator");
 ```
 
-````warn header="The rest parameters must be at the end"
-The rest parameters gather all remaining arguments, so the following does not make sense and causes an error:
+````warn header="Parameter rest harus berada di akhir"
+Parameter rest mengumpulkan seluruh sisa argumen, jadi contoh dibawah tidak dapat dimengerti dan akan menyebabkan error:
 
 ```js
 function f(arg1, ...rest, arg2) { // arg2 after ...rest ?!
@@ -70,14 +70,14 @@ function f(arg1, ...rest, arg2) { // arg2 after ...rest ?!
 }
 ```
 
-The `...rest` must always be last.
+`...rest` harus selalu berada di akhir.
 ````
 
-## The "arguments" variable
+## Variable "arguments"
 
-There is also a special array-like object named `arguments` that contains all arguments by their index.
+Juga terdapat objek spesial seperti array bernama `arguments` yang mengandung seluruh argumen dengan indeksnya.
 
-For instance:
+Contoh:
 
 ```js run
 function showName() {
@@ -85,29 +85,29 @@ function showName() {
   alert( arguments[0] );
   alert( arguments[1] );
 
-  // it's iterable
+  // dapat diiterasi
   // for(let arg of arguments) alert(arg);
 }
 
-// shows: 2, Julius, Caesar
+// menampilkan: 2, Julius, Caesar
 showName("Julius", "Caesar");
 
-// shows: 1, Ilya, undefined (no second argument)
+// menampilkan: 1, Ilya, undefined (tidak ada argumen kedua)
 showName("Ilya");
 ```
 
-In old times, rest parameters did not exist in the language, and using `arguments` was the only way to get all arguments of the function. And it still works, we can find it in the old code.
+Dahulu, parameter rest tidak ada didalam bahasa pemrograman, dan menggunakan `arguments` hanyalah satu-satunya cara untuk mendapatkan seluruh argumen dari sebuah fungsi. Dan itu tetap bekerja, kita bisa menemukannya di kode-kode jadul.
 
-But the downside is that although `arguments` is both array-like and iterable, it's not an array. It does not support array methods, so we can't call `arguments.map(...)` for example.
+Tapi kekurangannya adalah walaupun `arguments` seperti array dan bisa diiterasi, itu bukanlah sebuah array. Itu tidak mendukung metode-metode array, jadi kita tidak bisa memanggil untuk contoh `arguments.map(...)`.
 
-Also, it always contains all arguments. We can't capture them partially, like we did with rest parameters.
+Juga, itu selalu mengandung seluruh argumen. Kita tidak bisa menangkapnya dalam beberapa bagian, seperti yang kita lakukan dengan parameter rest.
 
-So when we need these features, then rest parameters are preferred.
+Jadi ketika kita membutuhkan fiturnya, parameter rest lebih disukai.
 
-````smart header="Arrow functions do not have `\"arguments\"`"
-If we access the `arguments` object from an arrow function, it takes them from the outer "normal" function.
+````smart header="Arrow function tidak memiliki `\"arguments\"`"
+Jika kita ingin mengakses objek `arguments`dari sebuah fungsi panah/arrow function, itu akan mengambilnya dari fungsi "normal" terluar.
 
-Here's an example:
+Contoh:
 
 ```js run
 function f() {
@@ -118,25 +118,25 @@ function f() {
 f(1); // 1
 ```
 
-As we remember, arrow functions don't have their own `this`. Now we know they don't have the special `arguments` object either.
+Seperti yang kita ingat, arrow function tidak memiliki `this` mereka sendiri. Sekarang kita tahu mereka tidak memiliki objek `arguments` yang spesial juga.
 ````
 
 
-## Spread syntax [#spread-syntax]
+## Sintaks spread [#spread-syntax]
 
-We've just seen how to get an array from the list of parameters.
+Kita baru saja melihat bagaimana cara untuk mendapatkan sebuah array dari daftar dari sebuah parameter-parameter.
 
-But sometimes we need to do exactly the reverse.
+Tapi terkadang kita perlu untuk melakukan hal yang sama dengan terbalik.
 
-For instance, there's a built-in function [Math.max](mdn:js/Math/max) that returns the greatest number from a list:
+Contoh, terdapat fungsi bawaan [Math.max](mdn:js/Math/max) yang mengembalikan angka terbesar dari list:
 
 ```js run
 alert( Math.max(3, 5, 1) ); // 5
 ```
 
-Now let's say we have an array `[3, 5, 1]`. How do we call `Math.max` with it?
+Sekarang kita bayangkan kita mempunyai sebuah array `[3, 5, 1]. Bagaimana caranya kita memanggil `Math.max` dengan itu?
 
-Passing it "as is" won't work, because `Math.max` expects a list of numeric arguments, not a single array:
+Berikan itu "kedalamnya" tidak akan bekerja, karena `Math.max` mengharapkan sebuah daftar dari argumen numerik, bukan dari array tunggal:
 
 ```js run
 let arr = [3, 5, 1];
@@ -146,21 +146,21 @@ alert( Math.max(arr) ); // NaN
 */!*
 ```
 
-And surely we can't manually list items in the code `Math.max(arr[0], arr[1], arr[2])`, because we may be unsure how many there are. As our script executes, there could be a lot, or there could be none. And that would get ugly.
+Dan tentu saja kita tidak bisa secara manual memasukan itemnya kedalam kode `Math.max(arr[0], arr[1], arr[2])`, karena kita mungkin tidak yakin ada berapa elemen didalamnya. Lalu saat skripnya dieksekusi, disana mungkin terdapat banyak, atau mungkin tidak ada. Dan itu bukanlah hal yang bagus.
 
-*Spread syntax* to the rescue! It looks similar to rest parameters, also using `...`, but does quite the opposite.
+*Sintaks spread* datang untuk membantu! Itu terlihat sama dengan parameter rest, juga menggunakan `...`, tapi itu melakukan yang sebaliknya.
 
-When `...arr` is used in the function call, it "expands" an iterable object `arr` into the list of arguments.
+Ketika `...arr` digunakan didalam pemanggilan fungsi, itu "memperluas" sebuah objek yang bisa diiterasi `arr` kedalam daftar dari argumen.
 
-For `Math.max`:
+Untuk `Math.max`:
 
 ```js run
 let arr = [3, 5, 1];
 
-alert( Math.max(...arr) ); // 5 (spread turns array into a list of arguments)
+alert( Math.max(...arr) ); // 5 (spread mengubah array menjadi daftar dari argumen)
 ```
 
-We also can pass multiple iterables this way:
+Kita juga bisa memberikan beberapa hal yang bisa diiterasi dengan cara ini:
 
 ```js run
 let arr1 = [1, -2, 3, 4];
@@ -169,7 +169,7 @@ let arr2 = [8, 3, -8, 1];
 alert( Math.max(...arr1, ...arr2) ); // 8
 ```
 
-We can even combine the spread syntax with normal values:
+Kita juga bisa mengkombinasikan sintaks spread dengan nilai normal:
 
 
 ```js run
@@ -179,7 +179,7 @@ let arr2 = [8, 3, -8, 1];
 alert( Math.max(1, ...arr1, 2, ...arr2, 25) ); // 25
 ```
 
-Also, the spread syntax can be used to merge arrays:
+Juga, sintaks spread bisa digunakan untuk menyatukan array-array:
 
 ```js run
 let arr = [3, 5, 1];
@@ -189,12 +189,12 @@ let arr2 = [8, 9, 15];
 let merged = [0, ...arr, 2, ...arr2];
 */!*
 
-alert(merged); // 0,3,5,1,2,8,9,15 (0, then arr, then 2, then arr2)
+alert(merged); // 0,3,5,1,2,8,9,15 (0, lalu arr, lalu 2, lalu arr2)
 ```
 
-In the examples above we used an array to demonstrate the spread syntax, but any iterable will do.
+Dalam contoh diatas kita menggunakan sebuah array untuk mendemonstrasikan sintaks spread, tapi hal yang bisa diiterasi apapun bisa digunakan.
 
-For instance, here we use the spread syntax to turn the string into array of characters:
+Contoh, disini kita menggunakan sintaks spread untuk mengubah string menjadi array dari karakter-karakter:
 
 ```js run
 let str = "Hello";
@@ -202,88 +202,88 @@ let str = "Hello";
 alert( [...str] ); // H,e,l,l,o
 ```
 
-The spread syntax internally uses iterators to gather elements, the same way as `for..of` does.
+Sintaks spread secara internal menggunakan iterator untuk menggabungkan elemen-elemen, cara yang sama seperti yang dilakukan `for..of`.
 
-So, for a string, `for..of` returns characters and `...str` becomes `"H","e","l","l","o"`. The list of characters is passed to array initializer `[...str]`.
+Jadi, untuk sebuah string, `for..of` mengembalikan karakter-karakter dan `...str` menjadi `"H","e","l","l","o"`. Daftar dari karakter-karakter diberikan kepada penginisialisasi array `[...str]`.
 
-For this particular task we could also use `Array.from`, because it converts an iterable (like a string) into an array:
+Untuk task tertentu kita bisa juga menggunakan `Array.from`, karena itu akan mengkonversi sebuah hal yang bisa diiterasi (seperti string) menjadi sebuah array:
 
 ```js run
 let str = "Hello";
 
-// Array.from converts an iterable into an array
+// Array.from mengubah sebuah iterabel menjadi sebuah array
 alert( Array.from(str) ); // H,e,l,l,o
 ```
 
-The result is the same as `[...str]`.
+Hasilnya akan sama seperti `[...str]`.
 
-But there's a subtle difference between `Array.from(obj)` and `[...obj]`:
+Tapi disana terdapat perbedaan yang tipis diantara `Array.from(obj)` dan `[...obj]`:
 
-- `Array.from` operates on both array-likes and iterables.
-- The spread syntax works only with iterables.
+- `Array.from` dapat dioperasikan di "hal yang seperti array" dan "hal yang bisa diiterasi".
+- Sintaks spread hanya bekerja dengan hal yang bisa diiterasi.
 
-So, for the task of turning something into an array, `Array.from` tends to be more universal.
+Jadi, task untuk mengubah sesuatu menjadi sebuah array, `Array.from` cenderung lebih banyak digunakan.
 
 
-## Get a new copy of an array/object
+## Mendapatkan salinan baru dari sebuah array/objek
 
-Remember when we talked about `Object.assign()` [in the past](info:object-copy#cloning-and-merging-object-assign)?
+Inget ketika kita berbicara tentang `Object.assign()` [sebelumnya](info:object-copy#cloning-and-merging-object-assign)?
 
-It is possible to do the same thing with the spread syntax.
+Itu adalah hal yang bisa dilakukan untuk melakukan hal yang sama dengan sintaks spread.
 
 ```js run
 let arr = [1, 2, 3];
-let arrCopy = [...arr]; // spread the array into a list of parameters
-                        // then put the result into a new array
+let arrCopy = [...arr]; // sebarkan arraynya menjadi list dari parameter
+                        // lalu masukan hasilnya kedalam array yang baru
 
-// do the arrays have the same contents?
+// apakah arraynya mempunyai konten yang sama?
 alert(JSON.stringify(arr) === JSON.stringify(arrCopy)); // true
 
-// are the arrays equal?
-alert(arr === arrCopy); // false (not same reference)
+// apakah arraynya sama?
+alert(arr === arrCopy); // false (bukanlah referensi yang sama)
 
-// modifying our initial array does not modify the copy:
+// memodifikasi array awal kita tidak memodifikasi salinannya:
 arr.push(4);
 alert(arr); // 1, 2, 3, 4
 alert(arrCopy); // 1, 2, 3
 ```
 
-Note that it is possible to do the same thing to make a copy of an object:
+Perhatikan bahwa melakukan hal yang sama seperti menyalin sebuah objek adalah hal yang bisa dilakukan:
 
 ```js run
 let obj = { a: 1, b: 2, c: 3 };
-let objCopy = { ...obj }; // spread the object into a list of parameters
-                          // then return the result in a new object
+let objCopy = { ...obj }; // sebarkan objeknya menjadi daftar dari parameter
+                          // lalu kembalikan hasilnya kedalam objek baru.
 
-// do the objects have the same contents?
+// apakah objeknya memiliki kontent yang sama?
 alert(JSON.stringify(obj) === JSON.stringify(objCopy)); // true
 
-// are the objects equal?
+// apakah objeknya sama?
 alert(obj === objCopy); // false (not same reference)
 
-// modifying our initial object does not modify the copy:
+// memodifikasi objel awal kita tidak berarti memodifikasi salinannya:
 obj.d = 4;
 alert(JSON.stringify(obj)); // {"a":1,"b":2,"c":3,"d":4}
 alert(JSON.stringify(objCopy)); // {"a":1,"b":2,"c":3}
 ```
 
-This way of copying an object is much shorter than `let objCopy = Object.assign({}, obj);` or for an array `let arrCopy = Object.assign([], arr);` so we prefer to use it whenever we can.
+Menyalin objek dengan cara ini lebih pendek daripada `let objCopy = Object.assign({}, obj);` atau untuk sebuah array `let arrCopy = Objek.assign([], arr);` jadi kita lebih memilih menggunakannya kapanpun bila bisa digunakan.
 
 
-## Summary
+## Ringkasan
 
-When we see `"..."` in the code, it is either rest parameters or the spread syntax.
+ketika kita melihat `"..."` didalam kode, itu adalah parameter rest atau sintaks spread.
 
-There's an easy way to distinguish between them:
+Terdapat sebuah cara yang mudah untuk membedakan mereka:
 
-- When `...` is at the end of function parameters, it's "rest parameters" and gathers the rest of the list of arguments into an array.
-- When `...` occurs in a function call or alike, it's called a "spread syntax" and expands an array into a list.
+- Ketika `...` berada di akhiran dari parameter fungsi, itu adalah "parameter rest" dan menggabungkan sisa dari daftar argumen menjadi sebuah array.
+- Ketika `...` muncul didalam pemanggilan fungsi atau sejenisnya, itu dipanggil dengan "sintaks spread" dan membentangkan array menjadi sebuah list.
 
-Use patterns:
+Penggunaan pola:
 
-- Rest parameters are used to create functions that accept any number of arguments.
-- The spread syntax is used to pass an array to functions that normally require a list of many arguments.
+- Paramter rest digunakan untuk membuat fungsi yang dapat menerima argumen dengan jumlah berapapun.
+- Sintkas spread digunakan untuk mengirimkan sebuah array kedalam sebuah fungsi yang biasanya membutuhkan daftar dari beberapa argumen.
 
-Together they help to travel between a list and an array of parameters with ease.
+Bersama mereka membantu menggunakan sebuah list dan sebuah array dari parameter dengan mudah.
 
-All arguments of a function call are also available in "old-style" `arguments`: array-like iterable object.
+Semua argumen dari sebuah pemanggilan fungsi juga tersedia di argumen dengan "gaya-lama": objek seperti array yang bisa diiterasi.
