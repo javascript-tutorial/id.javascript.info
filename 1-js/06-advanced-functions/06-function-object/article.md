@@ -1,20 +1,20 @@
 
-# Function object, NFE
+# Objek fungsi, NFE
 
-As we already know, a function in JavaScript is a value.
+Seperti yang telah kita tahu, sebuah fungsi didalam Javascript adalah sebuah nilai.
 
-Every value in JavaScript has a type. What type is a function?
+Setiap nilai didalam Javascript memiliki sebuah tipe. Apa tipe dari sebuah fungsi?
 
-In JavaScript, functions are objects.
+Didalam Javascript, fungsi adalah objek.
 
-A good way to imagine functions is as callable "action objects". We can not only call them, but also treat them as objects: add/remove properties, pass by reference etc.
+Sebuah cara yang bagus untuk membayangkan fungsi adalah sebagai "aksi objek" yang dapat dipanggil. Kita tidak hanya memanggil mereka, tapi juga memperlakukannya seperti sebuah objek: menambah/menghapus properti, memberikan referensi dll.
 
 
-## The "name" property
+## Properti "name"
 
-Function objects contain some useable properties.
+Objek fungsi mengandung beberapa properti yang dapat digunakan.
 
-For instance, a function's name is accessible as the "name" property:
+Contoh, sebuah nama fungsi dapat diakses sebagai properti "name":
 
 ```js run
 function sayHi() {
@@ -24,29 +24,29 @@ function sayHi() {
 alert(sayHi.name); // sayHi
 ```
 
-What's kind of funny, the name-assigning logic is smart. It also assigns the correct name to a function even if it's created without one, and then immediately assigned:
+Itu terlihat cukup lucu, logika untuk penggunaan nama cukup pintar. Itu juga menggunakan nama fungsi yang benar bahkan jika tidak terdapat nama sekalipun, dan jika langsung ditempatkan:
 
 ```js run
 let sayHi = function() {
   alert("Hi");
 };
 
-alert(sayHi.name); // sayHi (there's a name!)
+alert(sayHi.name); // sayHi (ada namanya!)
 ```
 
-It also works if the assignment is done via a default value:
+Itu juga akan bekerja jika assignmentnya dilakukan dengan menggunakan nilai default:
 
 ```js run
 function f(sayHi = function() {}) {
-  alert(sayHi.name); // sayHi (works!)
+  alert(sayHi.name); // sayHi (bekerja!)
 }
 
 f();
 ```
 
-In the specification, this feature is called a "contextual name". If the function does not provide one, then in an assignment it is figured out from the context.
+Didalam spesifikasinya, fitur ini dinamakan dengan "nama kontekstual/contextual name". Jika sebuah fungsi tidak memiliki nama, maka didalam assignment-nya akan mencarinya didalam konteksnya.
 
-Object methods have names too:
+Metode objek mempunyai nama juga:
 
 ```js run
 let user = {
@@ -65,21 +65,21 @@ alert(user.sayHi.name); // sayHi
 alert(user.sayBye.name); // sayBye
 ```
 
-There's no magic though. There are cases when there's no way to figure out the right name. In that case, the name property is empty, like here:
+Tidak ada sulap disini. Terdapat kasus dimana tidak ada cara untuk mengetahui namanya. Didalam kasus itu, properti namanya akan kosong, seperti disini:
 
 ```js run
-// function created inside array
+// fungsi dibuat didalam array
 let arr = [function() {}];
 
-alert( arr[0].name ); // <empty string>
-// the engine has no way to set up the right name, so there is none
+alert( arr[0].name ); // <string kosong>
+// mesinnya tidak memiliki cara untuk mengetahui namanya, maka isinya akan menjadi kosong
 ```
 
-In practice, however, most functions do have a name.
+Didalam penerapannya, entah bagaimana, kebanyakan fungsi akan memiliki nama.
 
-## The "length" property
+## Properti "length"
 
-There is another built-in property "length" that returns the number of function parameters, for instance:
+Juga terdapat properti bawaan "length" yang mengembalikan jumlah dari parameter sebuah fungsi, contoh:
 
 ```js run
 function f1(a) {}
@@ -91,20 +91,20 @@ alert(f2.length); // 2
 alert(many.length); // 2
 ```
 
-Here we can see that rest parameters are not counted.
+Disini kita bisa melihat parameter rest tidak dihitung.
 
-The `length` property is sometimes used for [introspection](https://en.wikipedia.org/wiki/Type_introspection) in functions that operate on other functions.
+Properti `length` terkadang digunakan untuk [introspeksi](https://en.wikipedia.org/wiki/Type_introspection) didalam fungsi yang mengoperasikan fungsi lainnya.
 
-For instance, in the code below the `ask` function accepts a `question` to ask and an arbitrary number of `handler` functions to call.
+Contoh, didalam kode dibawah fungsi `ask` menerima sebuah `question` untuk ditanyakan dan sebuah angka yang panjang dari fungsi `handler` untuk dipanggil.
 
-Once a user provides their answer, the function calls the handlers. We can pass two kinds of handlers:
+Sekalinya pengguna memberikan jawaban mereka, pemanggilan fungsi akan memanggil handler-nya. Kita bisa memberikan dua macan handler:
 
-- A zero-argument function, which is only called when the user gives a positive answer.
-- A function with arguments, which is called in either case and returns an answer.
+- Fungsi dengan jumlah argumen nol, yang mana hanya dipanggil ketika pengguna memberikan jawaban yang positif.
+- Fungsi dengan argumen, yang mana akan dipanggil diantara salah satu kasusnya dan mengembalikan sebuah jawaban.
 
-To call `handler` the right way, we examine the `handler.length` property.
+Untuk memanggil `handler` dengan cara yang tepat, kita memeriksa properti `handler.length`.
 
-The idea is that we have a simple, no-arguments handler syntax for positive cases (most frequent variant), but are able to support universal handlers as well:
+Idenya adalah kita mempunyai handler yang simpel tanpa argumen untuk kasus yang positif (pada kasus yang sering terjadi), tapi yang tentunya tidak mendukung handler yang universal:
 
 ```js run
 function ask(question, ...handlers) {
@@ -120,47 +120,47 @@ function ask(question, ...handlers) {
 
 }
 
-// for positive answer, both handlers are called
-// for negative answer, only the second one
+// untuk jawaban yang positif, kedua handler-nya akan dipanggil
+// untuk jawaban yang negatif, hanya yang kedua
 ask("Question?", () => alert('You said yes'), result => alert(result));
 ```
 
-This is a particular case of so-called [polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) -- treating arguments differently depending on their type or, in our case depending on the `length`. The idea does have a use in JavaScript libraries.
+Ini hanyalah kasus tertentu yang dipanggil dengan [polimorfisme](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) -- memperlakukan argumen berbeda-beda tergantung dari tipenya atau, didalam kasus kita tergantung dari `length`. Idenya adalah didalam penggunakan librari Javascript.
 
-## Custom properties
+## Properti-properti kustom/Custom properties
 
-We can also add properties of our own.
+Kita juga bisa menambahkan properti-properti milik kita sendiri.
 
-Here we add the `counter` property to track the total calls count:
+Disini kita menambahkan properti `counter` untuk melacar total dari pemanggilan:
 
 ```js run
 function sayHi() {
   alert("Hi");
 
   *!*
-  // let's count how many times we run
+  // hitung berapa kali kita berjalan
   sayHi.counter++;
   */!*
 }
-sayHi.counter = 0; // initial value
+sayHi.counter = 0; // nilai awal
 
 sayHi(); // Hi
 sayHi(); // Hi
 
-alert( `Called ${sayHi.counter} times` ); // Called 2 times
+alert( `Called ${sayHi.counter} times` ); // dipanggil dua kali
 ```
 
-```warn header="A property is not a variable"
-A property assigned to a function like `sayHi.counter = 0` does *not* define a local variable `counter` inside it. In other words, a property `counter` and a variable `let counter` are two unrelated things.
+```warn header="Sebuah properti bukanlah sebuah variabel"
+Sebuah properti dimasukan kedalam fungsi seperti `sayHi.counter = 0` tidak mendefinisikan variabel lokal `counter` didalamnya. Dengan kata lain, sebuah properti `counter` dan sebuah variabel `let counter` adalah dua hal yang tidak memiliki hubungam sama sekali.
 
-We can treat a function as an object, store properties in it, but that has no effect on its execution. Variables are not function properties and vice versa. These are just parallel worlds.
+Kita bisa memperlakukan sebuah fungsi seperti sebuah objek, menyimpan properti didalamnya, tapi itu tidak akan mempengaruhi eksekusinya sendiri. Variabel bukanlah sebuah properti fungsi dan sebaliknya. Keduanya hanyalah dua hal yang berbeda.
 ```
 
-Function properties can replace closures sometimes. For instance, we can rewrite the counter function example from the chapter <info:closure> to use a function property:
+Terkadang properti fungsi bisa menggantikan closure. Contoh, kita bisa menulis ulang contoh fungsi counter dari bab <info:closure> untuk menggunakan properti fungsi:
 
 ```js run
 function makeCounter() {
-  // instead of:
+  // daripada:
   // let count = 0
 
   function counter() {
@@ -177,11 +177,11 @@ alert( counter() ); // 0
 alert( counter() ); // 1
 ```
 
-The `count` is now stored in the function directly, not in its outer Lexical Environment.
+`count`nya sekarang tersimpan didalam fungsinya langsung, bukan diluar dari lingkungan leksikalnya.
 
-Is it better or worse than using a closure?
+Apakah lebih baik atau tidak menggunakan closure?
 
-The main difference is that if the value of `count` lives in an outer variable, then external code is unable to access it. Only nested functions may modify it. And if it's bound to a function, then such a thing is possible:
+Perbedaan utamanya adalah jika nilai dari `count` berada didalam variabel luar, maka kode eksternal tidak dapat mengaksesnya. Hanya fungsi bercabang yang bisa memodifikasinya. Dan jika itu terikat dengan sebuah fungsi, maka kode eksternal dapat mengaksesnya.
 
 ```js run
 function makeCounter() {
@@ -203,13 +203,13 @@ alert( counter() ); // 10
 */!*
 ```
 
-So the choice of implementation depends on our aims.
+Jadi pilihannya implementasinya adalah tergantung pada kebutuhan kita.
 
-## Named Function Expression
+## Ekspresi fungsi yang mempunyai nama
 
-Named Function Expression, or NFE, is a term for Function Expressions that have a name.
+Ekspresi fungsi yang mempunyai nama, atau NFE(Named Function Expression) adalah istilah untuk ekspresi fungsi yang memiliki nama.
 
-For instance, let's take an ordinary Function Expression:
+Contoh, ayo kita lihat ekspresi fungsi yang biasa:
 
 ```js
 let sayHi = function(who) {
@@ -217,7 +217,7 @@ let sayHi = function(who) {
 };
 ```
 
-And add a name to it:
+Dan tambahkan nama:
 
 ```js
 let sayHi = function *!*func*/!*(who) {
@@ -225,13 +225,13 @@ let sayHi = function *!*func*/!*(who) {
 };
 ```
 
-Did we achieve anything here? What's the purpose of that additional `"func"` name?
+Apakah kita meraih sesuatu disini? Apa tujuan dari penambahan nama `"func"`?
 
-First let's note, that we still have a Function Expression. Adding the name `"func"` after `function` did not make it a Function Declaration, because it is still created as a part of an assignment expression.
+pertama kita perhatikan, bahwa kita masih memiliki ekspresi fungsi. Menambahkan nama `"func"` setelah `function` tidaklah membuatnya menjadi deklarasi fungsi, karena itu masih dibuat sebagai bagian dari sebuah assignment ekspresi.
 
-Adding such a name also did not break anything.
+Menambahkan nama seperti itu tidak akan merusak apapun.
 
-The function is still available as `sayHi()`:
+Fungsinya masih ada sebagai `sayHi()`:
 
 ```js run
 let sayHi = function *!*func*/!*(who) {
@@ -241,12 +241,12 @@ let sayHi = function *!*func*/!*(who) {
 sayHi("John"); // Hello, John
 ```
 
-There are two special things about the name `func`, that are the reasons for it:
+Terdapat dua hal yang spesial tentang nama `func`, hal itu adalah:
 
-1. It allows the function to reference itself internally.
-2. It is not visible outside of the function.
+1. Itu mengijinkan fungsinya untuk mereferensi dirinya sendiri secara internal.
+2. Fungsinya tidak akan terlihat diluar fungsi tersebut.
 
-For instance, the function `sayHi` below calls itself again with `"Guest"` if no `who` is provided:
+Untuk contoh, fungsi `sayHi` dibawah memanggil dirinya-sendiri lagi dengan `"Guest"` jika `who` tidak ada:
 
 ```js run
 let sayHi = function *!*func*/!*(who) {
@@ -254,21 +254,21 @@ let sayHi = function *!*func*/!*(who) {
     alert(`Hello, ${who}`);
   } else {
 *!*
-    func("Guest"); // use func to re-call itself
+    func("Guest"); // gunakan func untuk memanggil dirinya sendiri
 */!*
   }
 };
 
 sayHi(); // Hello, Guest
 
-// But this won't work:
-func(); // Error, func is not defined (not visible outside of the function)
+// Tapi hal ini tidak akan bekerja
+func(); // Error, func is not defined (tidak terliha diluar fungsinya sendiri)
 ```
 
-Why do we use `func`? Maybe just use `sayHi` for the nested call?
+Kenapa kita menggunakan `func`? Mungkin cukup gunakan `sayHi` untuk pemanggilan bercabang?
 
 
-Actually, in most cases we can:
+Sebenarnya, dalam kebanyakan kasus kita bisa:
 
 ```js
 let sayHi = function(who) {
@@ -282,7 +282,7 @@ let sayHi = function(who) {
 };
 ```
 
-The problem with that code is that `sayHi` may change in the outer code. If the function gets assigned to another variable instead, the code will start to give errors:
+Masalahnya dengan kode itu adalah `sayHi` mungkin akan berubah di kode terluar. Malah jika fungsinya dimasukan kedalam variabel lain, kodenya akan mulai memberikan error:
 
 ```js run
 let sayHi = function(who) {
@@ -298,14 +298,14 @@ let sayHi = function(who) {
 let welcome = sayHi;
 sayHi = null;
 
-welcome(); // Error, the nested sayHi call doesn't work any more!
+welcome(); // Error, pemanggilan bercabang sayHi tidak akan bekerja lagi!
 ```
 
-That happens because the function takes `sayHi` from its outer lexical environment. There's no local `sayHi`, so the outer variable is used. And at the moment of the call that outer `sayHi` is `null`.
+Hal itu terjadi karena fungsinya menggunakan `sayHi` dari luar lingkungan leksikalnya. Disana tidak ada `sayHi` lokal, jadi variabel terluar digunakan. Dan pada saat pemanggilannya terjadi `sayHi` terluar adalah `null`.
 
-The optional name which we can put into the Function Expression is meant to solve exactly these kinds of problems.
+Nama opsional dimana kita bisa memasukannya kedalam ekspresi fungsi diartikan untuk menyelesaikan masalah yang tepat seperti ini.
 
-Let's use it to fix our code:
+Ayo kita gunakan itu untuk membetulkan masalah pada kode kita:
 
 ```js run
 let sayHi = function *!*func*/!*(who) {
@@ -313,7 +313,7 @@ let sayHi = function *!*func*/!*(who) {
     alert(`Hello, ${who}`);
   } else {
 *!*
-    func("Guest"); // Now all fine
+    func("Guest"); // Sekarang semuanya mantap
 */!*
   }
 };
@@ -321,33 +321,33 @@ let sayHi = function *!*func*/!*(who) {
 let welcome = sayHi;
 sayHi = null;
 
-welcome(); // Hello, Guest (nested call works)
+welcome(); // Hello, Guest (pemanggilan bercabang bekerja)
 ```
 
-Now it works, because the name `"func"` is function-local. It is not taken from outside (and not visible there). The specification guarantees that it will always reference the current function.
+Sekarang hal itu bekerja karena nama `"func"` adalah fungsi-lokal. Fungsi itu tidak diambil dari luar (dan tidak terlihat dari luar). Spesifikasinya menjamin itu akan selalu mereferensi fungsi saat ini. 
 
-The outer code still has it's variable `sayHi` or `welcome`. And `func` is an "internal function name", how the function can call itself internally.
+Fungsi dari luar kode mempunyai variabel `sayHi` atau `welcome`nya sendiri. Dan `func` adalah sebuah "nama fungsi internal", bagaimana fungsi bisa memanggil dirinya sendiri secara internal.
 
-```smart header="There's no such thing for Function Declaration"
-The "internal name" feature described here is only available for Function Expressions, not for Function Declarations. For Function Declarations, there is no syntax for adding an "internal" name.
+```smart header="Tidak ada hal semacam itu untuk deklarasi fungsi"
+Fitur "nama internal" dideskripsikan disini hanya tersedia untuk ekspresi fungsi, bukan deklarasi fungsi. Untuk deklarasi fungsi, tidak terdapat sintaks untuk menambahkan sebuah nama "internal".
 
-Sometimes, when we need a reliable internal name, it's the reason to rewrite a Function Declaration to Named Function Expression form.
+Terkadang, ketika kita membutuhkan nama internal yang dapat diandalkan, itulah alasan yang tepat untuk menulis ulang sebuah deklarasi fungsi kedalam bentuk ekspresi fungsi.
 ```
 
-## Summary
+## Ringkasan
 
-Functions are objects.
+Fungsi adalah objek.
 
-Here we covered their properties:
+Disini kita memperlajari properti-propertinya:
 
-- `name` -- the function name. Usually taken from the function definition, but if there's none, JavaScript tries to guess it from the context (e.g. an assignment).
-- `length` -- the number of arguments in the function definition. Rest parameters are not counted.
+- `name` -- nama dari fungsinya. Biasanya diambil dari definisi fungsinya, tapi jika disana tidak ada, Javascript akan mencoba mencarinya dari konteksnya (contoh. dari assignment-nya).
+- `length` -- jumlah dari argumen didalam definisi dari fungsi. Parameter rest tidak dihitung.
 
-If the function is declared as a Function Expression (not in the main code flow), and it carries the name, then it is called a Named Function Expression. The name can be used inside to reference itself, for recursive calls or such.
+Jika fungsinya di deklarasikan sebagai ekspresi fungsi (tidak didalam alur kode utama), dan itu memiliki nama, maka itu dipanggil dengan ekspresi fungsi yang memiliki nama. Namanya bisa digunakan didalam fungsinya untuk mereferensi dirinya sendiri, untuk pemanggilan rekursif atau sejenisnya.
 
-Also, functions may carry additional properties. Many well-known JavaScript libraries make great use of this feature.
+Juga, fungsi mungkin memiliki properti tambahan. Beberapa librari Javascript yang cukup terkenal banyak menggunakan fitur ini.
 
-They create a "main" function and attach many other "helper" functions to it. For instance, the [jQuery](https://jquery.com) library creates a function named `$`. The [lodash](https://lodash.com) library creates a function `_`, and then adds `_.clone`, `_.keyBy` and other properties to it (see the [docs](https://lodash.com/docs) when you want learn more about them). Actually, they do it to lessen their pollution of the global space, so that a single library gives only one global variable. That reduces the possibility of naming conflicts.
+Mereka membuat sebuah fungsi "utama" dan mengkaitkannya dengan fungsi "pembantu". Contoh librari [jQuery](https://jquery.com) menciptakan fungsi bernama `$`. Librari The [lodash](https://lodash.com) membuat sebuah fungsi `_` dan lalu menambahkan `_.clone`, `_.keyBy`dan properti lainnya kedalamnya (lihat [dokumentasinya](https://lodash.com/docs) ketika kamu mau tau lebih dalam). Sebenarnya, mereka melakukannya untuk mengurangi penggunaan dari ruang global, jadi librari tunggal itu hanya menggunakan satu variabel global. Itu mengurangi kemungkinan dari konflik penamaan variabel.
 
 
-So, a function can do a useful job by itself and also carry a bunch of other functionality in properties.
+Jadi, sebuah fungsi bisa melakukan hal-hal yang berguna dengan dirinya-sendiri dan juga membawa setumpuk fungsionalitas didalam propertinya sendiri.
