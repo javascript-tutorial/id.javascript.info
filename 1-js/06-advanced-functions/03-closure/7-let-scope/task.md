@@ -1,10 +1,10 @@
-importance: 4
+nilai penting: 4
 
 ---
 
-# Is variable visible?
+# Apakah variabelnya terlihat?
 
-What will be the result of this code?
+Apakah hasil dari kode ini?
 
 ```js
 let x = 1;
@@ -19,3 +19,4 @@ func();
 ```
 
 P.S. There's a pitfall in this task. The solution is not obvious.
+Catatan. Terdapat jebakan pada task ini. Solusinya menjadi kurang jelas.

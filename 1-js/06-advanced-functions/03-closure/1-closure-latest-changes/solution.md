@@ -1,5 +1,5 @@
-The answer is: **Pete**.
+Jawabannya adalah: **Pete**.
 
-A function gets outer variables as they are now, it uses the most recent values.
+Sebuah fungsi mendapatkan variabel yang sekarang, nilai paling terbaru akan digunakan.
 
-Old variable values are not saved anywhere. When a function wants a variable, it takes the current value from its own Lexical Environment or the outer one.
+Nilai variabel lama tidak akan tersimpan dimanapun. Ketika sebuah fungsi menginginkan sebuah variabel, nilai terbaru akan diambil dari lingkungan leksikalnya atau dari luar.

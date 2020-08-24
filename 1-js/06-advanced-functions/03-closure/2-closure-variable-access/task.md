@@ -1,12 +1,12 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Which variables are available?
+# Variabel manakah yang tersedia?
 
-The function `makeWorker` below makes another function and returns it. That new function can be called from somewhere else.
+Fungsi `makeWorker` dibawah membuat fungsi lainnya dan mengembalikannya. Fungsi baru itu bisa dipanggil dari manapun.
 
-Will it have access to the outer variables from its creation place, or the invocation place, or both?
+Akankah itu mempunyai akses ke variabel luar dari tempat pembuatannya, atau dari tempat pemanggilannya, atau keduanya?
 
 ```js
 function makeWorker() {
@@ -19,11 +19,11 @@ function makeWorker() {
 
 let name = "John";
 
-// create a function
+// pembuatan fungsi
 let work = makeWorker();
 
-// call it
-work(); // what will it show?
+// dipanggil
+work(); // apakah yang akan tampil?
 ```
 
-Which value it will show? "Pete" or "John"?
+Nilai manakah yang akan muncul? "Pete" atau "John"?

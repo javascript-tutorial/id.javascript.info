@@ -1,10 +1,10 @@
-importance: 5
+Nilai penting: 5
 
 ---
 
-# Does a function pickup latest changes?
+# Apakah sebuah fungsi akan mengambil perubahan terakhir?
 
-The function sayHi uses an external variable name. When the function runs, which value is it going to use?
+Fungsi sayHi menggunakan nama variabel dari luar. Ketika fungsinya berjalan, nilai manakah yang akan digunakan?
 
 ```js
 let name = "John";
@@ -15,9 +15,9 @@ function sayHi() {
 
 name = "Pete";
 
-sayHi(); // what will it show: "John" or "Pete"?
+sayHi(); // apakah yang akan tampil: "John" atau "Pete"?
 ```
 
-Such situations are common both in browser and server-side development. A function may be scheduled to execute later than it is created, for instance after a user action or a network request.
+Situasi seperti itu adalah hal yang biasa didalam peramban dan pengembangan di bagian server. Sebuah fungsi mungkin sudah dijadwalkan untuk dieksekusi nanti daripada saat dibuat, untuk contoh setelah sebuah aksi user atau setelah me-request ke jaringan.
 
-So, the question is: does it pick up the latest changes?
+Jadi, pertanyaannya adalah: apakah nilai terakhir akan diambil?
