@@ -1,26 +1,25 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# What will setTimeout show?
+# Apa yang akan ditampilkan setTimeout?
 
-In the code below there's a `setTimeout` call scheduled, then a heavy calculation is run, that takes more than 100ms to finish.
+Di kode dibawah disana terdapat pemanggilan `setTimeout` yang sudah terjadwal, lalu kalkulasi yang cukup berat berjalan, yang memakan waktu lebih dari 100ms untuk selesai.
 
-When will the scheduled function run?
+Kapankan fungsi yang sudah dijadwal akan berjalan?
 
-1. After the loop.
-2. Before the loop.
-3. In the beginning of the loop.
+1. Setelah perulangannya.
+2. Sebelum perulangannya.
+3. Di awal dari perulangannya.
 
-
-What is `alert` going to show?
+Apakan yang akan `alert` tampilkan?
 
 ```js
 let i = 0;
 
 setTimeout(() => alert(i), 100); // ?
 
-// assume that the time to execute this function is >100ms
+// asumsikan waktu untuk mengeksekusi fungsi ini lebih dari 100ms
 for(let j = 0; j < 100000000; j++) {
   i++; 
 }

@@ -1,12 +1,12 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Output every second
+# Membuat keluaran setiap detik
 
-Write a function `printNumbers(from, to)` that outputs a number every second, starting from `from` and ending with `to`.
+Tulis sebuah fungsi `printNumbers(from, to)` yang mengeluarkan angka setiap detik, dimulai dari `from` dan berakhir sampai `to`.
 
-Make two variants of the solution.
+Buatlah dua varian solusinya.
 
-1. Using `setInterval`.
-2. Using nested `setTimeout`.
+1. Menggunakan `setInterval`.
+2. Gunakan `setTimeout` bercabang.

@@ -1,17 +1,17 @@
-# Scheduling: setTimeout and setInterval
+# Pendadwalan: setTimeout dan setInterval
 
-We may decide to execute a function not right now, but at a certain time later. That's called "scheduling a call".
+Kita mungkin memutuskan untuk mengeksekusi fungsinya bukanlah sekarang, tapi pada waktu-waktu tertentu nanti. Itu dipanggil dengan "penjadwalan pemanggilan".
 
-There are two methods for it:
+Terdapat dua metode untuk itu:
 
-- `setTimeout` allows us to run a function once after the interval of time.
-- `setInterval` allows us to run a function repeatedly, starting after the interval of time, then repeating continuously at that interval.
+- `setTimeout` mengijinkan kita untuk menjalankan fungsinya setelah interval dari waktu.
+- `setInterval` mengijinkan kita untuk menjalankan fungsinya berulang-ulang, dimulai seterlah interval dari waktu yang diberikan, lalu akan terus berulang pada interval waktu yang diberikan.
 
-These methods are not a part of JavaScript specification. But most environments have the internal scheduler and provide these methods. In particular, they are supported in all browsers and Node.js.
+Metode-metode ini bukanlah bagian dari spesifikasi Javascript. Tapi kebanyakan lingkungan memiliki penjadwalan internal dan menyediakan metode-metode ini. Khususnya, mereka didukung didalam semua peramban dan Node.js.
 
 ## setTimeout
 
-The syntax:
+Sintaksnya:
 
 ```js
 let timerId = setTimeout(func|code, [delay], [arg1], [arg2], ...)
@@ -20,16 +20,16 @@ let timerId = setTimeout(func|code, [delay], [arg1], [arg2], ...)
 Parameters:
 
 `func|code`
-: Function or a string of code to execute.
-Usually, that's a function. For historical reasons, a string of code can be passed, but that's not recommended.
+: Fungsi atau sebuah string dari kode untuk dieksekusi.
+Biasanya, adalah sebuah fungsi. Untuk beberapa alasan, sebuah string dari kode bisa diberikan, tapi hal itu tidak direkomendasikan.
 
 `delay`
-: The delay before run, in milliseconds (1000 ms = 1 second), by default 0.
+: Penundaannya sebelum berjalan, didalam milidetik (1000 milidetik = 1 detik), secara default 0.
 
 `arg1`, `arg2`...
-: Arguments for the function (not supported in IE9-)
+: Argumen-argumen untuk fungsinya (tidak didukung didalam IE9-).
 
-For instance, this code calls `sayHi()` after one second:
+Contoh, kode ini memanggil `sayHi()` setelah satu detik:
 
 ```js run
 function sayHi() {
@@ -41,7 +41,7 @@ setTimeout(sayHi, 1000);
 */!*
 ```
 
-With arguments:
+Dengan argumen:
 
 ```js run
 function sayHi(phrase, who) {
@@ -53,93 +53,93 @@ setTimeout(sayHi, 1000, "Hello", "John"); // Hello, John
 */!*
 ```
 
-If the first argument is a string, then JavaScript creates a function from it.
+Jika argumen pertama adalah sebuah string, maka Javascript akan membuatkan fungsi untuk itu.
 
-So, this will also work:
+Jadi, seperti ini juga akan bekerja:
 
 ```js run no-beautify
 setTimeout("alert('Hello')", 1000);
 ```
 
-But using strings is not recommended, use arrow functions instead of them, like this:
+Tapi menggunakan string tidak direkomendasikan, lebih baik gunakan fungsi arrow, seperti ini:
 
 ```js run no-beautify
 setTimeout(() => alert('Hello'), 1000);
 ```
 
-````smart header="Pass a function, but don't run it"
-Novice developers sometimes make a mistake by adding brackets `()` after the function:
+````smart header="Berikan sebuah fungsi, tapi jangan dijalankan"
+Developer pemula terkadang membuat sebuah kesalahan dengan menambahkan kurung `()` setelah fungsinya:
 
 ```js
 // wrong!
 setTimeout(sayHi(), 1000);
 ```
-That doesn't work, because `setTimeout` expects a reference to a function. And here `sayHi()` runs the function, and the *result of its execution* is passed to `setTimeout`. In our case the result of `sayHi()` is `undefined` (the function returns nothing), so nothing is scheduled.
+Itu tidak akan bekerja, karena `setTimeout` mengharapkan sebuah referensi kepada fungsi. Dan disini `sayHi()` akan menjalankan fungsinya, dan *hasil dari eksekusinya* akan diberikan kepada `setTimeout`. Didalam kasus kita hasil dari `sayHi()` adalah `undefined` (fungsinya tidak mengembalikan apapun), jadi tidak ada hal yang dijadwalkan.
 ````
 
-### Canceling with clearTimeout
+### Pembatalan menggunakan clearTimeout
 
-A call to `setTimeout` returns a "timer identifier" `timerId` that we can use to cancel the execution.
+Pemanggilan `setTimeout` mengembalikan sebuah "identifier waktu" `timerId` yang bisa kita gunakan untuk membatalkan eksekusinya.
 
-The syntax to cancel:
+Sintaks untuk membatalkan:
 
 ```js
 let timerId = setTimeout(...);
 clearTimeout(timerId);
 ```
 
-In the code below, we schedule the function and then cancel it (changed our mind). As a result, nothing happens:
+Di kode dibawah, kita menjadwalkan fungsinya dan membatalkannya (berubah pikiran). Sebagai hasilnya, tidak ada yang terjadi:
 
 ```js run no-beautify
 let timerId = setTimeout(() => alert("never happens"), 1000);
-alert(timerId); // timer identifier
+alert(timerId); // identifier waktu
 
 clearTimeout(timerId);
-alert(timerId); // same identifier (doesn't become null after canceling)
+alert(timerId); // identifier yang sama (tidak akan menjadi null setelah dibatalkan)
 ```
 
-As we can see from `alert` output, in a browser the timer identifier is a number. In other environments, this can be something else. For instance, Node.js returns a timer object with additional methods.
+Seperti yang bisa kita lihat dari keluaran `alert`, didalam peramban identifier timernya adalah sebuah angka. Didalam lingkungan pengembangan lainnya, identifiernya bisa saja sesuatu yang lain. Contoh, Node.js mengembalikan objek timer dengan metode tambahan.
 
-Again, there is no universal specification for these methods, so that's fine.
+Lainnya, tidak terdapat spesifikasi universal untuk metode-metode ini, jadi tidak ada masalah.
 
-For browsers, timers are described in the [timers section](https://www.w3.org/TR/html5/webappapis.html#timers) of HTML5 standard.
+Untuk peramban, timer dideskripsikan didalam [bagian timer](https://www.w3.org/TR/html5/webappapis.html#timers) dari standar HTML5.
 
 ## setInterval
 
-The `setInterval` method has the same syntax as `setTimeout`:
+Metode `setInterval` mempunyai sintaks yang sama seperti `setTimeout`:
 
 ```js
 let timerId = setInterval(func|code, [delay], [arg1], [arg2], ...)
 ```
 
-All arguments have the same meaning. But unlike `setTimeout` it runs the function not only once, but regularly after the given interval of time.
+Seluruh argumennya mempunyai arti yang sama. Tapi tidak seperti `setTimeout` fungsinya akan berjalan tidak sekali, tapi akan berjalan secara teratur dengan interval waktu yang diberikan.
 
-To stop further calls, we should call `clearInterval(timerId)`.
+Untuk menghentikan pemanggilan selanjutnya, kita harus memanggil `clearInterval(timerId)`.
 
-The following example will show the message every 2 seconds. After 5 seconds, the output is stopped:
+Contoh berikut akan memperlihatkan pesan setiap 2 detik. Setelah 5 detik, keluarannya akan dihentikan:
 
 ```js run
-// repeat with the interval of 2 seconds
+// Ulangi dengan interval 2 detik
 let timerId = setInterval(() => alert('tick'), 2000);
 
-// after 5 seconds stop
+// setelah 5 detik berhenti
 setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);
 ```
 
-```smart header="Time goes on while `alert` is shown"
-In most browsers, including Chrome and Firefox the internal timer continues "ticking" while showing `alert/confirm/prompt`.
+```smart header="Waktu terus berjalan sementara `alert` ditampilkan"
+Di kebanyakan peramban, termasuk Chrome dan Firefox penghitung waktu internal berlanjut "berdetik" selagi menampilkan `alert/confirm/prompt`.
 
-So if you run the code above and don't dismiss the `alert` window for some time, then in the next `alert` will be shown immediately as you do it. The actual interval between alerts will be shorter than 2 seconds.
+Jadi jika kamu menjalankan kode diatas dan tidak menyingkirkan jendela `alert` untuk beberapa saat, maka `alert` selanjutnya akan langsung muncul. Interval sebenarnya diantara alert lebih pendek dari 2 detik.
 ```
 
-## Nested setTimeout
+## setTimeout bercabang
 
-There are two ways of running something regularly.
+Terdapat dua cara untuk menjalankan sesuatu secara terus-menerus.
 
-One is `setInterval`. The other one is a nested `setTimeout`, like this:
+Satu adalah `setInterval`. Dan satunya lagi adalah `setTimeout` bercabang, seperti ini:
 
 ```js
-/** instead of:
+/** daripada menggunakan:
 let timerId = setInterval(() => alert('tick'), 2000);
 */
 
@@ -151,13 +151,13 @@ let timerId = setTimeout(function tick() {
 }, 2000);
 ```
 
-The `setTimeout` above schedules the next call right at the end of the current one `(*)`.
+`setTimeout` diatas menjadwalkan pemanggilan selanjutnya tepat setelah akhir `(*)`.
 
-The nested `setTimeout` is a more flexible method than `setInterval`. This way the next call may be scheduled differently, depending on the results of the current one.
+`setTimeout` bercabang metode yang lebih fleksibel daripada `setInterval`. Dengan cara ini pemanggilan mungkun dapat dijadwalkan dengan interval yang berbeda, tergantung dari hasil sebelumnya.
 
-For instance, we need to write a service that sends a request to the server every 5 seconds asking for data, but in case the server is overloaded, it should increase the interval to 10, 20, 40 seconds...
+Contoh, kita perlu menulis sebuah service yang mengirim sebuah request kepada server setiap 5 detik untuk menanyakan data, tapi di kasus ini servernya sedang sibuk, maka intervalnya harus dinaikan menjadi 10, 20, 40 detik...
 
-Here's the pseudocode:
+Ini adalah pseukodenya:
 ```js
 let delay = 5000;
 
@@ -165,7 +165,7 @@ let timerId = setTimeout(function request() {
   ...send request...
 
   if (request failed due to server overload) {
-    // increase the interval to the next run
+    // interval dinaikan untuk pemanggilan selanjutnya
     delay *= 2;
   }
 
@@ -175,11 +175,11 @@ let timerId = setTimeout(function request() {
 ```
 
 
-And if the functions that we're scheduling are CPU-hungry, then we can measure the time taken by the execution and plan the next call sooner or later.
+Dan jika fungsi yang sudah kita jadwalkan ternyata membutuhkan sumber-daya yang besar, maka kita bisa mengukur waktu yang diabmbil oleh eksekusinya dan mengatur ulang eksekusi selanjutnya agar lebih cepat atau lebih lambat.
 
-**Nested `setTimeout` allows to set the delay between the executions more precisely than `setInterval`.**
+**`setTimeout` membolehkan untuk menyetel penundaan eksekusi-eksekusinya lebih presisi daripada `setInterval`.**
 
-Let's compare two code fragments. The first one uses `setInterval`:
+Ayo kita bandingkan dua pecahan kode berikut. Yang pertama menggunakan `setInterval`:
 
 ```js
 let i = 1;
@@ -188,7 +188,7 @@ setInterval(function() {
 }, 100);
 ```
 
-The second one uses nested `setTimeout`:
+Yang kedua menggunakan `setTimeout` bercabang:
 
 ```js
 let i = 1;
@@ -198,52 +198,52 @@ setTimeout(function run() {
 }, 100);
 ```
 
-For `setInterval` the internal scheduler will run `func(i++)` every 100ms:
+Untuk `setInterval` penjadwal internalnya akan berjalan `func(i++)` setiap 100ms:
 
 ![](setinterval-interval.svg)
 
-Did you notice?
+Apakah kamu memperhatikannya?
 
-**The real delay between `func` calls for `setInterval` is less than in the code!**
+**penundaan sebenarnya diantara pemanggilan `func` pada `setInterval` lebih cepat daripada apa yang ada pada kodenya!**
 
-That's normal, because the time taken by `func`'s execution "consumes" a part of the interval.
+Itu adalah hal yang normal, karena waktu yang diambil oleh eksekusi `func` "mengambil" bagian dari intervalnya.
 
-It is possible that `func`'s execution turns out to be longer than we expected and takes more than 100ms.
+Adalah hal yang mungkin jika eksekusi `func` ternyata lebih lama daripada yang kita harapkan dan memakan lebih dari 100ms.
 
-In this case the engine waits for `func` to complete, then checks the scheduler and if the time is up, runs it again *immediately*.
+Didalam kasus ini mesinnya menunggu `func` untuk selesai, lalu memeriksa penjadwalnya dan jika waktunya sudah berakhir, maka akan *langsung* dieksekusi lagi.
 
-In the edge case, if the function always executes longer than `delay` ms, then the calls will happen without a pause at all.
+Didalam kasus yang jarang, jika fungsinya selalu mengeksekusi lebih lama daripada `penundaan` ms, maka pemanggilannya akan terjadi tanpa berhenti sama sekali.
 
-And here is the picture for the nested `setTimeout`:
+Dan ini adalah gambaran dari `setTimeoute` bercabang:
 
 ![](settimeout-interval.svg)
 
-**The nested `setTimeout` guarantees the fixed delay (here 100ms).**
+**`setTimeout` bercabang menjamin penundaan yang tepar (disini 100ms).**
 
-That's because a new call is planned at the end of the previous one.
+Itu karena pemanggilan baru sudah direncanakan pada akhir dari pemanggilan sebelumnya.
 
-````smart header="Garbage collection and setInterval/setTimeout callback"
-When a function is passed in `setInterval/setTimeout`, an internal reference is created to it and saved in the scheduler. It prevents the function from being garbage collected, even if there are no other references to it.
+````smart header="Garbage collection and callback pada setInterval/setTimeout"
+Ketika sebuah fungsi dimasukan kedalam `setInterval/setTimeout`, sebuah referensi interval dibuat kedalamnya dan disimpan didalam penjadwal. Itu akan mencegah fungsinya dari pembuangan (dihilangkan dari memori), bahkan jika disana sudah tidak ada yang mereferensi kedalam fungsinya lagi.
 
 ```js
-// the function stays in memory until the scheduler calls it
+// fungsinya tetap berada di memori sampai penjadwalnya memanggil lagi
 setTimeout(function() {...}, 100);
 ```
 
-For `setInterval` the function stays in memory until `clearInterval` is called.
+Untuk `setInterval` fungsinya akan tetap didalam memori sampai `clearInterval` dipanggil.
 
-There's a side-effect. A function references the outer lexical environment, so, while it lives, outer variables live too. They may take much more memory than the function itself. So when we don't need the scheduled function anymore, it's better to cancel it, even if it's very small.
+Tidak terdapat efek-samping pada hal itu. Sebuah fungsi mereferensi lingkungan leksikal luar, jadi, selama itu masih ada, variabel luar pun akan tetap ada. Hal itu mungkin akan memakan memori daripada fungsinya sendiri. Jadi ketika kita tidak butuh fungsi yang sudah dijadwalkan lagi, akan lebih baik untuk dibatalkan/diberhentikan, bahkan jika itu sebuah kode yang sangat pendek/kecil.
 ````
 
-## Zero delay setTimeout
+## setTimeout dengan penundaan nol
 
-There's a special use case: `setTimeout(func, 0)`, or just `setTimeout(func)`.
+Terdapat sebuah kasus spesial: `setTimeout(func, 0)`, atau hanya `setTimeout(func)`.
 
-This schedules the execution of `func` as soon as possible. But the scheduler will invoke it only after the currently executing script is complete.
+Penjadwalan eksekusi dari `func` akan dilakukan secepat mungkin. Tapi penjadwal akan memanggilnya hanya setelah skrip yang sedang berjalan selesai dieksekusi.
 
-So the function is scheduled to run "right after" the current script.
+Jadi fungsinya dijadwalkan untuk berjalan "tepat setelah" skrip yang sedang berjalan.
 
-For instance, this outputs "Hello", then immediately "World":
+Contoh, dibawah akan mengeluarkan "Hello", lalu langsung "World":
 
 ```js run
 setTimeout(() => alert("World"));
@@ -251,52 +251,53 @@ setTimeout(() => alert("World"));
 alert("Hello");
 ```
 
-The first line "puts the call into calendar after 0ms". But the scheduler will only "check the calendar" after the current script is complete, so `"Hello"` is first, and `"World"` -- after it.
+Pada baris pertama "akan memasukan pemanggilan kedalam urutan pemanggilan setelah 0ms". Tapi penjadwal hanya akan "memeriksa urutanya" setelah skrip yang sedang berjalan selesai, jadi `"Hello"` adalah pertama, dan `"World"` -- setelahnya.
 
-There are also advanced browser-related use cases of zero-delay timeout, that we'll discuss in the chapter <info:event-loop>.
+Juga terdapat kasus yang berhubungan dengan peramban, kita akan membahasnya didalam bab <info:event-loop>.
 
-````smart header="Zero delay is in fact not zero (in a browser)"
-In the browser, there's a limitation of how often nested timers can run. The [HTML5 standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) says: "after five nested timers, the interval is forced to be at least 4 milliseconds.".
+````smart header="Penundaan dengan nol faktanya tidaklah nol (didalam peramban)"
+Didalam peramban, terdapat sebuah batasan seberapa seringnya timer bercabang bisa berjalan. [standar HTML5](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) mengatakan: "setelah lima timer bercabang, intervalnya dipaksa untuk berjalan setidaknya 4 milidetik.".
 
 Let's demonstrate what it means with the example below. The `setTimeout` call in it re-schedules itself with zero delay. Each call remembers the real time from the previous one in the `times` array. What do the real delays look like? Let's see:
+Ayo kita prakterkan apa artinya itu dengan contoh dibawah. Pemanggilan `setTimeout` menjadwalkan ulang dengan penundaan 0. Setiap pemanggilan mengingat waktu yang asli dari pemanggilan sebelumnya didalam array `times`. Seperti apa penundaan sesungguhnya terlihat? Lihat dibawah:
 
 ```js run
 let start = Date.now();
 let times = [];
 
 setTimeout(function run() {
-  times.push(Date.now() - start); // remember delay from the previous call
+  times.push(Date.now() - start); // mengingat penundaan dari pemanggilan sebelumnya
 
-  if (start + 100 < Date.now()) alert(times); // show the delays after 100ms
-  else setTimeout(run); // else re-schedule
+  if (start + 100 < Date.now()) alert(times); // tampilkan penundaanya setelah 100ms
+  else setTimeout(run); // atau akan dijadwalkan ulang
 });
 
-// an example of the output:
+// contoh dari keluarannya:
 // 1,1,1,1,9,15,20,24,30,35,40,45,50,55,59,64,70,75,80,85,90,95,100
 ```
 
-First timers run immediately (just as written in the spec), and then we see `9, 15, 20, 24...`. The 4+ ms obligatory delay between invocations comes into play.
+Pertama timer akan berjalan secara langsung (seperti yang tertulis dalam spesifikasinya), dan lalu kita melihat `9, 15, 20, 24...`. Penundaan wajib 4+ms diantara pemanggilan akan berjalan.
 
-The similar thing happens if we use `setInterval` instead of `setTimeout`: `setInterval(f)` runs `f` few times with zero-delay, and afterwards with 4+ ms delay.
+Hal yang sama akan terjadi jika kita menggunakan `setInterval` daripada `setTimeout`: `setInterval(f)` menjalankan `f` beberapa kali dengan tanpa delay, dan setelahnya dengan 4+ms delay.
 
-That limitation comes from ancient times and many scripts rely on it, so it exists for historical reasons.
+Batasan itu sudah ada sejak lama dan beberapa skrip mengandalkan hal itu, jadi itu ada untuk beberapa alasan.
 
-For server-side JavaScript, that limitation does not exist, and there exist other ways to schedule an immediate asynchronous job, like [setImmediate](https://nodejs.org/api/timers.html) for Node.js. So this note is browser-specific.
+Untuk Javascript dibagian server, batasan itu tidaklah ada, dan disana terdapat cara lain untuk menjadwalkan sebuah pekerjaan yang asinkronus, seperti [setImmediate](https://nodejs.org/api/timers.html) untuk Node.js. Jadi hal ini merupakan hal yang berada pada peramban.
 ````
 
-## Summary
+## Ringkasan
 
-- Methods `setTimeout(func, delay, ...args)` and `setInterval(func, delay, ...args)` allow us to run the `func` once/regularly after `delay` milliseconds.
-- To cancel the execution, we should call `clearTimeout/clearInterval` with the value returned by `setTimeout/setInterval`.
-- Nested `setTimeout` calls are a more flexible alternative to `setInterval`, allowing us to set the time *between* executions more precisely.
-- Zero delay scheduling with `setTimeout(func, 0)` (the same as `setTimeout(func)`) is used to schedule the call "as soon as possible, but after the current script is complete".
-- The browser limits the minimal delay for five or more nested call of `setTimeout` or for `setInterval` (after 5th call) to 4ms. That's for historical reasons.
+- Metode `setTimeout(func,delay, ...args)` dan `setInterval(func, delay, ...args)` mengijinkan kita untuk menjalankan fungsinya sekali atau terus menerus setelah `delay` milidetik.
+- Untuk membatalkan eksekusinya, kita harus memanggil `clearTimeout/clearInterval` dengan nilai yang dikembalikan oleh `setTimeout/setInterval`.
+- Pemanggilan `setTimeout` bercabang adalah alternatif yang lebih fleksibel dari `setInterval`, mengijinkan kita untuk menyetel waktu *diantara* eksekusinya dengan lebih presisi.
+- Penjadwalan dengan delay 0 dengan `setTimeout(func, 0)` (sama seperti `setTimeout(func)`) digunakan untuk menjadwalkan pemanggilan "secepat mungkin, tapi setelah skrip yang sedang berjalan selesai".
+- Peramban membatasi delay dengan minimal 5 atau lebih pada pemanggilan bercabang dari `setTimeout` atau dari `setInterval` (setelah pemanggilan kelima) menjadi 4ms. Hanyalah untuk alasan-alasan yang sudah lama.
 
-Please note that all scheduling methods do not *guarantee* the exact delay.
+Perhatikan bahwa seluruh metode penjadwalan tidak *menjamin* delay yang tepat.
 
-For example, the in-browser timer may slow down for a lot of reasons:
-- The CPU is overloaded.
-- The browser tab is in the background mode.
-- The laptop is on battery.
+Contoh, didalam peramban timer mungkin lebih lambat untuk beberapa alasan:
+- CPU-nya sedang melakukan banyak pekerjaan.
+- Ada tab peramban yang sedang berjalan dalam mode background.
+- Laptopnya sedang menggunakan mode batre.
 
-All that may increase the minimal timer resolution (the minimal delay) to 300ms or even 1000ms depending on the browser and OS-level performance settings.
+Semua itu mungkin menaikan resolusi timernya (delay minimalnya) menjadi 300ms atau bahkan 1000ms tergantung perambannya dan performasi pada OS-nya.
