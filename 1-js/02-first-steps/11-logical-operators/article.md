@@ -223,8 +223,13 @@ Presedensi operator AND `&&` lebih tinggi dari OR `||`.
 Jadi kode `a && b || c && d` esensinya sama dengan jika expresi `&&` dibungkus tanda kurung: `(a && b) || (c && d)`.
 ````
 
+<<<<<<< HEAD
 ````warn header="Jangan ganti `if` dengan || atau &&"
 Terkadang, orang-orang menggunakan operator AND `&&` untuk "memperpendek instruksi `if`".
+=======
+````warn header="Don't replace `if` with || or &&"
+Sometimes, people use the AND `&&` operator as a "shorter way to write `if`".
+>>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
 
 Misalnya:
 

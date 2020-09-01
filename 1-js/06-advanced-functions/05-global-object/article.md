@@ -5,7 +5,11 @@ Objek global menyediakan variabel dan fungsi yang bisa didapatkan dimana saja. S
 
 Di dalam browser ia dinamakan `window`, untuk Node.js `global`, untuk lingkungan lainnya ia mungkin mempunyai nama lain.
 
+<<<<<<< HEAD
 Akhir-akhir ini, `globalThis` ditambahkan ke bahasanya, sebagai nama standar untuk objek global, yang harus di dukung di semua lingkungan. Di browser tertentu, ya itu non-Chromium Edge, `globalThis` belum didukung, tapi bisa dengan mudah dipolyfill.
+=======
+Recently, `globalThis` was added to the language, as a standardized name for a global object, that should be supported across all environments. It's supported in all major  browsers.
+>>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
 
 Kita akan memakai `window` disini, dengan anggapan bahwa lingkungan kita adalah browser. Jika script kamu mungkin digunakan di lingkungan lain, lebih baik menggunakan `globalThis`.
 
@@ -79,9 +83,16 @@ if (!window.Promise) {
 
 - Objek global menyimpan variabel yang harus tersedia dimana saja.
 
+<<<<<<< HEAD
     Itu termasuk built-in Javascript, seperti `Array` dan nilai-nilai lingkungan-spesifik, seperti `window.innerHeight` -- tinggi window di dalam browser.
 - Objek global mempunyai nama universal `globalThis`.
     ...Tapi lebih sering disebut nama lingkungan-spesifik "old-school", seperti `window` (browser) dan `global` (Node.js).  Karena `globalThis` adalah usulan baru, ia belum didukung di dalam non-Chromium Edge (tapi bisa dipolyfill).
 - Kita harus menyimpan nilai di objek global jika kalau ia benar-benar global untuk projek kita. Dan pertahankan jumlah minimum. 
 - Dalam browser, jika kita tidak menggunakan [modules](info:modules), fungsi global dan variabel ternyatakan `var` menjadi properti objek global.
 - Untuk membuat kode kami future-proof dan lebih mudah dimengerti, kita harus mengakses properti dari global objek secara langsung, sebagain `window.x`.
+=======
+    ...But more often is referred by "old-school" environment-specific names, such as `window` (browser) and `global` (Node.js).
+- We should store values in the global object only if they're truly global for our project. And keep their number at minimum.
+- In-browser, unless we're using [modules](info:modules), global functions and variables declared with `var` become a property of the global object.
+- To make our code future-proof and easier to understand, we should access properties of the global object directly, as `window.x`.
+>>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
