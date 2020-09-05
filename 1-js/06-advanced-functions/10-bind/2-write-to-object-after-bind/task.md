@@ -1,10 +1,10 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Bound function as a method
+# Ikat fungsi sebagai sebuah metode
 
-What will be the output?
+Apakah keluarannya?
 
 ```js
 function f() {
