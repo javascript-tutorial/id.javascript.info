@@ -132,7 +132,11 @@ Kita akan mengcover string lebih dalam di bab <info:string>.
 ```smart header="Tidak ada tipe *character*."
 Dalam beberapa bahasa, ada tipe "character" spesial untuk karakter tunggal. Misalnya, di bahasa C dan di Java adalah `char`.
 
+<<<<<<< HEAD
 Di JavaScript, tak ada tipe semacam itu. Cuma ada satu tipe: `string`. String bisa berisi satu karakter atau lebih.
+=======
+In JavaScript, there is no such type. There's only one type: `string`. A string may consist of zero characters (be empty), one character or many of them.
+>>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 ```
 
 ## Boolean (tipe logika)

@@ -194,10 +194,14 @@ Sebuah *array* adalah objek yang spesial. Tanda kurung siku digunakan untuk meng
 Sintaks tersebut memperpanjang objek yang menyediakan metode khusus untuk berfungsi dengan koleksi-koleksi data yang tertata serta properti `length`. Tetapi pada intinya, *array* tetaplah sebuah objek.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Ingat, ada 7 tipe (data) dasar dalamJavaScript. *Array* adalah sebuah objek dan oleh karena itu berperilaku selayaknya sebuah objek.
 =======
 Remember, there are only eight basic data types in JavaScript (see the [Data types](https://javascript.info/types) chapter for more info). Array is an object and thus behaves like an object.
 >>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
+=======
+Remember, there are only eight basic data types in JavaScript (see the [Data types](info:types) chapter for more info). Array is an object and thus behaves like an object.
+>>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 
 Sebagai contoh, *array* disalin oleh referensi:
 

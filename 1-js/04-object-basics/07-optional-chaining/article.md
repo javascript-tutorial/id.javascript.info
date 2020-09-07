@@ -79,7 +79,11 @@ Jika tidak terdapat variabel `user` sama sekali, lalu `user?.anything` akan menc
 // ReferenceError: user is not defined
 user?.address;
 ```
+<<<<<<< HEAD
 Haruslah ada `let/const/var user`. Rantai opsional hanya bekerja untuk variabel yang telah dideklarasikan.
+=======
+There must be `let/const/var user`. The optional chaining works only for declared variables.
+>>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 ````
 
 ## Short-circuiting
