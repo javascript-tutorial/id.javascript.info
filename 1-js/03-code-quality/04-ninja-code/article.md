@@ -1,7 +1,7 @@
 # Kode ninja
 
 
-```quote author="Confucius"
+```quote author="Confucius (Analects)"
 Learning without thought is labor lost; thought without learning is perilous.
 ```
 
@@ -104,8 +104,8 @@ Baca cepan kode begini makin mustahil. Dan saat ada typo... Ummm... Kita stuck c
 
 ## Synonym pintar
 
-```quote author="Confucius"
-The hardest thing of all is to find a black cat in a dark room, especially if there is no cat.
+```quote author="Laozi (Tao Te Ching)"
+The Tao that can be told is not the eternal Tao. The name that can be named is not the eternal name.
 ```
 
 Memakai nama *serupa* untuk hal *sama* membuat hidup menarik dan menampilkan kreatifitasmu ke publik.
