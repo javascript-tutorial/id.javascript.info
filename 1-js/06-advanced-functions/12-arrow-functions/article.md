@@ -1,26 +1,27 @@
-# Arrow functions revisited
+# Membahas Kembali Fungsi Arrow
 
-Let's revisit arrow functions.
+Ayo kita kunjungi kembali Fungsi Arrow.
 
-Arrow functions are not just a "shorthand" for writing small stuff. They have some very specific and useful features.
+Fungsi arrow bukanlah cuma bertujuan untuk menyingkat penulisan fungsi. Namun mereka memiliki fitur yang berguna dalam kondisi tertentu.
 
-JavaScript is full of situations where we need to write a small function that's executed somewhere else.
 
-For instance:
+Javascript memiliki banyak kondisi yang dimana kita membutuhkan penulisan fungsi kecil yang yang dijalankan disuatu tempat.
 
-- `arr.forEach(func)` -- `func` is executed by `forEach` for every array item.
-- `setTimeout(func)` -- `func` is executed by the built-in scheduler.
-- ...there are more.
+Sebagai contoh:
 
-It's in the very spirit of JavaScript to create a function and pass it somewhere.
+- `arr.forEach(func)` -- `func` dijalankan oleh `forEach` untuk setiap item pada array.
+- `setTimeout(func)` -- `func` dijalankan oleh penjadwal bawaan.
+- ...dan ada banyak contoh lain.
 
-And in such functions we usually don't want to leave the current context. That's where arrow functions come in handy.
+Sudah menjadi jiwa dasar javascript untuk membuat fungsi dan menjalankannya disuatu tempat.
 
-## Arrow functions have no "this"
+Dan ada kalanya pada suatu fungsi, kita biasanya tidak ingin meninggalkan konteks dimana fungsi itu berjalan. dan situlah dimana penggunaan fungsi arrow menjadi berguna.
 
-As we remember from the chapter <info:object-methods>, arrow functions do not have `this`. If `this` is accessed, it is taken from the outside.
+## Fungsi Arrow tidak memiliki "this"
 
-For instance, we can use it to iterate inside an object method:
+Seperti yang kita ingat pada chapter <info:object-methods>, fungsi arrow tidak memiliki `this`. jika `this` diakses, itu diambil dari fungsi normal diluar. (bukan dari fungsi arrow)
+
+Sebagai contoh, kita bisa menggunakannya untuk mengiterasi apa yang ada didalam objek method:
 
 ```js run
 let group = {
@@ -39,9 +40,9 @@ let group = {
 group.showList();
 ```
 
-Here in `forEach`, the arrow function is used, so `this.title` in it is exactly the same as in the outer method `showList`. That is: `group.title`.
+Pada `forEach` disini, fungsi arrow digunakan, jadi `this.title` hasilnya akan sama persis dengan fungsi diluar `showList`. Yaitu : `group.title`.
 
-If we used a "regular" function, there would be an error:
+Jika kita menggunakan fungsi "normal", maka akan terjadi eror:
 
 ```js run
 let group = {
@@ -61,28 +62,28 @@ let group = {
 group.showList();
 ```
 
-The error occurs because `forEach` runs functions with `this=undefined` by default, so the attempt to access `undefined.title` is made.
+Error tersebut terjadi karena `forEach` berjalan dengan fungsi `this=undefined` sebagai bawaannya, jadi upaya untuk mengakses `undefined.title` terjadi.
 
-That doesn't affect arrow functions, because they just don't have `this`.
+Itu tidak mempengaruhi fungsi arrow, karena mereka tidak memiliki `this`.
 
-```warn header="Arrow functions can't run with `new`"
-Not having `this` naturally means another limitation: arrow functions can't be used as constructors. They can't be called with `new`.
+```warn header="Fungsi arrow tidak bisa berjalan dengan `new`"
+Tidak memiliki `this` sebagai bawaannya, berarti memiliki keterbatasan lainnya: fungsi arrow tidak bisa digunakan sebagai fungsi constructors. Mereka tidak bisa dipanggil dengan `new`.
 ```
 
 ```smart header="Arrow functions VS bind"
-There's a subtle difference between an arrow function `=>` and a regular function called with `.bind(this)`:
+Terdapat sedikit perbedaan antara fungsi arrow '=>' dan sebuah fungsi normal yang dipanggil dengan `.bind(this`):
 
-- `.bind(this)` creates a "bound version" of the function.
-- The arrow `=>` doesn't create any binding. The function simply doesn't have `this`. The lookup of `this` is made exactly the same way as a regular variable search: in the outer lexical environment.
+- `.bind(this)` membuat sebuah "versi terikat" dari fungsi itu.
+- The arrow `=>` tidak membuat keterikatan. Fungsi itu secara dasar tidak memiliki `this`. Pencarian dari `this` dibuat sama persis dengan sebuah pencarian variabel normal: yaitu pada luar lexical environment. 
 ```
 
-## Arrows have no "arguments"
+## Fungsi arrow tidak memiliki "arguments"
 
-Arrow functions also have no `arguments` variable.
+Fungsi arrow juga tidak memiliki variabel `arguments` .
 
-That's great for decorators, when we need to forward a call with the current `this` and `arguments`.
+Itu bagus untuk decorators, ketika kita butuh untuk meneruskan panggilan dengan `this` dan `arguments` yang sekarang. 
 
-For instance, `defer(f, ms)` gets a function and returns a wrapper around it that delays the call by `ms` milliseconds:
+Sebagai contoh, `defer(f, ms)` mendapatkan sebuah fungsi dan mengembalikan sebuah wrapper disekitarnya yang menunda panggilan selama `ms` milisekon:
 
 ```js run
 function defer(f, ms) {
@@ -96,10 +97,10 @@ function sayHi(who) {
 }
 
 let sayHiDeferred = defer(sayHi, 2000);
-sayHiDeferred("John"); // Hello, John after 2 seconds
+sayHiDeferred("John"); // Hello, John Setelah 2 detik
 ```
 
-The same without an arrow function would look like:
+Sama juga tanpa menggunakan fungsi arrow berupa:
 
 ```js
 function defer(f, ms) {
@@ -112,15 +113,15 @@ function defer(f, ms) {
 }
 ```
 
-Here we had to create additional variables `args` and `ctx` so that the function inside `setTimeout` could take them.
+Disini kita butuh untuk membuat variabel tambahan `args` dan `ctx` agar fungsi didalam `setTimeout` bisa mengambilnya.
 
-## Summary
+## Kesimpulan
 
-Arrow functions:
+Fungsi arrow:
 
-- Do not have `this`
-- Do not have `arguments`
-- Can't be called with `new`
-- They also don't have `super`, but we didn't study it yet. We will on the chapter <info:class-inheritance>
+- Tidak memiliki `this`
+- Tidak memiliki `arguments`
+- Tidak bisa dipanggil dengan `new`
+- Dia juga tidak memiliki `super`, kita belum mempelajarinya. Tapi kita akan mempelajarinya di <info:class-inheritance>
 
-That's because they are meant for short pieces of code that do not have their own "context", but rather work in the current one. And they really shine in that use case.
+Itu dikarenakan fungsi arrow dibuat untuk pembentukan fungsi kode pendek yang tidak memiliki "konteks" pribadi, melainkan bekerja pada konteks dimana fungsi itu bekerja. Dan mereka bekerja sangat baik pada kasus tersebut.
