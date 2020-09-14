@@ -264,6 +264,7 @@ Tiga baris terakhir mungkin butuh penjelasan tambahan:
 
 Ada 7 tipe data dasar dalam JavaScript.
 
+<<<<<<< HEAD
 - `number` untuk nomor dengan bentuk apapun: integer ataupun nilai yang memiliki nilai desimal, batas dari integer adalah ±2<sup>53</sup>.
 - `bigint` untuk nomor integer yang sangat panjang.
 - `string` untuk string. Sebuah string mungkin memiliki 0 atau lebih karakter, tidak ada tipe data untuk string yang memiliki panjang 1 karakter.
@@ -272,6 +273,16 @@ Ada 7 tipe data dasar dalam JavaScript.
 - `undefined` untuk nilai yang tidak ada atau tidak diberikan nilai -- sebuah tipe data mandiri yang memiliki satu nilai yaitu `null`.
 - `object` untuk struktur data yang lebih rumit.
 - `symbol` untuk identifier atau pengenal yang unik.
+=======
+- `number` for numbers of any kind: integer or floating-point, integers are limited by <code>±(2<sup>53</sup>-1)</code>.
+- `bigint` is for integer numbers of arbitrary length.
+- `string` for strings. A string may have zero or more characters, there's no separate single-character type.
+- `boolean` for `true`/`false`.
+- `null` for unknown values -- a standalone type that has a single value `null`.
+- `undefined` for unassigned values -- a standalone type that has a single value `undefined`.
+- `object` for more complex data structures.
+- `symbol` for unique identifiers.
+>>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 Operator `typeof` memungkinkan kita melihat tipe mana yang disimpan dalam variable.
 
