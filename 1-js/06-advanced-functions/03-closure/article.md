@@ -313,7 +313,11 @@ Ketika dalam interview, frontend developer mendapat pertanyaan tentang "apa itu 
 
 Biasanya, Lingkungan Lexikal dihapus dengan semua variabel setelah panggilan fungsinya selesai. Ini karena tak ada referensi ke situ. Sebagai objek JavaScript apapun, ia cuma ditahan di memory selama ia dapat digapai.
 
+<<<<<<< HEAD
 ...Tapi jika ada fungsi bersarang yang masih dapat digapai setelah akhir fungsi, maka ia punya properti `[[Environment]]` yang mereferensi lingkungan lexikal.
+=======
+However, if there's a nested function that is still reachable after the end of a function, then it has `[[Environment]]` property that references the lexical environment.
+>>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 Dalam hal Lingkungan Lexikal masih bisa digapai meski setelah berakhirnya fungsi itu, ia tetap hidup.
 
@@ -332,7 +336,11 @@ let g = f(); // g.[[Environment]] menyimpan referensi ke Lingkungan Lexikal
 // dari panggilan f() yang sesuai
 ```
 
+<<<<<<< HEAD
 Tolong diperhatikan apabila `f()` dipanggil beberapa kali, dan fungsi kembaliannya disimpan, maka seluruh objek lingkungan leksikal akan disimpan di memori. Ketiga-tiganya pada kode di bawah:
+=======
+Please note that if `f()` is called many times, and resulting functions are saved, then all corresponding Lexical Environment objects will also be retained in memory. In the code below, all 3 of them:
+>>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 ```js
 function f() {
@@ -414,6 +422,10 @@ g();
 
 Fitur V8 ini baik untuk diketahui. Jika kamu melakukan debug memakai Chrome/Opera, cepat atau lambat kamu akan menemuinya.
 
+<<<<<<< HEAD
 Ini bukan bug di debugger, melainkan fitur spesial dari V8. Mungkin ini akan diganti suatu saat.
 Kamu bisa mengeceknya dengan menjalankan contoh di laman ini.
 ```
+=======
+That is not a bug in the debugger, but rather a special feature of V8. Perhaps it will be changed sometime. You can always check for it by running the examples on this page.
+>>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
