@@ -431,7 +431,11 @@ Daftar operator:
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
+<<<<<<< HEAD
 Operator seperti diatas sangat jarang digunakan, ketika kita membutuhkan untuk memainkan angka di level paling rendah (bitwise). Kita tidak akan membutuhkan operator seperti ini dalam waktu dekat, sebagaimana dalam pengembangan web penggunaan operator seperti itu lebih sedikit, tetapi di area yang spesial, seperti kriptographi, operator seperti itu sangan dibutuhkan. Kamu bisa membaca artikel [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) di MDN ketika kamu membutuhkannya.
+=======
+These operators are used very rarely, when we need to fiddle with numbers on the very lowest (bitwise) level. We won't need these operators any time soon, as web development has little use of them, but in some special areas, such as cryptography, they are useful. You can read the [Bitwise Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Bitwise) chapter on MDN when a need arises.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## Koma
 
