@@ -1,34 +1,37 @@
-# From the orbital height
+# Dari Ketinggian Orbital
 
-This section describes a set of modern standards for "web components".
+Bagian ini menjelaskan seperangkat standar modern untuk "komponen web".
 
-As of now, these standards are under development. Some features are well-supported and integrated into the modern HTML/DOM standard, while others are yet in draft stage. You can try examples in any browser, Google Chrome is probably the most up to date with these features. Guess, that's because Google fellows are behind many of the related specifications.
+Sampai sekarang, standar ini sedang dalam pengembangan. Beberapa fitur didukung dengan baik dan terintegrasi
+ke dalam standar HTML/DOM modern, sementara yang lainnya masih dalam tahap konsep. Anda dapat mencoba contohnya 
+di peramban apa pun, Google Chrome mungkin yang paling muktahir dengan fitur-fitur ini. Coba tebak, itu karena
+rekan Google berada di balik banyaknya spesifikasi terkait.
 
-## What's common between...
+## Apa yang sama di antaranya...
 
-The whole component idea is nothing new. It's used in many frameworks and elsewhere.
+Ide keseluruhan komponen bukanlah hal baru. Ini digunakan dalam banyak kerangka kerja dan di tempat lain.
 
-Before we move to implementation details, take a look at this great achievement of humanity:
+Sebelum kita beralih ke detail implementasi, lihatlah pencapaian besar umat manusia ini:
 
 ![](satellite.jpg)
 
-That's the International Space Station (ISS).
+Itu adalah Stasiun Luar Angkasa Internasional (ISS).
 
-And this is how it's made inside (approximately):
+Dan ini adalah bagaimana di dalamnya dibuat (kira-kira):
 
 ![](satellite-expanded.jpg)
 
-The International Space Station:
-- Consists of many components.
-- Each component, in its turn, has many smaller details inside.
-- The components are very complex, much more complicated than most websites.
-- Components are developed internationally, by teams from different countries, speaking different languages.
+Stasiun Luar Angkasa Internasional:
+- Terdiri dari banyak komponen.
+- Setiap komponen, pada bagiannya, memiliki banyak detail kecil di dalamnya.
+- Komponennya sangat kompleks, jauh lebih rumit dibanding kebanyakan situs web.
+- Komponennya dikembangkan secara internasional, oleh tim dari berbagai negara, yang berbicara dalam bahasa yang berbeda.
 
-...And this thing flies, keeps humans alive in space!
+...Dan benda ini terbang, membuat manusia tetap hidup di luar angkasa!
 
-How such complex devices are created?
+Bagaimana perangkat rumit seperti itu dibuat?
 
-Which principles we could borrow to make our development same-level reliable and scalable? Or, at least, close to it.
+Prinsip mana yang bisa kita pinjam agar membuat pengembangan kita pada tingkat yang sama handal dan terukur? Atau, setidaknya, mendekati.
 
 ## Component architecture
 
