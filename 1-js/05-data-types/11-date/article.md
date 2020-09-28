@@ -69,7 +69,11 @@ Untuk membuat objek `Date` baru panggil `new Date()` dengan salah satu dari argu
     new Date(2011, 0, 1); // sama, jam dan yang lainnya secara default adalah 0
     ```
 
+<<<<<<< HEAD
     Presisi paling minimal adalah 1ms (1/1000 detik):
+=======
+    The maximal precision is 1 ms (1/1000 sec):
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
     ```js run
     let date = new Date(2011, 0, 1, 2, 3, 4, 567);
