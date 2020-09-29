@@ -378,7 +378,11 @@ Seperti yang kita lihat, di teori selama sebuah fungsi masih hidup, seluruh vari
 
 Tetapi di praktiknya, mesin JavaScript mencoba untuk mengoptimalkannya. Mereka menganalisis penggunaan variabel dan apabila sudah jelas bahwa variabel luar sudah tidak digunakan -- mereka dihapus.
 
+<<<<<<< HEAD
 **Sebuah efek samping yang penting di V8 (Chrome, Opera) adalah variabel akan tak dapat diakses saat debugging**
+=======
+**An important side effect in V8 (Chrome, Edge, Opera) is that such variable will become unavailable in debugging.**
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 Cobalah jalankan contoh di bawah di Chrome dengan Developer Tools.
 
@@ -420,7 +424,11 @@ let g = f();
 g();
 ```
 
+<<<<<<< HEAD
 Fitur V8 ini baik untuk diketahui. Jika kamu melakukan debug memakai Chrome/Opera, cepat atau lambat kamu akan menemuinya.
+=======
+This feature of V8 is good to know. If you are debugging with Chrome/Edge/Opera, sooner or later you will meet it.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 <<<<<<< HEAD
 Ini bukan bug di debugger, melainkan fitur spesial dari V8. Mungkin ini akan diganti suatu saat.

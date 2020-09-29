@@ -36,15 +36,23 @@ Hal itu alami, karena `delete obj.key` menghilangkan sebuah nilai berdasarkan `k
 
 Jadi, metode khusus harus digunakan.
 
+<<<<<<< HEAD
 Metode [arr.splice(start)](mdn:js/Array/splice) adalahs sebuah fungsi serbaguna untuk *array*. *Splice* bisa melakukan banyak hal: memasukkan, menghilangkan serta mengganti elemen.
+=======
+The [arr.splice](mdn:js/Array/splice) method is a swiss army knife for arrays. It can do everything: insert, remove and replace elements.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 Sintaksnya yakni:
 
 ```js
-arr.splice(index[, deleteCount, elem1, ..., elemN])
+arr.splice(start[, deleteCount, elem1, ..., elemN])
 ```
 
+<<<<<<< HEAD
 Dimulai dari posisi `index`: menghapus elemen `deleteCount` dan kemudian memasukkan `elem1, ..., elemN` di tempatnya masing-masing. Mengembalikan *array* yang tersusun atas elemen yang dihapus.
+=======
+It modified `arr` starting from the index `start`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 Metode ini mudah untuk dipahami melalui contoh.
 
@@ -690,6 +698,7 @@ Sebuah panggilan ke `users.filter(army.canJoin, army)` bisa diganti dengan `user
 
 *Cheat sheet* tentang metode-metode *array*:
 
+<<<<<<< HEAD
 - Untuk menambah/menghilangkan elemen:
   - `push(...items)` -- menambah *item* ke bagian akhir,
   - `pop()` -- mengekstrak sebuah *item* dari bagian akhir,
@@ -698,6 +707,16 @@ Sebuah panggilan ke `users.filter(army.canJoin, army)` bisa diganti dengan `user
   - `splice(pos, deleteCount, ...items)` -- pada indeks `pos` menghapus elemen `deleteCount` dam memasukkan `items`.
   - `slice(start, end)` -- membuat *array* baru, menyalin elemen dari posisi `start` hingga `end` (tidak inklusif) ke dalam *array* baru tersebut.
   - `concat(...items)` --mengembalikan sebuah *array* baru: menyalin semua anggota *array* yang sekarang dan menambahkan `items` ke dalamnya. Jika `items` adalah sebuah *array*, maka elemennya yang akan diambil.
+=======
+- To add/remove elements:
+  - `push(...items)` -- adds items to the end,
+  - `pop()` -- extracts an item from the end,
+  - `shift()` -- extracts an item from the beginning,
+  - `unshift(...items)` -- adds items to the beginning.
+  - `splice(pos, deleteCount, ...items)` -- at index `pos` delete `deleteCount` elements and insert `items`.
+  - `slice(start, end)` -- creates a new array, copies elements from index `start` till `end` (not inclusive) into it.
+  - `concat(...items)` -- returns a new array: copies all members of the current one and adds `items` to it. If any of `items` is an array, then its elements are taken.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 - Untuk mencari di antara elemen-elemen:
   - `indexOf/lastIndexOf(item, pos)` -- mencari `item` mulai dari posisi `pos`, mengembalikan indeksnya atau `-1` jika tidak ditemukan.
@@ -726,7 +745,20 @@ Metode-metode ini adalah yang paling sering digunakan, mencakupi 99% kasus pengg
 
   Fungsi `fn` dipanggil pada tiap elemen *array* yang serupa dengan `map`. Jika beberapa/semua hasilnya `true`, maka akan mengembalikan `true`, jika tidak maka akan mengembalikan `false`.
 
+<<<<<<< HEAD
 - [arr.fill(value, start, end)](mdn:js/Array/fill) -- mengisi *array* dengan mengulang `value` dari indeks `start` hingga `end`.
+=======
+  We can use `every` to compare arrays:
+  ```js run
+  function arraysEqual(arr1, arr2) {
+    return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
+  }
+
+  alert( arraysEqual([1, 2], [1, 2])); // true
+  ```
+
+- [arr.fill(value, start, end)](mdn:js/Array/fill) -- fills the array with repeating `value` from index `start` to `end`.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 - [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- menyalin elemen dari posisi `start` hingga posisi `end` ke dalam *array itu sendiri*, pada posisi `target` (menumpuk/*overwrite* elemen yang ada).
 

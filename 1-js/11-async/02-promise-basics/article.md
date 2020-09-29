@@ -244,13 +244,23 @@ new Promise((resolve, reject) => {
   /* lakukan sesuatu yang membutuhkan waktu, dan kemudian panggil resolve/reject */
 })
 *!*
+<<<<<<< HEAD
   // berjalan ketika "promise" diselesaikan, tidak peduli sukses atau tidak
   .finally(() => hentikan indikator pemuatan)
+=======
+  // runs when the promise is settled, doesn't matter successfully or not
+  .finally(() => stop loading indicator)
+  // so the loading indicator is always stopped before we process the result/error
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 */!*
   .then(result => munculkan hasil, err => munculkan "error")
 ```
 
+<<<<<<< HEAD
 Tapi ini bukan alias dari `then(f,f)`. Ada beberapa perbedaan penting:
+=======
+That said, `finally(f)` isn't exactly an alias of `then(f,f)` though. There are few subtle differences:
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 1. *Handler* `finally` tidak memiliki argumen. Didalam `finally` kita tidak tahu apakah *promise* sukses atau tidak. Tidak apa-apa, karena tugas kita biasanya melakukan prosedur penyelesaian "umum".
 2. *Handler* `finally` melewatkan hasil dan *error* ke *handler* selanjutnya.
@@ -274,6 +284,7 @@ Tapi ini bukan alias dari `then(f,f)`. Ada beberapa perbedaan penting:
       .catch(err => alert(err));  // <-- .catch menangani objek galat
     ```  
 
+<<<<<<< HEAD
     Itu sangat nyaman, karena `finally` tidak dimaksudkan untuk memproses hasil dari *promise*. Jadi itu melewatinya.
 
     Kita akan berbicara lebih banyak tentang *chaining promise* dan *passing-result* antara *handler* di bab selanjutnya.
@@ -282,6 +293,15 @@ Tapi ini bukan alias dari `then(f,f)`. Ada beberapa perbedaan penting:
 
 ````smart header="Dengan promise yang sudah ditentukan handler segera menjalankannya"
  Jika *promise* tertunda, *handler* `.then/catch/finally` akan menunggu *promise* tersebut. Jika tidak, jika *promise* sudah selesai, handler langsung menjalankan:
+=======
+That's very convenient, because `finally` is not meant to process a promise result. So it passes it through.
+
+We'll talk more about promise chaining and result-passing between handlers in the next chapter.
+
+
+````smart header="We can attach handlers to settled promises"
+If a promise is pending, `.then/catch/finally` handlers wait for it. Otherwise, if a promise has already settled, they just run:
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 ```js run
 // "promise" diselesaikan segera setelah dibuat
@@ -290,9 +310,9 @@ let promise = new Promise(resolve => resolve("done!"));
 promise.then(alert); // done! (muncul sekarang)
 ```
 
-Note that this is different, and more powerful than the real life "subscription list" scenario. If the singer has already released their song and then a person signs up on the subscription list, they probably won't receive that song. Subscriptions in real life must be done prior to the event.
+Note that this makes promises more powerful than the real life "subscription list" scenario. If the singer has already released their song and then a person signs up on the subscription list, they probably won't receive that song. Subscriptions in real life must be done prior to the event.
 
-Promises are more flexible. We can add handlers any time: if the result is already there, our handlers get it immediately.
+Promises are more flexible. We can add handlers any time: if the result is already there, they just execute.
 ````
 
 Selanjutnya, mari kita lihat contoh-contoh yang lebih praktis tentang bagaimana *promise* dapat membantu kita menulis kode *asynchronous*.
