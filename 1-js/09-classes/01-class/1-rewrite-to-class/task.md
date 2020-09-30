@@ -2,8 +2,8 @@ importance: 5
 
 ---
 
-# Rewrite to class
+# Menulis ulang ke class
 
-The `Clock` class is written in functional style. Rewrite it the "class" syntax.
+Class `Clock` ditulis dalam gaya fungsional. Tulis ulang dengan menggunakan sintaks "class".
 
-P.S. The clock ticks in the console, open it to see.
+P.S Class Clock berdetak pada console, buka untuk melihatnya.
