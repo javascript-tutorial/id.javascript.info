@@ -325,7 +325,7 @@ Jadi kode luar memeriksa `instanceof ReadError` dan hanya itu. Tidak perlu menca
 
 Pendekatan ini disebut "wrapping exceptions", karena kami mengambil pengecualian "low level" dan "wrap" menjadi `ReadError` yang lebih abstrak. Ini banyak digunakan dalam pemrograman berorientasi objek.
 
-## Ringkasan
+## Kesimpulan
 
 - Kita bisa mewarisi dari `Error` dan kelas error bawaan lainnya secara normal. Kita hanya perlu menjaga properti `name` dan jangan lupa memanggil `super`.
 - Kita dapat menggunakan `instanceof` untuk memeriksa kesalahan tertentu. Ini juga bekerja dengan warisan. Namun terkadang kami memiliki objek kesalahan yang berasal dari pustaka pihak ketiga dan tidak ada cara mudah untuk mendapatkan kelasnya. Kemudian properti `name` dapat digunakan untuk pemeriksaan semacam itu.
