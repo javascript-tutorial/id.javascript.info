@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Inherit from SyntaxError
+# Mewarisi dari SyntaxError
 
-Create a class `FormatError` that inherits from the built-in `SyntaxError` class.
+Buat kelas  `FormatError` yang diwariskan dari bawaan kelas `SyntaxError`.
 
-It should support `message`, `name` and `stack` properties.
+Ini harus mendukung properti `message`,`name` dan `stack`
 
-Usage example:
+Contoh penggunaan:
 
 ```js
 let err = new FormatError("formatting error");
