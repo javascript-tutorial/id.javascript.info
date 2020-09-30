@@ -1,4 +1,4 @@
-The answer: **John**.
+Jawabannya: **John**.
 
 ```js run no-beautify
 function f() {
@@ -10,6 +10,6 @@ f = f.bind( {name: "John"} ).bind( {name: "Pete"} );
 f(); // John
 ```
 
-The exotic [bound function](https://tc39.github.io/ecma262/#sec-bound-function-exotic-objects) object returned by `f.bind(...)` remembers the context (and arguments if provided) only at creation time. 
+Objek eksotis [bound function](https://tc39.github.io/ecma262/#sec-bound-function-exotic-objects) yang dikembalikan oleh `f.bind(...)` mengingat konteksnya (dan argumen jika ada) hanya pada waktu pembuatan.
 
-A function cannot be re-bound.
+Sebuah fungsi tidak bisa diikat-ulang.

@@ -14,7 +14,7 @@ function printNumbers(from, to) {
   }, 1000);
 }
 
-// usage:
+// penggunaan:
 printNumbers(5, 10);
 ```
 
@@ -34,13 +34,13 @@ function printNumbers(from, to) {
   }, 1000);
 }
 
-// usage:
+// penggunaan:
 printNumbers(5, 10);
 ```
 
-Note that in both solutions, there is an initial delay before the first output. The function is called after `1000ms` the first time.
+Perhatikan dikedua solusinya, disana terdapat penundaan awal sebelum keluaran pertamanya. Fungsinya dipanggil setelah `1000ms` saat pertama kali.
 
-If we also want the function to run immediately, then we can add an additional call on a separate line, like this:
+Jika kita juga ingin fungsinya untuk berjalan langsung, maka kita bisa menambahkan pemanggilan di baris yang berbeda, seperti ini:
 
 ```js run
 function printNumbers(from, to) {

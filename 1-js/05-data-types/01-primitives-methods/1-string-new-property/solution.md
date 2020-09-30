@@ -1,5 +1,5 @@
 
-Try running it:
+Cobalah jalankan:
 
 ```js run
 let str = "Hello";
@@ -9,16 +9,17 @@ str.test = 5; // (*)
 alert(str.test);
 ```
 
-Depending on whether you have `use strict` or not, the result may be:
-1. `undefined` (no strict mode)
+Tergantung apakah kamu gunakan `use strict` atau tidak, hasilnya mungkin bisa:
+1. `undefined` (bukan strict mode)
 2. An error (strict mode).
 
-Why? Let's replay what's happening at line `(*)`:
+Kenapa? Kita lihat apa yang terjadi apda baris `(*)`:
 
-1. When a property of `str` is accessed, a "wrapper object" is created.
-2. In strict mode, writing into it is an error.
+1. Ketika properti dari `str` di akses, sebuah "objek pembungkus" dibuat.
+2. Didalam mode strict, menulis kedalamnya adalah sebuah error.
 3. Otherwise, the operation with the property is carried on, the object gets the `test` property, but after that the "wrapper object" disappears, so in the last line `str` has no trace of the property.
+3. Sebaliknya, operasi dengan propertinya dibawa, objeknya mendapatkan properti `test`, tapi setelah itu "objek pembungkus" menghilang, jadi di baris terakhir `str` tidak mempunyai jejak dari properti itu.
 
-**This example clearly shows that primitives are not objects.**
+**Contoh ini dengan jelas membuktikan bahwa primitif bukanlah sebuah objek**
 
-They can't store additional data.
+Mereka tidak bisa menyimpan data tambahan.

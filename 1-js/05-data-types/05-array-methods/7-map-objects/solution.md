@@ -25,9 +25,9 @@ alert( usersMapped[0].id ); // 1
 alert( usersMapped[0].fullName ); // John Smith
 ```
 
-Please note that in for the arrow functions we need to use additional brackets. 
+Perhatikan bahwa didalam fungsi arrow kita butuh untuk menggunakan tambahan kurung.
 
-We can't write like this:
+Kita tidak bisa menulis seperti ini:
 ```js
 let usersMapped = users.map(user => *!*{*/!*
   fullName: `${user.name} ${user.surname}`,
@@ -35,9 +35,9 @@ let usersMapped = users.map(user => *!*{*/!*
 });
 ```
 
-As we remember, there are two arrow functions: without body `value => expr` and with body `value => {...}`.
+Seperti yang kita ingat, terdapat dua fungsi arrow: tanpa body `value => expression` dan dengan body `value => {...}`.
 
-Here JavaScript would treat `{` as the start of function body, not the start of the object. The workaround is to wrap them in the "normal" brackets:
+Disini  Javascript akan memperlakukan `{` seperti awal dari fungsi body, bukan awal dari objek. Solusinya adalah untuk membungkus mereka didalam kurung "biasa":
 
 ```js
 let usersMapped = users.map(user => *!*({*/!*
@@ -46,6 +46,6 @@ let usersMapped = users.map(user => *!*({*/!*
 }));
 ```
 
-Now fine.
+Sekarang beres.
 
 

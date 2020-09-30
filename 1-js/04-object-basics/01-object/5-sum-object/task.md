@@ -1,10 +1,10 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Sum object properties
+# Tambahkan properti objek
 
-We have an object storing salaries of our team:
+Kita punya sebuah objek untuk menyimpan gaji dari tim kita:
 
 ```js
 let salaries = {
@@ -14,6 +14,6 @@ let salaries = {
 }
 ```
 
-Write the code to sum all salaries and store in the variable `sum`. Should be `390` in the example above.
+Tulislah kode untuk menambahkan seluruh gaji dan simpanlah didalam sebuah variabel `sum`. Haruslah menjadi `390` di contoh diatas.
 
-If `salaries` is empty, then the result must be `0`.
+Jika `salaries` kosong, selanjutnya hasilnya haruslah `0`.

@@ -1,14 +1,14 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Map to objects
+# Memetakan objek
 
-You have an array of `user` objects, each one has `name`, `surname` and `id`.
+Kamu mempunyai array dari objek `user`, masing-masing memiliki `name`, `surname` dan `id`.
 
-Write the code to create another array from it, of objects with `id` and `fullName`, where `fullName` is generated from `name` and `surname`.
+Tulis kode untuk membuat array lainnya dari itu, sebuah objek dengan `id` dan `fullName`, dimana` fullName` dibuat dari `name` dan `surname`.
 
-For instance:
+Contoh: 
 
 ```js no-beautify
 let john = { name: "John", surname: "Smith", id: 1 };
@@ -18,7 +18,7 @@ let mary = { name: "Mary", surname: "Key", id: 3 };
 let users = [ john, pete, mary ];
 
 *!*
-let usersMapped = /* ... your code ... */
+let usersMapped = /* ... kodemu ... */
 */!*
 
 /*
@@ -33,4 +33,4 @@ alert( usersMapped[0].id ) // 1
 alert( usersMapped[0].fullName ) // John Smith
 ```
 
-So, actually you need to map one array of objects to another. Try using `=>` here. There's a small catch.
+Jadi, sebenarnya kamu harus memetakan satu array dari objek menjadi array dari objek lainnya. Cobalah gunakan `=>` disini. Ada sedikit yang harus ditangkap.

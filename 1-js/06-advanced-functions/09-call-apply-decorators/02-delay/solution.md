@@ -1,4 +1,4 @@
-The solution:
+Solusi:
 
 ```js run demo
 function delay(f, ms) {
@@ -11,22 +11,22 @@ function delay(f, ms) {
 
 let f1000 = delay(alert, 1000);
 
-f1000("test"); // shows "test" after 1000ms
+f1000("test"); // tampilkan "test" setelah 1000ms
 ```
 
-Please note how an arrow function is used here. As we know, arrow functions do not have own `this` and `arguments`, so `f.apply(this, arguments)` takes `this` and `arguments` from the wrapper.
+Perhatikan bagaimana fungsi arrow digunakan disini. Seperti yang kita tahu, fungsi panah tidak memiliki `this` dan `argumen`nya sendiri, jadi `f.apply(this, arguments)` akan mengambil `this` dan `arguments` dari pembungkusnya.
 
-If we pass a regular function, `setTimeout` would call it without arguments and `this=window` (assuming we're in the browser).
+Jika kita memasukan fungsi yang biasa, `setTimeout` akan memanggil fungsinya tanpa argumen dan `this=window` (asumsikan kita berada didalam peramban).
 
-We still can pass the right `this` by using an intermediate variable, but that's a little bit more cumbersome:
+Kita masih bisa memberikan `this` yang benar dengan menggunakan variabel tambahan, tapi kodenya akan sedikit menjadi lebih rumit:
 
 ```js
 function delay(f, ms) {
 
   return function(...args) {
-    let savedThis = this; // store this into an intermediate variable
+    let savedThis = this; // simpan this kedalam variabel tambahan
     setTimeout(function() {
-      f.apply(savedThis, args); // use it here
+      f.apply(savedThis, args); // gunakan disini
     }, ms);
   };
 
