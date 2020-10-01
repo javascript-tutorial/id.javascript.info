@@ -1,5 +1,6 @@
 # Promises chaining
 
+
 Mari kembali ke masalah yang disebutkan di dalam bab <info:callbacks>: kita memiliki sebuah urutan tugas _asynchronous_ untuk dilakukan satu demi satu. Sebagai contoh, memuat _scripts_. Bagaimana kita bisa membuat kodenya dengan baik?
 
 Promises menyediakan beberapa resep untuk melakukannya.
@@ -163,6 +164,7 @@ loadScript("/article/promise-chaining/one.js")
 
 Di sini setiap pemanggilan `loadScript` mengembalikkan sebuah _promise_, dan `.then` selanjutnya berjalan ketika _promise_ selesai. Kemudian memulai pemuatan _script_ selanjutnya. Jadi _scripts_ dimuat satu setelah yang lain.
 
+
 Kita dapat menambahkan lagi aksi asynchronous ke rantainya. Harap catat bahwa kodenya masih "flat", kodenya tumbuh ke bawah bukan ke kanan. Tidak ada tanda-tanda "pyramid of doom".
 
 Secara teknis, kita dapat menambahkan `.then` secara langsung ke setiap `loadScript`, seperti ini:
@@ -187,9 +189,11 @@ Orang yang baru memulai untuk menggunakan _promises_ kadang-kadang tidak tahu te
 Terkadang ok untuk menulis `.then` secara langsung, karena _function_ bersarang memiliki akses ke luar _scope_. Pada contoh di atas _callback_ paling bertingkat memiliki akses ke semua variabel `script1`, `script2`, `script3`. Tetapi itu pengecualian bukan aturan.
 
 ````smart header="Thenables"
+
 Tepatnya, sebuah handler mungkin tidak mengembalikkan sebuah promise, tetapi dipanggil objek "thenable" - sebuah objek sewenang-wenang yang memiliki method `.then`, dan diperlakukan sama seperti sebuah promise.
 
 Idenya adalah bahwa pustaka 3rd-party dapat menerapkan objek "promise-compatible" mereka sendiri. Mereka dapat memiliki serangkaian methods yang luas, tetapi juga kompatibel dengan promises asli, karena mereka menerapkan `.then`.
+
 
 Ini contoh dari objek thenable:
 
@@ -214,7 +218,9 @@ new Promise(resolve => resolve(1))
   .then(alert); // menunjukkan 2 setelah 1000ms
 ```
 
+
 JavaScript memeriksa objek yang dikembalikkan oleh handler `.then` di baris `(*)`: jika ada method callable yang bernama `then`, kemudian method tersebut memanggil method yang menyediakan functions `resolve`, `reject` asli sebagai arguments (mirip ke eksekutor) dan menunggu sampai satu dari mereka dipanggil. Pada contoh di atas `resolve(2)` dipanggil setelah 1 detik `(**)`. Kemudian result diteruskan ke bawah chain.
+
 
 Fitur ini memperbolehkan kita untuk untuk mengintegrasikan objek kustom dengan promise chains tanpa memiliki pewarisan dari `Promise`.
 ````
@@ -231,6 +237,7 @@ let promise = fetch(url);
 
 Ini membuat permintaan jaringan ke `url` dan mengembalikkan sebuah _promise_. Promise selesai dengan objek `response` ketika server jarak jauh merespon dengan header, tetapi _sebelum response penuh diunduh_.
 
+
 Untuk membaca response penuh, kita harus memanggil sebuah method `response.text()`: method tersebut mengembalikkan sebuah promise yang selesai ketika teks penuh ull telah diunduh dari server jarak jauh, dengan teks tersebut sebagai hasilnya.
 
 Kode di bawah ini membuat permintaan ke `user.json` dan memuat teks dari server:
@@ -243,6 +250,7 @@ fetch("/article/promise-chaining/user.json")
     // ketika dimuat
     return response.text();
   })
+
   .then(function (text) {
     // ...dan di sini isi dari file remote
     alert(text); // {"name": "iliakan", isAdmin: true}
@@ -250,6 +258,12 @@ fetch("/article/promise-chaining/user.json")
 ```
 
 Di sana juga ada method `response.json()` yang membaca data remote dan parsing sebagai JSON. Pada kasus kita lebih sesuai, jadi mari ganti dengan itu.
+
+  .then(function(text) {
+    // ...and here's the content of the remote file
+    alert(text); // {"name": "iliakan", "isAdmin": true}
+  });
+```
 
 Kita juga akan menggunakan arrow functions untuk keringkasan:
 

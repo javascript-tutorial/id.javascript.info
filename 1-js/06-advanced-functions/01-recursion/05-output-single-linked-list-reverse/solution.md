@@ -1,8 +1,8 @@
-# Using a recursion
+# Menggunakan rekursi
 
-The recursive logic is a little bit tricky here.
+Logika rekursi sedikit lebih rumit disini.
 
-We need to first output the rest of the list and *then* output the current one:
+Pertama kita harus mengeluarkan sisa item di daftarnya dan *lalu* mengeluarkan item yang sekarang dipilih.
 
 ```js run
 let list = {
@@ -31,13 +31,13 @@ function printReverseList(list) {
 printReverseList(list);
 ```
 
-# Using a loop
+# Menggunakan perulangan
 
-The loop variant is also a little bit more complicated then the direct output.
+Varian perulangan juga sedikit lebih rumit daripada mengeluarkannya secara langsung.
 
-There is no way to get the last value in our `list`. We also can't "go back".
+Tidak ada cara untuk mendapatkan nilai terakhir didalam `list` kita. Kita juga tidak bisa "berjalan mundur".
 
-So what we can do is to first go through the items in the direct order and remember them in an array, and then output what we remembered in the reverse order:
+Jadi apa yang kita bisa lakukan adalah pertama susuri seluruh item secara langsung dan mengingat mereka didalam array, dan lalu mengeluarkan apa yang diingat dengan urutan terbalik:
 
 ```js run
 let list = {
@@ -71,4 +71,4 @@ function printReverseList(list) {
 printReverseList(list);
 ```
 
-Please note that the recursive solution actually does exactly the same: it follows the list, remembers the items in the chain of nested calls (in the execution context stack), and then outputs them. 
+Perhatikan baik-baik bahwa solusi rekursi melakukan hal yang sama persis: itu akan menyusuri daftar, mengingat item-itemnya didalam rantai dari pemanggulan bercabang (dalam konteks penumpukan eksekusi), dan lalu mengeluarkan hasilnya.

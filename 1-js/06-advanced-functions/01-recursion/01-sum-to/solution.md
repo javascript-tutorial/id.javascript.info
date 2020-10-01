@@ -1,4 +1,4 @@
-The solution using a loop:
+Solusi menggunakan perulangan:
 
 ```js run
 function sumTo(n) {
@@ -12,7 +12,7 @@ function sumTo(n) {
 alert( sumTo(100) );
 ```
 
-The solution using recursion:
+Solusi menggunakan rekursi:
 
 ```js run
 function sumTo(n) {
@@ -23,7 +23,7 @@ function sumTo(n) {
 alert( sumTo(100) );
 ```
 
-The solution using the formula: `sumTo(n) = n*(n+1)/2`:
+Solusi menggunakan rumus: `sumTo(n) = n*(n+1)/2`:
 
 ```js run
 function sumTo(n) {
@@ -33,8 +33,8 @@ function sumTo(n) {
 alert( sumTo(100) );
 ```
 
-P.S. Naturally, the formula is the fastest solution. It uses only 3 operations for any number `n`. The math helps!
+Catatan. Biasanya, rumus adalah solusi tercepat. Itu hanya menggunakan 3 operasi untuk angka `n` apapun. Matematika mambantu!
 
-The loop variant is the second in terms of speed. In both the recursive and the loop variant we sum the same numbers. But the recursion involves nested calls and execution stack management. That also takes resources, so it's slower.
+varian perulangan adalah yang kedua dalam hal waktu. Di varian rekusif dan perulangan kita menambahkan angka yang sama. Tapi rekursi melibatkan pemanggilan bercabang dan manajemen tumpukan eksekusi. Itu juga memakan sumberdaya, jadi itu lebih lambat.
 
-P.P.S. Some engines support the "tail call" optimization: if a recursive call is the very last one in the function (like in `sumTo` above), then the outer function will not need to resume the execution, so the engine doesn't need to remember its execution context. That removes the burden on memory, so counting `sumTo(100000)` becomes possible. But if the JavaScript engine does not support tail call optimization (most of them don't), there will be an error: maximum stack size exceeded, because there's usually a limitation on the total stack size.
+Catatan+. Beberapa mesin mendukung optimasi "tail call": jika sebuah pemanggilan rekursi adalah yang paling terakhir didalam fungsi (seperti dalam `sumTo` diatas), maka fungsi terluar tidak butuh untuk melanjutkan eksekusi, jadi mesinnya tidak akan mengingat konteks dari eksekusi. Itu akan menghilangkan beban didalam memori, jadi menghitung `sumTo(100000)` menjadi mungkin. Tapi jika mesin Javascript tidak mendukung optimasi tail call (kebanyakan tidak), disana akan terdapat error: "maximum stack size exceeded", karena disana biasanya terdapat batasan dalam total ukuran stack/penumpukan.

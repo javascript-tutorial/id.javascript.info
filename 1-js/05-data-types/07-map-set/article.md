@@ -41,6 +41,12 @@ alert( map.size ); // 3
 
 Seperti yang dapat kita lihat, lain dari objek, kunci tidak dikonversi ke string. Jenis kunci apa pun dimungkinkan.
 
+```smart header="`map[key]` bukan cara yang baik untuk menggunakan `Map`"
+Meski `map[key]` juga bekerja, misal kita bisa mengeset `map[key] = 2`, ini memperlakukan `map` sebagai objek JavaScript biasa, berimplikasi pada semua limitasi yang sesuai (tak ada kunci objek dan lain-lain).
+
+Jadi kita sebaiknya memakai metode `map`: `set`, `get` dan seterusnya.
+```
+
 **Map juga dapat menggunakan objek sebagai kunci.**
 
 Misalnya:
@@ -74,10 +80,10 @@ alert( visitsCountObj["[object Object]"] ); // 123
 */!*
 ```
 
-Karena `visitsCountObj` adalah sebuah objek, ia mengubah semua kunci, seperti `john` menjadi string, jadi kita mendapatkan kunci string `"[object Object]"`. Jelas bukanlah yang kita inginkan.
+Karena `visitsCountObj` adalah sebuah objek, ia mengubah semua kunci, seperti `john` menjadi string, jadi kita mendapatkan kunci string `"[object Object]"`. Jelas bukan yang kita inginkan.
 
-```smart header ="Bagaimana `Map` membandingkan kunci"
-Untuk mengetes kunci untuk kesetaraan, `Map` menggunakan algoritma [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). Ini kira-kira sama dengan kesetaraan ketat `===`, tetapi perbedaannya adalah `NaN` dianggap sama dengan `NaN`. Jadi `NaN` bisa digunakan sebagai kunci juga.
+```smart header="Cara `Map` membandingkan kunci"
+Untuk mengetes kesamaan kunci, `Map` menggunakan algoritma [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). Ini kira-kira sama dengan kesetaraan ketat `===`, tetapi perbedaannya adalah `NaN` dianggap sama dengan `NaN`. Jadi `NaN` bisa digunakan sebagai kunci juga.
 
 Algoritma ini tidak dapat diubah atau dikustomisasi.
 ```
@@ -97,9 +103,9 @@ map.set('1', 'str1')
 
 Untuk looping atas `map`, ada 3 method:
 
-- `map.keys()` - mengembalikan iterable untuk kunci,
-- `map.values()` - mengembalikan iterable untuk nilai,
-- `map.entries()` - mengembalikan iterable untuk entri `[key, value]`, ini digunakan dengan standar di `for..of`.
+- `map.keys()` -- mengembalikan iterable untuk kunci,
+- `map.values()` -- mengembalikan iterable untuk nilai,
+- `map.entries()` -- mengembalikan iterable untuk entri `[key, value]`, ini digunakan dengan standar di `for..of`.
 
 Misalnya:
 
@@ -192,7 +198,7 @@ let prices = Object.fromEntries([
 alert(prices.orange); // 2
 ```
 
-Kita bisa menggunakan `Object.fromEntries` untuk mendapatkan objek biasa dari `Map`.
+Kita bisa menggunakan `Object.fromEntries` untuk mendapatkan objek polos dari `Map`.
 
 Contoh: Kita menyimpan data di dalam `Map`, tapi kita perlu mengirimnya ke kode pihak ketiga yang mengharapkan objek biasa.
 
@@ -214,7 +220,7 @@ let obj = Object.fromEntries(map.entries()); // ciptakan objek biasa (*)
 alert(obj.orange); // 2
 ```
 
-Panggilan kepada `map.entries()` mengembalikan array daripada pasangan kunci/nilai, persis dalam format yang benar untuk `Object.fromEntries`.
+Pemanggilan `map.entries()` mengembalikan sebuah iterable dari pasangan key/value, persis didalam format dari `Object.fromEntries`.
 
 Kita juga bisa membuat barisan `(*)` lebih pendek:
 ```js
@@ -287,9 +293,9 @@ Itu untuk kompatibilitas dengan `Map` di mana callback yang dilewati `forEach` m
 
 Metode yang sama yang dimiliki `Map` untuk iterator juga didukung:
 
-- `set.keys()` - mengembalikan objek iterable untuk nilai,
-- `set.values()` - sama dengan `set.keys()`, untuk kompatibilitas dengan `Map`,
-- `set.entries()` - mengembalikan objek iterable untuk entri `[nilai, nilai]`, ada untuk kompatibilitas dengan `Map`.
+- `set.keys()` -- mengembalikan objek iterable untuk nilai,
+- `set.values()` -- sama dengan `set.keys()`, untuk kompatibilitas dengan `Map`,
+- `set.entries()` -- mengembalikan objek iterable untuk entri `[nilai, nilai]`, ada untuk kompatibilitas dengan `Map`.
 
 ## Ringkasan
 

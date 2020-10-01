@@ -1,87 +1,90 @@
-# Numbers
+# Angka
 
-All numbers in JavaScript are stored in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), also known as "double precision floating point numbers".
+Dalam JavaScript modern, ada dua tipe angka:
 
-Let's expand upon what we currently know about them.
+1. Angka regular di JavaScript yang disimpan dalam format 64-bit [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), juga dikenal sebagai "angka double precision floating point". Inilah angka yang kita paling sering kita pakai, dan kita akan bahas tentang mereka di bab ini.
 
-## More ways to write a number
+2. Angka BigInt, untuk mewakili integer dengan panjang sembarang. Mereka kadang dibutuhkan, karena angka regular tak bisa lebih dari <code>2<sup>53</sup></code> atau kurang dari <code>-2<sup>53</sup></code>. Karena bigint dipakai di sedikit area spesial, kita khususkan mereka bab spesial <info:bigint>.
 
-Imagine we need to write 1 billion. The obvious way is:
+Jadi di sini kita akan bahas angka regular. Ayo perluas pengetahuan kita tentang mereka.
+
+## Cara lain menulis angka
+
+Bayangkan kita harus menulis 1 milyar. Cara jelasnya begini:
 
 ```js
 let billion = 1000000000;
 ```
 
-But in real life, we usually avoid writing a long string of zeroes as it's easy to mistype. Also, we are lazy. We will usually write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
+Tapi di kehidupan nyata, kita biasanya menghindari menulis string nol yang panjang karena rentan terjadi kesalahan. Selain itu, kita malas. Kita biasanya akan menulis sesuatu seperti `"1bn"` untuk milyar atau `"7.3bn"` untuk 7 milyar 300 juta. Sama halnya dengan angka besar lainnya.
 
-In JavaScript, we shorten a number by appending the letter `"e"` to the number and specifying the zeroes count:
+Di JavaScript, kita perpendek angka dengan menambah huruf `"e"` ke angka dan menspesifikasi jumlah nol:
 
 ```js run
-let billion = 1e9;  // 1 billion, literally: 1 and 9 zeroes
+let billion = 1e9;  // 1 milyar, literalnya: 1 dan 9 nol
 
-alert( 7.3e9 );  // 7.3 billions (7,300,000,000)
+alert( 7.3e9 );  // 7.3 milyar (7,300,000,000)
 ```
 
-In other words, `"e"` multiplies the number by `1` with the given zeroes count.
+Dengan kata lain, `"e"` kalikan angkanya dengan `1` dengan jumlah nol yang diberikan.
 
 ```js
 1e3 = 1 * 1000
 1.23e6 = 1.23 * 1000000
 ```
 
-
-Now let's write something very small. Say, 1 microsecond (one millionth of a second):
+Sekarang ayo tulis sesuatu lebih kecil. Katakan, 1 microsecond (sepersejuta second):
 
 ```js
 let ms = 0.000001;
 ```
 
-Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could say:
+Sama seperti sebelumnya, memakai `"e"` bisa membantu. Jika kita ingin menghindari menulis nol eksplisit, kita bisa katakan hal yang sama:
 
 ```js
-let ms = 1e-6; // six zeroes to the left from 1
+let ms = 1e-6; // enam nol di sebelah kiri dari 1
 ```
 
-If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.  
+Jika kita hitung nol di `0.000001`, ada 6 dari mereka. Jadi alaminya `1e-6`.  
 
-In other words, a negative number after `"e"` means a division by 1 with the given number of zeroes:
+Dengan kata lain, angka negatif setelah `"e"` artinya pembagian 1 dengan jumlah nol yang diberikan:
 
 ```js
-// -3 divides by 1 with 3 zeroes
+// -3 membagi 1 dengan 3 nol
 1e-3 = 1 / 1000 (=0.001)
 
-// -6 divides by 1 with 6 zeroes
+// -6 membagi 1 dengan 6 nol
 1.23e-6 = 1.23 / 1000000 (=0.00000123)
 ```
 
-### Hex, binary and octal numbers
+### Hex, angka binary dan octal
 
-[Hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) numbers are widely used in JavaScript to represent colors, encode characters, and for many other things. So naturally, there exists a shorter way to write them: `0x` and then the number.
+Angka [Hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) secara luas dipakai di JavaScript untuk mewakili warna, encode karakter, dan banyak hal lain. Alaminya, ada cara lebih singkat menulis mereka: `0x` kemudian angkanya.
 
-For instance:
+Misalnya:
 
 ```js run
 alert( 0xff ); // 255
-alert( 0xFF ); // 255 (the same, case doesn't matter)
+alert( 0xFF ); // 255 (sama, case diabaikan)
 ```
 
-Binary and octal numeral systems are rarely used, but also supported using the `0b` and `0o` prefixes:
+Sistem numeral binary dan octal jarang dipakai, tapi juga didukung menggunakan prefix `0b` dan `0o`:
 
 
 ```js run
-let a = 0b11111111; // binary form of 255
-let b = 0o377; // octal form of 255
+let a = 0b11111111; // bentuk binary dari 255
+let b = 0o377; // bentuk octal dari 255
 
-alert( a == b ); // true, the same number 255 at both sides
+alert( a == b ); // true, angka sama 255 dari kedua sisi
 ```
 
-There are only 3 numeral systems with such support. For other numeral systems, we should use the function `parseInt` (which we will see later in this chapter).
+Cuma ada 3 sistem numeral dengan dukungan begitu. Untuk sistem numeral lain, kita sebaiknya memakai fungsi `parseInt` (yang akan kita lihat nanti di bab ini).
 
 ## toString(base)
 
-The method `num.toString(base)` returns a string representation of `num` in the numeral system with the given `base`.
+Metode `num.toString(base)` mengembalikan representasi string dari `num` di sistem numeral dengan `base` yang diberikan.
 
-For example:
+Misalnya:
 ```js run
 let num = 255;
 
@@ -89,45 +92,45 @@ alert( num.toString(16) );  // ff
 alert( num.toString(2) );   // 11111111
 ```
 
-The `base` can vary from `2` to `36`. By default it's `10`.
+`base` bisa bervariasi dari `2` hingga `36`. Defaultnya `10`.
 
-Common use cases for this are:
+Penggunaan umumnya ialah:
 
-- **base=16** is used for hex colors, character encodings etc, digits can be `0..9` or `A..F`.
-- **base=2** is mostly for debugging bitwise operations, digits can be `0` or `1`.
-- **base=36** is the maximum, digits can be `0..9` or `A..Z`. The whole latin alphabet is used to represent a number. A funny, but useful case for `36` is when we need to turn a long numeric identifier into something shorter, for example to make a short url. Can simply represent it in the numeral system with base `36`:
+- **base=16** dipakai untuk warna hex, character encoding dll, digit bisa `0..9` atau `A..F`.
+- **base=2** paling banyak untuk mendebug operasi bitwise, digit bisa `0` atau `1`.
+- **base=36** ini maximum, digit bisa `0..9` atau `A..Z`. Seluruh alfabet latin dipakai untuk merepresentasi angka. Hal lucu, tapi berguna untuk `36` ialah saat kita harus mengubah identifier numerik panjang ke dalam sesuatu yang lebih pendek, misalnya untuk membuat url pendek. Bisa direpresentasikan dalam sistem `36`:
 
     ```js run
     alert( 123456..toString(36) ); // 2n9c
     ```
 
-```warn header="Two dots to call a method"
-Please note that two dots in `123456..toString(36)` is not a typo. If we want to call a method directly on a number, like `toString` in the example above, then we need to place two dots `..` after it.
+```warn header="Dua dot untuk memanggil metode"
+Tolong ingat bahwa dua dot di `123456..toString(36)` bukan typo. Jika kita mau memanggil langsung metode pada angka, seperti `toString` di contoh di atas, maka kita harus menaruh dua dot `..` setelahnya.
 
-If we placed a single dot: `123456.toString(36)`, then there would be an error, because JavaScript syntax implies the decimal part after the first dot. And if we place one more dot, then JavaScript knows that the decimal part is empty and now goes the method.
+Jika kita menaruh dot tunggal: `123456.toString(36)`, maka akan ada galat, karena syntax JavaScript berimplikasi bahwa bagian desimal setelah dot pertama. Dan jika kita menaruh satu dot lagi, maka JavaScript tahu bahwa bagian desimal kosong dan sekarang pergi ke metode.
 
-Also could write `(123456).toString(36)`.
+Juga bisa menulis `(123456).toString(36)`.
 ```
 
-## Rounding
+## Pembulatan
 
-One of the most used operations when working with numbers is rounding.
+Satu dari operasi paling banyak dipakai saat bekerja dengan angka ialah pembulatan.
 
-There are several built-in functions for rounding:
+Ada beberapa fungsi built-in untuk pembulatan:
 
 `Math.floor`
-: Rounds down: `3.1` becomes `3`, and `-1.1` becomes `-2`.
+: Membulat ke bawah: `3.1` menjadi `3`, dan `-1.1` menjadi `-2`.
 
 `Math.ceil`
-: Rounds up: `3.1` becomes `4`, and `-1.1` becomes `-1`.
+: Membulat ke atas: `3.1` menjadi `4`, dan `-1.1` menjadi `-1`.
 
 `Math.round`
-: Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4` and `-1.1` becomes `-1`.
+: Membulat to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4` and `-1.1` becomes `-1`.
 
 `Math.trunc` (not supported by Internet Explorer)
 : Removes anything after the decimal point without rounding: `3.1` becomes `3`, `-1.1` becomes `-1`.
 
-Here's the table to summarize the differences between them:
+Ini tabel untuk meringkas perbedaan di antara mereka:
 
 |   | `Math.floor` | `Math.ceil` | `Math.round` | `Math.trunc` |
 |---|---------|--------|---------|---------|
@@ -137,261 +140,259 @@ Here's the table to summarize the differences between them:
 |`-1.6`|  `-2`    |   `-1`  |    `-2`  |   `-1`   |
 
 
-These functions cover all of the possible ways to deal with the decimal part of a number. But what if we'd like to round the number to `n-th` digit after the decimal?
+Fungsi ini membahas semua cara yang mungkin untuk berhadapan dengan bagian desimal dari angka. Tapi bagaimana jika kita mau membulatkan angka ke digit `ke-n` setelah desimal?
 
-For instance, we have `1.2345` and want to round it to 2 digits, getting only `1.23`.
+Misalnya, kita punya `1.2345` dan mau membulatkan ke 2 digit, memperoleh `1.23`.
 
-There are two ways to do so:
+Ada dua cara melakukannya:
 
-1. Multiply-and-divide.
+1. Kali-dan-bagi.
 
-    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100`, call the rounding function and then divide it back.
+    Misalnya, untuk membulatkan angka ke digit kedua setelah desimal, kita bisa mengalikan angkanya dengan `100` (atau sebuah pangkat dari 10), panggil fungsi pembulatan lalu membagi itu kembali.
     ```js run
     let num = 1.23456;
 
     alert( Math.floor(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
     ```
 
-2. The method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) rounds the number to `n` digits after the point and returns a string representation of the result.
+2. Metode [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) Membulatkan ke digit `n` setelah poin itu dan mengembalikan representasi string dari hasilnya.
 
     ```js run
     let num = 12.34;
     alert( num.toFixed(1) ); // "12.3"
     ```
 
-    This rounds up or down to the nearest value, similar to `Math.round`:
+    Ini membulatkan ke atas atau ke bawah ke nilai terdekat, serupa dengan `Math.round`:
 
     ```js run
     let num = 12.36;
     alert( num.toFixed(1) ); // "12.4"
     ```
 
-    Please note that result of `toFixed` is a string. If the decimal part is shorter than required, zeroes are appended to the end:
+    Silakan catat hasil dari `toFixed` ialah string. Jika bagian desimal lebih pendek dari yang dibutuhkan, nol ditambahkan di akhir:
 
     ```js run
     let num = 12.34;
-    alert( num.toFixed(5) ); // "12.34000", added zeroes to make exactly 5 digits
+    alert( num.toFixed(5) ); // "12.34000", tambah nol supaya tepat 5 digit
     ```
 
-    We can convert it to a number using the unary plus or a `Number()` call: `+num.toFixed(5)`.
+    Kita bisa mengkonversi itu ke angka menggunakan unary plus atau panggilan `Number()`: `+num.toFixed(5)`.
 
-## Imprecise calculations
+## Kalkulasi yang tidak tepat
 
-Internally, a number is represented in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), so there are exactly 64 bits to store a number: 52 of them are used to store the digits, 11 of them store the position of the decimal point (they are zero for integer numbers), and 1 bit is for the sign.
+Secara internal, angka direpresentasikan dalam format 64-bit [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), jadi ada tepat 64 bit untuk menyimpan angka: 52 di antaranya digunakan untuk menyimpan angka, 11 di antaranya menyimpan posisi titik desimal (nol untuk angka bilangan bulat), dan 1 bit untuk tanda.
 
-If a number is too big, it would overflow the 64-bit storage, potentially giving an infinity:
+Jika angka terlalu besar, itu akan meluapkan penyimpanan 64-bit, berpotensi memberikan infinity:
 
 ```js run
 alert( 1e500 ); // Infinity
 ```
 
-What may be a little less obvious, but happens quite often, is the loss of precision.
+Yang mungkin agak kurang jelas, tetapi sering terjadi adalah hilangnya ketepatan.
 
-Consider this (falsy!) test:
+Pertimbangkan (falsy!) tes ini:
 
 ```js run
 alert( 0.1 + 0.2 == 0.3 ); // *!*false*/!*
 ```
 
-That's right, if we check whether the sum of `0.1` and `0.2` is `0.3`, we get `false`.
+Benar, jika kita memeriksa jumlah dari `0.1` dan `0.2` adalah `0.3`, kita mendapatkan `false`.
 
-Strange! What is it then if not `0.3`?
+Aneh! Kenapa hasilnya itu dan tidak `0.3`?
 
 ```js run
 alert( 0.1 + 0.2 ); // 0.30000000000000004
 ```
 
-Ouch! There are more consequences than an incorrect comparison here. Imagine you're making an e-shopping site and the visitor puts `$0.10` and `$0.20` goods into their chart. The order total will be `$0.30000000000000004`. That would surprise anyone.
+Aduh! Ada lebih banyak konsekuensi daripada perbandingan yang salah di sini. Bayangkan Anda membuat situs e-shopping dan pengunjung memasukkan barang-barang `$ 0,10` dan` $ 0,20` ke troli mereka. Total pesanan akan `$ 0,30000000000000004`. Itu akan mengejutkan siapa pun.
 
-But why does this happen?
+Tetapi kenapa hal ini bisa terjadi?
 
-A number is stored in memory in its binary form, a sequence of bits - ones and zeroes. But fractions like `0.1`, `0.2` that look simple in the decimal numeric system are actually unending fractions in their binary form.
+Sebuah angka disimpan di memori dalam bentuk binary, sebuah urutan dari bits - satu dan nol. Tetapi bilangan pecahan seperti `0.1`, `0.2` yang terlihat sederhana dalam sistem angka desimal sebenarnya adalah pecahan tak berujung dalam bentuk binernya.
 
-In other words, what is `0.1`? It is one divided by ten `1/10`, one-tenth. In decimal numeral system such numbers are easily representable. Compare it to one-third: `1/3`. It becomes an endless fraction `0.33333(3)`.
+Dengan kata lain, apa itu `0,1`? Ini adalah satu dibagi dengan sepuluh `1 / 10`, sepersepuluh. Dalam sistem angka desimal, angka-angka seperti itu mudah diwakili. Bandingkan dengan sepertiga: `1 / 3`. Ini menjadi pecahan yang tak berujung `0,33333 (3)`.
 
-So, division by powers `10` is guaranteed to work well in the decimal system, but division by `3` is not. For the same reason, in the binary numeral system, the division by powers of `2` is guaranteed to work, but `1/10` becomes an endless binary fraction.
+Jadi, pembagian dengan kekuatan `10` dijamin bekerja dengan baik dalam sistem desimal, tetapi pembagian dengan `3` tidak. Untuk alasan yang sama, dalam sistem angka biner, pembagian dengan kekuatan `2` dijamin bekerja, tetapi `1 / 10` menjadi fraksi biner tanpa akhir.
 
-There's just no way to store *exactly 0.1* or *exactly 0.2* using the binary system, just like there is no way to store one-third as a decimal fraction.
+Tidak ada cara untuk menyimpan * tepat 0,1 * atau * persis 0,2 * menggunakan sistem biner, sama seperti tidak ada cara untuk menyimpan sepertiga sebagai fraksi desimal.
 
-The numeric format IEEE-754 solves this by rounding to the nearest possible number. These rounding rules normally don't allow us to see that "tiny precision loss", but it exists.
+Format numerik IEEE-754 memecahkan ini dengan membulatkan ke angka terdekat yang mungkin. Aturan pembulatan ini biasanya tidak memungkinkan kita untuk melihat bahwa "kehilangan presisi kecil", tetapi itu ada.
 
-We can see this in action:
+Kita bisa melihat ini dalam aksi:
 ```js run
 alert( 0.1.toFixed(20) ); // 0.10000000000000000555
 ```
 
-And when we sum two numbers, their "precision losses" add up.
+Dan ketika kita menjumlahkan dua angka, "kehilangan presisi" mereka bertambah.
 
-That's why `0.1 + 0.2` is not exactly `0.3`.
+Itu sebabnya `0,1 + 0,2` tidak sepenuhnya` 0,3`.
 
-```smart header="Not only JavaScript"
-The same issue exists in many other programming languages.
+```smart header="Tidak hanya JavaScript"
+Masalah yang sama ada di banyak bahasa pemrograman lainnya.
 
-PHP, Java, C, Perl, Ruby give exactly the same result, because they are based on the same numeric format.
+PHP, Java, C, Perl, Ruby memberikan hasil yang sama persis, karena mereka didasarkan pada format numerik yang sama.
 ```
 
-Can we work around the problem? Sure, the most reliable method is to round the result with the help of a method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed):
+Bisakah kita mengatasi masalah ini? Tentu, metode yang paling dapat diandalkan adalah melengkapi hasilnya dengan bantuan metode [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed):
 
 ```js run
 let sum = 0.1 + 0.2;
 alert( sum.toFixed(2) ); // 0.30
 ```
 
-Please note that `toFixed` always returns a string. It ensures that it has 2 digits after the decimal point. That's actually convenient if we have an e-shopping and need to show `$0.30`. For other cases, we can use the unary plus to coerce it into a number:
+Harap dicatat bahwa `toFixed` selalu mengembalikan string. Ini memastikan bahwa ia memiliki 2 digit setelah titik desimal. Itu sebenarnya nyaman jika kita memiliki e-shopping dan perlu menunjukkan `$ 0,30`. Untuk kasus lain, kita dapat menggunakan plus unary untuk memaksanya menjadi nomor:
 
 ```js run
 let sum = 0.1 + 0.2;
 alert( +sum.toFixed(2) ); // 0.3
 ```
 
-We also can temporarily multiply the numbers by 100 (or a bigger number) to turn them into integers, do the maths, and then divide back. Then, as we're doing maths with integers, the error somewhat decreases, but we still get it on division:
+Kita juga dapat sementara mengalikan angka dengan 100 (atau angka yang lebih besar) untuk mengubahnya menjadi bilangan bulat, menghitung, dan kemudian membaginya kembali. Kemudian, saat kita mengerjakan matematika dengan bilangan bulat, kesalahannya agak berkurang, tetapi kita masih mendapatkannya di pembagian:
 
 ```js run
 alert( (0.1 * 10 + 0.2 * 10) / 10 ); // 0.3
 alert( (0.28 * 100 + 0.14 * 100) / 100); // 0.4200000000000001
 ```
 
-So, multiply/divide approach reduces the error, but doesn't remove it totally.
+Jadi, pendekatan perkalian/pembagian mengurangi kesalahan, tetapi tidak menghapusnya sama sekali.
 
-Sometimes we could try to evade fractions at all. Like if we're dealing with a shop, then we can store prices in cents instead of dollars. But what if we apply a discount of 30%? In practice, totally evading fractions is rarely possible. Just round them to cut "tails" when needed.
+Terkadang kita bisa mencoba menghindari pecahan sama sekali. Seperti jika kita berurusan dengan toko, maka kita dapat menyimpan harga dalam sen, bukan dalam dolar. Tetapi bagaimana jika kita menerapkan diskon 30%? Dalam praktiknya, menghindari pecahan sama sekali jarang dimungkinkan. Hanya bulatkan mereka untuk memotong "ekor" bila diperlukan.
 
-````smart header="The funny thing"
-Try running this:
+````smart header="Lucunya"
+Coba jalankan ini:
 
 ```js run
-// Hello! I'm a self-increasing number!
-alert( 9999999999999999 ); // shows 10000000000000000
+// Halo! saya adalah angka yang meningkat sendiri!
+alert( 9999999999999999 ); // menunjukkan 10000000000000000
 ```
 
-This suffers from the same issue: a loss of precision. There are 64 bits for the number, 52 of them can be used to store digits, but that's not enough. So the least significant digits disappear.
+Penderitaan ini berasal dari masalah yang sama: kehilangan presisi. Ada 64 bit untuk angka, 52 di antaranya dapat digunakan untuk menyimpan digit, tetapi itu tidak cukup. Jadi digit yang paling tidak penting menghilang.
 
-JavaScript doesn't trigger an error in such events. It does its best to fit the number into the desired format, but unfortunately, this format is not big enough.
+JavaScript tidak memicu kesalahan dalam kejadian semacam itu. Itu melakukan yang terbaik untuk memasukkan angka ke dalam format yang diinginkan, tetapi sayangnya, format ini tidak cukup besar.
 ````
 
-```smart header="Two zeroes"
-Another funny consequence of the internal representation of numbers is the existence of two zeroes: `0` and `-0`.
+```smart header="Dua nol"
+Konsekuensi lucu yang lain dari representasi internal dari angka adalah adanya dua nol: `0` dan` -0`.
 
-That's because a sign is represented by a single bit, so every number can be positive or negative, including a zero.
+Itu karena sebuah tanda diwakili oleh satu bit, sehingga dapat diatur atau tidak diatur untuk angka apa pun termasuk nol.
 
-In most cases the distinction is unnoticeable, because operators are suited to treat them as the same.
+Dalam kebanyakan kasus perbedaannya tidak terlalu mencolok, karena operator cocok untuk memperlakukan mereka sebagai sesuatu yang sama.
 ```
 
+## Tests: isFinite dan isNaN
+
+Ingat dua nilai numerik khusus ini?
+
+- `Infinity` (dan `-Infinity`) adalah nilai numerik khusus yang lebih besar (kurang) dari apa pun.
+- `NaN` mewakili kesalahan.
+
+Mereka termasuk dalam tipe `angka`, tetapi bukan angka "normal", jadi ada fungsi khusus untuk memeriksanya:
 
 
-## Tests: isFinite and isNaN
-
-Remember these two special numeric values?
-
-- `Infinity` (and `-Infinity`) is a special numeric value that is greater (less) than anything.
-- `NaN` represents an error.
-
-They belong to the type `number`, but are not "normal" numbers, so there are special functions to check for them:
-
-
-- `isNaN(value)` converts its argument to a number and then tests it for being `NaN`:
+- `isNaN(value)` mengubah argumennya menjadi angka dan kemudian mengujinya `NaN`:
 
     ```js run
     alert( isNaN(NaN) ); // true
     alert( isNaN("str") ); // true
     ```
 
-    But do we need this function? Can't we just use the comparison `=== NaN`? Sorry, but the answer is no. The value `NaN` is unique in that it does not equal anything, including itself:
+    Tetapi apakah kita membutuhkan fungsi ini? Tidak bisakah kita menggunakan perbandingan `=== NaN`? Maaf, tapi jawabannya adalah tidak. Nilai `NaN` unik karena tidak sama dengan apa pun, termasuk dirinya sendiri:
 
     ```js run
     alert( NaN === NaN ); // false
     ```
 
-- `isFinite(value)` converts its argument to a number and returns `true` if it's a regular number, not `NaN/Infinity/-Infinity`:
+- `isFinite(value)` mengonversi argumennya menjadi angka dan mengembalikan `true` jika itu angka biasa, bukan `NaN/Infinity/-Infinity`:
 
     ```js run
     alert( isFinite("15") ); // true
-    alert( isFinite("str") ); // false, because a special value: NaN
-    alert( isFinite(Infinity) ); // false, because a special value: Infinity
+    alert( isFinite("str") ); // false, karena nilai khusus: NaN
+    alert( isFinite(Infinity) ); // false, karena nilai khusus: Infinity
     ```
 
-Sometimes `isFinite` is used to validate whether a string value is a regular number:
+Terkadang `isFinite` digunakan untuk memvalidasi apakah sebuah nilai string adalah sebuah angka reguler:
 
 
 ```js run
 let num = +prompt("Enter a number", '');
 
-// will be true unless you enter Infinity, -Infinity or not a number
+// akan benar kecuali jika Anda memasukkan Infinity, -Infinity atau bukan angka
 alert( isFinite(num) );
 ```
 
-Please note that an empty or a space-only string is treated as `0` in all numeric functions including `isFinite`.  
+Harap dicatat bahwa string kosong atau spasi-saja diperlakukan sebagai `0` dalam semua fungsi numerik termasuk` isFinite`.
 
-```smart header="Compare with `Object.is`"
+```smart header="Dibandingkan dengan `Object.is`"
 
-There is a special built-in method [Object.is](mdn:js/Object/is) that compares values like `===`, but is more reliable for two edge cases:
+Ada metode bawaan khusus [Object.is](mdn:js/Object/is) yang membandingkan nilai seperti `===`, tetapi lebih dapat diandalkan untuk dua kasus:
 
-1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing.
-2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, technically that's true, because internally the number has a sign bit that may be different even if all other bits are zeroes.
+1. Ini bekerja dengan `NaN`: `Object.is(NaN, NaN) === true`, itu hal yang bagus.
+2. Nilai `0` and `-0` adalah berbeda: `Object.is(0, -0) === false`, secara teknis adalah benar, karena secara internal nomor tersebut memiliki bit tanda yang mungkin berbeda bahkan jika semua bit lainnya nol.
 
-In all other cases, `Object.is(a, b)` is the same as `a === b`.
+Pada kasus lain, `Object.is(a, b)` adalah sama dengan `a === b`.
 
-This way of comparison is often used in JavaScript specification. When an internal algorithm needs to compare two values for being exactly the same, it uses `Object.is` (internally called [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
+Cara perbandingan ini sering digunakan dalam spesifikasi JavaScript. Ketika suatu algoritma internal perlu membandingkan dua nilai untuk menjadi persis sama, ia menggunakan `Object.is` (secara internal disebut [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
 ```
 
 
-## parseInt and parseFloat
+## parseInt dan parseFloat
 
-Numeric conversion using a plus `+` or `Number()` is strict. If a value is not exactly a number, it fails:
+Konversi angka menggunakan nilai tambah `+` atau `Number()` sangat ketat. Jika suatu nilai bukan angka, itu gagal:
 
 ```js run
 alert( +"100px" ); // NaN
 ```
 
-The sole exception is spaces at the beginning or at the end of the string, as they are ignored.
+Satu-satunya pengecualian adalah spasi di awal atau di akhir string, karena diabaikan.
 
-But in real life we often have values in units, like `"100px"` or `"12pt"` in CSS. Also in many countries the currency symbol goes after the amount, so we have `"19€"` and would like to extract a numeric value out of that.
+Tetapi dalam kehidupan nyata kita sering memiliki nilai dalam satuan, seperti `"100px"` atau `"12pt"` dalam CSS. Juga di banyak negara simbol mata uang mengikuti jumlah, jadi kita memiliki `"€19"` dan ingin mengekstraksi nilai numerik dari itu.
 
-That's what `parseInt` and `parseFloat` are for.
+Untuk itulah `parseInt` dan` parseFloat` ada.
 
-They "read" a number from a string until they can't. In case of an error, the gathered number is returned. The function `parseInt` returns an integer, whilst `parseFloat` will return a floating-point number:
+Mereka "membaca" angka dari sebuah string sampai mereka tidak bisa. Jika terjadi kesalahan, nomor yang dikumpulkan dikembalikan. Fungsi `parseInt` mengembalikan integer, sementara` parseFloat` akan mengembalikan nomor floating-point:
 
 ```js run
 alert( parseInt('100px') ); // 100
 alert( parseFloat('12.5em') ); // 12.5
 
-alert( parseInt('12.3') ); // 12, only the integer part is returned
-alert( parseFloat('12.3.4') ); // 12.3, the second point stops the reading
+alert( parseInt('12.3') ); // 12, hanya bagian integer yang dikembalikan
+alert( parseFloat('12.3.4') ); // 12.3, poin kedua berhenti membaca
 ```
 
-There are situations when `parseInt/parseFloat` will return `NaN`. It happens when no digits could be read:
+Ada situasi dimana `parseInt/parseFloat` akan mengembalikan `NaN`. Ini terjadi ketika tidak ada digit yang bisa dibaca
 
 ```js run
-alert( parseInt('a123') ); // NaN, the first symbol stops the process
+alert( parseInt('a123') ); // NaN, symbol pertama menghentikan proses
 ```
 
-````smart header="The second argument of `parseInt(str, radix)`"
-The `parseInt()` function has an optional second parameter. It specifies the base of the numeral system, so `parseInt` can also parse strings of hex numbers, binary numbers and so on:
+````smart header="Pernyataan kedua dari `parseInt(str, radix)`"
+Fungsi `parseInt()` fungsi memiliki parameter opsional kedua. Ini menentukan dasar dari sistem angka, jadi `parseInt` juga dapat mengurai string nomor hex, angka biner dan sebagainya:
 
 ```js run
 alert( parseInt('0xff', 16) ); // 255
-alert( parseInt('ff', 16) ); // 255, without 0x also works
+alert( parseInt('ff', 16) ); // 255, tanpa 0x juga bekerja
 
 alert( parseInt('2n9c', 36) ); // 123456
 ```
 ````
 
-## Other math functions
+## Fungsi matematika lainnya
 
-JavaScript has a built-in [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object which contains a small library of mathematical functions and constants.
+Javascript memiliki objek [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) bawaan dimana berisi perpustakaan kecil fungsi matematika dan konstanta.
 
-A few examples:
+Beberapa contoh:
 
 `Math.random()`
-: Returns a random number from 0 to 1 (not including 1)
+: Mengembalikan angka acak dari 0 hingga 1 (tidak termasuk 1)
 
     ```js run
-    alert( Math.random() ); // 0.1234567894322
+    alert( Math.random() ); // 0.1234567894322s
     alert( Math.random() ); // 0.5435252343232
-    alert( Math.random() ); // ... (any random numbers)
+    alert( Math.random() ); // ... (angka aca apa saja)
     ```
 
 `Math.max(a, b, c...)` / `Math.min(a, b, c...)`
-: Returns the greatest/smallest from the arbitrary number of arguments.
+: Mengembalikan argumen terbesar / terkecil dari jumlah argumen yang arbitrer.
 
     ```js run
     alert( Math.max(3, 5, -10, 0, 1) ); // 5
@@ -399,36 +400,36 @@ A few examples:
     ```
 
 `Math.pow(n, power)`
-: Returns `n` raised the given power
+: Pengembalian `n` meningkatkan daya yang diberikan
 
     ```js run
     alert( Math.pow(2, 10) ); // 2 in power 10 = 1024
     ```
 
-There are more functions and constants in `Math` object, including trigonometry, which you can find in the [docs for the Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object.
+Ada lebih banyak fungsi dan konstanta dalam objek `Math`, termasuk trigonometri, yang dapat Anda temukan di [docs untuk objek Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math).
 
-## Summary
+## Kesimpulan
 
-To write big numbers:
+Untuk menulis angka dengan banyak nol:
 
-- Append `"e"` with the zeroes count to the number. Like: `123e6` is `123` with 6 zeroes.
-- A negative number after `"e"` causes the number to be divided by 1 with given zeroes. That's for one-millionth or such.
+- Tambahkan `"e"` dengan hitungan angka nol ke angka. Seperti: `123e6` sama dengan `123` dengan 6 nol `123000000`.
+- Angka negatif setelah `"e"` menyebabkan angka untuk dibagi 1 dengan nol yang diberikan. Contohnya `123e-6` berarti `0.000123` (`123` millionths).
 
-For different numeral systems:
+Untuk sistem angka yang berbeda:
 
-- Can write numbers directly in hex (`0x`), octal (`0o`) and binary (`0b`) systems
-- `parseInt(str, base)` parses the string `str` into an integer in numeral system with given `base`, `2 ≤ base ≤ 36`.
-- `num.toString(base)` converts a number to a string in the numeral system with the given `base`.
+- Dapat menulis angka secara langsung dalam sistem hex (`0x`), oktal (`0o`) dan sistem biner (`0b`)
+- `parseInt(str, base)` mem-parsing string `str` menjadi bilangan bulat dalam sistem angka dengan diberikan `base`, `2 ≤ base ≤ 36`.
+- `num.toString(base)` mengonversi angka menjadi string dalam sistem angka dengan diberikan `base`.
 
-For converting values like `12pt` and `100px` to a number:
+Untuk mengkonversi nilai seperti `12pt` dan `100px` menjadi sebuah angka:
 
-- Use `parseInt/parseFloat` for the "soft" conversion, which reads a number from a string and then returns the value they could read before the error.
+- Gunakan `parseInt/parseFloat` untuk konversi "lembut", dimana membaca sebuah angka dari string dan mengembalikan nilai yang bisa dibaca sebelum terjadi kesalahan.
 
-For fractions:
+Untuk pecahan:
 
-- Round using `Math.floor`, `Math.ceil`, `Math.trunc`, `Math.round` or `num.toFixed(precision)`.
-- Make sure to remember there's a loss of precision when working with fractions.
+- Bulangan menggunakan `Math.floor`, `Math.ceil`, `Math.trunc`, `Math.round` atau `num.toFixed(presisi)`.
+- Pastikan untuk mengingat ada kehilangan presisi saat bekerja dengan pecahan.
 
-More mathematical functions:
+Lebih banyak fungsi matematika:
 
-- See the [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object when you need them. The library is very small, but can cover basic needs.
+- Lihat objek [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) ketika Anda membutuhkannya. Perpustakaannya sangat kecil, tetapi dapat memenuhi kebutuhan dasar.

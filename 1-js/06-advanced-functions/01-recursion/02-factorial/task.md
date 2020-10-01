@@ -1,18 +1,18 @@
-importance: 4
+nilai penting: 4
 
 ---
 
-# Calculate factorial
+# Kalkulasikan faktorial
 
-The [factorial](https://en.wikipedia.org/wiki/Factorial) of a natural number is a number multiplied by `"number minus one"`, then by `"number minus two"`, and so on till `1`. The factorial of `n` is denoted as `n!`
+[factorial](https://en.wikipedia.org/wiki/Factorial) dari sebuah angka natural adalah sebuah angka yang dikalikan dengan `"angka minus satu"`, lalu dengan `"angka minus dua"`, dan terus sampai `1`. Faktorial dari `n` di notasikan sebagai `n!`.
 
-We can write a definition of factorial like this:
+Kita bisa menulis definisi dari faktorial seperti ini:
 
 ```js
 n! = n * (n - 1) * (n - 2) * ...*1
 ```
 
-Values of factorials for different `n`:
+Nilai dari faktorial untuk `n` yang berbeda:
 
 ```js
 1! = 1
@@ -22,10 +22,10 @@ Values of factorials for different `n`:
 5! = 5 * 4 * 3 * 2 * 1 = 120
 ```
 
-The task is to write a function `factorial(n)` that calculates `n!` using recursive calls.
+Tugasnya adalah untuk menulis sebuah fungsi `factorial(n)` yang mengkalkulasikan `n!` menggunakan pemanggilan rekursi.
 
 ```js
 alert( factorial(5) ); // 120
 ```
 
-P.S. Hint: `n!` can be written as `n * (n-1)!` For instance: `3! = 3*2! = 3*2*1! = 6`
+Catatan. Petunjuk: `n!` bisa juga ditulis sebagai `n * (n-1)!`, Contoh: `3! = 3*2! = 3*2*1! = 6`

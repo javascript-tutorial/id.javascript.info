@@ -1,12 +1,12 @@
-importance: 3
+nilai penting: 3
 
 ---
 
-# Shuffle an array
+# Mengacak sebuah array
 
-Write the function `shuffle(array)` that shuffles (randomly reorders) elements of the array.
+Tulis fungsi `shuffle(array`) yang mengocok (pengurutan secara acak) elemen dari sebuah array.
 
-Multiple runs of `shuffle` may lead to different orders of elements. For instance:
+Pemanggilan dari `shuffle` akan menghasilkan urutan yang berbeda-beda. Contoh:
 
 ```js
 let arr = [1, 2, 3];
@@ -22,4 +22,4 @@ shuffle(arr);
 // ...
 ```
 
-All element orders should have an equal probability. For instance, `[1,2,3]` can be reordered as `[1,2,3]` or `[1,3,2]` or `[3,1,2]` etc, with equal probability of each case.
+Seluruh pengurutan elemen harus punya probabilitas yang sama. Contoh, `[1,2,3]` bisa di urutkan menjadi `[1,2,3]` atau `[1,3,2]` atau `[3,1,2]` dll, dengan probabilitas yang sama untuk setiap kasus.

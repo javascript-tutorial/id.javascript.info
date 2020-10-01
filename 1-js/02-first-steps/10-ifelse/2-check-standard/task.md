@@ -4,7 +4,7 @@ Nilai penting: 2
 
 # Nama JavaScript
 
-Dengan menggunakan konstruksi `if..else`, tulis kode yang menanyakan: 'Apa nama" resmi "JavaScript?'
+Dengan menggunakan konstruksi `if..else`, tulis kode yang menanyakan: 'Apa nama "official" JavaScript?'
 
 Jika pengunjung memasukkan "ECMAScript", maka tunjukkan output "Benar!", Jika tidak - tunjukkan output: "Tidak tahu? ECMAScript!"
 

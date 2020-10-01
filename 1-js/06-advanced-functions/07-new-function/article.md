@@ -1,19 +1,19 @@
 
-# The "new Function" syntax
+# Sintaks "new Function"
 
-There's one more way to create a function. It's rarely used, but sometimes there's no alternative.
+Terdapat satu lagi cara untuk membuat fungsi. Ini sangat jarang digunakan, tapi terkadang tidak ada alternatif lain.
 
-## Syntax
+## Sintaks
 
-The syntax for creating a function:
+Sintaks untuk membuat sebuah fungsi:
 
 ```js
 let func = new Function ([arg1, arg2, ...argN], functionBody);
 ```
 
-The function is created with the arguments `arg1...argN` and the given `functionBody`.
+Fungsinya dibuat dengan argumen-argumen `arg1...argN` dan diberikan `functionBody`.
 
-It's easier to understand by looking at an example. Here's a function with two arguments:
+Ini sangat mudah dimengerti hanya dengan melihat contohnya. Disini sebuah fungsi dengan dua argumen:
 
 ```js run
 let sum = new Function('a', 'b', 'return a + b');
@@ -21,7 +21,7 @@ let sum = new Function('a', 'b', 'return a + b');
 alert( sum(1, 2) ); // 3
 ```
 
-And here there's a function without arguments, with only the function body:
+Dan ini fungsi tanpa argumen, hanya ada body dari fungsinya:
 
 ```js run
 let sayHi = new Function('alert("Hello")');
@@ -29,11 +29,11 @@ let sayHi = new Function('alert("Hello")');
 sayHi(); // Hello
 ```
 
-The major difference from other ways we've seen is that the function is created literally from a string, that is passed at run time.
+Perbedaan utama dari cara lain yang pernah kita lihat adalah fungsinya dibuat secara harfiah dari sebuah string, yang dilanjutkan ke run-time.
 
-All previous declarations required us, programmers, to write the function code in the script.
+Seluruh deklarasi sebelumnya membutuhkan kita, programmer, untuk menulis kode fungsi didalam skrip.
 
-But `new Function` allows to turn any string into a function. For example, we can receive a new function from a server and then execute it:
+Tapi `new Function` mengijinkan kita untuk mengubah string apapun menjadi fungsi. Contoh, kita bisa menerima sebuah fungsi baru dari server dan mengeksekusinya:
 
 ```js
 let str = ... receive the code from a server dynamically ...
@@ -42,15 +42,15 @@ let func = new Function(str);
 func();
 ```
 
-It is used in very specific cases, like when we receive code from a server, or to dynamically compile a function from a template, in complex web-applications.
+Itu digunakan dalam beberapa kasus yang spesifik, seperti ketika kita menerima kode dari server, atau secara dinamis mengkompilasikan sebuah fungsi dari sebuah template didalam aplikasi-web yang kompleks.
 
 ## Closure
 
-Usually, a function remembers where it was born in the special property `[[Environment]]`. It references the Lexical Environment from where it's created  (we covered that in the chapter <info:closure>).
+Biasanya, sebuah fungsi mengingat dimana dirinya dibuat didalam properti spesial `[[Environtment]]. Fungsi itu akan mereferensi lingkungan leksikal dari dimana ia dibuat (kita telah membahasnya didalam bab <info:closure>).
 
-But when a function is created using `new Function`, its `[[Environment]]` is set to reference not the current Lexical Environment, but the global one.
+Tapi ketika sebuah fungsi dibuat menggunakan `new Function`, `[[Environment]]` miliknya disetel bukan pada lingkungan leksikal saat ini, tapi pada yang global.
 
-So, such function doesn't have access to outer variables, only to the global ones.
+Jadi, fungsi seperti itu tidak memiliki akses kepada variabel luar, hanya pada yang global saja.
 
 ```js run
 function getFunc() {
@@ -66,7 +66,7 @@ function getFunc() {
 getFunc()(); // error: value is not defined
 ```
 
-Compare it with the regular behavior:
+Bandingkan dengan yang biasa:
 
 ```js run
 function getFunc() {
@@ -79,45 +79,45 @@ function getFunc() {
   return func;
 }
 
-getFunc()(); // *!*"test"*/!*, from the Lexical Environment of getFunc
+getFunc()(); // *!*"test"*/!*, berasal dari lingkungan leksikal dari getFung
 ```
 
-This special feature of `new Function` looks strange, but appears very useful in practice.
+Fitur spesial dari `new Function` ini terlihat aneh, tapi akan sangat berguna didalam penerapannya.
 
-Imagine that we must create a function from a string. The code of that function is not known at the time of writing the script (that's why we don't use regular functions), but will be known in the process of execution. We may receive it from the server or from another source.
+Bayangkan kalau kita harus membuat sebuah fungsi dari string. Kode dari fungsinya tidak diketahui saat penulisan skrip (itulah kenapa kita tidak menggunakan fungsi yang biasa), tapi akan diketahui saat proses dari eksekusinya. Kita mungkin menerima kodenya itu dari server atau sumber lainnya.
 
-Our new function needs to interact with the main script.
+Fungsi baru kita membutuhkan interaksi dengan skrip utamanya.
 
-What if it could access the outer variables?
+Bagaimana jika itu bisa mengakses variabel luar?
 
-The problem is that before JavaScript is published to production, it's compressed using a *minifier* -- a special program that shrinks code by removing extra comments, spaces and -- what's important, renames local variables into shorter ones.
+Masalahnya adalah saat Javascript belum dipublikasikan untuk produksi, itu akan dikompresi menggunakan *minifier* -- sebuah program spesial yang mengecilkan ukuran kode dengan menghapus komentar-komentar, spasi dan -- yang paling penting, menamai variabel lokal menjadi lebih pendek.
 
-For instance, if a function has `let userName`, minifier replaces it `let a` (or another letter if this one is occupied), and does it everywhere. That's usually a safe thing to do, because the variable is local, nothing outside the function can access it. And inside the function, minifier replaces every mention of it. Minifiers are smart, they analyze the code structure, so they don't break anything. They're not just a dumb find-and-replace.
+Contoh, jika sebuah fungsi mempunyai `let userName`, minifier akan mengganti itu dengan `let a` (atau huruf lainnya jika tidak hurufnya tidak tersedia), dan melakukannya dimanapun. Sebenarnya itu adalah yang yang aman untuk dilakukan, karena variabelnya lokal, tidak ada sesuatu dari luar fungsinya yang bisa mengaksesnya. Dan didalam fungsinya, minifier mengganti seluruh penamaan variabelnya. Minifier cukup pintar, mereka menganalisa struktur kodenya, jadi mereka tidak akan merusak apapun. Minifier bukanlah hal bodoh yang hanya akan mencari-dan-mengganti.
 
-So if `new Function` had access to outer variables, it would be unable to find renamed  `userName`.
+Jadi jika `new Function` mempunyai akses ke variabel luar, itu tidak akan bisa menemukan `userName` yang telah dinamai ulang.
 
-**If `new Function` had access to outer variables, it would have problems with minifiers.**
+**Jika `new Function` mempunyai akses ke variabel luar, itu akan membuat masalah dengan minifiernya..**
 
-Besides, such code would be architecturally bad and prone to errors.
+Selain itu, kode seperti itu secara arsitekturnya jelek dan rentan terhadap error.
 
-To pass something to a function, created as `new Function`, we should use its arguments.
+Untuk memberikan sesuatu kepada fungsi, dibuat sebagai `new Function`, kita seharusnya menggunakan argumennya.
 
-## Summary
+## Ringkasan
 
-The syntax:
+Sintaks:
 
 ```js
 let func = new Function ([arg1, arg2, ...argN], functionBody);
 ```
 
-For historical reasons, arguments can also be given as a comma-separated list.
+Untuk sebuah alasan lama, argumen-argumen bisa diberikan sebagai daftar dengan koma.
 
-These three declarations mean the same:
+Ketiga deklarasi ini melakukan hal yang sama:
 
 ```js
-new Function('a', 'b', 'return a + b'); // basic syntax
-new Function('a,b', 'return a + b'); // comma-separated
-new Function('a , b', 'return a + b'); // comma-separated with spaces
+new Function('a', 'b', 'return a + b'); // sintaks dasar
+new Function('a,b', 'return a + b'); // dipisahkan dengan kona
+new Function('a , b', 'return a + b'); // dipisahkan dengan koma dan ditambah spasi
 ```
 
-Functions created with `new Function`, have `[[Environment]]` referencing the global Lexical Environment, not the outer one. Hence, they cannot use outer variables. But that's actually good, because it insures us from errors. Passing parameters explicitly is a much better method architecturally and causes no problems with minifiers.
+Fungsi yang dibuat dengan `new Function`, memiliki `[[Environment]]` mereferensi kepada lingkungan leksikal global, bukan bagian luarnya. Karenanya, mereka tidak bisa menggunakan variabel di bagian luarnya. Tapi sebenarnya itu bagus karena itu memastikan kita menjauh dari error. Memberikan parameter secara jelas adalah metode yang lebih baik secara arsitektur dan tidak akan menyebabkan error pada minifier.

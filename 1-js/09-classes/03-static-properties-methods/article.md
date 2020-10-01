@@ -1,9 +1,8 @@
+# Properti dan metode statis
 
-# Static properties and methods
+Kita juga dapat menetapkan metode ke fungsi kelas itu sendiri, bukan ke `" prototipe "`-nya. Metode seperti itu disebut _static_.
 
-We can also assign a method to the class function itself, not to its `"prototype"`. Such methods are called *static*.
-
-In a class, they are prepended by `static` keyword, like this:
+Di dalam kelas, mereka ditambahkan oleh kata kunci `static`, seperti ini:
 
 ```js run
 class User {
@@ -17,21 +16,23 @@ class User {
 User.staticMethod(); // true
 ```
 
-That actually does the same as assigning it as a property directly:
+Itu sebenarnya sama dengan menetapkannya sebagai properti secara langsung:
 
-```js
-class User() { }
+```js run
+class User {}
 
-User.staticMethod = function() {
+User.staticMethod = function () {
   alert(this === User);
 };
+
+User.staticMethod(); // true
 ```
 
-The value of `this` in `User.staticMethod()` call is the class constructor `User` itself (the "object before dot" rule).
+Nilai `this` dalam panggilan `User.staticMethod()` adalah konstruktor kelas `User` itu sendiri (aturan "object before dot").
 
-Usually, static methods are used to implement functions that belong to the class, but not to any particular object of it.
+Biasanya, metode statis digunakan untuk mengimplementasikan fungsi yang dimiliki kelas, tetapi tidak untuk objek tertentu darinya.
 
-For instance, we have `Article` objects and need a function to compare them. A natural solution would be to add `Article.compare` method, like this:
+Misalnya, kita punya objek `Article` dan membutuhkan sebuah fungsi untuk membandingkan mereka. Solusi natural adalah menambahkan metode `Article.compare`, seperti ini:
 
 ```js run
 class Article {
@@ -47,7 +48,7 @@ class Article {
 */!*
 }
 
-// usage
+// penggunaan
 let articles = [
   new Article("HTML", new Date(2019, 1, 1)),
   new Article("CSS", new Date(2019, 0, 1)),
@@ -61,17 +62,17 @@ articles.sort(Article.compare);
 alert( articles[0].title ); // CSS
 ```
 
-Here `Article.compare` stands "above" articles, as a means to compare them. It's not a method of an article, but rather of the whole class.
+Di sini `Article.compare` berdiri "di atas" _articles_, sebagai alat untuk membandingkannya. Ini bukan metode _article_, melainkan seluruh kelas.
 
-Another example would be a so-called "factory" method. Imagine, we need few ways to create an article:
+Contoh lain adalah apa yang disebut metode "factory". Bayangkan, kita butuh beberapa cara untuk membuat _article_:
 
-1. Create by given parameters (`title`, `date` etc).
-2. Create an empty article with today's date.
-3. ...or else somehow.
+1. Buat dengan parameter yang diberikan (`title`, `date` dsb).
+2. Buat _article_ kosong dengan tanggal hari ini.
+3. ...atau yang lainnya.
 
-The first way can be implemented by the constructor. And for the second one we can make a static method of the class.
+Cara pertama dapat diterapkan oleh konstruktor. Dan untuk yang kedua kita bisa membuat metode statis kelas.
 
-Like `Article.createTodays()` here:
+Seperti `Article.createTodays()` di sini:
 
 ```js run
 class Article {
@@ -82,7 +83,7 @@ class Article {
 
 *!*
   static createTodays() {
-    // remember, this = Article
+    // ingat, this = Article
     return new this("Today's digest", new Date());
   }
 */!*
@@ -93,44 +94,45 @@ let article = Article.createTodays();
 alert( article.title ); // Today's digest
 ```
 
-Now every time we need to create a today's digest, we can call `Article.createTodays()`. Once again, that's not a method of an article, but a method of the whole class.
+Sekarang setiap kali kita perlu membuat _today's digest_, kita dapat memanggil `Article.createTodays()`. Sekali lagi, itu bukan metode _article_, tapi metode seluruh kelas.
 
-Static methods are also used in database-related classes to search/save/remove entries from the database, like this:
+Metode statis juga digunakan dalam kelas terkait basis data untuk mencari/menyimpan/menghapus entri dari basis data, seperti ini:
 
 ```js
-// assuming Article is a special class for managing articles
-// static method to remove the article:
-Article.remove({id: 12345});
+// dengan asumsi Article adalah kelas khusus untuk mengelola articles
+// metode statis untuk menghapus article:
+Article.remove({ id: 12345 });
 ```
 
-## Static properties
+## Properti Statis
 
 [recent browser=Chrome]
 
-Static properties are also possible, they look like regular class properties, but prepended by `static`:
+Properti statis juga dimungkinkan, mereka terlihat seperti properti kelas biasa, tetapi diawali dengan `static`:
 
 ```js run
 class Article {
-  static publisher = "Ilya Kantor";
+  static publisher = 'Ilya Kantor';
 }
 
-alert( Article.publisher ); // Ilya Kantor
+alert(Article.publisher); // Ilya Kantor
 ```
 
-That is the same as a direct assignment to `Article`:
+Itu sama dengan penugasan langsung ke `Article`:
 
 ```js
-Article.publisher = "Ilya Kantor";
+Article.publisher = 'Ilya Kantor';
 ```
 
-## Inheritance of static methods
+## Pewarisan properti dan metode statis
 
-Static methods are inherited.
+Properti dan metode statis diwarisi.
 
-For instance, `Animal.compare` in the code below is inherited and accessible as `Rabbit.compare`:
+Misalnya, `Animal.compare` dan `Animal.planet` dalam kode di bawah ini diwariskan dan dapat diakses sebagai `Rabbit.compare` dan `Rabbit.planet`:
 
 ```js run
 class Animal {
+  static planet = "Earth";
 
   constructor(name, speed) {
     this.speed = speed;
@@ -150,7 +152,7 @@ class Animal {
 
 }
 
-// Inherit from Animal
+// Mewarisi dari Animal
 class Rabbit extends Animal {
   hide() {
     alert(`${this.name} hides!`);
@@ -167,49 +169,47 @@ rabbits.sort(Rabbit.compare);
 */!*
 
 rabbits[0].run(); // Black Rabbit runs with speed 5.
+
+alert(Rabbit.planet); // Earth
 ```
 
-Now when we can call `Rabbit.compare`, the inherited `Animal.compare` will be called.
+Sekarang kita dapat memanggil `Rabbit.compare`, yang diwariskan `Animal.compare` akan dipanggil.
 
-How does it work? Again, using prototypes. As you might have already guessed, `extends` gives `Rabbit` the `[[Prototype]]` reference to `Animal`.
+Bagaimana cara kerjanya? Sekali lagi, menggunakan prototipe. Seperti yang mungkin sudah kamu duga, `extends` memberi `Rabbit` sebagai `[[Prototype]]` mengacu kepada `Animal`.
 
 ![](animal-rabbit-static.svg)
 
-<<<<<<< HEAD
-![](animal-rabbit-static.svg)
-=======
-So, `Rabbit extends Animal` creates two `[[Prototype]]` references:
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+Jadi, `Rabbit extends Animal` membuat dua acuan `[[Prototype]]`:
 
-1. `Rabbit` function prototypally inherits from `Animal` function.
-2. `Rabbit.prototype` prototypally inherits from `Animal.prototype`.
+1. `Rabbit` fungsi _prototypally_ mewarisi dari fungsi `Animal`.
+2. `Rabbit.prototype` _prototypally_ mewarisi dari `Animal.prototype`.
 
-As the result, inheritance works both for regular and static methods.
+Hasilnya, pewarisan berfungsi baik untuk metode reguler dan statis.
 
-Here, let's check that by code:
+Di sini, mari kita periksa dengan kode:
 
 ```js run
 class Animal {}
 class Rabbit extends Animal {}
 
-// for statics
+// untuk statis
 alert(Rabbit.__proto__ === Animal); // true
 
-// for regular methods
+// untuk metode reguler
 alert(Rabbit.prototype.__proto__ === Animal.prototype); // true
 ```
 
-## Summary
+## Ringkasan
 
-Static methods are used for the functionality that belongs to the class "as a whole", doesn't relate to a concrete class instance.
+Metode statis digunakan untuk fungsionalitas yang termasuk dalam kelas "secara keseluruhan". Ini tidak terkait dengan instance kelas konkret.
 
-For example, a method for comparison `Article.compare(article1, article2)` or a factory method `Article.createTodays()`.
+Sebagai contoh, metode perbandingan `Article.compare(article1, article2)` atau metode _factory_ `Article.createTodays()`.
 
-They are labeled by the word `static` in class declaration.
+Mereka diberi label dengan kata `static` dalam deklarasi kelas.
 
-Static properties are used when we'd like to store class-level data, also not bound to an instance.
+Properti statis digunakan ketika kita ingin menyimpan data tingkat kelas, juga tidak terikat pada sebuah _instance_.
 
-The syntax is:
+Sintaksnya adalah:
 
 ```js
 class MyClass {
@@ -221,13 +221,13 @@ class MyClass {
 }
 ```
 
-Technically, static declaration is the same as assigning to the class itself:
+Secara teknis, deklarasi statis sama dengan menetapkan ke kelas itu sendiri:
 
 ```js
 MyClass.property = ...
 MyClass.method = ...
 ```
 
-Static properties and methods are inherited.
+Properti dan metode statis diwarisi.
 
-For `class B extends A` the prototype of the class `B` itself points to `A`: `B.[[Prototype]] = A`. So if a field is not found in `B`, the search continues in `A`.
+Untuk `class B extends A` prototipe dari kelas `B` itu sendiri menunjuk ke `A`: `B.[[Prototype]] = A`. Jadi jika bidang tidak ditemukan di `B`, pencarian dilanjutkan di `A`.

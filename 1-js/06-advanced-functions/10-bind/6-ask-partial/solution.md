@@ -1,14 +1,14 @@
 
 
-1. Either use a wrapper function, an arrow to be concise:
+1. Funakan fungsi pembungkus, lebih jelasnya gunakanlah fungsi arrow:
 
     ```js 
     askPassword(() => user.login(true), () => user.login(false)); 
     ```
 
-    Now it gets `user` from outer variables and runs it the normal way.
+    Sekarang fungsi `user dapat diambil dari variabel luar dan dijalankan dengan normal.
 
-2. Or create a partial function from `user.login` that uses `user` as the context and has the correct first argument:
+2. Atau buat sebuah fungsi mini dari `user.login` yang menggunakan `user` sebagai konteksnya dan yang mana mempunyai argumen pertama yang benar:
 
 
     ```js 
