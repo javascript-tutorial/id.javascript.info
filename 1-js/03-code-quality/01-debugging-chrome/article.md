@@ -24,11 +24,11 @@ Klik itu dan pilih `hello.js` di tree view. Inilah yang mestinya muncul:
 
 ![](chrome-tabs.svg)
 
-Di sini kita bisa melihat tiga zona:
+Panel Sources punya 3 bagian:
 
-1. **Zona sumberdaya** melist HTML, JavaScript, CSS dan file lainnya, termasuk image yang dilampirkan ke laman. Extensi Chrome juga muncul di sini.
-2. **Zona sumber** menampilkan kode sumber.
-3. **Zona informasi dan kontrol** untuk debugging, kita akan mengexplorasi itu segera.
+1. Pane **File Navigator** melist HTML, JavaScript, CSS, dan file lainnya, termasuk image yang dilampirkan ke laman. Extensi Chrome bisa muncul juga di sini.
+2. Pane **Editor Kode** menampilkan kode sumber.
+3. Pane **Javascript Debugging** untuk debugging, kita akan mengexplorasi itu segera.
 
 Sekarang kamu bisa mengklik toggler yang sama <span class="devtools" style="background-position:-200px -76px"></span> lagi untuk menyembunyikan daftar sumber daya dan memberi spasi ke kode.
 
@@ -137,7 +137,7 @@ Ada tombol untuk itu di ujung atas panel kanan. Ayo kita ikuti mereka.
 <span class="devtools" style="background-position:-62px -192px"></span> -- "Langkahi atas": jalankan command berikutnya, tapi *jangan masuk ke fungsi*, hotkey `key:F10`.
 : Serupa dengan command "Step" sebelumnya, tapi berbeda jika pernyataan berikutnya berupa panggilan fungsi. Yaitu: bukan built-in, seperti `alert`, tapi fungsi kita sendiri.
 
-    Command "Langkahi" masuk ke dalam dan menjeda exekusi di baris pertama, sedangkan "Langkahi atas" mengexekusi panggilan fungsi bersarang secara tak terlihat, mengabaikan internal fungsi.
+    Command "Langkahi" masuk ke dalam dan menjeda exekusi di baris pertama, sedangkan "Kangkangi" mengexekusi panggilan fungsi bersarang secara tak terlihat, mengabaikan internal fungsi.
 
     Exekusi kemudian segera dijeda setelah fungsi itu.
 

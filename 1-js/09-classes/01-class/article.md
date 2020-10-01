@@ -5,15 +5,15 @@
 In object-oriented programming, a *class* is an extensible program-code-template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions or methods).
 ```
 
-In practice, we often need to create many objects of the same kind, like users, or goods or whatever.
+Pada kenyataannya, kita sering membutuhkan sesuatu untuk membuat banyak objek yang memiliki kemiripan, seperti user, atau benda-benda lainnya seperti buah-buahan, binatang, kendaraan dan sesuatu yang biasanya bisa dikelompokan.
 
-As we already know from the chapter <info:constructor-new>, `new function` can help with that.
+Seperti yang kita ketahui dari bab <info:constructor-new>, `new function` dapat membantu kita membuatnya.
 
-But in the modern JavaScript, there's a more advanced "class" construct, that introduces great new features which are useful for object-oriented programming.
+Tapi pada Javascript modern, ada cara pembuatan "class" yang lebih lanjut, Yang akan memperkenalkan fitur-fitur yang sangat berguna untuk pemograman berbasis objek / objek oriented.
 
-## The "class" syntax
+## Sintaks "class"
 
-The basic syntax is:
+Sintaks dasarnya adalah:
 ```js
 class MyClass {
   // class methods
@@ -25,11 +25,11 @@ class MyClass {
 }
 ```
 
-Then use `new MyClass()` to create a new object with all the listed methods.
+Kemudian kita gunakan `new MyClass` untuk menciptakan sebuah objek baru dengan semua method yang sudah didaftarkan.
 
-The `constructor()` method is called automatically by `new`, so we can initialize the object there.
+Method `constructor()` secara otomatis terpanggil oleh `new`, jadi kita dapat menginisialisasi sebuah objek dengannya.
 
-For example:
+Contohnyya: 
 
 ```js run
 class User {
@@ -44,33 +44,33 @@ class User {
 
 }
 
-// Usage:
+// Cara penggunaan:
 let user = new User("John");
 user.sayHi();
 ```
 
-When `new User("John")` is called:
-1. A new object is created.
-2. The `constructor` runs with the given argument and assigns `this.name` to it.
+Ketika `new user("john")` dijalankan:
+1. Sebuah objek baru terbentuk.
+2. method "constructor" berjalan dengan argumen yang dberikan dan menetapkan `this.name` pada nya.
 
-...Then we can call object methods, such as `user.sayHi()`.
+...Lalu kita dapat memanggil method objek, seperti `user.sayHi()`.
 
+```warn header="Tidak boleh ada koma diantara method class"
 
-```warn header="No comma between class methods"
-A common pitfall for novice developers is to put a comma between class methods, which would result in a syntax error.
+Kesalahan umum bagi pemula biasanya dengan memberikan koma diantara method class, yang nantinya akan menghasilkan sintaks eror.
 
-The notation here is not to be confused with object literals. Within the class, no commas are required.
+Notasi disini jangan disamakan dengan objek literal. Dalam class, tidak perlu ada koma.
 ```
 
-## What is a class?
+## Apa itu class?
 
-So, what exactly is a `class`? That's not an entirely new language-level entity, as one might think.
+Jadi apa sih sebenarnnya `class` itu ? Itu bukan sebuah istilah baru dalam bahasa pemograman.
 
-Let's unveil any magic and see what a class really is. That'll help in understanding many complex aspects.
+Mari kita uraikan dan lihat apa sebenarnya class itu. Yang nantinya akan membantu untuk memahami berbagai aspek yang lebih rumit.
 
-In JavaScript, a class is a kind of a function.
+Di Javascript, sebuah class itu merupakan sesuatu yang mirip fungsi.
 
-Here, take a look:
+Yuk kita lihat disini:
 
 ```js run
 class User {
@@ -78,24 +78,24 @@ class User {
   sayHi() { alert(this.name); }
 }
 
-// proof: User is a function
+// bukti: User adalah sebuah fungsi
 *!*
-alert(typeof User); // function
+alert(typeof User); // function 
 */!*
 ```
 
-What `class User {...}` construct really does is:
+Apa yang konstruktor `class User {...}` sebenarnya lakukan:
 
-1. Creates a function named `User`, that becomes the result of the class declaration. The function code is taken from the `constructor` method (assumed empty if we don't write such method).
-2. Stores class methods, such as `sayHi`, in `User.prototype`.
+1. Membuat sebuah fungsi bernama `User`, yang akan menjadi hasil dari deklarasi class. Sebuah fungsi kodingan diambil dari method `constructor` (kita asumsikan kosong jika kita tidak menulis sebuah method).
+2. Simpan method-method class didalamnya, seperti `sayHi`, pada `User.prototype`.
 
-After `new User` object is created, when we call its method, it's taken from the prototype, just as described in the chapter <info:function-prototype>. So the object has access to class methods.
+Setelah objek `new User` terbentuk, ketika kita panggil method tersebut, itu akan mengambil dari prototypenya, seperti yang dijelaskan pada bab <info:function-prototype>. Sehingga objek tersebut memiliki akses pada method class nya.
 
-We can illustrate the result of `class User` declaration as:
+Kita dapat mengilustrasikan hasil dari deklrasi `class User` seperti berikut:
 
 ![](class-user.svg)
 
-Here's the code to introspect it:
+Mari kita bedah kode tersebut:
 
 ```js run
 class User {
@@ -103,50 +103,50 @@ class User {
   sayHi() { alert(this.name); }
 }
 
-// class is a function
+// class adalah sebuah fungsi
 alert(typeof User); // function
 
-// ...or, more precisely, the constructor method
+// ...atau, lebih tepatnya, Method constructor
 alert(User === User.prototype.constructor); // true
 
-// The methods are in User.prototype, e.g:
+// Method tersebut berada pada User.prototype, contoh:
 alert(User.prototype.sayHi); // alert(this.name);
 
-// there are exactly two methods in the prototype
+// Didalamnya terdapat dua method pada prototipe
 alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 ```
 
-## Not just a syntax sugar
+## Bukan hanya sebuah pemanis sintaks belaka
 
-Sometimes people say that `class` is a "syntax sugar" (syntax that is designed to make things easier to read, but doesn't introduce anything new), because we could actually declare the same without `class` keyword at all:
+Terkadang orang-orang mengatakan bahwa `class` adalah sebuah `sintaksis sugar` (sintaks yang diciptakan untuk membuat mudah pembacaan, tapi tidak ada sesuatu yang baru didalamnya), karena kita sebenarnya dapat mendeklasikan objek tanpa menggunakan sintaks `class` sama sekali.
 
 ```js run
-// rewriting class User in pure functions
+// menjalankan Class User hanya dengan fungsi
 
-// 1. Create constructor function
+// 1. Membuat fungsi konstruktor
 function User(name) {
   this.name = name;
 }
-// any function prototype has constructor property by default,
-// so we don't need to create it
+// sebuah fungsi prototipe memiliki properti "constructor" secara bawaannya,
+// jadi kita tidak perlu membuatnya
 
-// 2. Add the method to prototype
+// 2 menambahkan method pada prototype
 User.prototype.sayHi = function() {
   alert(this.name);
 };
 
-// Usage:
+// Penggunaan:
 let user = new User("John");
 user.sayHi();
 ```
 
-The result of this definition is about the same. So, there are indeed reasons why `class` can be considered a syntax sugar to define a constructor together with its prototype methods.
+Hasil dari pendefinisian berikut adalah sama. Jadi memang ada alasan mengapa `class` dapat dianggap sebagai pemanis sintaks untuk pendefinisian konstruktor bersamaan dengan method prototipe-nya.
 
-Still, there are important differences.
+Tetap saja, ada perbedaan penting.
 
-1. First, a function created by `class` is labelled by a special internal property `[[FunctionKind]]:"classConstructor"`. So it's not entirely the same as creating it manually.
+1. Pertama, sebuah fungsi yang dibentuk dengan `class` dilabeli oleh properti internal yang khusus `[[FunctionKind]]:"classConstructor"`. Jadi tidak sepenuhnya sama dengan membuatnya secara manual.
 
-    And unlike a regular function, a class constructor must be called with `new`:
+    Javascript sendiri mengecek properti tersebut diberbagai tempat. sebagai contoh, tidak seperti fungsi biasa, itu harus dijalankan dengan sintaks `new`:
 
     ```js run
     class User {
@@ -157,7 +157,7 @@ Still, there are important differences.
     User(); // Error: Class constructor User cannot be invoked without 'new'
     ```
 
-    Also, a string representation of a class constructor in most JavaScript engines starts with the "class..."
+    Selain itu, representasi string dari konstruktor class di sebagian besar mesin JavaScript dimulai dengan "class ..."
 
     ```js run
     class User {
@@ -166,22 +166,22 @@ Still, there are important differences.
 
     alert(User); // class User { ... }
     ```
+    Terdapat perbedaan lain, kita akan segera melihatnya.
 
-2. Class methods are non-enumerable.
-    A class definition sets `enumerable` flag to `false` for all methods in the `"prototype"`.
+2. Method Class merupakan non-enumerable(tidak bisa melakukan perhitungan dengan method ini)
+    Sebuah pendefinisian class menetapkan flag `enumerable` menjadi `false` untuk semua methods yang ada di `properti` nya.
 
-    That's good, because if we `for..in` over an object, we usually don't want its class methods.
+    Itu bagus, karena jika kita melakukan `for..in` pada sebuah objek, kita biasanya tidak menginginkan method bawaan class nya.
 
-3. Classes always `use strict`.
-    All code inside the class construct is automatically in strict mode.
+3. Class selalu menggunakan `use strict`.(cek apa itu [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode))
 
-Besides, `class` syntax brings many other features that we'll explore later.
+Selain itu, sintaks `class` menghadirkan banyak fitur lain yang akan kita bahas nantinya.
 
 ## Class Expression
 
-Just like functions, classes can be defined inside another expression, passed around, returned, assigned etc.
+Sama seperti fungsi, kelas dapat didefinisikan denga ekspresi lain, diturunkan, dikembalikan, ditetapkan, dll.
 
-Here's an example of a class expression:
+Berikut adalah contoh class expression:
 
 ```js
 let User = class {
@@ -191,30 +191,29 @@ let User = class {
 };
 ```
 
-Similar to Named Function Expressions, class expressions may have a name.
+Mirip dengan fungsi Expressions yang memiliki nama, class expression juga mungkin memiliki nama.
 
-If a class expression has a name, it's visible inside the class only:
+Jika sebuah class expression memiliki nama, itu hanya terlihat di dalam class tersebut:
 
 ```js run
-// "Named Class Expression"
-// (no such term in the spec, but that's similar to Named Function Expression)
+// "Class Expression yang memiliki nama"
+// ((tidak ada pembahasan dalam spesifikasinya, tapi itu mirip dengan function expression yang memiliki nama)
 let User = class *!*MyClass*/!* {
   sayHi() {
-    alert(MyClass); // MyClass name is visible only inside the class
+    alert(MyClass); // Nama MyClass hanya terlihat di dalam kelas
   }
 };
 
-new User().sayHi(); // works, shows MyClass definition
+new User().sayHi(); //berjalan, menunjukkan definisi dari MyClass
 
-alert(MyClass); // error, MyClass name isn't visible outside of the class
+alert(MyClass); // error, Nama MyClass tidak bisa dilihat di luar kelas
 ```
 
-
-We can even make classes dynamically "on-demand", like this:
+Kita bahkan dapat membuat kelas secara dinamis "sesuai permintaan", seperti berikut:
 
 ```js run
 function makeClass(phrase) {
-  // declare a class and return it
+  // deklrasikan sebuah class dan kembalikan class trsebut
   return class {
     sayHi() {
       alert(phrase);
@@ -222,24 +221,24 @@ function makeClass(phrase) {
   };
 }
 
-// Create a new class
+// Membuat sebuah class baru
 let User = makeClass("Hello");
 
 new User().sayHi(); // Hello
 ```
 
 
-## Getters/setters, other shorthands
+## Getter/setter
 
-Just like literal objects, classes may include getters/setters, computed properties etc.
+Sama seperti objek literal, class dapat menyertakan getter / setter serta properti yang telah diproses, dll.
 
-Here's an example for `user.name` implemented using `get/set`:
+Berikut adalah sebuah contoh untuk `user.name` dengan implementasi menggunakan `get/set`: 
 
 ```js run
 class User {
 
   constructor(name) {
-    // invokes the setter
+    // memanggil setternya
     this.name = name;
   }
 
@@ -264,25 +263,14 @@ class User {
 let user = new User("John");
 alert(user.name); // John
 
-user = new User(""); // Name too short.
+user = new User(""); // Name is too short.
 ```
 
-The class declaration creates getters and setters in `User.prototype`, like this:
+Secara teknis, deklarasi kelas tersebut bekerja dengan membuat getter dan setter didalam `User.prototype`.
 
-```js
-Object.defineProperties(User.prototype, {
-  name: {
-    get() {
-      return this._name
-    },
-    set(name) {
-      // ...
-    }
-  }
-});
-```
+## Nama yang telah diproses [...]
 
-Here's an example with a computed property in brackets `[...]`:
+Berikut adalah sebuah contoh menggunakan method pada nama yang telah diproses pada bracket`[...]`:
 
 ```js run
 class User {
@@ -298,18 +286,24 @@ class User {
 new User().sayHi();
 ```
 
-## Class properties
+Fitur seperti itu mudah diingat, karena mirip dengan objek literal.
 
-```warn header="Old browsers may need a polyfill"
-Class-level properties are a recent addition to the language.
+## Class fields
+
+```warn header="Browser lama mungkin membutuhkan polyfill"
+Class fields adalah tambahan terbaru pada bahasa ini..
 ```
 
-In the example above, `User` only had methods. Let's add a property:
+Sebelumnya, kelas ini hanya memiliki method.
+
+"Class fields" adalah sebuah sintaks yang memungkinkan untuk menambahkan properti apa pun.
+
+Sebagai contoh, mari kita tambahkan properti `name` pada `class User`:
 
 ```js run
 class User {
 *!*
-  name = "Anonymous";
+  name = "John";
 */!*
 
   sayHi() {
@@ -317,14 +311,96 @@ class User {
   }
 }
 
-new User().sayHi();
+new User().sayHi(); // Hello, John!
 ```
 
-The property `name` is not placed into `User.prototype`. Instead, it is created by `new` before calling the constructor, it's a property of the object itself.
+Jadi, kita hanya perlu menulis "<property name> = <value>" pada saat proses deklarasi.
 
-## Summary
+Perbedaan penting pada class field adalah bahwa class field tersebut diatur untuk objek individual, bukan pada `User.prototype`:
 
-The basic class syntax looks like this:
+```js run
+class User {
+*!*
+  name = "John";
+*/!*
+}
+
+let user = new User();
+alert(user.name); // John
+alert(User.prototype.name); // undefined
+```
+
+Kita juga dapat menetapkan nilai menggunakan ekspresi yang lebih kompleks dan memanggil fungsi:
+
+```js run
+class User {
+*!*
+  name = prompt("Name, please?", "John");
+*/!*
+}
+
+let user = new User();
+alert(user.name); // John
+```
+
+### Membuat bound method dengan class field
+
+Seperti yang ditunjukkan pada bab <info: bind>, fungsi di JavaScript memiliki `this` yang dinamis. Itu tergantung pada konteks pemanggilannya.
+
+Jadi, jika method objek diteruskan dan dipanggil pada konteks lain, `this` tidak akan menjadi referensi ke objek itu lagi.
+
+Sebagai contoh, kode dibawah ini akan menampilkan output `undefined`:
+
+```js run
+class Button {
+  constructor(value) {
+    this.value = value;
+  }
+
+  click() {
+    alert(this.value);
+  }
+}
+
+let button = new Button("hello");
+
+*!*
+setTimeout(button.click, 1000); // undefined
+*/!*
+```
+Masalah itu terjadi karena memanggil `this` pada konteks lain.
+
+Terdapat dua pendekatan cara untuk memperbaikinya, seperti yang telah kita diskusikan pada bab <info:bind>:
+
+1. Meneruskan sebuah fungsi-wrapper, seperti `setTimeout(() => button.click(), 1000)`.
+2. Mengikat method tersebut terhadap objek, seperti pada constructor.
+
+Class field menyediakan sintaks lain yang cukup elegan:
+
+```js run
+class Button {
+  constructor(value) {
+    this.value = value;
+  }
+*!*
+  click = () => {
+    alert(this.value);
+  }
+*/!*
+}
+
+let button = new Button("hello");
+
+setTimeout(button.click, 1000); // hello
+```
+
+Class field ini `click = () => {...}` dibuat pada pada basis tiap objek, ada sebuah fungsi terpisah pada tiap `Button` objek, dengan `this` di dalamnya mereferensikan objek tersebut. Kita dapat meneruskan `button.click` di mana saja, dan nilai` this` akan selalu benar.
+
+Itu akan sangat berguna pada lingkungan browser, teruntuk event listener.
+
+## Kesimpulan
+
+Sintaks class dasar terlihat seperti ini:
 
 ```js
 class MyClass {
@@ -339,11 +415,11 @@ class MyClass {
   get something(...) {} // getter method
   set something(...) {} // setter method
 
-  [Symbol.iterator]() {} // method with computed name (symbol here)
+  [Symbol.iterator]() {} // method dengan nama yang telah diproses (disini simbol)
   // ...
 }
 ```
 
-`MyClass` is technically a function (the one that we provide as `constructor`), while methods, getters and settors are written to `MyClass.prototype`.
+`MyClass` secara teknis adalah sebuah fungsi (yang kita sediakan sebagai` konstruktor`), sedangkan method, getter, dan setter ditulis ke `MyClass.prototype`.
 
-In the next chapters we'll learn more about classes, including inheritance and other features.
+Pada bab selanjutnya kita akan mempelajari lebih lanjut tentang class, termasuk pewarisan dan fitur lainnya.

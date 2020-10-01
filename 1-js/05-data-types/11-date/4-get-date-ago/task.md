@@ -1,21 +1,21 @@
-importance: 4
+Tingkat kepentingan: 4
 
 ---
 
-# Which day of month was many days ago?
+# Tanggal berapakah beberapa hari yang lalu? 
 
-Create a function `getDateAgo(date, days)` to return the day of month `days` ago from the `date`.
+Buatlah sebuah fungsi `getDateAgo(tanggal, hari)` yang mengembalikan beberapa `hari` yang telah berlalu dari sebuah `tanggal`. 
 
-For instance, if today is 20th, then `getDateAgo(new Date(), 1)` should be 19th and `getDateAgo(new Date(), 2)` should be 18th.
+Sebagai contoh, apabila hari ini tanggal 20, maka `getDateAgo(new Date(), 1)` harus mengembalikan tanggal 19 dan `getDateAgo(new Date(), 2)` harus mengembalikan tanggal 18.
 
-Should work reliably for `days=365` or more:
+Harus bekerja dengan baik dan dapat diandalkan untuk `hari=365` atau lebih:
 
 ```js
-let date = new Date(2015, 0, 2);
+let tanggal = new Date(2015, 0, 2);
 
-alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
-alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
-alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)
+alert( getDateAgo(tanggal, 1) ); // 1, (1 Jan 2015)
+alert( getDateAgo(tanggal, 2) ); // 31, (31 Des 2014)
+alert( getDateAgo(tanggal, 365) ); // 2, (2 Jan 2014)
 ```
 
-P.S. The function should not modify the given `date`.
+P.S. Fungsi tidak boleh mengubah `tanggal` yang diberikan. 

@@ -1,1 +1,1 @@
-The wrapper returned by `spy(f)` should store all arguments and then use `f.apply` to forward the call.
+Pembungkus yang dikembalikan oleh `spy(f)` harus menyimpan semua argumen dan lalu menggunakan `f.apply` untuk melanjutkan pemanggilannya.

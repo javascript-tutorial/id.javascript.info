@@ -41,9 +41,11 @@ Sekarang `loadScriptPromise` cocok dengan kode berbasis promise.
 
 Seperti yang kita lihat, function tersebut mendelegasikan semua pekerjaan ke `loadScript` asli, menyediakan callbacknya sendiri yang diterjemahkan menjadi promise `resolve/reject`.
 
+
 Dalam praktiknya kita mungkin butuh untuk melakukan promisify banyak function, itu masuk akal untuk menggunakan sebuah helper.
 
 Kita akan memanggilnya `promisify(f)`: yang menerima function `f` untuk promisify dan mengembalikkan function wrapper.
+
 
 Wrapper itu melakukan hal yang sama dengan kode di atas: mengembalikkan sebuah promise dan meneruskan panggilan ke `f` asli, melacak hasilnya di dalam callback khusus:
 
@@ -53,7 +55,7 @@ function promisify(f) {
     return new Promise((resolve, reject) => {
       function callback(err, result) { // callback khusus kita untuk f
         if (err) {
-          return reject(err);
+          reject(err);
         } else {
           resolve(result);
         }
@@ -84,7 +86,7 @@ function promisify(f, manyArgs = false) {
     return new Promise((resolve, reject) => {
       function *!*callback(err, ...results*/!*) { // callback khusus kita untuk f
         if (err) {
-          return reject(err);
+          reject(err);
         } else {
           // resolve dengan semua hasil callback jika manyArgs ditentukan
           *!*resolve(manyArgs ? results : results[0]);*/!*
@@ -102,6 +104,7 @@ function promisify(f, manyArgs = false) {
 f = promisify(f, true);
 f(...).then(arrayOfResults => ..., err => ...)
 ```
+
 
 Untuk format callback yang lebih eksotis, seperti yang tidak memiliki `err` sama sekali: `callback(result)`, kita bisa melakukan promisify function tersebut tanpa menggunakan helper, secara manual.
 

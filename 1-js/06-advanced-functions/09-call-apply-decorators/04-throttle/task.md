@@ -1,48 +1,53 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Throttle decorator
+# Dekorator penutup
 
-Create a "throttling" decorator `throttle(f, ms)` -- that returns a wrapper, passing the call to `f` at maximum once per `ms` milliseconds. Those calls that fall into the "cooldown" period, are ignored.
+Buatlah sebuah dekorator "penutup" `throttle(f, ms)` -- yang mengembalikan sebuah pembungkus.
 
-**The difference with `debounce` -- if an ignored call is the last during the cooldown, then it executes at the end of the delay.**
+Ketika fungsinya dipanggil beberapa kali, fungsinya akan melakukan pemanggilan kepada `f` maksimal sekali per `ms` milidetik.
 
-Let's check the real-life application to better understand that requirement and to see where it comes from.
+Perbedaannya dengan dekorator debounce adalah keduanya benar-benar dekorator berbeda:
+- `debounce` menjalankan fungsinya sekali setelah masa "tidak aktif". Bagus untuk memproses hasil akhir.
+- `throttle` menjalankan fungsinya tidak lebih banyak dari waktu `ms` yang diberikan. Bagus untuk update tersusun yang tidak terlalu sering dipanggil.
 
-**For instance, we want to track mouse movements.**
+Dengan kata lain, `throttle` seperti seorang sekertaris yang menerima panggilan telefon, tapi menggangu bos nya (memanggil fungsi `f` asli) tidak lebih sering dari sekali per `ms` milidetik.
 
-In a browser we can setup a function to run at every mouse movement and get the pointer location as it moves. During an active mouse usage, this function usually runs very frequently, can be something like 100 times per second (every 10 ms).
+Ayo kita lihat contoh pengaplikasiannya langsung untuk mengerti lebih dalam tentang kebutuhannya dan dimana digunakannya.
 
-**We'd like to update some information on the web-page when the pointer moves.**
+**Contoh, kita ingin mengetahui posisis dari pergerakan mouse.**
 
-...But updating function `update()` is too heavy to do it on every micro-movement. There is also no sense in updating more often than once per 100ms.
+Didalam peramban kita bisa menyetel sebuah fungsi yang berjalan untuk setiap pergerakan mouse dan mendapatkan lokasi pointernya selama mouse-nya bergerak. Selama mouse-nya bergerak terus-menerus, fungsi ini biasanya berjalan sangat sering, bisa menjadi seperti 100 kali per-detik (setiap 10ms).
+**Kota ingin meng-update beberapa informasi didalam halaman webnya ketika pointernya bergerak.**
 
-So we'll wrap it into the decorator: use `throttle(update, 100)` as the function to run on each mouse move instead of the original `update()`. The decorator will be called often, but forward the call to `update()` at maximum once per 100ms.
+...Akan tetapi meng-update fungsi `update()` terlalu berat dilakukan untuk dijalankan terus menerus mengikuti pergerakan mouse. Tidak ada alasan yang bagus untuk meng-update lebih sering daripada sekali per 100ms.
 
-Visually, it will look like this:
+Jadi kita akan membungkusnya dengan dekorator: gunakan `throttle(update, 100)` sebagai fungsi untuk berjalan setiap pergerakan mouse daripada secara langsung menggunakan `update()`. Dekoratornya akan sering dipanggil, tapi untuk pemanggilan kepada `update` akan dilakukan maksimal sekali per 100ms.
 
-1. For the first mouse movement the decorated variant immediately passes the call to `update`. That's important, the user sees our reaction to their move immediately.
-2. Then as the mouse moves on, until `100ms` nothing happens. The decorated variant ignores calls.
-3. At the end of `100ms` -- one more `update` happens with the last coordinates.
-4. Then, finally, the mouse stops somewhere. The decorated variant waits until `100ms` expire and then runs `update` with last coordinates. So, quite important, the final mouse coordinates are processed.
+Secara visual, langkah-langkahnya akan seperti ini:
 
-A code example:
+1. Untuk pergerakan mouse pertama dekoratornya langsung memanggil fungsi `update`. Itu penting, untuk penggunanya melihat reaksi sistemnya ketika mereka baru saja bergerak.
+2. Lalu selama mousenya bergerak, sampai `100ms` tidak akan terjadi apa-apa. Dekoratornya akan mengabaikan pemanggilannya.
+3. Setelah melewati `100ms` -- satu pemanggilan fungsi `update `terjadi dengan kondisi paling terakhir.
+4. Lalu, pada akhirnya, mousenya berhenti disuatu tempat. Dekoratornya menunggu sampai melewati `100ms` dan lalu menjalankan `update` dengan kondisi terakhir. Jadi, cukup penting, pergerakan mouse terakhir akan diproses.
+
+Contoh kode:
 
 ```js
 function f(a) {
   console.log(a);
 }
 
-// f1000 passes calls to f at maximum once per 1000 ms
+// f1000 mengirimkan pemanggilan kepada f maksimal sekali per 1000ms
 let f1000 = throttle(f, 1000);
 
-f1000(1); // shows 1
-f1000(2); // (throttling, 1000ms not out yet)
-f1000(3); // (throttling, 1000ms not out yet)
+f1000(1); // tampilkan 1
+f1000(2); // (ditahan, belum melewati 1000ms)
+f1000(3); // (ditahan, belum melewati 1000ms)
 
-// when 1000 ms time out...
-// ...outputs 3, intermediate value 2 was ignored
+// ketika 1000ms terlewati...
+// ...menampilkan 3, nilai sebelum tiga yaitu 2 akan diabaikan
 ```
 
-P.S. Arguments and the context `this` passed to `f1000` should be passed to the original `f`.
+Catatan. Argumen dan konteks `this` yang dikirimkan kepada `f1000` harus bisa dikirimkan kepada fungsi asli `f`.

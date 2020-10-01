@@ -16,7 +16,7 @@ The prototype is a little bit "magical". When we want to read a property from `o
 
 The property `[[Prototype]]` is internal and hidden, but there are many ways to set it.
 
-One of them is to use `__proto__`, like this:
+One of them is to use the special name `__proto__`, like this:
 
 ```js run
 let animal = {
@@ -32,9 +32,9 @@ rabbit.__proto__ = animal;
 ```
 
 ```smart header="`__proto__` is a historical getter/setter for `[[Prototype]]`"
-Please note that `__proto__` is *not the same* as `[[Prototype]]`. That's a getter/setter for it.
+Please note that `__proto__` is *not the same* as `[[Prototype]]`. It's a getter/setter for it.
 
-It exists for historical reasons, in modern language it is replaced with functions `Object.getPrototypeOf/Object.setPrototypeOf` that also get/set the prototype. We'll study the reasons for that and these functions later.
+It exists for historical reasons. In modern language it is replaced with functions `Object.getPrototypeOf/Object.setPrototypeOf` that also get/set the prototype. We'll study the reasons for that and these functions later.
 
 By the specification, `__proto__` must only be supported by browsers, but in fact all environments including server-side support it. For now, as `__proto__` notation is a little bit more intuitively obvious, we'll use it in the examples.
 ```
@@ -197,13 +197,16 @@ alert(admin.fullName); // John Smith (*)
 
 // setter triggers!
 admin.fullName = "Alice Cooper"; // (**)
+
+alert(admin.fullName); // Alice Cooper , state of admin modified
+alert(user.fullName); // John Smith , state of user protected
 ```
 
 Here in the line `(*)` the property `admin.fullName` has a getter in the prototype `user`, so it is called. And in the line `(**)` the property has a setter in the prototype, so it is called.
 
 ## The value of "this"
 
-An interesting question may arise in the example above: what's the value of `this` inside `set fullName(value)`? Where the properties `this.name` and `this.surname` are written: into `user` or `admin`?
+An interesting question may arise in the example above: what's the value of `this` inside `set fullName(value)`? Where are the properties `this.name` and `this.surname` written: into `user` or `admin`?
 
 The answer is simple: `this` is not affected by prototypes at all.
 
@@ -246,13 +249,13 @@ The resulting picture:
 
 ![](proto-animal-rabbit-walk-3.svg)
 
-If we had other objects like `bird`, `snake` etc inheriting from `animal`, they would also gain access to methods of `animal`. But `this` in each method call would be the corresponding object, evaluated at the call-time (before dot), not `animal`. So when we write data into `this`, it is stored into these objects.
+If we had other objects, like `bird`, `snake`, etc., inheriting from `animal`, they would also gain access to methods of `animal`. But `this` in each method call would be the corresponding object, evaluated at the call-time (before dot), not `animal`. So when we write data into `this`, it is stored into these objects.
 
 As a result, methods are shared, but the object state is not.
 
 ## for..in loop
 
-The `for..in` loops over inherited properties too.
+The `for..in` loop iterates over inherited properties too.
 
 For instance:
 
@@ -267,7 +270,7 @@ let rabbit = {
 };
 
 *!*
-// Object.keys only return own keys
+// Object.keys only returns own keys
 alert(Object.keys(rabbit)); // jumps
 */!*
 

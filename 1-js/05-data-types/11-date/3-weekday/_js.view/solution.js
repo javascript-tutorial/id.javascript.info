@@ -1,10 +1,10 @@
 function getLocalDay(date) {
 
-  let day = date.getDay();
+  let days = date.getDay();
 
-  if (day == 0) { // weekday 0 (sunday) is 7 in european
-    day = 7;
+  if (days == 0) { // hari ke-0 (Minggu) adalah hari ke-7 di Eropa
+    days = 7;
   }
 
-  return day;
+  return days;
 }

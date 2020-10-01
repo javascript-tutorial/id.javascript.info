@@ -1,10 +1,10 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Store read dates
+# Menyimpan tanggal
 
-There's an array of messages as in the [previous task](info:task/recipients-read). The situation is similar.
+Terdapat sebuah array dari pesan sama seperti di [previous task](info:task/recipients-read).Situasinya sama.
 
 ```js
 let messages = [
@@ -14,8 +14,8 @@ let messages = [
 ];
 ```
 
-The question now is: which data structure you'd suggest to store the information: "when the message was read?".
+Pertanyaannya: struktur data mana yang kamu gunakan untuk menyimpan informasinya: "ketika pesannya dibaca?".
 
-In the previous task we only needed to store the "yes/no" fact. Now we need to store the date, and it should only remain in memory until the message is garbage collected.
+Di tugas sebelumnya kita hanya menyimpan "yes/no". Sekarang kita butuh untuk menyimpan tanggal, dan itu harus tetap berada di memori simpan sampai pesannya dibuang.
 
-P.S. Dates can be stored as objects of built-in `Date` class, that we'll cover later.
+Catatan. Tanggal bisa disimpan sebagai objek dengan kelas bawaan `Date, kita akan mempelajarinya nanti.

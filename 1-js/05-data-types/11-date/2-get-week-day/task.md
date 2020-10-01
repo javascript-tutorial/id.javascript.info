@@ -1,14 +1,14 @@
-importance: 5
+Tingkat kepentingan: 5
 
 ---
 
-# Show a weekday
+# Tampilkan hari dalam satu minggu 
 
-Write a function `getWeekDay(date)` to show the weekday in short format: 'MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'.
+Tulis sebuah fungsi `getWeekDay(tanggal)` untuk menunjukkan hari dalam format: 'SEN', 'SEL', 'RAB', 'KAM', 'JUM', 'SAB', 'MIN'.
 
-For instance:
+Sebagai contoh:
 
 ```js no-beautify
-let date = new Date(2012, 0, 3);  // 3 Jan 2012
-alert( getWeekDay(date) );        // should output "TU"
+let tanggal = new Date(2012, 0, 3);  // 3 Jan 2012
+alert( getWeekDay(tanggal) );        // harus mengeluarkan "SEL"
 ```

@@ -1,10 +1,10 @@
-importance: 5
+nilai penting: 5
 
 ---
 
 # Count properties
 
-Write a function `count(obj)` that returns the number of properties in the object:
+Tulis fungsi `count(obj)` yang mengembalikan jumlah properti di dalam objek:
 
 ```js
 let user = {
@@ -15,7 +15,7 @@ let user = {
 alert( count(user) ); // 2
 ```
 
-Try to make the code as short as possible.
+Coba buat kodenya sependek mungkin.
 
-P.S. Ignore symbolic properties, count only "regular" ones.
+P.S. Jangan pedulikan properti simbolik, hanya hitung yang "reguler".
 

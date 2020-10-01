@@ -1,15 +1,15 @@
-importance: 3
+nilai penting: 3
 
 ---
 
-# Multiply numeric properties by 2
+# Kalikan properti numerik dengan 2
 
-Create a function `multiplyNumeric(obj)` that multiplies all numeric properties of `obj` by `2`.
+Buatlah sebuah fungsi `multiplyNumerik(obj)` yang mengkalikan seluruh properti numerik dari `obj` dengan `2`.
 
-For instance:
+Contoh:
 
 ```js
-// before the call
+// sebelum dipanggil
 let menu = {
   width: 200,
   height: 300,
@@ -18,7 +18,7 @@ let menu = {
 
 multiplyNumeric(menu);
 
-// after the call
+// setelah dipanggil
 menu = {
   width: 400,
   height: 600,
@@ -26,8 +26,8 @@ menu = {
 };
 ```
 
-Please note that `multiplyNumeric` does not need to return anything. It should modify the object in-place.
+Perhatikan bahwa `multiplyNumeric` tidak butuh mengembalikan apapun. Fungsinya harus memodifikasi objectnya langsung.
 
-P.S. Use `typeof` to check for a number here.
+Catatan, gunakan `typeof` untuk memeriksa angka disini.
 
 

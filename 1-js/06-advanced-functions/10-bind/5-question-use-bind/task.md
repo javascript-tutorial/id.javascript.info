@@ -1,14 +1,14 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Fix a function that loses "this"
+# Perbaiki sebuah fungsi yang telah kehilangan "this"
 
-The call to `askPassword()` in the code below should check the password and then call `user.loginOk/loginFail` depending on the answer.
+Pemanggilan kepada `askPassword()` didalam kode dibawah harus memeriksa passwordnya dan lalu memanggil `user.loginOk/loginFail` tergantung dari jawabannya.
 
-But it leads to an error. Why?
+Tapi pemanggilan itu mengembalikan sebuah error. kenapa?
 
-Fix the highlighted line for everything to start working right (other lines are not to be changed).
+Perbaiki baris yang di tandai agar kodenya dapat berjalan dengan benar (baris lainnya tidak perlu diubah).
 
 ```js run
 function askPassword(ok, fail) {
