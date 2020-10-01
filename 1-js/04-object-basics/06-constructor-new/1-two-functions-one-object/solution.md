@@ -1,8 +1,8 @@
-Yes, it's possible.
+Ya, hal itu memungkinkan.
 
-If a function returns an object then `new` returns it instead of `this`.
+Jika sebuah fungsi mengembalikan sebuah objek lalu `new` mengembalikan objek tersebut sebagai ganti `this`.
 
-So they can, for instance, return the same externally defined object `obj`:
+Jadi fungsi tersebut dapat, misalnya, mengembalikan objek `obj` yang secara eksternal didefinisikan sama:
 
 ```js run no-beautify
 let obj = {};

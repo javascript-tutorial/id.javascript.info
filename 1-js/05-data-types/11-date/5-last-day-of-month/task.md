@@ -1,14 +1,14 @@
-importance: 5
+Tingkat kepentingan: 5
 
 ---
 
-# Last day of month?
+# Tanggal terakhir dari sebuah bulan?
 
-Write a function `getLastDayOfMonth(year, month)` that returns the last day of month. Sometimes it is 30th, 31st or even 28/29th for Feb.
+Tulis sebuah fungsi `getLastDayOfMonth(tahun, bulan)` yang mengembalikan tanggal terakhir dari sebuah bulan. Terkadang 30, 31, atau bahkan 28/29 untuk Februari.
 
-Parameters:
+Parameter:
 
-- `year` -- four-digits year, for instance 2012.
-- `month` -- month, from 0 to 11.
+- `tahun` -- tahun dalam empat-digit, sebagai contoh 2012.
+- `bulan` -- bulan, dari 0 sampai 11.
 
-For instance, `getLastDayOfMonth(2012, 1) = 29` (leap year, Feb).
+Sebagai contoh, `getLastDayOfMonth(2012, 1) = 29` (tahun kabisat, Feb).

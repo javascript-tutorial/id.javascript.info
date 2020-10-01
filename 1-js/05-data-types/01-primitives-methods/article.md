@@ -1,20 +1,20 @@
-# Methods of primitives
+# Metode primitif
 
-JavaScript allows us to work with primitives (strings, numbers, etc.) as if they were objects. They also provide methods to call as such. We will study those soon, but first we'll see how it works because, of course, primitives are not objects (and here we will make it even clearer).
+Javascript memperbolehkan kita untuk bekerja dengan primitif (string, angka, dan lain-lain.) seperti jika mereka adalah objek. Mereka juga menyediakan metode untuk dipanggil. Kita akan belajar tentang hal itu nanti, tapi pertama kita akan melihat bagaimana hal itu bekerja, dan juga, primitif bukanlah objek (dan disini kita akan membuat hal itu lebih jelas).
 
-Let's look at the key distinctions between primitives and objects.
+Ayo kita lihat pada kunci perbedaan diantara primitif dan objek.
 
-A primitive
+Primitif
 
-- Is a value of a primitive type.
-- There are 6 primitive types: `string`, `number`, `boolean`, `symbol`, `null` and `undefined`.
+- Adalah sebuah nilai dari tipe primitif.
+- Ada 7 primitif tipe: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` dan `undefined`.
 
-An object
+Objek
 
-- Is capable of storing multiple values as properties.
-- Can be created with `{}`, for instance: `{name: "John", age: 30}`. There are other kinds of objects in JavaScript: functions, for example, are objects.
+- Mampu untuk menyimpan banyak nilai sebagai properti.
+- Bisa dibuat dengan menggunakan `{}`, contoh: `{name: "John", age: 30}`. Terdapat beberapa macam objek di Javascript: untuk contoh, fungsi, adalah objek.
 
-One of the best things about objects is that we can store a function as one of its properties.
+Salah satu hal yang terbaik tentang objek adalah kita bisa menyimpan fungsi sebagai salah satu dari propertinya.
 
 ```js run
 let john = {
@@ -27,32 +27,33 @@ let john = {
 john.sayHi(); // Hi buddy!
 ```
 
-So here we've made an object `john` with the method `sayHi`.
+Jadi disini kita membuat sebuah objek `john` dengan method `sayHi`.
 
-Many built-in objects already exist, such as those that work with dates, errors, HTML elements, etc. They have different properties and methods.
+Ada juga built-in objek yang tersedia, seperti objek yang bekerja dengan tanggal, error, elemen HTML, dll. Mereka mempunyai properti dan method yang berbeda-beda.
 
-But, these features come with a cost!
+Tapi, fitur ini ada dengan efek samping.
 
-Objects are "heavier" than primitives. They require additional resources to support the internal machinery.
+Objek lebih "berat" dari primitif. Dan mereka membutuhkan sumber daya tambahan untuk mendukung pekerjaannya.
 
-## A primitive as an object
+## Sebuah primitif sebagai sebuah objek
 
-Here's the paradox faced by the creator of JavaScript:
+Ini adalah paradoks yang dihadapi dari pencipta Javascript:
 
-- There are many things one would want to do with a primitive like a string or a number. It would be great to access them as methods.
+- Terdapat banyak hal yang harus dilakukan dengan primitif seperti string atau angka. Akan menjadi lebih baik jika mereka bisa diakses sebagai method.
 - Primitives must be as fast and lightweight as possible.
+- Sebisa mungkin primitif haruslah cepat dan ringan.
 
-The solution looks a little bit awkward, but here it is:
+Solusinya terlihat sedikit aneh, tapi inilah solusinya:
 
-1. Primitives are still primitive. A single value, as desired.
-2. The language allows access to methods and properties of strings, numbers, booleans and symbols.
-3. In order for that to work, a special "object wrapper" that provides the extra functionality is created, and then is destroyed.
+1. Primitif masih tetap primitif. Sebuah nilai tunggal, seperti yang diinginkan.
+2. Bahasanya membolehkan untuk mengakses method dan properti dari string, number, boolean dan symbols.
+3. Untuk membuat itu bekerja, "objek pembungkus" spesial yang menyediakan fungsionalitas tambahan dibuat, dan lalu dihancurkan.
 
-The "object wrappers" are different for each primitive type and are called: `String`, `Number`, `Boolean` and `Symbol`. Thus, they provide different sets of methods.
+"Objek pembungkus" berbeda untuk setiap tipe primitif dan dipanggil: `String`, `Number`, `Boolean` dan `Symbol`. Lalu, mereka menyediakan metode-metode yang berbeda.
 
-For instance, there exists a string method [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) that returns a capitalized `str`.
+Contoh, ada methode string [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) yang mengembalikan string `str` yang telah diubah menjadi huruf kapital.
 
-Here's how it works:
+Beginilah caranya itu bekerja:
 
 ```js run
 let str = "Hello";
@@ -60,17 +61,17 @@ let str = "Hello";
 alert( str.toUpperCase() ); // HELLO
 ```
 
-Simple, right? Here's what actually happens in `str.toUpperCase()`:
+Simpel, kan? Inilah sebenarnya yang terjadi didalam `str.toUpperCase()`:
 
-1. The string `str` is a primitive. So in the moment of accessing its property, a special object is created that knows the value of the string, and has useful methods, like `toUpperCase()`.
-2. That method runs and returns a new string (shown by `alert`).
-3. The special object is destroyed, leaving the primitive `str` alone.
+1. String `str` adalah sebuah primitif. Jadi sementara waktu untuk mengakses propertinya, sebuah objek spesial yang tahu tentang nilai dari string dibuat, dan memiliki metode yang berguna, seperti `toUpperCase()`.
+2. Metode itu menjalankan dan mengembalikan string baru (ditampilkan oleh `alert`).
+3. Objek spesial itu lalu dihancurkan, meninggalkan `str` primitif.
 
-So primitives can provide methods, but they still remain lightweight.
+Jadi primitif bisa menyediakan metode, tapi mereka akan tetap ringan.
 
-The JavaScript engine highly optimizes this process. It may even skip the creation of the extra object at all. But it must still adhere to the specification and behave as if it creates one.
+Mesin Javascript sangat mengoptimasi proses ini. Ini mungkin akan melewatkan pembuatan dari objek tambahan itu. Tapi itu masih melekat pada spesifikasinya dan bertingkah seperti jika itu memang diciptakan.
 
-A number has methods of its own, for instance, [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) rounds the number to the given precision:
+Sebuah angka mempunyai metodenya sendiri, contoh [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) membulatkan angka kedalam presisi yang diberikan:
 
 ```js run
 let n = 1.23456;
@@ -78,15 +79,15 @@ let n = 1.23456;
 alert( n.toFixed(2) ); // 1.23
 ```
 
-We'll see more specific methods in chapters <info:number> and <info:string>.
+Kita akan melihat metode spesifik lainnya di bab <info:number> dan <info:string>.
 
 
-````warn header="Constructors `String/Number/Boolean` are for internal use only"
-Some languages like Java allow us to explicitly create "wrapper objects" for primitives using a syntax like `new Number(1)` or `new Boolean(false)`.
+````warn header="Konstruktor `String/Number/Boolean` hanya digunakan untuk kebutuhan internal" 
+Beberapa bahasa seperti Java membolehkan kita untuk secara jelas membuat "objek pembungkus" untuk primitif menggunakan sintaks seperti `new Number(1)` atau `new Boolean(false)`.
 
-In JavaScript, that's also possible for historical reasons, but highly **unrecommended**. Things will go crazy in several places.
+Didalam javascript, hal itu bisa dilakukan untuk beberapa alasan, tapi sangat **tidak direkomendasikan**. Beberapa hal akan menjadi rumit di beberapa tempat.
 
-For instance:
+Contoh:
 
 ```js run
 alert( typeof 0 ); // "number"
@@ -94,35 +95,36 @@ alert( typeof 0 ); // "number"
 alert( typeof new Number(0) ); // "object"!
 ```
 
-Objects are always truthy in `if`, so here the alert will show up:
+Objek akan selalu truthy didalam `if`, jadi disini alert akan muncul:
 
 ```js run
 let zero = new Number(0);
 
-if (zero) { // zero is true, because it's an object
+if (zero) { // zero adalah true, karena itu adalah sebuah objek
   alert( "zero is truthy!?!" );
 }
 ```
 
-On the other hand, using the same functions `String/Number/Boolean` without `new` is a totally sane and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).
+Disisi lain, menggunakan fungsi yang sama `String/Number/Boolean` tanpa `new` adalah hal yang masuk akal dan hal yang berguna. Mereka mengubah nilai kedalam tipe yang sesuai: kedalam sebuah string, sebuah number, atau sebuah boolean(primitif).
 
-For example, this is entirely valid:
+Contoh, hal ini sepenuhnya valid:
 ```js
-let num = Number("123"); // convert a string to number
+let num = Number("123"); // mengubah string menjadi angka
 ```
 ````
 
 
-````warn header="null/undefined have no methods"
-The special primitives `null` and `undefined` are exceptions. They have no corresponding "wrapper objects" and provide no methods. In a sense, they are "the most primitive".
+````warn header="null/undefined tidak memiliki method"
+Primitif spesial `null` dan `undefined` adalah pengecualian. Mereka tidak mempunyai "objek pembungkus" yang sesuai dan tidak menyediakan metode. Dalam arti tertentu, mereka adalah "yang paling primitif".
 
-An attempt to access a property of such value would give the error:
+Percobaan untuk mengakses properti seperti nilai akan memberikan error:
 
 ```js run
 alert(null.test); // error
 ````
 
-## Summary
+## Ringkasan
 
-- Primitives except `null` and `undefined` provide many helpful methods. We will study those in the upcoming chapters.
-- Formally, these methods work via temporary objects, but JavaScript engines are well tuned to optimize that internally, so they are not expensive to call.
+- Primitif kecuali `null` dan `undefined` menyediakan banyak metode yang berguna. Kita akan belajar hal itu di bab selanjutnya.
+- Secara formal, metode-metode ini akan bekerja dengan menggunakan objek sementara, tapi mesin Javascript telah dibuat dengan baik untuk mengoptimasi hal itu secara internal, jadi mereka tidaklah sulit untuk dipanggil.
+

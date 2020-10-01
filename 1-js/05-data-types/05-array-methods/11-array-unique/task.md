@@ -1,18 +1,18 @@
-importance: 4
+nilai penting: 4
 
 ---
 
-# Filter unique array members
+# Filter untuk anggota array yang unik
 
-Let `arr` be an array.
+Buatlah sebuah array `arr`.
 
-Create a function `unique(arr)` that should return an array with unique items of `arr`.
+Buatlah sebuah fungsi `unique(arr)` yang harus mengembalikan array dengan item yang unik dari `arr`.
 
-For instance:
+Contoh:
 
 ```js
 function unique(arr) {
-  /* your code */
+  /* kodemu */
 }
 
 let strings = ["Hare", "Krishna", "Hare", "Krishna",

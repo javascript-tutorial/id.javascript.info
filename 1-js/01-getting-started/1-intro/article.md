@@ -4,7 +4,7 @@ Mari kita lihat apa yang spesial dari JavaScript, apa saja yang bisa kita buat m
 
 ## Apa itu JavaScript?
 
-*JavaScript* awalnya dibuat untuk *"membuat halaman web menjadi hidup"*.
+*Javascript" pada awalnya diciptakan untuk "membuat halaman web menjadi hidup".
 
 Program yang ada dalam bahasa ini disebut *script*. Script ini bisa ditulis langsung ke dalam kode HTML dari sebuah web dan berjalan otomatis saat halaman dimuat.
 
@@ -24,9 +24,15 @@ Browser punya engine yang tertanam didalamnya yang disebut "JavaScript virtual m
 
 Tiap engine punya *codename*-nya sendiri. Misalnya:
 
+<<<<<<< HEAD
 - [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- di Chrome dan Opera.
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- di Firefox.
 - ...Ada juga codename lain seperti "Trident" dan "Chakra" untuk versi berbeda dari IE, "ChakraCore" untuk Microsoft Edge, "Nitro" dan "SquirrelFish" untuk Safari, dll.
+=======
+- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- in Chrome and Opera.
+- [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- in Firefox.
+- ...There are other codenames like "Chakra" for IE, "ChakraCore" for Microsoft Edge, "Nitro" and "SquirrelFish" for Safari, etc.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 Istilah di atas sebaiknya diingat karena akan sering digunakan dalam artikel para developer di internet. Kita akan menggunakannya juga. Misalnya, jika "fitur X didukung V8", kemungkinan ia bisa jalan di Chrome dan Opera.
 
@@ -38,7 +44,7 @@ Engine sangat rumit. Tapi basicnya mudah.
 2. Lalu ia mengkonversi ("mengkompilasi") script tersebut menjadi bahasa mesin.
 3. Dan kemudian kode mesin berjalan, lumayan cepat.
 
-Engine melakukan optimisasi di setiap langkah proses. Dia bahkan memperhatikan script yang telah dikompilasi saat sedang berjalan, menganalisa data yang mengalir di dalam, dan melakukan optimisasi ke kode mesin berdasarkan pengetahuan itu. Ketika selesai, script berjalan lumayan cepat.
+Engine melakukan optimisasi di setiap langkah proses. Dia bahkan memperhatikan script yang telah dikompilasi saat sedang berjalan, menganalisa data yang mengalir di dalam, dan melakukan optimisasi ke kode mesin berdasarkan pengetahuan itu.
 ```
 
 ## Apa yang bisa dilakukan *in-browser JavaScript*?
@@ -63,7 +69,7 @@ Kemampuan JavaScript yang ada di dalam browser terbatas demi keamanan pengguna. 
 
 Contoh keterbatasan tersebut meliputi:
 
-- JavaScript pada halaman web tak boleh membaca/mengubah file semaunya pada hard disk, mengcopy script tersebut, atau mengeksekusi program. Ia tak punya akses langsung ke OS system functions.
+- Javascript didalam sebuah halaman web seharusnya tidak dapat membaca/mengubah file didalam hardisk semaunya.
 
     Browser-browser modern memperbolehkan JavaScript mengakses file, tapi aksesnya dibatasi dan tersedia hanya jika pengguna melakukan hal tertentu, misalnya seperti "menjatuhkan" file ke dalam jendela browser atau memilih file via tag `<input>`.
 
@@ -106,10 +112,18 @@ Tools modern membuat transpilasi sangat cepat dan transparan, yang memungkinkan 
 
 Contoh bahasa yang dimaksud:
 
+<<<<<<< HEAD
 - [CoffeeScript](http://coffeescript.org/) merupakan "syntactic sugar" dari JavaScript. Dia memperkenalkan syntax yang lebih pendek, memungkingkan kita menulis kode lebih bersih dan lebih presisi. Biasanya, Ruby devs menyukainya.
 - [TypeScript](http://www.typescriptlang.org/) berfokus pada penambahan "strict data typing" yang menyederhanakan pengembangan dan dukungan sistem yang komplex. Ia dikembangkan oleh Microsoft.
 - [Flow](http://flow.org/) juga menambahkan data typing, tapi dalam cara berbeda. Dikembangkan oleh Facebook.
 - [Dart](https://www.dartlang.org/) ialah bahasa mandiri yang punya engine sendiri yang berjalan di lingkungan non-peramban (seperti mobile apps), tapi bisa juga ditranspile ke JavaScript. Dikembangkan oleh Google.
+=======
+- [CoffeeScript](http://coffeescript.org/) is a "syntactic sugar" for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Usually, Ruby devs like it.
+- [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing" to simplify the development and support of complex systems. It is developed by Microsoft.
+- [Flow](http://flow.org/) also adds data typing, but in a different way. Developed by Facebook.
+- [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps), but also can be transpiled to JavaScript. Developed by Google.
+- [Brython](https://brython.info/) is a Python transpiler to JavaScript that allow to write application in pure Python without JavaScript.
+>>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
 
 Masih banyak lagi. Tentunya, jika kita menggunakan salah satu bahasa yang ditranspile tersebut, kita sebaiknya juga paham JavaScript untuk mengerti apa yang mereka lakukan.
 

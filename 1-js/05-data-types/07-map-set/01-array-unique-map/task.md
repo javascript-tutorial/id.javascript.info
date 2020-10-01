@@ -1,8 +1,8 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Filter unique array members
+# Memfilter item array yang unik
 
 Anggaplah `arr` sebagai sebuah array.
 
@@ -12,7 +12,7 @@ Sebagai contoh:
 
 ```js
 function unique(arr) {
-  /* your code */
+  /* kodemu */
 }
 
 let values = ["Hare", "Krishna", "Hare", "Krishna",

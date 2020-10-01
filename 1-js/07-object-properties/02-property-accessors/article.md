@@ -1,31 +1,31 @@
 
-# Property getters and setters
+# Properti getter and setter
 
-There are two kinds of properties.
+Terdapat dua jenis properti objek.
 
-The first kind is *data properties*. We already know how to work with them. All properties that we've been using till now were data properties.
+Yang pertama adalah *properti data*. Kita telah mengetahui bagaimana cara kerja mereka. Semua properti yang kita gunakan sampai sekarang adalah properti data.
 
-The second type of properties is something new. It's *accessor properties*. They are essentially functions that work on getting and setting a value, but look like regular properties to an external code.
+Yang kedua adalah properti yang bisa dibilang cukup baru. Properti itu adalah *properti aksesor*. Mereka sebenarnya adalah fungsi untuk mendapatkan dan mengatur sebuah nilai, tapi mereka mirip seperti properti biasa pada kode eksternal.
 
-## Getters and setters
+## Getter dan setter
 
-Accessor properties are represented by "getter" and "setter" methods. In an object literal they are denoted by `get` and `set`:
+Properti aksesor diwakili dengan method "getter" dan "setter". Didalam objek literal mereka dilambangkan dengan `get` dan `set`:
 
 ```js
 let obj = {
   *!*get propName()*/!* {
-    // getter, the code executed on getting obj.propName
+    // getter, kode dijalankan untuk mendapat obj.propName
   },
 
   *!*set propName(value)*/!* {
-    // setter, the code executed on setting obj.propName = value
+    // setter, kode dijalankan untuk mengatur obj.propName = value
   }
 };
 ```
 
-The getter works when `obj.propName` is read, the setter -- when it is assigned.
+Getter bekerja ketika `obj.propName` terbaca, sedangkan setter -- ketika variabel itu ditetapkan.
 
-For instance, we have a `user` object with `name` and `surname`:
+Sebagai contoh, kita memiliki sebuah objek `user` dengan `name` dan `surname` (nama variabel): 
 
 ```js
 let user = {
@@ -34,7 +34,7 @@ let user = {
 };
 ```
 
-Now we want to add a `fullName` property, that should be `"John Smith"`. Of course, we don't want to copy-paste existing information, so we can implement it as an accessor:
+Sekarang kita ingin untuk menambahkan sebuah properti `fullName`, yang berisi `"John Smith"`. kita tidak ingin untuk melakukan penyalinan terhadap informasi yang sudah ada, melainkan kita bisa menerapakan sebuah aksesor:
 
 ```js run
 let user = {
@@ -53,9 +53,9 @@ alert(user.fullName); // John Smith
 */!*
 ```
 
-From outside, an accessor property looks like a regular one. That's the idea of accessor properties. We don't *call* `user.fullName` as a function, we *read* it normally: the getter runs behind the scenes.
+Dari luar, properti aksesor tampak seperti variabel pada umumnya. Itulah ide dari properti aksesor. Kita tidak *memanggil* `user.fullName` melaui fungsi, Namun kita *membacanya* secara biasa: properti getter berjalan di belakang layar.
 
-As of now, `fullName` has only a getter. If we attempt to assign `user.fullName=`, there will be an error:
+Sekarang, `fullName` memiliki sebuah properti getter. Jika kita mencoba untuk menetapkan value lain pada `user.fulName=`, maka akan terjadi eror:
 
 ```js run
 let user = {
@@ -69,7 +69,7 @@ user.fullName = "Test"; // Error (property has only a getter)
 */!*
 ```
 
-Let's fix it by adding a setter for `user.fullName`:
+Mari kita perbaiki dengan menambahkan setter untuk `user.fullName`:
 
 ```js run
 let user = {
@@ -87,33 +87,29 @@ let user = {
 */!*
 };
 
-// set fullName is executed with the given value.
+// variabel fullName dijalankan dengan value ditetapkan.  
 user.fullName = "Alice Cooper";
 
 alert(user.name); // Alice
 alert(user.surname); // Cooper
 ```
 
-As the result, we have a "virtual" property `fullName`. It is readable and writable, but in fact does not exist.
+Alhasil, kita memiliki sebuah properti virtual `fullname`. Yang bisa di baca dan diatur nilainya.
 
-```smart header="No way to handle `delete`"
-There's no similar method to handle deletion of an accessor property. Only getter/setter methods may exist.
-```
+## Deskriptor aksesor 
 
-## Accessor descriptors
+Deskriptor untuk properti aksesor berbeda dengan yang ada di dalam properti data.
 
-Descriptors for accessor properties are different from those for data properties.
+Untuk properti aksesor, tidak ada `nilai` atau `pengaturan` dalam properti aksesor, melainkan digantikan dengan fungsi `get` dan `set`. 
 
-For accessor properties, there is no `value` or `writable`, but instead there are `get` and `set` functions.
+Yang berarti, deskriptor aksesor mungkin memiliki:
 
-That is, an accessor descriptor may have:
+- **`get`** -- sebuah fungsi tanpa argument, yang bekerja ketika properti dibaca,
+- **`set`** -- sebuah fungsi dengan satu argumen, yang dipanggil ketika properti itu ditetapkan,
+- **`enumerable`** -- sama seperti pada properti data,
+- **`configurable`** -- sama seperti pada properti data.
 
-- **`get`** -- a function without arguments, that works when a property is read,
-- **`set`** -- a function with one argument, that is called when the property is set,
-- **`enumerable`** -- same as for data properties,
-- **`configurable`** -- same as for data properties.
-
-For instance, to create an accessor `fullName` with `defineProperty`, we can pass a descriptor with `get` and `set`:
+Sebagai contoh, untuk membuat sebuah aksesor `fullName` dengan `defineProperty`, kita dapat membawa sebuah deskriptor dengan `get` dan `set`:
 
 ```js run
 let user = {
@@ -138,9 +134,9 @@ alert(user.fullName); // John Smith
 for(let key in user) alert(key); // name, surname
 ```
 
-Please note once again that a property can be either an accessor (has `get/set` methods) or a data property (has a `value`), not both.
+Perlu diperhatikan bahwa sebuah properti bisa jadi adalah sebuah properti aksesor(memiliki method `get/set`) atau sebuah properti data(hanya memiliki sebuah `nilai`), namun tidak keduanya.
 
-If we try to supply both `get` and `value` in the same descriptor, there will be an error:
+Jika kita mencoba untuk menyediakan `get` dan `value` pada satu deskriptor yang sama, maka akan terjadi eror.
 
 ```js run
 *!*
@@ -155,11 +151,11 @@ Object.defineProperty({}, 'prop', {
 });
 ```
 
-## Smarter getters/setters
+## getter/setter yang lebih baik
 
-Getters/setters can be used as wrappers over "real" property values to gain more control over operations with them.
+Getter/setter dapat digunakan sebagai wrapper pada properti `asli`(bukan aksesor) untuk mendapatkan akses kontrol lebih terkait pengoperasian dengan mereka.
 
-For instance, if we want to forbid too short names for `user`, we can have a setter `name` and keep the value in a separate property `_name`:
+Sebagai contoh, jika kita ingin untuk melarang penamaan yang terlalu singkat untuk `user`, kita dapat memiliki sebuah setter `name` dan menjaga nilainya pada properti yang terpisah `_name`:
 
 ```js run
 let user = {
@@ -182,16 +178,16 @@ alert(user.name); // Pete
 user.name = ""; // Name is too short...
 ```
 
-So, the name is stored in `_name` property, and the access is done via getter and setter.
+Jadi, variabel name tersebut disimpan pada properti `_name`, yang aksesnya dapat melalui getter dan setter.
 
-Technically, external code is able to access the name directly by using `user._name`. But there is a widely known convention that properties starting with an underscore `"_"` are internal and should not be touched from outside the object.
+Secara teknis, kode eksternal bisa aja mengakses variabel nama secara langsung dengan menggunakan `user._name`. Tapi sudah menjadi rahasia umum bahwa properti yang diawali dengan underscore `"_"` adalah internal variabel yang seharusnya tidak boleh diakses dari luar.
 
 
-## Using for compatibility
+## Penggunaan kompabilitas
 
-One of the great uses of accessors -- they allow to take control over a "regular" data property at any moment by replacing it with getter and setter and tweak its behavior.
+Salah satu kegunaan besar properti aksesor adalah mereka memperbolehkan kita untuk mengontrol properti data `biasa` untuk menggantinya pada suatu waktu, dengan sebuah setter dan getter, serta mengubah perilakunya.
 
-Imagine, we started implementing user objects using data properties `name` and `age`:
+Bayangkan kita mulai dengan implementasi objek user menggunakan properti `name` dan `age`.
 
 ```js
 function User(name, age) {
@@ -204,7 +200,7 @@ let john = new User("John", 25);
 alert( john.age ); // 25
 ```
 
-...But sooner or later, things may change. Instead of `age` we may decide to store `birthday`, because it's more precise and convenient:
+...Tapi cepat atau lambat, sesuatu mungkin berubah. Alih-alih menggunakan `age` kita mungkin memutuskan untuk menyimpan `birthday`, karena mungkin itu lebih tepat dan sesuai:
 
 ```js
 function User(name, birthday) {
@@ -215,13 +211,13 @@ function User(name, birthday) {
 let john = new User("John", new Date(1992, 6, 1));
 ```
 
-Now what to do with the old code that still uses `age` property?
+Sekarang apa yang akan kita lakukan terhadap kode lama yang masih menggunakan properti`age`?
 
-We can try to find all such places and fix them, but that takes time and can be hard to do if that code is used by many other people. And besides, `age` is a nice thing to have in `user`, right?
+Kita dapat mencoba untuk mencarinya disemua tempat dan memperbaiki nya, tapi itu akan memakan waktu yang lama dan susah jika kode itu digunakan oleh banyak orang. selain itu, properti `age` adalah sesuatu yang bagus dimiliki oleh user, kan ?
 
-Let's keep it.
+Tetaplah menjaganya.
 
-Adding a getter for `age` solves the problem:
+Menambahkan sebuah getter pada `age` menyelesaikan permasalahan.
 
 ```js run no-beautify
 function User(name, birthday) {
@@ -229,7 +225,7 @@ function User(name, birthday) {
   this.birthday = birthday;
 
 *!*
-  // age is calculated from the current date and birthday
+  // variabel age dihitung berdasarkan tanggal sekarang dan tanggal lahirnya
   Object.defineProperty(this, "age", {
     get() {
       let todayYear = new Date().getFullYear();
@@ -241,8 +237,8 @@ function User(name, birthday) {
 
 let john = new User("John", new Date(1992, 6, 1));
 
-alert( john.birthday ); // birthday is available
-alert( john.age );      // ...as well as the age
+alert( john.birthday ); // properti birthday tersedia 
+alert( john.age );      // ...begitu juga dengan age
 ```
 
-Now the old code works too and we've got a nice additional property.
+Sekarang kode yang lama bisa bekerja dan kita memiliki tambahan properti yang bagus.

@@ -19,7 +19,7 @@ Misalnya:
 ...
 ```
 
-Kita akan mempelajari fungsi (cara mengelompokkan perintah) segera. Melihat ke depan, ingatlah bahwa `"use strict"` bisa ditaruh di depan badan fungsi ketimbang seluruh script. Itu membuat strict mode aktif hanya di dalam fungsi itu. Tapi biasanya, orang memakai itu untuk seluruh script.
+Kita akan mempelajari fungsi (cara mengelompokkan perintah) segera. Melihat ke depan, ingatlah bahwa `"use strict"` bisa ditaruh di bagian awal fungsi. Itu membuat strict mode aktif hanya di dalam fungsi itu. Tapi biasanya, orang memakai itu untuk seluruh script.
 
 
 ````warn header="Yakinkan bahwa \"use strict\" berada paling atas"
@@ -45,41 +45,46 @@ Tak ada directive seperti `"no use strict"` yang merevert engine ke kelakuan lam
 Sekali kita masuk strict mode, tak ada jalan kembali.
 ```
 
-## Konsol peramban
+## Konsol pengembang
 
-Di masa depan, ketika kamu memakai konsol peramban untuk menguji fitur, harap diingat bahwa `use strict` tidak aktif secara default.
+Ketika kamu menggunakan konsol pengembang [developer console](info:devtools) untuk menjalankan kode, perlu diingat pada dasarnya konsol pengembang tidak menggunakan `use strict`.
 
 Kadang, ketika menggunakan `use strict`, kamu akan mendapat hasil yang salah.
 
-Kamu bisa menekan `key:Shift+Enter` untuk menginput baris ganda, dan menggunakan `use strict` di paling atas, seperti ini:
+Jadi, bagaimana seharusnya mengunakan `use strict` didalam konsol?
+
+Pertama, kamu bisa menekan tombol `key:Shift+Enter` untuk memasukan beberapa baris kode dan masukan `use strict` di paling atas, seperti ini:
 
 ```js
 'use strict'; <Shift+Enter untuk baris baru>
-//  ...your code
-<Enter to run>
+//  ...Kodemu
+<Tekan enter untuk menjalankan>
 ```
 
-Ini bekerja pada kebanyakan peramban, macam Firefox dan Chrome.
+Ini bekerja pada kebanyakan peramban, seperti Firefox dan Chrome.
 
-Jika tidak, cara paling terpercaya ialah memastikan `use strict` adalah menginput kode ke dalam console seperti ini:
+Jika tidak berjalan, seperti di browser lama, ada sebuah cara untuk memastikan penggunaan `use strict`. Masukan kodenya kedalam sebuah pembungkus:
 
 ```js
 (function() {
   'use strict';
 
-  // ...kodemu...
+  // ...Kode lainnya disini...
 })()
 ```
 
-## Selalu "use strict"
+## Haruskah kita menggunakan "use strict"?
 
-Kita belum mengcover perbedaan antara mode ketat dan mode "default".
+Pertanyaannya sudah cukup jelas, tapi ternyata tidak.
 
-Di bab berikutnya, seiring kira mempelajari fitur bahasa, kita akan mencatat perbedaan antara mode ketat dan default. Untungnya, itu tidak banyak dan membuat hidup kita lebih baik.
+Seseorang bisa saja merekomendasikan memulai skrip dengan menggunakan `"use strict"`...Tapi apakah kamu tahu apa keren?
 
-Untuk sekarang, cukup tahu sampai di sini secara umum:
+Javascript modern mendukung kelas atau *classes* dan modul atau *modules* - struktur bahasa tingkat tinggi (kita akan belajar nanti), yang dapat mengaktifkan `use strict` secara otomatis. Jadi kita tidak perlu untuk menambahkan instruksi `"use strict"`, jika kita menggunakannya.
 
-1. Directive `"use strict"` mengganti engine ke mode "modern", changing the behavior of some built-in features. We'll see the details later in the tutorial.
-2. Mode ketat aktif dengan menaruh `"use strict"` paling atas dari script atau function. Beberapa fitur bahasa, seperti "classe" dan "module", mengaktifkan mode ketat secara otomatis.
-3. Mode ketat didukung semua peramban modern.
-4. Kami sarankan selalu mulai script dengan `"use strict"`. Semua contoh di tutorial ini mengasumsikan mode ketat kecuali (sangat jarang) dispesifikasi kebalikannya.
+**Jadi, untuk sekarang `"use strict";` adalah hal yang perlu ada di awal dari skrip kamu. Nanti, ketika seluruh kodemu telah menggunakan kelas dan modul, kamu bisa menghilangkannya**
+
+Untuk sekarang, kita harus mengetahui tentang `use strict` secara dasar.
+
+Di bagian selanjutnya, selagi kita belajar tentang fitur jadi Javascript, kita akan melihat beberapa perbedaan diantara *strict mode* dan mode lama. Beruntungnya, tidak dapat terdapat banyak perbedaan dan sebenarnya keduanya sangat bermanfaat.
+
+Seluruh contoh di tutorial ini menggunakan *strict mode* kecuali (sangat jarang) dituliskan sebaliknya.

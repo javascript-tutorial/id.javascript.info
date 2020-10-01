@@ -1,22 +1,22 @@
-importance: 4
+nilai penting: 4
 
 ---
 
-# Filter range
+# Filter range / menyaring dengan jarak
 
-Write a function `filterRange(arr, a, b)` that gets an array `arr`, looks for elements between `a` and `b` in it and returns an array of them. 
+Tulislah sebuah fungsi `filterRange(arr, a, b)` yang mendapatkan sebuah array `arr`, carilah elemen yang berada diantara `a` dan `b` didalamnya dan kembalikanlah array dari mereka.
 
-The function should not modify the array. It should return the new array.
+Fungsinya haruslah tidak memodifikasi arraynya. Itu haruslah mengembalikan array baru.
 
-For instance:
+Contoh:
 
 ```js
 let arr = [5, 3, 8, 1];
 
 let filtered = filterRange(arr, 1, 4); 
 
-alert( filtered ); // 3,1 (matching values)
+alert( filtered ); // 3,1 (mencocokan nilai)
 
-alert( arr ); // 5,3,8,1 (not modified)
+alert( arr ); // 5,3,8,1 (tidak diubah)
 ```
 

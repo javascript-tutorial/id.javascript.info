@@ -1,4 +1,4 @@
-# Operator untuk Pernyataan Bersyarat: if, '?'
+# Kondisi bercabang: if, '?'
 
 Terkadang, kita perlu melakukan tindakan berbeda berdasarkan kondisi yang berbeda.
 
@@ -11,21 +11,22 @@ Pernyataan `if` mengevaluasi suatu kondisi dan, jika hasil kondisi itu `true`, m
 Sebagai contoh:
 
 ```js run
-let year = prompt('In which year was ECMAScript-2015 specification published?', '');
+let tahun = prompt('Ditahun berapa spesifikasi ECMAScript-2015 dipublikasikan?', '');
+
 
 *!*
-if (year == 2015) alert( 'You are right!' );
+if (tahun == 2015) alert( 'Kamu Benar!' );
 */!*
 ```
 
-Pada contoh di atas, persyaratannya adalah pemeriksaan kesetaraan sederhana (`year == 2015`), tetapi pada kode lain, bisa menjadi jauh lebih kompleks.
+Pada contoh di atas, persyaratannya adalah pemeriksaan kesetaraan sederhana (`tahun == 2015`), tetapi pada kode lain, bisa menjadi jauh lebih kompleks.
 
 Jika kita ingin menjalankan lebih dari satu pernyataan di dalam suatu kondisional blok kode, kita harus membungkus blok kode kita di dalam kurung kurawal {} :
 
 ```js
-if (year == 2015) {
-  alert( "That's correct!" );
-  alert( "You're so smart!" );
+if (tahun == 2015) {
+  alert( "Kamu Benar!" );
+  alert( "Kamu Memang Pintar!" );
 }
 ```
 
@@ -43,7 +44,7 @@ Mari kita mengingat kembali aturan konversi dari bab <info:type-conversions>:
 Jadi, kode dalam kondisi ini tidak akan pernah berjalan:
 
 ```js
-if (0) { // 0 is falsy
+if (0) { // 0 adalah falsy
   ...
 }
 ```
@@ -51,17 +52,17 @@ if (0) { // 0 is falsy
 ... dan di dalam kondisi ini - selalu akan berjalan:
 
 ```js
-if (1) { // 1 is truthy
+if (1) { // 1 adalah truthy
   ...
 }
 ```
 
-Kami juga dapat memberikan nilai boolean yang telah dievaluasi ke  `if`, seperti ini::
+Kamu juga dapat memberikan nilai boolean yang telah dievaluasi ke  `if`, seperti ini::
 
 ```js
-let cond = (year == 2015); // equality evaluates to true or false
+let kondisi = (tahun == 2015); // mengevaluasi nilai apakah *true* atau *false*
 
-if (cond) {
+if (kondisi) {
   ...
 }
 ```
@@ -72,12 +73,12 @@ Pernyataan `if` dapat berisi blok opsional "else" opsional. Block "else" dijalan
 
 Contohnya:
 ```js run
-let year = prompt('In which year was the ECMAScript-2015 specification published?', '');
+let tahun = prompt('Ditahun berapa spesifikasi ECMAScript-2015 dipublikasikan?'', '');
 
-if (year == 2015) {
-  alert( 'You guessed it right!' );
+if (tahun == 2015) {
+  alert( 'Jawaban kamu benar!' );
 } else {
-  alert( 'How can you be so wrong?' ); // any value except 2015
+  alert( 'Hah, kok jawaban kamu salah?' ); // nilai lainnya selain 2015
 }
 ```
 
@@ -88,18 +89,18 @@ Terkadang,  kita ingin menguji beberapa kondisi yang berbeda-beda Klausa `else i
 Sebagai contoh:
 
 ```js run
-let year = prompt('In which year was the ECMAScript-2015 specification published?', '');
+let tahun = prompt('Ditahun berapa spesifikasi ECMAScript-2015 dipublikasikan?', '');
 
-if (year < 2015) {
-  alert( 'Too early...' );
-} else if (year > 2015) {
-  alert( 'Too late' );
+if (tahun < 2015) {
+  alert( 'Terlalu dini...' );
+} else if (tahun > 2015) {
+  alert( 'Terlalu akhir' );
 } else {
-  alert( 'Exactly!' );
+  alert( 'Tepat sekali!' );
 }
 ```
 
-Pada kode di atas, pertama JavaScript mengecek ekspresi `year < 2015`. Jika itu salah, maka masuk ke kondisi selanjutnya `year > 2015`. Jika itu juga salah, pernyataan di dalam blok "else" akan dijalankan,yang merupakan sebuah alert
+Pada kode di atas, pertama JavaScript mengecek ekspresi `tahun < 2015`. Jika itu salah, maka masuk ke kondisi selanjutnya `tahun > 2015`. Jika itu juga salah, pernyataan di dalam blok "else" akan dijalankan,yang merupakan sebuah alert
 
 Blok `else if`bisa digunakan berkali-kali. Pernyataan final `else` hanya opsional.
 
@@ -111,10 +112,10 @@ Contohnya:
 
 ```js run no-beautify
 let accessAllowed;
-let age = prompt('How old are you?', '');
+let umur = prompt('Berapakah umur kamu?', '');
 
 *!*
-if (age > 18) {
+if (umur > 18) {
   accessAllowed = true;
 } else {
   accessAllowed = false;
@@ -146,8 +147,8 @@ Secara teknis, kita dapat menghilangkan tanda kurung di sekitar `age > 18` . Ope
 Contoh di bawah ini akan melakukan hal yang sama seperti kode sebelumnya:
 
 ```js
-// the comparison operator "age > 18" executes first anyway
-// (no need to wrap it into parentheses)
+// perbandingan operator "age > 18" dieksekusi pertama kali
+// (tidak perlu dibungkus dengan kurung)
 let accessAllowed = age > 18 ? true : false;
 ```
 
@@ -216,11 +217,7 @@ Bergantung pada kondisional `company == 'Netscape' , ekspresi pertama atau kedua
 
 Kita tidak memberikan nilai hasil ke suatu variable di sini. Sebagai gantinya, kita mengeksekusi kode yang berbeda tergantung pada kondisinya.
 
-<<<<<<< HEAD
-**Kami tidak menyarankan menggunakan operator tanda tanya dengan cara seperti di atas.**
-=======
-**It's not recommended to use the question mark operator in this way.**
->>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
+**Tidak disarankan memakai operator tanda tanya dengan cara ini.**
 
 Notasinya memang lebih pendek daripada apabila menggunakan pernyataan `if` , yang mungkin menarik bagi beberapa programmer, tetapi hal ini membuat kode anda lebih susah dibaca.
 

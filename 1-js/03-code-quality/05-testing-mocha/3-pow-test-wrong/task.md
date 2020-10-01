@@ -1,10 +1,10 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# What's wrong in the test?
+# Apa yang salah dalam tes ini?
 
-What's wrong in the test of `pow` below?
+Apa yang salah dalam tes `pow` di bawah?
 
 ```js
 it("Raises x to the power n", function() {
@@ -21,4 +21,4 @@ it("Raises x to the power n", function() {
 });
 ```
 
-P.S. Syntactically the test is correct and passes.
+P.S. Secara sintaktis tesnya benar dan lulus.

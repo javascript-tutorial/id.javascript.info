@@ -30,10 +30,10 @@ function throttle(func, ms) {
 }
 ```
 
-A call to `throttle(func, ms)` returns `wrapper`.
+Pemanggilan kepada `throttle(func, ms)` mengembalikan `wrapper`.
 
-1. During the first call, the `wrapper` just runs `func` and sets the cooldown state (`isThrottled = true`).
-2. In this state all calls are memorized in `savedArgs/savedThis`. Please note that both the context and the arguments are equally important and should be memorized. We need them simultaneously to reproduce the call.
-3. After `ms` milliseconds pass, `setTimeout` triggers. The cooldown state is removed (`isThrottled = false`) and, if we had ignored calls, `wrapper` is executed with the last memorized arguments and context.
+1. Selama pemanggilan pertama, `wrapper`nya hanya menjalankan `func` dan menyetel kondisi tidak aktif (`isThrottled = true`).
+2. Didalam kondisi ini semua pemanggilan akan diingat/disimpan didalam `savedArgs/savedThis`. Ingat baik-baik bahwa konteks dan argumennya sama-sama penting dan harus diingat/disimpan. Kita akan membutuhkannya untuk membuat panggilannya.
+3. Setelah `ms` milidetik berlalu, `setTimeout` akan berjalan. Kondisi tidak aktif dihilangkan (`isThrottled = false`) dan, jika kita memiliki daftar panggilan yang diabaikan, `wrapper` akan dieksekusi dengan argumen dan konteks yang terakhir diingat/disimpan.
 
-The 3rd step runs not `func`, but `wrapper`, because we not only need to execute `func`, but once again enter the cooldown state and setup the timeout to reset it.
+Langkah ketika yang berjalan bukanlah `func`, tapi `wrapper`, karena kita tidak hanya perlu mengeksekusi `func`, tapi sekali-lagi kita memasuki kondisi tidak aktif dan perlu menyetel ulang timeout.

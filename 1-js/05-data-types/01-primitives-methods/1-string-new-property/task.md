@@ -1,11 +1,11 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Can I add a string property?
+# Bisakah saya menambahkan properti string?
 
 
-Consider the following code:
+Perhatikan kode berikut:
 
 ```js
 let str = "Hello";
@@ -15,4 +15,4 @@ str.test = 5;
 alert(str.test);
 ```
 
-How do you think, will it work? What will be shown?
+Bagaimana menurutmu, akankah itu bekerja? apa yang akan muncul?

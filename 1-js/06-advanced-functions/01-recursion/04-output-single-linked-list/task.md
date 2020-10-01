@@ -1,10 +1,10 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Output a single-linked list
+# Keluarkan sebuah daftar single-linked
 
-Let's say we have a single-linked list (as described in the chapter <info:recursion>):
+Katakan kita punya sebuah daftar single-linked (seperti yang dideskripsikan pada bab <info:recursion>);
 
 ```js
 let list = {
@@ -22,8 +22,8 @@ let list = {
 };
 ```
 
-Write a function `printList(list)` that outputs list items one-by-one.
+Tulis sebuah fungsi `printList(list)` yang mengeluarkan item dalam daftar satu per satu.
 
-Make two variants of the solution: using a loop and using recursion.
+Buatlah dua varian dari solusinya: gunakan perulangan dan gunakan rekursi.
 
-What's better: with recursion or without it?
+Mana yang lebih baik: dengan rekursi atau tanpa rekursi?

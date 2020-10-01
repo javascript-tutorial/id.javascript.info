@@ -1,30 +1,30 @@
-Internally the decimal fraction `6.35` is an endless binary. As always in such cases, it is stored with a precision loss.
+Secara internal pecahan desimal `6.35` adalah sebuah biner tanpa akhir. Seperti biasa dalam kasus seperti ini, disimpan dengan kehilangan presisi.
 
-Let's see:
+Ayo lihat:
 
 ```js run
 alert( 6.35.toFixed(20) ); // 6.34999999999999964473
 ```
 
-The precision loss can cause both increase and decrease of a number. In this particular case the number becomes a tiny bit less, that's why it rounded down.
+Kehilangan presisi dapat menyebabkan peningkatan dan penurunan angka. Dalam kasus khusus ini jumlahnya menjadi sedikit lebih sedikit, itu sebabnya dibulatkan.
 
-And what's for `1.35`?
+Dan apa untuk `1.35`?
 
 ```js run
 alert( 1.35.toFixed(20) ); // 1.35000000000000008882
 ```
 
-Here the precision loss made the number a little bit greater, so it rounded up.
+Di sini kehilangan presisi membuat jumlahnya sedikit lebih besar, jadi itu dibulatkan.
 
-**How can we fix the problem with `6.35` if we want it to be rounded the right way?**
+**Bagaimana kita dapat memperbaiki masalah dengan `6.35` jika kita ingin itu dibulatkan dengan cara yang benar?**
 
-We should bring it closer to an integer prior to rounding:
+Kita harus membawanya lebih dekat ke integer sebelum pembulatan:
 
 ```js run
 alert( (6.35 * 10).toFixed(20) ); // 63.50000000000000000000
 ```
 
-Note that `63.5` has no precision loss at all. That's because the decimal part `0.5` is actually `1/2`. Fractions divided by powers of `2` are exactly represented in the binary system, now we can round it:
+Perhatikan bahwa `63.5` tidak memiliki kehilangan presisi sama sekali. Itu karena bagian desimal `0,5` sebenarnya` 1 / 2`. Pecahan yang dibagi oleh kekuatan `2` persis diwakili dalam sistem biner, sekarang kita dapat membulatkannya:
 
 
 ```js run

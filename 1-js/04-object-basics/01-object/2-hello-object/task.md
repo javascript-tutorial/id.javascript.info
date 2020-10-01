@@ -1,14 +1,14 @@
-importance: 5
+nilai penting: 5
 
 ---
 
 # Hello, object
 
-Write the code, one line for each action:
+Tulis kode, satu baris untuk setiap aksi:
 
-1. Create an empty object `user`.
-2. Add the property `name` with the value `John`.
-3. Add the property `surname` with the value `Smith`.
-4. Change the value of the `name` to `Pete`.
-5. Remove the property `name` from the object.
+1. Buatlah sebuah objek kosong `user`.
+2. Tambahkan properti `name` dengan nilai `John`.
+3. Tambahkan properti `surname` dengan nilai `Smith`.
+4. Ubah nilai `name` menjadi `Pete`.
+5. Hapus properti `name` dari objek.
 

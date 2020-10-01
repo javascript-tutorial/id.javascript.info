@@ -135,8 +135,23 @@ alert(hello); // Hello world!
 alert(message); // Hello world!
 ```
 
-```smart header="Bahasa functional"
-Menarik untuk diingat bahwa ada bahasa pemrograman [fungsional](https://en.wikipedia.org/wiki/Functional_programming), seperti [Scala](http://www.scala-lang.org/) atau [Erlang](http://www.erlang.org/), yang melarang perubahan nilai variabel.
+````warn header="Mendeklarasikan variabel dua kali akan menciptakan error"
+Sebuah variabel seharusnya di deklarasikan hanya sekali.
+
+Mendeklarasikan variabel berkali kali akan menciptakan error:
+
+```js run
+let message = "This";
+
+// repeated 'let' leads to an error
+// deklarasi 'let' berulang akan mengembalikan sebuah error
+let message = "That"; // SyntaxError: 'message' has already been declared
+```
+Jadi, kita harus mendeklarasikan variabel sekali dan menggunakan variabel tersebut tanpa menggunakan 'let'.
+````
+
+```smart header="Bahasa fungsional"
+Ini sangat menarik untuk diperhatikan bahwa ada bahasa pemrograman [fungsional](https://en.wikipedia.org/wiki/Functional_programming), seperti [Scala](http://www.scala-lang.org/) atau [Erlang](http://www.erlang.org/) yang melarang merubah nilai dari variabel.
 
 Di dalam bahasa macam ini, sekali nilai disimpan "dalam box", ia akan di sana selamanya. Jika kita harus menyimpan sesuatu yang lain, bahasa tersebut memaksa kita membuat box baru (mendeklarasi variabel baru). Kita tak bisa menggunakan ulang yang lama.
 
@@ -190,7 +205,7 @@ let имя = '...';
 let 我 = '...';
 ```
 
-Secara teknis, tak ada galat di sini, nama-nama begitu boleh, tapi ada tradisi internasional untuk menggunakan Inggris dalam nama variabel. Meski jika kita menulis script kecil, ia akan punya nyawa yang panjang. Orang-orang dari negara lain mungkin harus membaca beberapa kali.
+Secara teknis, tak ada error di sini, nama-nama begitu boleh digunakan, tapi ada tradisi internasional untuk menggunakan bahasa Inggris dalam nama variabel. Meski jika kita menulis script kecil, kemungkinan variabelnya akan digunakan terus-menerus. Dan juga orang-orang dari negara lain mungkin harus membaca beberapa kali.
 ````
 
 ````warn header="Nama-nama yang dikecualikan"

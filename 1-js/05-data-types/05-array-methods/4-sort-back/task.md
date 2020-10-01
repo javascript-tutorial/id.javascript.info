@@ -1,13 +1,13 @@
-importance: 4
+nilai penting: 4
 
 ---
 
-# Sort in the reverse order
+# Sortir secara menurun
 
 ```js
 let arr = [5, 2, 1, -10, 8];
 
-// ... your code to sort it in the reverse order
+// ... kodemu untuk menyortir secara menurun
 
 alert( arr ); // 8, 5, 2, 1, -10
 ```

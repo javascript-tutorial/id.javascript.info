@@ -1,14 +1,14 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Translate border-left-width to borderLeftWidth
+# Ubah border-left-width menjadi borderLeftWidth
 
-Write the function `camelize(str)` that changes dash-separated words like "my-short-string" into camel-cased "myShortString".
+Tulis sebuah fungsi `cameize(str)` yang mengubah tulisan dengan tanda garin seperti "my-short-string" menjadi camel-case "myShortString".
 
-That is: removes all dashes, each word after dash becomes uppercased.
+Itu saja: hapus semua tanda garis, setiap kata setelah tanda garis menjadi camel-case.
 
-Examples:
+Contoh:
 
 ```js
 camelize("background-color") == 'backgroundColor';
@@ -16,4 +16,4 @@ camelize("list-style-image") == 'listStyleImage';
 camelize("-webkit-transition") == 'WebkitTransition';
 ```
 
-P.S. Hint: use `split` to split the string into an array, transform it and `join` back.
+Catatan. Hint: gunakan `split` untuk memisahkan string menjadi array, ubah itu dan gunakan `join` untuk menyatukannya.
