@@ -1,14 +1,14 @@
-First, let's see why the latter code doesn't work.
+Pertama, mari kita lihat mengapa kode terakhir tidak berfungsi.
 
-The reason becomes obvious if we try to run it. An inheriting class constructor must call `super()`. Otherwise `"this"` won't be "defined".
+Alasannya menjadi jelas jika kita mencoba menjalankannya. Konstruktor kelas yang mewarisi harus memanggil `super()`. Jika tidak, `"this"` tidak akan "defined".
 
-So here's the fix:
+Jadi, inilah perbaikannya:
 
 ```js run
 class Rabbit extends Object {
   constructor(name) {
 *!*
-    super(); // need to call the parent constructor when inheriting
+    super(); // perlu memanggil konstruktor induk saat mewarisi
 */!*
     this.name = name;
   }
@@ -19,63 +19,63 @@ let rabbit = new Rabbit("Rab");
 alert( rabbit.hasOwnProperty('name') ); // true
 ```
 
-But that's not all yet.
+Tapi itu belum semuanya.
 
-Even after the fix, there's still important difference in `"class Rabbit extends Object"` versus `class Rabbit`.
+Bahkan setelah perbaikan, masih ada perbedaan penting dalam `"class Rabbit extends Object"` versus `class Rabbit`.
 
-As we know, the "extends" syntax sets up two prototypes:
+Seperti yang kita tahu, sintaks "extends" menyiapkan dua prototipe:
 
-1. Between `"prototype"` of the constructor functions (for methods).
-2. Between the constructor functions themselves (for static methods).
+1. Antara `"prototype"` dari fungsi konstruktor (untuk metode).
+2. Antara konstruktor berfungsi sendiri (untuk metode statis).
 
-In our case, for `class Rabbit extends Object` it means:
+Dalam kasus kita, untuk `class Rabbit extends Object` itu berarti:
 
 ```js run
 class Rabbit extends Object {}
 
-alert( Rabbit.prototype.__proto__ === Object.prototype ); // (1) true
-alert( Rabbit.__proto__ === Object ); // (2) true
+alert(Rabbit.prototype.__proto__ === Object.prototype); // (1) true
+alert(Rabbit.__proto__ === Object); // (2) true
 ```
 
-So `Rabbit` now provides access to static methods of `Object` via `Rabbit`, like this:
+Jadi `Rabbit` sekarang menyediakan akses ke metode statis `Object` melalui `Rabbit`, seperti ini:
 
 ```js run
 class Rabbit extends Object {}
 
 *!*
-// normally we call Object.getOwnPropertyNames
+// biasanya kita sebut Object.getOwnPropertyNames
 alert ( Rabbit.getOwnPropertyNames({a: 1, b: 2})); // a,b
 */!*
 ```
 
-But if we don't have `extends Object`, then `Rabbit.__proto__` is not set to `Object`.
+Tetapi jika kita tidak punya `extends Object`, lalu `Rabbit.__proto__` tidak diatur ke `Object`.
 
-Here's the demo:
+Berikut demo nya:
 
 ```js run
 class Rabbit {}
 
 alert( Rabbit.prototype.__proto__ === Object.prototype ); // (1) true
 alert( Rabbit.__proto__ === Object ); // (2) false (!)
-alert( Rabbit.__proto__ === Function.prototype ); // as any function by default
+alert( Rabbit.__proto__ === Function.prototype ); // sebagai fungsi apa pun secara default
 
 *!*
-// error, no such function in Rabbit
+// error, tidak ada fungsi seperti itu di Rabbit
 alert ( Rabbit.getOwnPropertyNames({a: 1, b: 2})); // Error
 */!*
 ```
 
-So `Rabbit` doesn't provide access to static methods of `Object` in that case.
+Jadi `Rabbit` tidak menyediakan akses ke metode statis `Object` dalam hal itu.
 
-By the way, `Function.prototype` has "generic" function methods, like `call`, `bind` etc. They are ultimately available in both cases, because for the built-in `Object` constructor, `Object.__proto__ === Function.prototype`.
+Ngomong-ngomong, `Function.prototype` mempunyai fungsi metode "generic", seperti `call`, `bind` dll. Mereka terakhir tersedia dalam kedua kasus, karena untuk konstruktor `Object` bawaan, `Object.__proto__ === Function.prototype`.
 
-Here's the picture:
+Berikut gambarnya:
 
 ![](rabbit-extends-object.svg)
 
-So, to put it short, there are two differences:
+Jadi, sederhananya, ada dua perbedaan:
 
-| class Rabbit | class Rabbit extends Object  |
-|--------------|------------------------------|
-| --             | needs to call `super()` in constructor |
-| `Rabbit.__proto__ === Function.prototype` | `Rabbit.__proto__ === Object` |
+| class Rabbit                              | class Rabbit extends Object            |
+| ----------------------------------------- | -------------------------------------- |
+| --                                        | needs to call `super()` in constructor |
+| `Rabbit.__proto__ === Function.prototype` | `Rabbit.__proto__ === Object`          |
