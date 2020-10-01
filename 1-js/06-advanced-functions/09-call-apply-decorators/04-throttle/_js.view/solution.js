@@ -7,23 +7,23 @@ function throttle(func, ms) {
   function wrapper() {
 
     if (isThrottled) {
-      // memo last arguments to call after the cooldown
+      // mengingat argumen terakhir untuk diingat setelah kondisi tidak aktif
       savedArgs = arguments;
       savedThis = this;
       return;
     }
 
-    // otherwise go to cooldown state
+    // sebaliknya, masuk kedalam kondisi tidak aktif
     func.apply(this, arguments);
 
     isThrottled = true;
 
-    // plan to reset isThrottled after the delay
+    // mereset isThrotthled setelah penundaan
     setTimeout(function() {
       isThrottled = false;
       if (savedArgs) {
-        // if there were calls, savedThis/savedArgs have the last one
-        // recursive call runs the function and sets cooldown again
+        // jika terdapat sebuah pemanggilan, savedThis/savedArgs harusnya memiliki nilai terakhir
+        // pemanggilan rekursif menjalankan fungsinya dan menyetel ulang kondisi tidak aktifnya.
         wrapper.apply(savedThis, savedArgs);
         savedArgs = savedThis = null;
       }

@@ -1,15 +1,15 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Set and decrease for counter
+# Setel dan kurangi penghitung
 
-Modify the code of `makeCounter()` so that the counter can also decrease and set the number:
+Modifikasi kode dari `makeCounter()` jadi penghitungnya juga bisa mengurangi dan menyetel ulang angkanya:
 
-- `counter()` should return the next number (as before).
-- `counter.set(value)` should set the counter to `value`.
-- `counter.decrease()` should decrease the counter by 1.
+- `counter()` harus mengembalikan angka selanjutnya (seperti sebelumnya).
+- `counter.set(value)` harus menyetel ulang penghitungnya jadi `value`.
+- `counter.decrease()` harus mengurangi angka penghitungnya dengan 1.
 
-See the sandbox code for the complete usage example.
+Lihat kode pada sandbox untuk contoh penggunaan yang lengkap.
 
-P.S. You can use either a closure or the function property to keep the current count. Or write both variants.
+Catatan. Kamu bisa menggunakan closure atau properti fungsi untuk menyimpan perhitungan yang sekarang. Atau tulis kedua variannya.

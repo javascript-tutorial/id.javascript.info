@@ -2,17 +2,17 @@ importance: 5
 
 ---
 
-# Array operations.
+# Operasi *array*.
 
-Let's try 5 array operations.
+Mari coba 5 operasi *array*.
 
-1. Create an array `styles` with items "Jazz" and "Blues".
-2. Append "Rock-n-Roll" to the end.
-3. Replace the value in the middle by "Classics". Your code for finding the middle value should work for any arrays with odd length.
-4. Strip off the first value of the array and show it.
-5. Prepend `Rap` and `Reggae` to the array.
+1. Buat sebuah *array* `styles` dengan elemen "Jazz" dan "Blues" di dalamnya.
+2. Tambahkan "Rock-n-Roll" pada akhir *array*.
+3. Ganti nilai yang berada di tengah menjadi "Classics". Kodemu untuk menemukan nilai di tengah harus berhasil untuk *array* sepanjang apapun.
+4. Hilangkan nilai pertama dari *array* lalu tampilkan *array*.
+5. Dahulan *array* dengan `Rap` and `Reggae` di depannya.
 
-The array in the process:
+*Array* selama proses:
 
 ```js no-beautify
 Jazz, Blues

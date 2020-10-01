@@ -52,6 +52,7 @@ Promise.all(requests).then((responses) =>
 );
 ```
 
+
 Contoh terbesar dengan mengambil informasi pengguna untuk sebuah array pengguna GitHub dengan nama mereka (kita dapat mengambil array dengan id mereka, logika nya sama):
 
 ```js run
@@ -70,6 +71,7 @@ Promise.all(requests)
 
     return responses;
   })
+
   // memetakan array response kedalam array response.json() untuk membaca isinya
   .then((responses) => Promise.all(responses.map((r) => r.json())))
   // semua jawaban JSON diuraikan: "users" adalah array dari jawaban tersebut
@@ -90,7 +92,9 @@ Promise.all([
 ]).catch(alert); // Error: Whoops!
 ```
 
+
 Disini promise kedua reject dalam dua detik. Itu langsung mengarah pada rejection `Promise.all`, jadi eksekusi `.catch`: error rejection menjadi hasil keseluruhan `Promise.all`.
+
 
 ```warn header="Jika terjadi sebuah error, promise lain diabaikan"
 Jika satu promise reject, `Promise.all` langsung reject, benar-benar melupakan yang lainnya yang ada di dalam daftar. Hasil dari promise-promise tersebut diabaikan.
@@ -131,6 +135,7 @@ Promise.all([
   fetch('/data.json')
 ]).then(render); // method render butuh hasil dari semua pengambilan
 ````
+
 
 `Promise.allSettled` menunggu semua promise selesai. Array yang dihasilkan memiliki:
 

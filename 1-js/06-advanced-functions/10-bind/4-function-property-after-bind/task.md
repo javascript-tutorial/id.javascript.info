@@ -1,10 +1,10 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Function property after bind
+# Properti fungsi setelah pengikatan
 
-There's a value in the property of a function. Will it change after `bind`? Why, or why not?
+Terdapat sebuah nilai didalam properti dari sebuah fungsi. Apakah properti tersebut akan berubah setelah `bind`? Kenapa, atau kenapa tidak?
 
 ```js run
 function sayHi() {
@@ -17,7 +17,7 @@ let bound = sayHi.bind({
   name: "John"
 });
 
-alert( bound.test ); // what will be the output? why?
+alert( bound.test ); // apakah keluarannya? kenapa?
 */!*
 ```
 

@@ -1,12 +1,12 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Second bind
+# Pengikatan kedua
 
-Can we change `this` by additional binding?
+Bisakah kita merubah`this` dengan pengikatan tambahan?
 
-What will be the output?
+Apakah yang akan menjadi keluarannya?
 
 ```js no-beautify
 function f() {

@@ -1,10 +1,10 @@
-importance: 2
+nilai penting: 2
 
 ---
 
-# Sum with an arbitrary amount of brackets
+# Tambahkan dengan jumlah kurung yang banyak
 
-Write function `sum` that would work like this:
+Buatlah sebuah fungsi `sum` yang harus bekerja seperti ini:
 
 ```js
 sum(1)(2) == 3; // 1 + 2
@@ -14,4 +14,4 @@ sum(6)(-1)(-2)(-3) == 0
 sum(0)(1)(2)(3)(4)(5) == 15
 ```
 
-P.S. Hint: you may need to setup custom object to primitive conversion for your function.
+Catatan. Kamu mungkin perlu untuk mengatur objek kostum menjadi perngubah primitif didalam fungsi kamu.

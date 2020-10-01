@@ -1,27 +1,27 @@
-The idea is simple: to substract given number of days from `date`:
+Idenya mudah: Kurangi `tanggal` dengan jumlah hari yang diberikan.
 
 ```js
-function getDateAgo(date, days) {
-  date.setDate(date.getDate() - days);
-  return date.getDate();
+function getDateAgo(tanggal, hari) {
+  tanggal.setDate(tanggal.getDate() - hari);
+  return tanggal.getDate();
 }
 ```
 
-...But the function should not change `date`. That's an important thing, because the outer code which gives us the date does not expect it to change.
+...Namun fungsi tersebut tidak boleh mengubah `tanggal` yang diberikan. Ini adalah yang terpenting, karena kode di luar yang memberikan kita tanggal tidak mengira tanggal tersebut akan berubah. 
 
-To implement it let's clone the date, like this:
+Untuk mengimplementasikannya kita akan menduplikasi tanggal tersebut, seperti ini:
 
 ```js run demo
-function getDateAgo(date, days) {
-  let dateCopy = new Date(date);
+function getDateAgo(tanggal, hari) {
+  let tanggalCopy = new Date(tanggal);
 
-  dateCopy.setDate(date.getDate() - days);
-  return dateCopy.getDate();
+  tanggalCopy.setDate(tanggal.getDate() - hari);
+  return tanggalCopy.getDate();
 }
 
-let date = new Date(2015, 0, 2);
+let tanggal = new Date(2015, 0, 2);
 
-alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
-alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
-alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)
+alert( getDateAgo(tanggal, 1) ); // 1, (1 Jan 2015)
+alert( getDateAgo(tanggal, 2) ); // 31, (31 Des 2014)
+alert( getDateAgo(tanggal, 365) ); // 2, (2 Jan 2014)
 ```

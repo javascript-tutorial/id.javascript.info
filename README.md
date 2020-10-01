@@ -34,6 +34,17 @@ Setiap file di sini dimulai dari `# Main header`.
 
 Sangat mudah menambah hal baru.
 
+## Tips
+
+Beberapa tips untuk penerjemah:
+
+- _Markdown_ pada GitHub https://guides.github.com/features/mastering-markdown/
+- Jika terdapat artikel yang sudah diterjemahkan namun sulit untuk dimengerti, penerjemah dapat membandingkan artikel tersebut dengan versi bahasa inggris, ubah artikel yang menurut penerjemah sulit dimengerti lalu lakukan PR.
+- Terjemahan tidak harus akurat, yang terpenting mudah dipahami.
+
+## Jalankan repo secara lokal
+Jika penerjemah ingin melihat repo dijalankan secara lokal, penerjemah dapat menggunakan https://github.com/javascript-tutorial/server.
+
 ---
 ♥  
 Ilya Kantor @iliakan

@@ -1,25 +1,26 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Create an extendable calculator
+# Buat sebuah kalkulator yang bisa diperluas
 
-Create a constructor function `Calculator` that creates "extendable" calculator objects.
+Buat sebuah konstructor fungsi `Calculator` yang membuat objek kalkulator "yang dapat diperluas".
 
-The task consists of two parts.
+Tugasnya terdiri dari dua bagian.
 
-1. First, implement the method `calculate(str)` that takes a string like `"1 + 2"` in the format "NUMBER operator NUMBER" (space-delimited) and returns the result. Should understand plus `+` and minus `-`.
+1. Pertama, implementasikan method `calculate(str)` yang menerima sebuah string sepertin `"1 + 2"` didalam format "ANGKA operator ANGKA" (membatasi ruang) dan mengembalikan hasilnya. Harus mengerti tambah `+` dan kurang `-`.
 
-    Usage example:
+    Contoh penggunaan:
 
     ```js
     let calc = new Calculator;
 
     alert( calc.calculate("3 + 7") ); // 10
     ```
-2. Then add the method `addMethod(name, func)` that teaches the calculator a new operation. It takes the operator `name` and the two-argument function `func(a,b)` that implements it.
 
-    For instance, let's add the multiplication `*`, division `/` and power `**`:
+2. Lalu tambahkan method `addMethod(name, func)` yang mengajarkan operator operasi baru. methodnya akan menerima `name` dan fungsi dengan dua-argumen `func(a, b)` yang mengimplementasikannya.
+
+    Contoh, kita tambah perkalian `*`, pembagian `/` dan pangkat `**`:
 
     ```js
     let powerCalc = new Calculator;
@@ -31,6 +32,6 @@ The task consists of two parts.
     alert( result ); // 8
     ```
 
-- No parentheses or complex expressions in this task.
-- The numbers and the operator are delimited with exactly one space.
-- There may be error handling if you'd like to add it.
+- Tidak ada tanda kurung atau ekspresi yang rumit didalam tugas ini.
+- Angka dan operatornya dibatasi dengan hanya satu spasi.
+- Disana mungkin terdapat penanganan error jika kamu ingin menambahkannya.

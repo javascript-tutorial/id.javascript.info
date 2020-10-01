@@ -1,27 +1,27 @@
 describe("getDateAgo", function() {
 
-  it("1 day before 02.01.2015 -> day 1", function() {
+  it("1 hari sebelum 02.01.2015 -> tanggal 1", function() {
     assert.equal(getDateAgo(new Date(2015, 0, 2), 1), 1);
   });
 
 
-  it("2 days before 02.01.2015 -> day 31", function() {
+  it("2 hari sebelum 02.01.2015 -> tanggal 31", function() {
     assert.equal(getDateAgo(new Date(2015, 0, 2), 2), 31);
   });
 
-  it("100 days before 02.01.2015 -> day 24", function() {
+  it("100 hari sebelum 02.01.2015 -> tanggal 24", function() {
     assert.equal(getDateAgo(new Date(2015, 0, 2), 100), 24);
   });
 
-  it("365 days before 02.01.2015 -> day 2", function() {
+  it("365 hari sebelum 02.01.2015 -> tanggal 2", function() {
     assert.equal(getDateAgo(new Date(2015, 0, 2), 365), 2);
   });
 
-  it("does not modify the given date", function() {
-    let date = new Date(2015, 0, 2);
-    let dateCopy = new Date(date);
-    getDateAgo(dateCopy, 100);
-    assert.equal(date.getTime(), dateCopy.getTime());
+  it("tidak mengubah tanggal yang diberikan", function() {
+    let tanggal = new Date(2015, 0, 2);
+    let tanggalCopy = new Date(tanggal);
+    getDateAgo(tanggalCopy, 100);
+    assert.equal(tanggal.getTime(), tanggalCopy.getTime());
   });
 
 });

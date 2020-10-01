@@ -1,102 +1,100 @@
+# Properti dan metode _private_ dan _protected_
 
-# Private and protected properties and methods
+Salah satu prinsip terpenting dari pemrograman berorientasi objek -- membatasi antarmuka internal dari antarmuka eksternal.
 
-One of the most important principles of object oriented programming -- delimiting internal interface from the external one.
+Itu adalah praktik yang "harus" dilakukan dalam mengembangkan sesuatu yang lebih rumit daripada aplikasi "hello world".
 
-That is "a must" practice in developing anything more complex than a "hello world" app.
+Untuk memahami ini, mari kita melepaskan diri dari pengembangan dan mengalihkan pandangan kita ke dunia nyata.
 
-To understand this, let's break away from development and turn our eyes into the real world.
+Biasanya, perangkat yang kita gunakan cukup rumit. Tetapi membatasi antarmuka internal dari antarmuka eksternal memungkinkan untuk menggunakannya tanpa masalah.
 
-Usually, devices that we're using are quite complex. But delimiting the internal interface from the external one allows to use them without problems.
+## Contoh kehidupan nyata
 
-## A real-life example
-
-For instance, a coffee machine. Simple from outside: a button, a display, a few holes...And, surely, the result -- great coffee! :)
+Misalnya, mesin kopi. Simpelnya dari luar: tombol, layar, beberapa lubang ... dan tentunya, hasilnya -- kopi yang enak! :)
 
 ![](coffee.jpg)
 
-But inside... (a picture from the repair manual)
+Tetapi di dalamnya... (gambar dari panduan perbaikan)
 
 ![](coffee-inside.jpg)
 
-A lot of details. But we can use it without knowing anything.
+Banyak detail. Tetapi kita bisa menggunakannya tanpa mengetahui apapun.
 
-Coffee machines are quite reliable, aren't they? We can use one for years, and only if something goes wrong -- bring it for repairs.
+Mesin kopi cukup andal, bukan? Kita dapat menggunakannya selama bertahun-tahun, dan jika hanya terjadi kesalahan -- diperbaiki.
 
-The secret of reliability and simplicity of a coffee machine -- all details are well-tuned and *hidden* inside.
+Rahasia keandalan dan kesederhanaan mesin kopi -- semua detail diatur dengan baik dan _tersembunyi_ di dalamnya.
 
-If we remove the protective cover from the coffee machine, then using it will be much more complex (where to press?), and dangerous (it can electrocute).
+Jika kita melepas tutup pelindung dari mesin kopi, maka menggunakannya akan jauh lebih rumit (di mana harus menekan?), dan berbahaya (dapat menyetrum).
 
-As we'll see, in programming objects are like coffee machines.
+Seperti yang akan kita lihat, dalam pemrograman objek itu seperti mesin kopi.
 
-But in order to hide inner details, we'll use not a protective cover, but rather special syntax of the language and conventions.
+Tetapi untuk menyembunyikan detail bagian dalam, kita tidak akan menggunakan tutup pelindung, melainkan sintaks khusus bahasa dan konvensi.
 
-## Internal and external interface
+## Antarmuka internal dan eksternal
 
-In object-oriented programming, properties and methods are split into two groups:
+Dalam pemrograman berorientasi objek, properti dan metode dibagi menjadi 2 kelompok:
 
-- *Internal interface* -- methods and properties, accessible from other methods of the class, but not from the outside.
-- *External interface* -- methods and properties, accessible also from outside the class.
+- _Antarmuka internal_ -- metode dan properti, dapat diakses dari metode kelas lainnya, tapi tidak dari luar.
+- _Antarmuka eksternal_ -- metode dan properti, dapat diakses juga dari luar kelas.
 
-If we continue the analogy with the coffee machine -- what's hidden inside: a boiler tube, heating element, and so on -- is its internal interface.
+Jika kita melanjutkan analogi dengan mesin kopi -- apa yang tersembunyi di dalam: tabung, elemen pemanas, dan sebagainya -- adalah antarmuka internalnya.
 
-An internal interface is used for the object to work, its details use each other. For instance, a boiler tube is attached to the heating element.
+Antarmuka internal digunakan agar objek berfungsi, detailnya saling menggunakan. Misalnya, tabung dipasang ke elemen pemanas.
 
-But from the outside a coffee machine is closed by the protective cover, so that no one can reach those. Details are hidden and inaccessible. We can use its features via the external interface.
+Tetapi dari luar mesin pembuat kopi ditutup oleh tutup pelindungnya, sehingga tidak ada yang bisa menjangkau itu. Detail disembunyikan dan tidak dapat diakses. Kita dapat menggunakan fitur-fiturnya melalui antarmuka eksternal.
 
-So, all we need to use an object is to know its external interface. We may be completely unaware how it works inside, and that's great.
+Jadi, yang kita butuhkan untuk menggunakan sebuah objek adalah mengetahui antarmuka eksternalnya. Kita mungkin sama sekali tidak menyadari cara kerjanya di dalam, dan itu bagus.
 
-That was a general introduction.
+Itu adalah perkenalan umum.
 
-In JavaScript, there are two types of object fields (properties and methods):
+Di JavaScript, ada dua jenis bidang objek (properti dan metode):
 
-- Public: accessible from anywhere. They comprise the external interface. Till now we were only using public properties and methods.
-- Private: accessible only from inside the class. These are for the internal interface.
+- _Public_: dapat diakses dari mana saja. Mereka terdiri dari antarmuka eksternal. Sampai sekarang kita hanya menggunakan properti dan metode _public_.
+- _Private_: dapat diakses hanya dari dalam kelas. Ini untuk antarmuka internal.
 
-In many other languages there also exist "protected" fields: accessible only from inside the class and those extending it (like private, but plus access from inheriting classes). They are also useful for the internal interface. They are in a sense more widespread than private ones, because we usually want inheriting classes to gain access to them.
+Di banyak bahasa lain juga ada bidang "protected": dapat diakses hanya dari dalam kelas dan mereka yang memperluasnya (seperti _private_, tetapi ditambah akses dari kelas yang diwariskan). Mereka juga berguna untuk antarmuka internal. Mereka dalam arti lebih luas daripada yang _private_, karena kita biasanya ingin mewarisi kelas untuk mendapatkan akses ke sana.
 
-Protected fields are not implemented in JavaScript on the language level, but in practice they are very convenient, so they are emulated.
+Bidang _protected_ tidak diterapkan dalam JavaScript pada tingkat bahasa, tetapi dalam praktiknya mereka(_protected_) sangat nyaman, jadi mereka(_protected_) ditiru.
 
-Now we'll make a coffee machine in JavaScript with all these types of properties. A coffee machine has a lot of details, we won't model them to stay simple (though we could).
+Sekarang kita akan membuat mesin kopi di JavaScript dengan semua jenis properti ini. Mesin kopi memiliki banyak detail, kita tidak akan memodelkannya agar tetap sederhana (meskipun kita bisa).
 
-## Protecting "waterAmount"
+## Melindungi "waterAmount"
 
-Let's make a simple coffee machine class first:
+Mari kita buat kelas mesin kopi sederhana dulu:
 
 ```js run
 class CoffeeMachine {
-  waterAmount = 0; // the amount of water inside
+  waterAmount = 0; // jumlah air di dalamnya
 
   constructor(power) {
     this.power = power;
-    alert( `Created a coffee-machine, power: ${power}` );
+    alert(`Created a coffee-machine, power: ${power}`);
   }
-
 }
 
-// create the coffee machine
+// membuat mesin kopi
 let coffeeMachine = new CoffeeMachine(100);
 
-// add water
+// tambahkan air
 coffeeMachine.waterAmount = 200;
 ```
 
-Right now the properties `waterAmount` and `power` are public. We can easily get/set them from the outside to any value.
+Sekarang properti `waterAmount` dan `power` adalah publik. Kita dapat dengan mudah mendapatkan/mengatur dari luar ke nilai apa pun.
 
-Let's change `waterAmount` property to protected to have more control over it. For instance, we don't want anyone to set it below zero.
+Mari ganti properti `waterAmount` menjadi _protected_ untuk lebih mengontrolnya. Misalnya, kita tidak ingin siapa pun mengaturnya di bawah nol.
 
-**Protected properties are usually prefixed with an underscore `_`.**
+**Properti _protected_ biasanya diawali dengan garis bawah `_`.**
 
-That is not enforced on the language level, but there's a well-known convention between programmers that such properties and methods should not be accessed from the outside.
+Itu tidak diberlakukan pada level bahasa, tetapi ada konvensi terkenal antara pemrogram bahwa properti dan metode seperti itu tidak boleh diakses dari luar.
 
-So our property will be called `_waterAmount`:
+Jadi properti kita akan dipanggil `_waterAmount`:
 
 ```js run
 class CoffeeMachine {
   _waterAmount = 0;
 
   set waterAmount(value) {
-    if (value < 0) throw new Error("Negative water");
+    if (value < 0) throw new Error('Negative water');
     this._waterAmount = value;
   }
 
@@ -107,25 +105,24 @@ class CoffeeMachine {
   constructor(power) {
     this._power = power;
   }
-
 }
 
-// create the coffee machine
+// membuat mesin kopi
 let coffeeMachine = new CoffeeMachine(100);
 
-// add water
+// tambahkan air
 coffeeMachine.waterAmount = -10; // Error: Negative water
 ```
 
-Now the access is under control, so setting the water below zero fails.
+Sekarang aksesnya terkendali, jadi pengaturan air di bawah nol gagal.
 
-## Read-only "power"
+## _Read-only_ "power"
 
-For `power` property, let's make it read-only. It sometimes happens that a property must be set at creation time only, and then never modified.
+Untuk properti `power`, mari kita membuatnya menjadi _read-only_. Kadang-kadang terjadi bahwa properti harus diatur hanya pada waktu pembuatan, lalu tidak pernah diubah.
 
-That's exactly the case for a coffee machine: power never changes.
+Persis seperti itulah kasus mesin kopi: tenaga tidak pernah berubah.
 
-To do so, we only need to make getter, but not the setter:
+Untuk melakukannya, kita hanya perlu membuat pengambil(_getter_), bukan pengatur(_setter_):
 
 ```js run
 class CoffeeMachine {
@@ -138,10 +135,9 @@ class CoffeeMachine {
   get power() {
     return this._power;
   }
-
 }
 
-// create the coffee machine
+// membuat mesin kopi
 let coffeeMachine = new CoffeeMachine(100);
 
 alert(`Power is: ${coffeeMachine.power}W`); // Power is: 100W
@@ -150,9 +146,9 @@ coffeeMachine.power = 25; // Error (no setter)
 ```
 
 ````smart header="Getter/setter functions"
-Here we used getter/setter syntax.
+Di sini kita menggunakan sintaks pengambil/pengatur.
 
-But most of the time `get.../set...` functions are preferred, like this:
+Tetapi seringkali fungsi `get.../set...` lebih disukai, seperti ini:
 
 ```js
 class CoffeeMachine {
@@ -171,26 +167,26 @@ class CoffeeMachine {
 new CoffeeMachine().setWaterAmount(100);
 ```
 
-That looks a bit longer, but functions are more flexible. They can accept multiple arguments (even if we don't need them right now).
+Itu terlihat sedikit lebih lama, tetapi fungsinya lebih fleksibel. Mereka dapat menerima banyak argumen (bahkan jika kita tidak membutuhkannya sekarang).
 
-On the other hand, get/set syntax is shorter, so ultimately there's no strict rule, it's up to you to decide.
+Di sisi lain, sintaks get/set lebih pendek, jadi pada akhirnya tidak ada aturan ketat, terserah kamu yang memutuskan.
 ````
 
 ```smart header="Protected fields are inherited"
-If we inherit `class MegaMachine extends CoffeeMachine`, then nothing prevents us from accessing `this._waterAmount` or `this._power` from the methods of the new class.
+Jika kita mewarisi `class MegaMachine extends CoffeeMachine`, maka tidak ada yang menghalangi kita untuk mengakses` this._waterAmount` atau `this._power` dari metode kelas baru.
 
-So protected fields are naturally inheritable. Unlike private ones that we'll see below.
+Jadi bidang yang dilindungi tentu saja dapat diwariskan. Tidak seperti privat yang akan kita lihat di bawah.
 ```
 
-## Private "#waterLimit"
+## Privat "#waterLimit"
 
 [recent browser=none]
 
-There's a finished JavaScript proposal, almost in the standard, that provides language-level support for private properties and methods.
+Ada proposal JavaScript yang sudah selesai, hampir dalam standar, yang memberikan dukungan tingkat bahasa untuk properti dan metode privat.
 
-Privates should start with `#`. They are only accessible from inside the class.
+Privat harus dimulai dengan `#`. Mereka hanya dapat diakses dari dalam kelas.
 
-For instance, here's a private `#waterLimit` property and the water-checking private method `#checkWater`:
+Misalnya, ada properti privat `#waterLimit` dan metode privat pemeriksaan air `#checkWater`:
 
 ```js run
 class CoffeeMachine {
@@ -210,21 +206,20 @@ class CoffeeMachine {
 let coffeeMachine = new CoffeeMachine();
 
 *!*
-// can't access privates from outside of the class
+// tidak dapat mengakses privat dari luar kelas
 coffeeMachine.#checkWater(); // Error
 coffeeMachine.#waterLimit = 1000; // Error
 */!*
 ```
 
-On the language level, `#` is a special sign that the field is private. We can't access it from outside or from inheriting classes.
+Pada level bahasa, `#` adalah tanda khusus bahwa bidang tersebut bersifat privat. Kita tidak dapat mengaksesnya dari luar atau dari kelas yang diwariskan.
 
-Private fields do not conflict with public ones. We can have both private `#waterAmount` and public `waterAmount` fields at the same time.
+Bidang privat tidak bertentangan dengan bidang publik. Kita bisa memiliki bidang privat `#waterAmount` dan publik `waterAmount` pada saat yang sama.
 
-For instance, let's make `waterAmount` an accessor for `#waterAmount`:
+Misalnya, mari jadikan `waterAmount` sebagai pengakses untuk `#waterAmount`:
 
 ```js run
 class CoffeeMachine {
-
   #waterAmount = 0;
 
   get waterAmount() {
@@ -232,7 +227,7 @@ class CoffeeMachine {
   }
 
   set waterAmount(value) {
-    if (value < 0) throw new Error("Negative water");
+    if (value < 0) throw new Error('Negative water');
     this.#waterAmount = value;
   }
 }
@@ -243,9 +238,9 @@ machine.waterAmount = 100;
 alert(machine.#waterAmount); // Error
 ```
 
-Unlike protected ones, private fields are enforced by the language itself. That's a good thing.
+Tidak seperti _protected_, bidang privat diberlakukan oleh bahasa itu sendiri. Itu hal yang bagus.
 
-But if we inherit from `CoffeeMachine`, then we'll have no direct access to `#waterAmount`. We'll need to rely on `waterAmount` getter/setter:
+Tetapi jika kita mewarisi dari `CoffeeMachine`, maka kita tidak akan memiliki akses langsung ke`#waterAmount`. Kita harus mengandalkan pengambil/pengatur `waterAmount`:
 
 ```js
 class MegaCoffeeMachine extends CoffeeMachine {
@@ -257,12 +252,12 @@ class MegaCoffeeMachine extends CoffeeMachine {
 }
 ```
 
-In many scenarios such limitation is too severe. If we extend a `CoffeeMachine`, we may have legitimate reason to access its internals. That's why protected fields are used more often, even though they are not supported by the language syntax.
+Dalam banyak skenario, batasan seperti itu terlalu parah. Jika kita memperluas `CoffeeMachine`, kita mungkin memiliki alasan yang sah untuk mengakses internalnya. Itulah mengapa bidang protected lebih sering digunakan, meskipun tidak didukung oleh sintaks bahasa.
 
 ````warn header="Private fields are not available as this[name]"
-Private fields are special.
+Bidang privat itu istimewa.
 
-As we know, usually we can access fields using `this[name]`:
+Seperti yang kita ketahui, biasanya kita bisa mengakses bidang menggunakan `this[name]`:
 
 ```js
 class User {
@@ -274,43 +269,43 @@ class User {
 }
 ```
 
-With private fields that's impossible: `this['#name']` doesn't work. That's a syntax limitation to ensure privacy.
+Dengan bidang privat itu tidak mungkin: `this['#name']` tidak berfungsi. Itu adalah batasan sintaks untuk memastikan privasi.
 ````
 
-## Summary
+## Ringkasan
 
-In terms of OOP, delimiting of the internal interface from the external one is called [encapsulation]("https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)").
+Dalam istilah PBO (Pemrograman Berorientasi Objek), membatasi antarmuka internal dari antarmuka eksternal disebut [enkapsulasi](<https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)>).
 
-It gives the following benefits:
+Itu memberi manfaat sebagai berikut:
 
-Protection for users, so that they don't shoot themselves in the feet
-: Imagine, there's a team of developers using a coffee machine. It was made by the "Best CoffeeMachine" company, and works fine, but a protective cover was removed. So the internal interface is exposed.
+Perlindungan bagi pengguna, agar mereka tidak menembak diri sendiri
+: Bayangkan, ada tim pengembang yang menggunakan mesin kopi. Itu dibuat oleh perusahaan "Mesin Kopi Terbaik", dan berfungsi dengan baik, tetapi penutup pelindungnya dilepas. Jadi antarmuka internal terekspos.
 
-    All developers are civilized -- they use the coffee machine as intended. But one of them, John, decided that he's the smartest one, and made some tweaks in the coffee machine internals. So the coffee machine failed two days later.
+    Semua pengembang sopan -- mereka menggunakan mesin kopi sebagaimana mestinya. Tapi salah satu dari mereka, John, memutuskan bahwa dialah yang paling pintar, dan membuat beberapa perubahan di internal mesin kopi. Jadi mesin kopi mati dua hari kemudian.
 
-    That's surely not John's fault, but rather the person who removed the protective cover and let John do his manipulations.
+    Itu jelas bukan salah John, melainkan orang yang melepas penutup pelindung dan membiarkan John melakukan manipulasinya.
 
-    The same in programming. If a user of a class will change things not intended to be changed from the outside -- the consequences are unpredictable.
+    Hal yang sama dalam pemrograman. Jika pengguna kelas akan mengubah hal-hal yang tidak dimaksudkan untuk diubah dari luar -- konsekuensinya tidak dapat diprediksi.
 
-Supportable
-: The situation in programming is more complex than with a real-life coffee machine, because we don't just buy it once. The code constantly undergoes development and improvement.
+Didukung
+: Situasi dalam pemrograman lebih rumit daripada dengan mesin kopi di kehidupan nyata, karena kita tidak hanya membelinya sekali. Kode terus mengalami pengembangan dan peningkatan.
 
-    **If we strictly delimit the internal interface, then the developer of the class can freely change its internal properties and methods, even without informing the users.**
+    **Jika kita membatasi secara ketat antarmuka internal, maka pengembang kelas dapat dengan bebas mengubah properti dan metode internalnya, bahkan tanpa memberi tahu pengguna.**
 
-    If you're a developer of such class, it's great to know that private methods can be safely renamed, their parameters can be changed, and even removed, because no external code depends on them.
+    Jika kamu adalah pengembang dari kelas seperti itu, senang mengetahui bahwa metode privat dapat diubah namanya dengan aman, parameternya dapat diubah, dan bahkan dihapus, karena tidak ada kode eksternal yang bergantung padanya.
 
-    For users, when a new version comes out, it may be a total overhaul internally, but still simple to upgrade if the external interface is the same.
+    Untuk pengguna, ketika versi baru keluar, itu mungkin perombakan total secara internal, tetapi masih mudah untuk meningkatkan jika antarmuka eksternal sama.
 
-Hiding complexity
-: People adore using things that are simple. At least from outside. What's inside is a different thing.
+Menyembunyikan kerumitan
+: Orang suka menggunakan hal-hal yang sederhana. Setidaknya dari luar. Apa yang ada di dalamnya adalah hal yang berbeda.
 
-    Programmers are not an exception.
+    Pemrogram tidak terkecuali.
 
-    **It's always convenient when implementation details are hidden, and a simple, well-documented external interface is available.**
+    **Selalu nyaman jika detail implementasi disembunyikan, dan tersedia antarmuka eksternal yang sederhana dan terdokumentasi dengan baik.**
 
-To hide internal interface we use either protected or private properties:
+Untuk menyembunyikan antarmuka internal kita menggunakan properti _protected_ atau privat:
 
-- Protected fields start with `_`. That's a well-known convention, not enforced at the language level. Programmers should only access a field starting with `_` from its class and classes inheriting from it.
-- Private fields start with `#`. JavaScript makes sure we only can access those from inside the class.
+- Bidang _protected_ dimulai dengan `_`. Itu konvensi yang terkenal, tidak diberlakukan di tingkat bahasa. Pemrogram hanya boleh mengakses bidang yang dimulai dengan `_` dari kelasnya dan kelas yang mewarisinya.
+- Bidang privat dimulai dengan `#`. JavaScript memastikan kita hanya dapat mengakses mereka dari dalam kelas.
 
-Right now, private fields are not well-supported among browsers, but can be polyfilled.
+Saat ini, bidang privat tidak didukung dengan baik di antara browser, tetapi dapat di-polyfill.

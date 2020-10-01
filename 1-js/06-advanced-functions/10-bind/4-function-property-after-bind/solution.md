@@ -1,4 +1,4 @@
-The answer: `undefined`.
+Jawabannya: `undefined`.
 
-The result of `bind` is another object. It does not have the `test` property.
+Hasil dari `bind` adalah objek lainnya. Objek tersebut tidak memiliki properti `test`.
 

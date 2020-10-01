@@ -1,11 +1,11 @@
-We need to "map" all values from the interval 0..1 into values from `min` to `max`.
+Kita perlu "memetakan" semua nilai dari interval 0..1 ke dalam nilai dari `min` ke` max`.
 
-That can be done in two stages:
+Itu bisa dilakukan dalam dua tahap:
 
-1. If we multiply a random number from 0..1 by `max-min`, then the interval of possible values increases `0..1` to `0..max-min`.
-2. Now if we add `min`, the possible interval becomes from `min` to `max`.
+1. Jika kita mengalikan angka acak dari 0..1 dengan `max-min`, maka interval nilai yang mungkin meningkat` 0..1` ke `0..max-min`.
+2. Sekarang jika kita menambahkan `min`, interval yang mungkin menjadi dari` min` ke `max`.
 
-The function:
+Fungsi:
 
 ```js run
 function random(min, max) {

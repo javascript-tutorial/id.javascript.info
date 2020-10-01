@@ -1,2 +1,2 @@
 
-The solution uses `count` in the local variable, but addition methods are written right into the `counter`. They share the same outer lexical environment and also can access the current `count`.
+Solusinya adalah menggunakan `count` didalam variabel lokal, tapi metode tambahan ditulis tepat didalam `counter`nya. Mereka membagi lingkungan leksikan luar yang sama dan juga bisa mengakses `count` yang sekarang.

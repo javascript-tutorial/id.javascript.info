@@ -1,15 +1,15 @@
-importance: 5
+Tingkat kepentingan: 5
 
 ---
 
-# How many seconds have passed today?
+# Berapa detik yang telah berlalu untuk hari ini?
 
-Write a function `getSecondsToday()` that returns the number of seconds from the beginning of today.
+Tulis sebuah fungsi `getSecondsToday()` yang mengembalikan angka dari detik yang telah berlalu dari sejak permulaan hari ini.
 
-For instance, if now were `10:00 am`, and there was no daylight savings shift, then:
+Sebagai contoh, sekarang pukul `10:00 am`, dan tidak ada daylight savings shift, maka:
 
 ```js
 getSecondsToday() == 36000 // (3600 * 10)
 ```
 
-The function should work in any day. That is, it should not have a hard-coded value of "today".
+Fungsi haruslah berjalan untuk hari apapun. sehingga, tidak boleh ada nilai "hari ini" yang ditulis secara hard-code.
