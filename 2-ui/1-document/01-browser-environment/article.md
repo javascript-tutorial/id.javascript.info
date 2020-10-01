@@ -1,113 +1,122 @@
-# Browser environment, specs
+# Lingkungan browser, spesifikasi
 
-The JavaScript language was initially created for web browsers. Since then it has evolved and become a language with many uses and platforms.
+Bahasa JavaScript awalnya dibuat untuk browser web. Sejak itu bahasa pemrograman ini telah berkembang dan menjadi bahasa dengan banyak kegunaan dan platform.
 
-A platform may be a browser, or a web-server or another *host*, even a "smart" coffee machine, if it can run JavaScript. Each of them provides platform-specific functionality. The JavaScript specification calls that a *host environment*.
+Platform dapat berupa browser, atau server web atau *host* lain, bahkan mesin kopi "pintar", jika dapat menjalankan JavaScript. Masing-masing menyediakan fungsionalitas khusus platform. Spesifikasi JavaScript menyebutnya *environment host*.
 
-A host environment provides own objects and functions additional to the language core. Web browsers give a means to control web pages. Node.js provides server-side features, and so on.
+Lingkungan host menyediakan objek dan fungsi tambahan sendiri ke inti bahasa. Browser web memberikan sarana untuk mengontrol halaman web. Node.js menyediakan fitur sisi server, dan seterusnya.
 
-Here's a bird's-eye view of what we have when JavaScript runs in a web browser:
+Berikut pandangan menyeluruh tentang apa yang kita miliki saat JavaScript berjalan di browser web:
 
 ![](windowObjects.svg)
 
-There's a "root" object called `window`. It has two roles:
+Ada objek "root" yang disebut `window`. Ini memiliki dua peran:
 
-1. First, it is a global object for JavaScript code, as described in the chapter <info:global-object>.
-2. Second, it represents the "browser window" and provides methods to control it.
+1. Pertama, ini adalah objek global untuk kode JavaScript, seperti yang dijelaskan di bab <info:global-object>.
 
-For instance, here we use it as a global object:
+2. Kedua, ini mewakili "jendela browser" dan menyediakan *method* untuk mengontrolnya.
+
+Misalnya, di sini kita menggunakannya sebagai objek global:
 
 ```js run
 function sayHi() {
   alert("Hello");
 }
 
-// global functions are methods of the global object:
+// fungsi global adalah method objek global:
 window.sayHi();
 ```
 
-And here we use it as a browser window, to see the window height:
+Dan di sini kita menggunakannya sebagai jendela browser, untuk melihat ketinggian jendela web *(window)*:
 
 ```js run
 alert(window.innerHeight); // inner window height
 ```
 
-There are more window-specific methods and properties, we'll cover them later.
+Ada lebih banyak *method* dan properti khusus jendela web *(window)*, kami akan membahasnya nanti.
 
 ## DOM (Document Object Model)
 
-Document Object Model, or DOM for short, represents all page content as objects that can be modified.
+Document Object Model, atau DOM singkatnya, adalah representasi semua konten halaman web sebagai objek yang dapat dimodifikasi.
 
-The `document` object is the main "entry point" to the page. We can change or create anything on the page using it.
+Objek `document` adalah "titik masuk" utama ke halaman. kita dapat mengubah atau membuat apa pun di halaman menggunakan itu.
 
-For instance:
+Misalnya :
 ```js run
-// change the background color to red
+// mengubah warna background menjadi merah
 document.body.style.background = "red";
 
-// change it back after 1 second
+// ubahnya kembali setelah 1 detik
 setTimeout(() => document.body.style.background = "", 1000);
 ```
 
-Here we used `document.body.style`, but there's much, much more. Properties and methods are described in the specification: [DOM Living Standard](https://dom.spec.whatwg.org).
+Di sini kita menggunakan  `document.body.style`, tapi masih banyak lagi. Properti dan method dijelaskan spesifik di: [DOM Living Standard](https://dom.spec.whatwg.org).
 
 ```smart header="DOM is not only for browsers"
-The DOM specification explains the structure of a document and provides objects to manipulate it. There are non-browser instruments that use DOM too.
 
-For instance, server-side scripts that download HTML pages and process them can also use DOM. They may support only a part of the specification though.
+Spesifik DOM menjelaskan struktur dokumen dan menyediakan objek untuk memanipulasinya. Ada instrumen non-browser yang menggunakan DOM juga.
+
+Misalnya, skrip sisi server yang mengunduh halaman HTML dan memprosesnya juga dapat menggunakan DOM. Mereka mungkin hanya mendukung sebagian dari spesifikasi.
 ```
 
 ```smart header="CSSOM for styling"
-There's also a separate specification, [CSS Object Model (CSSOM)](https://www.w3.org/TR/cssom-1/) for CSS rules and stylesheets, that explains how they are represented as objects, and how to read and write them.
 
-CSSOM is used together with DOM when we modify style rules for the document. In practice though, CSSOM is rarely required, because we rarely need to modify CSS rules from JavaScript (usually we just add/remove CSS classes, not modify their CSS rules), but that's also possible.
+Ada juga spesifikasi terpisah, [CSS Object Model (CSSOM)] (https://www.w3.org/TR/cssom-1/) untuk aturan dan stylesheet CSS, yang menjelaskan bagaimana mereka direpresentasikan sebagai objek, dan bagaimana cara membaca dan menulisnya.
+
+CSSOM digunakan bersama dengan DOM saat kita mengubah aturan gaya untuk dokumen. Namun dalam praktiknya, CSSOM jarang diperlukan, karena kita jarang perlu mengubah aturan CSS dari JavaScript (biasanya kita hanya menambahkan / menghapus kelas CSS, tidak mengubah aturan CSS mereka), tetapi itu juga mungkin.
 ```
 
 ## BOM (Browser Object Model)
 
-The Browser Object Model (BOM) represents additional objects provided by the browser (host environment) for working with everything except the document.
+Browser Object Model (BOM) representasi objek tambahan yang disediakan oleh browser (host environment) untuk bekerja dengan segalanya kecuali dengan dokumen.
 
-For instance:
+Misalnya :
 
-- The [navigator](mdn:api/Window/navigator) object provides background information about the browser and the operating system. There are many properties, but the two most widely known are: `navigator.userAgent` -- about the current browser, and `navigator.platform` -- about the platform (can help to differ between Windows/Linux/Mac etc).
-- The [location](mdn:api/Window/location) object allows us to read the current URL and can redirect the browser to a new one.
+- Objek [navigator](mdn:api/Window/navigator) memberikan informasi latar belakang tentang browser dan sistem operasi. Ada banyak properti, tetapi dua yang paling dikenal adalah : `navigator.userAgent` -- tentang browser saat ini, dan `navigator.platform` -- tentang platform (dapat membantu membedakan antara Windows / Linux / Mac dll).
+- Objek [location](mdn:api/Window/location) memungkinkan kita membaca URL saat ini dan dapat mengarahkan browser ke yang baru.
 
-Here's how we can use the `location` object:
+memungkinkan kita membaca URL saat ini dan dapat mengarahkan browser ke yang baru.
+
+Inilah cara kita menggunakan objek `location`:
 
 ```js run
-alert(location.href); // shows current URL
+alert(location.href); // menunjukkan URL saat ini
 if (confirm("Go to Wikipedia?")) {
-  location.href = "https://wikipedia.org"; // redirect the browser to another URL
+  location.href = "https://wikipedia.org"; // mengarahkan browser ke URL lain
 }
 ```
 
-Functions `alert/confirm/prompt` are also a part of BOM: they are directly not related to the document, but represent pure browser methods of communicating with the user.
+*Function* `alert / confirm / prompt` juga merupakan bagian dari BOM: mereka secara langsung tidak terkait dengan dokumen, tetapi mewakili *method* murni browser  untuk berkomunikasi dengan pengguna.
 
 ```smart header="Specifications"
-BOM is the part of the general [HTML specification](https://html.spec.whatwg.org).
+BOM adalah bagian dari umum [HTML specification](https://html.spec.whatwg.org).
 
-Yes, you heard that right. The HTML spec at <https://html.spec.whatwg.org> is not only about the "HTML language" (tags, attributes), but also covers a bunch of objects, methods and browser-specific DOM extensions. That's "HTML in broad terms". Also, some parts have additional specs listed at <https://spec.whatwg.org>.
+Ya, Anda tidak salah dengar. Spesifikasi HTML di <https://html.spec.whatwg.org> is not only about the "HTML language" (tags, attributes),tetapi juga mencakup sekumpulan objek, metode, dan ekstensi DOM khusus browser. Itu adalah "HTML dalam istilah luas". Selain itu, beberapa bagian memiliki spesifikasi tambahan yang tercantum di <https://spec.whatwg.org>.
+
+
+tidak hanya tentang "bahasa HTML" (tag, atribut), tetapi juga mencakup sekumpulan objek, metode, dan ekstensi DOM khusus browser. Itu adalah "HTML dalam istilah luas". Selain itu, beberapa bagian memiliki spesifikasi tambahan yang tercantum di <https://spec.whatwg.org>.
 ```
 
-## Summary
+## Kesimpulan
 
-Talking about standards, we have:
+Berbicara tentang standar, kita mempunyai:
 
-DOM specification
-: Describes the document structure, manipulations and events, see <https://dom.spec.whatwg.org>.
+Spesifikasi DOM (*DOM specification*)
+: Menjelaskan struktur dokumen, manipulasi dan kejadian, lihat di <https://dom.spec.whatwg.org>.
 
-CSSOM specification
-: Describes stylesheets and style rules, manipulations with them and their binding to documents, see <https://www.w3.org/TR/cssom-1/>.
+Spesifikasi CSSOM  (*CSSOM specification*)
 
-HTML specification
-: Describes the HTML language (e.g. tags) and also the BOM (browser object model) -- various browser functions: `setTimeout`, `alert`, `location` and so on, see <https://html.spec.whatwg.org>. It takes the DOM specification and extends it with many additional properties and methods.
+: Menjelaskan stylesheet dan aturan gaya, manipulasi dengannya dan pengikatannya ke dokumen, lihat di <https://www.w3.org/TR/cssom-1/>.
 
-Additionally, some classes are described separately at <https://spec.whatwg.org/>.
+Spesifikasi HTML (*HTML specification*)
+: Menjelaskan bahasa HTML (misalnya tag) dan juga BOM (browser object model) : `setTimeout`, `alert`, `location` and so on, see <https://html.spec.whatwg.org>. Ini mengambil spesifil DOM dan memperluasnya dengan banyak properti dan *method* tambahan.
 
-Please note these links, as there's so much stuff to learn it's impossible to cover and remember everything.
+Selain itu, beberapa kelas dijelaskan secara terpisah di <https://spec.whatwg.org/>.
 
-When you'd like to read about a property or a method, the Mozilla manual at <https://developer.mozilla.org/en-US/search> is also a nice resource, but the corresponding spec may be better: it's more complex and longer to read, but will make your fundamental knowledge sound and complete.
+Harap perhatikan tautan ini, karena ada begitu banyak hal yang harus dipelajari sehingga tidak mungkin untuk menutupi dan mengingat semuanya.
 
-To find something, it's often convenient to use an internet search "WHATWG [term]" or "MDN [term]", e.g <https://google.com?q=whatwg+localstorage>, <https://google.com?q=mdn+localstorage>.
+Jika Anda ingin membaca tentang properti atau *method*, manual Mozilla di  <https://developer.mozilla.org/en-US/search> ini juga merupakan sumber daya yang bagus, tetapi spesifikasi yang sesuai mungkin lebih baik: lebih kompleks dan lebih lama untuk dibaca, tetapi akan membuat , pengetahuan dasar Anda kuat & lengkap.
 
-Now we'll get down to learning DOM, because the document plays the central role in the UI.
+Untuk menemukan sesuatu, sering kali lebih mudah menggunakan pencarian di internet "WHATWG [term]" atau "MDN [term]", atau yang lain <https://google.com?q=whatwg+localstorage>, <https://google.com?q=mdn+localstorage>.
+
+Sekarang kita akan mulai mempelajari DOM, karena dokumen memainkan peran sentral dalam UI.
