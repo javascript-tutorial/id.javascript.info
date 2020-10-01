@@ -1,14 +1,14 @@
-# Promisification
+# Promisifikasi
 
-Promisification -- is a long word for a simple transform. It's conversion of a function that accepts a callback into a function returning a promise.
+Promisifikasi -- adalah kata yang panjang untuk transformasi sederhana. Ini adalah konversi dari function yang menerima sebuah callback menjadi function yang mengembalikkan sebuah promise.
 
-Such transforms are often needed in real-life, as many functions and libraries are callback-based. But promises are more convenient. So it makes sense to promisify those.
+Transformasi seperti itu sering kali dibutuhkan dalam kehidupan nyata sebanyak function dan pustaka berbasis callback. Tetapi promise lebih nyaman. Jadi masuk akal untuk melakukan promisify ini.
 
-For instance, we have `loadScript(src, callback)` from the chapter <info:callbacks>.
+Sebagai contoh, kita memiliki `loadScript(src, callback)` dari bab <info:callbacks>.
 
 ```js run
 function loadScript(src, callback) {
-  let script = document.createElement('script');
+  let script = document.createElement("script");
   script.src = src;
 
   script.onload = () => callback(null, script);
@@ -17,41 +17,41 @@ function loadScript(src, callback) {
   document.head.append(script);
 }
 
-// usage:
+// penggunaan:
 // loadScript('path/script.js', (err, script) => {...})
 ```
 
-Let's promisify it. The new `loadScriptPromise(src)` function will do the same, but accept only `src` (no `callback`) and return a promise.
+Mari lakukan promisify. function `loadScriptPromise(src)` yang baru akan melakukan hal sama, tetapi hanya menerima `src` (tidak ada `callback`) dan mengembalikan promise.
 
 ```js
-let loadScriptPromise = function(src) {
+let loadScriptPromise = function (src) {
   return new Promise((resolve, reject) => {
     loadScript(src, (err, script) => {
-      if (err) reject(err)
+      if (err) reject(err);
       else resolve(script);
     });
-  })
-}
+  });
+};
 
-// usage:
+// penggunaan:
 // loadScriptPromise('path/script.js').then(...)
 ```
 
-Now `loadScriptPromise` fits well in promise-based code.
+Sekarang `loadScriptPromise` cocok dengan kode berbasis promise.
 
-As we can see, it delegates all the work to the original `loadScript`, providing its own callback that translates to promise `resolve/reject`.
+Seperti yang kita lihat, function tersebut mendelegasikan semua pekerjaan ke `loadScript` asli, menyediakan callbacknya sendiri yang diterjemahkan menjadi promise `resolve/reject`.
 
-In practice we'll probably need to promisify many functions, it makes sense to use a helper.
+Dalam praktiknya kita mungkin butuh untuk melakukan promisify banyak function, itu masuk akal untuk menggunakan sebuah helper.
 
-We'll call it `promisify(f)`: it accepts a to-promisify function `f` and returns a wrapper function.
+Kita akan memanggilnya `promisify(f)`: yang menerima function `f` untuk promisify dan mengembalikkan function wrapper.
 
-That wrapper does the same as in the code above: returns a promise and passes the call to the original `f`, tracking the result in a custom callback:
+Wrapper itu melakukan hal yang sama dengan kode di atas: mengembalikkan sebuah promise dan meneruskan panggilan ke `f` asli, melacak hasilnya di dalam callback khusus:
 
 ```js
 function promisify(f) {
-  return function (...args) { // return a wrapper-function
+  return function (...args) { // mengembalikan function wrapper
     return new Promise((resolve, reject) => {
-      function callback(err, result) { // our custom callback for f
+      function callback(err, result) { // callback khusus kita untuk f
         if (err) {
           return reject(err);
         } else {
@@ -59,34 +59,34 @@ function promisify(f) {
         }
       }
 
-      args.push(callback); // append our custom callback to the end of f arguments
+      args.push(callback); // tambahkan callback khusus kita ke akhir argumen f
 
-      f.call(this, ...args); // call the original function
+      f.call(this, ...args); // panggil fungsi aslinya
     });
   };
 };
 
-// usage:
+// penggunaan:
 let loadScriptPromise = promisify(loadScript);
 loadScriptPromise(...).then(...);
 ```
 
-Here we assume that the original function expects a callback with two arguments `(err, result)`. That's what we encounter most often. Then our custom callback is in exactly the right format, and `promisify` works great for such a case.
+Di sini kita asumsikan bahwa function asli mengharapkan callback dengan dua argumen `(err, result)`. Itulah yang paling sering kita temui. Kemudian callback khusus kita benar-benar dalam format yang tepat, dan `promisify` bekerja dengan baik untuk kasus seperti itu.
 
-But what if the original `f` expects a callback with more arguments `callback(err, res1, res2, ...)`?
+Tetapi bagaimana jika `f` asli mengharapkan callback dengan lebih banyak argumen `callback(err, res1, res2, ...)`?
 
-Here's a more advanced version of `promisify`: if called as `promisify(f, true)`, the promise result will be an array of callback results `[res1, res2, ...]`:
+Ini versi yang lebih canggih dari `promisify`: jika dipanggil sebagai `promisify(f, true)`, hasil dari promise akan berupa array dari hasil callback `[res1, res2, ...]`:
 
 ```js
-// promisify(f, true) to get array of results
+// promisify(f, true) dapatkan array dari hasil
 function promisify(f, manyArgs = false) {
   return function (...args) {
     return new Promise((resolve, reject) => {
-      function *!*callback(err, ...results*/!*) { // our custom callback for f
+      function *!*callback(err, ...results*/!*) { // callback khusus kita untuk f
         if (err) {
           return reject(err);
         } else {
-          // resolve with all callback results if manyArgs is specified
+          // resolve dengan semua hasil callback jika manyArgs ditentukan
           *!*resolve(manyArgs ? results : results[0]);*/!*
         }
       }
@@ -98,19 +98,19 @@ function promisify(f, manyArgs = false) {
   };
 };
 
-// usage:
+// penggunaan:
 f = promisify(f, true);
 f(...).then(arrayOfResults => ..., err => ...)
 ```
 
-For more exotic callback formats, like those without `err` at all: `callback(result)`, we can promisify such functions without using the helper, manually.
+Untuk format callback yang lebih eksotis, seperti yang tidak memiliki `err` sama sekali: `callback(result)`, kita bisa melakukan promisify function tersebut tanpa menggunakan helper, secara manual.
 
-There are also modules with a bit more flexible promisification functions, e.g. [es6-promisify](https://github.com/digitaldesignlabs/es6-promisify). In Node.js, there's a built-in `util.promisify` function for that.
+Ada juga module dengan function promisifikasi yang sedikit lebih fleksibel, misalnya [es6-promisify](https://github.com/digitaldesignlabs/es6-promisify). Di Node.js, ada function `util.promisify` bawaan untuk itu.
 
 ```smart
-Promisification is a great approach, especially when you use `async/await` (see the next chapter), but not a total replacement for callbacks.
+Promisifikasi adalah pendekatan yang bagus, khususnya ketika anda menggunakan `async/await` (lihat bab selanjutnya), tapi bukan pengganti callback secara total.
 
-Remember, a promise may have only one result, but a callback may technically be called many times.
+Ingat, sebuah promise mungkin hanya memiliki satu hasil, tetapi callback mungkin secara teknis dipanggil berkali-kali.
 
-So promisification is only meant for functions that call the callback once. Further calls will be ignored.
+Jadi promisifikasi hanya dimaksudkan untuk function yang memanggil callback sekali. Panggilan selanjutnya akan diabaikan.
 ```
