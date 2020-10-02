@@ -4,7 +4,7 @@ importance: 5
 
 # Kesalahan saat membuat sebuah _instance_
 
-Berikut kode dengan `Rabbit` _extending_ ʻAnimal`.
+Berikut kode dengan `Rabbit` _extending_ `Animal`.
 
 Sayangnya, objek `Rabbit` tidak dapat dibuat. Apa yang salah? Perbaiki!.
 
