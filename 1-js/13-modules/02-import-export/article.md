@@ -1,4 +1,4 @@
-# Export and Import
+# Export dan Import
 
 Perintah export dan import memiliki beberapa varian sintaks.
 
@@ -44,7 +44,7 @@ export function sayHi(user) {
 
 Kita juga dapat meletakkan perintah `export` secara terpisah.
 
-Di bawah ini kita mendeklarasikan terlebuh dahulu, lalu kemudian melakukan ekspor:
+Di bawah ini kita mendeklarasikan terlebih dahulu, lalu kemudian melakukan ekspor:
 
 ```js
 // 📁 say.js
@@ -260,7 +260,7 @@ export function sayHi(user) {
 }
 ```
 
-Berikut cara mengimpor ekspor bawaan bersama dengan yang ekspor bernamas:
+Berikut cara mengimpor ekspor bawaan bersama dengan yang ekspor bernama:
 
 ```js
 // 📁 main.js
@@ -269,7 +269,7 @@ import {*!*default as User*/!*, sayHi} from './user.js';
 new User('John');
 ```
 
-Dan terakhir, jika mengimpor semua `*` sebagai sebuah objek, maka properti `default` sama persiss dengan ekspor bawaan:
+Dan terakhir, jika mengimpor semua `*` sebagai sebuah objek, maka properti `default` sama persis dengan ekspor bawaan:
 
 ```js
 // 📁 main.js
@@ -309,9 +309,13 @@ import func from '/path/to/func.js';
 ...
 ```
 
+Namun, beberapa tim menganggapnya sebagai kelemahan serius dari ekspor default. Jadi, mereka lebih selalu suka menggunakan ekspor bernama. Meskipun hanya satu hal yang diekspor, itu masih diekspor dengan nama, tanpa `default`.
+
+Itu juga membuat ekspor ulang (lihat di bawah) sedikit lebih mudah.
+
 ## Ekspor Ulang
 
-"Ekspor ulanng" sintaks `export ... from ...` memperbolehkann untuk mengimpor sesuatu dan segera mengekspornya kembali (memungkinkan dengan nama yang berbeda) seperti ini:
+"Ekspor ulang" sintaks `export ... from ...` memperbolehkann untuk mengimpor sesuatu dan segera mengekspornya kembali (memungkinkan dengan nama yang berbeda) seperti ini:
 
 ```js
 export { sayHi } from './say.js'; // ekspor ulang sayHi
@@ -338,20 +342,20 @@ auth/
         ...
 ```
 
-Kita ingin menunjukkan fungsionaliotas paket melalui satu titik masuk, "Berkas utama" `auth/index.js` dapat digunakan seperti ini.
+Kita ingin menunjukkan fungsionalitas paket melalui satu titik masuk, "Berkas utama" `auth/index.js` dapat digunakan seperti ini.
 
 ```js
 import { login, logout } from 'auth/index.js';
 ```
 
-Idenya adalah bahwa orang luar (pengembang) yang menggunakan paket kita tidak boleh ikut campur dengan struktur internalnya, serta mencari berkas didalam direktori paket kita. Kita hanya mengekspor apa yang penting didalam `auth/index.js` dan menyembunyikan sisaya dari pengintaian.
+Idenya adalah bahwa orang luar (pengembang) yang menggunakan paket kita tidak boleh ikut campur dengan struktur internalnya, serta mencari berkas didalam direktori paket kita. Kita hanya mengekspor apa yang penting di dalam `auth/index.js` dan menyembunyikan sisaya dari pengintaian.
 
-Karena fungsionalitas yang diekspor sebenarnya tersebar diantara paket, kita dapat mengimpornya ke dalam `auth/index.js` dan kemudian kembali mengekpor-nya:
+Karena fungsionalitas yang diekspor sebenarnya tersebar diantara paket, kita dapat mengimpornya ke dalam `auth/index.js` dan kemudian kembali mengekspornya:
 
 ```js
 // 📁 auth/index.js
 
-// impor login/logout dan kemudian segera mengespornya kembali
+// impor login/logout dan kemudian segera mengekspornya kembali
 import {login, logout} from './helpers.js';
 export {login, logout};
 
@@ -392,7 +396,7 @@ export default class User {
 
     Untuk melakukan ekspor ulang ekspor bawaan, kita harus menuliskan `export { default as User }` seperti contoh diatas.
 
-2. `export * from './user.js'` mengekspor ulanga hanya ekspor bernama, tetapi mengabaikan ekspor bawaan.
+2. `export * from './user.js'` mengekspor ulang hanya ekspor bernama, tetapi mengabaikan ekspor bawaan.
 
     Jika kita ingin melakukan ekspor ulang keduanya (ekspor bernama dan ekspor bawaan), maka diperlukan dua pernyataan seperti berikut:
 
@@ -417,8 +421,8 @@ Ekspor:
     -   `export { x [as y], ... } from "module"`
 -   Ekspor ulang:
     -   `export {x [as y], ...} from "module"`
-    -   `export * from "module"` (doesn't re-export default).
-    -   `export {default [as y]} from "module"` (re-export default).
+    -   `export * from "module"` (tidak mengekspor ulang bawaan).
+    -   `export {default [as y]} from "module"` (ekspor ulang bawaan).
 
 Impor:
 
