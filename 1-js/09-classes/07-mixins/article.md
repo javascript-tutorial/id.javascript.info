@@ -1,22 +1,22 @@
-# Mixins
+# _Mixins_
 
-In JavaScript we can only inherit from a single object. There can be only one `[[Prototype]]` for an object. And a class may extend only one other class.
+Dalam JavaScript kita hanya dapat mewarisi dari satu objek. Hanya ada satu `[[Prototype]]` untuk sebuah objek. Dan sebuah kelas hanya dapat memperluas satu kelas lainnya.
 
-But sometimes that feels limiting. For instance, we have a class `StreetSweeper` and a class `Bicycle`, and want to make their mix: a `StreetSweepingBicycle`.
+Tapi terkadang hal itu terasa membatasi. Misalnya, kita memiliki kelas `StreetSweeper` dan kelas `Bicycle`, dan ingin membuat campurannya: `StreetSweepingBicycle`.
 
-Or we have a class `User` and a class `EventEmitter` that implements event generation, and we'd like to add the functionality of `EventEmitter` to `User`, so that our users can emit events.
+Atau kita memiliki kelas `User` dan kelas `EventEmitter` yang mengimplementasikan pembuatan peristiwa, dan kita ingin menambahkan fungsionalitas `EventEmitter` ke `User`, sehingga pengguna kita dapat memancarkan peristiwa.
 
-There's a concept that can help here, called "mixins".
+Ada konsep yang bisa membantu di sini, yang disebut "mixin".
 
-As defined in Wikipedia, a [mixin](https://en.wikipedia.org/wiki/Mixin) is a class containing methods that can be used by other classes without a need to inherit from it.
+Seperti yang didefinisikan di Wikipedia, [_mixin_](https://en.wikipedia.org/wiki/Mixin) adalah kelas yang berisi metode yang dapat digunakan oleh kelas lain tanpa perlu mewarisinya.
 
-In other words, a *mixin* provides methods that implement a certain behavior, but we do not use it alone, we use it to add the behavior to other classes.
+Dengan kata lain, _mixin_ menyediakan metode yang mengimplementasikan perilaku tertentu, tetapi kami tidak menggunakannya sendiri, kita menggunakannya untuk menambahkan perilaku ke kelas lain.
 
-## A mixin example
+## Contoh _mixin_
 
-The simplest way to implement a mixin in JavaScript is to make an object with useful methods, so that we can easily merge them into a prototype of any class.
+Cara termudah untuk mengimplementasikan _mixin_ dalam JavaScript adalah membuat objek dengan metode yang berguna, sehingga kita dapat dengan mudah menggabungkannya menjadi prototipe kelas apa pun.
 
-For instance here the mixin `sayHiMixin` is used to add some "speech" for `User`:
+Misalnya di sini mixin `sayHiMixin` digunakan untuk menambahkan beberapa "ucapan" untuk `User`:
 
 ```js run
 *!*
@@ -32,7 +32,7 @@ let sayHiMixin = {
 };
 
 *!*
-// usage:
+// penggunaan:
 */!*
 class User {
   constructor(name) {
@@ -40,14 +40,14 @@ class User {
   }
 }
 
-// copy the methods
+// salin metodenya
 Object.assign(User.prototype, sayHiMixin);
 
-// now User can say hi
+// sekarang User dapat berkata hi
 new User("Dude").sayHi(); // Hello Dude!
 ```
 
-There's no inheritance, but a simple method copying. So `User` may inherit from another class and also include the mixin to "mix-in" the additional methods, like this:
+Tidak ada warisan, tetapi penyalinan metode sederhana. Jadi, `User` dapat mewarisi dari kelas lain dan juga menyertakan _mixin_ untuk "mencampur" metode tambahan, seperti ini:
 
 ```js
 class User extends Person {
@@ -57,9 +57,9 @@ class User extends Person {
 Object.assign(User.prototype, sayHiMixin);
 ```
 
-Mixins can make use of inheritance inside themselves.
+_Mixin_ dapat memanfaatkan warisan di dalam dirinya sendiri.
 
-For instance, here `sayHiMixin` inherits from `sayMixin`:
+Misalnya, di sini `sayHiMixin` mewarisi dari `sayMixin`:
 
 ```js run
 let sayMixin = {
@@ -69,11 +69,11 @@ let sayMixin = {
 };
 
 let sayHiMixin = {
-  __proto__: sayMixin, // (or we could use Object.create to set the prototype here)
+  __proto__: sayMixin, // (atau kita bisa gunakan Object.create untuk mengatur prototipe di sini)
 
   sayHi() {
     *!*
-    // call parent method
+    // panggil metode induk
     */!*
     super.say(`Hello ${this.name}`); // (*)
   },
@@ -88,45 +88,45 @@ class User {
   }
 }
 
-// copy the methods
+// salin metodenya
 Object.assign(User.prototype, sayHiMixin);
 
-// now User can say hi
+// sekarang User dapat berkata hi
 new User("Dude").sayHi(); // Hello Dude!
 ```
 
-Please note that the call to the parent method `super.say()` from `sayHiMixin` (at lines labelled with `(*)`) looks for the method in the prototype of that mixin, not the class.
+Perhatikan bahwa panggilan ke metode induk `super.say()` dari `sayHiMixin` (pada baris berlabel `(*)`) mencari metode dalam prototipe _mixin_ tersebut, bukan kelasnya.
 
-Here's the diagram (see the right part):
+Berikut diagramnya (lihat bagian kanan):
 
 ![](mixin-inheritance.svg)
 
-That's because methods `sayHi` and `sayBye` were initially created in `sayHiMixin`. So even though they got copied, their `[[HomeObject]]` internal property references `sayHiMixin`, as shown in the picture above.
+Itu karena metode `sayHi` dan `sayBye` awalnya dibuat di `sayHiMixin`. Jadi, meskipun disalin, properti internal `[[HomeObject]]` mereferensikan `sayHiMixin`, seperti yang ditunjukkan pada gambar di atas.
 
-As `super` looks for parent methods in `[[HomeObject]].[[Prototype]]`, that means it searches `sayHiMixin.[[Prototype]]`, not `User.[[Prototype]]`.
+Karena `super` mencari metode induk di `[[HomeObject]].[[Prototype]]`, itu berarti mencari `sayHiMixin.[[Prototype]]`, bukan `User.[[Prototype]]`.
 
-## EventMixin
+## Peristiwa _Mixin_
 
-Now let's make a mixin for real life.
+Sekarang mari kita membuat _mixin_ untuk kehidupan nyata.
 
-An important feature of many browser objects (for instance) is that they can generate events. Events are a great way to "broadcast information" to anyone who wants it. So let's make a mixin that allows us to easily add event-related functions to any class/object.
+Fitur penting dari banyak objek browser (misalnya) adalah mereka dapat menghasilkan peristiwa. Peristiwa adalah cara terbaik untuk "menyiarkan informasi" kepada siapa pun yang menginginkannya. Jadi mari kita membuat _mixin_ yang memungkinkan kita dengan mudah menambahkan fungsi terkait peristiwa ke kelas/objek apa pun.
 
-- The mixin will provide a method `.trigger(name, [...data])` to "generate an event" when something important happens to it. The `name` argument is a name of the event, optionally followed by additional arguments with event data.
-- Also the method `.on(name, handler)` that adds `handler` function as the listener to events with the given name. It will be called when an event with the given `name` triggers, and get the arguments from the `.trigger` call.
-- ...And the method `.off(name, handler)` that removes the `handler` listener.
+- _Mixin_ akan menyediakan metode `.trigger(name, [...data])` untuk "menghasilkan peristiwa" ketika sesuatu yang penting terjadi padanya. Argumen `name` adalah nama peristiwa, secara opsional diikuti oleh argumen tambahan dengan data peristiwa.
+- Juga metode `.on(name, handler)` yang menambahkan fungsi `handler` sebagai pendengar peristiwa dengan nama yang diberikan. Ini akan dipanggil ketika sebuah peristiwa dengan `name` yang diberikan terpicu, dan mendapatkan argumen dari panggilan `.trigger`.
+- ...Dan metode `.off(name, handler)` yang menghapus pendengar `handler`.
 
-After adding the mixin, an object `user` will be able to generate an event `"login"` when the visitor logs in. And another object, say, `calendar` may want to listen for such events to load the calendar for the logged-in person.
+Setelah menambahkan _mixin_, sebuah objek `user` akan dapat membuat peristiwa `"login"` saat pengunjung masuk. Dan objek lain, katakanlah, `calendar` mungkin ingin mendengarkan peristiwa seperti itu untuk memuat kalender bagi orang yang masuk.
 
-Or, a `menu` can generate the event `"select"` when a menu item is selected, and other objects may assign handlers to react on that event. And so on.
+Atau, `menu` dapat menghasilkan peristiwa `"select"` ketika item menu dipilih, dan objek lain dapat menetapkan penangan untuk bereaksi pada peristiwa itu. Dan seterusnya.
 
-Here's the code:
+Berikut kodenya:
 
 ```js run
 let eventMixin = {
   /**
-   * Subscribe to event, usage:
+   * Berlangganan ke peristiwa, menggunakan:
    *  menu.on('select', function(item) { ... }
-  */
+   */
   on(eventName, handler) {
     if (!this._eventHandlers) this._eventHandlers = {};
     if (!this._eventHandlers[eventName]) {
@@ -136,7 +136,7 @@ let eventMixin = {
   },
 
   /**
-   * Cancel the subscription, usage:
+   * Membatalkan langganan, menggunakan:
    *  menu.off('select', handler)
    */
   off(eventName, handler) {
@@ -150,59 +150,60 @@ let eventMixin = {
   },
 
   /**
-   * Generate an event with the given name and data
+   * menghasilkan peristiwa dengan nama dan data yang diberikan
    *  this.trigger('select', data1, data2);
    */
   trigger(eventName, ...args) {
     if (!this._eventHandlers?.[eventName]) {
-      return; // no handlers for that event name
+      return; // tidak ada penangan untuk nama peristiwa itu
     }
 
-    // call the handlers
-    this._eventHandlers[eventName].forEach(handler => handler.apply(this, args));
-  }
+    // panggil penangannya
+    this._eventHandlers[eventName].forEach((handler) =>
+      handler.apply(this, args)
+    );
+  },
 };
 ```
 
+- `.on(eventName, handler)` -- menetapkan fungsi `handler` untuk dijalankan ketika peristiwa dengan nama itu terjadi. Secara teknis, ada properti `_eventHandlers` yang menyimpan senarai penangan untuk setiap nama peristiwa, dan itu hanya menambahkannya ke daftar.
+- `.off(eventName, handler)` -- menghapus fungsi dari daftar penangan.
+- `.trigger(eventName, ...args)` -- menghasilkan peristiwa: semua penangan dari `_eventHandlers[eventName]` dipanggil, dengan daftar argumen `...args`.
 
-- `.on(eventName, handler)` -- assigns function `handler` to run when the event with that name occurs. Technically, there's an `_eventHandlers` property that stores an array of handlers for each event name, and it just adds it to the list.
-- `.off(eventName, handler)` -- removes the function from the handlers list.
-- `.trigger(eventName, ...args)` -- generates the event: all handlers from `_eventHandlers[eventName]` are called, with a list of arguments `...args`.
-
-Usage:
+Penggunaan:
 
 ```js run
-// Make a class
+// Membuat kelas
 class Menu {
   choose(value) {
     this.trigger("select", value);
   }
 }
-// Add the mixin with event-related methods
+// Tambahkan mixin dengan metode terkait peristiwa
 Object.assign(Menu.prototype, eventMixin);
 
 let menu = new Menu();
 
-// add a handler, to be called on selection:
+// tambahkan penangan, untuk dipanggil saat seleksi:
 *!*
 menu.on("select", value => alert(`Value selected: ${value}`));
 */!*
 
-// triggers the event => the handler above runs and shows:
+// memicu peristiwa => penangan di atas berjalan dan menunjukkan:
 // Value selected: 123
 menu.choose("123");
 ```
 
-Now, if we'd like any code to react to a menu selection, we can listen for it with `menu.on(...)`.
+Sekarang, jika kita ingin kode apa pun bereaksi terhadap pilihan menu, kita dapat mendengarkannya dengan `menu.on(...)`.
 
-And `eventMixin` mixin makes it easy to add such behavior to as many classes as we'd like, without interfering with the inheritance chain.
+Dan _mixin_ `eventMixin` membuatnya mudah untuk menambahkan perilaku tersebut ke sebanyak mungkin kelas yang kita inginkan, tanpa mengganggu rantai pewarisan.
 
-## Summary
+## Ringkasan
 
-*Mixin* -- is a generic object-oriented programming term: a class that contains methods for other classes.
+_Mixin_ -- adalah istilah umum pemrograman berorientasi objek: kelas yang berisi metode untuk kelas lain.
 
-Some other languages allow multiple inheritance. JavaScript does not support multiple inheritance, but mixins can be implemented by copying methods into prototype.
+Beberapa bahasa lain mengizinkan banyak pewarisan. JavaScript tidak mendukung banyak pewarisan, tetapi _mixin_ dapat diimplementasikan dengan menyalin metode ke dalam prototipe.
 
-We can use mixins as a way to augment a class by adding multiple behaviors, like event-handling as we have seen above.
+Kita bisa menggunakan _mixin_ sebagai cara untuk menambah kelas dengan menambahkan beberapa perilaku, seperti penanganan peristiwa seperti yang telah kita lihat di atas.
 
-Mixins may become a point of conflict if they accidentally overwrite existing class methods. So generally one should think well about the naming methods of a mixin, to minimize the probability of that happening.
+_Mixin_ dapat menjadi titik konflik jika secara tidak sengaja menimpa metode kelas yang ada. Jadi umumnya orang harus berpikir dengan baik tentang metode penamaan _mixin_, untuk meminimalkan kemungkinan hal itu terjadi.
