@@ -1,7 +1,7 @@
-Yeah, looks strange indeed.
+Yah, memang terlihat aneh.
 
-But `instanceof` does not care about the function, but rather about its `prototype`, that it matches against the prototype chain.
+Tetapi `instanceof` tidak peduli dengan fungsinya, melainkan tentang `prototype`, yang cocok dengan rantai prototipe.
 
-And here `a.__proto__ == B.prototype`, so `instanceof` returns `true`.
+Dan di sini `a.__proto__ == B.prototype`, jadi `instanceof` mengembalikan `true`.
 
-So, by the logic of `instanceof`, the `prototype` actually defines the type, not the constructor function.
+Jadi, dengan menggunakan logika `instanceof`, `prototype` sebenarnya mendefinisikan tipe, bukan fungsi konstruktor.
