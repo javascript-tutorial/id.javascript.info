@@ -1,6 +1,6 @@
 
 # Browser environment, specs
-Bahasa JavaScript awal mulanya dibuat untuk web browser. Sejak saat itu terus berevolusi dan menjadi sebuah bahasa dengan banyak pengguna dan platform
+Bahasa JavaScript awal mulanya dibuat untuk web browser. Sejak saat itu terus berevolusi dan menjadi sebuah bahasa dengan banyak pengguna dan platform.
 
 Sebuah platform bisa menjadi browser, atau sebuah web-server ataupun *host* yang lain, sampai sebuah mesin kopi yang "cerdas", jika itu bisa menjalankan JavaScript. Masing-masing darinya menyediakan fungsionalitas platform yang spesifik. Spesifik JavaScript menyebut itu sebagai sebuah *host environment*.
 
@@ -72,7 +72,6 @@ Sebagai contoh:
 - Objek [navigator](mdn:api/Window/navigator) menyediakan informasi di latar belakang tentang browser dan operasi sistem. Disitu banyak sekali properti, tapi ada 2 yang sudah banyak diketahui yaitu: `navigator.userAgent` -- tentang browser sekarang, dan `navigator.platform` -- tentang platform (yang bisa membantu untuk membedakan antara Windows/Linux/Mac dan sebagainya).
 - Objek [location](mdn:api/Window/location) memungkinkan kita untuk membaca URL sekarang yang akan mengarahkan browser ke satu yang baru.
 
-Here's how we can use the `location` object:
 Berikut adalah bagaimana kita bisa menggunakan objek `location`:
 
 ```js run
@@ -87,7 +86,7 @@ Fungsi `alert/confirm/prompt` juga bagian dari BOM: mereka tidak berhubungan sec
 ```smart header="Specifications"
 BOM adalah bagian dari [spesifikasi HTML](https://html.spec.whatwg.org) pada umumnya.
 
-Ya, kau yang kau dengar benar. Spesifikasi HTML pada <https://html.spec.whatwg.org> bukanlah satu-satunya tentang "bahasa HTML" (tags, attributes), tapi juga mencakup banyak objek, metode-metode dan spesifikasi-browser ekstensi DOM. Itu adalah "HTML dalam istilah yang luas". Juga, beberapa bagian-bagian punya tambahan spesifikasi yang terdaftar di <https://spec.whatwg.org>.
+Ya, yang kamu dengar benar. Spesifikasi HTML pada <https://html.spec.whatwg.org> bukanlah satu-satunya tentang "bahasa HTML" (tags, attributes), tapi juga mencakup banyak objek, metode-metode dan spesifikasi-browser ekstensi DOM. Itu adalah "HTML dalam istilah yang luas". Juga, beberapa bagian-bagian punya tambahan spesifikasi yang terdaftar di <https://spec.whatwg.org>.
 ```
 
 ## Ringkasan
@@ -98,8 +97,7 @@ Spesifikasi DOM
 : Mendeskripsikan struktur dokumen, manipulasi dan events, lihat <https://dom.spec.whatwg.org>.
 
 Spesifikasi CSSOM
-: Describes stylesheets and style rules, manipulations with them and their binding to documents, see <https://www.w3.org/TR/cssom-1/>.
-Mendeskripsikan stylesheets dan aturan gaya, manipulasi dengannya dan perbandingannya dengan dokumen, lihat <https://www.w3.org/TR/cssom-1/>.
+: Mendeskripsikan stylesheets dan aturan gaya, manipulasi dengannya dan perbandingannya dengan dokumen, lihat <https://www.w3.org/TR/cssom-1/>.
 
 Spesifikasi HTML
 : Menjelaskan bahasa HTML (contoh. tags) dan juga BOM (browser object model) -- macam-macam fungsi browser: `setTimeout`, `alert`, `location` dan banyak lagi, lihat <https://html.spec.whatwg.org>. Dengan itu bisa mengambil spesifikasi DOM dan meluaskannya dengan banyak properti dan metode.
