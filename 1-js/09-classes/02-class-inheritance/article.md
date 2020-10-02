@@ -68,7 +68,7 @@ Misalnya, untuk menemukan metode `rabbit.run`, mesin mengecek (dari bawah ke ata
 
 Seperti yang bisa kita ingat dari bab <info:native-prototypes>, JavaScript sendiri menggunakan pewarisan _prototypal_ untuk objek bawaan. Misalnya. `Date.prototype.[[Prototype]]` adalah `Object.prototype`. Itulah mengapa tanggal memiliki akses ke metode objek umum.
 
-````smart header="Any expression is allowed after `extends`" Class syntax allows to specify not just a class, but any expression after `extends`.
+````smart header="Ekspresi apa pun diperbolehkan setelah `extends` "Sintaks kelas memungkinkan untuk menentukan tidak hanya kelas, tetapi ekspresi apa pun setelah `extends`.
 
 Misalnya, panggilan fungsi yang menghasilkan kelas induk:
 
@@ -157,7 +157,7 @@ rabbit.stop(); // White Rabbit stands still. White rabbit hides!
 
 Sekarang `Rabbit` mempunyai metode `stop` yang memanggil induk `super.stop()` di dalam proses.
 
-````smart header="Arrow functions have no `super`"
+````smart header="_Arrow functions_ tidak mempunyai `super`"
 Seperti yang disebutkan di bab <info:arrow-functions>, _arrow functions_ tidak memiliki `super`.
 
 Jika diakses, itu diambil dari fungsi luar. Misalnya:
