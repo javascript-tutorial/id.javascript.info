@@ -1,42 +1,42 @@
-# Class checking: "instanceof"
+# Pengecekan kelas: "instanceof"
 
-The `instanceof` operator allows to check whether an object belongs to a certain class. It also takes inheritance into account.
+Operator `instanceof` memungkinkan kita untuk memeriksa apakah suatu _object_ milik _class_ tertentu. `instanceof` juga memperhatikan _inheritance_.
 
-Such a check may be necessary in many cases. Here we'll use it for building a *polymorphic* function, the one that treats arguments differently depending on their type.
+Pengecekan seperti itu mungkin diperlukan dalam beberapa kasus. Di sini kita akan menggunakannya untuk membangun fungsi *polymorphic*, yang memperlakukan argumen secara berbeda bergantung pada tipenya.
 
-## The instanceof operator [#ref-instanceof]
+## Operator instanceof [#ref-instanceof]
 
-The syntax is:
+Sintaksnya adalah:
 ```js
 obj instanceof Class
 ```
 
-It returns `true` if `obj` belongs to the `Class` or a class inheriting from it.
+Akan mengembalikan `true` jika `obj` dimiliki oleh `Class` atau kelas turunannya.
 
-For instance:
+Misalnya:
 
 ```js run
 class Rabbit {}
 let rabbit = new Rabbit();
 
-// is it an object of Rabbit class?
+// apakah ini merupakan object dari kelas Rabbit?
 *!*
 alert( rabbit instanceof Rabbit ); // true
 */!*
 ```
 
-It also works with constructor functions:
+Itu juga bekerja dengan fungsi _constructor_:
 
 ```js run
 *!*
-// instead of class
+// dari pada class
 function Rabbit() {}
 */!*
 
 alert( new Rabbit() instanceof Rabbit ); // true
 ```
 
-...And with built-in classes like `Array`:
+...Dan kelas bawaan seperti `Array`:
 
 ```js run
 let arr = [1, 2, 3];
@@ -44,19 +44,19 @@ alert( arr instanceof Array ); // true
 alert( arr instanceof Object ); // true
 ```
 
-Please note that `arr` also belongs to the `Object` class. That's because `Array` prototypically inherits from `Object`.
+Harap dicatat bahwa `arr` juga termasuk dalam kelas `Object`. Itu karena `Array` secara prototipikal mewarisi dari` Object`.
 
-Normally, `instanceof` examines the prototype chain for the check. We can also set a custom logic in the static method `Symbol.hasInstance`.
+Normalnya, `instanceof` memeriksa rantai _prototype_ untuk pemeriksaan. Kita juga dapat menyetel _custom logic_ dalam _static method_ `Symbol.hasInstance`.
 
-The algorithm of `obj instanceof Class` works roughly as follows:
+Algoritma `obj instanceof Class` bekerja kurang lebih sebgai berikut:
 
-1. If there's a static method `Symbol.hasInstance`, then just call it: `Class[Symbol.hasInstance](obj)`. It should return either `true` or `false`, and we're done. That's how we can customize the behavior of `instanceof`.
+1. Jika terdapat _static method_ `Symbol.hasInstance`, maka panggil saja: `Class[Symbol.hasInstance](obj)`. Itu akan mengembalikan `true` atau `false`, selesai. Begitulah cara kita bisa menyesuaikan perilaku dari `instanceof`.
 
-    For example:
+    Sebagai contoh:
 
     ```js run
-    // setup instanceOf check that assumes that
-    // anything with canEat property is an animal
+    // menyiapkan instanceOf yang berasumsi
+    // apapun yang memiliki properti canEat adalah binatang
     class Animal {
       static [Symbol.hasInstance](obj) {
         if (obj.canEat) return true;
@@ -65,24 +65,24 @@ The algorithm of `obj instanceof Class` works roughly as follows:
 
     let obj = { canEat: true };
 
-    alert(obj instanceof Animal); // true: Animal[Symbol.hasInstance](obj) is called
+    alert(obj instanceof Animal); // true: Animal[Symbol.hasInstance](obj) dipanggil
     ```
 
-2. Most classes do not have `Symbol.hasInstance`. In that case, the standard logic is used: `obj instanceOf Class` checks whether `Class.prototype` is equal to one of the prototypes in the `obj` prototype chain.
+2. Kebanyakan kelas tidak memiliki `Symbol.hasInstance`. Dalam kasus ini, logika standar digunakan: `obj instanceOf Class` Memeriksa apakah `Class.prototype` sama dengan salah satu _prototype_ dalam rantai _prototype_`obj` .
 
-    In other words, compare one after another:
+    Dengan kata lain, bandingkan satu sama lain:
     ```js
     obj.__proto__ === Class.prototype?
     obj.__proto__.__proto__ === Class.prototype?
     obj.__proto__.__proto__.__proto__ === Class.prototype?
     ...
-    // if any answer is true, return true
-    // otherwise, if we reached the end of the chain, return false
+    // jika jawabannya true, return true
+    // jika tidak, jika kita mencapai ujung rantai, return false
     ```
 
-    In the example above `rabbit.__proto__ === Rabbit.prototype`, so that gives the answer immediately.
+    Pada contoh diatas `rabbit.__proto__ === Rabbit.prototype`, sehingga akan memberikan jawaban segera.
 
-    In the case of an inheritance, the match will be at the second step:
+    Dalam kasus _inheritance_, kesamaan akan berada pada langkah kedua:
 
     ```js run
     class Animal {}
@@ -99,70 +99,70 @@ The algorithm of `obj instanceof Class` works roughly as follows:
     */!*
     ```
 
-Here's the illustration of what `rabbit instanceof Animal` compares with `Animal.prototype`:
+Berikut ilustrasi tentang perbandingan `rabbit instanceof Animal` dengan `Animal.prototype`:
 
 ![](instanceof.svg)
 
-By the way, there's also a method [objA.isPrototypeOf(objB)](mdn:js/object/isPrototypeOf), that returns `true` if `objA` is somewhere in the chain of prototypes for `objB`. So the test of `obj instanceof Class` can be rephrased as `Class.prototype.isPrototypeOf(obj)`.
+Omong-omong, terdapat juga _method_ [objA.isPrototypeOf(objB)](mdn:js/object/isPrototypeOf), yang mengembalikan `true` jika `objA` berada di suatu tempat dalam rantai _prototypes_ untuk `objB`. Jadi pengujian `obj instanceof Class` bisa dirumuskan sebagai `Class.prototype.isPrototypeOf(obj)`.
 
-It's funny, but the `Class` constructor itself does not participate in the check! Only the chain of prototypes and `Class.prototype` matters.
+Ini lucu, tetapi _constructor_ `Class` itu sendiri tidak ikut dalam pemeriksaan! Hanya rangkaian dari _prototype_ dan `Class.prototype` yang penting.
 
-That can lead to interesting consequences when a `prototype` property is changed after the object is created.
+Itu bisa menimbulkan konsekuensi yang menarik ketika properti `prototype` diubah setelah objek dibuat.
 
-Like here:
+Seperti:
 
 ```js run
 function Rabbit() {}
 let rabbit = new Rabbit();
 
-// changed the prototype
+// mengubah prototype
 Rabbit.prototype = {};
 
-// ...not a rabbit any more!
+// ...bukan kelinci lagi!
 *!*
 alert( rabbit instanceof Rabbit ); // false
 */!*
 ```
 
-## Bonus: Object.prototype.toString for the type
+## Bonus: Object.prototype.toString untuk tipe
 
-We already know that plain objects are converted to string as `[object Object]`:
+Kita tahu bahwa _plain object_ akan diubah menjadi _string_ sebagai `[object Object]`:
 
 ```js run
 let obj = {};
 
 alert(obj); // [object Object]
-alert(obj.toString()); // the same
+alert(obj.toString()); // sama
 ```
 
-That's their implementation of `toString`. But there's a hidden feature that makes `toString` actually much more powerful than that. We can use it as an extended `typeof` and an alternative for `instanceof`.
+Itulah implementasi dari `toString`. Tetapi ada fitur tersembunyi yang membuat `toString` menjadi lebih _powerful_ dari itu. Kita bisa menggunakannya sebagai perluasan dari `typeof` dan alternatif untuk `instanceof`.
 
-Sounds strange? Indeed. Let's demystify.
+Terdengar aneh? Tentu. Mari kita cari tahu.
 
-By [specification](https://tc39.github.io/ecma262/#sec-object.prototype.tostring), the built-in `toString` can be extracted from the object and executed in the context of any other value. And its result depends on that value.
+Dengan [spesifikasi](https://tc39.github.io/ecma262/#sec-object.prototype.tostring), `toString` bawaan dapat diekstrak dari object dan dijalankan dalam konteks nilai lainnya. Dan hasilnya tergantung pada nilai tersebut.
 
-- For a number, it will be `[object Number]`
-- For a boolean, it will be `[object Boolean]`
-- For `null`: `[object Null]`
-- For `undefined`: `[object Undefined]`
-- For arrays: `[object Array]`
-- ...etc (customizable).
+- Untuk angka, akan menjadi `[object Number]`
+- Untuk _boolean_, akan menjadi `[object Boolean]`
+- Untuk `null`: `[object Null]`
+- Untuk `undefined`: `[object Undefined]`
+- Untuk _array_: `[object Array]`
+- ...dll (dapat disesuaikan).
 
-Let's demonstrate:
+Mari kita tunjukkan:
 
 ```js run
-// copy toString method into a variable for convenience
+// copy toString method kedalam sebuah variabel
 let objectToString = Object.prototype.toString;
 
-// what type is this?
+// tipe apa ini?
 let arr = [];
 
 alert( objectToString.call(arr) ); // [object *!*Array*/!*]
 ```
 
-Here we used [call](mdn:js/function/call) as described in the chapter [](info:call-apply-decorators) to execute the function `objectToString` in the context `this=arr`.
+Disini kita gunakan [_call_](mdn:js/function/call) seperti dijelaskan dalam bab [](info:call-apply-decorators) untuk menjalankan fungsi `objectToString` dalam konteks `this=arr`.
 
-Internally, the `toString` algorithm examines `this` and returns the corresponding result. More examples:
+Secara internal, algoritme `toString` memeriksa `this` dan mengembalikan hasil yang sesuai. Contoh lainnya:
 
 ```js run
 let s = Object.prototype.toString;
@@ -174,9 +174,9 @@ alert( s.call(alert) ); // [object Function]
 
 ### Symbol.toStringTag
 
-The behavior of Object `toString` can be customized using a special object property `Symbol.toStringTag`.
+Perilaku object `toString` dapat disesuaikan dengan menggunakan properti objek khusus `Symbol.toStringTag`.
 
-For instance:
+Sebagai contoh:
 
 ```js run
 let user = {
@@ -186,10 +186,10 @@ let user = {
 alert( {}.toString.call(user) ); // [object User]
 ```
 
-For most environment-specific objects, there is such a property. Here are some browser specific examples:
+Untuk sebagian besar objek yang spesifik pada _environment_, terdapat properti seperti itu. Berikut beberapa contoh untuk browser yang spesifik:
 
 ```js run
-// toStringTag for the environment-specific object and class:
+// toStringTag untuk objek dan kelas yang spesifik pada environtment:
 alert( window[Symbol.toStringTag]); // Window
 alert( XMLHttpRequest.prototype[Symbol.toStringTag] ); // XMLHttpRequest
 
@@ -197,22 +197,22 @@ alert( {}.toString.call(window) ); // [object Window]
 alert( {}.toString.call(new XMLHttpRequest()) ); // [object XMLHttpRequest]
 ```
 
-As you can see, the result is exactly `Symbol.toStringTag` (if exists), wrapped into `[object ...]`.
+Dapat dilihat, hasilnya persis `Symbol.toStringTag` (jika ada), digabungkan ke dalam `[object ...]`.
 
-At the end we have "typeof on steroids" that not only works for primitive data types, but also for built-in objects and even can be customized.
+Pada akhirnya kami memiliki _"typeof on steroids"_ yang tidak hanya akan berfungsi untuk tipe data primitif, tetapi juga untuk objek bawaan dan bahkan dapat disesuaikan.
 
-We can use `{}.toString.call` instead of `instanceof` for built-in objects when we want to get the type as a string rather than just to check.
+Kita dapat menggunakan `{}.toString.call` daripada `instanceof` untuk objek bawaan ketika ingin mendapatkan tipe sebagai string daripada hanya untuk diperiksa.
 
-## Summary
+## Ringkasan
 
-Let's summarize the type-checking methods that we know:
+Mari kita rangkum metode pengecekan tipe yang kita ketahui:
 
-|               | works for   |  returns      |
+|               | bekerja pada   |  mengembalikan      |
 |---------------|-------------|---------------|
-| `typeof`      | primitives  |  string       |
-| `{}.toString` | primitives, built-in objects, objects with `Symbol.toStringTag`   |       string |
-| `instanceof`  | objects     |  true/false   |
+| `typeof`      | primitif  |  string       |
+| `{}.toString` | primitif, objek bawaan, objek dengan `Symbol.toStringTag`   |       string |
+| `instanceof`  | objek     |  true/false   |
 
-As we can see, `{}.toString` is technically a "more advanced" `typeof`.
+Dapat kita lihat, `{}.toString` secara teknis "lebih _advanced_" `typeof`.
 
-And `instanceof` operator really shines when we are working with a class hierarchy and want to check for the class taking into account inheritance.
+Dan operator `instanceof` akan lebih berguna ketika kita bekerja dengan hirearki kelas dan ingin memeriksa kelas yang memperhatikan _inheritance_.
