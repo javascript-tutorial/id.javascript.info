@@ -456,10 +456,10 @@ Sebuah impor bersyarat seperti ini tidak akan dapat berfungsi:
 
 ```js
 if (something) {
-    import { sayHi } from './say.js'; // Galat: impor harus diluar pernnyataan if dann { ... }
+    import { sayHi } from './say.js'; // Error: import must be at top level (impor harus diluar pernyataan if dann { ... } sehingga kode tersebut tidak akan bekerja)
 }
 ```
 
-...Tetapi bagaimmana jika kita benar-benar perlu menhimpor sesuatu dengan syarat tertentu? atau pada waktu yang tepat? Seperti memuat modul berdasarkan permintaan, pada saat itu benar-benar dibutuhkan?
+...Tetapi bagaimana jika kita benar-benar perlu menhimpor sesuatu dengan syarat tertentu? atau pada waktu yang tepat? Seperti memuat modul berdasarkan permintaan, pada saat itu benar-benar dibutuhkan?
 
 Oleh karena itu, kita akan mempelajari impor dinamis di artikel selanjutnya.
