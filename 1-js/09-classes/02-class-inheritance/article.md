@@ -1,13 +1,12 @@
+# Turunan Kelas
 
-# Class inheritance
+Turunan Kelas adalah cara satu kelas untuk memperluas kelas lainnya.
 
-Class inheritance is a way for one class to extend another class.
+Jadi kita bisa membuat fungsionalitas baru di atas yang sudah ada.
 
-So we can create new functionality on top of the existing.
+## Kata kunci "extends"
 
-## The "extends" keyword
-
-Let's say we have class `Animal`:
+Katakanlah kita mempunyai kelas `Animal`:
 
 ```js
 class Animal {
@@ -25,20 +24,20 @@ class Animal {
   }
 }
 
-let animal = new Animal("My animal");
+let animal = new Animal('My animal');
 ```
 
-Here's how we can represent `animal` object and `Animal` class graphically:
+Inilah cara kita mewakili objek `animal` dan kelas `Animal` secara grafis:
 
 ![](rabbit-animal-independent-animal.svg)
 
-...And we would like to create another `class Rabbit`.
+...Dan kita akan membuat yang lain `class Rabbit`.
 
-As rabbits are animals, `Rabbit` class should be based on `Animal`, have access to animal methods, so that rabbits can do what "generic" animals can do.
+Karena kelinci adalah binatang, kelas `Rabbit` harus didasarkan pada `Animal`, memiliki akses ke metode _animal_, sehingga _rabbits_ dapat melakukan apa yang dapat dilakukan hewan "pada umumnya".
 
-The syntax to extend another class is: `class Child extends Parent`.
+Sintaks untuk memperluas kelas lain adalah: `class Child extends Parent`.
 
-Let's create `class Rabbit` that inherits from `Animal`:
+Mari buat `class Rabbit` yang diwarisi dari `Animal`:
 
 ```js
 *!*
@@ -55,23 +54,23 @@ rabbit.run(5); // White Rabbit runs with speed 5.
 rabbit.hide(); // White Rabbit hides!
 ```
 
-Object of `Rabbit` class have access to both `Rabbit` methods, such as `rabbit.hide()`, and also to `Animal` methods, such as `rabbit.run()`.
+Objek dari kelas `Rabbit` mempunyai akses kedua metode `Rabbit`, seperti `rabbit.hide()`, dan juga untuk metode `Animal`, seperti `rabbit.run()`.
 
-Internally, `extends` keyword works using the good old prototype mechanics. It sets `Rabbit.prototype.[[Prototype]]` to `Animal.prototype`. So, if a method is not found in `Rabbit.prototype`, JavaScript takes it from `Animal.prototype`.
+Secara internal, kata kunci `extends` bekerja menggunakan mekanik prototipe lama yang bagus. Ini mengatur `Rabbit.prototype.[[Prototype]]` untuk `Animal.prototype`. Jadi, jika metode tidak ditemukan di `Rabbit.prototype`, JavaScript mengambilnya dari `Animal.prototype`.
 
 ![](animal-rabbit-extends.svg)
 
-For instance, to find `rabbit.run` method, the engine checks (bottom-up on the picture):
-1. The `rabbit` object (has no `run`).
-2. Its prototype, that is `Rabbit.prototype` (has `hide`, but not `run`).
-3. Its prototype, that is (due to `extends`) `Animal.prototype`, that finally has the `run` method.
+Misalnya, untuk menemukan metode `rabbit.run`, mesin mengecek (dari bawah ke atas pada gambar):
 
-As we can recall from the chapter <info:native-prototypes>, JavaScript itself uses prototypal inheritance for built-in objects. E.g. `Date.prototype.[[Prototype]]` is `Object.prototype`. That's why dates have access to generic object methods.
+1. Objek `rabbit` (tidak punya `run`).
+2. Prototipenya, yaitu `Rabbit.prototype` (mempunyai `hide`, tapi tidak `run`).
+3. Prototipenya, yaitu (disebabkan oleh `extends`) `Animal.prototype`, yang akhirnya mempunyai metode `run`.
 
-````smart header="Any expression is allowed after `extends`"
-Class syntax allows to specify not just a class, but any expression after `extends`.
+Seperti yang bisa kita ingat dari bab <info:native-prototypes>, JavaScript sendiri menggunakan pewarisan _prototypal_ untuk objek bawaan. Misalnya. `Date.prototype.[[Prototype]]` adalah `Object.prototype`. Itulah mengapa tanggal memiliki akses ke metode objek umum.
 
-For instance, a function call that generates the parent class:
+````smart header="Any expression is allowed after `extends`" Class syntax allows to specify not just a class, but any expression after `extends`.
+
+Misalnya, panggilan fungsi yang menghasilkan kelas induk:
 
 ```js run
 function f(phrase) {
@@ -86,34 +85,36 @@ class User extends f("Hello") {}
 
 new User().sayHi(); // Hello
 ```
-Here `class User` inherits from the result of `f("Hello")`.
 
-That may be useful for advanced programming patterns when we use functions to generate classes depending on many conditions and can inherit from them.
-````
+Di sini `class User` mewarisi dari hasil `f("Hello")`.
 
-## Overriding a method
+Itu mungkin berguna untuk pola pemrograman tingkat lanjut saat kita menggunakan fungsi untuk menghasilkan kelas bergantung pada banyak kondisi dan dapat mewarisinya.
 
-Now let's move forward and override a method. By default, all methods that are not specified in `class Rabbit` are taken directly "as is" from `class Animal`.
+`````
 
-But if we specify our own method in `Rabbit`, such as `stop()` then it will be used instead:
+## Mengganti metode
+
+Sekarang mari bergerak maju dan mengganti metode. Secara default, semua metode yang tidak dispesifikasikan dalam `class Rabbit` diambil secara langsung "sebagaimana adanya" dari `class Animal`.
+
+Tetapi jika kita menentukan metode kita sendiri di `Rabbit`, seperti `stop()` maka itu akan digunakan sebagai gantinya:
 
 ```js
 class Rabbit extends Animal {
   stop() {
-    // ...now this will be used for rabbit.stop()
-    // instead of stop() from class Animal
+    // ...sekarang ini akan digunakan untuk rabbit.stop()
+    // Bukan stop() dari kelas Animal
   }
 }
 ```
 
-Usually we don't want to totally replace a parent method, but rather to build on top of it to tweak or extend its functionality. We do something in our method, but call the parent method before/after it or in the process.
+Biasanya kita tidak ingin sepenuhnya mengganti metode induk, melainkan untuk membangun di atasnya untuk mengubah atau memperluas fungsinya. Kita melakukan sesuatu dalam metode kita, tetapi memanggil metode induk sebelum/sesudahnya atau dalam proses.
 
-Classes provide `"super"` keyword for that.
+Kelas menyediakan kata kunci `"super"` untuk itu.
 
-- `super.method(...)` to call a parent method.
-- `super(...)` to call a parent constructor (inside our constructor only).
+- `super.method(...)` untuk memanggil metode induk.
+- `super(...)` untuk memanggil konstruktor induk (hanya di dalam konstruktor kita).
 
-For instance, let our rabbit autohide when stopped:
+Misalnya, biarkan kelinci kita bersembunyi otomatis saat dihentikan:
 
 ```js run
 class Animal {
@@ -142,8 +143,8 @@ class Rabbit extends Animal {
 
 *!*
   stop() {
-    super.stop(); // call parent stop
-    this.hide(); // and then hide
+    super.stop(); // memanggil stop induk
+    this.hide(); // dan lalu bersembunyi
   }
 */!*
 }
@@ -154,40 +155,39 @@ rabbit.run(5); // White Rabbit runs with speed 5.
 rabbit.stop(); // White Rabbit stands still. White rabbit hides!
 ```
 
-Now `Rabbit` has the `stop` method that calls the parent `super.stop()` in the process.
+Sekarang `Rabbit` mempunyai metode `stop` yang memanggil induk `super.stop()` di dalam proses.
 
 ````smart header="Arrow functions have no `super`"
-As was mentioned in the chapter <info:arrow-functions>, arrow functions do not have `super`.
+Seperti yang disebutkan di bab <info:arrow-functions>, _arrow functions_ tidak memiliki `super`.
 
-If accessed, it's taken from the outer function. For instance:
+Jika diakses, itu diambil dari fungsi luar. Misalnya:
 ```js
 class Rabbit extends Animal {
   stop() {
-    setTimeout(() => super.stop(), 1000); // call parent stop after 1sec
+    setTimeout(() => super.stop(), 1000); // memanggil stop induk setelah 1 detik
   }
 }
 ```
 
-The `super` in the arrow function is the same as in `stop()`, so it works as intended. If we specified a "regular" function here, there would be an error:
+`super` di _arrow function_ sama dengan di `stop()`, jadi berfungsi seperti yang diinginkan. Jika kita menetapkan fungsi "biasa" di sini, akan ada kesalahan:
 
 ```js
 // Unexpected super
 setTimeout(function() { super.stop() }, 1000);
 ```
-````
+`````
 
+## Mengganti konstruktor
 
-## Overriding constructor
+Dengan konstruktor, ini menjadi sedikit rumit.
 
-With constructors it gets a little bit tricky.
+Sampai sekarang, `Rabbit` tidak mempunyai `constructor` sendiri.
 
-Until now, `Rabbit` did not have its own `constructor`.
-
-According to the [specification](https://tc39.github.io/ecma262/#sec-runtime-semantics-classdefinitionevaluation), if a class extends another class and has no `constructor`, then the following "empty" `constructor` is generated:
+Menurut [spesifikasi](https://tc39.github.io/ecma262/#sec-runtime-semantics-classdefinitionevaluation), jika sebuah kelas memperluas kelas lain dan tidak memiliki `constructor`, maka `constructor` "kosong" berikut akan dibuat:
 
 ```js
 class Rabbit extends Animal {
-  // generated for extending classes without own constructors
+  // dihasilkan untuk memperluas kelas tanpa konstruktor sendiri
 *!*
   constructor(...args) {
     super(...args);
@@ -196,9 +196,9 @@ class Rabbit extends Animal {
 }
 ```
 
-As we can see, it basically calls the parent `constructor` passing it all the arguments. That happens if we don't write a constructor of our own.
+Seperti yang bisa kita lihat, ini pada dasarnya memanggil `constructor` induk dengan meneruskan semua argumen. Itu terjadi jika kita tidak menulis konstruktor kita sendiri.
 
-Now let's add a custom constructor to `Rabbit`. It will specify the `earLength` in addition to `name`:
+Sekarang mari tambahkan konstruktor kustom ke `Rabbit`. Ini akan menentukan `earLength` selain `name`:
 
 ```js run
 class Animal {
@@ -223,31 +223,31 @@ class Rabbit extends Animal {
 }
 
 *!*
-// Doesn't work!
+// Tidak bekerja!
 let rabbit = new Rabbit("White Rabbit", 10); // Error: this is not defined.
 */!*
 ```
 
-Whoops! We've got an error. Now we can't create rabbits. What went wrong?
+Ups! Kita mendapat kesalahan. Sekarang kita tidak bisa membuat _rabbits_. Apa yang salah?
 
-The short answer is:
+Jawaban singkatnya adalah:
 
-- **Constructors in inheriting classes must call `super(...)`, and (!) do it before using `this`.**
+- **Konstruktor dalam kelas mewarisi harus memanggil `super(...)`, dan (!) lakukan sebelum menggunakan `this`.**
 
-...But why? What's going on here? Indeed, the requirement seems strange.
+...Tapi kenapa? Apa yang terjadi di sini? Memang, persyaratannya tampak aneh.
 
-Of course, there's an explanation. Let's get into details, so you'll really understand what's going on.
+Tentu saja ada penjelasannya. Mari kita bahas detailnya, jadi kamu akan benar-benar mengerti apa yang terjadi.
 
-In JavaScript, there's a distinction between a constructor function of an inheriting class (so-called "derived constructor") and other functions. A derived constructor has a special internal property `[[ConstructorKind]]:"derived"`. That's a special internal label.
+Dalam JavaScript, ada perbedaan antara fungsi konstruktor dari kelas yang mewarisi (disebut "konstruktor turunan") dan fungsi lainnya. Konstruktor turunan memiliki properti internal khusus `[[ConstructorKind]]:"turunan"`. Itu label internal khusus.
 
-That label affects its behavior with `new`.
+Label itu mempengaruhi perilakunya dengan `new`.
 
-- When a regular function is executed with `new`, it creates an empty object and assigns it to `this`.
-- But when a derived constructor runs, it doesn't do this. It expects the parent constructor to do this job.
+- Saat fungsi reguler dijalankan dengan `new`, itu membuat objek kosong dan menugaskannya ke `this`.
+- Tetapi ketika konstruktor turunan berjalan, ia tidak melakukan ini. Ia mengharapkan konstruktor induk untuk melakukan pekerjaan ini.
 
-So a derived constructor must call `super` in order to execute its parent (base) constructor, otherwise the object for `this` won't be created. And we'll get an error.
+Jadi, konstruktor turunan harus memanggil `super` untuk menjalankan konstruktor induknya, jika tidak, objek untuk `this` tidak akan dibuat. Dan kita akan mendapatkan kesalahan.
 
-For the `Rabbit` constructor to work, it needs to call `super()` before using `this`, like here:
+Agar konstruktor `Rabbit` bekerja, ia perlu memanggil`super()`sebelum menggunakan `this`, seperti di sini:
 
 ```js run
 class Animal {
@@ -273,30 +273,28 @@ class Rabbit extends Animal {
 }
 
 *!*
-// now fine
+// sekarang baik-baik saja
 let rabbit = new Rabbit("White Rabbit", 10);
 alert(rabbit.name); // White Rabbit
 alert(rabbit.earLength); // 10
 */!*
 ```
 
-
-
-### Overriding class fields: a tricky note
+### Mengganti bidang kelas: catatan rumit
 
 ```warn header="Advanced note"
-This note assumes you have a certain experience with classes, maybe in other programming languages.
+Catatan ini mengasumsikan kamu memiliki pengalaman tertentu dengan kelas, mungkin dalam bahasa pemrograman lain.
 
-It provides better insight into the language and also explains the behavior that might be a source of bugs (but not very often).
+Ini memberikan wawasan yang lebih baik tentang bahasa dan juga menjelaskan perilaku yang mungkin menjadi sumber kesalahan (tetapi tidak terlalu sering).
 
-If you find it difficult to understand, just go on, continue reading, then return to it some time later.
+Jika kamu merasa kesulitan untuk memahaminya, lanjutkan saja, lanjutkan membaca, kemudian kembali lagi nanti.
 ```
 
-We can override not only methods, but also class fields.
+Kita tidak hanya dapat mengganti metode, tetapi juga bidang kelas.
 
-Although, there's a tricky behavior when we access an overridden field in parent constructor, quite different from most other programming languages.
+Meskipun, ada perilaku rumit saat kami mengakses kolom yang diganti di konstruktor induk, sangat berbeda dari kebanyakan bahasa pemrograman lainnya.
 
-Consider this example:
+Pertimbangkan contoh ini:
 
 ```js run
 class Animal {
@@ -317,28 +315,28 @@ new Rabbit(); // animal
 */!*
 ```
 
-Here, class `Rabbit` extends `Animal` and overrides `name` field with its own value.
+Di sini, kelas `Rabbit` memperluas `Animal` dan mengganti bidang `nama` dengan nilainya sendiri.
 
-There's no own constructor in `Rabbit`, so `Animal` constructor is called.
+Tidak ada konstruktor sendiri dalam `Rabbit`, jadi konstruktor `Animal` dipanggil.
 
-What's interesting is that in both cases: `new Animal()` and `new Rabbit()`, the `alert` in the line `(*)` shows `animal`.
+Yang menarik adalah dalam kedua kasus: `new Animal()` dan `new Rabbit()`, `alert` di baris `(*)` menampilkan `animal`.
 
-**In other words, parent constructor always uses its own field value, not the overridden one.**
+**Dengan kata lain, konstruktor induk selalu menggunakan nilai bidangnya sendiri, bukan yang diganti.**
 
-What's odd about it?
+Apa yang aneh tentang itu?
 
-If it's not clear yet, please compare with methods.
+Jika masih belum jelas silahkan bandingkan dengan metodenya.
 
-Here's the same code, but instead of `this.name` field we call `this.showName()` method:
+Berikut kode yang sama, tetapi alih-alih bidang `this.name` kita memanggil metode `this.showName()`:
 
 ```js run
 class Animal {
-  showName() {  // instead of this.name = 'animal'
+  showName() {  // sebagai ganti this.name = 'animal'
     alert('animal');
   }
 
   constructor() {
-    this.showName(); // instead of alert(this.name);
+    this.showName(); // sebagai ganti alert(this.name);
   }
 }
 
@@ -354,50 +352,50 @@ new Rabbit(); // rabbit
 */!*
 ```
 
-Please note: now the output is different.
+Harap diperhatikan: sekarang hasilnya berbeda.
 
-And that's what we naturally expect. When the parent constructor is called in the derived class, it uses the overridden method.
+Dan itulah yang secara natural kita harapkan. Ketika konstruktor induk dipanggil di kelas turunan, ia menggunakan metode yang diganti.
 
-...But for class fields it's not so. As said, the parent constructor always uses the parent field.
+...Tetapi untuk bidang kelas tidak demikian. Seperti yang dikatakan, konstruktor induk selalu menggunakan bidang induk.
 
-Why is there the difference?
+Mengapa ada bedanya?
 
-Well, the reason is in the field initialization order. The class field is initialized:
-- Before constructor for the base class (that doesn't extend anything),
-- Immediately after `super()` for the derived class.
+Nah, alasannya ada di urutan bidang inisialisasi. Bidang kelas diinisialisasi:
 
-In our case, `Rabbit` is the derived class. There's no `constructor()` in it. As said previously, that's the same as if there was an empty constructor with only `super(...args)`.
+- Sebelum konstruktor untuk kelas dasar (yang tidak memperluas apa pun),
+- Langsung setelah `super()` untuk kelas turunan.
 
-So, `new Rabbit()` calls `super()`, thus executing the parent constructor, and (per the rule for derived classes) only after that its class fields are initialized. At the time of the parent constructor execution, there are no `Rabbit` class fields yet, that's why `Animal` fields are used.
+Dalam kasus kita, `Rabbit` adalah kelas turunannya. Tidak ada `constructor()` di dalamnya. Seperti yang dikatakan sebelumnya, itu sama seperti jika ada konstruktor kosong hanya dengan `super(...args)`.
 
-This subtle difference between fields and methods is specific to JavaScript
+Jadi, `new Rabbit()` memanggil `super()`, sehingga mengeksekusi konstruktor induk, dan (sesuai aturan untuk kelas turunan) hanya setelah bidang kelasnya diinisialisasi. Pada saat eksekusi induk konstruktor, belum ada bidang kelas `Rabbit`, itulah mengapa bidang `Animal` digunakan.
 
-Luckily, this behavior only reveals itself if an overridden field is used in the parent constructor. Then it may be difficult to understand what's going on, so we're explaining it here.
+Perbedaan halus antara bidang dan metode ini khusus untuk JavaScript
 
-If it becomes a problem, one can fix it by using methods or getters/setters instead of fields.
+Untungnya, perilaku ini hanya muncul dengan sendirinya jika bidang yang diganti digunakan di konstruktor induk. Maka mungkin sulit untuk memahami apa yang sedang terjadi, jadi kita menjelaskannya di sini.
 
+Jika ini menjadi masalah, seseorang dapat memperbaikinya dengan menggunakan metode atau _getter_/_setter_ sebagai ganti bidang.
 
-## Super: internals, [[HomeObject]]
+## _Super: internals, [[HomeObject]]_
 
 ```warn header="Advanced information"
-If you're reading the tutorial for the first time - this section may be skipped.
+Jika Anda membaca tutorial untuk pertama kali - bagian ini mungkin dilewati.
 
-It's about the internal mechanisms behind inheritance and `super`.
+Ini tentang mekanisme internal di balik pewarisan dan `super`.
 ```
 
-Let's get a little deeper under the hood of `super`. We'll see some interesting things along the way.
+Mari kita selami lebih dalam di balik tudung `super`. Kita akan melihat beberapa hal menarik di sepanjang jalan.
 
-First to say, from all that we've learned till now, it's impossible for `super` to work at all!
+Pertama untuk mengatakan, dari semua yang telah kita pelajari sampai sekarang, mustahil bagi `super` untuk bekerja sama sekali!
 
-Yeah, indeed, let's ask ourselves, how it should technically work? When an object method runs, it gets the current object as `this`. If we call `super.method()` then, the engine needs to get the `method` from the prototype of the current object. But how?
+Ya, memang, mari kita tanyakan pada diri kita sendiri, bagaimana seharusnya secara teknis bekerja? Ketika sebuah metode objek dijalankan, ia mendapatkan objek saat ini sebagai `this`. Jika kita memanggil `super.method()` maka, mesin perlu mendapatkan `metode` dari prototipe objek saat ini. Tapi bagaimana caranya?
 
-The task may seem simple, but it isn't. The engine knows the current object `this`, so it could get the parent `method` as `this.__proto__.method`. Unfortunately, such a "naive" solution won't work.
+Tugasnya mungkin tampak sederhana, tetapi sebenarnya tidak. Mesin mengetahui objek saat ini `this`, sehingga bisa mendapatkan `metode` induk sebagai `this.__proto__.method`. Sayangnya, solusi "naif" seperti itu tidak akan berhasil.
 
-Let's demonstrate the problem. Without classes, using plain objects for the sake of simplicity.
+Mari kita tunjukkan masalahnya. Tanpa kelas, menggunakan objek biasa demi kesederhanaan.
 
-You may skip this part and go below to the `[[HomeObject]]` subsection if you don't want to know the details. That won't harm. Or read on if you're interested in understanding things in-depth.
+Kamu dapat melewati bagian ini dan melanjutkan ke subbagian `[[HomeObject]]` jika kamu tidak ingin mengetahui detailnya. Itu tidak akan merugikan. Atau baca terus jika kamu tertarik untuk memahami berbagai hal secara mendalam.
 
-In the example below, `rabbit.__proto__ = animal`. Now let's try: in `rabbit.eat()` we'll call `animal.eat()`, using `this.__proto__`:
+Pada contoh di bawah, `rabbit.__ proto__ = animal`. Sekarang mari kita coba: di `rabbit.eat()` kita akan memanggil `animal.eat() `, menggunakan` this.__ proto__`:
 
 ```js run
 let animal = {
@@ -412,7 +410,7 @@ let rabbit = {
   name: "Rabbit",
   eat() {
 *!*
-    // that's how super.eat() could presumably work
+    // begitulah kemungkinan super.eat() bisa bekerja
     this.__proto__.eat.call(this); // (*)
 */!*
   }
@@ -421,11 +419,11 @@ let rabbit = {
 rabbit.eat(); // Rabbit eats.
 ```
 
-At the line `(*)` we take `eat` from the prototype (`animal`) and call it in the context of the current object. Please note that `.call(this)` is important here, because a simple `this.__proto__.eat()` would execute parent `eat` in the context of the prototype, not the current object.
+Pada baris `(*)` kita mengambil `eat` dari prototipe (`animal`) dan memanggilnya dalam konteks objek saat ini. Harap dicatat bahwa `.call(this)` penting di sini, karena sesimpel `this.__proto__.Eat()` akan mengeksekusi `eat` induk dalam konteks prototipe, bukan objek saat ini.
 
-And in the code above it actually works as intended: we have the correct `alert`.
+Dan pada kode di atas itu benar-benar berfungsi sebagaimana mestinya: kita memiliki `alert` yang benar.
 
-Now let's add one more object to the chain. We'll see how things break:
+Sekarang mari tambahkan satu objek lagi ke rantai. Kita akan melihat bagaimana hal-hal rusak:
 
 ```js run
 let animal = {
@@ -438,7 +436,7 @@ let animal = {
 let rabbit = {
   __proto__: animal,
   eat() {
-    // ...bounce around rabbit-style and call parent (animal) method
+    // ...melambung di sekitar rabbit-style dan panggil metode induk (animal)
     this.__proto__.eat.call(this); // (*)
   }
 };
@@ -446,7 +444,7 @@ let rabbit = {
 let longEar = {
   __proto__: rabbit,
   eat() {
-    // ...do something with long ears and call parent (rabbit) method
+    // ...lakukan sesuatu dengan long ears dan panggil metode induk (rabbit)
     this.__proto__.eat.call(this); // (**)
   }
 };
@@ -456,49 +454,49 @@ longEar.eat(); // Error: Maximum call stack size exceeded
 */!*
 ```
 
-The code doesn't work anymore! We can see the error trying to call `longEar.eat()`.
+Kode tidak berfungsi lagi! Kita dapat melihat kesalahan saat mencoba memanggil `longEar.eat()`.
 
-It may be not that obvious, but if we trace `longEar.eat()` call, then we can see why. In both lines `(*)` and `(**)` the value of `this` is the current object (`longEar`). That's essential: all object methods get the current object as `this`, not a prototype or something.
+Mungkin tidak begitu jelas, tetapi jika kita melacak panggilan `longEar.eat()`, maka kita bisa melihat alasannya. Di kedua baris `(*)` dan `(**)` nilai `this` adalah objek saat ini (`longEar`). Itu penting: semua metode objek mendapatkan objek saat ini sebagai `this`, bukan prototipe atau semacamnya.
 
-So, in both lines `(*)` and `(**)` the value of `this.__proto__` is exactly the same: `rabbit`. They both call `rabbit.eat` without going up the chain in the endless loop.
+Jadi, di kedua baris `(*)` dan `(**)` nilai dari `this.__ proto__` sama persis: `rabbit`. Mereka keduanya memanggil `rabbit.eat` tanpa naik rantai dalam perulangan tak berujung.
 
-Here's the picture of what happens:
+Berikut gambaran tentang apa yang terjadi:
 
 ![](this-super-loop.svg)
 
-1. Inside `longEar.eat()`, the line `(**)` calls `rabbit.eat` providing it with `this=longEar`.
-    ```js
-    // inside longEar.eat() we have this = longEar
-    this.__proto__.eat.call(this) // (**)
-    // becomes
-    longEar.__proto__.eat.call(this)
-    // that is
-    rabbit.eat.call(this);
-    ```
-2. Then in the line `(*)` of `rabbit.eat`, we'd like to pass the call even higher in the chain, but `this=longEar`, so `this.__proto__.eat` is again `rabbit.eat`!
+1. Di dalam `longEar.eat()`, baris `(**)` memanggil `rabbit.eat` dengan menyediakan `this=longEar`.
+   ```js
+   // di dalam longEar.eat() kita punya this = longEar
+   this.__proto__.eat.call(this); // (**)
+   // menjadi
+   longEar.__proto__.eat.call(this);
+   // itu adalah
+   rabbit.eat.call(this);
+   ```
+2. Lalu di baris `(*)` dari `rabbit.eat`, kita ingin meneruskan panggilan lebih tinggi lagi dalam rantai, tapi `this=longEar`, jadi `this.__proto__.eat` lagi-lagi `rabbit.eat`!
 
-    ```js
-    // inside rabbit.eat() we also have this = longEar
-    this.__proto__.eat.call(this) // (*)
-    // becomes
-    longEar.__proto__.eat.call(this)
-    // or (again)
-    rabbit.eat.call(this);
-    ```
+   ```js
+   // di dalam rabbit.eat() kita juga punya this = longEar
+   this.__proto__.eat.call(this); // (*)
+   // menjadi
+   longEar.__proto__.eat.call(this);
+   // atau (lagi)
+   rabbit.eat.call(this);
+   ```
 
-3. ...So `rabbit.eat` calls itself in the endless loop, because it can't ascend any further.
+3. ...Jadi `rabbit.eat` menyebut dirinya dalam perulangan tak berujung, karena tidak bisa naik lebih jauh.
 
-The problem can't be solved by using `this` alone.
+Masalahnya tidak dapat diselesaikan hanya dengan menggunakan `this`.
 
-### `[[HomeObject]]`
+### _`[[HomeObject]]`_
 
-To provide the solution, JavaScript adds one more special internal property for functions: `[[HomeObject]]`.
+Untuk memberikan solusi, JavaScript menambahkan satu lagi properti internal khusus untuk fungsi: `[[HomeObject]]`.
 
-When a function is specified as a class or object method, its `[[HomeObject]]` property becomes that object.
+Ketika sebuah fungsi ditetapkan sebagai metode kelas atau objek, properti `[[HomeObject]]` -nya menjadi objek itu.
 
-Then `super` uses it to resolve the parent prototype and its methods.
+Lalu `super` menggunakannya untuk menyelesaikan prototipe induk dan metodenya.
 
-Let's see how it works, first with plain objects:
+Mari kita lihat cara kerjanya, pertama dengan objek biasa:
 
 ```js run
 let animal = {
@@ -525,22 +523,22 @@ let longEar = {
 };
 
 *!*
-// works correctly
+// bekerja dengan benar
 longEar.eat();  // Long Ear eats.
 */!*
 ```
 
-It works as intended, due to `[[HomeObject]]` mechanics. A method, such as `longEar.eat`, knows its `[[HomeObject]]` and takes the parent method from its prototype. Without any use of `this`.
+Ini berfungsi sebagaimana mestinya, karena mekanisme `[[HomeObject]]`. Metode, seperti `longEar.eat`, tahu itu `[[HomeObject]]` dan mengambil metode induk dari prototipe-nya. Tanpa menggunakan`this`.
 
-### Methods are not "free"
+### Metode tidak "gratis"
 
-As we've known before, generally functions are "free", not bound to objects in JavaScript. So they can be copied between objects and called with another `this`.
+Seperti yang kita ketahui sebelumnya, umumnya fungsi adalah "gratis", tidak terikat ke objek di JavaScript. Jadi mereka dapat disalin di antara objek dan dipanggil dengan `this` lainnya.
 
-The very existence of `[[HomeObject]]` violates that principle, because methods remember their objects. `[[HomeObject]]` can't be changed, so this bond is forever.
+Keberadaan `[[HomeObject]]` melanggar prinsip itu, karena metode mengingat objeknya. `[[HomeObject]]` tidak bisa diubah, jadi ikatan ini selamanya.
 
-The only place in the language where `[[HomeObject]]` is used -- is `super`. So, if a method does not use `super`, then we can still consider it free and copy between objects. But with `super` things may go wrong.
+Satu-satunya tempat dalam bahasa di mana `[[HomeObject]]` digunakan -- adalah `super`. Jadi, jika suatu metode tidak menggunakan `super`, maka kita masih bisa menganggapnya gratis dan menyalin antar objek. Tetapi dengan `super` mungkin ada yang salah.
 
-Here's the demo of a wrong `super` result after copying:
+Berikut demo hasil `super` yang salah setelah menyalin:
 
 ```js run
 let animal = {
@@ -549,7 +547,7 @@ let animal = {
   }
 };
 
-// rabbit inherits from animal
+// rabbit mewarisi dari animal
 let rabbit = {
   __proto__: animal,
   sayHi() {
@@ -563,7 +561,7 @@ let plant = {
   }
 };
 
-// tree inherits from plant
+// tree mewarisi dari plant
 let tree = {
   __proto__: plant,
 *!*
@@ -576,28 +574,29 @@ tree.sayHi();  // I'm an animal (?!?)
 */!*
 ```
 
-A call to `tree.sayHi()` shows "I'm an animal". Definitely wrong.
+Panggilan ke `tree.sayHi()` menunjukkan "I'm an animal". Benar-benar salah.
 
-The reason is simple:
-- In the line `(*)`, the method `tree.sayHi` was copied from `rabbit`. Maybe we just wanted to avoid code duplication?
-- Its `[[HomeObject]]` is `rabbit`, as it was created in `rabbit`. There's no way to change `[[HomeObject]]`.
-- The code of `tree.sayHi()` has `super.sayHi()` inside. It goes up from `rabbit` and takes the method from `animal`.
+Alasannya sederhana:
 
-Here's the diagram of what happens:
+- Di baris `(*)`, metode `tree.sayHi` telah disalin dari`rabbit`. Mungkin kita hanya ingin menghindari duplikasi kode?
+- `[[HomeObject]]` -nya adalah `rabbit`, seperti yang dibuat di`rabbit`. Tidak ada cara untuk mengubah `[[HomeObject]]`.
+- Kode `tree.sayHi()` memiliki `super.sayHi()` di dalamnya. Ini naik dari `rabbit` dan mengambil metode dari`animal`.
+
+Berikut diagram dari apa yang terjadi:
 
 ![](super-homeobject-wrong.svg)
 
-### Methods, not function properties
+### Metode, bukan properti fungsi
 
-`[[HomeObject]]` is defined for methods both in classes and in plain objects. But for objects, methods must be specified exactly as `method()`, not as `"method: function()"`.
+`[[HomeObject]]` didefinisikan untuk metode baik di kelas maupun di objek biasa. Tetapi untuk objek, metode harus ditentukan persis sebagai `method()`, bukan sebagai `"method: function()"`.
 
-The difference may be non-essential for us, but it's important for JavaScript.
+Perbedaannya mungkin tidak terlalu penting bagi kita, tetapi penting untuk JavaScript.
 
-In the example below a non-method syntax is used for comparison. `[[HomeObject]]` property is not set and the inheritance doesn't work:
+Dalam contoh di bawah ini, sintaks non-metode digunakan untuk perbandingan. Properti `[[HomeObject]]` tidak diatur dan warisan tidak berfungsi:
 
 ```js run
 let animal = {
-  eat: function() { // intentionally writing like this instead of eat() {...
+  eat: function() { // sengaja menulis seperti ini, bukan eat() {...
     // ...
   }
 };
@@ -610,21 +609,22 @@ let rabbit = {
 };
 
 *!*
-rabbit.eat();  // Error calling super (because there's no [[HomeObject]])
+rabbit.eat();  // Kesalahan memanggil super (karena tidak ada [[HomeObject]])
 */!*
 ```
 
-## Summary
+## Ringkasan
 
-1. To extend a class: `class Child extends Parent`:
-    - That means `Child.prototype.__proto__` will be `Parent.prototype`, so methods are inherited.
-2. When overriding a constructor:
-    - We must call parent constructor as `super()` in `Child` constructor before using `this`.
-3. When overriding another method:
-    - We can use `super.method()` in a `Child` method to call `Parent` method.
-4. Internals:
-    - Methods remember their class/object in the internal `[[HomeObject]]` property. That's how `super` resolves parent methods.
-    - So it's not safe to copy a method with `super` from one object to another.
+1. Untuk memperluas kelas: `class Child extends Parent`:
+   - Itu berarti `Child.prototype.__proto__` akan menjadi `Parent.prototype`, jadi metode diwariskan/diturunkan.
+2. Saat mengganti konstruktor:
+   - Kita harus memanggil konstruktor induk sebagai `super()` di konstruktor `Child` sebelum menggunakan `this`.
+3. Saat mengganti metode lain:
+   - Kita dapat menggunakan `super.method()` di metode `Child` untuk memanggil metode `Parent`.
+4. Internal:
+   - Metode mengingat kelas/objek mereka di internal properti `[[HomeObject]]`. Begitulah caranya `super` menyelesaikan metode induk.
+   - Jadi tidak aman untuk menyalin metode dengan `super` dari satu objek ke objek lainnya.
 
-Also:
-- Arrow functions don't have their own `this` or `super`, so they transparently fit into the surrounding context.
+Juga:
+
+- _Arrow functions_ tidak memiliki `this` atau `super` sendiri, sehingga secara transparan sesuai dengan konteks sekitarnya.
