@@ -9,12 +9,12 @@ Sebagai contoh, kode di bawah sebuah URL ke `fetch` itu salah (tidak ada situs s
 fetch('https://no-such-server.blabla') // reject
 */!*
   .then(response => response.json())
-  .catch(err => alert(err)) // TypeError: gagal untuk mengambil (teksnya mungkin berbeda)
+  .catch(err => alert(err)) // TypeError: failed to fetch (gagal mengambil resourse, error yang dihasilkan mungkin berbeda)
 ```
 
 Seperti yang anda lihat, `.catch` tidak harus segera. `.catch` mungkin muncul setelah satu atau mungkin beberapa `.then`.
 
-Atau, mungkin, semuanya baik-baik saja dengan situs tersebut, tetapi response-nya bukan JSON yang valid. Cara termudah untuk catch semua _error_ adalah menambahkan `.catch` sampai ke akhir chain:
+Atau, mungkin, semuanya baik-baik saja dengan situs tersebut, tetapi response-nya bukan JSON yang valid. Cara termudah untuk catch semua _error_ adalah menambahkan `.catch` pada akhiran chain:
 
 ```js run
 fetch('/article/promise-chaining/user.json')
@@ -88,7 +88,7 @@ new Promise((resolve, reject) => {
 *!*
   blabla(); // tidak ada fungsi seperti ini
 */!*
-}).catch(alert); // ReferenceError: blabla tidak terdefinisi
+}).catch(alert); // ReferenceError: blabla is not defined (blabla tidak terdefinisi)
 ```
 
 `.catch` terakhir tidak hanya meng-catch rejection secara ekplisit, tetapi juga sesekali _error_ dalam handler di atas.
