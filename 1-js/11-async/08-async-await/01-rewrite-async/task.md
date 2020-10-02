@@ -13,6 +13,6 @@ function loadJson(url) {
   });
 }
 
-loadJson("no-such-user.json") // (3)
+loadJson('no-such-user.json')
   .catch(alert); // Error: 404
 ```

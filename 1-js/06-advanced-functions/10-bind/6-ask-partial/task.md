@@ -1,14 +1,14 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Partial application for login
+# Pengaplikasian parsial untuk login
 
-The task is a little more complex variant of <info:task/question-use-bind>. 
+Tugas yang ini adalah varian yang sedikit lebih sulit daripada <info:task/question-use-bind>. 
 
-The `user` object was modified. Now instead of two functions `loginOk/loginFail`, it has a single function `user.login(true/false)`.
+Objek `user`nya telah dimodifikasi. Sekarang daripada menggunakan dua fungsi `loginOk/loginFail`, sekarang hanya memiliki satu fungsi `user.login(true/false)`.
 
-What to pass `askPassword` in the code below, so that it calls `user.login(true)` as `ok` and `user.login(false)` as `fail`?
+Apa yang harus kita kirimkan kedalam `askPassword` di kode dibawah, apakah harus memanggul `user.login(true)` sebagai `ok` dan `user.login(false)` sebagai `fail`?
 
 ```js
 function askPassword(ok, fail) {
@@ -30,5 +30,5 @@ askPassword(?, ?); // ?
 */!*
 ```
 
-Your changes should only modify the highlighted fragment.
+Ubahlah kodenya hanya pada bagian yang ditandai.
 

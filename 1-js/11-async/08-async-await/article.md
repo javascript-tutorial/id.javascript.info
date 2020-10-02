@@ -86,7 +86,6 @@ function f() {
 Kita akan mendapatkan error ini jika kita tidak meletakkan `async` sebelum function. Seperti yang dikatakan, `await` hanya bekerja di dalam sebuah `function async`.
 
 `````
-
 Mari kita ambil contoh `showAvatar()` dari bab <info:promise-chaining> dan menulisnya ulang menggunakan `async/await`:
 
 1. Kita harus mengganti call `.then` dengan `await`.
@@ -133,14 +132,13 @@ let user = await response.json();
 
 Kita dapat membungkusnya kedalam function async anonymous, seperti ini:
 
-```js run
+```js
 (async () => {
   let response = await fetch('/article/promise-chaining/user.json');
   let user = await response.json();
   ...
 })();
 ```
-
 
 `````
 

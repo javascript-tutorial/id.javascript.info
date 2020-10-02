@@ -1,1 +1,1 @@
-Just loop over the object and `return false` immediately if there's at least one property.
+Lakukanlah perulangan pada objek dan segera `return false` jika ada setidaknya satu properti

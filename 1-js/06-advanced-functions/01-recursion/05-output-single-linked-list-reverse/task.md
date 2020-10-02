@@ -1,9 +1,9 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Output a single-linked list in the reverse order
+# keluarkan item single-linked dari list dengan urutan terbalik
 
-Output a single-linked list from the previous task <info:task/output-single-linked-list> in the reverse order.
+Keluarkan item single-linked dari daftar seperti tugas sebelumnya <info:task/output-single-linked-list> namun secara terbalik.
 
-Make two solutions: using a loop and using a recursion.
+Buatlah dua solusi: menggunakan perulangan dan menggunakan rekursi.

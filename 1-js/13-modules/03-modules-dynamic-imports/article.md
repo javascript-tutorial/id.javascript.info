@@ -1,98 +1,98 @@
-# Dynamic imports
+# Impor dinamis
 
-Export and import statements that we covered in previous chapters are called "static". The syntax is very simple and strict.
+Pernyataan ekspor dan impor yang kita bahas di bab sebelumnya disebut "statis". Sintaksnya sangat sederhana dan bersifat _strict_.
 
-First, we can't dynamically generate any parameters of `import`.
+Pertama, kita tidak bisa membuat parameter `import` secara dinamis.
 
-The module path must be a primitive string, can't be a function call. This won't work:
+Jalur modul harus berupa _string_, tidak boleh berupa _function_ panggilan. Berikut contoh yang tidak akan berhasil:
 
 ```js
-import ... from *!*getModuleName()*/!*; // Error, only from "string" is allowed
+import ... from *!*getModuleName()*/!*; // Error, hanya "string" yang diperbolehkan
 ```
 
-Second, we can't import conditionally or at run-time:
+Kedua, kita tidak bisa meng-impor secara kondisional atau pada saat _run-time_:
 
 ```js
 if(...) {
-  import ...; // Error, not allowed!
+  import ...; // Error, tidak diperbolehkan!
 }
 
 {
-  import ...; // Error, we can't put import in any block
+  import ...; // Error, kita tidak bisa meng-impor di dalam block-scope
 }
 ```
 
-That's because `import`/`export` aim to provide a backbone for the code structure. That's a good thing, as code structure can be analyzed, modules can be gathered and bundled into one file by special tools, unused exports can be removed ("tree-shaken"). That's possible only because the structure of imports/exports is simple and fixed.
+Itu karena `import`/`export` bertujuan untuk menyediakan tulang punggung untuk struktur kode. Itu hal yang baik, karena struktur kode dapat dianalisa, modul dapat dikumpulkan dan digabungkan menjadi satu _file_ dengan alat khusus, ekspor yang tidak digunakan dapat dihapus ("tree-shaken"). Itu memungkinkan hanya karena struktur dari impor/ekspor sederhana dan tetap.
 
-But how can we import a module dynamically, on-demand?
+Tetapi bagaimana kita bisa meng-impor modul secara dinamis, sesuai permintaan?
 
-## The import() expression
+## Ekspresi `import()`
 
-The `import(module)` expression loads the module and returns a promise that resolves into a module object that contains all its exports. It can be called from any place in the code.
+Ekspresi `import(modul)` memuat modul dan mengembalikan sebuah _promise_ yang diselesaikan menjadi objek modul yang berisi semua ekspornya. Itu dapat dipanggil dari mana saja dalam kode.
 
-We can use it dynamically in any place of the code, for instance:
+Kita bisa menggunakannya secara dinamis di sembarang tempat kode, misalnya:
 
 ```js
-let modulePath = prompt("Which module to load?");
+let modulePath = prompt("Modul mana yang ingin dimuat?");
 
 import(modulePath)
   .then(obj => <module object>)
   .catch(err => <loading error, e.g. if no such module>)
 ```
 
-Or, we could use `let module = await import(modulePath)` if inside an async function.
+Atau, kita bisa menggunakan `let module = await import(modulePath)` jika di dalam _async function_.
 
-For instance, if we have the following module `say.js`:
+Misalnya, jika kita memiliki modul berikut `say.js`:
 
 ```js
 // 📁 say.js
 export function hi() {
-  alert(`Hello`);
+  alert(`Halo`);
 }
 
 export function bye() {
-  alert(`Bye`);
+  alert(`Selamat tinggal`);
 }
 ```
 
-...Then dynamic import can be like this:
+...Kemudian impor dinamisnya bisa seperti ini:
 
 ```js
-let {hi, bye} = await import('./say.js');
+let { hi, bye } = await import("./say.js");
 
 hi();
 bye();
 ```
 
-Or, if `say.js` has the default export:
+Atau, kalau `say.js` mempunyai ekspor _default_:
 
 ```js
 // 📁 say.js
-export default function() {
-  alert("Module loaded (export default)!");
+export default function () {
+  alert("Modul dimuat (ekspor default)!");
 }
 ```
 
-...Then, in order to access it, we can use `default` property of the module object:
+...Kemudian, untuk mengaksesnya, kita bisa menggunakan properti `default` dari objek modul:
 
 ```js
-let obj = await import('./say.js');
+let obj = await import("./say.js");
 let say = obj.default;
-// or, in one line: let {default: say} = await import('./say.js');
+// jika dalam satu baris: let {default: say} = await import('./say.js');
 
 say();
 ```
 
-Here's the full example:
+Berikut contoh lengkapnya:
 
 [codetabs src="say" current="index.html"]
 
 ```smart
-Dynamic imports work in regular scripts, they don't require `script type="module"`.
+Impor dinamis berfungsi dalam skrip biasa, mereka tidak memerlukan `script type="module"`.
 ```
 
 ```smart
-Although `import()` looks like a function call, it's a special syntax that just happens to use parentheses (similar to `super()`).
+Meskipun `import()` terlihat seperti pemanggilan sebuah function, akan tetapi itu adalah sintaks khusus yang kebetulan menggunakan tanda kurung (mirip dengan `super()`).
 
-So we can't copy `import` to a variable or use `call/apply` with it. That's not a function.
+Jadi, kita tidak bisa menyalin `import` ke dalam variabel atau menggunakan `call/apply` dengannya. `import` bukan sebuah function.
 ```

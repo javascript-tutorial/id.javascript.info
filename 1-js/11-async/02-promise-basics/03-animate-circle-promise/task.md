@@ -1,9 +1,9 @@
 
-# Animated circle with promise
+# Lingkaran animasi dengan promise
 
-Rewrite the `showCircle` function in the solution of the task <info:task/animate-circle-callback> so that it returns a promise instead of accepting a callback.
+Tulis ulang fungsi `showCircle` di dalam solusi tugas <info:task/animate-circle-callback> sehingga fungsi tersebut mengembalikan sebuah *promise* daripada menerima sebuah *callback*.
 
-The new usage:
+Penggunaan baru:
 
 ```js
 showCircle(150, 150, 100).then(div => {
@@ -12,4 +12,4 @@ showCircle(150, 150, 100).then(div => {
 });
 ```
 
-Take the solution of the task <info:task/animate-circle-callback> as the base.
+Ambil solusi pada tugas <info:task/animate-circle-callback> sebagai dasar.

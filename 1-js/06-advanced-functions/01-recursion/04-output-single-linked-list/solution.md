@@ -1,6 +1,6 @@
-# Loop-based solution
+# solusi berbasis perulangan
 
-The loop-based variant of the solution:
+Varian solusi berbasis perulangan:
 
 ```js run
 let list = {
@@ -30,7 +30,7 @@ function printList(list) {
 printList(list);
 ```
 
-Please note that we use a temporary variable `tmp` to walk over the list. Technically, we could use a function parameter `list` instead:
+Perhatikan bahwa kita menggunakan variabel semebtara `tmp` untuk menyusuri daftarnya. Secara teknis, malah kita bisa menggunakan parameter fungsi `list`:
 
 ```js
 function printList(list) {
@@ -43,15 +43,15 @@ function printList(list) {
 }
 ```
 
-...But that would be unwise. In the future we may need to extend a function, do something else with the list. If we change `list`, then we lose such ability.
+...Tapi itu kurang tepat. Nanti mungkin kita ingin memperbesar fungsinya, melakukan sesuatu dengan daftarnya. Jika kita merubah `list`, maka kita akan kehilangan kemampuannya.
 
-Talking about good variable names, `list` here is the list itself. The first element of it. And it should remain like that. That's clear and reliable.
+Berbicara tentang nama variabel yang bagus, `list` disini adalah menandakan bahwa dirinya sendiri adalah list/daftar. Elemen pertama dari itu. Dan itu harus tetap seperti itu. Itu jelas dan dapat diandalkan.
 
-From the other side, the role of `tmp` is exclusively a list traversal, like `i` in the `for` loop.
+Dari sisi lainnya, peran dari `tmp` sendiri secara eksklusif adalah daftar traversal, seperti `i` didalam perulangan `for`.
 
-# Recursive solution
+# Solusi rekursif
 
-The recursive variant of `printList(list)` follows a simple logic: to output a list we should output the current element `list`, then do the same for `list.next`:
+Varian rekursif dari `printList(list)` mengikuti logika yang sederhana: untuk mengeluarkan sebuah daftar kita harus mengeluatkan elemen saat ini dari `list`, lalu lakukan hal yang sama untuk `list.next`:
 
 ```js run
 let list = {
@@ -70,10 +70,10 @@ let list = {
 
 function printList(list) {
 
-  alert(list.value); // output the current item
+  alert(list.value); // keluarkan item yang sekarang
 
   if (list.next) {
-    printList(list.next); // do the same for the rest of the list
+    printList(list.next); // lakukan hal yang sama dengan sisa item dalam list
   }
 
 }
@@ -81,8 +81,8 @@ function printList(list) {
 printList(list);
 ```
 
-Now what's better?
+Sekarang mana yang lebih baik?
 
-Technically, the loop is more effective. These two variants do the same, but the loop does not spend resources for nested function calls.
+Secara teknis, perulanganlah yang lebih efektif. Kedua varian itu melakukan hal yang sama, tapi perulangan tidak menghabiskan sumberdaya untuk pemanggilan fungsi yang bercabang.
 
-From the other side, the recursive variant is shorter and sometimes easier to understand.
+Disisi lainnya, varian rekursi lebih pendek dan terkadang lebih mudah untuk dimengerti.

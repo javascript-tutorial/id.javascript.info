@@ -2,14 +2,13 @@ importance: 5
 
 ---
 
-# Extended clock
+# _Extended clock_
 
-We've got a `Clock` class. As of now, it prints the time every second.
-
+Kita punya kelas `Clock`. Sampai sekarang, ini mencetak waktu setiap detik.
 
 [js src="source.view/clock.js"]
 
-Create a new class `ExtendedClock` that inherits from `Clock` and adds the parameter `precision` -- the number of `ms` between "ticks". Should be `1000` (1 second) by default.
+Buat kelas baru `ExtendedClock` yang diturunkan dari` Clock` dan tambahkan parameter `precision` -- jumlah` ms` antara "ticks". Seharusnya `1000` (1 detik) secara _default_.
 
-- Your code should be in the file `extended-clock.js`
-- Don't modify the original `clock.js`. Extend it.
+- Kode kamu harus ada di file `extended-clock.js`
+- Jangan ubah `clock.js`. Perpanjang itu!.

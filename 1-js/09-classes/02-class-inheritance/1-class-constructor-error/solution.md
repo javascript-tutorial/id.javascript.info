@@ -1,6 +1,6 @@
-That's because the child constructor must call `super()`.
+Itu karena konstruktor turunan harus memanggil `super()`.
 
-Here's the corrected code:
+Berikut kode yang benar:
 
 ```js run
 class Animal {
@@ -12,7 +12,7 @@ class Animal {
 }
 
 class Rabbit extends Animal {
-  constructor(name) {  
+  constructor(name) {
     *!*
     super(name);
     */!*
@@ -21,7 +21,7 @@ class Rabbit extends Animal {
 }
 
 *!*
-let rabbit = new Rabbit("White Rabbit"); // ok now
+let rabbit = new Rabbit("White Rabbit"); // sekarang oke
 */!*
 alert(rabbit.name); // White Rabbit
 ```

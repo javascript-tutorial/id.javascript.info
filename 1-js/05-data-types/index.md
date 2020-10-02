@@ -1,3 +1,3 @@
-# Data types
+# Tipe data
 
-More data structures and more in-depth study of the types.
+Struktur data lainnya dan pembelajaran lebih dalam tentang tipe-tipe.

@@ -201,7 +201,7 @@ The parent is available as `parentNode`.
 
 For example:
 
-```js
+```js run
 // parent of <body> is <html>
 alert( document.body.parentNode === document.documentElement ); // true
 
@@ -226,7 +226,7 @@ The links are similar to those given above, just with `Element` word inside:
 
 - `children` -- only those children that are element nodes.
 - `firstElementChild`, `lastElementChild` -- first and last element children.
-- `previousElementSibling`, `nextElementSibling` -- neighbour elements.
+- `previousElementSibling`, `nextElementSibling` -- neighbor elements.
 - `parentElement` -- parent element.
 
 ````smart header="Why `parentElement`? Can the parent be *not* an element?"
@@ -280,12 +280,12 @@ Till now we described the basic navigation properties.
 
 Certain types of DOM elements may provide additional properties, specific to their type, for convenience.
 
-Tables are a great example of that, and a particularly important case.
+Tables are a great example of that, and represent a particularly important case:
 
 **The `<table>`** element supports (in addition to the given above) these properties:
 - `table.rows` -- the collection of `<tr>` elements of the table.
 - `table.caption/tHead/tFoot` -- references to elements `<caption>`, `<thead>`, `<tfoot>`.
-- `table.tBodies` -- the collection of `<tbody>` elements (can be many according to the standard).
+- `table.tBodies` -- the collection of `<tbody>` elements (can be many according to the standard, but there will always be at least one -- even if it is not in the source HTML, the browser will put it in the DOM).
 
 **`<thead>`, `<tfoot>`, `<tbody>`** elements provide the `rows` property:
 - `tbody.rows` -- the collection of `<tr>` inside.
@@ -323,7 +323,7 @@ There are also additional navigation properties for HTML forms. We'll look at th
 
 ## Summary
 
-Given a DOM node, we can go to its immediate neighbours using navigation properties.
+Given a DOM node, we can go to its immediate neighbors using navigation properties.
 
 There are two main sets of them:
 

@@ -11,12 +11,12 @@ Agar mudah dibaca, disarankan untuk membagi kode menjadi beberapa baris.
 ```js
 let message;
 
-if (login == 'Employee') {
-  message = 'Hello';
-} else if (login == 'Director') {
-  message = 'Greetings';
+if (login == 'Karyawan') {
+  message = 'Hallo';
+} else if (login == 'Direksi') {
+  message = 'Salam Hangat!';
 } else if (login == '') {
-  message = 'No login';
+  message = 'Belum Login';
 } else {
   message = '';
 }

@@ -1,12 +1,12 @@
-importance: 5
+nilai penting: 5
 
 ---
 
-# Copy and sort array
+# Salin dan sortir array
 
-We have an array of strings `arr`. We'd like to have a sorted copy of it, but keep `arr` unmodified.
+Kita mempunyai sebuah array dari string `arr`. Kita ingin mempunyai salinan yang telah disortir, tapi tidak mengubah `arr`.
 
-Create a function `copySorted(arr)` that returns such a copy.
+Buat sebuah fungsi `copySorted(arr)` yang mengembalikan kopiannya.
 
 ```js
 let arr = ["HTML", "JavaScript", "CSS"];
@@ -14,5 +14,5 @@ let arr = ["HTML", "JavaScript", "CSS"];
 let sorted = copySorted(arr);
 
 alert( sorted ); // CSS, HTML, JavaScript
-alert( arr ); // HTML, JavaScript, CSS (no changes)
+alert( arr ); // HTML, JavaScript, CSS (tidak berubah)
 ```
