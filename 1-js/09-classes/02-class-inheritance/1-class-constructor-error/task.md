@@ -2,11 +2,12 @@ importance: 5
 
 ---
 
-# Error creating an instance
+# Kesalahan saat membuat sebuah _instance_
 
-Here's the code with `Rabbit` extending `Animal`.
+Berikut kode dengan `Rabbit` _extending_ `Animal`.
 
-Unfortunately, `Rabbit` objects can't be created. What's wrong? Fix it.
+Sayangnya, objek `Rabbit` tidak dapat dibuat. Apa yang salah? Perbaiki!.
+
 ```js run
 class Animal {
 
@@ -17,7 +18,7 @@ class Animal {
 }
 
 class Rabbit extends Animal {
-  constructor(name) {  
+  constructor(name) {
     this.name = name;
     this.created = Date.now();
   }
