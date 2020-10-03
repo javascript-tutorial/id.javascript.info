@@ -1,10 +1,10 @@
 # Async/await
 
-Ada sintaksis spesial untuk bekerja dengan promises dengan cara yang lebih nyaman, dipanggil "async/await". Ini sangat mudah dipahami dan digunakan.
+Ada sintaksis spesial untuk bekerja dengan promise dengan cara yang lebih nyaman, dipanggil "async/await". Ini sangat mudah dipahami dan digunakan.
 
-## Function Async
+## Fungsi Async
 
-Mari mulai dengan keyword `async`. keyword ini dapat ditempatkan sebelum function, seperti ini:
+Mari mulai dengan keyword `async`. keyword ini dapat ditempatkan sebelum fungsi, seperti ini:
 
 ```js
 async function f() {
@@ -12,9 +12,9 @@ async function f() {
 }
 ```
 
-Kata "async" sebelum function berarti satu hal sederhana: function tersebut selalu mengembalikkan promise. Value lain dibungkus didalam promise yang resolve secara otomatis.
+Kata "async" sebelum fungsi berarti satu hal sederhana: fungsi tersebut selalu mengembalikkan promise. Value lain dibungkus didalam promise yang resolve secara otomatis.
 
-Sebagai contoh, function ini mengembalikkan promise yang resolve dengan hasil `1`, mari kita uji:
+Sebagai contoh, fungsi ini mengembalikkan promise yang resolve dengan hasil `1`, mari kita uji:
 
 ```js run
 async function f() {
@@ -34,14 +34,14 @@ async function f() {
 f().then(alert); // 1
 ```
 
-Jadi, `async` memastikan bahwa function mengembalikkan promise, dan membungkus non-promise di dalamnya. Cukup mudah, bukan? Tapi tidak hanya itu. Ada keyword lain, `await`, yang hanya bekerja di dalam function `async`, dan itu cukup keren.
+Jadi, `async` memastikan bahwa fungsi mengembalikkan promise, dan membungkus non-promise di dalamnya. Cukup mudah, bukan? Tapi tidak hanya itu. Ada keyword lain, `await`, yang hanya bekerja di dalam fungsi `async`, dan itu cukup keren.
 
 ## Await
 
 Sintaksis:
 
 ```js
-// bekerja hanya di dalam function async
+// bekerja hanya di dalam fungsi async
 let value = await promise;
 ```
 
@@ -66,13 +66,13 @@ async function f() {
 f();
 ```
 
-Eksekusi function tersebut "dipause" pada baris `(*)` dan dilanjutkan ketika promise selesai, dengan `result` menjadi hasilnya. Jadi kode di atas menunjukkan "done!" dalam satu detik.
+Eksekusi fungsi tersebut "dipause" pada baris `(*)` dan dilanjutkan ketika promise selesai, dengan `result` menjadi hasilnya. Jadi kode di atas menunjukkan "done!" dalam satu detik.
 
 Mari kita tekankan: `await` benar-benar membuat JavaScript menunggu sampai promise selesai, lalu lanjutkan dengan hasilnya. Hal tersebut tidak membebani _resource_ CPU apapun, karena mesin dapat melakukan pekerjaan lain sementara itu: eksekusi script lain, menangani event dan lain-lain.
 
 Ini hanya sintaksis yang lebih elegan untuk mendapatkan hasil dari promise daripada `promise.then`, mudah untuk dibaca dan ditulis.
 
-````warn header="Tidak dapat menggunakan `await`di dalam function biasa" Jika kita coba untuk menggunakan`await` di dalam function non-async, akan ada error sintaksis:
+````warn header="Tidak dapat menggunakan `await`di dalam fungsi biasa" Jika kita coba untuk menggunakan`await` di dalam fungsi non-async, akan ada error sintaksis:
 
 ```js run
 function f() {
@@ -83,13 +83,13 @@ function f() {
 }
 ```
 
-Kita akan mendapatkan error ini jika kita tidak meletakkan `async` sebelum function. Seperti yang dikatakan, `await` hanya bekerja di dalam sebuah `function async`.
+Kita akan mendapatkan error ini jika kita tidak meletakkan `async` sebelum fungsi. Seperti yang dikatakan, `await` hanya bekerja di dalam sebuah `fungsi async`.
 
 `````
 Mari kita ambil contoh `showAvatar()` dari bab <info:promise-chaining> dan menulisnya ulang menggunakan `async/await`:
 
 1. Kita harus mengganti call `.then` dengan `await`.
-2. Juga kita harus membuat function `async` agar mereka bekerja.
+2. Juga kita harus membuat fungsi `async` agar mereka bekerja.
 
 ```js run
 async function showAvatar() {
@@ -121,8 +121,8 @@ showAvatar();
 
 Cukup bersih dan mudah dibaca, bukan? Jauh lebih baik dari sebelumnya.
 
-````smart header="`await` tidak bekerja pada kode top-level"
-Orang yang baru mulai menggunakan `await` cenderung lupa faktanya bahwa kita tidak bisa menggunakan `await` pada kode top-level. Sebagai contoh, ini tidak akan bekerja:
+````smart header="`await` tidak bekerja pada top-level code"
+Orang yang baru mulai menggunakan `await` cenderung lupa faktanya bahwa kita tidak bisa menggunakan `await` pada top-level code. Sebagai contoh, ini tidak akan bekerja:
 
 ```js run
 // error sintaksis pada top-level code
@@ -130,7 +130,7 @@ let response = await fetch('/article/promise-chaining/user.json');
 let user = await response.json();
 ```
 
-Kita dapat membungkusnya kedalam function async anonymous, seperti ini:
+Kita dapat membungkusnya kedalam fungsi async anonymous, seperti ini:
 
 ```js
 (async () => {
@@ -167,7 +167,7 @@ async function f() {
 f();
 ```
 
-Jika `await` mendapatkan objek non-promise dengan `.then`, objek itu memanggil method yang menyediakan function asli `resolve`, `reject` sebagai argumen. Kemudian `await` menunggu sampai salah satu argumen tersebut dipanggil (pada contoh di atas hal tersebut terjadi pada baris `(*)`) dan kemudian melanjutkan dengan hasilnya.
+Jika `await` mendapatkan objek non-promise dengan `.then`, objek itu memanggil method yang menyediakan fungsi asli `resolve`, `reject` sebagai argumen. Kemudian `await` menunggu sampai salah satu argumen tersebut dipanggil (pada contoh di atas hal tersebut terjadi pada baris `(*)`) dan kemudian melanjutkan dengan hasilnya.
 
 `````
 
@@ -226,7 +226,7 @@ async function f() {
     let response = await fetch('http://no-such-url');
   } catch(err) {
 *!*
-    alert(err); // TypeError: gagal untuk mengambil
+    alert(err); // TypeError: failed to fetch (gagal mengambil resource)
 */!*
   }
 }
@@ -250,7 +250,7 @@ async function f() {
 f();
 ```
 
-Jika kita tidak punya `try..catch`, maka promise yang dihasilkan oleh pemanggilan function async `f()` menjadi direject. Kita dapat menambahkan `.catch` untuk menanganinya:
+Jika kita tidak punya `try..catch`, maka promise yang dihasilkan oleh pemanggilan fungsi async `f()` menjadi direject. Kita dapat menambahkan `.catch` untuk menanganinya:
 
 ```js run
 async function f() {
@@ -259,7 +259,7 @@ async function f() {
 
 // f() menjadi sebuah promise yang direject
 *!*
-f().catch(alert); // TypeError: gagal untuk mengambil // (*)
+f().catch(alert); // TypeError: failed to fetch (gagal mengambil resource) // (*)
 */!*
 ```
 
@@ -267,7 +267,7 @@ Jika kita lupa menambahkan `.catch` di sana, maka kita mendapatkan sebuah error 
 
 ```smart header="`async/await`dan`promise.then/catch`" Ketika kita menggunakan `async/await`, kita jarang membutuhkan `.then`, karena `await`menangani waiting tersebut untuk kita. Dan kita dapat menggunakan sebuah `try..catch` biasa dibandingkan`.catch`. Itu biasanya (tidak selalu) lebih nyaman.
 
-Tetapi pada kode top level, saat kita berada di luar function `async`, kita secara sintaks tidak dapat menggunakan `await`, jadi itu sebuah latihan normal untuk menambah `.then/catch` untuk menangani hasil akhir atau error yang terjatuh.
+Tetapi pada *top-level code*, saat kita berada di luar fungsi `async`, kita secara sintaks tidak dapat menggunakan `await`, jadi itu sebuah latihan normal untuk menambah `.then/catch` untuk menangani hasil akhir atau error yang terjatuh.
 
 Seperti baris `(*)` contoh di atas.
 
@@ -291,7 +291,7 @@ Pada kasus error, itu menyebar seperti biasa: dari promise yang gagal ke `Promis
 
 ## Ringkasan
 
-Keyword `async` sebelum function memiliki dua efek:
+Keyword `async` sebelum fungsi memiliki dua efek:
 
 1. Membuatnya selalu mengembalikkan sebuah promise.
 2. Memperbolehkan kita untuk menggunakan `await` di dalamnya.
