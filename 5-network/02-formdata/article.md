@@ -2,7 +2,7 @@
 
 Pada artikel ini akan membahas terkait pengiriman formulir HTML: dengan atau tanpa berkas, dengan ruas tambahan dan lainnya.
 
-Objek [FormData](https://xhr.spec.whatwg.org/#interface-formdata) dapat membantu untuk melakukan hal tersebut. seperti yang anda duga, `FormData` adalah sebuah objek yang merepresentasikan data formulir HTML.
+Objek [FormData](https://xhr.spec.whatwg.org/#interface-formdata) dapat membantu untuk melakukan hal tersebut. seperti yang Anda duga, `FormData` adalah sebuah objek yang merepresentasikan data formulir HTML.
 
 Konstruktornya adalah:
 
@@ -20,7 +20,7 @@ Dari sudut pandang _server_, itu terlihat seperti pengiriman formulir biasa.
 
 Mari kita kirim formulir sederhana terlebih dahulu.
 
-Seperti yang anda lihat, itu hampir hanya satu baris:
+Seperti yang Anda lihat, itu hampir hanya satu baris:
 
 ```html run autorun
 <form id="formElem">
@@ -47,7 +47,7 @@ Seperti yang anda lihat, itu hampir hanya satu baris:
 </script>
 ```
 
-Pada contoh ini, kode _server_ tidak diberikan karena itu berada diluar cakupan kami. _Server_ menerima permintaan dengan metode POST dan membalas "Pengguna disimpan"
+Pada contoh ini, kode _server_ tidak ditampilkan karena itu diluar dari cakupan pembahasan topik ini. _Server_ menerima _request_ POST dan memberikan balasan "_User saved_"
 
 ## Metode FormData
 
@@ -70,12 +70,12 @@ Kita juga bisa dapat melakukan perulangan atas ruas _formData_ menggunakan `for 
 
 ```js run
 let formData = new FormData();
-formData.append('key1', 'value1');
-formData.append('key2', 'value2');
+formData.append('kunci1', 'nilai1');
+formData.append('kunci2', 'nilai2');
 
 // Daftar pasangan kunci/nilai
 for (let [name, value] of formData) {
-    alert(`${name} = ${value}`); // kunci1=nilai1, then kunci2=nilai2
+    alert(`${name} = ${value}`); // kunci1=nilai1, maka kunci2=nilai2
 }
 ```
 
@@ -169,17 +169,17 @@ Objek [FormData](https://xhr.spec.whatwg.org/#interface-formdata) digunakan untu
 
 Kita dapat membuat `new FormData(form)` dari formulir HTML atau membuat sebuah objek `FormData` tanpa sebuah formulir HTML dan kemudian menambahkan ruas formulir dengan metode berikut:
 
--   `formData.append(name, value)`
--   `formData.append(name, blob, fileName)`
--   `formData.set(name, value)`
--   `formData.set(name, blob, fileName)`
+-   `formData.append(nama, nilai)`
+-   `formData.append(nama, blob, namaBerkas)`
+-   `formData.set(nama, nilai)`
+-   `formData.set(nama, blob, namaBerkas)`
 
 Coba perhatikan dua keunikan ini:
 
 1. Metode `set` menghapus ruas formulir dengan properti `name` yang sama tetapi `append` tidak. Itu adalah satu-satunya perbedaan diantara kedua metode tersebut.
-2. Untuk mengirimkan berkas, diperlukan sebanyak 3 sintaks argumen. Argumen terakhir adalah nama berkas yang normalnya didapatkan dari sistemm berkas pengguna untuk `<inpit type="file">`.
+2. Untuk mengirimkan berkas, diperlukan sebanyak 3 sintaks argumen. Argumen terakhir adalah nama berkas yang normalnya didapatkan dari sistem berkas pengguna untuk `<input type="file">`.
 
-Metode lainnya adalah:
+Metode-metode lainnya adalah:
 
 -   `formData.delete(name)`
 -   `formData.get(name)`
