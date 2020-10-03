@@ -267,7 +267,7 @@ Jika kita lupa menambahkan `.catch` di sana, maka kita mendapatkan sebuah error 
 
 ```smart header="`async/await`dan`promise.then/catch`" Ketika kita menggunakan `async/await`, kita jarang membutuhkan `.then`, karena `await`menangani waiting tersebut untuk kita. Dan kita dapat menggunakan sebuah `try..catch` biasa dibandingkan`.catch`. Itu biasanya (tidak selalu) lebih nyaman.
 
-Tetapi pada *top-level code*, saat kita berada di luar fungsi `async`, kita secara sintaks tidak dapat menggunakan `await`, jadi itu sebuah latihan normal untuk menambah `.then/catch` untuk menangani hasil akhir atau error yang terjatuh.
+Tetapi pada *top-level code*, saat kita berada di luar fungsi `async`, kita secara sintaks tidak dapat menggunakan `await`, jadi itu sebuah latihan normal untuk menambah `.then/catch` untuk menangani hasil akhir atau jika terjadi error.
 
 Seperti baris `(*)` contoh di atas.
 
