@@ -29,7 +29,7 @@ async function demoGithubUser() {
       break; // tidak ada error, keluar dari loop
     } catch (err) {
       if (err instanceof HttpError && err.response.status == 404) {
-        // loop melanjutkan setelah alert
+        // loop dilanjutkan setelah alert
         alert("No such user, please reenter.");
       } else {
         // error yang tidak diketahui, rethrow
