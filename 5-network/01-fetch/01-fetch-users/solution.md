@@ -1,11 +1,10 @@
+Untuk mengambil pengguna kita membutuhkan `fetch('https://api.github.com/users/USERNAME')`.
 
-To fetch a user we need: `fetch('https://api.github.com/users/USERNAME')`.
+Jika tanggapan memiliki status `200` panggil `.json()` untuk membaca objek JSON.
 
-If the response has status `200`, call `.json()` to read the JS object.
+Sebaliknya, jika sebuah `fetch` gagal, atau tanggapan tidak memiliki status 200, kita hanya mengembalikan `null` di senarai hasilnya.
 
-Otherwise, if a `fetch` fails, or the response has non-200 status, we just return `null` in the resulting array.
-
-So here's the code:
+Jadi ini kodenya : 
 
 ```js demo
 async function getUsers(names) {
@@ -33,8 +32,8 @@ async function getUsers(names) {
 }
 ```
 
-Please note: `.then` call is attached directly to `fetch`, so that when we have the response, it doesn't wait for other fetches, but starts to read `.json()` immediately.
+Perlu dicatat, panggilan `.then()` terpasang secara langsung dengan `fetch`, jadi saat kita memiliki tanggapan, tidak akan menunggu pengambilan lainnya, tetapi segera mulai membaca `.json()`. 
 
-If we used `await Promise.all(names.map(name => fetch(...)))`, and call `.json()` on the results, then it would wait for all fetches to respond. By adding `.json()` directly to each `fetch`, we ensure that individual fetches start reading data as JSON without waiting for each other.
+Jika kita menggunakan `await Promise.all(names.map(name => fetch(...)))`, dan memanggil `.json()` di hasilnya, maka akan menunggu semua fetch untuk menanggapi. Dengan menambahkan `.json()` secara langsung untuk masing masing pengambilan, kita dapat memastikan fetch individu mulai membaca data sebagai JSON tanpa menunggu satu sama lain.
 
-That's an example of how low-level Promise API can still be useful even if we mainly use `async/await`.
+Ini adalah contoh bagaimana Promise API tingkat rendah masih bisa digunakan meskipun kita utamanya menggunakan ʻasync / await.

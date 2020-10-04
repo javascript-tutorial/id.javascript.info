@@ -1,13 +1,13 @@
-# Fetch users from GitHub
+# Fetch pengguna dari GitHub
 
-Create an async function `getUsers(names)`, that gets an array of GitHub logins, fetches the users from GitHub and returns an array of GitHub users.
+Buatlah sebuah fungsi async `getUsers(names)`, yang akan mendapatkan sebuah senarai dari Github logins, ambil pengguna dari Github dan kembalikan sebuah senarai dari pengguna GitHub.
 
-The GitHub url with user information for the given `USERNAME` is: `https://api.github.com/users/USERNAME`.
+url Github dengan informasi user yang diberikan nama `USERNAME` : `https://api.github.com/users/USERNAME`.
 
-There's a test example in the sandbox.
+ini adalah contoh tes di sandbox.
 
-Important details:
+Detail Penting:
 
-1. There should be one `fetch` request per user.
-2. Requests shouldn't wait for each other. So that the data arrives as soon as possible.
-3. If any request fails, or if there's no such user, the function should return `null` in the resulting array.
+1. Harus ada satu permintaan `fetch` setiap user.
+2. Permintaan tidak boleh menunggu satu sama lain. Sehingga datanya sampai secepatnya.
+3. Jika ada permintaan yang gagal, atau jika tidak ada pengguna itu, fungsi tersebut harus mengembalikan `null` dalam senarai yang dihasilkan.
