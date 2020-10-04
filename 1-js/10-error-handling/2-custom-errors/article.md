@@ -2,7 +2,7 @@
 
 Saat kita mengembangkan sesuatu, kita sering membutuhkan kelas kesalahan kita sendiri untuk mencerminkan hal-hal spesifik yang mungkin salah dalam tugas kita. Untuk kesalahan dalam operasi jaringan kita mungkin memerlukan `HttpError`, untuk operasi basis data `DbError`, untuk operasi pencarian `NotFoundError` dan seterusnya.
 
-Kesalahan kita harus mendukung properti kesalahan dasar seperti `message`, `name` dan, sebaiknya, `stack`. Tetapi mereka juga mungkin memiliki properti lain sendiri, misalnya objek `HttpError` mungkin memiliki properti `statusCode` dengan nilai seperti `404` atau` 403` atau `500`.
+Kesalahan kita harus mendukung properti kesalahan dasar seperti `message`, `name` dan, sebaiknya, `stack`. Tetapi mereka juga mungkin memiliki properti lain sendiri, misalnya objek `HttpError` mungkin memiliki properti `statusCode` dengan nilai seperti `404` atau `403` atau `500`.
 
 JavaScript memungkinkan untuk menggunakan `throw` dengan argumen apa pun, jadi secara teknis kelas kesalahan khusus kita tidak perlu mewarisi dari `Error`. Tetapi jika kita mewarisi, maka menjadi mungkin untuk menggunakan `obj instanceof Error` untuk mengidentifikasi objek kesalahan. Jadi lebih baik mewarisinya.
 
