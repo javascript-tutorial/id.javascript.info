@@ -9,15 +9,9 @@ Didalam Javascript operator-operator itu ditulis seperi ini:
 - Sama dengan: `a == b`, perhatikan tanda dua `=` digunakan untuk test persamaan, jika menggunakan satu `=` seperti `a = b` itu adalah sebuah asignment atau memasukan nilai kedalam variabel.
 - Tidak sama dengan: Didalam matematika notasinya seperti <code>&ne;</code>, tetapi didalam Javascript ditulis seperti <code>a != b</code>.
 
-<<<<<<< HEAD
 Didalam artikel ini kita akan belajar lebih lanjut tentang perbedaan tipe dari perbandingan, bagaimana cara Javascript membuatnya, termasuk sifat-sifat penting.
 
 Diakhir nanti kamu akan menemukan hal yang bagus untuk menghindari masalah yang berhubungan dengan "kebiasaan Javascript".
-=======
-In this article we'll learn more about different types of comparisons, how JavaScript makes them, including important peculiarities.
-
-At the end you'll find a good recipe to avoid "JavaScript quirks"-related issues.
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 ## Boolean ialah hasilnya
 
@@ -63,11 +57,7 @@ algoritma untuk membandingkan dua string sederhana:
 4. Ulangi sampai string berakhir.
 5. Jika kedua string berakhir pada panjang yang sama, maka mereka sama. Sebaliknya, string lebih panjang yang lebih besar.
 
-<<<<<<< HEAD
 Pada contoh di atas, pembandingan `'Z' > 'A'` menghasilkan pada langkah pertama sedangkan string `"Glow"` dan `"Glee"` dibandingkan karakter-demi-karakter:
-=======
-In the examples above, the comparison `'Z' > 'A'` gets to a result at the first step while the strings `'Glow'` and `'Glee'` are compared character-by-character:
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 1. `G` sama dengan `G`.
 2. `l` sama dengan `l`.
