@@ -20,7 +20,7 @@ The result of `a ?? b` is:
 - if `a` isn't defined, then `b`.
 
 
-In other words, `??` returns the first argument if it's defined. Otherwise, the second one.
+In other words, `??` returns the first argument if it's not `null/undefined`. Otherwise, the second one.
 
 The nullish coalescing operator isn't anything completely new. It's just a nice syntax to get the first "defined" value of the two.
 
@@ -58,7 +58,7 @@ let user = "John";
 alert(user ?? "Anonymous"); // John
 ```
 
-We can also use a sequence of `??` to select the first defined value from a list.
+We can also use a sequence of `??` to select the first value from a list that isn't `null/undefined`.
 
 Let's say we have a user's data in variables `firstName`, `lastName` or `nickName`. All of them may be undefined, if the user decided not to enter a value.
 
@@ -118,9 +118,9 @@ Lalu kita coba bandingkan dengan `||`:
 =======
 The OR `||` operator exists since the beginning of JavaScript, so developers were using it for such purposes for a long time.
 
-On the other hand, the nullish coalescing operator `??` was added only recently, and the reason for that was that people weren't quite happy with `||`.
+On the other hand, the nullish coalescing operator `??` was added to JavaScript only recently, and the reason for that was that people weren't quite happy with `||`.
 
-The subtle, yet important difference is that:
+The important difference between them is that:
 - `||` returns the first *truthy* value.
 - `??` returns the first *defined* value.
 
@@ -139,6 +139,7 @@ alert(height ?? 100); // 0
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Disini, `height || 100` akan memperlakukan `0` sebagai belum didefinisikan/*undefined*, sama seperti `null`, `undefined` atau nilai *falsy* lainnya. Jadi nilainya adalah `100`.
 
 Sedangkan `height ?? 100` akan mengembalikan `100` hanya jika `height` nilainya `null` atau `undefined`. Jadi `alert`nya akan menampilkan nilai `height` sama dengan `0`.
@@ -148,11 +149,14 @@ Ketika nilai `0` adalah nilai yang valid, maka `??` menjadi rekomendasi.
 =======
 Here, we have a zero height.
 
+=======
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 - The `height || 100` checks `height` for being a falsy value, and it really is.
     - so the result is the second argument, `100`.
 - The `height ?? 100` checks `height` for being `null/undefined`, and it's not,
     - so the result is `height` "as is", that is `0`.
 
+<<<<<<< HEAD
 If we assume that zero height is a valid value, that shouldn't be replaced with the default, then `??` does just the right thing.
 >>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
@@ -160,6 +164,9 @@ If we assume that zero height is a valid value, that shouldn't be replaced with 
 
 <<<<<<< HEAD
 Operator `??` memiliki nilai *precedence*: `5` didalam [Tabel MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table).
+=======
+If the zero height is a valid value, that shouldn't be replaced with the default, then `??` does just the right thing.
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 
 Jadi `??` akan dievaluasi setelah kebanyakan operasi lainnya, tapi sebelum `=` dan `?`.
 
@@ -233,7 +240,11 @@ alert(x); // 2
 
 ## Ringkasan
 
+<<<<<<< HEAD
 - operator penggabung nullish `??` menyediakan cara yang pendek untuk memilih nilai *defined* dari sebuah daftar.
+=======
+- The nullish coalescing operator `??` provides a short way to choose the first "defined" value from a list.
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 
     It's used to assign default values to variables:
     Operator nullish digunakan untuk memberikan nilai default kepada sebuah variabel:
@@ -244,9 +255,13 @@ alert(x); // 2
     ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 - Operator `??` memiliki nilai *precedence* yang sangat rendah, dan sedikit lebih tinggi dari `?` dan `=`.
 - Dilarang untuk menggunakan operator `??` dengan `\\` atau `&&` tanpa kurung yang jelas.
 =======
 - The operator `??` has a very low precedence, a bit higher than `?` and `=`, so consider adding parentheses when using it in an expression.
+=======
+- The operator `??` has a very low precedence, only a bit higher than `?` and `=`, so consider adding parentheses when using it in an expression.
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 - It's forbidden to use it with `||` or `&&` without explicit parentheses.
 >>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
