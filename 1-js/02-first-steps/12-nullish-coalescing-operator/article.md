@@ -2,38 +2,28 @@
 
 [recent browser="new"]
 
-<<<<<<< HEAD
-Operator penggabungan *nullish* `??` menyediakan sintaks yang pendek untuk memilih nilai yang telah didefinisikan/*defined* dari daftar.
+Disini, didalam artikel ini, kita bisa mengatakan sebuah ekspresi telah "didefinisikan" ketika nilainya bukanlah `null` ataupun `undefined`.
 
-Hasil dari sebuah `a ?? b` adalah:
-- `a` jika nilainya tidak `null` atau `undefined`,
-- `b` jika sebaliknya.
+Operator penggabungan nullish ditulis sebagai dua tanda tanya `??`.
 
-Jadi, `x = a ?? b` adalah kependekan yang sama seperti:
-=======
-Here, in this article, we'll say that an expression is "defined" when it's neither `null` nor `undefined`.
-
-The nullish coalescing operator is written as two question marks `??`.
-
-The result of `a ?? b` is:
-- if `a` is defined, then `a`,
-- if `a` isn't defined, then `b`.
+Hasil dari `a ?? b` adalah:
+- jika `a` telah didefinisikan, maka `a`,
+- jika `a` belum didefinisikan, maka `b`.
 
 
-In other words, `??` returns the first argument if it's defined. Otherwise, the second one.
+Dengan kata lain, `??` mengembalikan argumen pertama jika argumen tersebut telah didefinisikan. Sebaliknya, mengembalikan argumen kedua jika argumen pertama belum didefinisikan.
 
-The nullish coalescing operator isn't anything completely new. It's just a nice syntax to get the first "defined" value of the two.
+Operator penggabung nullish bukanlah sesuatu yang benar-benar baru. Operator itu hanyalah sebuah sintaks yang bagus untuk mendapatkan nilai pertama yang telah "didefinisikan" dari dua nilai.
 
-We can rewrite `result = a ?? b` using the operators that we already know, like this:
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
+Kita bisa menulis ulang `result = a ?? b` menggunakan operator yang sudah kita ketahui, seperti ini:
 
 ```js
 result = (a !== null && a !== undefined) ? a : b;
 ```
 
-The common use case for `??` is to provide a default value for a potentially undefined variable.
+Penggunaan umum untuk `??` adalah untuk menyediakan nilai _default_ untuk variabel yang mungkin _undefined_.
 
-For example, here we show `Anonymous` if `user` isn't defined:
+Sebagai contoh, kita disini menampilkan `Anonymous` jika `user` belum didefinisikan:
 
 ```js run
 let user;
@@ -41,16 +31,7 @@ let user;
 alert(user ?? "Anonymous"); // Anonymous
 ```
 
-<<<<<<< HEAD
-Kita lihat contoh yang lebih panjang.
-
-Bayangkan, kita mempunyai seorang pengguna, dan terdapat variabel `firstName`, `lastName` atau `nickName` untuk nama depan, nama belakang atau nama panggilan. Semuanya akan menjadi *undefined*, jika pengguna tidak memasukan nilai apapun.
-
-Kita ingin menampilkan nama penggunanya: Salah satu dari nilai variabel tersebut atau tampilkan Anonim jika tidak ada nama yang dimasukan.
-
-Ayo kita gunakan operator `??` untuk memilih nilai pertama yang sudah terdefinisikan:
-=======
-Of course, if `user` had any value except `null/undefined`, then we would see it instead:
+tentu saja, jika `user` memiliki nilai apapun kecuali `null/undefined`, maka kita akan bisa melihat nilainya:
 
 ```js run
 let user = "John";
@@ -58,25 +39,20 @@ let user = "John";
 alert(user ?? "Anonymous"); // John
 ```
 
-We can also use a sequence of `??` to select the first defined value from a list.
+Kita juga bisa menggunakan rentetan `??` untuk mendapatkan nilai yang telah didefinisikan dari sebuah daftar.
 
-Let's say we have a user's data in variables `firstName`, `lastName` or `nickName`. All of them may be undefined, if the user decided not to enter a value.
+Katakan kita memiliki sebuah data _user_ didalam sebuah variabel `firstName`, `lastName`, atau `nickName`. Semuanya mungkin saya memiliki nilai _undefined_, jika _user_ nya tidak memasukan nilainya.
 
-We'd like to display the user name using one of these variables, or show "Anonymous" if all of them are undefined.
+Kita ingin menampilkan nama _user_ menggunakan salah satu dari variabel ini, atau menampilkan "Anonymous" jika semua nilainya adalah _undefined_.
 
-Let's use the `??` operator for that:
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
+Kita coba gunakan operator `??` untuk hal itu:
 
 ```js run
 let firstName = null;
 let lastName = null;
 let nickName = "Supercoder";
 
-<<<<<<< HEAD
-// tampilkan nilai pertama yang tidak bernilai null/undefined
-=======
-// shows the first defined value:
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
+// tampilkan nilai pertama yang telah didefinisikan:
 *!*
 alert(firstName ?? lastName ?? nickName ?? "Anonymous"); // Supercoder
 */!*
@@ -84,52 +60,35 @@ alert(firstName ?? lastName ?? nickName ?? "Anonymous"); // Supercoder
 
 ## Perbandingan dengan ||
 
-<<<<<<< HEAD
-Operator OR `||` bisa digunakan dengan cara yang sama dengan operator `??`. Sebenarnya kita bisa menggantikan `??` dengan `||` di kode diatas dan mendapatkan hasil yang sama, seperti yang dijelaskan di [bab sebelumnya](info:logical-operators#or-finds-the-first-truthy-value).
+Operator OR `||` bisa digunakan dengan cara yag sama seperti `??`, seperti yang telah dijelaskan didalam [bab sebelumnya](info:logical-operators#or-finds-the-first-truthy-value).
 
-Perbedaan yang paling penting adalah:
-- `||` mengembalikan nilai *truthy* pertama.
-- `??` mengembalikan nilai *defined*/terdefinisikan pertama.
-
-Hal ini menjadi perhatian ketika kita ingin memperlakukan nilai `null/undefined` secara berbeda dengan `0`.
-
-Contoh, coba perhatikan:
-=======
-The OR `||` operator can be used in the same way as `??`, as it was described in the [previous chapter](info:logical-operators#or-finds-the-first-truthy-value).
-
-For example, in the code above we could replace `??` with `||` and still get the same result:
+Untuk contoh, pada kode diatas kita bisa mengganti `??` dengan `||` dan tetap mendapatkan hasil yang sama:
 
 ```js run
 let firstName = null;
 let lastName = null;
 let nickName = "Supercoder";
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
-// shows the first truthy value:
+// tampilkan nilai pertama yang bernilai truthy:
 *!*
 alert(firstName || lastName || nickName || "Anonymous"); // Supercoder
 */!*
 ```
 
-<<<<<<< HEAD
-Potongan kode diatas akan memberikan nilai `100` jika `height` tidak terdefinisikan/*undefined*.
+Operator OR `||` sudah ada sejak awal mula dari Javascript, jadi sudah sejak lama pengembang menggunakan operator _or_ untuk kebutuhan seperti contoh diatas.
 
-Lalu kita coba bandingkan dengan `||`:
-=======
-The OR `||` operator exists since the beginning of JavaScript, so developers were using it for such purposes for a long time.
+Disisi yang lain, operator penggabung nullish `??` baru saja ditambahkan, dan alasan penambahannya adalah karena para pengembang kurang senang dengan `||`.
 
-On the other hand, the nullish coalescing operator `??` was added only recently, and the reason for that was that people weren't quite happy with `||`.
+Perbedaan halus, tapi penting adalah:
+- `||` mengembalikan nilai *truthy* pertama.
+- `??` mengembalikan nilai *terdefinisi* pertama.
 
-The subtle, yet important difference is that:
-- `||` returns the first *truthy* value.
-- `??` returns the first *defined* value.
+Dengan kata lain, `||` tidak membedakan antara `false`, `0`, sebuah string kosong `""` dan `null/undefined`. Mereka dilihat sama oleh `||` -- nilai _falsy_. Jika salah satu nilai tersebut berada pada argumen pertama dari `||`, maka kita akan mendapatkan argumen kedua sebagai hasilnya.
 
-In other words, `||` doesn't distinguish between `false`, `0`, an empty string `""` and `null/undefined`. They are all the same -- falsy values. If any of these is the first argument of `||`, then we'll get the second argument as the result.
+Didalam penggunaannya, kita mungkin ingin menggunakan nilai _default_ hanya ketika variabelnya adalah `null/undefined`. Itulah, ketika nilainya benar-benar tidak diketahui/tidak diset.
 
-In practice though, we may want to use default value only when the variable is `null/undefined`. That is, when the value is really unknown/not set.
 
-For example, consider this:
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
+Contoh, perhatikan ini:
 
 ```js run
 let height = 0;
@@ -138,37 +97,20 @@ alert(height || 100); // 100
 alert(height ?? 100); // 0
 ```
 
-<<<<<<< HEAD
-Disini, `height || 100` akan memperlakukan `0` sebagai belum didefinisikan/*undefined*, sama seperti `null`, `undefined` atau nilai *falsy* lainnya. Jadi nilainya adalah `100`.
+Disini, kita memiliki _height_ nol.
 
-Sedangkan `height ?? 100` akan mengembalikan `100` hanya jika `height` nilainya `null` atau `undefined`. Jadi `alert`nya akan menampilkan nilai `height` sama dengan `0`.
+- Bagian `height || 100` memeriksa `height` sebagai nilai yang _falsy_, dan ternyata benar.
+    - jadi hasilnya adalah argumen kedua, `100`.
+- Bagian `height ?? 100` memeriksa `height` sebagai `null/undefined`, dan ternyata tidak.
+    - jadi hasil dari `height` adalah "sebagaimana adanya", yang mana adalah `0`.
 
-Jadi mana yang lebih baik, tergantung pada kasus-kasus tertentu atau kasus yang dihadapi.
-Ketika nilai `0` adalah nilai yang valid, maka `??` menjadi rekomendasi.
-=======
-Here, we have a zero height.
-
-- The `height || 100` checks `height` for being a falsy value, and it really is.
-    - so the result is the second argument, `100`.
-- The `height ?? 100` checks `height` for being `null/undefined`, and it's not,
-    - so the result is `height` "as is", that is `0`.
-
-If we assume that zero height is a valid value, that shouldn't be replaced with the default, then `??` does just the right thing.
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
+Jika kita asumsikan bahwa _height_ nol adalah nilai yang valid, maka nilainya tidak seharusnya diganti dengan nilai _default_, maka `??` melakukan hal yang benar.
 
 ## Precedence/Hak lebih tinggi
 
-<<<<<<< HEAD
-Operator `??` memiliki nilai *precedence*: `5` didalam [Tabel MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table).
+_Precedence_ dari operator `??` agak rendah: `5` didalam [tabel MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table). Jadi `??` akan dievaluasi sebelum `=` dan `?`, tapi setelah di kebanyakan dari operasi lainnya, seperti `+`, `*`.
 
-Jadi `??` akan dievaluasi setelah kebanyakan operasi lainnya, tapi sebelum `=` dan `?`.
-
-Jika kita ingin memilih sebuah nilai dengan `??` didalam ekspresi yang kompleks, cobalah untuk menggunakan kurung:
-=======
-The precedence of the `??` operator is rather low: `5` in the [MDN table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table). So `??` is evaluated before `=` and `?`, but after most other operations, such as `+`, `*`.
-
-So if we'd like to choose a value with `??` in an expression with other operators, consider adding parentheses:
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
+Jadi jika kita ingin memilih sebuah nilai dengan `??` didalam sebuah ekspresi dengan operator lain, cobalah untuk menggunakan kurung:
 
 ```js run
 let height = null;
@@ -180,34 +122,19 @@ let area = (height ?? 100) * (width ?? 50);
 alert(area); // 5000
 ```
 
-<<<<<<< HEAD
-Sebaliknya, jika kita menghilangkan kurung, `*` akan memiliki nilai *precedence* lebih tinggi dari `??` dan akan dijalankan lebih dulu.
-
-Dan akan dijalankan sama seperti:
+Sebaliknya, jika kita menghilangkan kurungnya, maka operator `*` akan memiliki nilai _precedence_ yang lebih tinggi dari `??`, yang mana akan dieksekusi pertama, yang akan menghasilkan nilai yang salah.
 
 ```js
-// mungkin kurang tepat
-let area = height ?? (100 * width) ?? 50;
-```
-
-Dan juga terdapat sebuah batasan untuk level-bahasa.
-
-**Karena masalah keamanan, sangat tidak direkomendasikan untuk menggunakan `??` bersamaan dengan operator `&&` dan `||`.**
-=======
-Otherwise, if we omit parentheses, then as `*` has the higher precedence than `??`, it would execute first, leading to incorrect results.
-
-```js
-// without parentheses
+// tanpa kurung
 let area = height ?? 100 * width ?? 50;
 
-// ...works the same as this (probably not what we want):
+// ...akan dieksekusi sama seperti ini (mungkin bukan ini yang kita inginkan):
 let area = height ?? (100 * width) ?? 50;
 ```
 
-### Using ?? with && or ||
+### Menggunakan ?? dengan && atau ||
 
-Due to safety reasons, JavaScript forbids using `??` together with `&&` and `||` operators, unless the precedence is explicitly specified with parentheses.
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
+Karena masalah keamanan, javascript melarang menggunakan operator `??` bersama dengan `&&` dan `||`, kecuali jika kita secara jelas menggunakan kurung.
 
 Kode dibawah akan menampilkan sintaks error:
 
@@ -215,11 +142,7 @@ Kode dibawah akan menampilkan sintaks error:
 let x = 1 && 2 ?? 3; // Syntax error
 ```
 
-<<<<<<< HEAD
 Tentu saja batasan seperti itu bisa diperdebatkan, akan tetapi hal itu telah ditambahkan kedalam spesifikasi bahasanya dengan tujuan untuk menghindari kesalahan memprogram, sebagaimana orang-orang mulai berpindah dari `??` ke `||`.
-=======
-The limitation is surely debatable, but it was added to the language specification with the purpose to avoid programming mistakes, when people start to switch to `??` from `||`.
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 Gunakan kurung yang jelas jika ingin menggunakannya:
 
@@ -243,10 +166,5 @@ alert(x); // 2
     height = height ?? 100;
     ```
 
-<<<<<<< HEAD
 - Operator `??` memiliki nilai *precedence* yang sangat rendah, dan sedikit lebih tinggi dari `?` dan `=`.
 - Dilarang untuk menggunakan operator `??` dengan `\\` atau `&&` tanpa kurung yang jelas.
-=======
-- The operator `??` has a very low precedence, a bit higher than `?` and `=`, so consider adding parentheses when using it in an expression.
-- It's forbidden to use it with `||` or `&&` without explicit parentheses.
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
