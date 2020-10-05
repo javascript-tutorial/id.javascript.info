@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Inherit from SyntaxError
+# Mewarisi dari SyntaxError
 
 Buat kelas `FormatError` yang diwarisi dari bawaan kelas `SyntaxError`.
 
