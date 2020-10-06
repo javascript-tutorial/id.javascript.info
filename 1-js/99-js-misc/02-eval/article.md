@@ -1,25 +1,25 @@
-# Eval: run a code string
+# Eval: menjalankan kode dari _string_
 
-The built-in `eval` function allows to execute a string of code.
+Fungsi bawaan `eval` memungkinkan kita untuk menjalankan kode dari sebuah _string_.
 
-The syntax is:
+Sintaksnya adalah:
 
 ```js
 let result = eval(code);
 ```
 
-For example:
+Sebagai contoh:
 
 ```js run
 let code = 'alert("Hello")';
 eval(code); // Hello
 ```
 
-A string of code may be long, contain line breaks, function declarations, variables and so on.
+Sebuah kode yang berupa _string_ bisa panjang, berupa deklarasi fungsi, variabel dan lain-lain.
 
-The result of `eval` is the result of the last statement.
+Hasil dari `eval` adalah hasil dari peryataan terakhir.
 
-For example:
+Sebagai contoh:
 ```js run
 let value = eval('1+1');
 alert(value); // 2
@@ -29,8 +29,7 @@ alert(value); // 2
 let value = eval('let i = 0; ++i');
 alert(value); // 1
 ```
-
-The eval'ed code is executed in the current lexical environment, so it can see outer variables:
+Kode yang dievaluasi akan dieksekusi di lingkungan leksikal saat ini, sehingga dapat melihat variabel luar:
 
 ```js run no-beautify
 let a = 1;
@@ -46,42 +45,42 @@ function f() {
 f();
 ```
 
-It can change outer variables as well:
+Itu juga dapat mengubah variabel luar:
 
 ```js untrusted refresh run
 let x = 5;
 eval("x = 10");
-alert(x); // 10, value modified
+alert(x); // 10, nilai diubah
 ```
 
-In strict mode, `eval` has its own lexical environment. So functions and variables, declared inside eval, are not visible outside:
+Dalam mode ketat, `eval` memiliki lingkungan leksikal sendiri. Jadi, fungsi dan variabel yang dideklarasikan di dalam eval, tidak akan terlihat di luar:
 
 ```js untrusted refresh run
-// reminder: 'use strict' is enabled in runnable examples by default
+// pengingat: dalam contoh yang dijalankan 'use strict' diaktifkan secara bawaan
 
 eval("let x = 5; function f() {}");
 
-alert(typeof x); // undefined (no such variable)
-// function f is also not visible
+alert(typeof x); // undefined (tidak ada variabel)
+// fungsi f juga tidak terlihat
 ```
 
-Without `use strict`, `eval` doesn't have its own lexical environment, so we would see `x` and `f` outside.
+Tanpa `use strict`, `eval` tidak memiliki lingkungan leksikal sendiri, jadi kita akan melihat `x` dan `f` di luar.
 
-## Using "eval"
+## Menggunakan "eval"
 
-In modern programming `eval` is used very sparingly. It's often said that "eval is evil".
+Dalam pemrograman modern `eval` jarang digunakan. Sering dikatakan bahwa "_eval is evil_" atau "`eval` itu jahat".
 
-The reason is simple: long, long time ago JavaScript was a much weaker language, many things could only be done with `eval`. But that time passed a decade ago.
+Alasannya sederhana: dulu JavaScript adalah bahasa yang jauh lebih lemah, banyak hal yang hanya bisa dilakukan dengan `eval`. Tapi wakti itu telah berlalu satu dekade yang lalu.
 
-Right now, there's almost no reason to use `eval`. If someone is using it, there's a good chance they can replace it with a modern language construct or a [JavaScript Module](info:modules).
+Sekarang, hampir tidak ada alasan untuk menggunakan `eval`. Jika seseorang menggunakannya, ada kemungkinan mereka dapat menggantinya dengan konstruksi bahasa modern atau [JavaScript Module](info:modules).
 
-Please note that its ability to access outer variables has side-effects.
+Harap dicatat bahwa kemampuannya untuk mengakses variabel luar mengakses variabel luar memiliki efek samping.
 
-Code minifiers (tools used before JS gets to production, to compress it) rename local variables into shorter ones (like `a`, `b` etc) to make the code smaller. That's usually safe, but not if `eval` is used, as local variables may be accessed from eval'ed code string. So minifiers don't do that renaming for all variables potentially visible from `eval`. That negatively affects code compression ratio.
+_Code minifiers_ (alat yang digunakan sebelum JS masuk ke produksi, untuk mengkompresnya) mengubah nama variabel lokal menjadi lebih pendek (seperti `a`, `b` dll) untuk membuat kode menjadi lebih kecil. Biasanya itu aman, tetapi tidak jika `eval` digunakan, karena variabel lokal dapat diakses dari kode yang dievaluasi dari _string_. Jadi _minifiers_ tidak melakukan itu untuk mengganti nama semua variabel yang terlihat dari `eval`. Itu berdampak negatif pada rasio kompresi kode.
 
-Using outer local variables inside `eval` is also considered a bad programming practice, as it makes maintaining the code more difficult.
+Menggunakan variabel lokal luar di dalam `eval` juga dianggap sebagai praktik pemrograman yang buruk, karena membuat kode lebih sulit dipertahankan.
 
-There are two ways how to be totally safe from such problems.
+Ada dua cara untuk terhindar dan aman dari masalah seperti itu.
 
 **If eval'ed code doesn't use outer variables, please call `eval` as `window.eval(...)`:**
 
@@ -91,11 +90,11 @@ This way the code is executed in the global scope:
 let x = 1;
 {
   let x = 5;
-  window.eval('alert(x)'); // 1 (global variable)
+  window.eval('alert(x)'); // 1 (variabel global)
 }
 ```
 
-**If eval'ed code needs local variables, change `eval` to `new Function` and pass them as arguments:**
+**Jika kode yang dievaluasi membutuhkan variabel lokal, ubah `eval` menjadi `new Function` dan teruskan sebagai argumen:**
 
 ```js run
 let f = new Function('a', 'alert(a)');
@@ -103,12 +102,12 @@ let f = new Function('a', 'alert(a)');
 f(5); // 5
 ```
 
-The `new Function` construct is explained in the chapter <info:new-function>. It creates a function from a string, also in the global scope. So it can't see local variables. But it's so much clearer to pass them explicitly as arguments, like in the example above.
+Konstruksi `new Function` dijelaskan dalam bab <info:new-function>. Itu membuat fungsi baru dari sebuah _string_ dan juga dalam lingkup global. Jadi tidak bisa melihat variabel lokal. Tetapi jauh lebih jelas jika meneruskannya sebagai argumen secara eksplisit, seperti pada contoh di atas.
 
-## Summary
+## Ringkasan
 
-A call to `eval(code)` runs the string of code and returns the result of the last statement.
-- Rarely used in modern JavaScript, as there's usually no need.
-- Can access outer local variables. That's considered bad practice.
-- Instead, to `eval` the code in the global scope, use `window.eval(code)`.
-- Or, if your code needs some data from the outer scope, use `new Function` and pass it as arguments.
+Pemanggilan `eval(code)` menjalankan kode dari sebuah _string_ dan mengembalikan hasil dari pernyataan terakhir.
+- Jarang digunakan dalam JavaScript modern, karena biasanya tidak diperlukan.
+- Dapat mengakses variabel lokal luar. Itu dianggap praktik yang buruk.
+- Sebaga gantinya, untuk `eval` sebuah kode dalam lingkup global, gunakan `window.eval(code)`.
+- Atau, jika kode Anda memerlukan beberapa data dari cakupan luar, gunakan `new Function` dan teruskan sebagai argumen.

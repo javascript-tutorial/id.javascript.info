@@ -1,4 +1,4 @@
-Let's use `eval` to calculate the maths expression:
+Mari gunakan `eval` untuk mengitung rumus matematika:
 
 ```js demo run
 let expr = prompt("Type an arithmetic expression?", '2*3+2');
@@ -6,6 +6,6 @@ let expr = prompt("Type an arithmetic expression?", '2*3+2');
 alert( eval(expr) );
 ```
 
-The user can input any text or code though.
+Pengguna dapat memasukkan teks atau kode apa pun.
 
-To make things safe, and limit it to arithmetics only, we can check the `expr` using a [regular expression](info:regular-expressions), so that it only may contain digits and operators.
+Untuk membuat semuanya aman dan membatasinya hanya untuk operasi aritmatika, kita dapat memeriksa `expr` menggunakan [_regular expression_](info:regular-expressions), sehingga hanya dapat berisi angka dan operator.
