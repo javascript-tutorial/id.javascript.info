@@ -1,4 +1,4 @@
-Mari gunakan `eval` untuk mengitung rumus matematika:
+Mari gunakan `eval` untuk menghitung rumus matematika:
 
 ```js demo run
 let expr = prompt("Type an arithmetic expression?", '2*3+2');

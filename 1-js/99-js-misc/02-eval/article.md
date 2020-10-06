@@ -74,7 +74,7 @@ Alasannya sederhana: dulu JavaScript adalah bahasa yang jauh lebih lemah, banyak
 
 Sekarang, hampir tidak ada alasan untuk menggunakan `eval`. Jika seseorang menggunakannya, ada kemungkinan mereka dapat menggantinya dengan konstruksi bahasa modern atau [JavaScript Module](info:modules).
 
-Harap dicatat bahwa kemampuannya untuk mengakses variabel luar mengakses variabel luar memiliki efek samping.
+Harap dicatat bahwa kemampuannya untuk mengakses variabel luar memiliki efek samping.
 
 _Code minifiers_ (alat yang digunakan sebelum JS masuk ke produksi, untuk mengkompresnya) mengubah nama variabel lokal menjadi lebih pendek (seperti `a`, `b` dll) untuk membuat kode menjadi lebih kecil. Biasanya itu aman, tetapi tidak jika `eval` digunakan, karena variabel lokal dapat diakses dari kode yang dievaluasi dari _string_. Jadi _minifiers_ tidak melakukan itu untuk mengganti nama semua variabel yang terlihat dari `eval`. Itu berdampak negatif pada rasio kompresi kode.
 
