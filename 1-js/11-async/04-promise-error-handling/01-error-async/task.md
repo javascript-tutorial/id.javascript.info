@@ -1,9 +1,9 @@
-# Error in setTimeout
+# Error di dalam setTimeout
 
-What do you think? Will the `.catch` trigger? Explain your answer.
+Apa yang anda pikirkan? Akankan `.catch` terpicu? Jelaskan jawaban anda.
 
 ```js
-new Promise(function(resolve, reject) {
+new Promise(function (resolve, reject) {
   setTimeout(() => {
     throw new Error("Whoops!");
   }, 1000);

@@ -1,20 +1,20 @@
-# Export and Import
+# Export dan Import
 
-Export and import directives have several syntax variants.
+Perintah export dan import memiliki beberapa varian sintaks.
 
-In the previous article we saw a simple use, now let's explore more examples.
+Pada artikel sebelumnya kita melihat cara penggunaan yang sederhana, sekarang mari telusuri lebih banyak contoh.
 
-## Export before declarations
+## Export sebelum deklarasi
 
-We can label any declaration as exported by placing `export` before it, be it a variable, function or a class.
+Kita dapat memberi label deklarasi apapus untuk diekspor dengan menempatkan `export` sebelumnya, baik itu variabel, fungsi atau kelas.
 
-For instance, here all exports are valid:
+Misalnya, dibawah ini semua export valid:
 
 ```js
-// export an array
+// export sebuah array
 *!*export*/!* let months = ['Jan', 'Feb', 'Mar','Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-// export a constant
+// export sebuah konstanta
 *!*export*/!* const MODULES_BECAME_STANDARD_YEAR = 2015;
 
 // export a class
@@ -25,28 +25,28 @@ For instance, here all exports are valid:
 }
 ```
 
-````smart header="No semicolons after export class/function"
-Please note that `export` before a class or a function does not make it a [function expression](info:function-expressions). It's still a function declaration, albeit exported.
+````smart header="Tidak ada titik koma setelah perintah export kelas/fungsi"
+Mohon diperhatikan bahwa `export` sebelum sebuah kelas atau fungsi tidak menjadikannya sebagai [ekspresi fungsi](info:function-expressions). Ini masih sebuah deklarasi fungsi meskipun sudah diekspor.
 
-Most JavaScript style guides don't recommend semicolons after function and class declarations.
+Kebanyakan panduan gaya penulisan Javascript tidak merekomendasikan titik koma setelah deklarasi fungsi dan kelas.
 
-That's why there's no need for a semicolon at the end of `export class` and `export function`:
+Itu mengapa tidak perlu menambahkan titik koma di akhir `export class` dan `export function`:
 
 ```js
 export function sayHi(user) {
   alert(`Hello, ${user}!`);
-} *!* // no ; at the end */!*
+} *!* // tidak ada ; diakhir */!*
 ```
 
 ````
 
-## Export apart from declarations
+## Export selain dari deklarasi
 
-Also, we can put `export` separately.
+Kita juga dapat meletakkan perintah `export` secara terpisah.
 
-Here we first declare, and then export:
+Di bawah ini kita mendeklarasikan terlebih dahulu, lalu kemudian melakukan ekspor:
 
-```js  
+```js
 // 📁 say.js
 function sayHi(user) {
   alert(`Hello, ${user}!`);
@@ -57,15 +57,15 @@ function sayBye(user) {
 }
 
 *!*
-export {sayHi, sayBye}; // a list of exported variables
+export {sayHi, sayBye}; // daftar variabel yang diekspor
 */!*
 ```
 
-...Or, technically we could put `export` above functions as well.
+...Atau, secara teknis kita dapat meletakkan `export` diatas fungsi juga.
 
-## Import *
+## Import \*
 
-Usually, we put a list of what to import in curly braces `import {...}`, like this:
+Biasanya, kita membuat daftar apa yang akan kita impor di dalam kurung kurawal `import {...}`, seperti ini:
 
 ```js
 // 📁 main.js
@@ -73,11 +73,11 @@ Usually, we put a list of what to import in curly braces `import {...}`, like th
 import {sayHi, sayBye} from './say.js';
 */!*
 
-sayHi('John'); // Hello, John!
-sayBye('John'); // Bye, John!
+sayHi('John'); // Halo, John!
+sayBye('John'); // Selamat tinggal, John!
 ```
 
-But if there's a lot to import, we can import everything as an object using `import * as <obj>`, for instance:
+Tetapi jika ada banyak yang harus diimpor, kita dapat melakukan impor semuanya sebagai sebuah objek menggunakan `import * as <obj>`. Sebagai contoh:
 
 ```js
 // 📁 main.js
@@ -89,13 +89,14 @@ say.sayHi('John');
 say.sayBye('John');
 ```
 
-At first sight, "import everything" seems such a cool thing, short to write, why should we ever explicitly list what we need to import?
+Kesan pertama terkait "impor semuanya" adalah terdengar seperti sesuatu yang keren dan singkat ketika ditulis. Mengapa kita harus secara eksplisit membuat daftar apa yang perlu kita impor?
 
-Well, there are few reasons.
+Jadi, ini adalah beberapa alasannya.
 
-1. Modern build tools ([webpack](http://webpack.github.io) and others) bundle modules together and optimize them to speedup loading and remove unused stuff.
+1. Perkakas penggabung yang modern ([webpack](http://webpack.github.io) dan lainnya) menggabungkan semua modul sekaligus dan mengoptimalkannya untuk mempercepat proses pemuatan dan menghapus modul yang tidak digunakan.
 
-    Let's say, we added a 3rd-party library `say.js` to our project with many functions:
+    Katakanlah kita menambahkan sebuah pustaka pihak ketiga `say.js` ke dalam proyek dengan banyak fungsi:
+
     ```js
     // 📁 say.js
     export function sayHi() { ... }
@@ -103,21 +104,23 @@ Well, there are few reasons.
     export function becomeSilent() { ... }
     ```
 
-    Now if we only use one of `say.js` functions in our project:
+    Sekarang jika kita hanya menggunakan salah satu dari fungsi `say.js` di proyek kita:
+
     ```js
     // 📁 main.js
-    import {sayHi} from './say.js';
+    import { sayHi } from './say.js';
     ```
-    ...Then the optimizer will see that and remove the other functions from the bundled code, thus making the build smaller. That is called "tree-shaking".
 
-2. Explicitly listing what to import gives shorter names: `sayHi()` instead of `say.sayHi()`.
-3. Explicit list of imports gives better overview of the code structure: what is used and where. It makes code support and refactoring easier.
+    ...Maka kemudian ketika proses pengoptimalan berjalan akan melihatnya dan menghapus fungsi lainnya (yang tidak digunakan) dari kode yang digabungkan, ini membuat kode hasil penggabungan lebih kecil. Itulah yang disebut _"tree-shaking"_
+
+2. Mendaftarkan secara eksplisit apa yang akan diimpor dengan nama yang lebih pendek: `sayHi()` sebagai ganti dari `say.sayHi()`.
+3. Daftar import eksplisit memberikan gambaran yang lebih baik tentang struktur kode: apa yang digunakan dan dimana. Itu membuat dukungan kode dan proses refactoring lebih mudah.
 
 ## Import "as"
 
-We can also use `as` to import under different names.
+Kita juga dapat menggunakan `as` untuk mengimpor dengan nama yang berbeda.
 
-For instance, let's import `sayHi` into the local variable `hi` for brevity, and import `sayBye` as `bye`:
+Sebagai contoh, cobalah impor `sayHi` ke dalam variabel lokal `hi` agar lebih singkat, dan impor `sayBye` sebagai `bye`:
 
 ```js
 // 📁 main.js
@@ -125,15 +128,15 @@ For instance, let's import `sayHi` into the local variable `hi` for brevity, and
 import {sayHi as hi, sayBye as bye} from './say.js';
 */!*
 
-hi('John'); // Hello, John!
-bye('John'); // Bye, John!
+hi('John'); // Halo, John!
+bye('John'); // Selamat Tinggal, John!
 ```
 
 ## Export "as"
 
-The similar syntax exists for `export`.
+Sintaks serupa berlaku juga untuk `export`
 
-Let's export functions as `hi` and `bye`:
+Mari ekspor fungsi sebagai `hi` dan `bye`:
 
 ```js
 // 📁 say.js
@@ -141,122 +144,123 @@ Let's export functions as `hi` and `bye`:
 export {sayHi as hi, sayBye as bye};
 ```
 
-Now `hi` and `bye` are official names for outsiders, to be used in imports:
+Sekarang `hi` dan `bye` adalah nama resmi yang diekspor dan kemudian dapat digunakan dalam impor:
 
 ```js
 // 📁 main.js
 import * as say from './say.js';
 
-say.*!*hi*/!*('John'); // Hello, John!
-say.*!*bye*/!*('John'); // Bye, John!
+say.*!*hi*/!*('John'); // Halo, John!
+say.*!*bye*/!*('John'); // Selamat Tinggal, John!
 ```
 
 ## Export default
 
-In practice, there are mainly two kinds of modules.
+Dalam praktiknya, terdapat dua jenis modul.
 
-1. Modules that contain a library, pack of functions, like `say.js` above.
-2. Modules that declare a single entity, e.g. a module `user.js` exports only `class User`.
+1. Modul yang berisi pustaka, paket fungsi, seperti `say.js` diatas.
+2. Modul yang mendeklarasikan sebuah entitas, misalnya modul `user.js` hanya mengekspor `class User`.
 
-Mostly, the second approach is preferred, so that every "thing" resides in its own module.
+Kebanyakan pendekatan kedua yang lebih disukai, jadi untuk setiap `benda` berada dalam modulnya sendiri.
 
-Naturally, that requires a lot of files, as everything wants its own module, but that's not a problem at all. Actually, code navigation becomes easier if files are well-named and structured into folders.
+Tentu itu membutuhkan banyak berkas, karena semuanya menginginkan modulnya sendiri. Tetapi itu tidak menjadi masalah sama sekali. Sebenarnya, navigasi kode menjadi lebih mudah jika berkas diberi nama dengan baik dan terstruktur didalam direktori.
 
-Modules provide a special `export default` ("the default export") syntax to make the "one thing per module" way look better.
+Modul menyediakan perintah khusus `export default` ("ekspor bawaan") untuk membuat cara "satu hal per modul" terlihat lebih baik.
 
-Put `export default` before the entity to export:
+Tambahkan `export default` sebelum entitas yang akan diekspor:
 
 ```js
 // 📁 user.js
-export *!*default*/!* class User { // just add "default"
+export *!*default*/!* class User { // tambahkan saja "default"
   constructor(name) {
     this.name = name;
   }
 }
 ```
 
-There may be only one `export default` per file.
+Mungkin hanya ada satu `export default` dalam setiap berkas:
 
-...And then import it without curly braces:
+...Dan kemudian impor tanpa menggunakan kurung kurawal:
 
 ```js
 // 📁 main.js
-import *!*User*/!* from './user.js'; // not {User}, just User
+import *!*User*/!* from './user.js'; // Bukan {User}, Hanya User
 
 new User('John');
 ```
 
-Imports without curly braces look nicer. A common mistake when starting to use modules is to forget curly braces at all. So, remember, `import` needs curly braces for named exports and doesn't need them for the default one.
+Impor tanpa kurung kurawal terlihat bagus. Kesalahan umum ketika memulai menggunakan modul adalah ketika sepenuhnya melupakan kurung kurawal. Jadi, ingat `import` memerlukan kurung kurawal untuk ekspor bernama dan tidak memerlukannya untuk ekspor bawaan.
 
-| Named export | Default export |
-|--------------|----------------|
+| Ekspor bernama            | Ekspor bawaan                     |
+| ------------------------- | --------------------------------- |
 | `export class User {...}` | `export default class User {...}` |
-| `import {User} from ...` | `import User from ...`|
+| `import {User} from ...`  | `import User from ...`            |
 
-Technically, we may have both default and named exports in a single module, but in practice people usually don't mix them. A module has either named exports or the default one.
+Secara teknis, kita dapat memiliki keduanya (ekspor bawaan dan ekspor bernama) dalam satu modul yang sama, tetapi pada praktiknya, orang tidak mencampurnya. Sebuah modul memiliki antara ekspor bernama atau ekspor bawaan.
 
-As there may be at most one default export per file, the exported entity may have no name.
+Karena mungkin hanya ada paling banyak satu ekspor bawaan tiap berkas, entitas yang diekspor mungkin tidak memiliki nama.
 
-For instance, these are all perfectly valid default exports:
+Misalnya, dibawah ini adalah ekspor bawaan yang benar-benar valid:
 
 ```js
-export default class { // no class name
+export default class { // tidak ada nama kelas
   constructor() { ... }
 }
 ```
 
 ```js
-export default function(user) { // no function name
-  alert(`Hello, ${user}!`);
+export default function (user) {
+    // tidak ada nama fungsi
+    alert(`Hello, ${user}!`);
 }
 ```
 
 ```js
-// export a single value, without making a variable
-export default ['Jan', 'Feb', 'Mar','Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+// ekspor nilai tunggal tanpa membuat variabel
+export default ['Jan', 'Feb', 'Mar', 'Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 ```
 
-Not giving a name is fine, because there is only one `export default` per file, so `import` without curly braces knows what to import.
+Tidak memberikan nama tidak masalah, karena hanya ada satu `export default` setiap berkas, jadi `import` tanpa tanda kurung kurawal tahu apa yang perlu diimpor.
 
-Without `default`, such an export would give an error:
+Tanpa `default`, ekspor seperti itu akan memberikan sebuh _error_:
 
 ```js
-export class { // Error! (non-default export needs a name)
+export class { // Error! (selain 'default export' memerlukan sebuah nama)
   constructor() {}
 }
-```     
+```
 
-### The "default" name
+### Penamaan "default"
 
-In some situations the `default` keyword is used to reference the default export.
+Pada situasi tertentu kata kunci `default` digunakan untuk mereferensikan ekspor bawaan.
 
-For example, to export a function separately from its definition:
+Misalnya, untuk mengekspor fungsi yang terpisah dari tempat deklarasinya:
 
 ```js
 function sayHi(user) {
-  alert(`Hello, ${user}!`);
+    alert(`Hello, ${user}!`);
 }
 
-// same as if we added "export default" before the function
-export {sayHi as default};
+// sama seperti jika menambahkan "export default" sebelum fungsi
+export { sayHi as default };
 ```
 
-Or, another situation, let's say a module `user.js` exports one main "default" thing, and a few named ones (rarely the case, but it happens):
+Atau pada situasi yang lainnya, katakanlah sebuah modul `user.js` mengekspor satu hal utama "bawaan", dan beberapa yang dinamai (jarang terjadi, tetapi bisa saja terjadi):
 
 ```js
 // 📁 user.js
 export default class User {
-  constructor(name) {
-    this.name = name;
-  }
+    constructor(name) {
+        this.name = name;
+    }
 }
 
 export function sayHi(user) {
-  alert(`Hello, ${user}!`);
+    alert(`Hello, ${user}!`);
 }
 ```
 
-Here's how to import the default export along with a named one:
+Berikut cara mengimpor ekspor bawaan bersama dengan yang ekspor bernama:
 
 ```js
 // 📁 main.js
@@ -265,38 +269,38 @@ import {*!*default as User*/!*, sayHi} from './user.js';
 new User('John');
 ```
 
-And, finally, if importing everything `*` as an object, then the `default` property is exactly the default export:
+Dan terakhir, jika mengimpor semua `*` sebagai sebuah objek, maka properti `default` sama persis dengan ekspor bawaan:
 
 ```js
 // 📁 main.js
 import * as user from './user.js';
 
-let User = user.default; // the default export
+let User = user.default; // ekspor bawaan
 new User('John');
 ```
 
-### A word against default exports
+### Sebuah kata yang menentang ekspor bawaan
 
-Named exports are explicit. They exactly name what they import, so we have that information from them; that's a good thing.
+Ekspor bernama eksplisit. Mereka secara persis menyebutkan apa yang mereka impor, jadi kita bisa mendapatkan informasi itu dari mereka; itu adalah sesuatu yang bagus.
 
-Named exports force us to use exactly the right name to import:
-
-```js
-import {User} from './user.js';
-// import {MyUser} won't work, the name must be {User}
-```
-
-...While for a default export, we always choose the name when importing:
+Ekspor bernama memaksa kita untuk menggunakan nama yang tepat untuk melakukan impor:
 
 ```js
-import User from './user.js'; // works
-import MyUser from './user.js'; // works too
-// could be import Anything... and it'll still work
+import { User } from './user.js';
+// impor {MyUser} tidak akan berfungsi, penamaannya haruss {User}
 ```
 
-So team members may use different names to import the same thing, and that's not good.
+...Sedangkan untuk ekspor bawaan, kita selalu dapat memilih nama ketika mengimpor:
 
-Usually, to avoid that and keep the code consistent, there's a rule that imported variables should correspond to file names, e.g:
+```js
+import User from './user.js'; // berfungsi
+import MyUser from './user.js'; // berfungsi juga
+// Dapat melakukan impor apa saja... dan itu tetap berfungsi
+```
+
+Kemungkinan anggota tim menggunakan penamaan yang berbeda untuk mengimpor hal yang sama, dan itu tidak baik.
+
+Biasanya, untuk menghindari hal tersebut dan menjaga konsistensi kode terdapat aturan bahwa variabel yang di impor harus sesuai dengan nama berkas, misalnya:
 
 ```js
 import User from './user.js';
@@ -305,28 +309,29 @@ import func from '/path/to/func.js';
 ...
 ```
 
-Still, some teams consider it a serious drawback of default exports. So they prefer to always use named exports. Even if only a single thing is exported, it's still exported under a name, without `default`.
+Namun, beberapa tim menganggapnya sebagai kelemahan serius dari ekspor default. Jadi, mereka lebih selalu suka menggunakan ekspor bernama. Meskipun hanya satu hal yang diekspor, itu masih diekspor dengan nama, tanpa `default`.
 
-That also makes re-export (see below) a little bit easier.
+Itu juga membuat ekspor ulang (lihat di bawah) sedikit lebih mudah.
 
-## Re-export
+## Ekspor Ulang
 
-"Re-export" syntax `export ... from ...` allows to import things and immediately export them (possibly under another name), like this:
+"Ekspor ulang" sintaks `export ... from ...` memperbolehkann untuk mengimpor sesuatu dan segera mengekspornya kembali (memungkinkan dengan nama yang berbeda) seperti ini:
 
 ```js
-export {sayHi} from './say.js'; // re-export sayHi
+export { sayHi } from './say.js'; // ekspor ulang sayHi
 
-export {default as User} from './user.js'; // re-export default
+export { default as User } from './user.js'; // ekspor ulang bawaan
 ```
 
-Why would that be needed? Let's see a practical use case.
+Kenapa hal tersebut diperlukan? mari lihat praktik penggunaannya.
 
-Imagine, we're writing a "package": a folder with a lot of modules, with some of the functionality exported outside (tools like NPM allow us to publish and distribute such packages), and many modules are just "helpers", for internal use in other package modules.
+Bayangkan kita menulis sebuah "paket": sebuah direktori dengan banyak modul, dengan beberapa fungsi yang diekpor ke luar (perkakas seperti NPM memungkinkan kita untuk menerbitkan dan mendistribusikan paket seperti itu), dan kebanyakan modul hanyalah "pembantu" untuk penggunaan internal di paket modul lainnya.
 
-The file structure could be like this:
+Struktur berkas bisa seperti ini:
+
 ```
 auth/
-    index.js  
+    index.js
     user.js
     helpers.js
     tests/
@@ -337,119 +342,124 @@ auth/
         ...
 ```
 
-We'd like to expose the package functionality via a single entry point, the "main file" `auth/index.js`, to be used like this:
+Kita ingin menunjukkan fungsionalitas paket melalui satu titik masuk, "Berkas utama" `auth/index.js` dapat digunakan seperti ini.
 
 ```js
-import {login, logout} from 'auth/index.js'
+import { login, logout } from 'auth/index.js';
 ```
 
-The idea is that outsiders, developers who use our package, should not meddle with its internal structure, search for files inside our package folder. We export only what's necessary in `auth/index.js` and keep the rest hidden from prying eyes.
+Idenya adalah bahwa orang luar (pengembang) yang menggunakan paket kita tidak boleh ikut campur dengan struktur internalnya, serta mencari berkas didalam direktori paket kita. Kita hanya mengekspor apa yang penting di dalam `auth/index.js` dan menyembunyikan sisaya dari pengintaian.
 
-As the actual exported functionality is scattered among the package, we can import it into `auth/index.js` and export from it:
+Karena fungsionalitas yang diekspor sebenarnya tersebar diantara paket, kita dapat mengimpornya ke dalam `auth/index.js` dan kemudian kembali mengekspornya:
 
 ```js
 // 📁 auth/index.js
 
-// import login/logout and immediately export them
+// impor login/logout dan kemudian segera mengekspornya kembali
 import {login, logout} from './helpers.js';
 export {login, logout};
 
-// import default as User and export it
+// impor default sebagai User kemudian mengekspornya
 import User from './user.js';
 export {User};
 ...
 ```
 
-Now users of our package can `import {login} from "auth/index.js"`.
+Sekarang pengguna dari paket kita dapat `import { login }` dari `"auth/index.js"`.
 
-The syntax `export ... from ...` is just a shorter notation for such import-export:
+Sintaks `export ... from ...` hanyalah notasi pendek untuk proses impor-ekspor.
 
 ```js
 // 📁 auth/index.js
-// import login/logout and immediately export them
+// impor login/logout dan kemudian segera mengekspornya kembali
 export {login, logout} from './helpers.js';
 
-// import default as User and export it
+// impor default sebagai User kemudian mengekspornya
 export {default as User} from './user.js';
 ...
 ```
 
-### Re-exporting the default export
+### Ekspor ulang ekspor bawaan
 
-The default export needs separate handling when re-exporting.
+Ekspor bawaan memerlukan penanganan terpisah ketika melakukan ekspor ulang.
 
-Let's say we have `user.js`, and we'd like to re-export class `User` from it:
+Misalnya kita memiliki `user.js` dan kita ingin melakukan ekspor ulang kelas `User` tersebut:
 
 ```js
 // 📁 user.js
 export default class User {
-  // ...
+    // ...
 }
 ```
 
-1. `export User from './user.js'` won't work. What can go wrong?... But that's a syntax error!
+1. `export User form './user.js'` tidak dapat digunakan. Apa yang salah?... Ini adalah kesalahan sintaks!
 
-    To re-export the default export, we have to write `export {default as User}`, as in the example above.    
+    Untuk melakukan ekspor ulang ekspor bawaan, kita harus menuliskan `export { default as User }` seperti contoh diatas.
 
-2. `export * from './user.js'` re-exports only named exports, but ignores the default one.
+2. `export * from './user.js'` mengekspor ulang hanya ekspor bernama, tetapi mengabaikan ekspor bawaan.
 
-    If we'd like to re-export both named and the default export, then two statements are needed:
+    Jika kita ingin melakukan ekspor ulang keduanya (ekspor bernama dan ekspor bawaan), maka diperlukan dua pernyataan seperti berikut:
+
     ```js
-    export * from './user.js'; // to re-export named exports
-    export {default} from './user.js'; // to re-export the default export
+    export * from './user.js'; // ekspor ulang ekspor bernama
+    export { default } from './user.js'; // ekspor ulang ekspor bawaan
     ```
 
-Such oddities of re-exporting the default export are one of the reasons why some developers don't like them.
+Keanehan dari proses mengekspor ulang ekspor bawaan adalah salah satu alasan mengapa beberapa pengembang tidak menyukainya.
 
-## Summary
+## Ringkasan
 
-Here are all types of `export` that we covered in this and previous articles.
+Berikut merupakan semua jenis `export` yang kita bahas di artikel ini dan sebelumnya.
 
-You can check yourself by reading them and recalling what they mean:
+Kamu dapat mengeceknya secara mandiri dengan membacanya dan mengingat apa maksudnya:
 
-- Before declaration of a class/function/..:
-  - `export [default] class/function/variable ...`
-- Standalone export:
-  - `export {x [as y], ...}`.
-- Re-export:
-  - `export {x [as y], ...} from "module"`
-  - `export * from "module"` (doesn't re-export default).
-  - `export {default [as y]} from "module"` (re-export default).
+Ekspor:
 
-Import:
+-   Sebelum deklarasi dari sebuah kelas/fungsi/..:
+    -   `export [default] class/function/variable ...`
+-   Ekspor mandiri:
+    -   `export { x [as y], ... } from "module"`
+-   Ekspor ulang:
+    -   `export {x [as y], ...} from "module"`
+    -   `export * from "module"` (tidak mengekspor ulang bawaan).
+    -   `export {default [as y]} from "module"` (ekspor ulang bawaan).
 
-- Named exports from module:
-  - `import {x [as y], ...} from "module"`
-- Default export:  
-  - `import x from "module"`
-  - `import {default as x} from "module"`
-- Everything:
-  - `import * as obj from "module"`
-- Import the module (its code runs), but do not assign it to a variable:
-  - `import "module"`
+Impor:
 
-We can put `import/export` statements at the top or at the bottom of a script, that doesn't matter.
+-   Ekspor bernama dari modul:
+    -   `import {x [as y], ...} from "module"`
+-   Ekspor bawaan:
+    -   `import x from "module"`
+    -   `import {default as x} from "module"`
+-   Semuanya:
+    -   `import * as obj from "module"`
+-   Impor modul (ini menjalankan kode), tetapi tidak disimpan kedalam variabel:
+    -   `import "module"`
 
-So, technically this code is fine:
+Kita dapat meletakkan pernyataan `import/export` di bagian atas atau bawah dari skrip, itu tidak masalah.
+
+Jadi secara teknis kode ini tidak dipermasalahkan:
+
 ```js
 sayHi();
 
 // ...
 
-import {sayHi} from './say.js'; // import at the end of the file
+import { sayHi } from './say.js'; // impor dibagian bawah berkas
 ```
 
-In practice imports are usually at the start of the file, but that's only for more convenience.
+Dalam praktiknya, impor biasanya dilakukan pada awal sebuah berkas, tetapi itu hanya untuk memberikan kenyamanan lebih.
 
-**Please note that import/export statements don't work if inside `{...}`.**
+**Harap diperhatikan bahwa pernyataan import/export tidak dapat digunakan jika didalam `{...}`.**
 
-A conditional import, like this, won't work:
+Sebuah impor bersyarat seperti ini tidak akan dapat berfungsi:
+
 ```js
 if (something) {
-  import {sayHi} from "./say.js"; // Error: import must be at top level
+    import { sayHi } from './say.js'; // Error: import must be at top level (impor harus diluar pernyataan if dann { ... } sehingga kode tersebut tidak akan bekerja)
 }
 ```
 
-...But what if we really need to import something conditionally? Or at the right time? Like, load a module upon request, when it's really needed?
+...Tetapi bagaimana jika kita benar-benar perlu menhimpor sesuatu dengan syarat tertentu? atau pada waktu yang tepat? Seperti memuat modul berdasarkan permintaan, pada saat itu benar-benar dibutuhkan?
 
-We'll see dynamic imports in the next article.
+Oleh karena itu, kita akan mempelajari impor dinamis di artikel selanjutnya.

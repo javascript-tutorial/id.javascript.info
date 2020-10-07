@@ -118,7 +118,6 @@ customElements.define("time-formatted", TimeFormatted); // (2)
 2. Kita perlu mendaftarkan elemen baru kita dengan `customElements.define (tag, class)`.
 3. Dan kemudian kita bisa menggunakannya di mana saja.
 
-
 ```smart header="Custom elements upgrade"
 Jika browser menemukan elemen `<time-formatted>` sebelum `customElements.define`, itu bukanlah sebuah kesalahan. Tetapi elemennya belum diketahui, sama seperti tag non-standar lainnya.
 

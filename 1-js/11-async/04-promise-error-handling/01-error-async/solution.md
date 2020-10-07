@@ -1,13 +1,13 @@
-The answer is: **no, it won't**:
+Jawabannya adalah: **tidak, tidak terpicu**:
 
 ```js run
-new Promise(function(resolve, reject) {
+new Promise(function (resolve, reject) {
   setTimeout(() => {
     throw new Error("Whoops!");
   }, 1000);
 }).catch(alert);
 ```
 
-As said in the chapter, there's an "implicit `try..catch`" around the function code. So all synchronous errors are handled.
+Seperti yang dikatakan di bab, ada sebuah "`try..catch` implisit" di sekitar kode function. jadi semua error synchronous ditangani.
 
-But here the error is generated not while the executor is running, but later. So the promise can't handle it. 
+Tetapi di sini error tersebut tidak dihasilkan saat eksekutornya berjalan, tapi nanti. Jadi promise tidak dapat menanganinya.

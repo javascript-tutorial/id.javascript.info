@@ -25,32 +25,16 @@ Fungsi yang dilewatkan ke `new Promise` disebut sebagai *exekutor*. Ketika `new 
 
 Argumen `resolve` dan `reject` adalah *callback* yang disediakan oleh JavaScript itu sendiri. Kode kita hanya ada di dalam eksekutor.
 
-<<<<<<< HEAD
+
 Ketika eksekutor mendapatkan hasilnya, baik itu cepat atau lambat - tidak masalah, eksekutor harus memanggil salah satu dari *callback* ini:
-=======
-When the executor obtains the result, be it soon or late, doesn't matter, it should call one of these callbacks:
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 - `resolve(value)` — jika pekerjaan selesai dengan sukses, dengan hasil `value`.
 - `reject(error)` — jika terjadi kesalahan, `error` adalah objek kesalahan.
 
-<<<<<<< HEAD
+
 Jadi untuk meringkas: eksekutor berjalan secara otomatis, eksekutor harus melakukan pekerjaan dan kemudian memanggil salah satu dari `resolve` atau `reject`.
-=======
-So to summarize: the executor runs automatically, it should do a job, and then call either `resolve` or `reject`.
->>>>>>> 28ed5a3f7df9e015cf81c126423c76c9408d7117
 
 Objek `promise` yang dikembalikan oleh *constructor* `new Promise` memiliki properti internal:
-=======
-So to summarize: the executor runs automatically and performs a job. Then it should call `resolve` if it was succssful or `reject` if there was an error.
-
-The `promise` object returned by the `new Promise` constructor has internal properties:
->>>>>>> db3b3f8e7a08c153ad8fa0ae50633cdf95fa8912
-=======
-So to summarize: the executor runs automatically and attempts to perform a job. When it is finished with the attempt it calls `resolve` if it was successful or `reject` if there was an error.
-
-The `promise` object returned by the `new Promise` constructor has these internal properties:
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 - `state` — pada awalnya `"pending"`, kemudian berubah menjadi `"fulfilled"` saat `resolve` dipanggil atau `"rejected"` ketika `reject` dipanggil.
 - `result` — pada awalnya `undefined`, kemudian berubah menjadi `value` ketika `resolve(value)` dipanggil atau `error` ketika `reject(error)` dipanggil.
@@ -244,13 +228,16 @@ new Promise((resolve, reject) => {
   /* lakukan sesuatu yang membutuhkan waktu, dan kemudian panggil resolve/reject */
 })
 *!*
+
   // berjalan ketika "promise" diselesaikan, tidak peduli sukses atau tidak
   .finally(() => hentikan indikator pemuatan)
 */!*
   .then(result => munculkan hasil, err => munculkan "error")
 ```
 
+
 Tapi ini bukan alias dari `then(f,f)`. Ada beberapa perbedaan penting:
+
 
 1. *Handler* `finally` tidak memiliki argumen. Didalam `finally` kita tidak tahu apakah *promise* sukses atau tidak. Tidak apa-apa, karena tugas kita biasanya melakukan prosedur penyelesaian "umum".
 2. *Handler* `finally` melewatkan hasil dan *error* ke *handler* selanjutnya.
@@ -274,6 +261,7 @@ Tapi ini bukan alias dari `then(f,f)`. Ada beberapa perbedaan penting:
       .catch(err => alert(err));  // <-- .catch menangani objek galat
     ```  
 
+
     Itu sangat nyaman, karena `finally` tidak dimaksudkan untuk memproses hasil dari *promise*. Jadi itu melewatinya.
 
     Kita akan berbicara lebih banyak tentang *chaining promise* dan *passing-result* antara *handler* di bab selanjutnya.
@@ -289,15 +277,14 @@ let promise = new Promise(resolve => resolve("done!"));
 
 promise.then(alert); // done! (muncul sekarang)
 ```
+Perhatikan bahwa ini membuat Promise lebih efektif daripada skenario "daftar berlangganan" di kehidupan nyata. Jika penyanyi sudah merilis lagu mereka dan kemudian seseorang mendaftar di daftar berlangganan, mereka mungkin tidak akan menerima lagu itu. Berlangganan dalam kehidupan nyata harus dilakukan sebelum acara tersebut.
 
-Note that this is different, and more powerful than the real life "subscription list" scenario. If the singer has already released their song and then a person signs up on the subscription list, they probably won't receive that song. Subscriptions in real life must be done prior to the event.
-
-Promises are more flexible. We can add handlers any time: if the result is already there, our handlers get it immediately.
+Promise lebih fleksibel. Kita bisa menambahkan handlers kapan saja: jika hasilnya sudah ada, mereka langsung mengeksekusi.
 ````
 
 Selanjutnya, mari kita lihat contoh-contoh yang lebih praktis tentang bagaimana *promise* dapat membantu kita menulis kode *asynchronous*.
 
-## Example: loadScript [#loadscript]
+## Contoh: loadScript [#loadscript]
 
 Kita punya fungsi `loadScript` untuk memuat skrip dari bab sebelumnya.
 

@@ -1,42 +1,43 @@
-# Custom errors, extending Error
+# Kesalahan khusus, memperluas Kesalahan
 
-When we develop something, we often need our own error classes to reflect specific things that may go wrong in our tasks. For errors in network operations we may need `HttpError`, for database operations `DbError`, for searching operations `NotFoundError` and so on.
+Saat kita mengembangkan sesuatu, kita sering membutuhkan kelas kesalahan kita sendiri untuk mencerminkan hal-hal spesifik yang mungkin salah dalam tugas kita. Untuk kesalahan dalam operasi jaringan kita mungkin memerlukan `HttpError`, untuk operasi basis data `DbError`, untuk operasi pencarian `NotFoundError` dan seterusnya.
 
-Our errors should support basic error properties like `message`, `name` and, preferably, `stack`. But they also may have other properties of their own, e.g. `HttpError` objects may have a `statusCode` property with a value like `404` or `403` or `500`.
+Kesalahan kita harus mendukung properti kesalahan dasar seperti `message`, `name` dan, sebaiknya, `stack`. Tetapi mereka juga mungkin memiliki properti lain sendiri, misalnya objek `HttpError` mungkin memiliki properti `statusCode` dengan nilai seperti `404` atau `403` atau `500`.
 
-JavaScript allows to use `throw` with any argument, so technically our custom error classes don't need to inherit from `Error`. But if we inherit, then it becomes possible to use `obj instanceof Error` to identify error objects. So it's better to inherit from it.
+JavaScript memungkinkan untuk menggunakan `throw` dengan argumen apa pun, jadi secara teknis kelas kesalahan khusus kita tidak perlu mewarisi dari `Error`. Tetapi jika kita mewarisi, maka menjadi mungkin untuk menggunakan `obj instanceof Error` untuk mengidentifikasi objek kesalahan. Jadi lebih baik mewarisinya.
 
-As the application grows, our own errors naturally form a hierarchy. For instance, `HttpTimeoutError` may inherit from `HttpError`, and so on.
+Saat aplikasi berkembang, kesalahan kita sendiri secara alami membentuk hierarki. Misalnya, `HttpTimeoutError` mungkin mewarisi dari `HttpError`, dan seterusnya.
 
-## Extending Error
+## Memperluas Kesalahan
 
-As an example, let's consider a function `readUser(json)` that should read JSON with user data.
+Sebagai contoh, mari pertimbangkan fungsi `readUser(json)` yang harus membaca JSON dengan data pengguna.
 
-Here's an example of how a valid `json` may look:
+Berikut adalah contoh tampilan `json` yang valid:
+
 ```js
 let json = `{ "name": "John", "age": 30 }`;
 ```
 
-Internally, we'll use `JSON.parse`. If it receives malformed `json`, then it throws `SyntaxError`. But even if `json` is syntactically correct, that doesn't mean that it's a valid user, right? It may miss the necessary data. For instance, it may not have `name` and `age` properties that are essential for our users.
+Secara internal, kita akan menggunakan `JSON.parse`. Jika menerima `json` yang salah, maka itu melontarkan `SyntaxError`. Tetapi bahkan jika `json` secara sintaksis benar, itu tidak berarti bahwa itu adalah pengguna yang valid, bukan? Ini mungkin kehilangan data yang diperlukan. Misalnya, mungkin tidak memiliki properti `name` dan `age` yang penting bagi pengguna kita.
 
-Our function `readUser(json)` will not only read JSON, but check ("validate") the data. If there are no required fields, or the format is wrong, then that's an error. And that's not a `SyntaxError`, because the data is syntactically correct, but another kind of error. We'll call it `ValidationError` and create a class for it. An error of that kind should also carry the information about the offending field.
+Fungsi kita `readUser(json)` tidak hanya akan membaca JSON, tetapi juga memeriksa ("memvalidasi") data. Jika tidak ada bidang yang wajib diisi, atau formatnya salah, itu adalah kesalahan. Dan itu bukan `SyntaxError`, karena datanya benar secara sintaksis, tetapi jenis kesalahan lain. Kita akan menyebutnya `ValidationError` dan membuat kelas untuk itu. Kesalahan semacam itu juga harus membawa informasi tentang bidang yang melanggar.
 
-Our `ValidationError` class should inherit from the built-in `Error` class.
+Kelas `ValidationError` kita harus mewarisi dari kelas `Error` bawaan.
 
-That class is built-in, but here's its approximate code so we can understand what we're extending:
+Kelas itu sudah ada di dalamnya, tetapi berikut ini kode perkiraannya sehingga kita dapat memahami apa yang kita perluas:
 
 ```js
-// The "pseudocode" for the built-in Error class defined by JavaScript itself
+// "Kode semu" untuk kelas Kesalahan bawaan yang ditentukan oleh JavaScript itu sendiri
 class Error {
   constructor(message) {
     this.message = message;
-    this.name = "Error"; // (different names for different built-in error classes)
-    this.stack = <call stack>; // non-standard, but most environments support it
+    this.name = "Error"; // (nama yang berbeda untuk kelas kesalahan bawaan yang berbeda)
+    this.stack = <call stack>; // tidak standar, tetapi sebagian besar lingkungan mendukungnya
   }
 }
 ```
 
-Now let's inherit `ValidationError` from it and try it in action:
+Sekarang mari kita mewarisi `ValidationError` darinya dan mencobanya dalam tindakan:
 
 ```js run untrusted
 *!*
@@ -57,15 +58,15 @@ try {
 } catch(err) {
   alert(err.message); // Whoops!
   alert(err.name); // ValidationError
-  alert(err.stack); // a list of nested calls with line numbers for each
+  alert(err.stack); // daftar panggilan bertingkat dengan masing-masing nomor baris
 }
 ```
 
-Please note: in the line `(1)` we call the parent constructor. JavaScript requires us to call `super` in the child constructor, so that's obligatory. The parent constructor sets the `message` property.
+Harap diperhatikan: pada baris `(1)` kita memanggil konstruktor induk. JavaScript mengharuskan kita memanggil `super` di konstruktor anak, jadi itu wajib. Konstruktor induk mengatur properti `message`.
 
-The parent constructor also sets the `name` property to `"Error"`, so in the line `(2)` we reset it to the right value.
+Konstruktor induk juga menyetel properti `name` menjadi `"Error"`, jadi di baris `(2)` kita menyetel ulang ke nilai yang benar.
 
-Let's try to use it in `readUser(json)`:
+Mari kita coba menggunakannya di `readUser(json)`:
 
 ```js run
 class ValidationError extends Error {
@@ -75,7 +76,7 @@ class ValidationError extends Error {
   }
 }
 
-// Usage
+// Penggunaan
 function readUser(json) {
   let user = JSON.parse(json);
 
@@ -89,43 +90,43 @@ function readUser(json) {
   return user;
 }
 
-// Working example with try..catch
+// Contoh kerja dengan try..catch
 
 try {
   let user = readUser('{ "age": 25 }');
 } catch (err) {
   if (err instanceof ValidationError) {
 *!*
-    alert("Invalid data: " + err.message); // Invalid data: No field: name
+    alert("Invalid data: " + err.message); // Invalid data: No field: name (Tidak ada bidang: name)
 */!*
   } else if (err instanceof SyntaxError) { // (*)
     alert("JSON Syntax Error: " + err.message);
   } else {
-    throw err; // unknown error, rethrow it (**)
+    throw err; // unknown error (kesalahan yang tidak diketahui), lontarkan kembali (**)
   }
 }
 ```
 
-The `try..catch` block in the code above handles both our `ValidationError` and the built-in `SyntaxError` from `JSON.parse`.
+Blok `try..catch` dalam kode di atas menangani baik `ValidationError` dan `SyntaxError` bawaan dari `JSON.parse`.
 
-Please take a look at how we use `instanceof` to check for the specific error type in the line `(*)`.
+Silakan lihat bagaimana kita menggunakan `instanceof` untuk memeriksa jenis kesalahan spesifik pada baris `(*)`.
 
-We could also look at `err.name`, like this:
+Kita juga bisa melihat `err.name`, seperti ini:
 
 ```js
 // ...
-// instead of (err instanceof SyntaxError)
+// daripada (err instanceof SyntaxError)
 } else if (err.name == "SyntaxError") { // (*)
 // ...
-```  
+```
 
-The `instanceof` version is much better, because in the future we are going to extend `ValidationError`, make subtypes of it, like `PropertyRequiredError`. And `instanceof` check will continue to work for new inheriting classes. So that's future-proof.
+Versi `instanceof` jauh lebih baik, karena di masa mendatang kita akan memperluas `ValidationError`, membuat subtipe darinya, seperti `PropertyRequiredError`. Dan pemeriksaan `instanceof` akan terus berfungsi untuk kelas pewaris baru. Jadi itu bukti masa depan.
 
-Also it's important that if `catch` meets an unknown error, then it rethrows it in the line `(**)`. The `catch` block only knows how to handle validation and syntax errors, other kinds (due to a typo in the code or other unknown ones) should fall through.
+Juga penting bahwa jika `catch` menemui kesalahan yang tidak diketahui, maka itu akan ditarik kembali di baris `(**)`. Blok `catch` hanya mengetahui cara menangani validasi dan kesalahan sintaksis, jenis lain (karena kesalahan ketik pada kode atau kesalahan lain yang tidak diketahui) akan gagal.
 
-## Further inheritance
+## Warisan lebih lanjut
 
-The `ValidationError` class is very generic. Many things may go wrong. The property may be absent or it may be in a wrong format (like a string value for `age`). Let's make a more concrete class `PropertyRequiredError`, exactly for absent properties. It will carry additional information about the property that's missing.
+Kelas `ValidationError` sangat umum. Banyak hal mungkin salah. Properti mungkin tidak ada atau mungkin dalam format yang salah (seperti nilai string untuk `age`). Mari kita buat kelas yang lebih konkret `PropertyRequiredError`, tepatnya untuk properti yang tidak ada. Ini akan membawa informasi tambahan tentang properti yang hilang.
 
 ```js run
 class ValidationError extends Error {
@@ -145,7 +146,7 @@ class PropertyRequiredError extends ValidationError {
 }
 */!*
 
-// Usage
+// Penggunaan
 function readUser(json) {
   let user = JSON.parse(json);
 
@@ -159,32 +160,32 @@ function readUser(json) {
   return user;
 }
 
-// Working example with try..catch
+// Contoh kerja dengan try..catch
 
 try {
   let user = readUser('{ "age": 25 }');
 } catch (err) {
   if (err instanceof ValidationError) {
 *!*
-    alert("Invalid data: " + err.message); // Invalid data: No property: name
+    alert("Invalid data: " + err.message); // Invalid data: No property: name (Tidak ada properti: name)
     alert(err.name); // PropertyRequiredError
     alert(err.property); // name
 */!*
   } else if (err instanceof SyntaxError) {
     alert("JSON Syntax Error: " + err.message);
   } else {
-    throw err; // unknown error, rethrow it
+    throw err; // unknown error (kesalahan yang tidak diketahui), lontarkan kembali
   }
 }
 ```
 
-The new class `PropertyRequiredError` is easy to use: we only need to pass the property name: `new PropertyRequiredError(property)`. The human-readable `message` is generated by the constructor.
+Kelas baru `PropertyRequiredError` mudah digunakan: kita hanya perlu meneruskan nama properti: `new PropertyRequiredError(property) `. `Pesan` yang dapat dibaca manusia dihasilkan oleh konstruktor.
 
-Please note that `this.name` in `PropertyRequiredError` constructor is again assigned manually. That may become a bit tedious -- to assign `this.name = <class name>` in every custom error class. We can avoid it by making our own "basic error" class that assigns `this.name = this.constructor.name`. And then inherit all our custom errors from it.
+Harap dicatat bahwa `this.name` dalam konstruktor `PropertyRequiredError` ditetapkan lagi secara manual. Itu mungkin agak membosankan -- untuk menetapkan `this.name = <class name>` di setiap kelas kesalahan kustom. Kita dapat menghindarinya dengan membuat kelas "kesalahan dasar" kita sendiri yang menetapkan `this.name = this.constructor.name`. Dan kemudian mewarisi semua kesalahan khusus kita darinya.
 
-Let's call it `MyError`.
+Sebut saja `MyError`.
 
-Here's the code with `MyError` and other custom error classes, simplified:
+Berikut kode dengan `MyError` dan kelas kesalahan khusus lainnya, yang disederhanakan:
 
 ```js run
 class MyError extends Error {
@@ -205,51 +206,51 @@ class PropertyRequiredError extends ValidationError {
   }
 }
 
-// name is correct
+// name-nya benar
 alert( new PropertyRequiredError("field").name ); // PropertyRequiredError
 ```
 
-Now custom errors are much shorter, especially `ValidationError`, as we got rid of the `"this.name = ..."` line in the constructor.
+Sekarang kesalahan khusus jauh lebih pendek, terutama `ValidationError`, karena kita menyingkirkan baris `"this.name = ..."` di konstruktor.
 
-## Wrapping exceptions
+## Pengecualian pembungkusan
 
-The purpose of the function `readUser` in the code above is "to read the user data". There may occur different kinds of errors in the process. Right now we have `SyntaxError` and `ValidationError`, but in the future `readUser` function may grow and probably generate other kinds of errors.
+Tujuan dari fungsi `readUser` pada kode di atas adalah "untuk membaca data pengguna". Mungkin ada berbagai jenis kesalahan dalam prosesnya. Saat ini kita memiliki `SyntaxError` dan `ValidationError`, tetapi di masa mendatang fungsi `readUser` dapat berkembang dan mungkin menghasilkan jenis kesalahan lain.
 
-The code which calls `readUser` should handle these errors. Right now it uses multiple `if`s in the `catch` block, that check the class and handle known errors and rethrow the unknown ones.
+Kode yang memanggil `readUser` harus menangani kesalahan ini. Saat ini ia menggunakan beberapa `if` dalam blok `catch`, yang memeriksa kelas dan menangani kesalahan yang diketahui dan memunculkan kembali yang tidak diketahui.
 
-The scheme is like this:
+Skemanya seperti ini:
 
 ```js
 try {
   ...
-  readUser()  // the potential error source
+  readUser()  // potensi sumber kesalahan
   ...
 } catch (err) {
   if (err instanceof ValidationError) {
-    // handle validation errors
+    // menangani kesalahan validasi
   } else if (err instanceof SyntaxError) {
-    // handle syntax errors
+    // menangani kesalahan sintaks
   } else {
-    throw err; // unknown error, rethrow it
+    throw err; // unknown error (kesalahan yang tidak diketahui), lontarkan kembali
   }
 }
 ```
 
-In the code above we can see two types of errors, but there can be more.
+Pada kode di atas kita dapat melihat dua jenis kesalahan, tetapi bisa juga lebih.
 
-If the `readUser` function generates several kinds of errors, then we should ask ourselves: do we really want to check for all error types one-by-one every time?
+Jika fungsi `readUser` menghasilkan beberapa jenis kesalahan, maka kita harus bertanya pada diri sendiri: apakah kita benar-benar ingin memeriksa semua jenis kesalahan satu per satu setiap saat?
 
-Often the answer is "No": we'd like to be "one level above all that". We just want to know if there was a "data reading error" -- why exactly it happened is often irrelevant (the error message describes it). Or, even better, we'd like to have a way to get the error details, but only if we need to.
+Seringkali jawabannya adalah "Tidak": kita ingin menjadi "satu tingkat di atas semua itu". Kita hanya ingin tahu apakah ada "kesalahan membaca data" -- mengapa sebenarnya hal itu terjadi seringkali tidak relevan (pesan kesalahan menjelaskannya). Atau, lebih baik lagi, kita ingin mendapatkan cara untuk mendapatkan detail kesalahan, tetapi hanya jika kita perlu.
 
-The technique that we describe here is called "wrapping exceptions".
+Teknik yang kita jelaskan di sini disebut "pengecualian pembungkusan".
 
-1. We'll make a new class `ReadError` to represent a generic "data reading" error.
-2. The function `readUser` will catch data reading errors that occur inside it, such as `ValidationError` and `SyntaxError`, and generate a `ReadError` instead.
-3. The `ReadError` object will keep the reference to the original error in its `cause` property.
+1. Kita akan membuat kelas baru `ReadError` untuk merepresentasikan kesalahan "membaca data" yang umum.
+2. Fungsi `readUser` akan menangkap kesalahan pembacaan data yang terjadi di dalamnya, seperti `ValidationError` dan `SyntaxError`, dan sebagai gantinya menghasilkan `ReadError`.
+3. Objek `ReadError` akan menyimpan referensi ke kesalahan asli dalam properti `cause` -nya.
 
-Then the code that calls `readUser` will only have to check for `ReadError`, not for every kind of data reading errors. And if it needs more details of an error, it can check its `cause` property.
+Kemudian kode yang memanggil `readUser` hanya perlu memeriksa `ReadError`, bukan untuk setiap jenis kesalahan pembacaan data. Dan jika membutuhkan detail lebih lanjut tentang kesalahan, ia dapat memeriksa properti `cause`-nya.
 
-Here's the code that defines `ReadError` and demonstrates its use in `readUser` and `try..catch`:
+Berikut kode yang mendefinisikan `ReadError` dan mendemonstrasikan penggunaannya dalam `readUser` dan `try..catch`:
 
 ```js run
 class ReadError extends Error {
@@ -308,7 +309,7 @@ try {
   if (e instanceof ReadError) {
 *!*
     alert(e);
-    // Original error: SyntaxError: Unexpected token b in JSON at position 1
+    // Original error: SyntaxError: Unexpected token b in JSON at position 1 (Kesalahan sintaks: Token b yang tidak terduga di JSON pada posisi 1)
     alert("Original error: " + e.cause);
 */!*
   } else {
@@ -317,14 +318,14 @@ try {
 }
 ```
 
-In the code above, `readUser` works exactly as described -- catches syntax and validation errors and throws `ReadError` errors instead (unknown errors are rethrown as usual).
+Pada kode di atas, `readUser` bekerja persis seperti yang dijelaskan -- menangkap kesalahan sintaks dan validasi dan melontarkan kesalahan `ReadError` (kesalahan yang tidak diketahui ditampilkan ulang seperti biasa).
 
-So the outer code checks `instanceof ReadError` and that's it. No need to list all possible error types.
+Jadi kode terluar memeriksa `instanceof ReadError` dan hanya itu. Tidak perlu mencantumkan semua kemungkinan jenis kesalahan.
 
-The approach is called "wrapping exceptions", because we take "low level" exceptions and "wrap" them into `ReadError` that is more abstract. It is widely used in object-oriented programming.
+Pendekatan ini disebut "pembungkusan pengecualian", karena kita mengambil pengecualian "tingkat rendah" dan "membungkusnya" menjadi `ReadError` yang lebih abstrak. Ini banyak digunakan dalam pemrograman berorientasi objek.
 
-## Summary
+## Ringkasan
 
-- We can inherit from `Error` and other built-in error classes normally. We just need to take care of the `name` property and don't forget to call `super`.
-- We can use `instanceof` to check for particular errors. It also works with inheritance. But sometimes we have an error object coming from a 3rd-party library and there's no easy way to get its class. Then `name` property can be used for such checks.
-- Wrapping exceptions is a widespread technique: a function handles low-level exceptions and creates higher-level errors instead of various low-level ones. Low-level exceptions sometimes become properties of that object like `err.cause` in the examples above, but that's not strictly required.
+- Kita bisa mewarisi dari `Error` dan kelas kesalahan bawaan lainnya secara normal. Kita hanya perlu menjaga properti `name` dan jangan lupa memanggil `super`.
+- Kita bisa menggunakan `instanceof` untuk memeriksa kesalahan tertentu. Ini juga bekerja dengan warisan. Namun terkadang kita memiliki objek kesalahan yang berasal dari pustaka pihak ketiga dan tidak ada cara mudah untuk mendapatkan kelasnya. Kemudian properti `name` dapat digunakan untuk pemeriksaan semacam itu.
+- Pengecualian pembungkusan adalah teknik yang tersebar luas: fungsi menangani pengecualian tingkat rendah dan membuat kesalahan tingkat lebih tinggi daripada berbagai kesalahan tingkat rendah. Pengecualian tingkat rendah terkadang menjadi properti dari objek tersebut seperti `err.cause` dalam contoh di atas, tetapi itu tidak sepenuhnya diperlukan.

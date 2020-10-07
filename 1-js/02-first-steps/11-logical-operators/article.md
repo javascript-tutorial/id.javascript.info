@@ -84,7 +84,11 @@ Operator OR `||` melakukan hal berikut:
 
 Nilai dikembalikan di bentuk originalnya, tanpa konversi.
 
+<<<<<<< HEAD
 Dengan kata lain, rantai OR `"||"` mengembalikan nilai truthy pertama atau yang terakhir jika tak ada nilai truthy.
+=======
+In other words, a chain of OR `||` returns the first truthy value or the last one if no truthy value is found.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 Misalnya:
 
@@ -101,9 +105,15 @@ Hal ini menjadikan penggunaan yang menarik dibanding "OR booleanpure, classical,
 
 1. **Dapatkan nilai truthy dari daftar variabel atau expresi.**
 
+<<<<<<< HEAD
     Untuk contoh, kita punya variabel `firstName`, `lastName` dan `nickName`, semuanya bersifat opsional.
 
     Kita gunakan OR `||` untuk memilih satu-satunya yang memiliki data dan menampilkannya (atau `anonymous` jika belum ada yang ditentukan atau di set):
+=======
+    For instance, we have `firstName`, `lastName` and `nickName` variables, all optional (i.e. can be undefined or have falsy values).
+
+    Let's use OR `||` to choose the one that has the data and show it (or `"Anonymous"` if nothing set):
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
     ```js run
     let firstName = "";
@@ -115,7 +125,11 @@ Hal ini menjadikan penggunaan yang menarik dibanding "OR booleanpure, classical,
     */!*
     ```
 
+<<<<<<< HEAD
     Jika semua variabel bernilai falsy, `Anonymous` akan muncul.
+=======
+    If all variables were falsy, `"Anonymous"` would show up.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 2. **Evaluasi Short-circuit.**
 
@@ -224,10 +238,14 @@ Jadi kode `a && b || c && d` esensinya sama dengan jika expresi `&&` dibungkus t
 ````
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ````warn header="Jangan ganti `if` dengan || atau &&"
 Terkadang, orang-orang menggunakan operator AND `&&` untuk "memperpendek instruksi `if`".
 =======
 ````warn header="Don't replace `if` with || or &&"
+=======
+````warn header="Don't replace `if` with `||` or `&&`"
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 Sometimes, people use the AND `&&` operator as a "shorter way to write `if`".
 >>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
 
@@ -249,7 +267,11 @@ let x = 1;
 if (x > 0) alert( 'Greater than zero!' );
 ```
 
+<<<<<<< HEAD
 Walaupun, versi dengan `&&` muncul lebih pendek, `if` menjadi jelas dan sedikit lebih mudah dibaca. Jadi kita merekomendasikan menggunakannya untuk setiap kebutuhan: gunakan `if` jika kita ingin if dan gunakan `&&` jika kita ingin AND.
+=======
+Although, the variant with `&&` appears shorter, `if` is more obvious and tends to be a little bit more readable. So we recommend using every construct for its purpose: use `if` if we want `if` and use `&&` if we want AND.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 ````
 
 

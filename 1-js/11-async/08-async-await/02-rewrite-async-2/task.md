@@ -1,40 +1,38 @@
+# Menulis ulang "rethrow" dengan async/await
 
-# Rewrite "rethrow" with async/await
+Di bawah anda dapat menemukan contoh "rethrow" dari bab <info:promise-chaining>. Tulis ulang menggunakan `async/await` daripada `.then/catch`.
 
-Below you can find the "rethrow" example from the chapter <info:promise-chaining>. Rewrite it using `async/await` instead of `.then/catch`.
-
-And get rid of the recursion in favour of a loop in `demoGithubUser`: with `async/await` that becomes easy to do.
+Dan singkirkan rekursi yang mendukung masuk loop dalam `demoGithubUser`: dengan `async/await` itu menjadi mudah untuk dilakukan.
 
 ```js run
 class HttpError extends Error {
   constructor(response) {
     super(`${response.status} for ${response.url}`);
-    this.name = 'HttpError';
+    this.name = "HttpError";
     this.response = response;
   }
 }
 
 function loadJson(url) {
-  return fetch(url)
-    .then(response => {
-      if (response.status == 200) {
-        return response.json();
-      } else {
-        throw new HttpError(response);
-      }
-    })
+  return fetch(url).then((response) => {
+    if (response.status == 200) {
+      return response.json();
+    } else {
+      throw new HttpError(response);
+    }
+  });
 }
 
-// Ask for a user name until github returns a valid user
+// Tanya nama pengguna sampai github mengembalikkan user yang valid
 function demoGithubUser() {
   let name = prompt("Enter a name?", "iliakan");
 
   return loadJson(`https://api.github.com/users/${name}`)
-    .then(user => {
+    .then((user) => {
       alert(`Full name: ${user.name}.`);
       return user;
     })
-    .catch(err => {
+    .catch((err) => {
       if (err instanceof HttpError && err.response.status == 404) {
         alert("No such user, please reenter.");
         return demoGithubUser();

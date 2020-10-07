@@ -2,10 +2,10 @@ importance: 4
 
 ---
 
-# Eval-calculator
+# Kalkulator-_eval_
 
-Create a calculator that prompts for an arithmetic expression and returns its result.
+Buatlah kalkulator yang meminta operasi aritmatika dan mengembalikan hasilnya.
 
-There's no need to check the expression for correctness in this task. Just evaluate and return the result.
+Tidak perlu memeriksa kebenaran operasi dalam tugas ini. Cukup evaluasi dan kembalikan hasilnya.
 
 [demo]

@@ -34,6 +34,23 @@ Setiap file di sini dimulai dari `# Main header`.
 
 Sangat mudah menambah hal baru.
 
+## Tips
+
+Beberapa tips untuk penerjemah:
+
+- _Markdown_ pada GitHub https://guides.github.com/features/mastering-markdown/
+- Disarankan menggunakan teks editor markdown berbasis web seperti [StackEdit](https://stackedit.io/app#), ataupun yang lainnya.
+- Jika terdapat artikel yang sudah diterjemahkan namun sulit untuk dimengerti, penerjemah dapat membandingkan artikel tersebut dengan versi bahasa inggris, ubah artikel yang menurut penerjemah sulit dimengerti lalu lakukan PR.
+
+- Terjemahan tidak harus akurat, yang terpenting mudah dipahami.
+- Jika terdapat artikel yang sudah diterjemahkan namun sulit untuk dimengerti, penerjemah dapat membandingkan artikel tersebut dengan versi bahasa inggris, ubah artikel yang menurut penerjemah sulit dimengerti lalu lakukan PR.
+- Jangan terjemahkan error seperti ```Uncaught ReferenceError: asdfg tidak didefinisikan```, tapi tambahkan catatan tambahan ```Uncaught ReferenceError: asdfg is not defined (asdfg belum/tidak terdefinisi/didefinisikan)```
+- Gunakan _italic_ untuk teks yang tidak bisa/tidak boleh diterjemahkan.
+- Gunakan ```Syntax highlighting``` untuk potongan kode.
+
+## Jalankan repo secara lokal
+Jika penerjemah ingin melihat repo dijalankan secara lokal, penerjemah dapat menggunakan https://github.com/javascript-tutorial/server.
+
 ---
 ♥  
 Ilya Kantor @iliakan

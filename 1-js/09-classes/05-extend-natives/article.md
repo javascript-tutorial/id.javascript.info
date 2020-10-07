@@ -1,12 +1,11 @@
+# Meng-_extend_ `class` bawaan
 
-# Extending built-in classes
+`class` bawaan seperti Array, Map dan lainnya juga dapat di-_extend_.
 
-Built-in classes like Array, Map and others are extendable also.
-
-For instance, here `PowerArray` inherits from the native `Array`:
+Contohnya, `PowerArray` disini mewarisi dari _native_ `Array`:
 
 ```js run
-// add one more method to it (can do more)
+// menambahkan satu method ke dalam `PowerArray` (bisa lebih)
 class PowerArray extends Array {
   isEmpty() {
     return this.length === 0;
@@ -16,25 +15,26 @@ class PowerArray extends Array {
 let arr = new PowerArray(1, 2, 5, 10, 50);
 alert(arr.isEmpty()); // false
 
-let filteredArr = arr.filter(item => item >= 10);
+let filteredArr = arr.filter((item) => item >= 10);
 alert(filteredArr); // 10, 50
 alert(filteredArr.isEmpty()); // false
 ```
 
-Please note a very interesting thing. Built-in methods like `filter`, `map` and others -- return new objects of exactly the inherited type `PowerArray`. Their internal implementation uses the object's `constructor` property for that.
+Mohon perhatikan hal yang sangat menarik. _Method_ bawaan seperti `filter`, `map`, dan yang lainnya -- mengembalikan objek baru dengan tipe `PowerArray` yang diwariskan. Implementasi didalamnya menggunakan properti `constructor` untuk hal itu.
 
-In the example above,
+Pada contoh di atas,
+
 ```js
-arr.constructor === PowerArray
+arr.constructor === PowerArray;
 ```
 
-When `arr.filter()` is called, it internally creates the new array of results using exactly `arr.constructor`, not basic `Array`. That's actually very cool, because we can keep using `PowerArray` methods further on the result.
+Saat `arr.filter()` dipanggil, secara internal itu membuat senarai hasil yang baru menggunakan `arr.constructor`, bukan _basic_ `Array`. Itu sebenarnya sangat menakjubkan, karena kita bisa tetap menggunakan `PowerArray` _method_ lebih jauh.
 
-Even more, we can customize that behavior.
+Bahkan, kita bisa menyesuaikan perilaku khusus untuk itu.
 
-We can add a special static getter `Symbol.species` to the class. If it exists, it should return the constructor that JavaScript will use internally to create new entities in `map`, `filter` and so on.
+Kita bisa menambahkan _static getter_ `Symbol.species` ke dalam `class`. Jika ada, ia harus mengembalikan `constructor` yang akan JavaScript gunakan secara internal untuk membuat entitas baru di dalam `map`, `filter`, dan seterusnya.
 
-If we'd like built-in methods like `map` or `filter` to return regular arrays, we can return `Array` in `Symbol.species`, like here:
+Jika kita ingin _method_ bawaan seperti `map` atau `filter` untuk mengembalikan senarai biasa, kita bisa mengembalikannya di dalam `Symbol.species`, seperti contohnya disini:
 
 ```js run
 class PowerArray extends Array {
@@ -42,48 +42,44 @@ class PowerArray extends Array {
     return this.length === 0;
   }
 
-*!*
-  // built-in methods will use this as the constructor
+  // method bawaan menggunakan ini sebagai `constructor`
   static get [Symbol.species]() {
     return Array;
   }
-*/!*
 }
 
 let arr = new PowerArray(1, 2, 5, 10, 50);
 alert(arr.isEmpty()); // false
 
-// filter creates new array using arr.constructor[Symbol.species] as constructor
-let filteredArr = arr.filter(item => item >= 10);
+// `filter` membuat senarai baru `arr.constructor[Symbol.species]` sebagai `constructor`
+let filteredArr = arr.filter((item) => item >= 10);
 
-*!*
-// filteredArr is not PowerArray, but Array
-*/!*
+// filteredArr bukan PowerArray, tapi sebuah Array
 alert(filteredArr.isEmpty()); // Error: filteredArr.isEmpty is not a function
 ```
 
-As you can see, now `.filter` returns `Array`. So the extended functionality is not passed any further.
+Seperti yang anda lihat, sekarang `.filter` mengembalikan `Array`. Jadi _function_ yang di-_extend_ tidak diteruskan.
 
 ```smart header="Other collections work similarly"
-Other collections, such as `Map` and `Set`, work alike. They also use `Symbol.species`.
+Koleksi lain, seperti `Map` dan `Set`, berfungsi sama. Mereka juga menggunakan `Symbol.species`.
 ```
 
-## No static inheritance in built-ins
+## Tidak ada _static inheritance_ pada _built-in_
 
-Built-in objects have their own static methods, for instance `Object.keys`, `Array.isArray` etc.
+Objek bawaan memiliki _static method_-nya sendiri, misalnya `Object.keys`, `Array.isArray`, dll.
 
-As we already know, native classes extend each other. For instance, `Array` extends `Object`.
+Seperti yang kita tahu, _native class_ meng-_extend_ satu sama lain. Misalnya, `Array` meng-_extend_ `Object`.
 
-Normally, when one class extends another, both static and non-static methods are inherited. That was thoroughly explained in the article [](info:static-properties-methods#statics-and-inheritance).
+Biasanya, ketika sebuah `class` meng-_extend_ `class` yang lainnya, kedua _method static_ dan _non-static_ akan diwariskan. Itu dijelaskan sepenuhnya dalam artikel [](info:static-properties-methods#statics-and-inheritance).
 
-But built-in classes are an exception. They don't inherit statics from each other.
+Tapi `class` bawaan adalah pengecualian. Mereka tidak mewarisi satu sama lain.
 
-For example, both `Array` and `Date` inherit from `Object`, so their instances have methods from `Object.prototype`. But `Array.[[Prototype]]` does not reference `Object`, so there's no, for instance, `Array.keys()` (or `Date.keys()`) static method.
+Contohnya, `Array` dan `Date` mewarisi dari `Object`, sehingga _instance_ mereka memiliki _method_ dari `Object.prototype`. Tapi `Array.[[Prototype]]` tidak mereferensikan `Object`, sehingga tidak ada, semisalnya, `Array.keys()` (atau `Date.keys()`) _static method_.
 
-Here's the picture structure for `Date` and `Object`:
+Berikut adalah struktur gambar untuk `Date` dan `Object`:
 
 ![](object-date-inheritance.svg)
 
-As you can see, there's no link between `Date` and `Object`. They are independent, only `Date.prototype` inherits from `Object.prototype`.
+Seperti yang Anda lihat, tidak ada hubungan antara `Date` dan `Object`. Mereka independen, hanya `Date.prototype` mewarisi dari `Object.prototype`.
 
-That's an important difference of inheritance between built-in objects compared to what we get with `extends`.
+Itu adalah perbedaan penting dari warisan antara objek bawaan dibandingkan dengan apa yang kita dapat dengan `extends`.

@@ -1,21 +1,20 @@
+# Penanganan error dengan promise
 
-# Error handling with promises
+Chain promise bagus dalam penanganan _error_. ketika sebuah promise me-reject, kontrolnya melompat ke handler rejection terdekat. Itu sangat nyaman dalam praktiknya.
 
-Promise chains are great at error handling. When a promise rejects, the control jumps to the closest rejection handler. That's very convenient in practice.
-
-For instance, in the code below the URL to `fetch` is wrong (no such site) and `.catch` handles the error:
+Sebagai contoh, kode di bawah sebuah URL ke `fetch` itu salah (tidak ada situs seperti itu) dan `.catch` menangani error tersebut:
 
 ```js run
 *!*
-fetch('https://no-such-server.blabla') // rejects
+fetch('https://no-such-server.blabla') // reject
 */!*
   .then(response => response.json())
-  .catch(err => alert(err)) // TypeError: failed to fetch (the text may vary)
+  .catch(err => alert(err)) // TypeError: failed to fetch (gagal mengambil resourse, error yang dihasilkan mungkin berbeda)
 ```
 
-As you can see, the `.catch` doesn't have to be immediate. It may appear after one or maybe several `.then`.
+Seperti yang anda lihat, `.catch` tidak harus segera. `.catch` mungkin muncul setelah satu atau mungkin beberapa `.then`.
 
-Or, maybe, everything is all right with the site, but the response is not valid JSON. The easiest way to catch all errors is to append `.catch` to the end of chain:
+Atau, mungkin, semuanya baik-baik saja dengan situs tersebut, tetapi response-nya bukan JSON yang valid. Cara termudah untuk catch semua _error_ adalah menambahkan `.catch` pada akhiran chain:
 
 ```js run
 fetch('/article/promise-chaining/user.json')
@@ -38,13 +37,13 @@ fetch('/article/promise-chaining/user.json')
 */!*
 ```
 
-Normally, such `.catch` doesn't trigger at all. But if any of the promises above rejects (a network problem or invalid json or whatever), then it would catch it.
+Biasanya, `.catch` semacam itu tidak memicu sama sekali. Tetapi jika salah satu promise di atas me-reject (sebuah masalah jaringan atau json yang tidak valid atau apapun itu), maka promise tersebut akan meng-catch-nya.
 
-## Implicit try..catch
+## try..catch implisit
 
-The code of a promise executor and promise handlers has an "invisible `try..catch`" around it. If an exception happens, it gets caught and treated as a rejection.
+Kode dari sebuah eksekutor promise dan handler promise memiliki "`try..catch` yang tak terlihat" di sekitarnya. Jika terjadi pengecualian, maka pengecualian itu tertangkap dan diperlakukan sebagai rejection.
 
-For instance, this code:
+Sebagai contoh, kode ini:
 
 ```js run
 new Promise((resolve, reject) => {
@@ -54,7 +53,7 @@ new Promise((resolve, reject) => {
 }).catch(alert); // Error: Whoops!
 ```
 
-...Works exactly the same as this:
+...Bekerja persis sama seperti ini:
 
 ```js run
 new Promise((resolve, reject) => {
@@ -64,65 +63,63 @@ new Promise((resolve, reject) => {
 }).catch(alert); // Error: Whoops!
 ```
 
-The "invisible `try..catch`" around the executor automatically catches the error and turns it into rejected promise.
+"`try..catch` yang tak terlihat" di sekitar eksekutor secara otomatis menangkap _error_ dan mengubahnya menjadi promise yang direject.
 
-This happens not only in the executor function, but in its handlers as well. If we `throw` inside a `.then` handler, that means a rejected promise, so the control jumps to the nearest error handler.
+Ini terjadi bukan hanya di dalam function eksekutor saja, tetapi di handler-nya juga. Jika kita `throw` dalam handler `.then`, itu artinya sebuah promise yang direject, jadi kontrolnya melompat ke handler error terdekat.
 
-Here's an example:
+Ini contohnya:
 
 ```js run
 new Promise((resolve, reject) => {
   resolve("ok");
 }).then((result) => {
 *!*
-  throw new Error("Whoops!"); // rejects the promise
+  throw new Error("Whoops!"); // reject promise tersebut
 */!*
 }).catch(alert); // Error: Whoops!
 ```
 
-This happens for all errors, not just those caused by the `throw` statement. For example, a programming error:
+Ini terjadi pada semua _error_, tidak hanya disebabkan oleh pernyataan `throw`. Sebagai contoh, sebuah _error_ pemrograman:
 
 ```js run
 new Promise((resolve, reject) => {
   resolve("ok");
 }).then((result) => {
 *!*
-  blabla(); // no such function
+  blabla(); // tidak ada fungsi seperti ini
 */!*
-}).catch(alert); // ReferenceError: blabla is not defined
+}).catch(alert); // ReferenceError: blabla is not defined (blabla tidak terdefinisi)
 ```
 
-The final `.catch` not only catches explicit rejections, but also accidental errors in the handlers above.
+`.catch` terakhir tidak hanya meng-catch rejection secara ekplisit, tetapi juga sesekali _error_ dalam handler di atas.
 
-## Rethrowing
+## Melempar kembali
 
-As we already noticed, `.catch` at the end of the chain is similar to `try..catch`. We may have as many `.then` handlers as we want, and then use a single `.catch` at the end to handle errors in all of them.
+Seperti yang sudah kita perhatikan, `.catch` di akhir chain mirip dengan `try..catch`. Kita bisa saja memiliki sebanyak mungkin handler `.then` seperti yang kita inginkan, dan kemudian menggunakan satu `.catch` di akhir untuk menangani _error_ di semuanya.
 
-In a regular `try..catch` we can analyze the error and maybe rethrow it if it can't be handled. The same thing is possible for promises.
+Di dalam `try..catch` biasa kita dapat menganalisis _error_ nya dan mungkin melemparkannya kembali jika tidak bisa ditangani. Hal yang sama mungkin untuk promise.
 
-If we `throw` inside `.catch`, then the control goes to the next closest error handler. And if we handle the error and finish normally, then it continues to the next closest successful `.then` handler.
+Jika kita `throw` di dalam `.catch`, kemudian kontrolnya mengarah ke handler _error_ terdekat selanjutnya. Dan jika kita menangani _error_ dan selesai dengan normal, kemudian berlanjut ke handler `.then` sukses terdekat berikutnya.
 
-In the example below the `.catch` successfully handles the error:
+Pada contoh di bawah ini `.catch` sukses menangani _error_:
 
 ```js run
-// the execution: catch -> then
+// eksekusi: catch -> then
 new Promise((resolve, reject) => {
-
   throw new Error("Whoops!");
-
-}).catch(function(error) {
-
-  alert("The error is handled, continue normally");
-
-}).then(() => alert("Next successful handler runs"));
+})
+  .catch(function (error) {
+    alert("The error is handled, continue normally");
+  })
+  .then(() => alert("Next successful handler runs"));
 ```
 
-Here the `.catch` block finishes normally. So the next successful `.then` handler is called.
+Disini blok `.catch` selesai secara normal. Jadi handler `.then` yang sukses selanjutnya dipanggil.
 
-In the example below we see the other situation with `.catch`. The handler `(*)` catches the error and just can't handle it (e.g. it only knows how to handle `URIError`), so it throws it again:
+Pada contoh di bawah ini kita lihat situasi lain dengan `.catch`. Handler `(*)` menangkap _error_ dan tidak bisa mengatasinya (misalnya hanya tahu bagaimana menangani `URIError`), jadi _error_-nya dilempar lagi:
 
 ```js run
-// the execution: catch -> catch
+// eksekusi: catch -> catch -> then
 new Promise((resolve, reject) => {
 
   throw new Error("Whoops!");
@@ -130,75 +127,74 @@ new Promise((resolve, reject) => {
 }).catch(function(error) { // (*)
 
   if (error instanceof URIError) {
-    // handle it
+    // tangani di sini
   } else {
     alert("Can't handle such error");
 
 *!*
-    throw error; // throwing this or another error jumps to the next catch
+    throw error; // lemparkan ini atau error lain melompat ke catch selanjutnya
 */!*
   }
 
 }).then(function() {
-  /* doesn't run here */
+  /* tidak berjalan di sini */
 }).catch(error => { // (**)
 
   alert(`The unknown error has occurred: ${error}`);
-  // don't return anything => execution goes the normal way
+  // tidak mengembalikkan apapun => eksekusi berjalan normal
 
 });
 ```
 
-The execution jumps from the first `.catch` `(*)` to the next one `(**)` down the chain.
+Eksekusi tersebut melompat dari `.catch` `(*)` pertama ke yang selanjutnya `(**)` menuruni chain.
 
-## Unhandled rejections
+## Rejection yang tidak tertangani
 
-What happens when an error is not handled? For instance, we forgot to append `.catch` to the end of the chain, like here:
+Apa yang terjadi ketika sebuah _error_ tidak ditangani? Sebagai contoh, kita lupa untuk menambahkan `.catch` ke akhir chain, seperti ini:
 
 ```js untrusted run refresh
-new Promise(function() {
-  noSuchFunction(); // Error here (no such function)
-})
-  .then(() => {
-    // successful promise handlers, one or more
-  }); // without .catch at the end!
+new Promise(function () {
+  noSuchFunction(); // Error di sini (tidak ada function seperti itu)
+}).then(() => {
+  //  handler promise yang sukses, satu atau lebih
+}); // tanpa .catch di akhir!
 ```
 
-In case of an error, the promise becomes rejected, and the execution should jump to the closest rejection handler. But there is none. So the error gets "stuck". There's no code to handle it.
+Jika terjadi _error_, promise jadi direject, dan eksekusi harus melompat ke handler penolakan terdekat. Tapi tidak ada. Jadi _error_-nya "stuck". Tidak ada kode untuk menangani-nya.
 
-In practice, just like with regular unhandled errors in code, it means that something has gone terribly wrong.
+Dalam prakteknya, seperti _error_ biasa yang tidak tertangani dalam kode, itu berarti ada sesuatu yang tidak beres.
 
-What happens when a regular error occurs and is not caught by `try..catch`? The script dies with a message in the console. A similar thing happens with unhandled promise rejections.
+Apa yang terjadi ketika sebuah _error_ biasa muncul dan tidak tertangkap oleh `try..catch`? script-nya mati dengan sebuah pesan di console. Sesuatu yang mirip terjadi dengan rejection promise yang tidak tertangani.
 
-The JavaScript engine tracks such rejections and generates a global error in that case. You can see it in the console if you run the example above.
+Mesin JavaScript melacak rejection tersebut dan menghasilkan _error_ global dalam kasus itu. Anda dapat melihatnya di console jika anda menjalankan contoh di atas.
 
-In the browser we can catch such errors using the event `unhandledrejection`:
+Di dalam peramban kita dapat meng-catch kesalahan tersebut menggunakan event `unhandledrejection`:
 
 ```js run
 *!*
 window.addEventListener('unhandledrejection', function(event) {
-  // the event object has two special properties:
-  alert(event.promise); // [object Promise] - the promise that generated the error
-  alert(event.reason); // Error: Whoops! - the unhandled error object
+  // object event tersebut memiliki dua properti spesial:
+  alert(event.promise); // [object Promise] - promise yang menghasilkan error
+  alert(event.reason); // Error: Whoops! - object error yang tidak tertangani
 });
 */!*
 
 new Promise(function() {
   throw new Error("Whoops!");
-}); // no catch to handle the error
+}); // tidak ada catch untuk menangani error
 ```
 
-The event is the part of the [HTML standard](https://html.spec.whatwg.org/multipage/webappapis.html#unhandled-promise-rejections).
+Event tersebut adalah bagian dari [standar HTML](https://html.spec.whatwg.org/multipage/webappapis.html#unhandled-promise-rejections).
 
-If an error occurs, and there's no `.catch`, the `unhandledrejection` handler triggers, and gets the `event` object with the information about the error, so we can do something.
+Jika sebuah _error_ muncul, dan di sana tidak ada `.catch`, handler `unhandledrejection` terpicu, dan mendapatkan object `event` dengan informasi tentang _error_, jadi kita dapat melakukan sesuatu.
 
-Usually such errors are unrecoverable, so our best way out is to inform the user about the problem and probably report the incident to the server.
+Biasanya _error_ seperti itu tidak dapat dipulihkan, jadi jalan keluar terbaik kita adalah memberi tahu pengguna tentang masalah dan mungkin melaporkan insiden tersebut ke server.
 
-In non-browser environments like Node.js there are other ways to track unhandled errors.
+Di dalam lingkungan non-peramban seperti Node.js di sana ada cara lain untuk melacak _error_ yang tak tertangani.
 
-## Summary
+## Ringkasan
 
-- `.catch` handles errors in promises of all kinds: be it a `reject()` call, or an error thrown in a handler.
-- We should place `.catch` exactly in places where we want to handle errors and know how to handle them. The handler should analyze errors (custom error classes help) and rethrow unknown ones (maybe they are programming mistakes).
-- It's ok not to use `.catch` at all, if there's no way to recover from an error.
-- In any case we should have the `unhandledrejection` event handler (for browsers, and analogs for other environments) to track unhandled errors and inform the user (and probably our server) about them, so that our app never "just dies".
+- `.catch` menangani _error_ di segala macam promise: baik itu panggilan `reject()`, atau sebuah _error_ yang dilemparkan di dalam handler.
+- Kita harus meletakkan `.catch` tepat di tempat dimana kita ingin menangani _error_ dan tahu bagaimana untuk menangani _error-error_ tersebut. Handler harus menganalisa _error_ (bantuan class _error_ khusus) dan melemparkan kembali yang tidak diketahui (mungkin itu adalah kesalahan pemrograman).
+- Ok untuk tidak menggunakan `.catch` sama sekali, jika tidak ada cara untuk memulihkan dari kesalahan.
+- Bagaimanapun kita harus memiliki handler event `unhandledrejection` (untuk peramban,dan analog untuk lingkungan lainnya), untuk melacak _error_ yang tak tertangani dan memberi tahu pengguna (dan mungkin server kita) tentang _error-error_ tersebut, jadi aplikasi kita tidak pernah "mati begitu saja".

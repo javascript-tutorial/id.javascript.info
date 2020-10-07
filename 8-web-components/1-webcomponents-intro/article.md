@@ -67,7 +67,7 @@ Sebuah komponen memiliki:
 
 Sekali lagi, keseluruhan "komponen" bukanlah sesuatu yang istimewa.
 
-Ada banyak *framework* dan metodologi pengembangan untuk membangunnya, masing-masing dengan keunikannya sendiri. Biasanya, kelas dan konvensi CSS khusus digunakan untuk memberikan "*component feel*" -- CSS scoping dan enkapsulasi DOM.
+Ada banyak *framework* dan metodologi pengembangan untuk membangunnya, masing-masing dengan keunikannya sendiri. Biasanya, kelas dan konvensi CSS khusus digunakan untuk memberikan "component feel" -- CSS scoping dan enkapsulasi DOM.
 
 "Komponen web" menyediakan kemampuan browser bawaan untuk itu, jadi kita tidak perlu untuk menirunya lagi.
 

@@ -1,62 +1,64 @@
+# Fetch: Kemajuan Download
 
-# Fetch: Download progress
+Metode `fetch` memungkinkan untuk melacak kemajuan proses _download_.
 
-The `fetch` method allows to track *download* progress.
+Harap diperhatikan: Saat ini belum ada cara bagi metode `fetch` untuk melacak kemajuan proses _upload_. Untuk tujuan tersebut, gunakan [XMLHttpRequest](info:xmlhttprequest), kita akan membahasnya nanti.
 
-Please note: there's currently no way for `fetch` to track *upload* progress. For that purpose, please use [XMLHttpRequest](info:xmlhttprequest), we'll cover it later.
+Untuk melacak kemajuan _download_, kita dapat menggunakan properti `response.body`. Itu adalah `ReadableStream` -- sebuah objek khusus yang menyediakan potongan demi potongan `response.body` saat didapatkan. _Readable streams_ dideskripsikan pada spesifikasi [Streams API](https://streams.spec.whatwg.org/#rs-class).
 
-To track download progress, we can use `response.body` property. It's `ReadableStream` -- a special object that provides body chunk-by-chunk, as it comes. Readable streams are described in the [Streams API](https://streams.spec.whatwg.org/#rs-class) specification.
+Tidak seperti `response.text()`, `response.json()` dan metode lainnya, `response.body` memberikan kontrol penuh atas proses pembacaan dan kita dapat menghitung berapa banyak _data_ yang diterima setiap saat.
 
-Unlike `response.text()`, `response.json()` and other methods, `response.body` gives full control over the reading process, and we can count how much is consumed at any moment.
-
-Here's the sketch of code that reads the reponse from `response.body`:
+Berikut adalah sketsa kode yang membaca respon dari `response.body`:
 
 ```js
-// instead of response.json() and other methods
+// sebagai ganti response.json() dan metode lainnya
 const reader = response.body.getReader();
 
-// infinite loop while the body is downloading
-while(true) {
-  // done is true for the last chunk
-  // value is Uint8Array of the chunk bytes
-  const {done, value} = await reader.read();
+// perulangan tidak terbatas ketika proses mengunduh
+while (true) {
+  // done bernilai benar (true) untuk bagian terakhir
+  // value adalah Uint8Array dari bagian bytes
+  const { done, value } = await reader.read();
 
   if (done) {
     break;
   }
 
-  console.log(`Received ${value.length} bytes`)
+  console.log(`Diterima ${value.length} bytes`);
 }
 ```
 
-The result of `await reader.read()` call is an object with two properties:
-- **`done`** -- `true` when the reading is complete, otherwise `false`.
-- **`value`** -- a typed array of bytes: `Uint8Array`.
+Hasil dari pemanggilan `await reader.read()` adalah objek dengan dua properti:
+
+- **`done`** -- `true` saat proses pembacaan selesai, jika tidak `false`.
+- **`value`** -- larik dengan tipe bytes: `Uint8Array`.
 
 ```smart
-Streams API also describes asynchronous iteration over `ReadableStream` with `for await..of` loop, but it's not yet widely supported (see [browser issues](https://github.com/whatwg/streams/issues/778#issuecomment-461341033)), so we use `while` loop.
+Streams API juga mendeskripsikan iterasi asynchronous melalui `ReadableStream` dengan perulangan `for await..of`, tetapi itu tidak sepenuhnya didukung (lihat [browser issues](https://github.com/whatwg/streams/issues/778#issuecomment-461341033)), sehingga kita menggunakan perulangan `while`.
 ```
 
-We receive response chunks in the loop, until the loading finishes, that is: until `done` becomes `true`.
+Kita menerima potongan respon pada perulangan sampai proses _loading_ selesai, yaitu: sampai `done` bernilai `true`.
 
-To log the progress, we just need for every received fragment `value` to add its length to the counter.
+Untuk mencatat kemajuan, kita hanya perlu setiap `value` dari _fragment_ yang diterima untuk ditambahkan nilai panjangnya ke penghitung.
 
-Here's the full working example that gets the response and logs the progress in console, more explanations to follow:
+Berikut adalah contoh penuh yang menerima respon dan mencatat kemajuan pada _console_, Langkah-langkah yang dapat diikuti:
 
 ```js run async
-// Step 1: start the fetch and obtain a reader
-let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits?per_page=100');
+// Langkah 1: mulai fetch dan dapatkan reader
+let response = await fetch(
+  'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits?per_page=100'
+);
 
 const reader = response.body.getReader();
 
-// Step 2: get total length
+// Langkah 2: dapatkan panjang total (data)
 const contentLength = +response.headers.get('Content-Length');
 
-// Step 3: read the data
-let receivedLength = 0; // received that many bytes at the moment
-let chunks = []; // array of received binary chunks (comprises the body)
-while(true) {
-  const {done, value} = await reader.read();
+// Langkah 3: Membaca data
+let receivedLength = 0; // Menerima banyak bytes saat ini
+let chunks = []; // larik potongan biner yang diterima (Meliputi body respon)
+while (true) {
+  const { done, value } = await reader.read();
 
   if (done) {
     break;
@@ -65,48 +67,51 @@ while(true) {
   chunks.push(value);
   receivedLength += value.length;
 
-  console.log(`Received ${receivedLength} of ${contentLength}`)
+  console.log(`Diterima ${receivedLength} dari ${contentLength}`);
 }
 
-// Step 4: concatenate chunks into single Uint8Array
+// Langkah 4: Menyatukan potongan-potongan menjadi satu Uint8Array
 let chunksAll = new Uint8Array(receivedLength); // (4.1)
 let position = 0;
-for(let chunk of chunks) {
-	chunksAll.set(chunk, position); // (4.2)
-	position += chunk.length;
+for (let chunk of chunks) {
+  chunksAll.set(chunk, position); // (4.2)
+  position += chunk.length;
 }
 
-// Step 5: decode into a string
-let result = new TextDecoder("utf-8").decode(chunksAll);
+// Langkah 5: Mengubah menjadi string
+let result = new TextDecoder('utf-8').decode(chunksAll);
 
-// We're done!
+// Selesai
 let commits = JSON.parse(result);
 alert(commits[0].author.login);
 ```
 
-Let's explain that step-by-step:
+Mari kita jelaskan langkah demi langkah:
 
-1. We perform `fetch` as usual, but instead of calling `response.json()`, we obtain a stream reader `response.body.getReader()`.
+1. Kita menggunakan `fetch` seperti biasa, tetapi sebagai ganti penggunaan `response.json()`, kita menggunakan _stream reader_ `response.body.getReader()`.
+   Perlu dicatat, kita tidak dapat menggunakan kedua metode ini untuk membaca respon yang sama: baik menggunakan _reader_ atau metode respon untuk mendapatkan hasilnya.
 
-    Please note, we can't use both these methods to read the same response: either use a reader or a response method to get the result.
-2. Prior to reading, we can figure out the full response length from the `Content-Length` header.
+2. Sebelum proses pembacaan, kita bisa mendapatkan keseluruhan panjang respon dari `Content-Length` _header_.
 
-    It may be absent for cross-origin requests (see chapter <info:fetch-crossorigin>) and, well, technically a server doesn't have to set it. But usually it's at place.
-3. Call `await reader.read()` until it's done.
+   Itu kemungkinan tidak ada untuk permintaan lintas sumber (lihat bagian <info:fetch-crossorigin>) dan secara teknis _server_ tidak harus menyetelnya. Tetapi biasanya ada.
 
-    We gather response chunks in the array `chunks`. That's important, because after the response is consumed, we won't be able to "re-read" it using `response.json()` or another way (you can try, there'll be an error).
-4. At the end, we have `chunks` -- an array of `Uint8Array` byte chunks. We need to join them into a single result. Unfortunately, there's no single method that concatenates those, so there's some code to do that:
-    1. We create `chunksAll = new Uint8Array(receivedLength)` -- a same-typed array with the combined length.
-    2. Then use `.set(chunk, position)` method to copy each `chunk` one after another in it.
-5. We have the result in `chunksAll`. It's a byte array though, not a string.
+3. Penggil `await reader.read()` sampai selesai.
 
-    To create a string, we need to interpret these bytes. The built-in [TextDecoder](info:text-decoder) does exactly that. Then we can `JSON.parse` it, if necessary.
+   Kita mengumpulkan potongan respon di larik `chunks`. Itu penting karena setelah respon diterima, kita tidak akan dapat "membaca ulang" menggunakan `response.json()` atau dengan cara lain (Anda dapat mencobanya dan akan ada galat)
 
-    What if we need binary content instead of a string? That's even simpler. Replace steps 4 and 5 with a single line that creates a `Blob` from all chunks:
-    ```js
-    let blob = new Blob(chunks);
-    ```
+4. Pada akhirnya, kita memiliki `chunks` - sebuah larik dari potongan byte ʻUint8Array`. Kita perlu menggabungkannya menjadi satu data tunggal. Sayangnya, tidak ada metode tunggal yang dapat menggabungkannya, jadi ada beberapa kode untuk melakukannya:
+   1. Kita membuat `chunksAll = new Uint8Array (receivedLength)` - larik dengan tipe yang sama dengan panjang gabungan.
+   2. Kemudian gunakan metode `.set (chunk, position)` untuk menyalin setiap `chunk` satu demi satu di dalamnya.
+5. Kita mendapatkan hasilnya di `chunksAll`. Ini adalah larik byte, bukan string.
 
-At the end we have the result (as a string or a blob, whatever is convenient), and progress-tracking in the process.
+   Untuk membuat string, kita perlu menafsirkan byte ini. [TextDecoder](info:text-decoder) bawaan dapat melakukan hal itu. Lalu kita bisa `JSON.parse`, jika diperlukan.
 
-Once again, please note, that's not for *upload* progress (no way now with `fetch`), only for *download* progress.
+   Bagaimana jika kita membutuhkan konten biner, bukan string? Itu bahkan lebih sederhana. Ganti langkah 4 dan 5 dengan satu baris yang membuat `Blob` dari semua potongan:
+
+   ```js
+   let blob = new Blob(chunks);
+   ```
+
+Pada akhirnya kita memiliki hasil (sebagai string atau blob, apa pun yang Anda inginkan), dan pelacakan kemajuan dalam prosesnya.
+
+Sekali lagi, harap diperhatikan, itu bukan untuk kemajuan _upload_ (sekarang belum ada cara dengan `fetch`), hanya untuk kemajuan _download_.
