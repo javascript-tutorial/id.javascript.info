@@ -207,9 +207,9 @@ setInterval(() => elem.setAttribute('datetime', new Date()), 1000); // (5)
 </script>
 ```
 
-1. Logika rendering dipindahkan ke `render()` helper method.
+1. Logika rendering dipindahkan ke *method* helper `render()`.
 2. Kita memanggilnya sekali ketika elemen dimasukkan ke dalam laman.
-3. Untuk perubahan sebuah atribut, cantumkan dalam `observedAttributes()`, `attributeChangedCallback` terpicu.
+3. Untuk perubahan sebuah atribut, cantumkan dalam pemicu `observedAttributes()`, `attributeChangedCallback`.
 4. ...dan merender ulang elemen tersebut.
 5. Pada akhirnya, kita dapat dengan mudah membuat sebuah pengatur waktu langsung.
 
