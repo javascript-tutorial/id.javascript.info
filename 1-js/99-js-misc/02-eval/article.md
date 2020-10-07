@@ -11,8 +11,8 @@ let result = eval(code);
 Sebagai contoh:
 
 ```js run
-let code = 'alert("Hello")';
-eval(code); // Hello
+let code = 'alert("Halo")';
+eval(code); // Halo
 ```
 
 Sebuah kode yang berupa _string_ bisa panjang, berupa deklarasi fungsi, variabel dan lain-lain.
@@ -70,7 +70,7 @@ Tanpa `use strict`, `eval` tidak memiliki lingkungan leksikal sendiri, jadi kita
 
 Dalam pemrograman modern `eval` jarang digunakan. Sering dikatakan bahwa "_eval is evil_" atau "`eval` itu jahat".
 
-Alasannya sederhana: dulu JavaScript adalah bahasa yang jauh lebih lemah, banyak hal yang hanya bisa dilakukan dengan `eval`. Tapi wakti itu telah berlalu satu dekade yang lalu.
+Alasannya sederhana: dulu JavaScript adalah bahasa yang jauh lebih lemah, banyak hal yang hanya bisa dilakukan dengan `eval`. Tapi waktu itu telah berlalu satu dekade yang lalu.
 
 Sekarang, hampir tidak ada alasan untuk menggunakan `eval`. Jika seseorang menggunakannya, ada kemungkinan mereka dapat menggantinya dengan konstruksi bahasa modern atau [JavaScript Module](info:modules).
 
@@ -82,9 +82,9 @@ Menggunakan variabel lokal luar di dalam `eval` juga dianggap sebagai praktik pe
 
 Ada dua cara untuk terhindar dan aman dari masalah seperti itu.
 
-**If eval'ed code doesn't use outer variables, please call `eval` as `window.eval(...)`:**
+**Jika kode yang dievaluasi tidak menggunakan variabel luar, panggil `eval` sebagai `window.eval(...)`:**
 
-This way the code is executed in the global scope:
+Dengan cara ini, kode akan dijalankan dalam lingkup global:
 
 ```js untrusted refresh run
 let x = 1;
