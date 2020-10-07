@@ -3,21 +3,21 @@ libs:
 
 ---
 
-# Currying
+# _Currying_
 
-[Currying](https://en.wikipedia.org/wiki/Currying) is an advanced technique of working with functions. It's used not only in JavaScript, but in other languages as well.
+[_Currying_](https://en.wikipedia.org/wiki/Currying) adalah teknik lanjutan dalam mengerjakan sebuah fungsi. _Currying_ tidak hanya digunakan di JavaScript tetapi dalam bahasa lain juga.
 
-Currying is a transformation of functions that translates a function from callable as `f(a, b, c)` into callable as `f(a)(b)(c)`.
+_Currying_ adalah transformasi fungsi yang mengubah fungsi yang dipanggil sebagai `f(a, b, c)` menjadi `f(a)(b)(c)`.
 
-Currying doesn't call a function. It just transforms it.
+_Currying_ tidak memanggil suatu fungsi melainkan hanya mengubahnya.
 
-Let's see an example first, to better understand what we're talking about, and then practical applications.
+Mari kita lihat contoh terlebih dahulu untuk memahami apa yang akan kita bicarakan lalu kemudian mempraktikkannya.
 
-We'll create a helper function `curry(f)` that performs currying for a two-argument `f`. In other words, `curry(f)` for two-argument `f(a, b)` translates it into a function that runs as `f(a)(b)`:
+Kita akan membuat fungsi pembantu `curry(f)` yang melakukan _currying_ untuk dua argumen `f`. Dengan kata lain, `curry(f)` untuk dua argumen `f(a, b)` diubah menjadi fungsi yang dijalankan sebagai `f(a)(b)`:
 
 ```js run
 *!*
-function curry(f) { // curry(f) does the currying transform
+function curry(f) { // curry(f) melakukan currying
   return function(a) {
     return function(b) {
       return f(a, b);
@@ -26,7 +26,7 @@ function curry(f) { // curry(f) does the currying transform
 }
 */!*
 
-// usage
+// penggunan
 function sum(a, b) {
   return a + b;
 }
@@ -36,30 +36,30 @@ let curriedSum = curry(sum);
 alert( curriedSum(1)(2) ); // 3
 ```
 
-As you can see, the implementation is straightforward: it's just two wrappers.
+Seperti yang Anda lihat, implementasinya cukup mudah: hanya membutuhkan dua pembungkus.
 
-- The result of `curry(func)` is a wrapper `function(a)`.
-- When it is called like `curriedSum(1)`, the argument is saved in the Lexical Environment, and a new wrapper is returned `function(b)`.
-- Then this wrapper is called with `2` as an argument, and it passes the call to the original `sum`.
+- Hasil dari `curry(func)` adalah pembungkus `function(a)`.
+- Ketika dipanggil `curriedSum(1)`, argumen disimpan di lingkungan leksikal, dan pembungkus baru dikembalikan `function(b)`.
+- Kemudian pembungkus ini dipanggil dengan `2` sebagai argumen, dan ini meneruskan panggilan ke fungsi `sum` yang asli.
 
-More advanced implementations of currying, such as [_.curry](https://lodash.com/docs#curry) from lodash library, return a wrapper that allows a function to be called both normally and partially:
+Implementasi currying yang lebih lanjut, seperti [_.curry](https://lodash.com/docs#curry) dari _library_ lodash, mengembalikan pembungkus yang memungkinkan fungsi dipanggil secara normal maupun parsial:
 
 ```js run
 function sum(a, b) {
   return a + b;
 }
 
-let curriedSum = _.curry(sum); // using _.curry from lodash library
+let curriedSum = _.curry(sum); // menggunakan _.curry dari library lodash 
 
-alert( curriedSum(1, 2) ); // 3, still callable normally
-alert( curriedSum(1)(2) ); // 3, called partially
+alert( curriedSum(1, 2) ); // 3, tetap bisa dijalankan secara normal
+alert( curriedSum(1)(2) ); // 3, secara parsial
 ```
 
-## Currying? What for?
+## _Currying_? Untuk apa?
 
-To understand the benefits we need a worthy real-life example.
+Untuk memahami manfaatnya kita membutuhkan contoh implementasi di dunia nyata.
 
-For instance, we have the logging function `log(date, importance, message)` that formats and outputs the information. In real projects such functions have many useful features like sending logs over the network, here we'll just use `alert`:
+Sebaga contoh, kita memiliki fungsi pencatatan `log(date, importance, message)` yang memformat dan mengeluarkan informasi. Dalam proyek yang sebenarnya, fungsi seperti itu memiliki banyak fitur yang berguna seperti mengirim log melalui jaringan, disini kita akan menggunakan `alert`:
 
 ```js
 function log(date, importance, message) {
@@ -67,53 +67,53 @@ function log(date, importance, message) {
 }
 ```
 
-Let's curry it!
+Mari lakukan _currying_!
 
 ```js
 log = _.curry(log);
 ```
 
-After that `log` works normally:
+Setelah itu `log` berjalan normal:
 
 ```js
 log(new Date(), "DEBUG", "some debug"); // log(a, b, c)
 ```
 
-...But also works in the curried form:
+...Tetapi juga bekerja dalam bentuk _currying_:
 
 ```js
 log(new Date())("DEBUG")("some debug"); // log(a)(b)(c)
 ```
 
-Now we can easily make a convenience function for current logs:
+Sekarang kita dapat dengan mudah membuat fungsi untuk log saat ini:
 
 ```js
-// logNow will be the partial of log with fixed first argument
+// logNow akan menjadi bagian dari log dengan argumen pertama tetap
 let logNow = log(new Date());
 
-// use it
-logNow("INFO", "message"); // [HH:mm] INFO message
+// gunakan
+logNow("INFO", "pesan"); // [HH:mm] INFO pesan
 ```
 
-Now `logNow` is `log` with fixed first argument, in other words "partially applied function" or "partial" for short.
+Sekarang `logNow` adalah `log` dengan argumen pertama yang sudah ditentukan, dengan kata lain "fungsi yang diterapkan sebagian" atau singkatnya "parsial".
 
-We can go further and make a convenience function for current debug logs:
+Kita bisa melanjutkannya dan membuat fungsi untuk log _debug_ saat ini:
 
 ```js
 let debugNow = logNow("DEBUG");
 
-debugNow("message"); // [HH:mm] DEBUG message
+debugNow("pesan"); // [HH:mm] DEBUG pesan
 ```
 
-So:
-1. We didn't lose anything after currying: `log` is still callable normally.
-2. We can easily generate partial functions such as for today's logs.
+Jadi:
+1. Kita tidak kehilangan apapun setelah melakukan _currying_: `log` tetap bisa dipanggil secara normal.
+2. Kita dapat dengan mudah membuat fungsi parsial seperti "log untuk hari ini".
 
-## Advanced curry implementation
+## Implementasi _currying_ lanjutan
 
-In case you'd like to get in to the details, here's the "advanced" curry implementation for multi-argument functions that we could use above.
+Jika Anda ingin mengetahui lebih detail, berikut implementasi _currying_ "lanjutan" untuk fungsi multi-argumen yang dapat kita gunakan di atas.
 
-It's pretty short:
+Itu cukup pendek:
 
 ```js
 function curry(func) {
@@ -131,7 +131,7 @@ function curry(func) {
 }
 ```
 
-Usage examples:
+Contoh penggunaan:
 
 ```js
 function sum(a, b, c) {
@@ -140,17 +140,17 @@ function sum(a, b, c) {
 
 let curriedSum = curry(sum);
 
-alert( curriedSum(1, 2, 3) ); // 6, still callable normally
-alert( curriedSum(1)(2,3) ); // 6, currying of 1st arg
-alert( curriedSum(1)(2)(3) ); // 6, full currying
+alert( curriedSum(1, 2, 3) ); // 6, tetap bisa dijalankan secara normal
+alert( curriedSum(1)(2,3) ); // 6, currying argumen pertama
+alert( curriedSum(1)(2)(3) ); // 6, currying secara penuh
 ```
 
-The new `curry` may look complicated, but it's actually easy to understand.
+Fungsi `curry` yang baru mungkin terlihat rumit, tetapi sebenarnya cukup mudah dipahami.
 
-The result of `curry(func)` call is the wrapper `curried` that looks like this:
+Hasil dari pemanggilan `curry(func)` adalah pembungkus `curried` yang terlihat seperti ini:
 
 ```js
-// func is the function to transform
+// func adalah fungsi untuk di transformasi
 function curried(...args) {
   if (args.length >= func.length) { // (1)
     return func.apply(this, args);
@@ -162,35 +162,35 @@ function curried(...args) {
 };
 ```
 
-When we run it, there are two `if` execution branches:
+Ketika kita menjalankannya, ada dua cabang eksekusi `if`:
 
-1. Call now: if passed `args` count is the same as the original function has in its definition (`func.length`) or longer, then just pass the call to it.
-2. Get a partial: otherwise, `func` is not called yet. Instead, another wrapper `pass` is returned, that will re-apply `curried` providing previous arguments together with the new ones. Then on a new call, again, we'll get either a new partial (if not enough arguments) or, finally, the result.
+1. Panggil sekarang: jika `args` diteruskan, hitungannya sama dengan fungsi asli yang ada dalam definisinya (`func.length`) atau lebih panjang, lalu teruskan saja panggilannya.
+2. Dapatkan sebagian: jika tidak, `func` belum dipanggil. Sebagai gantinya, pembungkus lain `pass` dikembalikan, yang akan menerapkan kembali `curried` dengan menyediakan argumen sebelumnya dengan yang baru. Kemudian, pada panggilan baru, kita akan mendapatkan parsial baru (jika argumennya tidak cukup) atau, akhirnya, sebuah hasilnya.
 
-For instance, let's see what happens in the case of `sum(a, b, c)`. Three arguments, so `sum.length = 3`.
+Sebagai contoh, mari kita lihat apa yang terjadi dalam kasus `sum(a, b, c)`. Tiga argumen, jadi `sum.length = 3`.
 
-For the call `curried(1)(2)(3)`:
+Untuk memanggil `curried(1)(2)(3)`:
 
-1. The first call `curried(1)` remembers `1` in its Lexical Environment, and returns a wrapper `pass`.
-2. The wrapper `pass` is called with `(2)`: it takes previous args (`1`), concatenates them with what it got `(2)` and calls `curried(1, 2)` with them together. As the argument count is still less than 3, `curry` returns `pass`.
-3. The wrapper `pass` is called again with `(3)`,  for the next call `pass(3)` takes previous args (`1`, `2`) and adds `3` to them, making the call `curried(1, 2, 3)` -- there are `3` arguments at last, they are given to the original function.
+1. Panggilan pertama `curried(1)` mengingat `1` di dalam lingkungan leksikal-nya, dan mengembalikan pembungkus `pass`.
+2. Pembungkus `pass` dipanggil dengan `(2)`: ia menambil argumen sebelumnya (`1`), menggabungkannya `(2)` kemudian memanggil `curried(1, 2)` secara bersama-sama. Karena jumlah argumen masih kurang dari 3, `curry` mengembalikan `pass`.
+3. Pembungkus `pass` dipanggil lagi dengan `(3)`,  untuk pemanggilan berikutnya `pass(3)` mengambil argumen sebelumnya (`1`, `2`) dan menambahkan `3`, membuat panggilan `curried(1, 2, 3)` -- terdapat argumen `3` pada akhirnya, kemudian mereka akan diberikan ke fungsi aslinya.
 
-If that's still not obvious, just trace the calls sequence in your mind or on paper.
+Jika masih belum jelas, cukup lacak lagi urutan pemanggilan dalam benak anda atau coba tulis di kertas.
 
 ```smart header="Fixed-length functions only"
-The currying requires the function to have a fixed number of arguments.
+Currying membutuhkan fungsi untuk memiliki sejumlah argumen tetap.
 
-A function that uses rest parameters, such as `f(...args)`, can't be curried this way.
+Fungsi yang menggunakan sisa parameter, seperti `f(...args)`, tidak bisa di currying dengan cara ini.
 ```
 
 ```smart header="A little more than currying"
-By definition, currying should convert `sum(a, b, c)` into `sum(a)(b)(c)`.
+Menurut definisi, currying harus mengubah `sum(a, b, c)` menjadi `sum(a)(b)(c)`.
 
-But most implementations of currying in JavaScript are advanced, as described: they also keep the function callable in the multi-argument variant.
+Namun sebagian besar implementasi currying di JavaScript bersifat lanjutan, ssperti yang dijelaskan: implementasi tersebut juga membuat fungsi dapat dipanggil dalam bentuk multi-argumen.
 ```
 
-## Summary
+## Ringkasan
 
-*Currying* is a transform that makes `f(a,b,c)` callable as `f(a)(b)(c)`. JavaScript implementations usually both keep the function callable normally and return the partial if the arguments count is not enough.
+*Currying* adalah transformasi yang membuat `f(a,b,c)` dapat dipanggil sebagai `f(a)(b)(c)`. Implementasi JavaScript biasanya membuat fungsi dapat dipanggil secara normal dan mengembalikan dalam bentuk parsial jika jumlah argumen tidak cukup.
 
-Currying allows us to easily get partials. As we've seen in the logging example, after currying the three argument universal function `log(date, importance, message)` gives us partials when called with one argument (like `log(date)`) or two arguments (like `log(date, importance)`).  
+_Currying_ memungkinkan kita untuk mendapatkan sebuah bagian. Seperti yang kita lihat di contoh logging, setelah _currying_ tiga argumen dari fungsi universal `log(date, importance, message)` akan memberikan kita fungsi parsial ketika dipanggil dengan satu argumen (seperti `log(date)`) atau dua argumen (seperti `log(date, importance)`).  
