@@ -175,7 +175,7 @@ Untuk memanggil `curried(1)(2)(3)`:
 2. Pembungkus `pass` dipanggil dengan `(2)`: ia menambil argumen sebelumnya (`1`), menggabungkannya `(2)` kemudian memanggil `curried(1, 2)` secara bersama-sama. Karena jumlah argumen masih kurang dari 3, `curry` mengembalikan `pass`.
 3. Pembungkus `pass` dipanggil lagi dengan `(3)`,  untuk pemanggilan berikutnya `pass(3)` mengambil argumen sebelumnya (`1`, `2`) dan menambahkan `3`, membuat panggilan `curried(1, 2, 3)` -- terdapat argumen `3` pada akhirnya, kemudian mereka akan diberikan ke fungsi aslinya.
 
-Jika masih belum jelas, cukup lacak lagi urutan pemanggilan dalam benak anda atau coba tulis di kertas.
+Jika masih belum jelas, cukup lacak lagi urutan pemanggilan dalam benak Anda atau coba tulis di kertas.
 
 ```smart header="Fixed-length functions only"
 Currying membutuhkan fungsi untuk memiliki sejumlah argumen tetap.
@@ -186,7 +186,7 @@ Fungsi yang menggunakan sisa parameter, seperti `f(...args)`, tidak bisa di curr
 ```smart header="A little more than currying"
 Menurut definisi, currying harus mengubah `sum(a, b, c)` menjadi `sum(a)(b)(c)`.
 
-Namun sebagian besar implementasi currying di JavaScript bersifat lanjutan, ssperti yang dijelaskan: implementasi tersebut juga membuat fungsi dapat dipanggil dalam bentuk multi-argumen.
+Namun sebagian besar implementasi currying di JavaScript bersifat lanjutan, seperti yang dijelaskan: implementasi tersebut juga membuat fungsi dapat dipanggil dalam bentuk multi-argumen.
 ```
 
 ## Ringkasan
