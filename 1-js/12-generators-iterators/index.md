@@ -1,2 +1,1 @@
-
-# Generators, advanced iteration
+# Generator, iterasi lanjutan
