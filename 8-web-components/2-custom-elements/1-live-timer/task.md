@@ -1,14 +1,14 @@
 
-# Live timer element
+# Elemen live timer
 
-We already have `<time-formatted>` element to show a nicely formatted time.
+Kita sudah memiliki elemen `<time-formatted>` untuk menunjukkan waktu yang diformat dengan baik.
 
-Create `<live-timer>` element to show the current time:
-1. It should use `<time-formatted>` internally, not duplicate its functionality.
-2. Ticks (updates) every second.
-3. For every tick, a custom event named `tick` should be generated, with the current date in `event.detail` (see chapter <info:dispatch-events>).
+Buat elemen `<live-timer>` untuk menunjukkan waktu saat ini:
+1. `<live-timer>` harus menggunakan `<time-formatted>` secara internal, bukan menduplikasi fungsinya.
+2. Berdetak (update) setiap detik.
+3. Untuk setiap detik, sebuah *events* kustom bernama `tick` harus dibuat, dengan tanggal saat ini di `event.detail` (lihat bab <info: dispatch-events>).
 
-Usage:
+Penggunaan:
 
 ```html
 <live-timer id="elem"></live-timer>
