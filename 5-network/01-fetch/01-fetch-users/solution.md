@@ -1,8 +1,8 @@
-Untuk mengambil pengguna kita membutuhkan `fetch('https://api.github.com/users/USERNAME')`.
+Untuk mengambil pengguna kita membutuhkan : `fetch('https://api.github.com/users/USERNAME')`.
 
 Jika tanggapan memiliki status `200` panggil `.json()` untuk membaca objek JSON.
 
-Sebaliknya, jika sebuah `fetch` gagal, atau tanggapan tidak memiliki status 200, kita hanya mengembalikan `null` di senarai hasilnya.
+Sebaliknya, jika sebuah `fetch` gagal, atau tanggapan tidak memiliki status 200, kita akan mengembalikan `null` di senarai hasilnya.
 
 Jadi ini kodenya : 
 
@@ -32,8 +32,8 @@ async function getUsers(names) {
 }
 ```
 
-Perlu dicatat, panggilan `.then()` terpasang secara langsung dengan `fetch`, jadi saat kita memiliki tanggapan, tidak akan menunggu pengambilan lainnya, tetapi segera mulai membaca `.json()`. 
+Perlu dicatat, panggilan `.then()` terpasang secara langsung dengan `fetch`, jadi saat kita memiliki tanggapan, tidak akan menunggu untuk *fetch* lainnya, tetapi segera mulai membaca `.json()`. 
 
-Jika kita menggunakan `await Promise.all(names.map(name => fetch(...)))`, dan memanggil `.json()` di hasilnya, maka akan menunggu semua fetch untuk menanggapi. Dengan menambahkan `.json()` secara langsung untuk masing masing pengambilan, kita dapat memastikan fetch individu mulai membaca data sebagai JSON tanpa menunggu satu sama lain.
+Jika kita menggunakan `await Promise.all(names.map(name => fetch(...)))`, dan memanggil `.json()` di hasilnya, maka akan menunggu semua *fetch* untuk menanggapi. Dengan menambahkan `.json()` untuk masing masing *fetch*, kita dapat memastikan pemanggilan *fetch* individu mulai membaca data sebagai JSON tanpa menunggu satu sama lain.
 
-Ini adalah contoh bagaimana Promise API tingkat rendah masih bisa digunakan meskipun kita utamanya menggunakan ʻasync / await.
+Ini adalah contoh bagaimana *API Promise* tingkat rendah masih bisa digunakan meskipun kita utamanya menggunakan `async / await`.

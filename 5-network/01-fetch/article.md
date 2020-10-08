@@ -5,48 +5,47 @@ Javascript bisa mengirim permintaan jaringan ke server dan memuat informasi baru
 
 Sebagai contoh, kita bisa menggunakan permintaan jaringan untuk:
 
-- Mengirimkan sebuah pesanan
-- Memuat informasi pengguna
-- Menerima pembaharuan terbaru dari server
+- Mengirimkan sebuah pesanan.
+- Memuat informasi pengguna.
+- Menerima pembaharuan terbaru dari server.
 - Dan lain sebagainya.
 
 ...Dan semua itu tanpa memuat ulang halaman!
 
-Ada istilah umbrella AJAX(singkatan dari <b>A</b>synchronous <b>J</b>avaScript <b>A</b>nd <b>X</b>ML) untuk permintaan jaringan dari Javascript.
+Ada istilah *umbrella* AJAX(singkatan dari <b>A</b>synchronous <b>J</b>avaScript <b>A</b>nd <b>X</b>ML) untuk permintaan jaringan dari Javascript.
 
 Meskipun kita tidak perlu menggunakan XML : istilah ini berasal dari masa lalu, itulah kenapa kalimat ini ada. Kamu mungkin sudah mendengar istilah ini.
 
 Ada banyak cara untuk mengirimkan sebuah permintaan jaringan dan mendapatkan informasi dari server. 
 
-metode `fetch()` itu baru dan serba guna, jadi kita bisa mulai dari sini. metode ini tidak di dukung oleh browser lama (bisa memakai polyfill), tetapi sudah didukung oleh browser yang terbaru.
-The basic syntax is:
+Metode `fetch()` itu baru dan serba guna, jadi kita bisa mulai dari sini. metode ini tidak di dukung oleh browser lama (bisa memakai polyfill), tetapi sudah didukung oleh browser yang terbaru.
+
 sintaksis dasarnya :
 
 ```js
 let promise = fetch(url, [options])
 ```
 
-- **`url`** -- URL yang diakses.
-- **`options`** -- parameter opsional : metode, headers dll.
+- **`url`** -- *URL* yang diakses.
+- **`options`** -- parameter opsional : metode, *headers* dll.
 
-Without `options`, that is a simple GET permintaan, downloading the contents of the `url`.
-tanpa `options`, hanya permintaan GET sederhana, mengunduh isi dari `url`
+Jika tidak menggunakan `options`, dan hanya menggunakan permintaan *GET* sederhana,sudah bisa mengunduh isi dari `url`.
 
-Browser segera memulai permintaan dan mengembalikan sebuah promise yang memanggil kode yang akan di pakai untuk mendapatkan hasil.
+*Browser* segera memulai permintaan dan mengembalikan sebuah *promise* yang memanggil kode yang akan di pakai untuk mendapatkan hasil.
 
-Mendapatkan sebuah tanggapan biasanya ada dua tahap proses.
+Untuk mendapatkan sebuah tanggapan biasanya ada dua tahap proses.
 
-**Pertama, `promise`, dikembalikan oleh `fetch`, diselesaikan dengan sebuah objek built-in [Response](https://fetch.spec.whatwg.org/#response-kelas) kelas secepat server menanggapi headers**
+**Pertama, *`promise`*, akan dikembalikan oleh `fetch`, diselesaikan dengan sebuah objek *built-in* [Response](https://fetch.spec.whatwg.org/#response-kelas) kelas secepat server menanggapi *headers***
 
 
-Di tahap ini kita bisa memeriksa status HTTP, untuk melihat apakah berhasil atau tidak, memeriksa headers, tetapi belum memiliki body.
+Di tahap ini kita bisa memeriksa status HTTP, untuk melihat apakah berhasil atau tidak, untuk memeriksa *headers*, tetapi belum memakai *body*.
 
-Promise menolak jika `fetch` tidak  bisa membuat  permintaan HTTP, misalnya masalah jaringan, atau tidak ada situs yang di arahkan. HTTP-status yang tidak normal, seperti 404 atau 500 tidak menimbulkan kesalahan.
+*Promise* tidak akan dijalankan jika `fetch` tidak  bisa membuat  permintaan HTTP, contohnya saat ada masalah jaringan, atau tidak ada situs yang di arahkan. Status HTTP yang tidak normal, seperti 404 atau 500 tidak menimbulkan kesalahan.
 
 Kita bisa melihat status HTTP di properti tanggapan:
 
 - **`status`** -- kode status misalnya 200.
-- **`ok`** -- boolean, 'true' jika kode status HTTP  200-299.
+- **`ok`** -- boolean, 'true' jika kode status HTTP 200-299.
 
 Sebagai contoh :
 
@@ -54,23 +53,23 @@ Sebagai contoh :
 let response = await fetch(url);
 
 if (response.ok) { // jika kode status 200-299 
-  //dapatkan tanggapan body (caranya di jelaskan di bawah)
+  //dapatkan tanggapan *body* (caranya akan di jelaskan di bawah)
   let json = await response.json();
 } else {
   alert("HTTP-Error: " + response.status);
 }
 ```
 
-**Kedua, untuk mendapatkan tanggapan body , kita perlu menggunakan metode pemanggilan tambahan**
+**Kedua, untuk mendapatkan tanggapan *body* , kita perlu menggunakan metode pemanggilan tambahan**
 
-`Response` menyediakan banyak metode berbasis promise untuk mengakses body dengan berbagai format:
+`Response` menyediakan banyak metode berbasis *promise* untuk mengakses *body* dengan berbagai format:
 
 - **`response.text()`** -- membaca tanggapan dan mengembalikan sebagai teks,
 - **`response.json()`** -- mengurai tanggapan sebagai objek JSON,
-- **`response.formData()`** -- mengembalikan response sebagai objek `FormData`(dijelaskan di [bab selanjutnya](info:formdata)),
-- **`response.blob()`** -- mengembalikan tanggapan sebagai [Blob](info:blob) (data biner dengan tipe),
+- **`response.formData()`** -- mengembalikan tanggapan sebagai objek `FormData`(dijelaskan di [bab selanjutnya](info:formdata)),
+- **`response.blob()`** -- mengembalikan tanggapan sebagai [Blob](info:blob) (tipe untuk data biner),
 - **`response.ArrayBuffer()`** -- mengembalikan tanggapan sebagai [ArrayBuffer](info:Arraybuffer-binary-Arrays) (representasi tingkat rendah dari data biner),
-- Sebagai tambahan, `response.body` adalah objek  [ReadableStream](https://streams.spec.whatwg.org/#rs-kelas), hal ini ini memungkinkan untuk membaca bagian tubuh demi bagian, kita akan melihat contohnya nanti.
+- Sebagai tambahan, `response.body` adalah objek  [ReadableStream](https://streams.spec.whatwg.org/#rs-kelas), hal ini  memungkinkan untuk membaca bagian  demi bagian *body*, kita akan melihat contohnya nanti.
 
 Contohnya, mari kita dapatkan objek JSON terbaru dari commit GitHub:
 
@@ -79,13 +78,13 @@ let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/c
 let response = await fetch(url);
 
 *!*
-let commits = await response.json(); //membaca tanggapan body dan menguraikan sebagai JSON
+let commits = await response.json(); //membaca tanggapan *body* dan menguraikan sebagai JSON
 */!*
 
 alert(commits[0].author.login);
 ```
 
-Atau, sama saja tanpa `await` , menggunakan sintaksis asli promise:
+Atau, sama saja tanpa `await` , menggunakan sintaksis asli *promise*:
 
 ```js run
 fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
@@ -93,12 +92,12 @@ fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commi
   .then(commits => alert(commits[0].author.login));
 ```
 
-Untuk mendapatkan tanggapan teks, gunakan `await response.text()` daripada `.json()`:
+Untuk mendapatkan data respon dengan format teks, gunakan `await response.text()` daripada `.json()`:
 
 ```js run async
 let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
 
-let text = await response.text(); //membaca tanggapan body sebagai teks
+let text = await response.text(); //membaca tanggapan *body* sebagai teks
 
 alert(text.slice(0, 80) + '...');
 ```
@@ -112,7 +111,7 @@ let response = await fetch('/article/fetch/logo-fetch.svg');
 let blob = await response.blob(); //mengunduh sebagai objek Blob
 */!*
 
-//membuat <img> sebagai item
+//membuat elemen <img> 
 let img = document.createElement('img');
 img.style = 'position:fixed;top:10px;left:10px;width:100px';
 document.body.append(img);
@@ -127,21 +126,21 @@ setTimeout(() => { //menyembunyikan setelah 3 detik
 ```
 
 ````warn
-Kita hanya bisa memilih satu dari metode membaca body. 
+Kita hanya bisa memilih satu dari beberapa metode untuk membaca *body*. 
 
-Jika kita sudah mendapatkan tanggapan dengan `response.text()` , maka `response.json()` tidak akan bekerja, karena isi body sudah di proses lebih awal.
+Jika kita sudah mendapatkan tanggapan dengan `response.text()` , maka `response.json()` tidak akan bekerja, karena isi *body* sudah di proses lebih awal.
 
 ```js
-let text = await response.text(); //tanggapan body sudah di konsumsi
+let text = await response.text(); //tanggapan *body* sudah di konsumsi
 let parsed = await response.json(); //gagal (sudah di konsumsi)
 ```
 ````
 
 ## Response headers
 
-Tanggapan headers tersedia seperti objek Map headers di `response.headers`.
+Tanggapan headers tersedia seperti objek *Map headers* di `response.headers`.
 
-Ini tidak seperti Map, tetapi memiliki metode yang mirip untuk mendapatkan headers individu dengan nama atau mengulangi item:
+Ini tidak seperti *Map*, tetapi memiliki metode yang mirip untuk mendapatkan *headers* individu dengan nama atau mengulangi item:
 
 ```js run async
 let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
@@ -157,7 +156,7 @@ for (let [key, value] of response.headers) {
 
 ## Response headers
 
-Untuk mengatur permintaan header di `fetch` , kita bisa menggunakan `headers` option, ini memiliki sebuah objek dengan headers diluar, seperti ini:
+Untuk mengatur permintaan header di `fetch` , kita bisa menggunakan `headers` *option* yang memiliki sebuah objek dengan *headers* diluar, seperti ini:
 
 ```js
 let response = fetch(protectedUrl, {
@@ -167,11 +166,11 @@ let response = fetch(protectedUrl, {
 });
 ```
 
-...Tetapi ada daftar [headers HTTP yang di larang](https://fetch.spec.whatwg.org/#forbidden-header-name) yang tidak boleh kita atur : 
+...Tetapi ada daftar [headers HTTP yang di larang](https://fetch.spec.whatwg.org/#forbidden-header-name) yang tidak boleh kita gunakan : 
 
 - `Accept-Charset`, `Accept-Encoding`
-- `Access-Control-permintaan-Headers`
-- `Access-Control-permintaan-Method`
+- `Access-Control-Request-Headers`
+- `Access-Control-Request-Method`
 - `Connection`
 - `Content-Length`
 - `Cookie`, `Cookie2`
@@ -190,14 +189,14 @@ let response = fetch(protectedUrl, {
 - `Proxy-*`
 - `Sec-*`
 
-Header ini memastikan HTTP yang tepat dan aman, jadi mereka khusus dikendalikan  oleh browser.
+Header ini memastikan HTTP yang tepat dan aman, jadi mereka khusus dikendalikan oleh browser.
 
-## POST Response
+## POST Request
 
-Untuk membuat sebuah permintaan `POST` , atau sebuah permintaan dengan metode lain, kita perlu menggunakan option `fetch`: 
+Untuk membuat sebuah permintaan `POST` , atau sebuah permintaan dengan metode lain, kita perlu menggunakan *option* `fetch`: 
 
 - **`method`** -- metode HTTP, misalnya `POST`,
-- **`body`** -- permintaan body, satu dari:
+- **`body`** -- permintaan *body*, satu dari:
   - sebuah string (misalnya dikodekan JSON),
   - objek `FormData`, untuk mengirimkan data sebagai `form/multipart`,
   - `Blob`/`BufferSource` untuk mengirimkan data biner, 
@@ -227,15 +226,15 @@ let result = await response.json();
 alert(result.message);
 ```
 
-Perlu dicatat, jika permintaan `body` berupa string, kemudian header `Content-Type` di atur `text/plain;charset=UTF-8` sebagai default.
+Perlu dicatat, jika permintaan *`body`* berupa string, maka *header* `Content-Type` akan di atur `text/plain;charset=UTF-8` sebagai default.
 
-Tetapi, karena kita akan mengirim JSON, kita menggunakan pilihan `headers` untuk mengirim `application/json`, `Content-Type` yang benar untuk data pengkodean JSON.
+Tetapi, karena kita akan mengirim JSON kita menggunakan pilihan `headers` untuk mengirim `application/json`, `Content-Type` sebagai jenis data yang benar untuk data pengkodean JSON.
 
 ## Mengirim sebuah gambar
 
 Kita juga bisa mengirimkan data biner dengan `fetch` menggunakan objek `Blob` atau `BufferSource`.
 
-Di contoh ini, ada `<canvas>` dimana kita bisa menggambar dengan memindahkan mouse diatasnya. Setiap klik di tombol "submit" mengirimkan gambar ke server:
+Di contoh ini, ada `<canvas>` dimana kita bisa menggambar dengan memindahkan mouse diatasnya. Setiap klik di tombol "*submit*" mengirimkan gambar ke *server*:
 
 ```html run autorun height="90"
 <body style="margin:0">
@@ -251,13 +250,13 @@ Di contoh ini, ada `<canvas>` dimana kita bisa menggambar dengan memindahkan mou
     };
 
     async function submit() {
-      let blob = await new Promise(resolve => canvasElem.toBlob(resolve, 'image/png'));
+      let blob = await new promise(resolve => canvasElem.toBlob(resolve, 'image/png'));
       let response = await fetch('/article/fetch/post/image', {
         method: 'POST',
         body: blob
       });
 
-      // server menanggapi dengan konfirmasi dan ukuran gambar
+      // *server* menanggapi dengan konfirmasi dan ukuran gambar
       let result = await response.json();
       alert(result.message);
     }
@@ -266,7 +265,7 @@ Di contoh ini, ada `<canvas>` dimana kita bisa menggambar dengan memindahkan mou
 </body>
 ```
 
-Perlu dicatat, disini kita tidak mengatur header `Content-Type` secara manual, karena sebuah objek `Blob` memiliki tipe built-in (`image/png`, di hasilkan menjadi `toBlob`). Untuk tipe objek `Blob` menjadi nilai dari `Content-Type`.
+Perlu dicatat, disini kita tidak akan mengatur *header* `Content-Type` secara manual, karena sebuah objek `Blob` memiliki tipe *built-in* (`image/png`, di hasilkan menjadi `toBlob`). Untuk tipe objek `Blob` menjadi nilai dari `Content-Type`.
 
 Fungsi `submit()` bisa ditulis ulang tanpa `async/await` seperti ini:
 
@@ -289,7 +288,7 @@ Permintaan fetch biasanya terdiri dari dua pemanggilan `await`:
 
 ```js
 let response = await fetch(url, options); //menyelesaikan dengan tanggapan header
-let result = await response.json(); // membaca body sebagai json
+let result = await response.json(); // membaca *body* sebagai json
 ```
 
 Atau, tanpa `await`:
@@ -305,7 +304,7 @@ Properti tanggapan:
 - `response.ok` -- `true` jika status 200-299.
 - `response.headers` -- seperti objek Map dengan headers HTTP.
 
-Metode untuk mendapatkan tanggapan body:
+Metode untuk mendapatkan tanggapan *body*:
 - **`response.text()`** -- mengembalikan tanggapan sebagai teks,
 - **`response.json()`** -- menguraikan tanggapan sebagai objek JSON,
 - **`response.formData()`** -- mengembalikan tanggapan sebagai objek `FormData` ( pengkodean form/multipart , lihat bab selanjutnya),
@@ -314,7 +313,7 @@ Metode untuk mendapatkan tanggapan body:
 
 Option Fetch sejauh ini:
 - `method` -- metode HTTP,
-- `headers` -- sebuah objek dengan permintaan headers (tidak semua header di izinkan),
-- `body` -- data untuk mengirimkan (permintaan body) sebagai objek `string`, `FormData`, `BufferSource`, `Blob` atau `UrlSearchParams`.
+- `headers` -- sebuah objek dengan permintaan *headers* (tidak semua *header* di izinkan),
+- `body` -- data untuk mengirimkan (permintaan *body*) sebagai objek `string`, `FormData`, `BufferSource`, `Blob` atau `UrlSearchParams`.
 
 di bab selanjutnya kita akan melihat lebih banyak option dan kasus penggunaan `fetch`.
