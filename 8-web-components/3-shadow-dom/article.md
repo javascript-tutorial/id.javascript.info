@@ -141,6 +141,7 @@ Sebagai contoh:
 - Compatibility: <https://caniuse.com/#feat=shadowdomv1>
 - Shadow DOM disebutkan dalam banyak spesifikasi lainnya, misalnya [DOM Parsing](https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin) menentukan bahwa shadow root memiliki `innerHTML`.
 
+
 ## Ringkasan
 
 Shadow DOM adalah cara untuk membuat DOM komponen-lokal.
