@@ -1,28 +1,28 @@
 # Shadow DOM
 
-Shadow DOM serves for encapsulation. It allows a component to have its very own "shadow" DOM tree, that can't be accidentally accessed from the main document, may have local style rules, and more.
+Shadow DOM berfungsi untuk enkapsulasi. Ia memungkinkan sebuah komponen memiliki pohon DOM "bayangan" sendiri, yang tidak dapat diakses secara tidak sengaja dari dokumen utama, memungkinkan untuk memiliki aturan gaya secara lokal, dan banyak lagi.
 
 ## Built-in shadow DOM
 
-Did you ever think how complex browser controls are created and styled?
+Pernahkah anda berpikir betapa rumitnya kontrol browser dibuat dan ditata?
 
-Such as `<input type="range">`:
+Seperti `<input type="range">`:
 
 <p>
 <input type="range">
 </p>
 
-The browser uses DOM/CSS internally to draw them. That DOM structure is normally hidden from us, but we can see it in developer tools. E.g. in Chrome, we need to enable in Dev Tools "Show user agent shadow DOM" option.
+Browser menggunakan DOM / CSS secara internal untuk menggambarnya. Struktur DOM itu biasanya tersembunyi dari kita, tetapi kita dapat melihatnya di alat pengembang. Misalnya, di Chrome, kita perlu mengaktifkan di Dev Tools opsi "Show user agent shadow DOM".
 
-Then `<input type="range">` looks like this:
+Kemudian `<input type ="range">` terlihat seperti ini:
 
 ![](shadow-dom-range.png)
 
-What you see under `#shadow-root` is called "shadow DOM".
+Apa yang anda lihat di bawah `#shadow-root` disebut "shadow DOM".
 
-We can't get built-in shadow DOM elements by regular JavaScript calls or selectors. These are not regular children, but a powerful encapsulation technique.
+Kita tidak bisa mendapatkan elemen shadow DOM bawaan dengan panggilan atau *selectors* JavaScript biasa. Ini bukan anak biasa, tetapi teknik enkapsulasi yang kuat.
 
-In the example above, we can see a useful attribute `pseudo`. It's non-standard, exists for historical reasons. We can use it style subelements with CSS, like this:
+Dalam contoh di atas, kita dapat melihat atribut yang berguna yaitu `pseudo`. Ini non-standar, ada karena alasan historis. Kita dapat menggunakannya untuk memberi gaya pada subelemen dengan CSS, seperti ini:
 
 ```html run autorun
 <style>
@@ -35,22 +35,22 @@ input::-webkit-slider-runnable-track {
 <input type="range">
 ```
 
-Once again, `pseudo` is a non-standard attribute. Chronologically, browsers first started to experiment with internal DOM structures to implement controls, and then, after time, shadow DOM was standardized to allow us, developers, to do the similar thing.
+Sekali lagi, `pseudo` adalah atribut non-standar. Secara kronologis, browser pertama kali mulai bereksperimen dengan struktur DOM internal untuk mengimplementasikan kontrol, dan kemudian, setelah beberapa waktu, shadow DOM distandarisasi untuk memungkinkan kami, pengembang, melakukan hal serupa.
 
-Further on, we'll use the modern shadow DOM standard, covered by [DOM spec](https://dom.spec.whatwg.org/#shadow-trees) other related specifications.
+Selanjutnya, kita akan menggunakan standar shadow DOM modern, yang dicakup oleh [DOM Spec](https://dom.spec.whatwg.org/#shadow-trees) terkait spesifikasi lainnya.
 
 ## Shadow tree
 
-A DOM element can have two types of DOM subtrees:
+Elemen DOM dapat memiliki dua jenis subpohon DOM:
 
-1. Light tree -- a regular DOM subtree, made of HTML children. All subtrees that we've seen in previous chapters were "light".
-2. Shadow tree -- a hidden DOM subtree, not reflected in HTML, hidden from prying eyes.
+1. Light tree -- subpohon DOM biasa, terbuat dari anak-anak HTML. Semua subpohon yang telah kita lihat di bab sebelumnya adalah termasuk "light".
+2. Shadow tree -- subpohon DOM tersembunyi, tidak tercetak dalam HTML, tersembunyi dari mata-mata.
 
-If an element has both, then the browser renders only the shadow tree. But we can setup a kind of composition between shadow and light trees as well. We'll see the details later in the chapter <info:slots-composition>.
+Jika sebuah elemen memiliki keduanya, browser hanya akan merender shadow tree. Tapi kita bisa mengatur semacam komposisi antara shadow dan light tree juga. Kita akan melihat detailnya nanti di bab <info:slots-composition>.
 
-Shadow tree can be used in Custom Elements to hide component internals and apply component-local styles.
+Shadow tree dapat digunakan di Elemen Kustom untuk menyembunyikan internal komponen dan menerapkan gaya lokal-komponen.
 
-For example, this `<show-hello>` element hides its internal DOM in shadow tree:
+Misalnya, elemen `<show-hello>` ini menyembunyikan DOM internalnya di pohon bayangan:
 
 ```html run autorun height=60
 <script>
@@ -67,41 +67,41 @@ customElements.define('show-hello', class extends HTMLElement {
 <show-hello name="John"></show-hello>
 ```
 
-That's how the resulting DOM looks in Chrome dev tools, all the content is under "#shadow-root":
+Begitulah tampilan DOM yang dihasilkan di alat pengembang Chrome, semua konten berada di bawah "#shadow-root":
 
 ![](shadow-dom-say-hello.png)
 
-First, the call to `elem.attachShadow({mode: …})` creates a shadow tree.
+Pertama, panggilan ke `elem.attachShadow ({mode:…})` adalah untuk membuat pohon bayangan.
 
-There are two limitations:
-1. We can create only one shadow root per element.
-2. The `elem` must be either a custom element, or one of: "article", "aside", "blockquote", "body", "div", "footer", "h1..h6", "header", "main" "nav", "p", "section", or "span". Other elements, like `<img>`, can't host shadow tree.
+Ada dua batasan:
+1. Kita hanya dapat membuat satu shadow root per elemen.
+2. `Elem` harus berupa elemen kustom, atau salah satu dari: "article", "aside", "blockquote", "body", "div", "footer", "h1..h6", "header", "main" "nav", "p", "section", atau "span". Elemen lain, seperti `<img>`, tidak dapat menjadi host pohon bayangan.
 
-The `mode` option sets the encapsulation level. It must have any of two values:
-- `"open"` -- the shadow root is available as `elem.shadowRoot`.
+Opsi `mode` mengatur tingkat enkapsulasi. `mode` harus memiliki salah satu dari dua nilai:
+- `"open"` -- *shadow root* tersedia sebagai `elem.shadowRoot`.
 
-    Any code is able to access the shadow tree of `elem`.   
-- `"closed"` -- `elem.shadowRoot` is always `null`.
+    Kode apa pun dapat mengakses pohon bayangan dari `elem`.  
+- `"closed"` -- `elem.shadowRoot` selalu bernilai `null`.
 
-    We can only access the shadow DOM by the reference returned by `attachShadow` (and probably hidden inside a class). Browser-native shadow trees, such as  `<input type="range">`, are closed. There's no way to access them.
+    Kita hanya bisa mengakses shadow DOM dengan referensi yang dikembalikan oleh `attachShadow` (dan mungkin tersembunyi di dalam kelas). Shadow tree asli browser, seperti `<input type =" range ">`, ditutup. Tidak ada cara untuk mengaksesnya.
 
-The [shadow root](https://dom.spec.whatwg.org/#shadowroot), returned by `attachShadow`, is like an element: we can use `innerHTML` or DOM methods, such as `append`, to populate it.
+[Shadow root](https://dom.spec.whatwg.org/#shadowroot), dikembalikan oleh `attachShadow`, seperti sebuah elemen: kita bisa menggunakan metode `innerHTML` atau DOM, seperti `append`, untuk mengisinya.
 
-The element with a shadow root is called a "shadow tree host", and is available as the shadow root `host` property:
+Elemen dengan sebuah shadow root disebut "shadow three host", dan tersedia sebagai properti `host` root bayangan:
 
 ```js
-// assuming {mode: "open"}, otherwise elem.shadowRoot is null
+// dengan asumsi {mode: "open"}, jika tidak nilai elem.shadowRoot adalah null
 alert(elem.shadowRoot.host === elem); // true
 ```
 
-## Encapsulation
+## Enkapsulasi
 
-Shadow DOM is strongly delimited from the main document:
+Shadow DOM sangat dibatasi dari dokumen utama:
 
-1. Shadow DOM elements are not visible to `querySelector` from the light DOM. In particular,  Shadow DOM elements may have ids that conflict with those in the light DOM. They must be unique only within the shadow tree.
-2. Shadow DOM has own stylesheets. Style rules from the outer DOM don't get applied.
+1. Elemen shadow DOM tidak terlihat oleh `querySelector` dari light DOM. Secara khusus, elemen Shadow DOM mungkin memiliki ID yang bertentangan dengan ID yang ada di light DOM. Mereka harus unik hanya di dalam shadow tree.
+2. Shadow DOM memiliki stylesheet sendiri. Aturan gaya dari DOM luar tidak diterapkan.
 
-For example:
+Sebagai contoh:
 
 ```html run untrusted height=40
 <style>
@@ -116,7 +116,7 @@ For example:
 <script>
   elem.attachShadow({mode: 'open'});
 *!*
-    // shadow tree has its own style (2)
+    // shadow tree memiliki gaya tersendiri (2)
 */!*
   elem.shadowRoot.innerHTML = `
     <style> p { font-weight: bold; } </style>
@@ -124,34 +124,33 @@ For example:
   `;
 
 *!*
-  // <p> is only visible from queries inside the shadow tree (3)
+  // <p> hanya terlihat dari kueri di dalam shadow tree (3)
 */!*
   alert(document.querySelectorAll('p').length); // 0
   alert(elem.shadowRoot.querySelectorAll('p').length); // 1
 </script>  
 ```
 
-1. The style from the document does not affect the shadow tree.
-2. ...But the style from the inside works.
-3. To get elements in shadow tree, we must query from inside the tree.
+1. Gaya dari dokumen tidak mempengaruhi shadow tree.
+2. ...Tapi gaya dari dalam berpengaruh.
+3. Untuk mendapatkan elemen di shadow tree, kita harus melakukan kueri dari dalam tree.
 
-## References
+## Referensi
 
 - DOM: <https://dom.spec.whatwg.org/#shadow-trees>
 - Compatibility: <https://caniuse.com/#feat=shadowdomv1>
-- Shadow DOM is mentioned in many other specifications, e.g. [DOM Parsing](https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin) specifies that shadow root has `innerHTML`.
+- Shadow DOM disebutkan dalam banyak spesifikasi lainnya, misalnya [DOM Parsing](https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin) menentukan bahwa shadow root memiliki `innerHTML`.
 
+## Ringkasan
 
-## Summary
+Shadow DOM adalah cara untuk membuat DOM komponen-lokal.
 
-Shadow DOM is a way to create a component-local DOM.
+1. `shadowRoot = elem.attachShadow({mode: open|closed})` -- membuat shadow DOM untuk `elem`. Jika `mode="open"`, maka itu dapat diakses sebagai properti `elem.shadowRoot`.
+2. Kita bisa mengisi `shadowRoot` menggunakan `innerHTML` atau metode DOM lainnya.
 
-1. `shadowRoot = elem.attachShadow({mode: open|closed})` -- creates shadow DOM for `elem`. If `mode="open"`, then it's accessible as `elem.shadowRoot` property.
-2. We can populate `shadowRoot` using `innerHTML` or other DOM methods.
+Elemen shadow DOM:
+- Memiliki id-nya sendiri,
+- Tidak terlihat oleh selectors JavaScript dari dokumen utama, seperti `querySelector`,
+- Gunakan gaya hanya dari shadow tree, bukan dari dokumen utama.
 
-Shadow DOM elements:
-- Have their own ids space,
-- Invisible to JavaScript selectors from the main document, such as `querySelector`,
-- Use styles only from the shadow tree, not from the main document.
-
-Shadow DOM, if exists, is rendered by the browser instead of so-called "light DOM" (regular children). In the chapter <info:slots-composition> we'll see how to compose them.
+Shadow DOM, jika ada, akan dirender oleh browser alih-alih yang disebut "light DOM" (turunan biasa). Dalam bab <info:slots-composition> kita akan melihat bagaimana menyusunnya.
