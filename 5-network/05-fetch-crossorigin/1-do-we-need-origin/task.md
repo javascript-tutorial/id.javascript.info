@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Why do we need Origin?
+# Kenapa kita membutuhkan Origin?
 
-As you probably know, there's HTTP-header `Referer`, that usually contains an url of the page which initiated a network request.
+Seperti yang kamu ketahui, Ada pembaca *header* HTTP *`Referer`*, yang biasanya berisi *url* dari halaman yang dimulai dari *request* jaringan.
 
-For instance, when fetching `http://google.com` from `http://javascript.info/some/url`, the headers look like this:
+Misalnya, saat pengambilan `http://google.com` dari `http://javacript.info/some/url`, *header* terlihat seperti ini:
 
 ```
 Accept: */*
@@ -20,9 +20,9 @@ Referer: http://javascript.info/some/url
 */!*
 ```
 
-As you can see, both `Referer` and `Origin` are present.
+Seperti yang kamu lihat, baik *`Referer`* dan *`Origin`* ada.
 
-The questions:
+Pertanyaan:
 
-1. Why `Origin` is needed, if `Referer` has even more information?
-2. Is it possible that there's no `Referer` or `Origin`, or is it incorrect?
+1. Kenapa *`Origin`* dibutuhkan, jika *`Referer`* memiliki lebih banyak informasi?
+2. Apakah mungkin jika *`fetch`* tidak memakai *`Referer`* atau *`Origin`*, atau apakah *`fetch`* itu salah?

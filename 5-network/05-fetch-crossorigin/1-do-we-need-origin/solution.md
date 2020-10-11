@@ -1,9 +1,9 @@
-We need `Origin`, because sometimes `Referer` is absent. For instance, when we `fetch` HTTP-page from HTTPS (access less secure from more secure), then there's no `Referer`.
+Kita membutuhkan *`Origin`*, karena terkadang *`Referer`* tidak digunakan. Misalnya, saat kita *`fetch`* halaman HTTP dari HTTPS(mengakses yang kurang aman dari yang aman), maka tidak memakai *`Referer`*.
 
-The [Content Security Policy](http://en.wikipedia.org/wiki/Content_Security_Policy) may forbid sending a `Referer`.
+[Kebijakan keamanan konten](http://en.wikipedia.org/wiki/Content_Security_Policy) mungkin akan melarang untuk pengiriman *`Referer`*.
 
-As we'll see, `fetch` has options that prevent sending the `Referer` and even allow to change it (within the same site).
+Seperti yang kita lihat, *`fetch`* memiliki opsi untuk mencegah mengirim `Referer`, dan mengizinkan untuk mengubahnya ( di situs yang sama).
 
-By specification, `Referer` is an optional HTTP-header.
+Dari Spesifikasi, *`Referer`* adalah header HTTP opsional.
 
-Exactly because `Referer` is unreliable, `Origin` was invented. The browser guarantees correct `Origin` for cross-origin requests.
+Tepatnya karena *`Referer`* tidak dapat diandalkan, dibuat lah `Origin`. Browser menjamin *`Origin` *yang benar untuk *request* *cross-origin*.
