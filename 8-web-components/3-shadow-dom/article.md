@@ -87,7 +87,7 @@ Opsi `mode` mengatur tingkat enkapsulasi. `mode` harus memiliki salah satu dari 
 
 [Shadow root](https://dom.spec.whatwg.org/#shadowroot), dikembalikan oleh `attachShadow`, seperti sebuah elemen: kita bisa menggunakan metode `innerHTML` atau DOM, seperti `append`, untuk mengisinya.
 
-Elemen dengan sebuah shadow root disebut "shadow three host", dan tersedia sebagai properti `host` root bayangan:
+Elemen dengan sebuah shadow root disebut "shadow tree host", dan tersedia sebagai properti `host` root bayangan:
 
 ```js
 // dengan asumsi {mode: "open"}, jika tidak nilai elem.shadowRoot adalah null
