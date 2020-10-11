@@ -4,19 +4,19 @@
 
     while (url) {
       const response = await fetch(url, {
-        headers: {'User-Agent': 'Our script'}, // github requires user-agent header
+        headers: { 'User-Agent': 'Our script' }, // github membutuhkan header user-agent
       });
 
-      const body = await response.json(); // parses response as JSON (array of commits)
+      const body = await response.json(); // mem-parsing respons sebagai JSON (senarai commits)
 
-      // the URL of the next page is in the headers, extract it
+      // URL halaman berikutnya ada di header, ekstrak itu
       let nextPage = response.headers.get('Link').match(/<(.*?)>; rel="next"/);
       nextPage = nextPage?.[1];
 
       url = nextPage;
 
-      // yield commits one by one, when they finish - fetch a new page url
-      for(let commit of body) {
+      // menghasilkan commit satu per satu, setelah selesai - ambil url halaman baru
+      for (let commit of body) {
         yield commit;
       }
     }
