@@ -26,11 +26,7 @@ Akan tetapi, perbedaan ini sangatlah penting untuk dimengerti apalagi ketika men
 
 Variabel, dideklarasikan dengan `var`, baik function-wide ataupun global. Mereka terlihat melalui blok.
 
-<<<<<<< HEAD
 Contohnya:
-=======
-Variables, declared with `var`, are either function-scoped or global-scoped. They are visible through blocks.
->>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 
 ```js run
@@ -66,12 +62,7 @@ for (var i = 0; i < 10; i++) {
 }
 
 *!*
-<<<<<<< HEAD
 alert(i); // 10, "i" terlihat setelah loop, itu adalah global variabel
-=======
-alert(i);   // 10, "i" is visible after loop, it's a global variable
-alert(one); // 1, "one" is visible after loop, it's a global variable
->>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 */!*
 ```
 
@@ -90,11 +81,7 @@ sayHi();
 alert(phrase); // Error: frasa tidak terdefinisi (periksa Developer Console)
 ```
 
-<<<<<<< HEAD
 Seperti yang bisa kita lihat `var` menembus `if`, `for` atau blok kode lainnya. Itu karena sejak dahulu di blok Javascript tidak memiliki Lingkungan Leksikal. dan `var` adalah sisanya. 
-=======
-As we can see, `var` pierces through `if`, `for` or other code blocks. That's because a long time ago in JavaScript, blocks had no Lexical Environments, and `var` is a remnant of that.
->>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 ## "var" mentoleransi pendeklarasian ulang
 
@@ -210,25 +197,13 @@ sayHi();
 
 Karena semua deklarasi `var` diproses pada awal fungsi, kita dapat mendeferensikanya dimana saja. tetapi variabel tidak terdefinisi sampai penugasan.
 
-<<<<<<< HEAD
 Dalam kedua contoh diatas `alert` bekerja tanpa error, karena ada variabel `pharse`. Tetapi karena nilainya belum ditetapkan, sehingga menampilkan `undefined`.
-=======
-In both examples above, `alert` runs without an error, because the variable `phrase` exists. But its value is not yet assigned, so it shows `undefined`.
->>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 ## IIFE
 
-<<<<<<< HEAD
 Karena di masa lalu hanya ada `var`, dan ia tidak memiliki visibilitas tingkat blok, programmer menemukan cara untuk menirunya. cara mereka melakukanya dinamakan “immediately-invoked function expressions” (disingkat IIFE). 
 Itu bukanlah sesuatu yang harus kita gunakan saat ini, tetapi anda dapat menemukannya di skip lama
 Sebuah IIFE terlihat seperti ini:
-=======
-In the past, as there was only `var`, and it has no block-level visibility, programmers invented a way to emulate it. What they did was called "immediately-invoked function expressions" (abbreviated as IIFE).
-
-That's not something we should use nowadays, but you can find them in old scripts.
-
-An IIFE looks like this:
->>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 ```js run
 (function() {
@@ -240,22 +215,12 @@ An IIFE looks like this:
 })();
 ```
 
-<<<<<<< HEAD
 Disini ekspresi fungsi dibuat dan segera dipangil. Sehingga kode dieksekusi segera dan memiliki variabel pribadi sendiri.
-=======
-Here, a Function Expression is created and immediately called. So the code executes right away and has its own private variables.
-
-The Function Expression is wrapped with parenthesis `(function {...})`, because when JavaScript engine encounters `"function"` in the main code, it understands it as the start of a Function Declaration. But a Function Declaration must have a name, so this kind of code will give an error:
->>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 Fungsi ekspresi dibungkus dengan tanda kurung `(function {...})`, karena ketika Javascript bertemu `"function"` dalam aliran kode utama, ia memahaminya sebagai awal dari Deklarasi Fungsi. tetapi sebuah Deklarasi Fungsi harus memiliki nama, sehingga kode seperti ini akan menghasilkan error:
 ```js run
-<<<<<<< HEAD
 // mencoba untuk mendeklarasikan dan langsung memanggil fungsinya
-=======
-// Tries to declare and immediately call a function
->>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
-function() { // <-- Error: Function statements require a function name
+function() { // <-- Error: Statmen Function membutuhkan sebuah nama fungsi
 
   var message = "Hello";
 
@@ -302,13 +267,8 @@ Dalam semua kasus diatas kami mendeklarasikan sebuah Ekspresi fungsi dan menjala
 
 Ada dua perbedaan utama dari `var` dibandingkan dengan `let/const`;
 
-<<<<<<< HEAD
 1. `var` variabel tidak memiliki ruang lingkup blok, mereka terlihat minimum pada tingkat fungsi.
 2. Deklarasi `var` diproses saat fungsi dimulai (skrip dimulai untuk global).
-=======
-1. `var` variables have no block scope; their visibility is scoped to current function, or global, if declared outside function.
-2. `var` declarations are processed at function start (script start for globals).
->>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 Ada satu perbedaan kecil terkait objek global, yang akan kita bahas pada bab selanjutnya.
 
