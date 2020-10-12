@@ -1,47 +1,48 @@
-# Error handling, "try..catch"
+# Penanganan eror, "try..catch"
 
-No matter how great we are at programming, sometimes our scripts have errors. They may occur because of our mistakes, an unexpected user input, an erroneous server response, and for a thousand other reasons.
 
-Usually, a script "dies" (immediately stops) in case of an error, printing it to console.
+Tidak peduli seberapa jagonya kita dalam pemograman, terkadang kodingan kita memiliki banyak eror. Mereka mungkin muncul dikarenakan kesalahan kita, input dari user yang tidak terduga, eror respon dari server, dan juga berbagai macam alasan lainnya.
 
-But there's a syntax construct `try..catch` that allows us to "catch" errors so the script can, instead of dying, do something more reasonable.
+Biasanya, sebuah kodingan/script "terhenti" (tiba-tiba berhenti) dikarenakan adanya eror, menampilkan erornya pada console. 
 
-## The "try..catch" syntax
+Tapi terdapat sebuah sintaks `try..catch` yang memperbolehkan kita untuk "menangkap" hasil eror sehingga script bisa berjalan sesuai dengan arahan kita dibanding hanya berhenti.
 
-The `try..catch` construct has two main blocks: `try`, and then `catch`:
+## Sintaks "try..catch"
+
+Sintaks `try..catch` membentuk dua bagian utama: pertama `try`, dan kemudian `catch`:
 
 ```js
 try {
 
-  // code...
+  // kodingan disini
 
 } catch (err) {
 
-  // error handling
+  // Penanganan jika eror
 
 }
 ```
 
-It works like this:
+Mereka akan bekerja seperti ini:
 
-1. First, the code in `try {...}` is executed.
-2. If there were no errors, then `catch(err)` is ignored: the execution reaches the end of `try` and goes on, skipping `catch`.
-3. If an error occurs, then the `try` execution is stopped, and control flows to the beginning of `catch(err)`. The `err` variable (we can use any name for it) will contain an error object with details about what happened.
+1. Pertama, kodingan pada `try {...}` akan dijalankan.
+2. Jika tidak terdapat eror, maka `catch(err)` akan dihiraukan: prosesnya akan mencapai ujung bagian `try` dan kemudian berlanjut, melewati bagian `catch`.
+3. Jika terdapat eror, maka bagian `try` akan berhenti berjalan, dan alur prosesnya akan berlanjut di pada awal bagian `catch(err)`. Variabel `err` (yang mana kita bisa ganti dengan nama apapun) akan mengandung eror objek dengan keterangan eror didalamnya.
 
 ![](try-catch-flow.svg)
 
-So, an error inside the `try {…}` block does not kill the script -- we have a chance to handle it in `catch`.
+Jadi, sebuah eror didalam bagian `try {…}` tidak akan memberhentikan kodingan tersebut -- kita memiliki sebuah kesempatan untuk menanganinya pada bagian `catch`.
 
-Let's look at some examples.
+Mari kita lihat contoh lainnya.
 
-- An errorless example: shows `alert` `(1)` and `(2)`:
+- Sebuah contoh tanpa eror: menampilkan `alert` `(1)` and `(2)`:
 
     ```js run
     try {
 
       alert('Start of try runs');  // *!*(1) <--*/!*
 
-      // ...no errors here
+      // ...tidak ada eror disini
 
       alert('End of try runs');   // *!*(2) <--*/!*
 
@@ -51,7 +52,7 @@ Let's look at some examples.
 
     }
     ```
-- An example with an error: shows `(1)` and `(3)`:
+- Sebuah contoh dengan eror: shows `(1)` and `(3)`:
 
     ```js run
     try {
@@ -72,10 +73,11 @@ Let's look at some examples.
     ```
 
 
-````warn header="`try..catch` only works for runtime errors"
-For `try..catch` to work, the code must be runnable. In other words, it should be valid JavaScript.
+````warn header="`try..catch` hanya akan bekerja pada eror runtime"
+Untuk `try..catch` agar bekerja, kodingan tersebut harus bisa dijalankan. Dengan artian lain, itu harus dalam bahasa javascript yang valid.
 
-It won't work if the code is syntactically wrong, for instance it has unmatched curly braces:
+Mereka tidak akan bekerja jika kodingan tersebut secara sintaks salah, sebagai contoh jika mereka memiliki kurung kurawal yang tidak sama:
+
 
 ```js run
 try {
@@ -84,33 +86,32 @@ try {
   alert("The engine can't understand this code, it's invalid");
 }
 ```
+Mesin Javascript pertama membaca kodingan tersebut, dan menjalankannya. eror yang terjadi pada saat proses pembacaan disebut sebagai eror "parse-time" dan tidak dapat dipulihkan (dari dalam kodingan tersebut). Itu dikarenakan mesin javascript tidak mengerti kodingan .
 
-The JavaScript engine first reads the code, and then runs it. The errors that occur on the reading phase are called "parse-time" errors and are unrecoverable (from inside that code). That's because the engine can't understand the code.
-
-So, `try..catch` can only handle errors that occur in valid code. Such errors are called "runtime errors" or, sometimes, "exceptions".
+Jadi, `try..catch` hanya dapat menangani eror yang terjadi pada kodingan yang valid. eror demikian biasanya dinamakan sebagai "eror runtime" atau terkadang, "exceptions".
 ````
 
 
-````warn header="`try..catch` works synchronously"
-If an exception happens in "scheduled" code, like in `setTimeout`, then `try..catch` won't catch it:
+````warn header="`try..catch` bekerja secara sinkronis"
+Jika sebuah exception terjadi pada kodingan yang "terjadwal", seperti pada `setTimeout`, maka `try..catch` won't catch it: 
 
 ```js run
 try {
   setTimeout(function() {
-    noSuchVariable; // script will die here
+    noSuchVariable; // kodingan akan berhenti disini
   }, 1000);
 } catch (e) {
   alert( "won't work" );
 }
 ```
 
-That's because the function itself is executed later, when the engine has already left the `try..catch` construct.
+Itu dikarenakan fungsi tersebut dijalankan nanti, ketika mesin javascript telah meninggalkan bagian pada `try..catch`.
 
-To catch an exception inside a scheduled function, `try..catch` must be inside that function:
+Untuk menangkap sebuah exception didalam sebuah fungsi yang terjadwal, `try..catch` harus terjadi didalam fungsi tersebut:
 ```js run
 setTimeout(function() {
   try {    
-    noSuchVariable; // try..catch handles the error!
+    noSuchVariable; // try..catch menangani eror tersebut!
   } catch {
     alert( "error is caught here!" );
   }
@@ -118,32 +119,33 @@ setTimeout(function() {
 ```
 ````
 
-## Error object
+## Eror Objek
 
-When an error occurs, JavaScript generates an object containing the details about it. The object is then passed as an argument to `catch`:
+Ketika sebuah eror terjadi, Javascript menghasilkan sebuah ojek yang berisikan keterangan terkait eror tersebut. Objek itu kemudian dilewatkan sebagai sebuah argumen pada bagian `catch`:
 
 ```js
 try {
   // ...
-} catch(err) { // <-- the "error object", could use another word instead of err
+} catch(err) { // <-- "error object", bisa menggunakan kata lain selain err
   // ...
 }
 ```
 
-For all built-in errors, the error object has two main properties:
+Untuk semua eror bawaan, eror objek memiliki dua properti utama:
 
 `name`
-: Error name. For instance, for an undefined variable that's `"ReferenceError"`.
+: Nama error. sebagai contoh, untuk variable yang belum terdefinisikan maka itu disebut `"ReferenceError"`.
 
 `message`
-: Textual message about error details.
+: Pesan yang ada didalam eror tersebut.
 
-There are other non-standard properties available in most environments. One of most widely used and supported is:
+Terdapat properti non-standard lainnya pada kebanyakan 
+Ada properti non-standar lain yang tersedia di sebagian besar lingkungan. Salah satu yang paling banyak digunakan dan didukung ialah:
 
 `stack`
-: Current call stack: a string with information about the sequence of nested calls that led to the error. Used for debugging purposes.
+: Call stack saat ini: string dengan informasi tentang urutan panggilan bertingkat yang menyebabkan kesalahan. Digunakan untuk tujuan debugging.
 
-For instance:
+Sebagai contoh:
 
 ```js run untrusted
 try {
@@ -161,51 +163,51 @@ try {
 }
 ```
 
-## Optional "catch" binding
+## Opsional "catch" binding
 
 [recent browser=new]
 
-If we don't need error details, `catch` may omit it:
+Jika kita tidak butuh detail tentang eror, `catch` mungkin bisa menghilangkannya:
 
 ```js
 try {
   // ...
-} catch { // <-- without (err)
+} catch { // <-- tanpa (err)
   // ...
 }
 ```
 
-## Using "try..catch"
+## Menggunakan "try..catch"
 
-Let's explore a real-life use case of `try..catch`.
+Mari kita telusuri contoh penggunaan nyata dari `try..catch`.
 
-As we already know, JavaScript supports the [JSON.parse(str)](mdn:js/JSON/parse) method to read JSON-encoded values.
+Seperti yang telah kita ketahui, Javascript mendukung method [JSON.parse(str)](mdn:js/JSON/parse) yang membaca dari nilai JSON-encoded. 
 
-Usually it's used to decode data received over the network, from the server or another source.
+Biasanya digunakan untuk memecahkan kode data yang diterima melalui jaringan, dari server atau sumber lain.
 
-We receive it and call `JSON.parse` like this:
+Kita menerimanya dan memanggil `JSON.parse` seperti ini:
 
 ```js run
-let json = '{"name":"John", "age": 30}'; // data from the server
+let json = '{"name":"John", "age": 30}'; // data dari server
 
 *!*
-let user = JSON.parse(json); // convert the text representation to JS object
+let user = JSON.parse(json); // mengonversi representasi teks ke objek JS
 */!*
 
-// now user is an object with properties from the string
+// sekarang pengguna adalah objek dengan properti dari string
 alert( user.name ); // John
 alert( user.age );  // 30
 ```
 
-You can find more detailed information about JSON in the <info:json> chapter.
+Kalian dapat menemukan informasi lebih detail tentang JSON di bab <info: json>.
 
-**If `json` is malformed, `JSON.parse` generates an error, so the script "dies".**
+**Jika format `json` salah,` JSON.parse` menghasilkan error, sehingga skrip "mati".**
 
-Should we be satisfied with that? Of course not!
+Cukupkah kita puas dengan itu? Tentu saja tidak!
 
-This way, if something's wrong with the data, the visitor will never know that (unless they open the developer console). And people really don't like when something "just dies" without any error message.
+Dengan cara ini, jika ada yang salah dengan datanya, pengunjung tidak akan pernah mengetahuinya (kecuali mereka membuka konsol pengembang). Dan orang biasanya tidak suka ketika sesuatu "berhenti begitu saja" tanpa ada pesan kesalahan.
 
-Let's use `try..catch` to handle the error:
+Mari gunakan `try..catch` untuk menangani kesalahan:
 
 ```js run
 let json = "{ bad json }";
@@ -213,52 +215,50 @@ let json = "{ bad json }";
 try {
 
 *!*
-  let user = JSON.parse(json); // <-- when an error occurs...
+  let user = JSON.parse(json); // <-- ketika terjadi sebuah eror...
 */!*
-  alert( user.name ); // doesn't work
+  alert( user.name ); // tidak berjalan
 
 } catch (e) {
 *!*
-  // ...the execution jumps here
+  // ...proses eksekusinya akan lompat kesini
   alert( "Our apologies, the data has errors, we'll try to request it one more time." );
   alert( e.name );
   alert( e.message );
 */!*
 }
 ```
+Di sini kita menggunakan blok `catch` hanya untuk menampilkan pesan, tetapi kita dapat melakukan lebih banyak lagi: mengirim permintaan jaringan baru, menyarankan alternatif kepada pengunjung, mengirim informasi tentang kesalahan ke fasilitas logging, .... Semuanya jauh lebih baik daripada sekedar mati.
 
-Here we use the `catch` block only to show the message, but we can do much more: send a new network request, suggest an alternative to the visitor, send information about the error to a logging facility, ... . All much better than just dying.
+## Melontarkan eror kita sendiri
 
-## Throwing our own errors
+Bagaimana jika `json` secara sintaksis benar, tetapi tidak memiliki properti` name` yang diperlukan?
 
-What if `json` is syntactically correct, but doesn't have a required `name` property?
-
-Like this:
+Seperti ini:
 
 ```js run
-let json = '{ "age": 30 }'; // incomplete data
+let json = '{ "age": 30 }'; // data tidak lengkap
 
 try {
 
-  let user = JSON.parse(json); // <-- no errors
+  let user = JSON.parse(json); // <-- tidak ada eror
 *!*
-  alert( user.name ); // no name!
+  alert( user.name ); // tidak ada nama!
 */!*
 
 } catch (e) {
   alert( "doesn't execute" );
 }
 ```
+Di sini `JSON.parse` berjalan normal, tetapi tidak adanya` nama` sebenarnya merupakan eror bagi kita.
 
-Here `JSON.parse` runs normally, but the absence of `name` is actually an error for us.
+Untuk menyatukan penanganan error, kita akan menggunakan operator `throw`.
 
-To unify error handling, we'll use the `throw` operator.
+### Operator "Throw" 
 
-### "Throw" operator
+Operator `throw` menghasilkan sebuah eror.
 
-The `throw` operator generates an error.
-
-The syntax is:
+Sintaksnya adalah:
 
 ```js
 throw <error object>
