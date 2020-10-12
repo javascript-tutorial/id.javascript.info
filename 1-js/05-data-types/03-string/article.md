@@ -110,7 +110,11 @@ alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus!
 
 Seperti yang kita lihat, kita harus menambahkan backslash di depan petik yang di dalam string `\'`, karena jika tidak petik tersebut akan menandakan akhir dari sebuah string.
 
+<<<<<<< HEAD
 Tentu saja, hanya jenis petik yang sama dengan penutup string yang perlu di "escape". Jadi, solusi yang lebih elegan yaitu mengganti petik satu menjadi petik dua atau backtick:
+=======
+Of course, only the quotes that are the same as the enclosing ones need to be escaped. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 ```js run
 alert( `I'm the Walrus!` ); // I'm the Walrus!
@@ -312,7 +316,11 @@ if (str.indexOf("Widget") != -1) {
 
 #### Trik bitwise NOT
 
+<<<<<<< HEAD
 Salah satu trik lama yang digunakan disini adalah operator [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~`. Operator ini mengubah angka menjadi integer 32-bit (menghilangkan bagian desimal jika ada) lalu menegasikan semua bit pada representasi binernya.
+=======
+One of the old tricks used here is the [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT) `~` operator. It converts the number to a 32-bit integer (removes the decimal part if exists) and then reverses all bits in its binary representation.
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 Dalam praktik, hal tersebut berarti: untuk integer 32-bit `~n` sama dengan `-(n+1)`.
 
@@ -345,7 +353,11 @@ Biasanya tidak direkomendasikan untuk menggunakan fitur bahasa dengan cara yang 
 
 Ingat: `if (~str.indexOf(...))` dibaca sebagai "if ditemukan".
 
+<<<<<<< HEAD
 Untuk lebih detail, karena bilangan yang besar dipotong menjadi 32-bit oleh operator `~`, ada angka lain yang memberikan hasil `0`, angka yang terkecil yaitu `~4294967295=0`. Hal tersebut menyebabkan trik ini benar apabila string yang dites tidak sepanjang itu.
+=======
+To be precise though, as big numbers are truncated to 32 bits by `~` operator, there exist other numbers that give `0`, the smallest is `~4294967295=0`. That makes such check correct only if a string is not that long.
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 Kita dapat melihat bahwa trik ini hanya digunakan di kode yang kuno, karena Javascript modern menyediakan method `.includes` (lihat di bawah).
 

@@ -1,6 +1,10 @@
 # Pengenalan JavaScript
 
+<<<<<<< HEAD
 Mari kita lihat apa yang spesial dari JavaScript, apa saja yang bisa kita buat menggunakan JavaScript, dan teknologi apa yang cocok dengan JavaScript.
+=======
+Let's see what's so special about JavaScript, what we can achieve with it, and what other technologies play well with it.
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 ## Apa itu JavaScript?
 
@@ -73,8 +77,13 @@ Contoh keterbatasan tersebut meliputi:
 
     Browser-browser modern memperbolehkan JavaScript mengakses file, tapi aksesnya dibatasi dan tersedia hanya jika pengguna melakukan hal tertentu, misalnya seperti "menjatuhkan" file ke dalam jendela browser atau memilih file via tag `<input>`.
 
+<<<<<<< HEAD
     Ada beberapa cara untuk berinteraksi dengan kamera/mikrofon dan perangkat-perangkat lainnya, namun mereka butuh ijin khusus pengguna. Jadi sebuah halaman yang memiliki JavaScript tidak bisa mengaktifkan web-camera, memantau sekeliling dan mengirim informasinya ke [NSA] secara diam-diam(https://en.wikipedia.org/wiki/National_Security_Agency).
 - Tab/jendela yang berbeda umumnya tidak ada hubungan sama sekali. Terkadang jendela yang berbeda bisa saling berhubungan juga, misalnya ketika satu jendela menggunakan JavaScript untuk membuka jendela lainnya. Tapi meski demikian, JavaScript dari suatu halaman tak boleh mengakses halaman lainnya jika mereka berasal dari situs yang berbeda (dari domain, protokol, atau port berbeda).
+=======
+    There are ways to interact with camera/microphone and other devices, but they require a user's explicit permission. So a JavaScript-enabled page may not sneakily enable a web-camera, observe the surroundings and send the information to the [NSA](https://en.wikipedia.org/wiki/National_Security_Agency).
+- Different tabs/windows generally do not know about each other. Sometimes they do; for example when one window uses JavaScript to open the other one. But even in this case, JavaScript from one page may not access the other if they come from different sites (from a different domain, protocol or port).
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
     Ini disebut "Same Origin Policy". Untuk melakukan hal tersebut, *kedua halaman* harus sepakat terhadap adanya pertukaran data dan memiliki kode JavaScript khusus yang melakukan hal tersebut. Kita akan membahasnya nanti dalam tutorial ini.
 
@@ -129,6 +138,12 @@ Masih banyak lagi. Tentunya, jika kita menggunakan salah satu bahasa yang ditran
 
 ## Kesimpulan
 
+<<<<<<< HEAD
 - JavaScript awalnya diciptakan sebagai bahasa khusus browser, namun sekarang banyak digunakan di lingkungan lain.
 - Sekarang, JavaScript mempunyai posisi unik sebagai bahasa browser paling banyak diadopsi dengan integrasi penuh dengan HTML/CSS.
 - Ada banyak bahasa yang "ditranspile" ke JavaScript dan menyediakan fitur tertentu. Disarankan untuk mempelajari mereka juga, minimal sebentar, setelah menguasai JavaScript.
+=======
+- JavaScript was initially created as a browser-only language, but it is now used in many other environments as well.
+- Today, JavaScript has a unique position as the most widely-adopted browser language with full integration in HTML/CSS.
+- There are many languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779

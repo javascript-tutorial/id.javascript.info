@@ -155,7 +155,11 @@ Ini juga kasus untuk `for..of`: sintaks tanpa `await` membutuhkan` Symbol.iterat
 
 Sekarang mari kita ingat generator, karena memungkinkan untuk membuat kode iterasi jauh lebih pendek. Seringkali, ketika kita ingin membuat _iterable_, kita akan menggunakan generator.
 
+<<<<<<< HEAD
 Untuk kesederhanaan semata, menghilangkan beberapa hal penting, mereka adalah "fungsi yang menghasilkan nilai". Mereka dijelaskan secara rinci di bab [] (info:generators).
+=======
+Generators are labelled with `function*` (note the star) and use `yield` to generate a value, then we can use `for..of` to loop over them.
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 Generator diberi label dengan `function*` (catat permulaannya) dan gunakan `yield` untuk menghasilkan nilai, kemudian kita dapat menggunakan `for..of` untuk mengulanginya.
 

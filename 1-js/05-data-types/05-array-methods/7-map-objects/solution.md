@@ -25,7 +25,11 @@ alert( usersMapped[0].id ); // 1
 alert( usersMapped[0].fullName ); // John Smith
 ```
 
+<<<<<<< HEAD
 Perhatikan bahwa didalam fungsi arrow kita butuh untuk menggunakan tambahan kurung.
+=======
+Please note that in the arrow functions we need to use additional brackets. 
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 Kita tidak bisa menulis seperti ini:
 ```js

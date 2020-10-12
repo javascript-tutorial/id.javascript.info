@@ -57,7 +57,13 @@ algoritma untuk membandingkan dua string sederhana:
 4. Ulangi sampai string berakhir.
 5. Jika kedua string berakhir pada panjang yang sama, maka mereka sama. Sebaliknya, string lebih panjang yang lebih besar.
 
+<<<<<<< HEAD
 Pada contoh di atas, pembandingan `'Z' > 'A'` menghasilkan pada langkah pertama sedangkan string `"Glow"` dan `"Glee"` dibandingkan karakter-demi-karakter:
+=======
+In the first example above, the comparison `'Z' > 'A'` gets to a result at the first step.
+
+The second comparison `'Glow'` and `'Glee'` needs more steps as strings are compared character-by-character:
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 1. `G` sama dengan `G`.
 2. `l` sama dengan `l`.
