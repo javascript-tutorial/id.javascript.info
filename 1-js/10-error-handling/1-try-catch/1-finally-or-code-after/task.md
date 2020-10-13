@@ -1,12 +1,12 @@
-importance: 5
+Nilai Penting: 5
 
 ---
 
-# Finally or just the code?
+# Finally atau hanya kode biasa?
 
-Compare the two code fragments.
+Bandingkan dua fragmen kode.
 
-1. The first one uses `finally` to execute the code after `try..catch`:
+1. Yang pertama menggunakan `finally` untuk mengeksekusi kode setelah` try..catch`:
 
     ```js
     try {
@@ -19,7 +19,7 @@ Compare the two code fragments.
     */!*
     }
     ```
-2. The second fragment puts the cleaning right after `try..catch`:
+2. Fragmen kedua melakukan pembersihan tepat setelah `try..catch`:
 
     ```js
     try {
@@ -33,6 +33,6 @@ Compare the two code fragments.
     */!*
     ```
 
-We definitely need the cleanup after the work, doesn't matter if there was an error or not.
+Kita pasti membutuhkan pembersihan setelah pekerjaan, tidak masalah apakah ada kesalahan atau tidak.
 
-Is there an advantage here in using `finally` or both code fragments are equal? If there is such an advantage, then give an example when it matters.
+Apakah ada keuntungan di sini dalam menggunakan `finally` atau kedua fragmen kode sama? Jika ada keuntungan seperti itu, berikan contoh ketika itu penting.
