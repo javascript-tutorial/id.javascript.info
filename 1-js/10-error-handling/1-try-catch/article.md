@@ -27,7 +27,7 @@ Mereka akan bekerja seperti ini:
 
 1. Pertama, kodingan pada `try {...}` akan dijalankan.
 2. Jika tidak terdapat eror, maka `catch(err)` akan dihiraukan: prosesnya akan mencapai ujung bagian `try` dan kemudian berlanjut, melewati bagian `catch`.
-3. Jika terdapat eror, maka bagian `try` akan berhenti berjalan, dan alur prosesnya akan berlanjut di pada awal bagian `catch(err)`. Variabel `err` (yang mana kita bisa ganti dengan nama apapun) akan mengandung eror objek dengan keterangan eror didalamnya.
+3. Jika terdapat eror, maka bagian `try` akan berhenti berjalan, dan alur prosesnya akan berlanjut pada awal bagian `catch(err)`. Variabel `err` (yang mana kita bisa ganti dengan nama apapun) akan mengandung eror objek dengan keterangan eror didalamnya.
 
 ![](try-catch-flow.svg)
 
@@ -35,7 +35,7 @@ Jadi, sebuah eror didalam bagian `try {…}` tidak akan memberhentikan kodingan 
 
 Mari kita lihat contoh lainnya.
 
-- Sebuah contoh tanpa eror: menampilkan `alert` `(1)` and `(2)`:
+- Sebuah contoh tanpa eror: menampilkan `alert` `(1)` dan `(2)`:
 
     ```js run
     try {
@@ -52,7 +52,7 @@ Mari kita lihat contoh lainnya.
 
     }
     ```
-- Sebuah contoh dengan eror: shows `(1)` and `(3)`:
+- Sebuah contoh dengan eror: shows `(1)` dan `(3)`:
 
     ```js run
     try {
