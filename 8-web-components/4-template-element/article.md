@@ -1,13 +1,13 @@
 
-# Template element
+# Elemen template
 
-A built-in `<template>` element serves as a storage for HTML markup templates. The browser ignores it contents, only checks for syntax validity, but we can access and use it in JavaScript, to create other elements.
+Elemen `<template>` bawaan berfungsi sebagai penyimpanan untuk template markup HTML. Browser mengabaikan isinya, hanya memeriksa validitas sintaks, tetapi kita dapat mengakses dan menggunakannya dalam JavaScript, untuk membuat elemen lain.
 
-In theory, we could create any invisible element somewhere in HTML for HTML markup storage purposes. What's special about `<template>`?
+Secara teori, kita bisa membuat elemen tak terlihat di suatu tempat di HTML untuk tujuan penyimpanan markup HTML. Apa yang spesial dari `<template>`?
 
-First, its content can be any valid HTML, even if it normally requires a proper enclosing tag.
+Pertama, isinya dapat berupa HTML yang valid, meskipun biasanya membutuhkan tag penutup yang tepat.
 
-For example, we can put there a table row `<tr>`:
+Misalnya, kita dapat meletakkan baris tabel `<tr>` di dalamnya:
 ```html
 <template>
   <tr>
@@ -16,9 +16,9 @@ For example, we can put there a table row `<tr>`:
 </template>
 ```
 
-Usually, if we try to put `<tr>` inside, say, a `<div>`, the browser detects the invalid DOM structure and "fixes" it, adds `<table>` around. That's not what we want. On the other hand, `<template>` keeps exactly what we place there.
+Biasanya, jika kita mencoba untuk meletakkan `<tr>` di dalam, katakanlah, sebuah `<div>`, browser mendeteksi struktur DOM yang tidak valid dan "memperbaikinya", menambahkan `<table>` di sekitarnya. Bukan itu yang kita inginkan. Di sisi lain, `<template>` menyimpan persis apa yang kita tempatkan di sana.
 
-We can put styles and scripts into `<template>` as well:
+Kita juga bisa menempatkan gaya dan skrip ke dalam `<template>`:
 
 ```html
 <template>
@@ -31,17 +31,17 @@ We can put styles and scripts into `<template>` as well:
 </template>
 ```
 
-The browser considers `<template>` content "out of the document": styles are not applied, scripts are not executed, `<video autoplay>` is not run, etc.
+Browser menganggap konten `<template>` berada "di luar dokumen": gaya tidak diterapkan, skrip tidak dijalankan, `<video autoplay>` tidak dijalankan, dll.
 
-The content becomes live (styles apply, scripts run etc) when we insert it into the document.
+Konten menjadi hidup (gaya berlaku, skrip dijalankan, dll.) Ketika kita memasukkannya ke dalam dokumen.
 
-## Inserting template
+## Memasukkan template
 
-The template content is available in its `content` property as a [DocumentFragment](info:modifying-document#document-fragment) -- a special type of DOM node.
+Konten template tersedia dalam properti `content` sebagai [DocumentFragment](info:modifying-document#document-fragment) -- yaitu jenis khusus dari simpul DOM.
 
-We can treat it as any other DOM node, except one special property: when we insert it somewhere, its children are inserted instead.
+Kita bisa memperlakukannya sebagai simpul DOM lainnya, kecuali satu properti khusus: ketika kita memasukkannya ke suatu tempat, anak-anaknya akan dimasukkan.
 
-For example:
+Sebagai contoh:
 
 ```html run
 <template id="tmpl">
@@ -55,16 +55,16 @@ For example:
   let elem = document.createElement('div');
 
 *!*
-  // Clone the template content to reuse it multiple times
+  // Menggandakan konten template untuk digunakan kembali beberapa kali
   elem.append(tmpl.content.cloneNode(true));
 */!*
 
   document.body.append(elem);
-  // Now the script from <template> runs
+  // Sekarang skrip dari <template> berjalan
 </script>
 ```
 
-Let's rewrite a Shadow DOM example from the previous chapter using `<template>`:
+Mari kita tulis ulang contoh Shadow DOM dari bab sebelumnya menggunakan `<template>`:
 
 ```html run untrusted autorun="no-epub" height=60
 <template id="tmpl">
@@ -87,9 +87,9 @@ Let's rewrite a Shadow DOM example from the previous chapter using `<template>`:
 </script>
 ```
 
-In the line `(*)` when we clone and insert `tmpl.content`, as its `DocumentFragment`, its children (`<style>`, `<p>`) are inserted instead.
+Di baris `(*)` saat kita menggandakan dan memasukkan `tmpl.content`, sebagai ` DocumentFragment`-nya, turunannya (`<style>`, `<p>`) akan disisipkan.
 
-They form the shadow DOM:
+Mereka membentuk shadow DOM:
 
 ```html
 <div id="elem">
@@ -99,18 +99,18 @@ They form the shadow DOM:
 </div>
 ```
 
-## Summary
+## Ringkasan
 
-To summarize:
+Untuk meringkas:
 
-- `<template>` content can be any syntactically correct HTML.
-- `<template>` content is considered "out of the document", so it doesn't affect anything.
-- We can access `template.content` from JavaScript, clone it to reuse in a new component.
+- `<template>` konten dapat berupa HTML yang benar secara sintaksis.
+- `<template>` konten dianggap "di luar dokumen", jadi tidak memengaruhi apa pun.
+- Kita dapat mengakses `template.content` dari JavaScript, mengkloningnya untuk digunakan kembali dalam komponen baru.
 
-The `<template>` tag is quite unique, because:
+Tag `<template>` cukup unik, karena:
 
-- The browser checks HTML syntax inside it (as opposed to using a template string inside a script).
-- ...But still allows use of any top-level HTML tags, even those that don't make sense without proper wrappers (e.g. `<tr>`).
-- The content becomes interactive: scripts run, `<video autoplay>` plays etc, when inserted into the document.
+- Browser memeriksa sintaks HTML di dalamnya (sebagai lawan menggunakan string template di dalam skrip).
+- ...Namun tetap mengizinkan penggunaan tag HTML tingkat atas, bahkan yang tidak masuk akal tanpa pembungkus yang tepat (mis. `<tr>`).
+- Konten menjadi interaktif: skrip dijalankan, `<video autoplay>` memutar dll, ketika dimasukkan ke dalam dokumen.
 
-The `<template>` element does not feature any iteration mechanisms, data binding or variable substitutions, but we can implement those on top of it.
+Elemen `<template>` tidak menampilkan mekanisme iterasi, pengikatan data, atau substitusi variabel, tetapi kita dapat mengimplementasikannya di atasnya.
