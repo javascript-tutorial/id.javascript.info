@@ -1,4 +1,4 @@
-# Metode Popup dan Jendela
+# Metode Popup dan window
 
 Jendela popup adalah salah satu metode tertua untuk menampilkan tambahan dokumen kepada pengguna.
 Secara umum, kamu hanya menjalankan:
@@ -14,7 +14,7 @@ Kemudian, popups itu rumit di perangkat seluler, karena tidak menampilkan bebera
 
 Namun, ada tugas dimana popups masih digunakan, misalnya untuk otorisasi OAuth (masuk dengan Google/Facebook/...), karena:
 1. Popup adalah sebuah jendela terpisah dengan ekosistem Javascript independennya sendiri. Sehingga aman membuka popup dari situs pihak ketiga yang tidak terpercaya. 
-2. Sanggat mudah untuk membuka popup.
+2. Sangat mudah untuk membuka popup.
 3. Sebuah popup dapat menavigasi (merubah URL) dan mengirimkan pesan ke pembuka jendela.
 
 ## Pemblokiran Popup
@@ -74,7 +74,7 @@ Pengaturan untuk `params`:
   - `width/height` (numeric) -- Lebar dan tinggi dari jendela baru. Namun ada batasan pada Lebar/tinggi minimal, sehingga tidak mungkin untuk membuat jendela tidak terlihat.
 - Fitur jendela:
   - `menubar` (yes/no) -- menampilkan atau menyembunyikan menu peramban pada jendela baru.
-  - `toolbar` (yes/no) -- menampilkan atau menyembunyikan navigasi bar perambaan (kembali, kedepan, isi ulang dan sebagainya) pada jendela baru.
+  - `toolbar` (yes/no) -- menampilkan atau menyembunyikan navigasi bar peramban (kembali, kedepan, isi ulang dan sebagainya) pada jendela baru.
   - `location` (yes/no) -- menampilkan atau menyembunyikan URL pada jendela baru. FF dan IE tidak mengizinkan untuk meyembunyikan URL secara <em>default</em>
   - `status` (yes/no) -- menampilkan atau menyembunyikan <em>bar status</em>. Sekali lagi kebanyakan peramban memaksa untuk menampilkannya.
   - `resizable` (yes/no) -- mengizinkan atau menolak untuk merubah ukuran jendela baru. Tidak direkomendasikan.
