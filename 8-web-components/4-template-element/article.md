@@ -33,7 +33,7 @@ Kita juga bisa menempatkan gaya dan skrip ke dalam `<template>`:
 
 Browser menganggap konten `<template>` berada "di luar dokumen": gaya tidak diterapkan, skrip tidak dijalankan, `<video autoplay>` tidak dijalankan, dll.
 
-Konten menjadi hidup (gaya berlaku, skrip dijalankan, dll.) Ketika kita memasukkannya ke dalam dokumen.
+Konten menjadi hidup (gaya css diterapkan, skrip dijalankan, dll.) Ketika kita memasukkannya ke dalam dokumen.
 
 ## Memasukkan template
 
