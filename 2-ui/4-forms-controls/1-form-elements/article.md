@@ -1,23 +1,23 @@
-# Form properties and methods
+# Metode dan properti form
 
-Forms and control elements, such as `<input>` have a lot of special properties and events.
+Form dan elemen control, contohnya seperti `<input>` memiliki banyak properti khusus dan event.
 
-Working with forms will be much more convenient when we learn them.
+Bekerja dengan form akan lebih mudah ketika kita mempelajarinya.
 
-## Navigation: form and elements
+## Navigasi: form dan elemen
 
-Document forms are members of the special collection `document.forms`.
+Form dokumen adalah anggota dari koleksi khusus `document.forms`.
 
-That's a so-called "named collection": it's both named and ordered. We can use both the name or the number in the document to get the form.
+Itu disebut _"named collection"_: itu keduanya memiliki nama(name) dan terurut(index). Kita bisa menggunakan keduanya baik dengan nama atau nomor pada dokumen untuk mendapatkan form .
 
 ```js no-beautify
 document.forms.my - the form with name="my"
 document.forms[0] - the first form in the document
 ```
 
-When we have a form, then any element is available in the named collection `form.elements`.
+Ketika kita mempunyai sebuah form, maka elemen apapun tersedia di dalam _named collection/koleksi nama_ `form.elements`.
 
-For instance:
+Misalnya:
 
 ```html run height=40
 <form name="my">
@@ -26,19 +26,20 @@ For instance:
 </form>
 
 <script>
-  // get the form
-  let form = document.forms.my; // <form name="my"> element
+  // dapatkan form
+  let form = document.forms.my; // <form name="my"> elemen
 
-  // get the element
-  let elem = form.elements.one; // <input name="one"> element
+  // dapatkan element
+  let elem = form.elements.one; // <input name="one"> elemen
 
   alert(elem.value); // 1
 </script>
 ```
 
-There may be multiple elements with the same name, that's often the case with radio buttons.
+Ada suatu saat dimana ada beberapa elemen dengan nama yang sama, hal itu sering terjadi dengan _radio buttons_.
 
-In that case `form.elements[name]` is a collection, for instance:
+
+Dalam hal tersebut `form.elements[name]`adalah sebuah _collection/koleksi_, misalnya:
 
 ```html run height=40
 <form>
@@ -57,13 +58,13 @@ alert(ageElems[0]); // [object HTMLInputElement]
 </script>
 ```
 
-These navigation properties do not depend on the tag structure. All control elements, no matter how deep they are in the form, are available in `form.elements`.
+Navigasi properti ini tidak bergantung pada struktur tag. Semua elemen kontrol, tak peduli seberapa dalam mereka didalam form, mereka tersedia di dalam `form.elements`.
 
 
-````smart header="Fieldsets as \"subforms\""
-A form may have one or many `<fieldset>` elements inside it. They also have `elements` property that lists form controls inside them.
+````smart header="Fieldsets sebagai "subforms""
+Sebuah form mungkin punya satu atau banyak elemen `<fieldset>` didalamnya. Mereka juga punya `elements` properti yang mencatumkan form kontrol didalamnya.
 
-For instance:
+Misalnya:
 
 ```html run height=80
 <body>
@@ -81,7 +82,7 @@ For instance:
     let fieldset = form.elements.userFields;
     alert(fieldset); // HTMLFieldSetElement
 
-    // we can get the input by name both from the form and from the fieldset
+     // kita bisa mendapatkan input dengan nama baik dari form maupun dari fieldset
     alert(fieldset.elements.login == form.elements.login); // true
 */!*
   </script>
@@ -89,14 +90,13 @@ For instance:
 ```
 ````
 
-````warn header="Shorter notation: `form.name`"
-There's a shorter notation: we can access the element as `form[index/name]`.
+````warn header="Shorter notation: `form.name`" Ada notasi yang lebih ringkas: kita bisa akses/mendapatkan elemen dengan `form[index/name]`.
 
-In other words, instead of `form.elements.login` we can write `form.login`.
+Dengan kata lain, daripada menulisnya dengan `form.elements.login` kita bisa menulis `form.login`.
 
-That also works, but there's a minor issue: if we access an element, and then change its `name`, then it is still available under the old name (as well as under the new one).
+Itu juga berkeja, tetapi disana ada sebuah kesalahan kecil: jika kita akses sebuah elemen, dan lalu mengubah `name`, maka elemen tersebut masih tersedia dengan nama lamanya (sama juga dengan nama barunya).
 
-That's easy to see in an example:
+Itu akan lebih mudah saat kita lihat pada sebuah contoh:
 
 ```html run height=40
 <form id="form">
@@ -104,28 +104,29 @@ That's easy to see in an example:
 </form>
 
 <script>
-  alert(form.elements.login == form.login); // true, the same <input>
+    alert(form.elements.login == form.login); // true, <input> yang sama
 
-  form.login.name = "username"; // change the name of the input
+    form.login.name = "username"; // mengubah nama input
 
-  // form.elements updated the name:
-  alert(form.elements.login); // undefined
-  alert(form.elements.username); // input
+    // form.elements telah mengupdate nama:
+    alert(form.elements.login); // undefined (tidak terdefinisi)
+    alert(form.elements.username); // input
 
-*!*
-  // form allows both names: the new one and the old one
-  alert(form.username == form.login); // true
-*/!*
+  *!*
+    // form membolehkan kedua nama: yang baru dan yang lama
+    alert(form.username == form.login); // true
+  */!*
 </script>
 ```
 
-That's usually not a problem, because we rarely change names of form elements.
+Itu biasanya bukan sebuah masalah, karena kita jarang mengubah nama dari elemen form.
 
 ````
 
 ## Backreference: element.form
 
-For any element, the form is available as `element.form`. So a form references all elements, and elements reference the form.
+Untuk elemen apapun, form tersedia sebagai `element.form`. Jadi sebuah form mereferensikan semua elemen, dan elemen referensi dari form.
+
 
 Here's the picture:
 
@@ -296,5 +297,5 @@ These are the basics to start working with forms. We'll meet many examples furth
 
 In the next chapter we'll cover `focus` and `blur` events that may occur on any element, but are mostly handled on forms.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MDIyNTUxMTBdfQ==
+eyJoaXN0b3J5IjpbNTg1ODA5NTczLC0xOTAyMjU1MTEwXX0=
 -->
