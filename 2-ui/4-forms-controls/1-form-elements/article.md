@@ -295,3 +295,6 @@ For `<select>` we can also get the value by the index `select.selectedIndex` or 
 These are the basics to start working with forms. We'll meet many examples further in the tutorial.
 
 In the next chapter we'll cover `focus` and `blur` events that may occur on any element, but are mostly handled on forms.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE5MDIyNTUxMTBdfQ==
+-->
