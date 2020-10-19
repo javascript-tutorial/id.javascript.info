@@ -12,14 +12,14 @@ There are important peculiarities when working with focus events. We'll do the b
 
 ## Events focus/blur
 
-The `focus` event is called on focusing, and `blur` -- when the element loses the focus.
+Event `focus` terpanggil/trigger saat sedang fokus, dan event `blur` -- ketika elemen hilang fokus.
 
-Let's use them for validation of an input field.
+Mari gunakan mereka sebagai validasi sebuah kotak input.
 
-In the example below:
+Dalam contoh dibawah:
 
-- The `blur` handler checks if the field has an email entered, and if not -- shows an error.
-- The `focus` handler hides the error message (on `blur` it will be checked again):
+- `blur` cek jika kotak email telah terisi , dan jika tidak -- tampilkan error.
+- `focus` menyembunyikan pesan error (pada `blur` itu akan di cek kembali):
 
 ```html run autorun height=60
 <style>
@@ -49,14 +49,14 @@ Your email please: <input type="email" id="input">
 </script>
 ```
 
-Modern HTML allows us to do many validations using input attributes: `required`, `pattern` and so on. And sometimes they are just what we need. JavaScript can be used when we want more flexibility. Also we could automatically send the changed value to the server if it's correct.
+Dengan HTML modern kita bisa melakukan beberapa validasi menggunakan atribut input: `required`, `pattern` dan lainnya. Dan biasanya kita hanya menggunakan mereka. Kita bisa menggunakan Javascricpt jika ingin fleksibelitas lebih. Juga kita bisa secara otomatis mengirim nilai yang diubah ke server jika nilainya benar.
 
 
 ## Methods focus/blur
 
-Methods `elem.focus()` and `elem.blur()` set/unset the focus on the element.
+Metode `elem.focus()` dan `elem.blur()` set/unset  fokus pada elemen.
 
-For instance, let's make the visitor unable to leave the input if the value is invalid:
+Misalnya, ayo buat pengunjung tidak bisa keluar dari input jika nilainya tidak valid:
 
 ```html run autorun height=80
 <style>
@@ -84,9 +84,9 @@ Your email please: <input type="email" id="input">
 </script>
 ```
 
-It works in all browsers except Firefox ([bug](https://bugzilla.mozilla.org/show_bug.cgi?id=53579)).
+Itu bekerja pada semua browser kecuali Firefox ([bug](https://bugzilla.mozilla.org/show_bug.cgi?id=53579)).
 
-If we enter something into the input and then try to use `key:Tab` or click away from the `<input>`, then `onblur` returns the focus back.
+Jika kita sedang mengetik/masukkan sesuatu ke input dan coba menggunakan`key:Tab` atau klik diluar elemen `<input>`, maka `onblur` returns the focus back.
 
 Please note that we can't "prevent losing focus" by calling `event.preventDefault()` in `onblur`, because `onblur` works *after* the element lost the focus.
 
@@ -224,5 +224,5 @@ Their specials are:
 
 The current focused element is available as `document.activeElement`.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg0NzgzMDg2Nl19
+eyJoaXN0b3J5IjpbLTE5Mjc1MzMyNTJdfQ==
 -->
