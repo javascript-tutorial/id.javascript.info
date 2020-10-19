@@ -1,6 +1,6 @@
 # Focusing: focus/blur
 
-Sebuah elemen menjadi focus ketika user mengkliknya atau menggunakan Tombol `key:Tab` pada keyboard. Ada juga atribut HTML `autofocus` yang fokus pada sebuah element secara default ketika memuat sebuah halaman dan other means of getting the focus.
+Sebuah elemen menjadi focus ketika user mengkliknya atau menggunakan tombol `key:Tab` pada keyboard. Ada juga atribut HTML `autofocus` yang fokus pada sebuah element secara default ketika memuat sebuah halaman dan sebagainya untuk mendapatkan fokus.
 
 Fokus pada sebuah elemen pada umumnya diartikan: "bersiap untuk terima datanya disini", jadi itu adalah momen ketika kita bisa menjalankan kode untuk di inisiasi kebutuhan fungsionalitas.
 
@@ -8,7 +8,7 @@ Momen ketika hilang fokus ("blur") bahkan bisa lebih penting. Itu adalah dimana 
 
 Kehilangan focus pada umumnya diartikan: "data telah di isi", jadi kita bisa menjalankan kode untuk mengeceknya atau bahkan menyimpannya ke server dan sebagainya.
 
-There are important peculiarities when working with focus events. We'll do the best to cover them further on.
+There are important peculiarities when working with focus events. We'll do the best to cover them further on.///
 
 ## Events focus/blur
 
@@ -52,7 +52,7 @@ Your email please: <input type="email" id="input">
 Dengan HTML modern kita bisa melakukan beberapa validasi menggunakan atribut input: `required`, `pattern` dan lainnya. Dan biasanya kita hanya menggunakan mereka. Kita bisa menggunakan Javascricpt jika ingin fleksibelitas lebih. Juga kita bisa secara otomatis mengirim nilai yang diubah ke server jika nilainya benar.
 
 
-## Methods focus/blur
+## Metode focus/blur
 
 Metode `elem.focus()` dan `elem.blur()` set/unset  fokus pada elemen.
 
@@ -86,7 +86,7 @@ Your email please: <input type="email" id="input">
 
 Itu bekerja pada semua browser kecuali Firefox ([bug](https://bugzilla.mozilla.org/show_bug.cgi?id=53579)).
 
-Jika kita sedang mengetik/masukkan sesuatu ke input dan coba menggunakan`key:Tab` atau klik diluar elemen `<input>`, maka `onblur` returns the focus back.
+Jika kita sedang mengetik/memasukkan sesuatu ke input dan coba menggunakan`key:Tab` atau klik diluar elemen `<input>`, maka `onblur` returns the focus back.
 
 Perlu diingat bahwa kita tidak bisa "mencegah hilangnya fokus" dengan memanggil `event.preventDefault()` pada `onblur`, karena `onblur` bekerja saat element hilang fokus.
 
@@ -112,7 +112,7 @@ Di lain sisi, elemen-elemen yang ada hanya untuk meformat sesuatu seperti `<div>
 
 Ini bisa diubah dengan menggunakan HTML-attribute `tabindex`.
 
-Elemen apapun menjadi *focusable* jika ia memilki`tabindex`. Nilai atributnya adalah dari urutuan nomor elemen ketika `key:Tab`  digunakan untuk berpindah diantara mereka.
+Elemen apapun menjadi *focusable* jika ia memilki`tabindex`. Nilai atributnya adalah dari urutan nomor elemen ketika `key:Tab`  digunakan untuk berpindah diantara mereka.
 
 Itu adalah: jika kita memilki 2 elemen, yang pertama memilki `tabindex="1"`, dan yang kedua memilki `tabindex="2"`, lalu menekan `key:Tab` pada saat masih di elemen pertama -- fokus berpindah ke elemen kedua.
 
@@ -122,16 +122,16 @@ Element dengan `tabindex` yang sesuai berpindah pada urutan sumber dokumen (urut
 
 Disana ada dua nilai khusus:
 
-- `tabindex="0"` menempatkan sebuah elemen diantara mereka tanpa `tabindex`. That is, ketika kita pindah elemen, element with `tabindex=0` go after elements with `tabindex ≥ 1`.
+- `tabindex="0"` menempatkan sebuah elemen diantara mereka tanpa `tabindex`. Itu ialah, ketika kita pindah elemen, elemen dengan `tabindex=0` berpindah  dengan//// elemen `tabindex ≥ 1`.
 
-    Usually it's used to make an element focusable, but keep the default switching order. To make an element a part of the form on par with `<input>`.
+    Biasanya itu digunakan agar sebuah elemen menjadi *focusable*, tapi tetap memerhatikan urutan perpindahan default ////. To make an element a part of the form on par with `<input>`.////
 
-- `tabindex="-1"` allows only programmatic focusing on an element. The `key:Tab` key ignores such elements, but method `elem.focus()` works.
+- `tabindex="-1"` hanya membolehkan *programmatic focusing* pada sebuah elemen. The `key:Tab` key ignores such elements, akan tetapi metode `elem.focus()` berfungsi.////
 
-For instance, here's a list. Click the first item and press `key:Tab`:
+Misalnya, ada list elemen. Klik item pertama dan tekan `key:Tab`:
 
 ```html autorun no-beautify
-Click the first item and press Tab. Keep track of the order. Please note that many subsequent Tabs can move the focus out of the iframe in the example.
+Klik pada elemen pertama dan tekan tab. Perhatikan pada urutan. Please note that many subsequent Tabs can move the focus out of the iframe in the example.
 <ul>
   <li tabindex="1">One</li>
   <li tabindex="0">Zero</li>
@@ -145,17 +145,17 @@ Click the first item and press Tab. Keep track of the order. Please note that ma
 </style>
 ```
 
-The order is like this: `1 - 2 - 0`. Normally, `<li>` does not support focusing, but `tabindex` full enables it, along with events and styling with `:focus`.
+Urutannya sepeti ini: `1 - 2 - 0`. Normalnya, `<li>` tidak support *focusing*, tetapi dengan `tabindex`membuatnya *focusable*, berserta dengan eventnya dan styling `:focus`.
 
-```smart header="The property `elem.tabIndex` works too"
-We can add `tabindex` from JavaScript by using the `elem.tabIndex` property. That has the same effect.
+```smart header="The property `elem.tabIndex` juga  dapat bekerja"
+Kita bisa menambahkan `tabindex` dari JavaScript dengan menggunakan properti `elem.tabIndex`. Itu menghasilkan efek yang sama.
 ```
 
 ## Delegation: focusin/focusout
 
-Events `focus` and `blur` do not bubble.
+Events `focus` and `blur` do not bubble.///
 
-For instance, we can't put `onfocus` on the `<form>` to highlight it, like this:
+Misalnya, kita tidak bisa menaruh `onfocus` pada `<form>` untuk menghighlight-nya, seperti ini:
 
 ```html autorun height=80
 <!-- on focusing in the form -- add the class -->
@@ -167,13 +167,13 @@ For instance, we can't put `onfocus` on the `<form>` to highlight it, like this:
 <style> .focused { outline: 1px solid red; } </style>
 ```
 
-The example above doesn't work, because when user focuses on an `<input>`, the `focus` event triggers on that input only. It doesn't bubble up. So `form.onfocus` never triggers.
+Contoh diatas tidak akan bekerja, karena ketika sedang fokus pada sebuah `<input>`, event `focus` akan trigger hanya pada input tersebut. It doesn't bubble up. Jadi `form.onfocus` tidak akan perna trigger.
 
-There are two solutions.
+Hanya ada dua solusi.
 
-First, there's a funny historical feature: `focus/blur` do not bubble up, but propagate down on the capturing phase.
+Pertama, ada satu sejarah lucu dengan feature: `focus/blur` do not bubble up, but propagate down on the capturing phase.///
 
-This will work:
+Ini akan bekerja:
 
 ```html autorun height=80
 <form id="form">
@@ -192,11 +192,11 @@ This will work:
 </script>
 ```
 
-Second, there are `focusin` and `focusout` events -- exactly the same as `focus/blur`, but they bubble.
+Kedua, ada event `focusin` dan `focusout` -- persis sama dengan`focus/blur`, but they bubble.///
 
-Note that they must be assigned using `elem.addEventListener`, not `on<event>`.
+Ingat bahwa mereka perlu di definisi menggunakan `elem.addEventListener`, bukan `on<event>`.
 
-So here's another working variant:
+Jadi ini adalah cara lain yang dapat bekerja:
 
 ```html autorun height=80
 <form id="form">
@@ -214,15 +214,15 @@ So here's another working variant:
 </script>
 ```
 
-## Summary
+## Kesimpulan
 
-Events `focus` and `blur` trigger on an element focusing/losing focus.
+Event `focus` dan `blur` trigger pada saat sebuah elemen fokus dan hilang fokus.
 
-Their specials are:
-- They do not bubble. Can use capturing state instead or `focusin/focusout`.
-- Most elements do not support focus by default. Use `tabindex` to make anything focusable.
+Keistimewaan mereka adalah:
+- They do not bubble. Can use capturing state instead or `focusin/focusout`.///
+- Kebanyakan elemen tidak mendukung fokus secara default. Gunakan `tabindex` untuk membuat elemen apapun menjadi *focusable*.
 
-The current focused element is available as `document.activeElement`.
+The current focused element is available as `document.activeElement`.///
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjg5MjU5MTQzXX0=
+eyJoaXN0b3J5IjpbMTIxMzM1MjI2N119
 -->
