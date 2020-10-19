@@ -144,7 +144,11 @@ Penetapan
 : Ada penetapan simpel: `a = b` dan penetapan kombinasi seperti `a *= 2`.
 
 Bitwise
+<<<<<<< HEAD
 : Operator bitwise bekerja dengan integer 32-bit di bit-level paling kecil: lihat [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators) ketika mereka dibutuhkan.
+=======
+: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](mdn:/JavaScript/Guide/Expressions_and_Operators#Bitwise) when they are needed.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 Kondisional
 : Satu-satunya operator dengan tiga parameter: `cond ? resultA : resultB`. Jika `cond` truthy, mengembalikan `resultA`, jika tidak `resultB`.

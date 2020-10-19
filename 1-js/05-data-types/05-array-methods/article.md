@@ -49,10 +49,14 @@ arr.splice(start[, deleteCount, elem1, ..., elemN])
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Dimulai dari posisi `index`: menghapus elemen `deleteCount` dan kemudian memasukkan `elem1, ..., elemN` di tempatnya masing-masing. Mengembalikan *array* yang tersusun atas elemen yang dihapus.
 =======
 It modified `arr` starting from the index `start`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
 >>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
+=======
+It modifies `arr` starting from the index `start`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 Metode ini mudah untuk dipahami melalui contoh.
 
@@ -427,13 +431,18 @@ Kini metode tersebu berfungsi seperti yang diinginkan.
 
 Mari berhenti sejenak dan pikirkan apa yang terjadi. `arr` bisa jadi *array* berisi apapun, benar? *Array* itu bisa saja berisi angka atau *string* atau objek atau apapun. Kita memiliki sekumpulan *beberapa item*. Untuk mengurutkannya, kita perlu sebuah *fungsi pengurutan* yang tahu bagaimana cara untuk membandingkan elemen-elemen. Setelan awalnya adalah sebuah urutan *string*.
 
+<<<<<<< HEAD
 Metode `arr.sort(fn)` mengimplementasikan sebuah algoritma pengurutan yang umum. Kita tidak perlu benar-benar tahu bagaimana algoritma itu bekerja (sebuah [cara cepat/*quicksort*](https://en.wikipedia.org/wiki/Quicksort) yang sudah teroptimasi sepanjang waktu). Algoritma itu akan menyusuri *array*, membandungkan elemen-elemennya menggunakan fungsi yang diberikan dan mengurutkan ulang elemen-elemen tersebut, yang perlu kita lakukan yakni memberikan `fn` yang mana akan melakukan operasi perbandingan.
+=======
+The `arr.sort(fn)` method implements a generic sorting algorithm. We don't need to care how it internally works (an optimized [quicksort](https://en.wikipedia.org/wiki/Quicksort) or [Timsort](https://en.wikipedia.org/wiki/Timsort) most of the time). It will walk the array, compare its elements using the provided function and reorder them, all we need is to provide the `fn` which does the comparison.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 *Ngomong-omong*, jika kita pernah ingin tahu elemen mana saja yang dibandingkan -- cukup dengan cara memberi *alert*:
 
 ```js run
 [1, -2, 15, 2, 0, 8].sort(function(a, b) {
   alert( a + " <> " + b );
+  return a - b;
 });
 ```
 
@@ -692,7 +701,11 @@ alert(soldiers[1].age); // 23
 
 Jika dalam contoh di atas kita menggunakan `users.filter(army.canJoin)`, maka `army.canJoin` akan bisa dipanggil sebagai fungsi yang berdisi sendiri, dengan `this=undefined`, itu smeua berujung pada error seketika.
 
+<<<<<<< HEAD
 Sebuah panggilan ke `users.filter(army.canJoin, army)` bisa diganti dengan `users.filter(user => army.canJoin(user))`, yang mana melakukan hal yang sama. Metode yang pertama (`users.filter(army.canJoin, army)`) lebih sering digunakan, karena sedikit lebih mudah dimengerti oleh banyak orang.
+=======
+A call to `users.filter(army.canJoin, army)` can be replaced with `users.filter(user => army.canJoin(user))`, that does the same. The latter is used more often, as it's a bit easier to understand for most people.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 ## Ringkasa
 
@@ -713,7 +726,7 @@ Sebuah panggilan ke `users.filter(army.canJoin, army)` bisa diganti dengan `user
   - `pop()` -- extracts an item from the end,
   - `shift()` -- extracts an item from the beginning,
   - `unshift(...items)` -- adds items to the beginning.
-  - `splice(pos, deleteCount, ...items)` -- at index `pos` delete `deleteCount` elements and insert `items`.
+  - `splice(pos, deleteCount, ...items)` -- at index `pos` deletes `deleteCount` elements and inserts `items`.
   - `slice(start, end)` -- creates a new array, copies elements from index `start` till `end` (not inclusive) into it.
   - `concat(...items)` -- returns a new array: copies all members of the current one and adds `items` to it. If any of `items` is an array, then its elements are taken.
 >>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
@@ -727,12 +740,21 @@ Sebuah panggilan ke `users.filter(army.canJoin, army)` bisa diganti dengan `user
 - Untuk mengulang elemen:
   - `forEach(func)` -- memanggil `func` untuk setiap elemen, tidak mengembalikan apapun.
 
+<<<<<<< HEAD
 - Untuk mengubah *array*:
   - `map(func)` -- membuat sebuah *array* dari hasil pemanggilan `func` untuk setiap elemen.
   - `sort(func)` -- mengurutkan *array* dalam-tempatnya, lalu mengembalikan hasilnya.
   - `reverse()` -- membalikkan *array* dalam-tempatnya, lalu mengembalikan hasilnya.
   - `split/join` -- mengonversi sebuah *string* menjadi *array* dan sebaliknya.
   - `reduce(func, initial)` -- menghitung sebuah nilai tunggal pada *array* dengan cara memanggil `func` untuk setiap elemen dan mengoper hasil tersebut di antara panggilan.
+=======
+- To transform the array:
+  - `map(func)` -- creates a new array from results of calling `func` for every element.
+  - `sort(func)` -- sorts the array in-place, then returns it.
+  - `reverse()` -- reverses the array in-place, then returns it.
+  - `split/join` -- convert a string to array and back.
+  - `reduce/reduceRight(func, initial)` -- calculate a single value over the array by calling `func` for each element and passing an intermediate result between the calls.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 - Sebagai tambahan:
   - `Array.isArray(arr)` memeriksa apakah `arr` merupakan *array* atau bukan.
@@ -741,9 +763,17 @@ Tolong diingat bahwa metode `sort`, `reverse` dan `splice` memodifikasi *array* 
 
 Metode-metode ini adalah yang paling sering digunakan, mencakupi 99% kasus penggunaan. Namun masih ada beberapa metode lainnya:
 
+<<<<<<< HEAD
 - [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) memeriksa *array* terseebut.
 
   Fungsi `fn` dipanggil pada tiap elemen *array* yang serupa dengan `map`. Jika beberapa/semua hasilnya `true`, maka akan mengembalikan `true`, jika tidak maka akan mengembalikan `false`.
+=======
+- [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) check the array.
+
+  The function `fn` is called on each element of the array similar to `map`. If any/all results are `true`, returns `true`, otherwise `false`.
+  
+  These methods behave sort of like `||` and `&&` operators: if `fn`  returns a truthy value, `arr.some()` immediately returns `true` and stops iterating over the rest items; if `fn`  returns a falsy value, `arr.every()` immediately returns `false` and stops iterating over the rest items as well.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 <<<<<<< HEAD
 - [arr.fill(value, start, end)](mdn:js/Array/fill) -- mengisi *array* dengan mengulang `value` dari indeks `start` hingga `end`.
@@ -762,7 +792,13 @@ Metode-metode ini adalah yang paling sering digunakan, mencakupi 99% kasus pengg
 
 - [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- menyalin elemen dari posisi `start` hingga posisi `end` ke dalam *array itu sendiri*, pada posisi `target` (menumpuk/*overwrite* elemen yang ada).
 
+<<<<<<< HEAD
 Untuk daftar lengkapnya, lihat [manual](mdn:js/Array).
+=======
+- [arr.flat(depth)](mdn:js/Array/flat)/[arr.flatMap(fn)](mdn:js/Array/flatMap) create a new flat array from a multidimensional array.
+
+For the full list, see the [manual](mdn:js/Array).
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 Sejak pandangan pertama mungkin terlihat ada begitu banyak metode, cukup sulit untuk diingat. Namun sebenarnya hal itu jauh lebih mudah.
 

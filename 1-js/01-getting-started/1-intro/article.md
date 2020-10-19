@@ -1,6 +1,10 @@
 # Pengenalan JavaScript
 
+<<<<<<< HEAD
 Mari kita lihat apa yang spesial dari JavaScript, apa saja yang bisa kita buat menggunakan JavaScript, dan teknologi apa yang cocok dengan JavaScript.
+=======
+Let's see what's so special about JavaScript, what we can achieve with it, and what other technologies play well with it.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 ## Apa itu JavaScript?
 
@@ -129,6 +133,12 @@ Masih banyak lagi. Tentunya, jika kita menggunakan salah satu bahasa yang ditran
 
 ## Kesimpulan
 
+<<<<<<< HEAD
 - JavaScript awalnya diciptakan sebagai bahasa khusus browser, namun sekarang banyak digunakan di lingkungan lain.
 - Sekarang, JavaScript mempunyai posisi unik sebagai bahasa browser paling banyak diadopsi dengan integrasi penuh dengan HTML/CSS.
 - Ada banyak bahasa yang "ditranspile" ke JavaScript dan menyediakan fitur tertentu. Disarankan untuk mempelajari mereka juga, minimal sebentar, setelah menguasai JavaScript.
+=======
+- JavaScript was initially created as a browser-only language, but it is now used in many other environments as well.
+- Today, JavaScript has a unique position as the most widely-adopted browser language with full integration in HTML/CSS.
+- There are many languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
