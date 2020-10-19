@@ -88,37 +88,37 @@ Itu bekerja pada semua browser kecuali Firefox ([bug](https://bugzilla.mozilla.o
 
 Jika kita sedang mengetik/masukkan sesuatu ke input dan coba menggunakan`key:Tab` atau klik diluar elemen `<input>`, maka `onblur` returns the focus back.
 
-Please note that we can't "prevent losing focus" by calling `event.preventDefault()` in `onblur`, because `onblur` works *after* the element lost the focus.
+Perlu diingat bahwa kita tidak bisa "mencegah hilangnya fokus" dengan memanggil `event.preventDefault()` pada `onblur`, karena `onblur` bekerja saat element hilang fokus.
 
 ```warn header="JavaScript-initiated focus loss"
-A focus loss can occur for many reasons.
+Focus loss bisa terjadi untuk alasan tertentu.
 
-One of them is when the visitor clicks somewhere else. But also JavaScript itself may cause it, for instance:
+Salah satu diantaranya adalah ketika pengunjung klik di tempat lain. Tetapi mungkin Javascript sendiri yang menyebabkannya, Misalya:
 
-- An `alert` moves focus to itself, so it causes the focus loss at the element (`blur` event), and when the `alert` is dismissed, the focus comes back (`focus` event).
-- If an element is removed from DOM, then it also causes the focus loss. If it is reinserted later, then the focus doesn't return.
+- Sebuah `alert` memindahkan fokus untuknya, jadi itu menyebabkan focus loss pada elemen (`blur` event), dan ketika `alert` sudah tidak ada, fokus ada kembali (`focus` event).
+- Jika sebuah elemen dihapus dari DOM, itu juga menyebabkan focus loss. Jika di isi lagi nanti, maka fokus tidak akan kembali.
 
-These features sometimes cause `focus/blur` handlers to misbehave -- to trigger when they are not needed.
+Beberapa fitur ini membuat `focus/blur` handler menjadi misbehave -- trigger disaat mereka tidak diperlukan.
 
-The best recipe is to be careful when using these events. If we want to track user-initiated focus-loss, then we should avoid causing it ourselves.
+Resep yang baik adalah berhati-hati mengunakan event ini. If we want to track user-initiated focus-loss, then we should avoid causing it ourselves.
 ```
 ## Allow focusing on any element: tabindex
 
-By default many elements do not support focusing.
+Secara default banyak elemen yang tidak support focusing.
 
-The list varies a bit between browsers, but one thing is always correct: `focus/blur` support is guaranteed for elements that a visitor can interact with: `<button>`, `<input>`, `<select>`, `<a>` and so on.
+The list varies a bit between browsers, tetapi satu hal yang pasti benar: `focus/blur` dukungannya terjamin untuk elemen-elemen yang pengunjung bisa berinteraksi dengan: `<button>`, `<input>`, `<select>`, `<a>` dan lainnya.
 
-On the other hand, elements that exist to format something, such as `<div>`, `<span>`, `<table>` -- are unfocusable by default. The method `elem.focus()` doesn't work on them, and `focus/blur` events are never triggered.
+Di lain sisi, elemen-elemen yang ada hanya untuk meformat sesuatu seperti `<div>`, `<span>`, `<table>` -- adalah *unfocusable* secara default. Metode `elem.focus()` tidak bekerja pada mereka, dan `focus/blur` event tidak akan pernah ke trigger.
 
-This can be changed using HTML-attribute `tabindex`.
+Ini bisa diubah dengan menggunakan HTML-attribute `tabindex`.
 
-Any element becomes focusable if it has `tabindex`. The value of the attribute is the order number of the element when `key:Tab` (or something like that) is used to switch between them.
+Elemen apapun menjadi *focusable* jika ia memilki`tabindex`. Nilai atributnya adalah dari urutuan nomor elemen ketika `key:Tab`  digunakan untuk berpindah diantara mereka.
 
-That is: if we have two elements, the first has `tabindex="1"`, and the second has `tabindex="2"`, then pressing `key:Tab` while in the first element -- moves the focus into the second one.
+Itu adalah: jika kita memilki 2 elemen, yang pertama memilki `tabindex="1"`, dan yang kedua memilki `tabindex="2"`, lalu menekan `key:Tab` pada saat masih di elemen pertama -- fokus berpindah ke elemen kedua.
 
-The switch order is: elements with `tabindex` from `1` and above go first (in the `tabindex` order), and then elements without `tabindex` (e.g. a regular `<input>`).
+Urutuan pindahnya ialah: elemen dengan `tabindex` dari `1` dan diatasnya menjadi yang pertama (pada urutan`tabindex`), dan baru kemudian elemen tanpa `tabindex` (seperti `<input>` input biasa).
 
-Elements with matching `tabindex` are switched in the document source order (the default order).
+Element dengan `tabindex` yang sesuai berpindah (the default order).
 
 There are two special values:
 
@@ -224,5 +224,5 @@ Their specials are:
 
 The current focused element is available as `document.activeElement`.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5Mjc1MzMyNTJdfQ==
+eyJoaXN0b3J5IjpbMTIwMzIxMjUzNF19
 -->
