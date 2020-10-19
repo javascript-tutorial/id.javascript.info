@@ -8,7 +8,7 @@ Momen ketika hilang fokus ("blur") bahkan bisa lebih penting. Itu adalah dimana 
 
 Kehilangan focus pada umumnya diartikan: "data telah di isi", jadi kita bisa menjalankan kode untuk mengeceknya atau bahkan menyimpannya ke server dan sebagainya.
 
-There are important peculiarities when working with focus events. We'll do the best to cover them further on.///
+Ada beberapa keaneha saat bekerja dengan event fokus. Kami akan melakukan yang terbaik untuk membahasnya lebih lanjut.
 
 ## Events focus/blur
 
@@ -100,7 +100,7 @@ Salah satu diantaranya adalah ketika pengunjung klik di tempat lain. Tetapi mung
 
 Beberapa fitur ini membuat `focus/blur` handler menjadi misbehave -- trigger disaat mereka tidak diperlukan.
 
-Resep yang baik adalah berhati-hati mengunakan event ini. If we want to track user-initiated focus-loss, then we should avoid causing it ourselves.
+Resep yang baik adalah berhati-hati mengunakan event ini. If we want to track user-initiated focus-loss, then we should avoid causing it ourselves.///
 ```
 ## Allow focusing on any element: tabindex
 
@@ -219,10 +219,10 @@ Jadi ini adalah cara lain yang dapat bekerja:
 Event `focus` dan `blur` trigger pada saat sebuah elemen fokus dan hilang fokus.
 
 Keistimewaan mereka adalah:
-- They do not bubble. Can use capturing state instead or `focusin/focusout`.///
+- They do not bubble. Gantinya bisa menggunakan *capturing state* atau `focusin/focusout`.///
 - Kebanyakan elemen tidak mendukung fokus secara default. Gunakan `tabindex` untuk membuat elemen apapun menjadi *focusable*.
 
 The current focused element is available as `document.activeElement`.///
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NzM3ODk2ODddfQ==
+eyJoaXN0b3J5IjpbLTM1MjgxOTgxOF19
 -->
