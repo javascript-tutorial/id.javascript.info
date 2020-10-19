@@ -124,7 +124,7 @@ Disana ada dua nilai khusus:
 
 - `tabindex="0"` menempatkan sebuah elemen diantara mereka tanpa `tabindex`. Itu ialah, ketika kita pindah elemen, elemen dengan `tabindex=0` berpindah  dengan//// elemen `tabindex ≥ 1`.
 
-    Biasanya itu digunakan agar sebuah elemen menjadi *focusable*, tapi tetap memerhatikan urutan perpindahan default ////. To make an element a part of the form on par with `<input>`.////
+    Biasanya itu digunakan agar sebuah elemen menjadi *focusable*, tapi tetap memerhatikan urutan perpindahan default ////. Untuk membuat sebuah elemen menjadi bagian dari form yang setara`<input>`.
 
 - `tabindex="-1"` hanya membolehkan *programmatic focusing* pada sebuah elemen. The `key:Tab` key ignores such elements, akan tetapi metode `elem.focus()` berfungsi.////
 
@@ -224,5 +224,5 @@ Keistimewaan mereka adalah:
 
 The current focused element is available as `document.activeElement`.///
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MjAzOTk4MzBdfQ==
+eyJoaXN0b3J5IjpbLTE2NzM3ODk2ODddfQ==
 -->
