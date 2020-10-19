@@ -1,6 +1,6 @@
 # Focusing: focus/blur
 
-An element receives the focus when the user either clicks on it or uses the `key:Tab` key on the keyboard. There's also an `autofocus` HTML attribute that puts the focus onto an element by default when a page loads and other means of getting the focus.
+AnSebuah element receives the focus when the user either clicks on it or uses the menjadi focus ketika user mengkliknya atau menggunakan Tombol `key:Tab` key on thepada keyboard. There's also an `autofocus` HTML attribute that puts theAda juga atribut HTML `autofocus` yang fockus onto anpada sebuah element bysecara default when a page loads andketika memuat sebuah halaman dan other means of getting the focus.
 
 Focusing on an element generally means: "prepare to accept the data here", so that's the moment when we can run the code to initialize the required functionality.
 
@@ -223,3 +223,6 @@ Their specials are:
 - Most elements do not support focus by default. Use `tabindex` to make anything focusable.
 
 The current focused element is available as `document.activeElement`.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE5NTk5NzA1NjVdfQ==
+-->
