@@ -1,8 +1,8 @@
 # Focusing: focus/blur
 
-AnSebuah element receives the focus when the user either clicks on it or uses the menjadi focus ketika user mengkliknya atau menggunakan Tombol `key:Tab` key on thepada keyboard. There's also an `autofocus` HTML attribute that puts theAda juga atribut HTML `autofocus` yang fockus onto anpada sebuah element bysecara default when a page loads andketika memuat sebuah halaman dan other means of getting the focus.
+Sebuah elemen menjadi focus ketika user mengkliknya atau menggunakan Tombol `key:Tab` pada keyboard. Ada juga atribut HTML `autofocus` yang fokus pada sebuah element secara default ketika memuat sebuah halaman dan other means of getting the focus.
 
-Focusing on an element generally means: "prepare to accept the data here", so that's the moment when we can run the code to initialize the required functionality.
+Fokus pada sebuah elemen pada umumnya diartikan: "bersiap untuk terima datanya disini", jadi itu adalah momen ketika kita bisa menjalankan kode untuk di inisiasi kebutuhan fungsionalitas.
 
 The moment of losing the focus ("blur") can be even more important. That's when a user clicks somewhere else or presses `key:Tab` to go to the next form field, or there are other means as well.
 
@@ -224,5 +224,5 @@ Their specials are:
 
 The current focused element is available as `document.activeElement`.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5NTk5NzA1NjVdfQ==
+eyJoaXN0b3J5IjpbLTQyNDYwNjM2Ml19
 -->
