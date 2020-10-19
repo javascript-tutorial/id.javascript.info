@@ -118,11 +118,11 @@ Itu adalah: jika kita memilki 2 elemen, yang pertama memilki `tabindex="1"`, dan
 
 Urutuan pindahnya ialah: elemen dengan `tabindex` dari `1` dan diatasnya menjadi yang pertama (pada urutan`tabindex`), dan baru kemudian elemen tanpa `tabindex` (seperti `<input>` input biasa).
 
-Element dengan `tabindex` yang sesuai berpindah (the default order).
+Element dengan `tabindex` yang sesuai berpindah pada urutan sumber dokumen (urutan default).
 
-There are two special values:
+Disana ada dua nilai khusus:
 
-- `tabindex="0"` puts an element among those without `tabindex`. That is, when we switch elements, elements with `tabindex=0` go after elements with `tabindex ≥ 1`.
+- `tabindex="0"` menempatkan sebuah elemen diantara mereka tanpa `tabindex`. That is, ketika kita pindah elemen, element with `tabindex=0` go after elements with `tabindex ≥ 1`.
 
     Usually it's used to make an element focusable, but keep the default switching order. To make an element a part of the form on par with `<input>`.
 
@@ -224,5 +224,5 @@ Their specials are:
 
 The current focused element is available as `document.activeElement`.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIwMzIxMjUzNF19
+eyJoaXN0b3J5IjpbMjg5MjU5MTQzXX0=
 -->
