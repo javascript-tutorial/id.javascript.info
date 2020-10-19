@@ -4,9 +4,9 @@ Sebuah elemen menjadi focus ketika user mengkliknya atau menggunakan Tombol `key
 
 Fokus pada sebuah elemen pada umumnya diartikan: "bersiap untuk terima datanya disini", jadi itu adalah momen ketika kita bisa menjalankan kode untuk di inisiasi kebutuhan fungsionalitas.
 
-The moment of losing the focus ("blur") can be even more important. That's when a user clicks somewhere else or presses `key:Tab` to go to the next form field, or there are other means as well.
+Momen ketika hilang fokus ("blur") bahkan bisa lebih penting. Itu adalah dimana user klik disuatu tempat or menekan `key:Tab` untuk pindah ke kotak selanjutnya, atau suatu hal yang lain.
 
-Losing the focus generally means: "the data has been entered", so we can run the code to check it or even to save it to the server and so on.
+Kehilangan focus pada umumnya diartikan: "data telah di isi", jadi kita bisa menjalankan kode untuk mengeceknya atau bahkan menyimpannya ke server dan sebagainya.
 
 There are important peculiarities when working with focus events. We'll do the best to cover them further on.
 
@@ -224,5 +224,5 @@ Their specials are:
 
 The current focused element is available as `document.activeElement`.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQyNDYwNjM2Ml19
+eyJoaXN0b3J5IjpbLTg0NzgzMDg2Nl19
 -->
