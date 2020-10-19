@@ -86,7 +86,7 @@ Your email please: <input type="email" id="input">
 
 Itu bekerja pada semua browser kecuali Firefox ([bug](https://bugzilla.mozilla.org/show_bug.cgi?id=53579)).
 
-Jika kita sedang mengetik/memasukkan sesuatu ke input dan coba menggunakan`key:Tab` atau klik diluar elemen `<input>`, maka `onblur` membuat fokus kembali.
+Jika kita sedang mengetik/memasukkan sesuatu ke input dan coba menggunakan`key:Tab` atau klik diluar elemen `<input>`, maka `onblur` membuat fokus kembali ke input.
 
 Perlu diingat bahwa kita tidak bisa "mencegah hilangnya fokus" dengan memanggil `event.preventDefault()` pada `onblur`, karena `onblur` bekerja saat element hilang fokus.
 
@@ -224,5 +224,5 @@ Keistimewaan mereka adalah:
 
 The current focused element is available as `document.activeElement`.///
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk4NzI5OTU2NF19
+eyJoaXN0b3J5IjpbLTE5MjAzOTk4MzBdfQ==
 -->
