@@ -126,7 +126,7 @@ Disana ada dua nilai khusus:
 
     Biasanya itu digunakan agar sebuah elemen menjadi *focusable*, tapi tetap memerhatikan urutan perpindahan default ////. Untuk membuat sebuah elemen menjadi bagian dari form yang setara`<input>`.
 
-- `tabindex="-1"` hanya membolehkan *programmatic focusing* pada sebuah elemen. The `key:Tab` key ignores such elements, akan tetapi metode `elem.focus()` berfungsi.////
+- `tabindex="-1"` hanya membolehkan *programmatic focusing* pada sebuah elemen. Kunci `key:Tab` mengabaikan elemen seperti itu, akan tetapi metode `elem.focus()` dapat berfungsi.
 
 Misalnya, ada list elemen. Klik item pertama dan tekan `key:Tab`:
 
@@ -224,5 +224,5 @@ Keistimewaan mereka adalah:
 
 Elemen fokus saat ini tersedia sebagai`document.activeElement`.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY4ODcwMDc5OCwtMTIzODMwNTg1NV19
+eyJoaXN0b3J5IjpbMTI0NzUwMTYxMywtMTIzODMwNTg1NV19
 -->
