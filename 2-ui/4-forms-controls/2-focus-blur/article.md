@@ -153,7 +153,7 @@ Kita bisa menambahkan `tabindex` dari JavaScript dengan menggunakan properti `el
 
 ## Delegation: focusin/focusout
 
-Events `focus` and `blur` tidak mengelembung(bubble).///
+Events `focus` and `blur` tidak mengelembung(bubble).
 
 Misalnya, kita tidak bisa menaruh `onfocus` pada `<form>` untuk menghighlight-nya, seperti ini:
 
@@ -219,10 +219,10 @@ Jadi ini adalah cara lain yang dapat bekerja:
 Event `focus` dan `blur` trigger pada saat sebuah elemen fokus dan hilang fokus.
 
 Keistimewaan mereka adalah:
-- Mereka tidak mengelembung(bubble). Gantinya bisa menggunakan *capturing state* atau `focusin/focusout`.///
+- Mereka tidak mengelembung(bubble). Gantinya bisa menggunakan *capturing state* atau `focusin/focusout`.
 - Kebanyakan elemen tidak mendukung fokus secara default. Gunakan `tabindex` untuk membuat elemen apapun menjadi *focusable*.
 
-Elemen fokus saat ini tersedia sebagai`document.activeElement`.///
+Elemen fokus saat ini tersedia sebagai`document.activeElement`.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMzgzMDU4NTVdfQ==
+eyJoaXN0b3J5IjpbMTIyNTUzMTAxOCwtMTIzODMwNTg1NV19
 -->
