@@ -8,7 +8,7 @@ Momen ketika hilang fokus ("blur") bahkan bisa lebih penting. Itu adalah dimana 
 
 Kehilangan focus pada umumnya diartikan: "data telah di isi", jadi kita bisa menjalankan kode untuk mengeceknya atau bahkan menyimpannya ke server dan sebagainya.
 
-Ada beberapa keaneha saat bekerja dengan event fokus. Kami akan melakukan yang terbaik untuk membahasnya lebih lanjut.
+Ada beberapa keanehan saat bekerja dengan event fokus. Kami akan melakukan yang terbaik untuk membahasnya lebih lanjut.
 
 ## Events focus/blur
 
@@ -100,13 +100,13 @@ Salah satu diantaranya adalah ketika pengunjung klik di tempat lain. Tetapi mung
 
 Beberapa fitur ini membuat `focus/blur` handler menjadi misbehave -- trigger disaat mereka tidak diperlukan.
 
-Resep yang baik adalah berhati-hati mengunakan event ini. If we want to track user-initiated focus-loss, then we should avoid causing it ourselves.///
+Resep yang baik adalah berhati-hati mengunakan event ini. Jika kita ingin melacak focus-loss yang dimulai oleh user//, maka kita harus menghidari yang dapat menyebabkan pada kita sendiri///
 ```
-## Allow focusing on any element: tabindex
+## Memungkinkan fokus pada elemen apapun: tabindex
 
 Secara default banyak elemen yang tidak support focusing.
 
-The list varies a bit between browsers, tetapi satu hal yang pasti benar: `focus/blur` dukungannya terjamin untuk elemen-elemen yang pengunjung bisa berinteraksi dengan: `<button>`, `<input>`, `<select>`, `<a>` dan lainnya.
+Daftarnya sedikit bervariasi diantara browser, tetapi satu hal yang pasti benar: `focus/blur` dukungannya terjamin untuk elemen-elemen yang pengunjung bisa berinteraksi dengan: `<button>`, `<input>`, `<select>`, `<a>` dan lainnya.
 
 Di lain sisi, elemen-elemen yang ada hanya untuk meformat sesuatu seperti `<div>`, `<span>`, `<table>` -- adalah *unfocusable* secara default. Metode `elem.focus()` tidak bekerja pada mereka, dan `focus/blur` event tidak akan pernah ke trigger.
 
@@ -153,7 +153,7 @@ Kita bisa menambahkan `tabindex` dari JavaScript dengan menggunakan properti `el
 
 ## Delegation: focusin/focusout
 
-Events `focus` and `blur` do not bubble.///
+Events `focus` and `blur` tidak mengelembung(bubble).///
 
 Misalnya, kita tidak bisa menaruh `onfocus` pada `<form>` untuk menghighlight-nya, seperti ini:
 
@@ -167,11 +167,11 @@ Misalnya, kita tidak bisa menaruh `onfocus` pada `<form>` untuk menghighlight-ny
 <style> .focused { outline: 1px solid red; } </style>
 ```
 
-Contoh diatas tidak akan bekerja, karena ketika sedang fokus pada sebuah `<input>`, event `focus` akan trigger hanya pada input tersebut. It doesn't bubble up. Jadi `form.onfocus` tidak akan perna trigger.
+Contoh diatas tidak akan bekerja, karena ketika sedang fokus pada sebuah `<input>`, event `focus` akan trigger hanya pada input tersebut. Ia tidak mengelembung ke atas(bubble up). Jadi `form.onfocus` tidak akan pernah trigger.
 
 Hanya ada dua solusi.
 
-Pertama, ada satu sejarah lucu dengan feature: `focus/blur` do not bubble up, but propagate down on the capturing phase.///
+Pertama, ada satu sejarah lucu dengan fitur: `focus/blur` yang tidak mengelembung ke atas(bubble up), tetapi merambat ke bawah saat *capturing phase*.
 
 Ini akan bekerja:
 
@@ -185,14 +185,14 @@ Ini akan bekerja:
 
 <script>
 *!*
-  // put the handler on capturing phase (last argument true)
+  // meletakkan handler pada capturing phase (argumen terakhir set menjadi true)
   form.addEventListener("focus", () => form.classList.add('focused'), true);
   form.addEventListener("blur", () => form.classList.remove('focused'), true);
 */!*
 </script>
 ```
 
-Kedua, ada event `focusin` dan `focusout` -- persis sama dengan`focus/blur`, but they bubble.///
+Kedua, ada event `focusin` dan `focusout` -- persis sama dengan`focus/blur`, tetapi mereka mengelembung(bubble).
 
 Ingat bahwa mereka perlu di definisi menggunakan `elem.addEventListener`, bukan `on<event>`.
 
@@ -219,10 +219,10 @@ Jadi ini adalah cara lain yang dapat bekerja:
 Event `focus` dan `blur` trigger pada saat sebuah elemen fokus dan hilang fokus.
 
 Keistimewaan mereka adalah:
-- They do not bubble. Gantinya bisa menggunakan *capturing state* atau `focusin/focusout`.///
+- Mereka tidak mengelembung(bubble). Gantinya bisa menggunakan *capturing state* atau `focusin/focusout`.///
 - Kebanyakan elemen tidak mendukung fokus secara default. Gunakan `tabindex` untuk membuat elemen apapun menjadi *focusable*.
 
-The current focused element is available as `document.activeElement`.///
+Elemen fokus saat ini tersedia sebagai`document.activeElement`.///
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM1MjgxOTgxOF19
+eyJoaXN0b3J5IjpbLTEyMzgzMDU4NTVdfQ==
 -->
