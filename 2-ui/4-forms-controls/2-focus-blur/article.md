@@ -100,7 +100,7 @@ Salah satu diantaranya adalah ketika pengunjung klik di tempat lain. Tetapi mung
 
 Beberapa fitur ini membuat `focus/blur` handler menjadi misbehave -- trigger disaat mereka tidak diperlukan.
 
-Resep yang baik adalah berhati-hati mengunakan event ini. Jika kita ingin melacak focus-loss yang dimulai oleh user, maka kita harus menghidari yang dapat menyebabkan pada kita sendiri///
+Resep yang baik adalah berhati-hati mengunakan event ini. Jika kita ingin melacak focus-loss yang dimulai oleh user, maka kita harus menghidari yang dapat menyebabkan pada kita sendiri.
 ```
 ## Memungkinkan fokus pada elemen apapun: tabindex
 
@@ -224,6 +224,6 @@ Keistimewaan mereka adalah:
 
 Elemen fokus saat ini tersedia sebagai`document.activeElement`.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA3MjMyMjE2MSwxMjQ3NTAxNjEzLC0xMj
-M4MzA1ODU1XX0=
+eyJoaXN0b3J5IjpbLTE1Mjg1MDgyMzgsMTI0NzUwMTYxMywtMT
+IzODMwNTg1NV19
 -->
