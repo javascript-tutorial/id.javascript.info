@@ -6,11 +6,11 @@ importance: 5
 
 Buat sebuah `<div>` yang berubah menjadi`<textarea>` ketika di klik.
 
-The textarea allows to edit the HTML in the `<div>`.
+Textarea memungkinkan untuk mengedit HTML di `<div>`.
 
-When the user presses `key:Enter` or it loses focus, the `<textarea>` turns back into `<div>`, and its content becomes HTML in `<div>`.
+Ketika user menekan `key:Enter` atau hilang fokus, maka `<textarea>` berubah `<div>`, and its content becomes HTML in `<div>`.
 
 [demo src="solution"]
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc1OTUxMjczMl19
+eyJoaXN0b3J5IjpbLTcxMTkxOTgyNF19
 -->
