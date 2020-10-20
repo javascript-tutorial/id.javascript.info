@@ -1,6 +1,6 @@
 
-We can use `mouse.onclick` to handle the click and make the mouse "moveable" with `position:fixed`, then `mouse.onkeydown` to handle arrow keys.
+Kita bisa gunakan `mouse.onclick` untuk menghandle klik dan membuat mouse "moveable/bergerak" dengan `position:fixed`, kemudian `mouse.onkeydown` untuk handle tombol panah.
 
-The only pitfall is that `keydown` only triggers on elements with focus. So we need to add `tabindex` to the element.  As we're forbidden to change HTML, we can use `mouse.tabIndex` property for that.
+Satu-satunya jebakan ialah `keydown` hanya trigger pada elemen dengan fokus. Jadi kita perlu untuk menambahkan `tabindex` pada elemen. Karena kita dilarang mengubah HTML, kita bisa gunakan `mouse.tabIndex` properti untuk itu.
 
-P.S. We also can replace `mouse.onclick` with `mouse.onfocus`.
+P.S. Kita juga bisa ganti `mouse.onclick` dengan `mouse.onfocus`.
