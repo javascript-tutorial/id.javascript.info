@@ -122,7 +122,7 @@ Element dengan `tabindex` yang sesuai berpindah pada urutan sumber dokumen (urut
 
 Disana ada dua nilai khusus:
 
-- `tabindex="0"` menempatkan sebuah elemen diantara mereka tanpa `tabindex`. Itu ialah, ketika kita pindah elemen, elemen dengan `tabindex=0` berpindah  dengan//// elemen `tabindex ≥ 1`.
+- `tabindex="0"` menempatkan sebuah elemen diantara mereka tanpa `tabindex`. Itu ialah, ketika kita pindah elemen, elemen dengan `tabindex=0` berpindah setelah elemen dengan `tabindex ≥ 1`.
 
     Biasanya itu digunakan agar sebuah elemen menjadi *focusable*, tapi tetap memerhatikan urutan perpindahan default ////. Untuk membuat sebuah elemen menjadi bagian dari form yang setara`<input>`.
 
@@ -224,5 +224,6 @@ Keistimewaan mereka adalah:
 
 Elemen fokus saat ini tersedia sebagai`document.activeElement`.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI0NzUwMTYxMywtMTIzODMwNTg1NV19
+eyJoaXN0b3J5IjpbMTIwNDQ5OTg2NywxMjQ3NTAxNjEzLC0xMj
+M4MzA1ODU1XX0=
 -->
