@@ -3,7 +3,7 @@ Kita bisa gunakan `mouse.onclick` untuk menghandle klik dan membuat mouse "movea
 
 Satu-satunya jebakan ialah `keydown` hanya trigger pada elemen dengan fokus. Jadi kita perlu untuk menambahkan `tabindex` pada elemen. Karena kita dilarang mengubah HTML, kita bisa gunakan `mouse.tabIndex` properti untuk itu.
 
-P.S. We also can replace `mouse.onclick` with `mouse.onfocus`.
+P.S. Kita juga bisa ganti `mouse.onclick` dengan `mouse.onfocus`.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MDkyNTY3OTRdfQ==
+eyJoaXN0b3J5IjpbOTc1MzMwNTRdfQ==
 -->
