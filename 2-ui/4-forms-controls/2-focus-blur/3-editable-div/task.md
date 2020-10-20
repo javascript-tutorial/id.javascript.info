@@ -4,7 +4,7 @@ importance: 5
 
 # Editable div
 
-Create aBuat sebau `<div>` that turns into `<textarea>` when clicked.
+Buat sebuah `<div>` yang berubah menjadi`<textarea>` ketika di klik.
 
 The textarea allows to edit the HTML in the `<div>`.
 
@@ -12,5 +12,5 @@ When the user presses `key:Enter` or it loses focus, the `<textarea>` turns back
 
 [demo src="solution"]
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NTMwNTU4MDhdfQ==
+eyJoaXN0b3J5IjpbMTc1OTUxMjczMl19
 -->
