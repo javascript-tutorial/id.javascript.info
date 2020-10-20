@@ -131,7 +131,7 @@ Disana ada dua nilai khusus:
 Misalnya, ada list elemen. Klik item pertama dan tekan `key:Tab`:
 
 ```html autorun no-beautify
-Klik pada elemen pertama dan tekan tab. Perhatikan pada urutan. Please note that many subsequent Tabs can move the focus out of the iframe in the example.
+Klik pada elemen pertama dan tekan tab. Perhatikan pada urutan. Harap diperhatikan bahwa many subsequent Tabs can move the focus out of the iframe in the example.
 <ul>
   <li tabindex="1">One</li>
   <li tabindex="0">Zero</li>
@@ -224,5 +224,5 @@ Keistimewaan mereka adalah:
 
 Elemen fokus saat ini tersedia sebagai`document.activeElement`.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIyNTUzMTAxOCwtMTIzODMwNTg1NV19
+eyJoaXN0b3J5IjpbLTExMjY0NTA4MCwtMTIzODMwNTg1NV19
 -->
