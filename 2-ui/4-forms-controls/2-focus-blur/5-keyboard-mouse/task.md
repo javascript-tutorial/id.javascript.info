@@ -8,8 +8,8 @@ Fokus pada mouse. Lalu gunakan tombol arah untuk menggerakkannya:
 
 [demo src="solution"]
 
-P.S. Jangan letakkan event handler dimanapun kecuali  `#mouse` element.
-P.P.S. Don't modify HTML/CSS, the approach should be generic and work with any element.
+P.S. Jangan letakkan event handler dimanapun kecuali elemen `#mouse`.
+P.P.S. Jangan modif HTML/CSS, pendekatannya harus umum dan bekerja dengan elemen manapun.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzEwMTg1NTQ1XX0=
+eyJoaXN0b3J5IjpbMTc4NjQyNTg4NV19
 -->
