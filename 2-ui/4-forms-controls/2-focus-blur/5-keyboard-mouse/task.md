@@ -4,9 +4,9 @@ importance: 4
 
 # Keyboard-driven mouse
 
-Focus on the mouse. Then use arrow keys to move it:
+Fokus pada mouse. Lalu gunakan tombol arah untuk menggerakkannya:
 
 [demo src="solution"]
 
-P.S. Don't put event handlers anywhere except the `#mouse` element.
-P.P.S. Don't modify HTML/CSS, the approach should be generic and work with any element.
+P.S. Jangan letakkan event handler dimanapun kecuali elemen `#mouse`.
+P.P.S. Jangan modif HTML/CSS, pendekatannya harus umum dan bekerja dengan elemen manapun.
