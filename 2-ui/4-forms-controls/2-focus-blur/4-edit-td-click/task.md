@@ -11,9 +11,9 @@ Buat sel tabel yang dapat diedit saat diklik.
 - Hanya satu sel yang dapat diedit setiap saat. Sementara `<td>` dalam "edit mode", klik pada sel lain akan diabaikan.
 - Tabel mungkin memilki banyak sel. Gunakan event delegation.
 
-The demo:
+Demo:
 
 [iframe src="solution" height=400]
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzU3NTUwNzRdfQ==
+eyJoaXN0b3J5IjpbLTIwMDI3OTQ3MDFdfQ==
 -->
