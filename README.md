@@ -1,6 +1,10 @@
 # Tutorial JavaScript Modern
 
+<<<<<<< HEAD
 Ini adalah repository konten Indonesia dari Tutorial JavaScript Modern yang terbit di [https://javascript.info](https://javascript.info).
+=======
+This repository hosts the English content of the Modern JavaScript Tutorial, published in [https://javascript.info](https://javascript.info).
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 ## Penerjemahan
 
@@ -26,9 +30,15 @@ Foldernya dinamai seperti `N-url`, di mana `N` adalah angka untuk tujuan penguru
 
 Tipe material didefinisikan oleh file di dalam foldernya:
 
+<<<<<<< HEAD
   - `index.md` berdiri untuk satu bab
   - `article.md` berdiri untuk satu artikel
   - `task.md` berdiri untuk satu tugas (solusi harus disediakan dalam file `solution.md` juga)
+=======
+  - `index.md` stands for a chapter
+  - `article.md` stands for an article
+  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 Setiap file di sini dimulai dari `# Main header`.
 
@@ -38,15 +48,13 @@ Sangat mudah menambah hal baru.
 
 Beberapa tips untuk penerjemah:
 
-- _Markdown_ pada GitHub https://guides.github.com/features/mastering-markdown/
+- Referensi untuk _Markdown_ pada GitHub https://guides.github.com/features/mastering-markdown/
 - Disarankan menggunakan teks editor markdown berbasis web seperti [StackEdit](https://stackedit.io/app#), ataupun yang lainnya.
 - Jika terdapat artikel yang sudah diterjemahkan namun sulit untuk dimengerti, penerjemah dapat membandingkan artikel tersebut dengan versi bahasa inggris, ubah artikel yang menurut penerjemah sulit dimengerti lalu lakukan PR.
 
 - Terjemahan tidak harus akurat, yang terpenting mudah dipahami.
-- Jika terdapat artikel yang sudah diterjemahkan namun sulit untuk dimengerti, penerjemah dapat membandingkan artikel tersebut dengan versi bahasa inggris, ubah artikel yang menurut penerjemah sulit dimengerti lalu lakukan PR.
 - Jangan terjemahkan error seperti ```Uncaught ReferenceError: asdfg tidak didefinisikan```, tapi tambahkan catatan tambahan ```Uncaught ReferenceError: asdfg is not defined (asdfg belum/tidak terdefinisi/didefinisikan)```
-- Gunakan _italic_ untuk teks yang tidak bisa/tidak boleh diterjemahkan.
-- Gunakan ```Syntax highlighting``` untuk potongan kode.
+- Periksa [_glossary_](https://github.com/javascript-tutorial/id.javascript.info/blob/master/glossary.md) untuk melihat kata-kata yang digunakan pada repo ini, jika kata yang diinginkan tidak ada maka diskusikan pada issues #150 .
 
 ## Jalankan repo secara lokal
 Jika penerjemah ingin melihat repo dijalankan secara lokal, penerjemah dapat menggunakan https://github.com/javascript-tutorial/server.

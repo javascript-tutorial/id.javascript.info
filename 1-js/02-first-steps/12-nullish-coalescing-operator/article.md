@@ -11,7 +11,11 @@ Hasil dari `a ?? b` adalah:
 - jika `a` belum didefinisikan, maka `b`.
 
 
+<<<<<<< HEAD
 Dengan kata lain, `??` mengembalikan argumen pertama jika argumen tersebut telah didefinisikan. Sebaliknya, mengembalikan argumen kedua jika argumen pertama belum didefinisikan.
+=======
+In other words, `??` returns the first argument if it's not `null/undefined`. Otherwise, the second one.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 Operator penggabung nullish bukanlah sesuatu yang benar-benar baru. Operator itu hanyalah sebuah sintaks yang bagus untuk mendapatkan nilai pertama yang telah "didefinisikan" dari dua nilai.
 
@@ -39,7 +43,11 @@ let user = "John";
 alert(user ?? "Anonymous"); // John
 ```
 
+<<<<<<< HEAD
 Kita juga bisa menggunakan rentetan `??` untuk mendapatkan nilai yang telah didefinisikan dari sebuah daftar.
+=======
+We can also use a sequence of `??` to select the first value from a list that isn't `null/undefined`.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 Katakan kita memiliki sebuah data _user_ didalam sebuah variabel `firstName`, `lastName`, atau `nickName`. Semuanya mungkin saya memiliki nilai _undefined_, jika _user_ nya tidak memasukan nilainya.
 
@@ -77,11 +85,19 @@ alert(firstName || lastName || nickName || "Anonymous"); // Supercoder
 
 Operator OR `||` sudah ada sejak awal mula dari Javascript, jadi sudah sejak lama pengembang menggunakan operator _or_ untuk kebutuhan seperti contoh diatas.
 
+<<<<<<< HEAD
 Disisi yang lain, operator penggabung nullish `??` baru saja ditambahkan, dan alasan penambahannya adalah karena para pengembang kurang senang dengan `||`.
 
 Perbedaan halus, tapi penting adalah:
 - `||` mengembalikan nilai *truthy* pertama.
 - `??` mengembalikan nilai *terdefinisi* pertama.
+=======
+On the other hand, the nullish coalescing operator `??` was added to JavaScript only recently, and the reason for that was that people weren't quite happy with `||`.
+
+The important difference between them is that:
+- `||` returns the first *truthy* value.
+- `??` returns the first *defined* value.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 Dengan kata lain, `||` tidak membedakan antara `false`, `0`, sebuah string kosong `""` dan `null/undefined`. Mereka dilihat sama oleh `||` -- nilai _falsy_. Jika salah satu nilai tersebut berada pada argumen pertama dari `||`, maka kita akan mendapatkan argumen kedua sebagai hasilnya.
 
@@ -97,6 +113,7 @@ alert(height || 100); // 100
 alert(height ?? 100); // 0
 ```
 
+<<<<<<< HEAD
 Disini, kita memiliki _height_ nol.
 
 - Bagian `height || 100` memeriksa `height` sebagai nilai yang _falsy_, dan ternyata benar.
@@ -105,6 +122,14 @@ Disini, kita memiliki _height_ nol.
     - jadi hasil dari `height` adalah "sebagaimana adanya", yang mana adalah `0`.
 
 Jika kita asumsikan bahwa _height_ nol adalah nilai yang valid, maka nilainya tidak seharusnya diganti dengan nilai _default_, maka `??` melakukan hal yang benar.
+=======
+- The `height || 100` checks `height` for being a falsy value, and it really is.
+    - so the result is the second argument, `100`.
+- The `height ?? 100` checks `height` for being `null/undefined`, and it's not,
+    - so the result is `height` "as is", that is `0`.
+
+If the zero height is a valid value, that shouldn't be replaced with the default, then `??` does just the right thing.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 ## Precedence/Hak lebih tinggi
 
@@ -156,7 +181,11 @@ alert(x); // 2
 
 ## Ringkasan
 
+<<<<<<< HEAD
 - operator penggabung nullish `??` menyediakan cara yang pendek untuk memilih nilai *defined* dari sebuah daftar.
+=======
+- The nullish coalescing operator `??` provides a short way to choose the first "defined" value from a list.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
     It's used to assign default values to variables:
     Operator nullish digunakan untuk memberikan nilai default kepada sebuah variabel:
@@ -166,5 +195,10 @@ alert(x); // 2
     height = height ?? 100;
     ```
 
+<<<<<<< HEAD
 - Operator `??` memiliki nilai *precedence* yang sangat rendah, dan sedikit lebih tinggi dari `?` dan `=`.
 - Dilarang untuk menggunakan operator `??` dengan `\\` atau `&&` tanpa kurung yang jelas.
+=======
+- The operator `??` has a very low precedence, only a bit higher than `?` and `=`, so consider adding parentheses when using it in an expression.
+- It's forbidden to use it with `||` or `&&` without explicit parentheses.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d

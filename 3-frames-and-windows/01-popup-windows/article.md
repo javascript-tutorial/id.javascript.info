@@ -7,7 +7,6 @@ window.open('https://javascript.info/')
 ```
 
 ...Dan akan terbuka jendela baru yang telah diberi URL, Kebanyakan peramban moderen akan membuka jendela baru bukannya jendela terpisah.
-
 Popup ada sejak jaman dahulu. Ide awalnya adalah untuk menampilkan konten lain tanpa menutup jendela utama. Saat ini, ada cara lain untuk melakukan hal tersebut: Kita bisa membuka konten secara dinamis dengan [fetch](info:fetch) dan menampilkannya di dalam sebuah `<div>` yang dihasilkan secara dinamis. Jadi popups adalah sesuatu yang tidak kita gunakan setiap hari.
 
 Kemudian, popups itu rumit di perangkat seluler, karena tidak menampilkan beberapa jendela secara serempak.
@@ -79,7 +78,6 @@ Pengaturan untuk `params`:
   - `status` (yes/no) -- menampilkan atau menyembunyikan <em>bar status</em>. Sekali lagi kebanyakan peramban memaksa untuk menampilkannya.
   - `resizable` (yes/no) -- mengizinkan atau menolak untuk merubah ukuran jendela baru. Tidak direkomendasikan.
   - `scrollbars` (yes/no) -- mengizinkan atau menolak <em>scrollbars</em>. untuk jendela baru. Tidak direkomendasikan.
-
 
 Ada juga sedikit dukungan untuk fitur spesifik peramban, Dimana biasanya tidak digunakan. Periksa <a href="https://developer.mozilla.org/en/DOM/window.open">window.open in MDN</a> Sebagai contoh.
 

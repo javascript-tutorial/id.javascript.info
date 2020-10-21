@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Menyalin objek, referensi
 
 Salah satu perbedaan dasar dari objek dan tipe primitif adalah untuk menyimpan dan menyalin "dengan referensi/*by reference*".
@@ -5,6 +6,17 @@ Salah satu perbedaan dasar dari objek dan tipe primitif adalah untuk menyimpan d
 nilai primitif: string, angka, boolean -- akan disalin "seluruh nilainya".
 
 contoh:
+=======
+# Object references and copying
+
+One of the fundamental differences of objects versus primitives is that objects are stored and copied "by reference", as opposed to primitive values: strings, numbers, booleans, etc -- that are always copied "as a whole value".
+
+That's easy to understand if we look a bit "under a cover" of what happens when we copy a value.
+
+Let's start with a primitive, such as a string.
+
+Here we put a copy of `message` into `phrase`:
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 ```js
 let message = "Hello!";
@@ -15,11 +27,21 @@ Sebagai hasilnya kita punya dua variabel yang berdiri sendiri, dan keduanya meny
 
 ![](variable-copy-value.svg)
 
+<<<<<<< HEAD
 Objek tidak seperti itu.
 
 **Sebuah variabel tidak menyimpan objek itu sendiri, akan tetapi "disimpan didalam memori", dengan kata lain "mereferensi" kepadanya (ke data didalam memori).**
 
 Dibawah adalah gambar untuk sebuah objek:
+=======
+Quite an obvious result, right?
+
+Objects are not like that.
+
+**A variable assigned to an object stores not the object itself, but its "address in memory", in other words "a reference" to it.**
+
+Let's look at an example of such variable:
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 ```js
 let user = {
@@ -27,9 +49,21 @@ let user = {
 };
 ```
 
+And here's how it's actually stored in memory:
+
 ![](variable-contains-reference.svg)
 
+<<<<<<< HEAD
 Disini, objek disimpan di suatu tempat didalam memori. Dan variabel `user` punya "referensi" ke data objek yang berada didalam memori itu.
+=======
+The object is stored somewhere in memory (at the right of the picture), while the `user` variable (at the left) has a "reference" to it.
+
+We may think of an object variable, such as `user`, as of a sheet of paper with the address.
+
+When we perform actions with the object, e.g. take a property `user.name`, JavaScript engine looks into that address and performs the operation on the actual object.
+
+Now here's why it's important.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 **Ketika sebuah variabel objek disalin -- referensinya akan tersalin, objeknya tidak terduplikasi.**
 
@@ -45,7 +79,13 @@ Kita sekarang punya dua variabel, masing-masing mereferensi ke objek yang sama:
 
 ![](variable-copy-reference.svg)
 
+<<<<<<< HEAD
 Kita bisa menggunakan variabel apapun untuk mengakses objek dan memodifikasi konten didalamnya:
+=======
+As you can see, there's still one object, now with two variables that reference it.
+
+We can use any variable to access the object and modify its contents:
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 ```js run
 let user = { name: 'John' };
@@ -59,6 +99,7 @@ admin.name = 'Pete'; // mengganti admin dengan menggunakan "referensi"
 alert(*!*user.name*/!*); // 'Pete', perubahan akan terlihat pada "user"
 ```
 
+<<<<<<< HEAD
 Contoh diatas mendemonstrasikan bahwa disana hanya ada satu objek. Seperti jika kita punya sebuah lemari dengan dua kunci dan satunya (`admin`) digunakan untuk masuk kedalamnya. Lalu, jika kita nanti menggunakan kunci lainnya (`user`) kita bisa melihat perubahannya.
 
 ## Perbandingan dengan referensi
@@ -68,6 +109,16 @@ Operator pembanding `==` dan pembanding ketat `===` untuk objek bekerja sama saj
 **Dua objek adalah sama jika mereka objek yang sama.**
 
 Dibawah adalah dua variabel yang mereferensi ke objek yang sama, dengan demikian mereka sama:
+=======
+
+It's just as if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use another key (`user`) we can see changes.
+
+## Comparison by reference
+
+Two objects are equal only if they are the same object.
+
+For instance, here `a` and `b` reference the same object, thus they are equal:
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 ```js run
 let a = {};
@@ -77,7 +128,11 @@ alert( a == b ); // true, kedua variabel mereferensi ke objek yang sama
 alert( a === b ); // true
 ```
 
+<<<<<<< HEAD
 Dan dibawah adalah dua objek yang berdiri sendiri, tidaklah sama, walaupun keduanya kosong:
+=======
+And here two independent objects are not equal, even though they look alike (both are empty):
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 ```js run
 let a = {};
@@ -86,7 +141,11 @@ let b = {}; // dua objek yang berdiri sendiri
 alert( a == b ); // false
 ```
 
+<<<<<<< HEAD
 Untuk perbandingan seperti `obj1 > obj2` atau untuk perbandingan dengan sebuah nilai primitif `obj == 5`, objek akan diubah dahulu menjadi primitif. Kita akan belajar bagaimana perubahan objek sebentar lagi, akan tetapi sebenarnya, perbandingan seperti itu muncul sangat jarang, biasanya hanya sebuah hasil dari kesalahan koding.
+=======
+For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are needed very rarely, usually they appear as a result of a programming mistake.
+>>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 ## Penggandaan dan penggabungan, Object.assign
 
