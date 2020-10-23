@@ -1,14 +1,14 @@
-# Shadow DOM and events
+# Shadow DOM dan events
 
-The idea behind shadow tree is to encapsulate internal implementation details of a component.
+Ide di balik pohon bayangan adalah untuk mengenkapsulasi detail implementasi internal suatu komponen.
 
-Let's say, a click event happens inside a shadow DOM of `<user-card>` component. But scripts in the main document have no idea about the shadow DOM internals, especially if the component comes from a 3rd-party library.  
+Misalkan, *event* klik terjadi di dalam shadow DOM dari komponen `<user-card>`. Namun skrip di dokumen utama tidak mengetahui internal shadow DOM, terutama jika komponen tersebut berasal dari pustaka pihak ketiga.
 
-So, to keep the details encapsulated, the browser *retargets* the event.
+Jadi, untuk menjaga detailnya tetap terenkapsulasi, browser menargetkan ulang *event* tersebut.
 
-**Events that happen in shadow DOM have the host element as the target, when caught outside of the component.**
+**Event yang terjadi di shadow DOM memiliki elemen host sebagai target, saat tertangkap di luar komponen.**
 
-Here's a simple example:
+Berikut contoh sederhananya:
 
 ```html run autorun="no-epub" untrusted height=60
 <user-card></user-card>
@@ -30,16 +30,16 @@ document.onclick =
 </script>
 ```
 
-If you click on the button, the messages are:
+Jika anda mengklik tombol tersebut, pesan yang ditampilkan adalah:
 
-1. Inner target: `BUTTON` -- internal event handler gets the correct target, the element inside shadow DOM.
-2. Outer target: `USER-CARD` -- document event handler gets shadow host as the target.
+1. Inner target: `BUTTON` -- *event handler* internal mendapatkan target yang benar, yaitu elemen di dalam shadow DOM.
+2. Outer target: `USER-CARD` -- dokumen *event handler* mendapatkan shadow host sebagai target.
 
-Event retargeting is a great thing to have, because the outer document doesn't have to know  about component internals. From its point of view, the event happened on `<user-card>`.
+Penargetan ulang *event* adalah hal yang bagus untuk dimiliki, karena dokumen luar tidak harus tahu tentang komponen internal. Dari sudut pandang ini, *event* tersebut terjadi di `<user-card>`.
 
-**Retargeting does not occur if the event occurs on a slotted element, that physically lives in the light DOM.**
+**Penargetan ulang tidak terjadi jika peristiwa terjadi pada *slotted* elemen, yang secara fisik berada di light DOM.**
 
-For example, if a user clicks on `<span slot="username">` in the example below, the event target is exactly this `span` element, for both shadow and light handlers:
+Misalnya, jika pengguna mengklik `<span slot =" username ">` pada contoh di bawah, target *event* persis elemen `span` ini, untuk *shadow* dan *light handler*:
 
 ```html run autorun="no-epub" untrusted height=60
 <user-card id="userCard">
@@ -65,19 +65,19 @@ userCard.onclick = e => alert(`Outer target: ${e.target.tagName}`);
 </script>
 ```
 
-If a click happens on `"John Smith"`, for both inner and outer handlers the target is `<span slot="username">`. That's an element from the light DOM, so no retargeting.
+Jika klik terjadi pada `"John Smith"`, untuk *inner* dan *outer handler*, targetnya adalah `<span slot =" username ">`. Itu adalah elemen dari light DOM, jadi tidak ada penargetan ulang.
 
-On the other hand, if the click occurs on an element originating from shadow DOM, e.g. on `<b>Name</b>`, then, as it bubbles out of the shadow DOM, its `event.target` is reset to `<user-card>`.
+Di sisi lain, jika klik terjadi pada elemen yang berasal dari shadow DOM, misalnya pada `<b> Name </b>`, lalu, saat ia menggelembung keluar dari shadow DOM, `event.target`-nya disetel ulang ke `<user-card>`.
 
 ## Bubbling, event.composedPath()
 
-For purposes of event bubbling, flattened DOM is used.
+Untuk tujuan *event bubbling*, DOM yang diratakan digunakan.
 
-So, if we have a slotted element, and an event occurs somewhere inside it, then it bubbles up to the `<slot>` and upwards.
+Jadi, jika kita memiliki *slotted* elemen, dan sebuah *event* terjadi di suatu tempat di dalamnya, maka *event* itu menggelembung ke `<slot>` dan ke atasnya.
 
-The full path to the original event target, with all the shadow elements, can be obtained using `event.composedPath()`. As we can see from the name of the method, that path is taken after the composition.
+Jalur lengkap ke target *event* asli, dengan semua elemen bayangan, bisa diperoleh menggunakan `event.composedPath()`. Seperti yang dapat kita lihat dari nama *method*, jalur tersebut diambil setelah komposisi.
 
-In the example above, the flattened DOM is:
+Dalam contoh di atas, DOM yang diratakan adalah:
 
 ```html
 <user-card id="userCard">
@@ -92,22 +92,22 @@ In the example above, the flattened DOM is:
 ```
 
 
-So, for a click on `<span slot="username">`, a call to `event.composedPath()` returns an array: [`span`, `slot`, `div`, `shadow-root`, `user-card`, `body`, `html`, `document`, `window`]. That's exactly the parent chain from the target element in the flattened DOM, after the composition.
+Jadi, untuk klik pada `<span slot="username">`, panggilan ke `event.composedPath()` mengembalikan sebuah array: [`span`,  `slot`, `div`, `shadow-root`, `User-card`, `body`, `html`,  `document`, `window`]. Itu persis seperti rantai induk dari elemen target di DOM yang diratakan, setelah komposisi.
 
 ```warn header="Shadow tree details are only provided for `{mode:'open'}` trees"
-If the shadow tree was created with `{mode: 'closed'}`, then the composed path starts from the host: `user-card` and upwards.
+Jika pohon bayangan dibuat dengan `{mode: 'closed'}`, maka jalur yang dibuat dimulai dari host: `user-card` dan ke atas.
 
-That's the similar principle as for other methods that work with shadow DOM. Internals of closed trees are completely hidden.
+Itu prinsip yang sama untuk *methods* lain yang bekerja dengan shadow DOM. Bagian dalam pohon tertutup benar-benar tersembunyi.
 ```
 
 
 ## event.composed
 
-Most events successfully bubble through a shadow DOM boundary. There are few events that do not.
+Sebagian besar event berhasil menggelembung melewati batas shadow DOM. Ada beberapa event yang tidak.
 
-This is governed by the `composed` event object property. If it's `true`, then the event does cross the boundary. Otherwise, it only can be caught from inside the shadow DOM.
+Ini diatur oleh properti event objek `kompos`. Jika itu `true`, maka event tersebut melewati batas. Jika tidak, event itu hanya bisa ditangkap dari dalam shadow DOM.
 
-If you take a look at [UI Events specification](https://www.w3.org/TR/uievents), most events have `composed: true`:
+Jika anda melihat [UI Events specification](https://www.w3.org/TR/uievents), sebagian besar event memiliki `composed: true`:
 
 - `blur`, `focus`, `focusin`, `focusout`,
 - `click`, `dblclick`,
@@ -115,22 +115,22 @@ If you take a look at [UI Events specification](https://www.w3.org/TR/uievents),
 - `wheel`,
 - `beforeinput`, `input`, `keydown`, `keyup`.
 
-All touch events and pointer events also have `composed: true`.
+Semua event sentuh dan event penunjuk juga memiliki `composed: true`.
 
-There are some events that have `composed: false` though:
+Ada beberapa event yang memiliki `compose: false`:
 
 - `mouseenter`, `mouseleave` (they do not bubble at all),
 - `load`, `unload`, `abort`, `error`,
 - `select`,
 - `slotchange`.
 
-These events can be caught only on elements within the same DOM, where the event target resides.
+Event ini hanya dapat ditangkap pada elemen dalam DOM yang sama, tempat target event berada.
 
-## Custom events
+## Event kustom
 
-When we dispatch custom events, we need to set both `bubbles` and `composed` properties to `true` for it to bubble up and out of the component.
+Saat kita mengirimkan event khusus, kita perlu mengatur properti `bubble` dan `composed` ke `true` agar dapat menggelembung dan keluar dari komponen.
 
-For example, here we create `div#inner` in the shadow DOM of `div#outer` and trigger two events on it. Only the one with `composed: true` makes it outside to the document:
+Misalnya, di sini kita membuat `div#inner` di shadow DOM dari `div#outer` dan memicu dua event di atasnya. Hanya satu dengan `composed: true` yang membuatnya berada di luar dokumen:
 
 ```html run untrusted height=0
 <div id="outer"></div>
@@ -167,26 +167,26 @@ inner.dispatchEvent(new CustomEvent('test', {
 </script>
 ```
 
-## Summary
+## Ringkasan
 
-Events only cross shadow DOM boundaries if their `composed` flag is set to `true`.
+*Event* hanya melewati batas shadow DOM jika flag `composed` disetel ke `true`.
 
-Built-in events mostly have `composed: true`, as described in the relevant specifications:
+*Event* bawaan sebagian besar memiliki `composed: true`, seperti yang dijelaskan dalam spesifikasi yang relevan:
 
 - UI Events <https://www.w3.org/TR/uievents>.
 - Touch Events <https://w3c.github.io/touch-events>.
 - Pointer Events <https://www.w3.org/TR/pointerevents>.
-- ...And so on.
+- ...Dan seterusnya.
 
-Some built-in events that have `composed: false`:
+Beberapa *event* bawaan yang memiliki `composed: false`:
 
-- `mouseenter`, `mouseleave` (also do not bubble),
+- `mouseenter`, `mouseleave` (juga tidak menggelembung),
 - `load`, `unload`, `abort`, `error`,
 - `select`,
 - `slotchange`.
 
-These events can be caught only on elements within the same DOM.
+*Events* ini hanya dapat ditangkap pada elemen dalam DOM yang sama.
 
-If we dispatch a `CustomEvent`, then we should explicitly set `composed: true`.
+Jika kita mengirimkan `CustomEvent`, maka kita harus secara eksplisit mengatur `composed: true`.
 
-Please note that in case of nested components, one shadow DOM may be nested into another. In that case composed events bubble through all shadow DOM boundaries. So, if an event is intended only for the immediate enclosing component, we can also dispatch it on the shadow host and set `composed: false`. Then it's out of the component shadow DOM, but won't bubble up to higher-level DOM.
+Harap diperhatikan bahwa dalam kasus komponen bertingkat, satu shadow DOM dapat bertumpuk ke dalam yang lain. Dalam kasus tersebut, gelembung peristiwa yang disusun melalui semua batas shadow DOM. Jadi, jika sebuah peristiwa hanya ditujukan untuk komponen penutup langsung, kita juga dapat mengirimkannya ke host bayangan dan menyetel `composed: false`. Kemudian keluar dari komponen shadow DOM, tetapi tidak akan mengarah ke DOM tingkat yang lebih tinggi.
