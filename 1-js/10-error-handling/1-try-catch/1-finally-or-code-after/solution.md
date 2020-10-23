@@ -1,8 +1,8 @@
-The difference becomes obvious when we look at the code inside a function.
+Perbedaannya menjadi jelas ketika kita melihat kode di dalam suatu fungsi.
 
-The behavior is different if there's a "jump out" of `try..catch`.
+Perilakunya berbeda jika ada lompatan keluar dari `try..catch`.
 
-For instance, when there's a `return` inside `try..catch`. The `finally` clause works in case of *any* exit from `try..catch`, even via the `return` statement: right after `try..catch` is done, but before the calling code gets the control.
+Misalnya, ketika ada `return` di dalam` try..catch`. Klausa `finally` berfungsi jika *ada* ya keluar dari` try..catch`, bahkan melalui pernyataan `return`: tepat setelah` try..catch` selesai, tetapi sebelum kode pemanggil mendapatkan kontrol.
 
 ```js run
 function f() {
@@ -21,7 +21,7 @@ function f() {
 f(); // cleanup!
 ```
 
-...Or when there's a `throw`, like here:
+.. Atau ketika ada `throw`, seperti di sini:
 
 ```js run
 function f() {
@@ -44,4 +44,4 @@ function f() {
 f(); // cleanup!
 ```
 
-It's `finally` that guarantees the cleanup here. If we just put the code at the end of `f`, it wouldn't run in these situations.
+Bagian `finally` yang menjamin proses pembersihan di sini. Jika kita hanya meletakkan kode di akhir `f`, itu tidak akan berjalan dalam situasi ini.
