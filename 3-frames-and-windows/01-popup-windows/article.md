@@ -1,96 +1,88 @@
-# Popups and window methods
+# Metode Popup dan window
 
-A popup window is one of the oldest methods to show additional document to user.
-
-Basically, you just run:
+Jendela popup adalah salah satu metode tertua untuk menampilkan tambahan dokumen kepada pengguna.
+Secara umum, kamu hanya menjalankan:
 ```js
 window.open('https://javascript.info/')
 ```
 
-...And it will open a new window with given URL. Most modern browsers are configured to open url in new tabs instead of separate windows.
+...Dan akan terbuka jendela baru yang telah diberi URL, Kebanyakan peramban moderen akan membuka jendela baru bukannya jendela terpisah.
+Popup ada sejak jaman dahulu. Ide awalnya adalah untuk menampilkan konten lain tanpa menutup jendela utama. Saat ini, ada cara lain untuk melakukan hal tersebut: Kita bisa membuka konten secara dinamis dengan [fetch](info:fetch) dan menampilkannya di dalam sebuah `<div>` yang dihasilkan secara dinamis. Jadi popups adalah sesuatu yang tidak kita gunakan setiap hari.
 
-Popups exist from really ancient times. The initial idea was to show another content without closing the main window. As of now, there are other ways to do that: we can load content dynamically with [fetch](info:fetch) and show it in a dynamically generated `<div>`. So, popups is not something we use everyday.
+Kemudian, popups itu rumit di perangkat seluler, karena tidak menampilkan beberapa jendela secara serempak.
 
-Also, popups are tricky on mobile devices, that don't show multiple windows simultaneously.
+Namun, ada tugas dimana popups masih digunakan, misalnya untuk otorisasi OAuth (masuk dengan Google/Facebook/...), karena:
+1. Popup adalah sebuah jendela terpisah dengan ekosistem Javascript independennya sendiri. Sehingga aman membuka popup dari situs pihak ketiga yang tidak terpercaya. 
+2. Sangat mudah untuk membuka popup.
+3. Sebuah popup dapat menavigasi (merubah URL) dan mengirimkan pesan ke pembuka jendela.
 
-Still, there are tasks where popups are still used, e.g. for OAuth authorization (login with Google/Facebook/...), because:
+## Pemblokiran Popup
 
-1. A popup is a separate window which has its own independent JavaScript environment. So opening a popup from a third-party, non-trusted site is safe.
-2. It's very easy to open a popup.
-3. A popup can navigate (change URL) and send messages to the opener window.
+Di masa lalu, situs jahat sering sekali menyalahgunakan popups. Sebuah halaman jahat dapat membuka banyak sekali jendela popup dengan iklan. Sehingga saat ini kebanyakan peramban mencoba untuk memblokir dan melindungi pengguna.
 
-## Popup blocking
+**Kebanyakan peramban akan memblokir popups jika dipangil dari luar aktifitas yang dipicu oleh pengguna seperti `onclick`.**
 
-In the past, evil sites abused popups a lot. A bad page could open tons of popup windows with ads. So now most browsers try to block popups and protect the user.
-
-**Most browsers block popups if they are called outside of user-triggered event handlers like `onclick`.**
-
-For example:
+Sebgai contoh:
 ```js
-// popup blocked
+// popup diblokir
 window.open('https://javascript.info');
 
-// popup allowed
+// popup diperbolehkan
 button.onclick = () => {
   window.open('https://javascript.info');
 };
 ```
 
-This way users are somewhat protected from unwanted popups, but the functionality is not disabled totally.
+Dengan cara ini pengguna agak terlindungi dari popups yang tidak diinginkan dan fungsionalitasnya tidak dinonaktifkan secara total.
+Bagaimana jika popups dibuka dari `onclick`, tetapi setelah `setTimeout` ? Hal ini sedikit rumit.
 
-What if the popup opens from `onclick`, but after `setTimeout`? That's a bit tricky.
-
-Try this code:
+Coba kode berikut:
 
 ```js run
-// open after 3 seconds
+// terbuka setelah 3 detik
 setTimeout(() => window.open('http://google.com'), 3000);
 ```
 
-The popup opens in Chrome, but gets blocked in Firefox.
+Popup terbuka di Chrome, namun diblokir di Firefox.
 
-...If we decrease the delay, the popup works in Firefox too:
+...Jika kita mengurangi penundaan, popup akan bekerja di Firefox juga:
 
 ```js run
 // open after 1 seconds
 setTimeout(() => window.open('http://google.com'), 1000);
 ```
 
-The difference is that Firefox treats a timeout of 2000ms or less are acceptable, but after it -- removes the "trust", assuming that now it's "outside of the user action". So the first one is blocked, and the second one is not.
+Perbedaannya adalah Firefox memperlakukan sebuah timeout antara 2000ms atau kurang dari itu untuk dapat diterima, namun lebih dari itu -- hilangkan "kepercayaan", Firefox berasumsi bahwa saat ini "diluar kendali pengguna". Sehingga yang pertama akan diblokir, dan yang kedua tidak.
 
 ## window.open
 
-The syntax to open a popup is: `window.open(url, name, params)`:
-
+Sintak untuk membuka popup adalah: `window.open(url, name, params)`:
 url
-: An URL to load into the new window.
+: URL yang akan dimuat di dalam jendela baru.
 
-name
-: A name of the new window. Each window has a `window.name`, and here we can specify which window to use for the popup. If there's already a window with such name -- the given URL opens in it, otherwise a new window is opened.
+nama
+: nama dari jendela baru. Setiap jendela memiliki sebuah `window.name`, dan dengan ini kita bisa secara spesifik menentukan jendela mana yang digunakan untuk popup. Jika telah ada jendela menggunakan nama tersebut -- URL akan menjadi gantinya, jika tidak jendela baru terbuka.
 
-params
-: The configuration string for the new window. It contains settings, delimited by a comma. There must be no spaces in params, for instance: `width=200,height=100`.
+parameter
+: Konfigurasi untuk jendela baru. Mengandung pengaturan, yang dipisahkan dengan koma. Tidak boleh ada spasi di dalam parameter, sebagai contoh: `width=200,height=100`.
 
-Settings for `params`:
+Pengaturan untuk `params`:
 
-- Position:
-  - `left/top` (numeric) -- coordinates of the window top-left corner on the screen. There is a limitation: a new window cannot be positioned offscreen.
-  - `width/height` (numeric) -- width and height of a new window. There is a limit on minimal width/height, so it's impossible to create an invisible window.
-- Window features:
-  - `menubar` (yes/no) -- shows or hides the browser menu on the new window.
-  - `toolbar` (yes/no) -- shows or hides the browser navigation bar (back, forward, reload etc) on the new window.
-  - `location` (yes/no) -- shows or hides the URL field in the new window. FF and IE don't allow to hide it by default.
-  - `status` (yes/no) -- shows or hides the status bar. Again, most browsers force it to show.
-  - `resizable` (yes/no) -- allows to disable the resize for the new window. Not recommended.
-  - `scrollbars` (yes/no) -- allows to disable the scrollbars for the new window. Not recommended.
+- Posisi:
+  - `left/top` (numeric) -- mengatur sudut jendela atas-kanan di layar. Namun ada batasan: sebuah jendela baru tidak bisa diposisikan tersembunyi.
+  - `width/height` (numeric) -- Lebar dan tinggi dari jendela baru. Namun ada batasan pada Lebar/tinggi minimal, sehingga tidak mungkin untuk membuat jendela tidak terlihat.
+- Fitur jendela:
+  - `menubar` (yes/no) -- menampilkan atau menyembunyikan menu peramban pada jendela baru.
+  - `toolbar` (yes/no) -- menampilkan atau menyembunyikan navigasi bar peramban (kembali, kedepan, isi ulang dan sebagainya) pada jendela baru.
+  - `location` (yes/no) -- menampilkan atau menyembunyikan URL pada jendela baru. FF dan IE tidak mengizinkan untuk meyembunyikan URL secara <em>default</em>
+  - `status` (yes/no) -- menampilkan atau menyembunyikan <em>bar status</em>. Sekali lagi kebanyakan peramban memaksa untuk menampilkannya.
+  - `resizable` (yes/no) -- mengizinkan atau menolak untuk merubah ukuran jendela baru. Tidak direkomendasikan.
+  - `scrollbars` (yes/no) -- mengizinkan atau menolak <em>scrollbars</em>. untuk jendela baru. Tidak direkomendasikan.
 
+Ada juga sedikit dukungan untuk fitur spesifik peramban, Dimana biasanya tidak digunakan. Periksa <a href="https://developer.mozilla.org/en/DOM/window.open">window.open in MDN</a> Sebagai contoh.
 
-There is also a number of less supported browser-specific features, which are usually not used. Check <a href="https://developer.mozilla.org/en/DOM/window.open">window.open in MDN</a> for examples.
-
-## Example: a minimalistic window   
-
-Let's open a window with minimal set of features, just to see which of them browser allows to disable:
-
+## Contoh: sebuah jendela sederhana
+Mari buka jendela dengan pengaturan fitur paling sedikit untuk melihat fitur mana yang akan diizinkan atau tidak oleh peramban:
 ```js run
 let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
 width=0,height=0,left=-1000,top=-1000`;
@@ -98,10 +90,9 @@ width=0,height=0,left=-1000,top=-1000`;
 open('/', 'test', params);
 ```
 
-Here most "window features" are disabled and window is positioned offscreen. Run it and see what really happens. Most browsers "fix" odd things like zero `width/height` and offscreen `left/top`. For instance, Chrome open such a window with full width/height, so that it occupies the full screen.
+Dalam contoh kebanyakan "fitur jendela" telah dinonaktifkan dan jendela berada di luar layar. Jalankan dan lihat apa yang terjadi. Kebanyakan peramban akan "Memperbaiki" hal-hal yang ganjil seperti `width/height` yang kosong dan `left/top` yang keluar jendela. Sebagai contoh, Chrome membuka semacam jendela dengan  lebar/tinggi penuh. sehingga akan menempati layar penuh.
 
-Let's add normal positioning options and reasonable `width`, `height`, `left`, `top` coordinates:
-
+Mari tambahkan opsi penempatan normal dan masuk akal untuk koordinat `width`, `height`, `left`, `top`:
 ```js run
 let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
 width=600,height=300,left=100,top=100`;
@@ -109,34 +100,32 @@ width=600,height=300,left=100,top=100`;
 open('/', 'test', params);
 ```
 
-Most browsers show the example above as required.
+Kebanyakan peramban menampilkan contoh diatas sesuai dengan yang diinginkan.
 
-Rules for omitted settings:
+Aturan untuk penggaturan yang dihilangkan:
 
-- If there is no 3rd argument in the `open` call, or it is empty, then the default window parameters are used.
-- If there is a string of params, but some `yes/no` features are omitted, then the omitted features assumed to have `no` value. So if you specify params, make sure you explicitly set all required features to yes.
-- If there is no `left/top` in params, then the browser tries to open a new window near the last opened window.
-- If there is no `width/height`, then the new window will be the same size as the last opened.
+- Jika tidak ada argumen ketiga di dalam pemanggilan `open`, atau kosong, maka parameter <em>default</em> jendela yang akan digunakan.
+- Jika ada serangkaian parameter, namun sebagian fitur `yes/no` diabaikan, maka fitur yang diabaikan akan diasumsikan untuk memiliki nilai `no`. Sehingga jika anda menetapkan parameter, pastikan secara eksplisit anda telah menyetel semua fitur yang dibutuhkan ke <em>yes</em>.
+- Jika tidak ada `left/top` di dalam parameter, maka peramban akan mencoba untuk membuka sebuah jendela baru didekat jendela yang terakhir terbuka.
+- Jika tidak ada `width/height`, maka jendela baru akan memiliki ukuran yang sama seperti jendela yang terakhir terbuka.
 
-## Accessing popup from window
+## Mengakses popup dari jendela
+Pemanggilan `Open` mengembalikan referensi ke jendela baru. referensi itu bisa digunakan untuk memanipulasi properti, merubah lokasi dan melakukan hal lain yang lebih dari itu.
 
-The `open` call returns a reference to the new window. It can be used to manipulate it's properties, change location and even more.
-
-In this example, we generate popup content from JavaScript:
-
+Pada contoh ini, kita menghasilkan popup konten dari Javascript:
 ```js
 let newWin = window.open("about:blank", "hello", "width=200,height=200");
 
 newWin.document.write("Hello, world!");
 ```
 
-And here we modify the contents after loading:
+Dan disini kita memodifikasi konten setelah dimuat:
 
 ```js run
 let newWindow = open('/', 'example', 'width=300,height=300')
 newWindow.focus();
 
-alert(newWindow.location.href); // (*) about:blank, loading hasn't started yet
+alert(newWindow.location.href); // (*) about:blank, loading belum dimulai
 
 newWindow.onload = function() {
   let html = `<div style="font-size:30px">Welcome!</div>`;
@@ -146,20 +135,16 @@ newWindow.onload = function() {
 };
 ```
 
-Please note: immediately after `window.open`, the new window isn't loaded yet. That's demonstrated by `alert` in line `(*)`. So we wait for `onload` to modify it. We could also use `DOMContentLoaded` handler for `newWin.document`.
+Penting untuk dicatat: Segera setelah `window.open`, saat itu jendela baru belum dimuat. Hal itu didemonstrasikan oleh `alert` di baris `(*)`, Sehingga kita menunggu untuk `onload` untuk memodifikasinya. Kita juga bisa menggunakan <em>handler</em> `DOMContentLoaded` untuk `newWin.document`.
 
 ```warn header="Same origin policy"
-Windows may freely access content of each other only if they come from the same origin (the same protocol://domain:port).
-
-Otherwise, e.g. if the main window is from `site.com`, and the popup from `gmail.com`, that's impossible for user safety reasons. For the details, see chapter <info:cross-window-communication>.
+Jendela dapat dengan leluasa mengakses konten satu sama lain hanya jika mereka datang dari asal yang sama (protocol://domain:port yang sama)
+Jika tidak, semisal jendela utama datang dari `site.com`, dan popup datang dari `gmail.com`, hal ini mustahil dilakukan demi alasan keamanan penguna. Untuk lebih detail lihat bagian <info:cross-window-communication>.
 ```
 
-## Accessing window from popup
-
-A popup may access the "opener" window as well using `window.opener` reference. It is `null` for all windows except popups.
-
-If you run the code below, it replaces the opener (current) window content with "Test":
-
+## Mengakses jendela dari popup
+Popup mungkin mengakses "pembuka" jendela menggunakan referensei `window.openner`. Ini akan menjadi `null` dari semua jendela kecuali popup. 
+Jika code dibawah dijalankan, maka konten pembuka jendela saat ini akan dibuah menjadi "Test":
 ```js run
 let newWin = window.open("about:blank", "hello", "width=200,height=200");
 
@@ -168,111 +153,101 @@ newWin.document.write(
 );
 ```
 
-So the connection between the windows is bidirectional: the main window and the popup have a reference to each other.
+Sehingga terjadi koneksi dua arah antara jendela: jendela utama dan popup memiliki sebuah referensi satu sama lain.
+## Menutup sebuah popup
 
-## Closing a popup
+Untuk menutup sebuah jendela: `win.close()`. 
 
-To close a window: `win.close()`.
+Untuk memeriksa apakah jendela sudah tertutup: `win.closed`.
 
-To check if a window is closed: `win.closed`.
+Secara teknis, metode `close()` tersedia pada setiap `window`, namun `window.close()` diabaikan oleh kebanyakan beramban jika `window` tidak dibuat dengan `window.open`. Jadi hanya akan bekerja untuk popup.
 
-Technically, the `close()` method is available for any `window`, but `window.close()` is ignored by most browsers if `window` is not created with `window.open()`. So it'll only work on a popup.
+properti `closed` bernilai `true` jika jendela ditutup. Hal ini berguna untuk memeriksa apakah popup (atau jendela utama) masih terbuka atau tidak. seorang pengguna bisa menutupnya kapan saja, dan kode kita mengambil pertimbangan untuk diperhitungkan.
 
-The `closed` property is `true` if the window is closed. That's useful to check if the popup (or the main window) is still open or not. A user can close it anytime, and our code should take that possibility into account.
-
-This code loads and then closes the window:
+Code dibawah ini dimuat dan kemudian menutup jendela:
 
 ```js run
 let newWindow = open('/', 'example', 'width=300,height=300');
 
 newWindow.onload = function() {
   newWindow.close();
-  alert(newWindow.closed); // true
+  alert(newWindow.closed); // benar
 };
 ```
 
 
-## Scrolling and resizing
+## Gulir dan merubah ukuran.
 
-There are methods to move/resize a window:
+Ada metode untuk memindahkan/merubah ukuran sebuah jendela:
 
 `win.moveBy(x,y)`
-: Move the window relative to current position `x` pixels to the right and `y` pixels down. Negative values are allowed (to move left/up).
+: Memindahkan jendela ke posisi `x` piksel ke kanan dan `y` piksel kebawah. Nilai negatif dapat diterima (untuk memindahkan kiri/atas).
 
 `win.moveTo(x,y)`
-: Move the window to coordinates `(x,y)` on the screen.
+: Memindahkan jendela ke koordinat `(x,y)` di layar.
 
 `win.resizeBy(width,height)`
-: Resize the window by given `width/height` relative to the current size. Negative values are allowed.
+: Merubah ukuran jendela dengan memberikan `width/height` ke ukuran sat ini. Nilai negatif dapat diterima.
 
 `win.resizeTo(width,height)`
-: Resize the window to the given size.
+: Merubah ukuran jendela ke ukuran yang diberikan.
 
-There's also `window.onresize` event.
+Ada juga `window.onresize` <em>event</em>.
 
-```warn header="Only popups"
-To prevent abuse, the browser usually blocks these methods. They only work reliably on popups that we opened, that have no additional tabs.
+```warn header="Hanya popups"
+Untuk mencegah penyalahgunaan, peramban biasanya memblokir metode ini. Mereka hanya bekerja baik pada popup yang kami buka, yang tidak memiliki tab tambahan.
 ```
 
-```warn header="No minification/maximization"
-JavaScript has no way to minify or maximize a window. These OS-level functions are hidden from Frontend-developers.
-
-Move/resize methods do not work for maximized/minimized windows.
+```warn header="Tidak ada modifikasi/maksimasi"
+Javascript tidak memiliki cara untuk mengecilkan atau memaksimalkan sebuah jendela. fungsi OS-level ini tersembunyi dari pengembang frontend
+metode Move/resize tidak dapat berjalan pada jendela maximized/minimized.
 ```
 
-## Scrolling a window
+## Gulir jendela
 
-We already talked about scrolling a window in the chapter <info:size-and-scroll-window>.
-
+Kami telah membicarakan tentang mengulir jendela di bagian <info:size-and-scroll-window>.
 `win.scrollBy(x,y)`
-: Scroll the window `x` pixels right and `y` down relative the current scroll. Negative values are allowed.
-
+: Gulir jendela `x` piksel ke kanan dan `y` kebawah terhadap posisi gulir saat ini. Nilai negatif dapat diterima.
 `win.scrollTo(x,y)`
 : Scroll the window to the given coordinates `(x,y)`.
 
 `elem.scrollIntoView(top = true)`
-: Scroll the window to make `elem` show up at the top (the default) or at the bottom for `elem.scrollIntoView(false)`.
+: Mengulir jendela untuk membuat `elem` terlihat diatas atau di bawah dari `elem.scrollIntoView(false)`, Kemudian ada juga <em>event</em> `window.onscroll`.
 
-There's also `window.onscroll` event.
+## Fokus/kabur di jendela
+Secara teori, ada metode `window.focus()` dan `window.blur()` untuk memfokuskan/tidak fokus sebuah jendela. Dan ada juga <em>even</em> `focus/blur` yang mengizinkan untuk menangkap momen saat pegunjung fokus pada jendela dan berpindah ke tempat lain.
 
-## Focus/blur on a window
+Meskipun, dalam praktiknya hal ini dibatasi, karena pada masa lalu halaman jahat menyalahgunakannya.
 
-Theoretically, there are `window.focus()` and `window.blur()` methods to focus/unfocus on a window. And there are also `focus/blur` events that allow to catch the moment when the visitor focuses on a window and switches elsewhere.
-
-Although, in practice they are severely limited, because in the past evil pages abused them. 
-
-For instance, look at this code:
-
+Sebagai contoh, lihat code ini:
 ```js run
 window.onblur = () => window.focus();
 ```
 
-When a user attempts to switch out of the window (`window.onblur`), it brings the window back into focus. The intention is to "lock" the user within the `window`.
+Mesikipun pengguna mencoba untuk berpindah dari jendela (`window.onblur`), hal ini membawa jendela kembali fokus. Tujuanya adalah untuk "mengunci" pengguna selama berada di dalam `window`.
 
-So browsers had to introduce many limitations to forbid the code like that and protect the user from ads and evils pages. They depend on the browser.
+Sehingga peramban harus memperkenalkan banyak batasan kode seperti ini dan melindungi pengguna dari iklan dan halaman jahat. Mereka bergantung ke peramban.
 
-For instance, a mobile browser usually ignores `window.focus()` completely. Also focusing doesn't work when a popup opens in a separate tab rather than a new window.
+Sebagai contoh, sebuah peramban <em>mobile</em> pada umumnya mengabaikan `window.focus()`. Dan fokus tidak bekerja saat sebuah popup terbuka di dalam tab yang terpisah daripada membuka sebuah jendela baru.
 
-Still, there are some use cases when such calls do work and can be useful.
+Masih ada beberapa kasus pengunaan menggunakan pangilan sejenis untuk menjalankan dan berguna.
 
-For instance:
+Sebagai contoh:
+- Saat kita membuka popup, mungkin ide yang bagus untuk menjalankan `newWindow.focus()`. untuk beberapa kombinasi OS/peramban memastikan bahwa pengguna saat ini berada di dalam jendela baru
+- Jika kita ingin melacak kapan pengunjung mengunakan web-app, kita dapat melacak `window.onfocus/onblur`. Hal ini mengijinkan kita untuk menangguhkan / melanjutkan di dalam aktifitas animasi dan semacamnya. Tetapi tolong dicatat bahwa <em>event</em> `blur` berarti pengunjung berpindah dari jendela, teteapi mereka mungkin masih mengamatinya. Jendela berada di latar belakang, namun mungkin masih dapat dilihat.
 
-- When we open a popup, it's might be a good idea to run a `newWindow.focus()` on it. Just in case, for some OS/browser combinations it ensures that the user is in the new window now.
-- If we want to track when a visitor actually uses our web-app, we can track `window.onfocus/onblur`. That allows us to suspend/resume in-page activities, animations etc. But please note that the `blur` event means that the visitor switched out from the window, but they still may observe it. The window is in the background, but still may be visible.
+## kesimpulan
+Jendela popup jarang digunakan, karena ada beberapa alternatif: memuat dan menampilkan informasi in-page, atau di dalam iframe.
 
-## Summary   
+Jika kita akan membuka popup, cara yang benar adalah dengan memberitahu pengguna tentang hal ini. Sebuah ikon "jendela terbuka" dekat tautan atau tombol yang mengizinkan pengunjung untuk tetap fokus dan ingat kedua jendela. 
 
-Popup windows are used rarely, as there are alternatives: loading and displaying information in-page, or in iframe.
+- Popup dapat dibuka dengan pemanggilan `open(url, name, params)`. hal ini akan mengembalikan referensi untuk jendela yang lebih baru.
+- Peramban memblokir pemanggilan `open` dari kode yang berasal dari luar aksi pengguna. Biasanya notifikasi muncul, sehingga pengguna mungkin mengizinkannya.
+- Secara umum peramban membuka tab baru, tetapi jika ukuran disediakan, maka akan terbuka jendela popup. 
+- Popup mungkin mengakses pembuka jendela menggunakan properti `window.opener`.
+- Jendela utama dan popup dapat secara bebas membaca dan memodifikasi satu sama lain jika mereka memiliki asal yang sama. Jika tidak mereka dapat merubah lokasi satu sama lain dan [bertukar pesan](info:cross-window-communication).
 
-If we're going to open a popup, a good practice is to inform the user about it. An "opening window" icon near a link or button would allow the visitor to survive the focus shift and keep both windows in mind.
+Untuk menutuo popup: gunakan pemanggilan `close()`. Juga pengguna mungkin menutupnya (seperti jendela yang lain). `window.closed` adalah `true` setelahnya.
 
-- A popup can be opened by the `open(url, name, params)` call. It returns the reference to the newly opened window.
-- Browsers block `open` calls from the code outside of user actions. Usually a notification appears, so that a user may allow them.
-- Browsers open a new tab by default, but if sizes are provided, then it'll be a popup window.
-- The popup may access the opener window using the `window.opener` property.
-- The main window and the popup can freely read and modify each other if they have the same origin. Otherwise, they can change location of each other and [exchange messages](info:cross-window-communication).
-
-To close the popup: use `close()` call. Also the user may close them (just like any other windows). The `window.closed` is `true` after that.
-
-- Methods `focus()` and `blur()` allow to focus/unfocus a window. But they don't work all the time.
-- Events `focus` and `blur` allow to track switching in and out of the window. But please note that a  window may still be visible even in the background state, after `blur`.
+- Metode `focus()` dan `blur()` mengizinkan sebuah jendela untuk fokus/ tidak fokus. Tetapi mereka tidak bekerja setiap saat. 
+- `focus` dan `blur` <em>even</em> mengizinkan untuk melacak perpindahan masuk dan keluar jendela. Namun tolong dicatat bahwa sebuah jendela mungkin masih dapat terlihat meskipun di dalam status latar belakang, setelah `blur`.
