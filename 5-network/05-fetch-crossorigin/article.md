@@ -1,4 +1,3 @@
-# Fetch: Cross-Origin *request*s
 # Fetch: *request Cross-Origin*
 
 Jika kita mengirim *request* *`fetch`* dari situs web lain, itu mungkin akan gagal.
@@ -9,7 +8,7 @@ Misalnya, mari coba *fetch* dari `http://example.com`:
 try {
   await fetch('http://example.com');
 } catch(err) {
-  alert(err); // Gagal untuk *fetch*
+  alert(err); // Failed to fetch (Gagal untuk *fetch*)
 }
 ```
 
@@ -38,7 +37,6 @@ Tetapi pengembang web menuntut lebih banyak kuasa. Bebagai trik dibuat untuk men
 
 ### Menggunakan Form
 
-One way to communicate with another *server* was to submit a `<form>` there. People submitted it into `<iframe>`, just to stay on the current page, like this:
 Satu cara untuk berkomunikasi dengan *server* lain adalah dengan mengirimkan `<form>`. Orang-orang mengirimkannya pada `<iframe>`, hanya untuk tetap di halaman saat ini, seperti ini:
 
 ```html
@@ -57,7 +55,7 @@ Satu cara untuk berkomunikasi dengan *server* lain adalah dengan mengirimkan `<f
 
 Jadi, ada kemungkinan untuk membuat *request* GET/POST dari situs lain, meski tanpa metode jaringan, karena form bisa mengirimkan data dari mana saja. Tetapi dilarang untuk mengakses konten `<iframe>` dari situs lainnya, tidak ada kemungkinan untuk membaca responnya.
 
-Tepatnya, sebenarnya ada trik untuk melakukanyya, mereka membutuhkan skrip khusus dari *iframe* dan halaman. Jadi komunikasi dengan *iframe* secara teknis mungkin. Saat ini tidak ada gunanya untuk membahas lebih detail, biarkan dinosaurus ini istirahat dengan tenang.  
+Tepatnya, sebenarnya ada trik untuk melakukannya, mereka membutuhkan skrip khusus dari *iframe* dan halaman. Jadi komunikasi dengan *iframe* secara teknis mungkin. Saat ini tidak ada gunanya untuk membahas lebih detail, biarkan dinosaurus ini istirahat dengan tenang.  
 
 ### Menggunakan Skrip
 
@@ -77,13 +75,12 @@ Mari kita katakan jika, di sisi kita, perlu untuk mengambil data dari `http://an
       alert(`temperature: ${temperature}, humidity: ${humidity}`);
     }
     ```
-2. Then we make a `<script>` *tag* with `src="http://another.com/weather.json?callback=gotWeather"`, using the name of our function as the `callback` *URL*-parameter.
 2. Selanjutnya kita membuat *tag* `<script>` dengan `src="http://another.com/weather.json?callback=gotWeather"`, menggunakan nama fungsi sebagai parameter *URL* *`callback`*.
 
     ```js
     let script = document.createElement('script');
     script.src = `http://another.com/weather.json?callback=gotWeather`;
-    document.body.append(script);
+    document.*body*.append(script);
     ```
 3. *server* *remote* `another.com` menghasilkan skrip dinamis yang memanggil `gotWeather(...)` dengan data yang ingin kita terima.
 
@@ -119,7 +116,7 @@ A [*request* yang simpel](http://www.w3.org/TR/cors/#terminology) adalah *reques
     - `Accept`,
     - `Accept-Language`,
     - `Content-Language`,
-    - `Content-Type` dengan nilai `application/x-www-form-*URL*encoded`, `multipart/form-data` atau `text/plain`.
+    - `Content-Type` dengan nilai `application/x-www-form-urlencoded`, `multipart/form-data` atau `text/plain`.
 
 *request* lainnya akan dipertimbangkan "tidak simpel". Misalnya, *request* dengan metode `PUT` atau dengan `API-key` *header* HTTP tidak sesuai batasannya.
 
@@ -137,10 +134,9 @@ Sekarang kita akan membahasnya lebih lanjut.
 
 ## *CORS* untuk *request* yang simpel
 
-If a *request* is cross-origin, the browser always adds `Origin` *header* to it.
 Jika *request* adalah *request cross-origin*, maka browser akan selalu menambahkan *header* `Origin` di dalam *request*. 
 
-For instance, if we *request* `https://anywhere.com/*request*` from `https://javascript.info/page`, the *header*s will be like:
+
 Misalnya, jika kita *request* `https://anywhere.com/*request*` dari `https://javascript.info/page`, *header* akan seperti ini:
 
 ```http
@@ -152,22 +148,16 @@ Origin: https://javascript.info
 ...
 ```
 
-As you can see, `Origin` *header* contains exactly the origin (*domain*/protocol/port), without a path.
 Seperti yang kamu lihat, *header* `Origin` berisi persis seperti asal (*domain*/protocol/port), tanpa *path*.
 
-The *server* can inspect the `Origin` and, if it agrees to accept such a *request*, adds a special *header* `Access-Control-Allow-Origin` to the response. That *header* should contain the allowed origin (in our case `https://javascript.info`), or a star `*`. Then the response is successful, otherwise an error.
-*server* bisa memeriksa `Origin` dan jika setuju untuk menerima **request** tersebut, tambahkan *header* khusus `Access-Control-Allow-Origin` di responnya. *header* tersebut harus berisi asal yang diizinkan (di kasus kita `https://javascript.info`), atau bintang `*` . Maka responnya sukses, atau mungkin saja error.
+*Server* bisa memeriksa `Origin` dan jika setuju untuk menerima **request** tersebut, tambahkan *header* khusus `Access-Control-Allow-Origin` di responnya. *header* tersebut harus berisi asal yang diizinkan (di kasus kita `https://javascript.info`), atau bintang `*` . Maka responnya sukses, atau mungkin saja error.
 
-The browser plays the role of a trusted mediator here:
 Browser memainkan peran sebagai penengah terpercaya disini:
-1. It ensures that the correct `Origin` is sent with a cross-origin *request*.
 1. Browser memastikan `Origin` yang benar dikirimkan dengan *request* cross-origin.
-2. It checks for permitting `Access-Control-Allow-Origin` in the response, if it exists, then JavaScript is allowed to access the response, otherwise it fails with an error.
 2. Browser memeriksa untuk perizinan di responnya, jika ada maka Javascript akan diizinkan untuk mengakses respon, jika tidak maka akan gagal dengan error.
 
 ![](xhr-another-*domain*.svg)
 
-Here's an example of a permissive *server* response:
 Disini ada contoh dari respon *server* permisif:
 ```http
 200 OK
@@ -177,11 +167,9 @@ Access-Control-Allow-Origin: https://javascript.info
 */!*
 ```
 
-## Response *header*s
-## *header* Respon
+## *Header* respon
 
-For cross-origin *request*, by default JavaScript may only access so-called "simple" response *header*s:
-Untuk **request** cross-origin, secara default Javascript hanya dapat mengakses yang disebut *header* respon simpel:
+Untuk **request** cross-origin, secara default Javascript hanya dapat mengakses file yang disebut *header* respon simpel:
 
 - `*cache*-Control`
 - `Content-Language`
@@ -190,21 +178,16 @@ Untuk **request** cross-origin, secara default Javascript hanya dapat mengakses 
 - `Last-Modified`
 - `Pragma`
 
-Accessing any other response *header* causes an error.
 Mengakses *header* respon lainnya akan menghasilkan error.
 
 ```smart
-There's no `Content-Length` *header* in the list!
 Tidak ada *header* `Content-Length` di daftar!
 
-This *header* contains the full response length. So, if we're downloading something and would like to track the percen*tag*e of progress, then an additional permission is required to access that *header* (see below).
-*header* ini berisi panjang respon lengkap. Jadi, jika mengunduh sesuatu dan ingin melacak persentase progres, maka diperlukan izin tambahan untuk mengakses *header* tersebut (lihat di bawah).
+*Header* ini berisi panjang respon lengkap. Jadi, jika mengunduh sesuatu dan ingin melacak persentase progres, maka diperlukan izin tambahan untuk mengakses *header* tersebut (lihat di bawah).
 ```
 
-To grant JavaScript access to any other response *header*, the *server* must send  `Access-Control-Expose-*header*s` *header*. It contains a comma-separated list of non-simple *header* names that should be made accessible.
 Untuk memberikan Javascript akses ke *header* respon lainnya, *server* harus mengirimkan *header*  `Access-Control-Expose-*header*s`. Ini berisi daftar yang dipisahkan dengan koma dari nama *header* tidak simpel yang seharusnya dibuat untuk bisa di akses. 
 
-For example:
 Contoh:
 
 ```http
@@ -218,44 +201,30 @@ Access-Control-Expose-*header*s: Content-Length,API-Key
 */!*
 ```
 
-With such `Access-Control-Expose-*header*s` *header*, the script is allowed to read `Content-Length` and `API-Key` *header*s of the response.
-Dengan *header* `Access-Control-Expose-*header*s`, skrip diizinkan untuk membaca *header* `Content-Length` dan `API-Key` dari respon. 
+Dengan *header* `Access-Control-Expose-headers`, skrip diizinkan untuk membaca *header* `Content-Length` dan `API-Key` dari respon. 
 
-## "Non-simple" *request*s
-## *request* tidak simpel
+## *Request* tidak simpel
 
-We can use any HTTP-method: not just `GET/POST`, but also `PATCH`, `DELETE` and others.
 Kita bisa menggunakan metode HTTP apa saja: bukan hanya `GET/POST`, tetapi juga `PATCH`, `DELETE` dan lainnya.
 
-Some time ago no one could even imagine that a webpage could make such *request*s. So there may still exist webservices that treat a non-standard method as a signal: "That's not a browser". They can take it into account when checking access rights.
 Beberapa waktu yang lalu tidak ada orang yang membayangkan bahwa halaman web bisa membuat *request* seperti ini. Jadi masih ada servis web yang memperlakukan metode tidak standar sebagai sinyal: "Itu bukan browser". Mereka dapat memperhitungkannya saat memeriksa hak akses.
 
-So, to avoid misunderstandings, any "non-simple" *request* -- that couldn't be done in the old times, the browser does not make such *request*s right away. Before it sends a preliminary, so-called "preflight" *request*, asking for permission.
 Jadi untuk menghindari kesalah pahaman, *request* tidak simpel -- yang tidak bisa diselesaikan di waktu yang lama, browser tidak akan membuat *request* tersebut secara langsung. Sebelum dikirimkan ke pendahuluan yang disebut *request* "preflight", meminta izin.
 
-A preflight *request* uses method `OPTIONS`, no body and two *header*s:
-*request* preflight menggunakan metode `OPTIONS`, tidak ada body dan dua *header*:
+*Request* preflight menggunakan metode `OPTIONS`, tidak ada *body* dan dua *header*:
 
-- `Access-Control-*request*-Method` *header* has the method of the non-simple *request*.
-- *header* `Access-Control-*request*-Method` memiliki metode *request* tidak simpel.
-- `Access-Control-*request*-*header*s` *header* provides a comma-separated list of its non-simple HTTP-*header*s.
-- *header* `Access-Control-*request*-*header*s` menyediakan daftar yang dipisahkan dengan koma dari *header* HTTP tidak simpel.
+- *Header* `Access-Control-request-Method` memiliki metode *request* tidak simpel.
+- *Header* `Access-Control-request-headers` menyediakan daftar yang dipisahkan dengan koma dari *header* HTTP tidak simpel.
 
-If the *server* agrees to serve the *request*s, then it should respond with empty body, status 200 and *header*s:
-Jika *server* setuju untuk melayani *request*, maka akan merespon dengan body kososng, status 200 dan *header*:
+Jika *server* setuju untuk melayani *request*, maka akan merespon dengan *body* kosong, status 200 dan *header*:
 
-- `Access-Control-Allow-Origin` must be either `*` or the *request*ing origin, such as `https://javascript.info`, to allow it.
 -`Access-Control-Allow-Origin` harus dari `*` atau dari *request* asal, misalnya `https://javascript.info`, untuk mengizinkannya.
-- `Access-Control-Allow-Methods` must have the allowed method.
 - `Access-Control-Allow-Methods` harus memiliki metode yang diizinkan.
-- `Access-Control-Allow-*header*s` must have a list of allowed *header*s.
 - `Access-Control-Allow-*header*s` harus berisi daftar *header* yang diizinkan.
-- Additionally, the *header* `Access-Control-Max-Age` may specify a number of seconds to *cache* the permissions. So the browser won't have to send a preflight for subsequent *request*s that satisfy given permissions.
 - Sebagai tambahan, *header* `Access-Control-Max-Age` dapat menentukan jumlah detik untuk menyimpan izin ke *cache*. Jadi browser tidak perlu mengirim preflight untuk  *request* selanjutnya yang memenuhi izin yang diberikan.
 
 ![](xhr-preflight.svg)
 
-Let's see how it works step-by-step on example, for a cross-origin `PATCH` *request* (this method is often used to update data):
 Mari kita lihat bagaimana cara kerjanya langkah demi langkah di sebuah contoh, untuk *request* cross-origin `PATCH` (metode ini sering digunakan untuk memperbarui data):
 
 ```js
@@ -268,14 +237,9 @@ let response = await fetch('https://site.com/service.json', {
 });
 ```
 
-There are three reasons why the *request* is not simple (one is enough):
-Ada tiga alasan kenapa *request* bisa menjadi tidak simpel( satu saja cukup) :
-- Method `PATCH`
-- Metode `PATCH`
-- `Content-Type` is not one of: `application/x-www-form-*URL*encoded`, `multipart/form-data`, `text/plain`.
-- Metode `PATCH`
+Ada tiga alasan kenapa *request* bisa menjadi tidak simpel( cukup pilih satu) :
+- Metode `PATCH`.
 - `Content-Type` bukan salah satu dari: *header* `application/x-www-form-*URL*encoded`, `multipart/form-data`, `text/plain`.
-- "Non-simple" `API-Key` .
 - `API-key` "tidak simpel".
 
 ### Langkah 1 (*request preflight*)
@@ -323,7 +287,7 @@ Jika ada *header* `Access-Control-Max-Age` dengan jumlah detik, maka izin *prefl
 
 ### Langkah 3 (*request* sebenarnya)
 
-Saat *preflight* berhasil, browser akan membuat *request* utama. Algoritma nya sama dengan *request* yang simpel.
+Saat *preflight* berhasil, browser akan membuat *request* utama. Algoritmanya sama dengan *request* yang simpel.
 
 *request* yang utama memiliki *header* `Origin` (karena *request* ini memang *cross-origin*)
 
