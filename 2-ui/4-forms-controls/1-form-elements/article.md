@@ -1,44 +1,44 @@
-# Form properties and methods
+# Metode dan properti form
 
-Forms and control elements, such as `<input>` have a lot of special properties and events.
+Form dan elemen kontrol, contohnya seperti `<input>` memiliki banyak properti khusus dan event.
 
-Working with forms will be much more convenient when we learn them.
+Bekerja dengan form akan lebih mudah ketika kita mempelajarinya.
 
-## Navigation: form and elements
+## Navigasi: form dan elemen
 
-Document forms are members of the special collection `document.forms`.
+Form dokumen adalah anggota dari koleksi khusus `document.forms`.
 
-That's a so-called "named collection": it's both named and ordered. We can use both the name or the number in the document to get the form.
+Itu disebut _"named collection"_: itu keduanya memiliki nama(name) dan terurut(index). Kita bisa menggunakan keduanya baik dengan nama atau nomor(index) pada dokumen untuk mendapatkan form.
 
 ```js no-beautify
 document.forms.my - the form with name="my"
 document.forms[0] - the first form in the document
 ```
 
-When we have a form, then any element is available in the named collection `form.elements`.
+Ketika kita mempunyai sebuah form, maka elemen apapun tersedia di dalam _named collection/koleksi nama_ `form.elements`.
 
-For instance:
+Misalnya:
 
 ```html run height=40
 <form name="my">
-  <input name="one" value="1">
-  <input name="two" value="2">
+  <input name="one" value="1" />
+  <input name="two" value="2" />
 </form>
 
 <script>
-  // get the form
-  let form = document.forms.my; // <form name="my"> element
+  // dapatkan form
+  let form = document.forms.my; // <form name="my"> elemen
 
-  // get the element
-  let elem = form.elements.one; // <input name="one"> element
+  // dapatkan element
+  let elem = form.elements.one; // <input name="one"> elemen
 
   alert(elem.value); // 1
 </script>
 ```
 
-There may be multiple elements with the same name, that's often the case with radio buttons.
+Ada suatu saat dimana ada beberapa elemen dengan nama yang sama, hal itu sering terjadi dengan _radio buttons_.
 
-In that case `form.elements[name]` is a collection, for instance:
+Dalam hal tersebut `form.elements[name]`adalah sebuah _collection/koleksi_, misalnya:
 
 ```html run height=40
 <form>
@@ -57,13 +57,12 @@ alert(ageElems[0]); // [object HTMLInputElement]
 </script>
 ```
 
-These navigation properties do not depend on the tag structure. All control elements, no matter how deep they are in the form, are available in `form.elements`.
+Navigasi properti ini tidak bergantung pada struktur tag. Semua elemen kontrol, tak peduli seberapa dalam mereka didalam form, mereka tersedia di dalam `form.elements`.
 
+````smart header="Fieldsets sebagai "subforms""
+Sebuah form mungkin punya satu atau banyak elemen `<fieldset>` didalamnya. Mereka juga punya `elements` properti yang mencatumkan form kontrol didalamnya.
 
-````smart header="Fieldsets as \"subforms\""
-A form may have one or many `<fieldset>` elements inside it. They also have `elements` property that lists form controls inside them.
-
-For instance:
+Misalnya:
 
 ```html run height=80
 <body>
@@ -81,7 +80,7 @@ For instance:
     let fieldset = form.elements.userFields;
     alert(fieldset); // HTMLFieldSetElement
 
-    // we can get the input by name both from the form and from the fieldset
+     // kita bisa mendapatkan input dengan nama baik dari form maupun dari fieldset
     alert(fieldset.elements.login == form.elements.login); // true
 */!*
   </script>
@@ -89,49 +88,49 @@ For instance:
 ```
 ````
 
-````warn header="Shorter notation: `form.name`"
-There's a shorter notation: we can access the element as `form[index/name]`.
+````warn header="Shorter notation: `form.name`" Ada notasi yang lebih ringkas: kita bisa akses/mendapatkan elemen dengan `form[index/name]`.
 
-In other words, instead of `form.elements.login` we can write `form.login`.
+Dengan kata lain, daripada menulisnya dengan `form.elements.login` kita bisa menulis `form.login`.
 
-That also works, but there's a minor issue: if we access an element, and then change its `name`, then it is still available under the old name (as well as under the new one).
+Itu juga berkeja, tetapi disana ada sebuah kesalahan kecil: jika kita akses sebuah elemen, dan lalu mengubah `name`, maka elemen tersebut masih tersedia dengan nama lamanya (sama juga dengan nama barunya).
 
-That's easy to see in an example:
+Itu akan lebih mudah saat kita lihat pada sebuah contoh:
 
 ```html run height=40
 <form id="form">
-  <input name="login">
+  <input name="login" />
 </form>
 
 <script>
-  alert(form.elements.login == form.login); // true, the same <input>
+    alert(form.elements.login == form.login); // true, <input> yang sama
 
-  form.login.name = "username"; // change the name of the input
+    form.login.name = "username"; // mengubah nama input
 
-  // form.elements updated the name:
-  alert(form.elements.login); // undefined
-  alert(form.elements.username); // input
+    // form.elements telah mengupdate nama:
+    alert(form.elements.login); // undefined (tidak terdefinisi)
+    alert(form.elements.username); // input
 
-*!*
-  // form allows both names: the new one and the old one
-  alert(form.username == form.login); // true
-*/!*
+  *!*
+    // form membolehkan kedua nama: yang baru dan yang lama
+    alert(form.username == form.login); // true
+  */!*
 </script>
 ```
 
-That's usually not a problem, because we rarely change names of form elements.
+Itu biasanya bukan sebuah masalah, karena kita jarang mengubah nama dari elemen form.
 
 ````
 
 ## Backreference: element.form
 
-For any element, the form is available as `element.form`. So a form references all elements, and elements reference the form.
+Untuk elemen apapun, form tersedia sebagai `element.form`. Jadi sebuah form mereferensikan semua elemen, dan elemen referensi dari form.
 
-Here's the picture:
+
+Ini gambarannya:
 
 ![](form-navigation.svg)
 
-For instance:
+Misalnya:
 
 ```html run height=40
 <form id="form">
@@ -140,55 +139,55 @@ For instance:
 
 <script>
 *!*
-  // form -> element
+  // form -> elemen
   let login = form.login;
 
-  // element -> form
+  // elemen -> form
   alert(login.form); // HTMLFormElement
 */!*
 </script>
 ```
 
-## Form elements
+## Element Form
 
-Let's talk about form controls.
+Mari bicara tentang kontrol form.
 
-### input and textarea
+### input dan textarea
 
-We can access their value as `input.value` (string) or `input.checked` (boolean) for checkboxes.
+Kita bisa akses nilai mereka dengan `input.value` (string) atau `input.checked` (boolean) untuk checkboxes.
 
-Like this:
+Seperti ini:
 
 ```js
 input.value = "New value";
 textarea.value = "New text";
 
-input.checked = true; // for a checkbox or radio button
+input.checked = true; // untuk checkbox atau radio button
 ```
 
 ```warn header="Use `textarea.value`, not `textarea.innerHTML`"
-Please note that even though `<textarea>...</textarea>` holds its value as nested HTML, we should never use `textarea.innerHTML` to access it.
+Harap dicatat, meskipun `<textarea>...</textarea>` menyimpan nilainya sebagai HTML bersarang(nested), kita tidak boleh menggunakan `textarea.innerHTML` untuk mengaksesnya.
 
-It stores only the HTML that was initially on the page, not the current value.
+itu hanya menyimpan HTML yang mulanya ada di halaman, bukan nilai saat ini.
 ```
 
-### select and option
+### select dan option
 
-A `<select>` element has 3 important properties:
+Sebuah elemen `<select>` mempunyai 3 properti penting:
 
-1. `select.options` -- the collection of `<option>` subelements,
-2. `select.value` -- the value of the currently selected `<option>`,
-3. `select.selectedIndex` -- the number of the currently selected `<option>`.
+1. `select.options` -- adalah koleksi dari `<option>` sub-element,
+2. `select.value` -- adalah nilai saat ini yang dipilih(selected) `<option>`,
+3. `select.selectedIndex` -- adalah nomor yang saat ini dipilih(selected) `<option>`.
 
-They provide three different ways of setting a value for a `<select>`:
+Mereka menyediakan 3 cara berbeda untuk mengatur nilai pada `<select>`:
 
-1. Find the corresponding `<option>` element and set `option.selected` to `true`.
-2. Set `select.value` to the value.
-3. Set `select.selectedIndex` to the number of the option.
+1. Mencari element `<option>` yang bersangkutan dan atur `option.selected` menjadi `true`.
+2. Atur `select.value`ke nilai.
+3. Atur `select.selectedIndex` ke nomor dari option.
 
-The first way is the most obvious, but `(2)` and `(3)` are usually more convenient.
+Cara pertama adalah yang paling jelas, tetapi cara `(2)` dan `(3)` biasanya lebih nyaman.
 
-Here is an example:
+Lihat contoh berikut:
 
 ```html run
 <select id="select">
@@ -198,18 +197,18 @@ Here is an example:
 </select>
 
 <script>
-  // all three lines do the same thing
+  // semua 3 baris kode melakukan hal yang sama
   select.options[2].selected = true;
   select.selectedIndex = 2;
   select.value = 'banana';
 </script>
 ```
 
-Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. Although such functionality is available, it is rarely used. 
+Tidak seperti kontrol pada umumnya, `<select>` membolehkan memilih banyak opsi sekaligus jika memiliki atribut`multiple`.Fitur itu jarang digunakan. 
 
-In cases that you have to, then use the first way: add/remove the `selected` property from `<option>` subelements.
+Jika anda harus, maka gunakan cara pertama: tambah/hapus `selected`properti dari `<option>` sub-element.
 
-We can get their collection as `select.options`, for instance:
+Kita bisa mendapatkan koleksinya sebagai `select.options`, misalnya:
 
 ```html run
 <select id="select" *!*multiple*/!*>
@@ -219,22 +218,22 @@ We can get their collection as `select.options`, for instance:
 </select>
 
 <script>
-  // get all selected values from multi-select
+  // mendapatkan semua nilai selected dari multi-select
   let selected = Array.from(select.options)
     .filter(option => option.selected)
     .map(option => option.value);
 
-  alert(selected); // blues,rock  
+  alert(selected); // blues,rock
 </script>
 ```
 
-The full specification of the `<select>` element is available in the specification <https://html.spec.whatwg.org/multipage/forms.html#the-select-element>.
+Penjelasan lengkap dari elemen`<select>` tersedia di <https://html.spec.whatwg.org/multipage/forms.html#the-select-element>.
 
 ### new Option
 
-This is rarely used on its own. But there's still an interesting thing.
+Ini jarang digunakan. Namun masih ada hal yang menarik.
 
-In the [specification](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) there's a nice short syntax to create `<option>` elements:
+Di dalam [penjelasan](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) disana ada sintak pendek yang bagus untuk membuat elemen `<option>`:
 
 ```js
 option = new Option(text, value, defaultSelected, selected);
@@ -242,58 +241,59 @@ option = new Option(text, value, defaultSelected, selected);
 
 Parameters:
 
-- `text` -- the text inside the option,
-- `value` -- the option value,
-- `defaultSelected` -- if `true`, then `selected` HTML-attribute is created,
-- `selected` -- if `true`, then the option is selected.
+- `text` -- adalah teks didalam option,
+- `value` -- adalah nilai option,
+- `defaultSelected` -- jika `true`, maka `selected` HTML-attribute dibuat,
+- `selected` -- jika `true`, maka option nya *selected*.
 
-There may be a small confusion about `defaultSelected` and `selected`. That's simple: `defaultSelected` sets HTML-attribute, that we can get using `option.getAttribute('selected')`. And `selected` - whether the option is selected or not, that's more important. Usually both values are either set to `true` or not set (same as `false`).
+Disana mungkin sedikit bingung tentang `defaultSelected` dan `selected`. That's simple: `defaultSelected` *set* HTML-attribute, dengan itu kita bisa dapat menggunakan  `option.getAttribute('selected')`. Dan `selected` - baik opsi *selected* atau tidak, itu yang lebih penting. Biasanya kedua nilai baik di *set* ke `true` atau tidak di *set* (sama dengan `false`).
 
-For instance:
+Misalnya:
 
 ```js
 let option = new Option("Text", "value");
 // creates <option value="value">Text</option>
 ```
 
-The same element selected:
+Elemen yang sama yang terpilih/*selected*:
 
 ```js
 let option = new Option("Text", "value", true, true);
 ```
 
-Option elements have properties:
+Elemen *option*  memiliki properti:
 
 `option.selected`
-: Is the option selected.
+: apakah option *selected*.
 
 `option.index`
-: The number of the option among the others in its `<select>`.
+: Jumlah option diantara yang lain dalam elemen`<select>`.
 
 `option.text`
-: Text content of the option (seen by the visitor).
+: Konten teks option(dilihat oleh pengunjung).
 
-## References
+## Referensi
 
-- Specification: <https://html.spec.whatwg.org/multipage/forms.html>.
+- Spesifikasi: <https://html.spec.whatwg.org/multipage/forms.html>.
 
-## Summary
+## Kesimpulan
 
-Form navigation:
+Navigasi Form:
 
 `document.forms`
-: A form is available as `document.forms[name/index]`.
+: Sebuah form tersedia sebagai `document.forms[name/index]`.
 
-`form.elements`  
-: Form elements are available as `form.elements[name/index]`, or can use just `form[name/index]`. The `elements` property also works for `<fieldset>`.
+`form.elements`
+: Elemen form tersedia sebagai `form.elements[name/index]`, atau kita bisa gunakan `form[name/index]`. `elements` properti juga dapat berkerja dengan `<fieldset>`.
 
 `element.form`
-: Elements reference their form in the `form` property.
+: Elemen referensi formulirnya dalam `form` properti.
 
-Value is available as `input.value`, `textarea.value`, `select.value` etc, or `input.checked` for checkboxes and radio buttons.
+Nilai tersedia sebagai `input.value`, `textarea.value`, `select.value` dll, atau`input.checked` untuk *checkboxes* dan *radio buttons*.
 
-For `<select>` we can also get the value by the index `select.selectedIndex` or through the options collection `select.options`.
+Untuk `<select>` kita juga bisa mendapatkan nilainya dengan index `select.selectedIndex` atau lewat koleksi option `select.options`.
 
-These are the basics to start working with forms. We'll meet many examples further in the tutorial.
+Ini adalah dasar-dasar untuk mulai bekerja dengan form. Kita akan melihat banyak contoh lebih lanjut di tutorial.
 
-In the next chapter we'll cover `focus` and `blur` events that may occur on any element, but are mostly handled on forms.
+Pada bab selanjutnya, kita akan membahas `focus` dan `blur` event yang mungkin terjadi pada elemen manapapun, tapi biasanya ditangani pada form.
+````

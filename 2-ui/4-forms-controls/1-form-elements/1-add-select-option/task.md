@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Add an option to select
+# Tambahkan option pada select
 
 There's a `<select>`:
 
@@ -13,10 +13,10 @@ There's a `<select>`:
 </select>
 ```
 
-Use JavaScript to:
+Gunakan Javascript untuk:
 
-1. Show the value and the text of the selected option.
-2. Add an option: `<option value="classic">Classic</option>`.
-3. Make it selected.
+1. Tampilkan nilai dan teks dari selected option.
+2. Tambahkan sebuah option: `<option value="classic">Classic</option>`.
+3. Buat menjadi selected.
 
-Note, if you've done everything right, your alert should show `blues`.
+Note, jika semua benar, alert akan menampilkan `blues`.
