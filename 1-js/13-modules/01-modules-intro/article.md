@@ -1,32 +1,31 @@
 
-# Modules, introduction
+# Modul, Pengenalan
 
-As our application grows bigger, we want to split it into multiple files, so called "modules". A module may contain a class or a library of functions for a specific purpose.
+Saat aplikasi kita berkembang menjadi lebih besar, kita ingin membaginya menjadi banyak file, yang disebut modul. Sebuah modul bisa berisi kelas atau fungsi *library* untuk tujuan spesifik. 
 
-For a long time, JavaScript existed without a language-level module syntax. That wasn't a problem, because initially scripts were small and simple, so there was no need.
+Untuk waktu yang lama, Javascript ada tanpa sintaks modul tingkat-bahasa. Hal ini tidak menjadi masalah, karena awalnya kode skrip lebih kecil dan simpel, jadi modul tidak diperlukan.
 
-But eventually scripts became more and more complex, so the community invented a variety of ways to organize code into modules, special libraries to load modules on demand.
+Tetapi akhirnya kode skrip menjadi lebih kompleks, jadi komunitas membuat berbagai cara untuk mengatur kode menjadi modul, *library* khusus untuk memuat modul sesuai permintaan.
 
-To name some (for historical reasons):
+Disebut beberapa dengan nama (Untuk alasan sejarah):
 
-- [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition) -- one of the most ancient module systems, initially implemented by the library [require.js](http://requirejs.org/).
-- [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1) -- the module system created for Node.js server.
-- [UMD](https://github.com/umdjs/umd) -- one more module system, suggested as a universal one, compatible with AMD and CommonJS.
+- [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition) -- satu dari sistem modul yang paling kuno, awalnya diimplementasikan oleh [require.js](http://requirejs.org/).
+- [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1) -- Sistem modul yang dibuat untuk *server* Node.js.
+- [UMD](https://github.com/umdjs/umd) -- ada satu lagi sistem modul, disarankan untuk menjadi modul universal, karena cocok dengan AMD dan CommonJS.
 
-Now all these slowly become a part of history, but we still can find them in old scripts.
+Sekarang semua ini perlahan menjadi bagian dari sejarah, tetapi kita masih bisa menemukannya di kode skrip lama. 
 
-The language-level module system appeared in the standard in 2015, gradually evolved since then, and is now supported by all major browsers and in Node.js. So we'll study the modern JavaScript modules from now on.
+Sistem modul tingkat-bahasa muncul di tahun 2015, berevolusi secara bertahap sejak saat itu, dan sekarang di dukung oleh semua browser utama dan Node.js. Jadi sekarang kita akan mulai mempelajari modul Javascript modern.
 
-## What is a module?
+## Apa itu modul?
 
-A module is just a file. One script is one module. As simple as that.
+Modul hanya sebuah file. Satu kode skrip adalah satu modul. Sangat simpel bukan.
 
-Modules can load each other and use special directives `export` and `import` to interchange functionality, call functions of one module from another one:
+Modul bisa memuat satu sama lain dan menggunakan pengarah khusus `export` dan `import` untuk fungsi pertukaran, memanggil fungsi dari satu modul ke modul lainnya.
 
-- `export` keyword labels variables and functions that should be accessible from outside the current module.
-- `import` allows the import of functionality from other modules.
-
-For instance, if we have a file `sayHi.js` exporting a function:
+- `export` kata kunci variabel label dan fungsi yang bisa diakses diluar modul saat ini.
+- `import` memperbolehkan impor fungsi dari modul lain.
+Misalnya, jika kita memiliki file `sayHi.js` ekspor fungsi:
 
 ```js
 // 📁 sayHi.js
@@ -35,7 +34,7 @@ export function sayHi(user) {
 }
 ```
 
-...Then another file may import and use it:
+...Lalu file lain bisa di impor dan menggunakannya:
 
 ```js
 // 📁 main.js
@@ -45,31 +44,30 @@ alert(sayHi); // function...
 sayHi('John'); // Hello, John!
 ```
 
-The `import` directive loads the module by path `./sayHi.js` relative to the current file, and assigns exported function `sayHi` to the corresponding variable.
+`import` akan diarahkan untuk memuat modul dari *path* `sayHi.js` yang relatif dengan file saat ini, dan menetapkan fungsi yang diekspor `sayHi` pada variabel yang sesuai.
 
-Let's run the example in-browser.
+Mari kita jalankan contoh ini di browser.
 
-As modules support special keywords and features, we must tell the browser that a script should be treated as a module, by using the attribute `<script type="module">`.
+Karena modul didukung oleh kata kunci dan fitur khusus, kita harus memberi tahu browser bahwa kode skrip harus diperlakukan sebagai modul, dengan menggunakan attribut `<script type="module">`.
 
-Like this:
+Seperti ini:
 
 [codetabs src="say" height="140" current="index.html"]
 
-The browser automatically fetches and evaluates the imported module (and its imports if needed), and then runs the script.
+Browser otomatis mengambil dan mengevaluasi modul impor (dan impornya jika diperlukan), dan kemudian menjalankan kode skrip.
 
-```warn header="Modules work only via HTTP(s), not in local files"
-If you try to open a web-page locally, via `file://` protocol, you'll find that `import/export` directives don't work. Use a local web-server, such as [static-server](https://www.npmjs.com/package/static-server#getting-started) or use the "live server" capability of your editor, such as VS Code [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) to test modules.
+```warn header="Modul hanya bekerja melalui HTTP(s), dan tidak di file lokal" Jika kamu mencoba membuka file halaman web secara lokal, melalui protokol `file://`, kamu akan mengetahui bahwa pengarahan `import/export` tidak bekerja. Gunakan *server* web lokal, seperti [server-statis](https://www.npmjs.com/package/static-*server*#getting-started) atau kemampuan "live server" di editor, seperti VS Code [Ekstensi live server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.Live*server*) untuk mengecek modul.
 ```
 
-## Core module features
+## Inti dari fitur modul 
 
-What's different in modules, compared to "regular" scripts?
+Apa perbedaan modul, dibandingkan dengan kode skrip "biasa"?
 
-There are core features, valid both for browser and server-side JavaScript.
+Terdapat inti dari fitur, valid untuk browser dan javascript di sisi *server*.
 
-### Always "use strict"
+### Selalu menggunakan "use strict"
 
-Modules always `use strict`, by default. E.g. assigning to an undeclared variable will give an error.
+Modul selalu menggunakan `use strict` secara default. Misalnya untuk menetapkan variabel yang tidak dideklarasikan akan menjadi error.
 
 ```html run
 <script type="module">
@@ -77,46 +75,46 @@ Modules always `use strict`, by default. E.g. assigning to an undeclared variabl
 </script>
 ```
 
-### Module-level scope
+### Batasan level-modul
 
-Each module has its own top-level scope. In other words, top-level variables and functions from a module are not seen in other scripts.
+Setiap modul memiliki batasan level-tinggi sendiri. Dengan kata lain, variabel level-tinggi dan fungsi dari modul tidak bisa dilihat di kode skrip lainnya.
 
-In the example below, two scripts are imported, and `hello.js` tries to use `user` variable declared in `user.js`, and fails:
+Contoh dibawah ini, dua kode skrip di impor, dan `hello.js` mencoba untuk menggunakan variabel `user` yang dideklarasikan di `user.js`, maka akan gagal:
 
 [codetabs src="scopes" height="140" current="index.html"]
 
-Modules are expected to `export` what they want to be accessible from outside and `import` what they need.
+Modul diharapkan untuk `export`  yang ingin bisa diakses dari luar `import` yang dibutuhkan.
 
-So we should import `user.js` into `hello.js` and get the required functionality from it instead of relying on global variables.
+Jadi kita harus impor `user.js` pada `hello.js` untuk mendapatkan fungsi yang dibutuhkan dari `user.js` daripada mengandalkan variabel global.
 
-This is the correct variant:
+Ini variasi yang benar:
 
 [codetabs src="scopes-working" height="140" current="hello.js"]
 
-In the browser, independent top-level scope also exists for each `<script type="module">`:
+Pada browser, batasan level-tinggi independen juga ada untuk setiap `<script type="module">`:
 
 ```html run
 <script type="module">
-  // The variable is only visible in this module script
+  // The variable is only visible in this module script(variabel hanya terlihat di modul skrip ini)
   let user = "John";
 </script>
 
 <script type="module">
   *!*
-  alert(user); // Error: user is not defined
+  alert(user); // Error: user is not defined(Error: user tidak definisikan)
   */!*
 </script>
 ```
 
-If we really need to make a window-level global variable, we can explicitly assign it to `window` and access as `window.user`. But that's an exception requiring a good reason.
+Jika kita benar-benar perlu untuk membuat variabel global tingkat *window*, kita akan menetapkan secara eksplisit pada `window` dan mengaksesnya sebagai `window.user`. Tetapi itu adalah pengecualian yang membutukan alasan bagus. 
 
-### A module code is evaluated only the first time when imported
+### Kode modul dievaluasi saat pertama kali saat di impor
 
-If the same module is imported into multiple other places, its code is executed only the first time, then exports are given to all importers.
+Jika modul yang sama di impor di banyak tempat yang lain, kode yang akan dijalankan hanya yang pertama saja, lalu ekspor akan di berikan pada semua modul impor.
 
-That has important consequences. Let's look at them using examples:
+Hal ini memiliki konsekuensi yang penting. Mari kita lihat dengan contoh:
 
-First, if executing a module code brings side-effects, like showing a message, then importing it multiple times will trigger it only once -- the first time:
+Pertama, jika kode modul dijalankan akan memberikan efek samping, seperti menampilkan pesan, maka mengimpornya berkali-kali hanya akan memicu pesan satu kali saja: 
 
 ```js
 // 📁 alert.js
@@ -124,20 +122,20 @@ alert("Module is evaluated!");
 ```
 
 ```js
-// Import the same module from different files
+// Import the same module from different files(impor modul yang sama dari file yang berbeda)
 
 // 📁 1.js
-import `./alert.js`; // Module is evaluated!
+import `./alert.js`; // Module is evaluated!(modul dievaluasi)
 
 // 📁 2.js
-import `./alert.js`; // (shows nothing)
+import `./alert.js`; // (shows nothing)(menampilkan kosong)
 ```
 
-In practice, top-level module code is mostly used for initialization, creation of internal data structures, and if we want something to be reusable -- export it.
+Pada praktek, modul level-tinggi banyak di gunakan untuk inisialisasi, membuat struktur data internal, dan jika kita ingin membuat sesuatu bisa digunakan kembali -- ekspor saja.
 
-Now, a more advanced example.
+Sekarang, contoh yang lebih lanjut.
 
-Let's say, a module exports an object:
+Katakanlah, modul mengekspor sebuah objek:
 
 ```js
 // 📁 admin.js
@@ -146,9 +144,9 @@ export let admin = {
 };
 ```
 
-If this module is imported from multiple files, the module is only evaluated the first time, `admin` object is created, and then passed to all further importers.
+Jika modul ini diimpor dari banyak file, modul hanya akan dievalusi pertama kali saja, lalu objek `admin` dibuat, dan akan diteruskan kepada semua file impor lebih lanjut lainnya.
 
-All importers get exactly the one and only `admin` object:
+Semua file impor akan mendapatkan persis satu hanya objek `admin`:
 
 ```js
 // 📁 1.js
@@ -160,16 +158,16 @@ import {admin} from './admin.js';
 alert(admin.name); // Pete
 
 *!*
-// Both 1.js and 2.js imported the same object
-// Changes made in 1.js are visible in 2.js
+// Both 1.js and 2.js imported the same object(1.js dan 2.js mengimpor objek yang sama)
+// Changes made in 1.js are visible in 2.js(perubahan di buat di 1.js terlihat di 2.js)
 */!*
 ```
 
-So, let's reiterate -- the module is executed only once. Exports are generated, and then they are shared between importers, so if something changes the `admin` object, other modules will see that.
+Jadi, mari kita ulangi -- modul hanya dijalankan satu kali, ekspor akan dihasilkan, dan kemudian dibagikan diantara impor, jadi jika sesuatu merubah objek `admin`, modul lainnya bisa melihat hal tersebut. 
 
-Such behavior allows us to *configure* modules on first import. We can setup its properties once, and then in further imports it's ready.
+Perilaku seperti itu mengizinkan kita untuk bisa *mengkonfigurasi* modul di impor pertama. Kita bisa mengatur properti satu kali, dan file impor lebih lanjut sudah siap.
 
-For instance, the `admin.js` module may provide certain functionality, but expect the credentials to come into the `admin` object from outside:
+Misalnya, modul `admin.js` mungkin menyediakan fungsi tertentu, tetapi ingin mendapatkan kredensial pada objek `admin` dari luar:
 
 ```js
 // 📁 admin.js
@@ -180,7 +178,7 @@ export function sayHi() {
 }
 ```
 
-In `init.js`, the first script of our app, we set `admin.name`. Then everyone will see it, including calls made from inside `admin.js` itself:
+Pada `init.js`, kode skrip pertama dari aplikasi, kita mengatur `admin.name`. Kemudian semua orang akan melihatnya, termasuk pemanggilan yang dibuat di dalam `admin.js` itu sendiri:
 
 ```js
 // 📁 init.js
@@ -188,7 +186,7 @@ import {admin} from './admin.js';
 admin.name = "Pete";
 ```
 
-Another module can also see `admin.name`:
+Modul lainnya juga bisa melihat `admin.name`:
 
 ```js
 // 📁 other.js
@@ -201,9 +199,9 @@ sayHi(); // Ready to serve, *!*Pete*/!*!
 
 ### import.meta
 
-The object `import.meta` contains the information about the current module.
+Objek `import.meta` berisi informasi tentang modul saat ini.
 
-Its content depends on the environment. In the browser, it contains the url of the script, or a current webpage url if inside HTML:
+Kontennya tergantung dengan lingkungannya. Pada browser, berisi *url* dari kode skrip, atau *url* halaman web saat ini di dalam HTML:
 
 ```html run height=0
 <script type="module">
@@ -211,13 +209,13 @@ Its content depends on the environment. In the browser, it contains the url of t
 </script>
 ```
 
-### In a module, "this" is undefined
+### Dalam modul, "this" tidak didefinisikan
 
-That's kind of a minor feature, but for completeness we should mention it.
+Ini semacam fitur yang kecil , tetapi untuk lebih lengkap kita harus menyebutkannya.
 
-In a module, top-level `this` is undefined.
+Dalam modul, level-tinggi `this` tidak didefinisikan.
 
-Compare it to non-module scripts, where `this` is a global object:
+Dibedakan dengan kode skrip tidak modul, dimana `this` adalah objek global:
 
 ```html run height=0
 <script>
@@ -229,108 +227,108 @@ Compare it to non-module scripts, where `this` is a global object:
 </script>
 ```
 
-## Browser-specific features
+## Fitur spesifik browser
 
-There are also several browser-specific differences of scripts with `type="module"` compared to regular ones.
+Ada juga beberapa perbedaan spesifik browser skrip dengan `type="module"` dibandingkan dengan yang biasa.
 
-You may want skip this section for now if you're reading for the first time, or if you don't use JavaScript in a browser.
+Kamu mungkin ingin melewati bagian ini jika kamu baru membacanya pertama kali, atau jika kamu tidak menggunakan Javascript pada browser.
 
-### Module scripts are deferred
+### Kode skrip modul di tangguhkan
 
-Module scripts are *always* deferred, same effect as `defer` attribute (described in the chapter [](info:script-async-defer)), for both external and inline scripts.
+Kode skrip modul selalu ditangguhkan, sama dengan efek attribut `defer` (dideskripsikan di bab [](info:script-async-defer)), untuk kode skrip diluar dan di dalam baris.
 
-In other words:
-- downloading external module scripts `<script type="module" src="...">` doesn't block HTML processing, they load in parallel with other resources.
-- module scripts wait until the HTML document is fully ready (even if they are tiny and load faster than HTML), and then run.
-- relative order of scripts is maintained: scripts that go first in the document, execute first.
+Dalam kata lain:
+- mengunggah kode skrip eksternal `<script type="module" src="...">` tidak menghalangi proses HTML, mereka memuat secara paralel dengan sumber daya asalnya.
+- kode skrip modul akan menunggu sampai dokumen HTML sudah siap (meski memiliki ukuran kecil dan memuat lebih cepat dari HTML), lalu dijalankan.
+- urutan relatif dari kode skrip diperlakukan: kode skrip yang pertama pada dokumen, akan dijalankan pertama.
 
-As a side-effect, module scripts always "see" the fully loaded HTML-page, including HTML elements below them.
+Sebagai efek samping, kode skrip modul selalu melihat halaman HTML yang sudah dimuat semua, termasuk elemen HTML dibawahnya.
 
-For instance:
+Misalnya:
 
 ```html run
 <script type="module">
 *!*
-  alert(typeof button); // object: the script can 'see' the button below
+  alert(typeof button); // object: the script can 'see' the button below(object: kode skrip bisa melihat tombol dibawahnya)
 */!*
-  // as modules are deferred, the script runs after the whole page is loaded
+  // as modules are deferred, the script runs after the whole page is loaded( modul ditangguhkan, kode skrip dijalankan setelah semua halaman dimuat )
 </script>
 
-Compare to regular script below:
+Bandingkan dengan kode skrip dibawah:
 
 <script>
 *!*
-  alert(typeof button); // Error: button is undefined, the script can't see elements below
+  alert(typeof button); // Error: button is undefined, the script can't see elements below(Error: tombol tidak didefinisikan, kode skrip tidak bisa melihat elemen dibawahnya)
 */!*
-  // regular scripts run immediately, before the rest of the page is processed
+  // regular scripts run immediately, before the rest of the page is processed(kode skrip biasa dijalankan langsung, sebelum sisa dari halaman diproses)
 </script>
 
 <button id="button">Button</button>
 ```
 
-Please note: the second script actually runs before the first! So we'll see `undefined` first, and then `object`.
+Perlu dicatat: Kode skrip kedua sebenarnya berjalan sebelum yang pertama! Jadi kita akan melihat `undefined` dahulu, baru kemudian `object`.
 
-That's because modules are deferred, so we wait for the document to be processed. The regular script runs immediately, so we see its output first.
+Itu karena modul ditangguhkan, jadi kita akan menunggu dokumen untuk diproses. Kode skrip biasa berjalan secara langsung, jadi kita akan melihat keluarannya dahulu.
 
-When using modules, we should be aware that the HTML page shows up as it loads, and JavaScript modules run after that, so the user may see the page before the JavaScript application is ready. Some functionality may not work yet. We should put "loading indicators", or otherwise ensure that the visitor won't be confused by that.
+Saat menggunakan modul, kita harus sadar bahwa halaman HTML menampilkan apa yang di muat, dan modul Javascript berjalan setelah itu, jadi pengguna mungkin akan melihat halaman sebelum aplikasi Javascript siap. Beberapa fungsi mungkin belum bisa berjalan. Kita harus menambahkan "indikator memuat", atau jika tidak pastikan pengunjung tidak bingung dengan itu.
 
-### Async works on inline scripts
+### *Async* bekerja pada kode skrip satu baris
 
-For non-module scripts, the `async` attribute only works on external scripts. Async scripts run immediately when ready, independently of other scripts or the HTML document.
+Untuk kode skrip bukan modul, attribut `async` hanya bekerja pada kode skrip eksternal. Kode skrip async berjalan langsung saat sudah siap, independen dari kode skrip lain atau dokumen HTML.
 
-For module scripts, it works on inline scripts as well.
+Untuk skrip modul, akan berjalan pada kode skrip satu baris.
 
-For example, the inline script below has `async`, so it doesn't wait for anything.
+Contoh, kode skrip satu baris dibawah ini memiliki `async`, jadi tidak perlu menunggu sesuatu.
 
-It performs the import (fetches `./analytics.js`) and runs when ready, even if the HTML document is not finished yet, or if other scripts are still pending.
+Ini melakukan import (fetch `./analytics.js`) dan berjalan saat sudah siap, meski saat dokumen HTML belum siap, atau jika ada kode skrip lain yang masih tertunda.
 
-That's good for functionality that doesn't depend on anything, like counters, ads, document-level event listeners.
+Itu adalah fungsi yang bagus yang tidak bergantung pada sesuatu, seperti perhitungan, iklan, level-dokumen *event listener*.
 
 ```html
 <!-- all dependencies are fetched (analytics.js), and the script runs -->
 <!-- doesn't wait for the document or other <script> tags -->
-<script *!*async*/!* type="module">
+<script *!async/!* type="module">
   import {counter} from './analytics.js';
 
   counter.count();
 </script>
 ```
 
-### External scripts
+### Kode skrip eksternal
 
-External scripts that have `type="module"` are different in two aspects:
+Kode eksternal yang memiliki `type="module"` memiliki perbedaan pada dua aspek:
 
-1. External scripts with the same `src` run only once:
+1. Kode skrip eksternal dengan 'src' yang sama hanya berjalan satu kali:
     ```html
     <!-- the script my.js is fetched and executed only once -->
     <script type="module" src="my.js"></script>
     <script type="module" src="my.js"></script>
     ```
 
-2. External scripts that are fetched from another origin (e.g. another site) require [CORS](mdn:Web/HTTP/CORS) headers, as described in the chapter <info:fetch-crossorigin>. In other words, if a module script is fetched from another origin, the remote server must supply a header `Access-Control-Allow-Origin` allowing the fetch.
+2. Kode skrip eksternal hanya diambil dari *origin* lain (contoh situs lain) membutuhkan *header* [CORS](mdn:Web/HTTP/CORS), akan dideskripsikan pada bab  <info:fetch-crossorigin>. Dengan kata lain, jika kode skrip modul diambil dari *origin* lain, maka *server remote* harus ... hader `Access-Control-Allow-Origin` mengizinkan untuk mengambil data.
     ```html
     <!-- another-site.com must supply Access-Control-Allow-Origin -->
     <!-- otherwise, the script won't execute -->
     <script type="module" src="*!*http://another-site.com/their.js*/!*"></script>
     ```
 
-    That ensures better security by default.
+    Ini memastikan kemanan yang baik secara default.
 
-### No "bare" modules allowed
+### Modul "kosong" tidak diizinkan
 
-In the browser, `import` must get either a relative or absolute URL. Modules without any path are called "bare" modules. Such modules are not allowed in `import`.
+Pada Browser, `import` harus mendapatkan relatif atau *URL* mutlak. Modul tanpa *path* disebut dengan modul "kosong". Modul seperti ini tidak diizinkan pada `import`.
 
-For instance, this `import` is invalid:
+Misalnya, `import` ini tidak valid:
 ```js
 import {sayHi} from 'sayHi'; // Error, "bare" module
-// the module must have a path, e.g. './sayHi.js' or wherever the module is
+// the module must have a *path*, e.g. './sayHi.js' or wherever the module is
 ```
 
-Certain environments, like Node.js or bundle tools allow bare modules, without any path, as they have their own ways for finding modules and hooks to fine-tune them. But browsers do not support bare modules yet.
+Pada lingkungan tertentu, seperti Node.js atau alat pembungkus mengizinkan modul kosong, tanpa ada *path*, karena mereka memiliki cara tersendiri untuk menemukan modul dan pengait untuk menyesuaikannya. Tetapi browser masih belum mendukung modul kosong.
 
-### Compatibility, "nomodule"
+### Kompabilitas, "nomodule"
 
-Old browsers do not understand `type="module"`. Scripts of an unknown type are just ignored. For them, it's possible to provide a fallback using the `nomodule` attribute:
+Browser lama tidak mengerti `type="module"`. Kode skrip dari tipe yang tidak diketahui akan diabaikan. Untuk itu, ada kemungkinan untuk menyediakan *fallback* menggunakan attribut `nomodule`:
 
 ```html run
 <script type="module">
@@ -343,48 +341,48 @@ Old browsers do not understand `type="module"`. Scripts of an unknown type are j
 </script>
 ```
 
-## Build tools
+## Alat Pembangun
 
-In real-life, browser modules are rarely used in their "raw" form. Usually, we bundle them together with a special tool such as [Webpack](https://webpack.js.org/) and deploy to the production server.
+Di dunia nyata, modul browser jarang digunakan dalam bentuk "mentah". Biasanya, kita membungkusnya bersama dengan alat khusus seperti [Webpack](https://webpack.js.org/) dan di *deploy* di *server* produksi.
 
-One of the benefits of using bundlers -- they give more control over how modules are resolved, allowing bare modules and much more, like CSS/HTML modules.
+Salah satu keuntungan menggunakan pembungkus -- mereka memberikan lebih banyak kontrol bagaimana modul diselesaikan, mengizinkan modul kosong dan yang lainnya, seperti CSS/modul HTML.
 
-Build tools do the following:
+Alat pembangun melakukan langkah seperti ini:
 
-1. Take a "main" module, the one intended to be put in `<script type="module">` in HTML.
-2. Analyze its dependencies: imports and then imports of imports etc.
-3. Build a single file with all modules (or multiple files, that's tunable), replacing native `import` calls with bundler functions, so that it works. "Special" module types like HTML/CSS modules are also supported.
-4. In the process, other transformations and optimizations may be applied:
-    - Unreachable code removed.
-    - Unused exports removed ("tree-shaking").
-    - Development-specific statements like `console` and `debugger` removed.
-    - Modern, bleeding-edge JavaScript syntax may be transformed to older one with similar functionality using [Babel](https://babeljs.io/).
-    - The resulting file is minified (spaces removed, variables replaced with shorter names, etc).
+1. Modul "main", salah satu yang dimaksud untuk ditambahkan `<script type="module">` pada HTML.
+2. Menganalisis dependensi: impor dan lalu impor dari impor dll.
+3. Membangun satu file dengan semua modul (banyak file, yang disesuaikan) mengubah pemanggil import asli dengan fungsi pembungkus, jadi modul akan bekerja. Modul tipe "khusus" seperti modul HTML/CSS juga didukung. 
+4. Pada proses, transformasi dan optimisasi lain bisa diterapkan:
+    - Kode yang tidak terjangkau akan dihapus.
+    - Eksport yang tidak digunakan akan dihapus ("tree-shaking").
+    - Pernyataan spesifik pengembangan seperti `console` dan `debugger` akan dihapus.
+    - Sintaks Javascript *bleeding-edge* modern, mungkin bisa ditrasformasikan ke fungsi lama yang sama menggunakan [Babel](https://babeljs.io/).
+    - File hasil akan diperkecil (spasi dihapus, variabel diganti dengan nama yang singkat, dll).
 
-If we use bundle tools, then as scripts are bundled together into a single file (or few files), `import/export` statements inside those scripts are replaced by special bundler functions. So the resulting "bundled" script does not contain any `import/export`, it doesn't require `type="module"`, and we can put it into a regular script:
+Jika kita menggunakan alat pembungkus, maka kode skrip dibungkus bersama menjadi satu file (atau beberapa file), pernyataan `import/export` di dalam kode skrip akan diganti dengan fungsi pembungkus khusus. Jadi hasil kode skrip "bungkusan" tidak berisi `import/export`, tidak membutuhkan `type="module"`, dan kita bisa menambahkannya pada kode skrip biasa:
 
 ```html
 <!-- Assuming we got bundle.js from a tool like Webpack -->
 <script src="bundle.js"></script>
 ```
 
-That said, native modules are also usable. So we won't be using Webpack here: you can configure it later.
+Meskipun demikian, modul asli juga dapat digunakan. Jadi kita tidak akan menggunakan webpack disini: kamu bisa mengkonfigurasinya nanti.
 
-## Summary
+## Ringkasan
 
-To summarize, the core concepts are:
+Secara ringkas, konsep intinya adalah:
 
-1. A module is a file. To make `import/export` work, browsers need `<script type="module">`. Modules have several differences:
-    - Deferred by default.
-    - Async works on inline scripts.
-    - To load external scripts from another origin (domain/protocol/port), CORS headers are needed.
-    - Duplicate external scripts are ignored.
-2. Modules have their own, local top-level scope and interchange functionality via `import/export`.
-3. Modules always `use strict`.
-4. Module code is executed only once. Exports are created once and shared between importers.
+1. Modul adalah file. Untuk membuat `import/export` bekerja, browser membutuhkan `<script type="module">`. Modul memiliki bebarapa perbedaan:
+    - Ditangguhkan secara default.
+    - *Async* bekerja pada kode skrip satu baris.
+    - Untuk memuat kode skrip eksternal dari *origin* lain (domain/protocol/port), *header* CORS dibutuhkan.
+    - Duplikasi kode skrip eksternal akan diabaikan.
+2. Modul memiliki batasan lokal tingkat-tinggi dan fungsi pertukaran dengan `import/export` sendiri.
+3. Modul selalu menggunakan `use strict`.
+4. Kode modul dijalankan hanya satu kali. Ekspor di buat satu kali dan dibagikan diantara banyak impor.
 
-When we use modules, each module implements the functionality and exports it. Then we use `import` to directly import it where it's needed. The browser loads and evaluates the scripts automatically.
+Saat kita menggunakan modul, setiap modul mengimplementasikan fungsi dan mengekspornya. Lalu kita menggunakan `import` untuk mengarahkan impor di tempat yang dibutuhkan. Browser memuat dan mengevaluasi kode skrip secara otomatis.
 
-In production, people often use bundlers such as [Webpack](https://webpack.js.org) to bundle modules together for performance and other reasons.
+Pada produksi, orang-orang biasa menggunakan pembungkus seperti [Webpack](https://webpack.js.org) untuk membungkus modul bersama untuk kinerja dan alasan lainnya.
 
-In the next chapter we'll see more examples of modules, and how things can be exported/imported.
+Pada bab selanjutnya kita akan melihat lebih banyak contoh tentang modul, dan bagaimana sesuatu bisa di ekspor/ diimpor.
