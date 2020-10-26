@@ -78,7 +78,11 @@ function sayHi() {
 }
 
 sayHi();
+<<<<<<< HEAD
 alert(phrase); // Error: frasa tidak terdefinisi (periksa Developer Console)
+=======
+alert(phrase); // Error: phrase is not defined
+>>>>>>> 2d5be7b7307b0a4a85e872d229e0cebd2d8563b5
 ```
 
 Seperti yang bisa kita lihat `var` menembus `if`, `for` atau blok kode lainnya. Itu karena sejak dahulu di blok Javascript tidak memiliki Lingkungan Leksikal. dan `var` adalah sisanya. 
@@ -267,8 +271,13 @@ Dalam semua kasus diatas kami mendeklarasikan sebuah Ekspresi fungsi dan menjala
 
 Ada dua perbedaan utama dari `var` dibandingkan dengan `let/const`;
 
+<<<<<<< HEAD
 1. `var` variabel tidak memiliki ruang lingkup blok, mereka terlihat minimum pada tingkat fungsi.
 2. Deklarasi `var` diproses saat fungsi dimulai (skrip dimulai untuk global).
+=======
+1. `var` variables have no block scope, their visibility is scoped to current function, or global, if declared outside function.
+2. `var` declarations are processed at function start (script start for globals).
+>>>>>>> 2d5be7b7307b0a4a85e872d229e0cebd2d8563b5
 
 Ada satu perbedaan kecil terkait objek global, yang akan kita bahas pada bab selanjutnya.
 
