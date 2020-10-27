@@ -2,17 +2,17 @@ importance: 4
 
 ---
 
-# Search for elements
+# Pencarian untuk elemen
 
-Here's the document with the table and form.
+Ini adalah dokumen dengan tabel dan formulir.
 
-How to find?...
+Bagaimana cara mencari?...
 
-1. The table with `id="age-table"`.
-2. All `label` elements inside that table (there should be 3 of them).
-3. The first `td` in that table (with the word "Age").
-4. The `form` with `name="search"`.
-5. The first `input` in that form.
-6. The last `input` in that form.
+1. Tabel dengan `id="age-table"`.
+2. Semua elemen `label` di dalam tabel (seharusnya ada 3).
+3. `td` pertama di dalam tabel (dengan kata "Age").
+4. `form` dengan `name="search"`.
+5.  `input` pertama dalam formulir.
+6.  `input` terakhir di dalam formulir.
 
-Open the page [table.html](table.html) in a separate window and make use of browser tools for that.
+Bukalah halaman [table.html](table.html) di dalam jendela yang berbeda dan gunakan alat browser untuk itu.
