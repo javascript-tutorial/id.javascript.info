@@ -406,7 +406,11 @@ Beberapa contoh:
     alert( Math.pow(2, 10) ); // 2 in power 10 = 1024
     ```
 
+<<<<<<< HEAD
 Ada lebih banyak fungsi dan konstanta dalam objek `Math`, termasuk trigonometri, yang dapat Anda temukan di [docs untuk objek Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math).
+=======
+There are more functions and constants in `Math` object, including trigonometry, which you can find in the [docs for the Math object](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math).
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 ## Kesimpulan
 

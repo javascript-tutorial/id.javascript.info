@@ -29,7 +29,12 @@ Sebenarnya, ada dua bagian dari Babel:
 
    Seperti disebutkan diatas, JavaScript adalah sebuah bahasa pemrograman yang sangat dinamis. Skrip-skrip baru terus ditambahkan kedalam JavaScript dengan tujuan untuk membuat fungsi-fungsi baru menjadi dapat dibaca oleh penerjemah JavaScript standar.
 
+<<<<<<< HEAD
    Skrip-skrip tambahan inilah yang disebut Polyfill. Skrip-skrip ini biasanya berupa fungsi-fungsi yang bertujuan menambah atau memodifikasi perbendaharaan JavaScript standar agar mampu mengenal fitur-fitur modern.
+=======
+    New language features may include not only syntax constructs, but also built-in functions.
+    The transpiler rewrites the code, transforming syntax constructs into older ones. But as for new built-in functions, we need to implement them. JavaScript is a highly dynamic language, scripts may add/modify any functions, so that they behave according to the modern standard.
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
    Polifyll yang sering digunakan:
 

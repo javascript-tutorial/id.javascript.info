@@ -92,7 +92,11 @@ Bagaimana jika itu bisa mengakses variabel luar?
 
 Masalahnya adalah saat Javascript belum dipublikasikan untuk produksi, itu akan dikompresi menggunakan *minifier* -- sebuah program spesial yang mengecilkan ukuran kode dengan menghapus komentar-komentar, spasi dan -- yang paling penting, menamai variabel lokal menjadi lebih pendek.
 
+<<<<<<< HEAD
 Contoh, jika sebuah fungsi mempunyai `let userName`, minifier akan mengganti itu dengan `let a` (atau huruf lainnya jika tidak hurufnya tidak tersedia), dan melakukannya dimanapun. Sebenarnya itu adalah yang yang aman untuk dilakukan, karena variabelnya lokal, tidak ada sesuatu dari luar fungsinya yang bisa mengaksesnya. Dan didalam fungsinya, minifier mengganti seluruh penamaan variabelnya. Minifier cukup pintar, mereka menganalisa struktur kodenya, jadi mereka tidak akan merusak apapun. Minifier bukanlah hal bodoh yang hanya akan mencari-dan-mengganti.
+=======
+For instance, if a function has `let userName`, minifier replaces it with `let a` (or another letter if this one is occupied), and does it everywhere. That's usually a safe thing to do, because the variable is local, nothing outside the function can access it. And inside the function, minifier replaces every mention of it. Minifiers are smart, they analyze the code structure, so they don't break anything. They're not just a dumb find-and-replace.
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 Jadi jika `new Function` mempunyai akses ke variabel luar, itu tidak akan bisa menemukan `userName` yang telah dinamai ulang.
 

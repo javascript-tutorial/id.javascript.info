@@ -327,7 +327,11 @@ Kenapa hal tersebut diperlukan? mari lihat praktik penggunaannya.
 
 Bayangkan kita menulis sebuah "paket": sebuah direktori dengan banyak modul, dengan beberapa fungsi yang diekpor ke luar (perkakas seperti NPM memungkinkan kita untuk menerbitkan dan mendistribusikan paket seperti itu), dan kebanyakan modul hanyalah "pembantu" untuk penggunaan internal di paket modul lainnya.
 
+<<<<<<< HEAD
 Struktur berkas bisa seperti ini:
+=======
+Imagine, we're writing a "package": a folder with a lot of modules, with some of the functionality exported outside (tools like NPM allow us to publish and distribute such packages, but we don't have to use them), and many modules are just "helpers", for internal use in other package modules.
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 ```
 auth/
@@ -383,7 +387,11 @@ export {default as User} from './user.js';
 
 Ekspor bawaan memerlukan penanganan terpisah ketika melakukan ekspor ulang.
 
+<<<<<<< HEAD
 Misalnya kita memiliki `user.js` dan kita ingin melakukan ekspor ulang kelas `User` tersebut:
+=======
+Let's say we have `user.js` with the `export default class User` and would like to re-export it:
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 ```js
 // 📁 user.js
@@ -392,7 +400,13 @@ export default class User {
 }
 ```
 
+<<<<<<< HEAD
 1. `export User form './user.js'` tidak dapat digunakan. Apa yang salah?... Ini adalah kesalahan sintaks!
+=======
+We can come across two problems with it:
+
+1. `export User from './user.js'` won't work. That would lead to a syntax error.
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
     Untuk melakukan ekspor ulang ekspor bawaan, kita harus menuliskan `export { default as User }` seperti contoh diatas.
 
@@ -405,9 +419,13 @@ export default class User {
     export { default } from './user.js'; // ekspor ulang ekspor bawaan
     ```
 
+<<<<<<< HEAD
 Keanehan dari proses mengekspor ulang ekspor bawaan adalah salah satu alasan mengapa beberapa pengembang tidak menyukainya.
 
 ## Ringkasan
+=======
+Such oddities of re-exporting a default export are one of the reasons why some developers don't like default exports and prefer named ones.
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 Berikut merupakan semua jenis `export` yang kita bahas di artikel ini dan sebelumnya.
 

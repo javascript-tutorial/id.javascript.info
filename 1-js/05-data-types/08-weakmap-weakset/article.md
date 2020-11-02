@@ -30,8 +30,14 @@ let array = [ john ];
 john = null; // tulis ulang referensinya
 
 *!*
+<<<<<<< HEAD
 // john disimpan didalam array, jadi itu tidak dibuang
 // kita bisa mendapatkannya sebagai array[0]
+=======
+// the object previously referenced by john is stored inside the array 
+// therefore it won't be garbage-collected
+// we can get it as array[0]
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 */!*
 ```
 

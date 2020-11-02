@@ -6,10 +6,14 @@ Objek global menyediakan variabel dan fungsi yang bisa didapatkan dimana saja. S
 Di dalam browser ia dinamakan `window`, untuk Node.js `global`, untuk lingkungan lainnya ia mungkin mempunyai nama lain.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Akhir-akhir ini, `globalThis` ditambahkan ke bahasanya, sebagai nama standar untuk objek global, yang harus di dukung di semua lingkungan. Di browser tertentu, ya itu non-Chromium Edge, `globalThis` belum didukung, tapi bisa dengan mudah dipolyfill.
 =======
 Recently, `globalThis` was added to the language, as a standardized name for a global object, that should be supported across all environments. It's supported in all major  browsers.
 >>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
+=======
+Recently, `globalThis` was added to the language, as a standardized name for a global object, that should be supported across all environments. It's supported in all major browsers.
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 Kita akan memakai `window` disini, dengan anggapan bahwa lingkungan kita adalah browser. Jika script kamu mungkin digunakan di lingkungan lain, lebih baik menggunakan `globalThis`.
 
@@ -29,7 +33,13 @@ var gVar = 5;
 alert(window.gVar); // 5 (menjadi properti objek global)
 ```
 
+<<<<<<< HEAD
 Mohon jangan bergantung dengan itu! Perilaku ini ada untuk alasan kompatibilitas. Script modern menggunakan [JavaScript modules](info:modules) dimana hal-hal tersebut tidak terjadi.
+=======
+The same effect have function declarations (statements with `function` keyword in the main code flow, not function expressions).
+
+Please don't rely on that! This behavior exists for compatibility reasons. Modern scripts use [JavaScript modules](info:modules) where such thing doesn't happen.
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 Jika kita menggunakan `let`, hal tersebut tidak akan terjadi:
 

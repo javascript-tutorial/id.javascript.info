@@ -2,7 +2,11 @@
 
 Operator `instanceof` memungkinkan kita untuk memeriksa apakah suatu _object_ milik _class_ tertentu. `instanceof` juga memperhatikan _inheritance_.
 
+<<<<<<< HEAD
 Pengecekan seperti itu mungkin diperlukan dalam beberapa kasus. Di sini kita akan menggunakannya untuk membangun fungsi *polymorphic*, yang memperlakukan argumen secara berbeda bergantung pada tipenya.
+=======
+Such a check may be necessary in many cases. For example, it can be used for building a *polymorphic* function, the one that treats arguments differently depending on their type.
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 ## Operator instanceof [#ref-instanceof]
 
