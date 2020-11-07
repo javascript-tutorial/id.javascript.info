@@ -26,7 +26,7 @@ Foldernya dinamai seperti `N-url`, di mana `N` adalah angka untuk tujuan penguru
 
 Tipe material didefinisikan oleh file di dalam foldernya:
 
-  - `index.md` berdiri untuk satu bab
+  - `index.md` berdiri untuk sebuah bab
   - `article.md` berdiri untuk satu artikel
   - `task.md` berdiri untuk satu tugas (solusi harus disediakan dalam file `solution.md` juga)
 
