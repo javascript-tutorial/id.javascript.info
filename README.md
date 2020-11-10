@@ -1,10 +1,6 @@
 # Tutorial JavaScript Modern
 
-<<<<<<< HEAD
 Ini adalah repository konten Indonesia dari Tutorial JavaScript Modern yang terbit di [https://javascript.info](https://javascript.info).
-=======
-This repository hosts the English content of the Modern JavaScript Tutorial, published in [https://javascript.info](https://javascript.info).
->>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 ## Penerjemahan
 
@@ -30,15 +26,9 @@ Foldernya dinamai seperti `N-url`, di mana `N` adalah angka untuk tujuan penguru
 
 Tipe material didefinisikan oleh file di dalam foldernya:
 
-<<<<<<< HEAD
-  - `index.md` berdiri untuk satu bab
+  - `index.md` berdiri untuk sebuah bab
   - `article.md` berdiri untuk satu artikel
   - `task.md` berdiri untuk satu tugas (solusi harus disediakan dalam file `solution.md` juga)
-=======
-  - `index.md` stands for a chapter
-  - `article.md` stands for an article
-  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
->>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 Setiap file di sini dimulai dari `# Main header`.
 
