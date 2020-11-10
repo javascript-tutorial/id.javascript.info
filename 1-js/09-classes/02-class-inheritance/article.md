@@ -75,8 +75,8 @@ Misalnya, panggilan fungsi yang menghasilkan kelas induk:
 ```js run
 function f(phrase) {
   return class {
-    sayHi() { alert(phrase) }
-  }
+    sayHi() { alert(phrase); }
+  };
 }
 
 *!*
@@ -298,7 +298,7 @@ Pertimbangkan contoh ini:
 
 ```js run
 class Animal {
-  name = 'animal'
+  name = 'animal';
 
   constructor() {
     alert(this.name); // (*)

@@ -129,7 +129,11 @@ setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);
 ```smart header="Waktu terus berjalan sementara `alert` ditampilkan"
 Di kebanyakan peramban, termasuk Chrome dan Firefox penghitung waktu internal berlanjut "berdetik" selagi menampilkan `alert/confirm/prompt`.
 
+<<<<<<< HEAD
 Jadi jika kamu menjalankan kode diatas dan tidak menyingkirkan jendela `alert` untuk beberapa saat, maka `alert` selanjutnya akan langsung muncul. Interval sebenarnya diantara alert lebih pendek dari 2 detik.
+=======
+So if you run the code above and don't dismiss the `alert` window for some time, then the next `alert` will be shown immediately as you do it. The actual interval between alerts will be shorter than 2 seconds.
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 ```
 
 ## setTimeout bercabang
@@ -282,16 +286,28 @@ Hal yang sama akan terjadi jika kita menggunakan `setInterval` daripada `setTime
 
 Batasan itu sudah ada sejak lama dan beberapa skrip mengandalkan hal itu, jadi itu ada untuk beberapa alasan.
 
+<<<<<<< HEAD
 Untuk Javascript dibagian server, batasan itu tidaklah ada, dan disana terdapat cara lain untuk menjadwalkan sebuah pekerjaan yang asinkronus, seperti [setImmediate](https://nodejs.org/api/timers.html) untuk Node.js. Jadi hal ini merupakan hal yang berada pada peramban.
+=======
+For server-side JavaScript, that limitation does not exist, and there exist other ways to schedule an immediate asynchronous job, like [setImmediate](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) for Node.js. So this note is browser-specific.
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 ````
 
 ## Ringkasan
 
+<<<<<<< HEAD
 - Metode `setTimeout(func,delay, ...args)` dan `setInterval(func, delay, ...args)` mengijinkan kita untuk menjalankan fungsinya sekali atau terus menerus setelah `delay` milidetik.
 - Untuk membatalkan eksekusinya, kita harus memanggil `clearTimeout/clearInterval` dengan nilai yang dikembalikan oleh `setTimeout/setInterval`.
 - Pemanggilan `setTimeout` bercabang adalah alternatif yang lebih fleksibel dari `setInterval`, mengijinkan kita untuk menyetel waktu *diantara* eksekusinya dengan lebih presisi.
 - Penjadwalan dengan delay 0 dengan `setTimeout(func, 0)` (sama seperti `setTimeout(func)`) digunakan untuk menjadwalkan pemanggilan "secepat mungkin, tapi setelah skrip yang sedang berjalan selesai".
 - Peramban membatasi delay dengan minimal 5 atau lebih pada pemanggilan bercabang dari `setTimeout` atau dari `setInterval` (setelah pemanggilan kelima) menjadi 4ms. Hanyalah untuk alasan-alasan yang sudah lama.
+=======
+- Methods `setTimeout(func, delay, ...args)` and `setInterval(func, delay, ...args)` allow us to run the `func` once/regularly after `delay` milliseconds.
+- To cancel the execution, we should call `clearTimeout/clearInterval` with the value returned by `setTimeout/setInterval`.
+- Nested `setTimeout` calls are a more flexible alternative to `setInterval`, allowing us to set the time *between* executions more precisely.
+- Zero delay scheduling with `setTimeout(func, 0)` (the same as `setTimeout(func)`) is used to schedule the call "as soon as possible, but after the current script is complete".
+- The browser limits the minimal delay for five or more nested calls of `setTimeout` or for `setInterval` (after 5th call) to 4ms. That's for historical reasons.
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 Perhatikan bahwa seluruh metode penjadwalan tidak *menjamin* delay yang tepat.
 
