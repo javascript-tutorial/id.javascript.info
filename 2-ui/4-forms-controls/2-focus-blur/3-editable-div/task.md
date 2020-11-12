@@ -4,7 +4,7 @@ importance: 5
 
 # Editable div
 
-Buat sebuah `<div>` yang berubah menjadi`<textarea>` ketika di klik.
+Buat sebuah `<div>` yang berubah menjadi`<textarea>` ketika diklik.
 
 Textarea memungkinkan untuk mengedit HTML pada `<div>`.
 
