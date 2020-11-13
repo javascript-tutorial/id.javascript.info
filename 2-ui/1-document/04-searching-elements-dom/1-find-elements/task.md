@@ -6,7 +6,7 @@ importance: 4
 
 Ini adalah dokumen dengan tabel dan formulir.
 
-Bagaimana cara mencari?...
+Bagaimana cara mencarinya?...
 
 1. Tabel dengan `id="age-table"`.
 2. Semua elemen `label` di dalam tabel (seharusnya ada 3).
