@@ -134,7 +134,7 @@ Ini ada cara teraman untuk mengakses `user.address.street`:
 =======
 In other words, `value?.prop`:
 - is the same as `value.prop` if `value` exists,
-- otherwise (when `value` is `undefined/null`) it returns that `value`.
+- otherwise (when `value` is `undefined/null`) it returns `undefined`.
 
 >>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 Here's the safe way to access `user.address.street` using `?.`:

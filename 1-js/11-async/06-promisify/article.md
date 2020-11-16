@@ -99,7 +99,7 @@ function promisify(f) {
       f.call(this, ...args); // panggil fungsi aslinya
     });
   };
-};
+}
 
 // penggunaan:
 let loadScriptPromise = promisify(loadScript);
@@ -113,8 +113,12 @@ The code may look a bit complex, but it's essentially the same that we wrote abo
 
 A call to `promisify(f)` returns a wrapper around `f` `(*)`. That wrapper returns a promise and forwards the call to the original `f`, tracking the result in the custom callback `(**)`.
 
+<<<<<<< HEAD
 Here, `promisiefy` assumes that the original function expects a callback with exactly two arguments `(err, result)`. That's what we encounter most often. Then our custom callback is in exactly the right format, and `promisify` works great for such a case.
 >>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
+=======
+Here, `promisify` assumes that the original function expects a callback with exactly two arguments `(err, result)`. That's what we encounter most often. Then our custom callback is in exactly the right format, and `promisify` works great for such a case.
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 
 Tetapi bagaimana jika `f` asli mengharapkan callback dengan lebih banyak argumen `callback(err, res1, res2, ...)`?
 
@@ -146,11 +150,11 @@ function promisify(f, manyArgs = false) {
       f.call(this, ...args);
     });
   };
-};
+}
 
 // penggunaan:
 f = promisify(f, true);
-f(...).then(arrayOfResults => ..., err => ...)
+f(...).then(arrayOfResults => ..., err => ...);
 ```
 
 <<<<<<< HEAD

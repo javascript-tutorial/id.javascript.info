@@ -184,6 +184,7 @@ Jika peramban tidak mendukung `Promise.allSettled`, mudah untuk melakukan polyfi
 
 ```js
 if (!Promise.allSettled) {
+<<<<<<< HEAD
   Promise.allSettled = function (promises) {
     return Promise.all(
       promises.map((p) =>
@@ -199,6 +200,15 @@ if (!Promise.allSettled) {
         )
       )
     );
+=======
+  const rejectHandler = reason => ({ status: 'rejected', reason });
+
+  const resolveHandler = value => ({ status: 'fulfilled', value });
+
+  Promise.allSettled = function (promises) {
+    const convertedPromises = promises.map(p => Promise.resolve(p).then(resolveHandler, rejectHandler));
+    return Promise.all(convertedPromises);
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
   };
 }
 ```
