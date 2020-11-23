@@ -8,7 +8,11 @@ Supaya bisa melihat error dan memperoleh informasi berfaedah lainnya dari script
 
 Kebanyakan pengembang memakai Chrome atau Firefox untuk pengembangan karena tools pengembangan yang mereka punya paling mantap. Peramban lain punya juga koq, ada with special features, but are usually playing "catch-up" to Chrome or Firefox. So most developers have a "favorite" browser and switch to others if a problem is browser-specific.
 
+<<<<<<< HEAD
 Tools pengembang mengandung faedah; mereka punya banyak fitur. Untuk memulainya, kita akan belajar cara membuka mereka, mencari error, dan menjalankan perintah JavaScript.
+=======
+Developer tools are potent, they have many features. To start, we'll learn how to open them, look at errors, and run JavaScript commands.
+>>>>>>> 23da191b58643387783f38e999f5b05be87d3d93
 
 ## Google Chrome
 

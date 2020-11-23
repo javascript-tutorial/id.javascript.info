@@ -100,6 +100,7 @@ alert(*!*user.name*/!*); // 'Pete', perubahan akan terlihat pada "user"
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Contoh diatas mendemonstrasikan bahwa disana hanya ada satu objek. Seperti jika kita punya sebuah lemari dengan dua kunci dan satunya (`admin`) digunakan untuk masuk kedalamnya. Lalu, jika kita nanti menggunakan kunci lainnya (`user`) kita bisa melihat perubahannya.
 
 ## Perbandingan dengan referensi
@@ -111,6 +112,8 @@ Operator pembanding `==` dan pembanding ketat `===` untuk objek bekerja sama saj
 Dibawah adalah dua variabel yang mereferensi ke objek yang sama, dengan demikian mereka sama:
 =======
 
+=======
+>>>>>>> 23da191b58643387783f38e999f5b05be87d3d93
 It's just as if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use another key (`user`) we can see changes.
 
 ## Comparison by reference
@@ -284,7 +287,35 @@ Kita bisa menggunakan rekursi untuk mengimplementasikannya. Atau, jangan ambil p
 We can use recursion to implement it. Or, not to reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
 >>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
+<<<<<<< HEAD
 ## Ringkasan
+=======
+```smart header="Const objects can be modified"
+An important "side effect" of storing objects as references is that an object declared as `const` *can* be modified.
+
+For instance:
+
+```js run
+const user = {
+  name: "John"
+};
+
+*!*
+user.name = "Pete"; // (*)
+*/!*
+
+alert(user.name); // Pete
+```
+
+It might seem that the line `(*)` would cause an error, but no. The value of `user` is constant, it must always reference the same object. But properties of that object are free to change.
+
+In other words, the `const user` gives an error only if we try to set `user=...` as a whole, and that's all.
+
+That said, if we really need to make constant object properties, it's also possible, but using totally different methods, we'll mention that in the chapter <info:property-descriptors>.
+```
+
+## Summary
+>>>>>>> 23da191b58643387783f38e999f5b05be87d3d93
 
 objek dibuat dan disalin dengan menggunakan referensi. Dengan kata lain, sebuah variable menyimpan bukanlah "nilai objek", tapi sebuah "referensi" (address/alamat di memori) untuk nilainya. Jadi menyalin sebuah variabel atau memindahkannya sebagai fungsi argumen akan menyalin referensinya, bukan objeknya.
 

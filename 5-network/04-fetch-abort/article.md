@@ -66,7 +66,11 @@ fetch(url, {
 
 Metode `fetch` mengetahui bagaimana cara bekerja dengan `AbortController`. Itu akan mendengarkan (_listen_) _event_ `abort` pada properti `signal`.
 
+<<<<<<< HEAD
 Sekarang, untuk membatalkannya, panggil `controller.abort()`:
+=======
+Now, to abort, call `controller.abort()`:
+>>>>>>> 23da191b58643387783f38e999f5b05be87d3d93
 
 ```js
 controller.abort();
