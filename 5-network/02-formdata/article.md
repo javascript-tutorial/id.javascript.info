@@ -73,9 +73,15 @@ let formData = new FormData();
 formData.append('kunci1', 'nilai1');
 formData.append('kunci2', 'nilai2');
 
+<<<<<<< HEAD
 // Daftar pasangan kunci/nilai
 for (let [name, value] of formData) {
     alert(`${name} = ${value}`); // kunci1=nilai1, maka kunci2=nilai2
+=======
+// List key/value pairs
+for(let [name, value] of formData) {
+  alert(`${name} = ${value}`); // key1 = value1, then key2 = value2
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 }
 ```
 

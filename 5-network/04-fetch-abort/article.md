@@ -24,7 +24,13 @@ Ketika `abort()` dipanggil:
 - `contoller.signal` mengeluarkan _event_ `"abort"`
 - Properti `controller.signal.aborted` menjadi bernilai `true`
 
+<<<<<<< HEAD
 Secara Umum, kita memiliki dua pihak dalam prosesnya:
+=======
+Generally, we have two parties in the process: 
+1. The one that performs an cancelable operation, it sets a listener on `controller.signal`.
+2. The one that cancels: it calls `controller.abort()` when needed.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 1. Satu pihak yang melaksanakan tindakan terntentu ketika operasi dibatalkan, itu menyetel _listener_ pada `controller.signal`.
 2. Satu pihak lainnya yang membatalkan: itu memanggil `controller.abort()` ketika diperlukan.
@@ -51,7 +57,11 @@ Seperti yang kita lihat, `AbortController` hanyalah sarana untuk meneruskan _eve
 
 Kita dapat mengimplementasikan jenis _event listener_ yang sama pada kode kita, walaupun tanpa objek `AbortController` sama sekali.
 
+<<<<<<< HEAD
 Tetapi yang berharga adalah `fetch` tahu bagaimana bekerja dengan objek `AborController`, itu terintegrasi dengannya.
+=======
+But what's valuable is that `fetch` knows how to work with `AbortController` object, it's integrated with it.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 ## Menggunakan dengan fetch
 
@@ -66,7 +76,11 @@ fetch(url, {
 
 Metode `fetch` mengetahui bagaimana cara bekerja dengan `AbortController`. Itu akan mendengarkan (_listen_) _event_ `abort` pada properti `signal`.
 
+<<<<<<< HEAD
 Sekarang, untuk membatalkannya, panggil `controller.abort()`:
+=======
+Now, to abort, call `controller.abort()`:
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 ```js
 controller.abort();

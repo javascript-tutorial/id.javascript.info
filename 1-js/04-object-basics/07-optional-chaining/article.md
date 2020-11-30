@@ -18,6 +18,7 @@ Jika kamu baru saja membaca tutorial dan belajar Javascript, mungkin masalahnya 
 <<<<<<< HEAD
 Contoh, beberapa dari pengguna kita punya alamat, tapi beberapa tidak memberikannya. Lalu kita tidak bisa dengan mudah menggunakan `user.address.street`:
 
+<<<<<<< HEAD
 ```js run
 let user = {}; // penggunanya tidak memiliki alamat
 =======
@@ -25,6 +26,9 @@ As an example, consider objects for user data. Most of our users have addresses 
 =======
 As an example, let's say we have `user` objects that hold the information about our users. 
 >>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
+=======
+As an example, let's say we have `user` objects that hold the information about our users.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 Most of our users have addresses in `user.address` property, with the street `user.address.street`, but some did not provide them.
 
@@ -37,6 +41,7 @@ let user = {}; // a user without "address" property
 alert(user.address.street); // Error!
 ```
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 Atau, didalam pengembangan, kita ingin untuk mendapatkan informasi tentang sebuah elemen didalam halaman, tapi elemennya tidak ada:
@@ -53,6 +58,9 @@ Contoh:
 That's the expected result, JavaScript works like this. As `user.address` is `undefined`, the attempt to get `user.address.street` fails with an error. Although, in many practical cases we'd prefer to get `undefined` instead of an error here (meaning "no street").
 =======
 That's the expected result. JavaScript works like this. As `user.address` is `undefined`, an attempt to get `user.address.street` fails with an error. 
+=======
+That's the expected result. JavaScript works like this. As `user.address` is `undefined`, an attempt to get `user.address.street` fails with an error.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 In many practical cases we'd prefer to get `undefined` instead of an error here (meaning "no street").
 >>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
@@ -88,7 +96,7 @@ let user = {}; // user has no address
 alert(user.address ? user.address.street ? user.address.street.name : null : null);
 ```
 
-That's just awful, one may even have problems understanding such code. 
+That's just awful, one may even have problems understanding such code.
 
 <<<<<<< HEAD
 Before the optional chaining `?.` was added to the language, people used the `&&` operator for such cases:
@@ -134,7 +142,7 @@ Ini ada cara teraman untuk mengakses `user.address.street`:
 =======
 In other words, `value?.prop`:
 - is the same as `value.prop` if `value` exists,
-- otherwise (when `value` is `undefined/null`) it returns that `value`.
+- otherwise (when `value` is `undefined/null`) it returns `undefined`.
 
 >>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 Here's the safe way to access `user.address.street` using `?.`:

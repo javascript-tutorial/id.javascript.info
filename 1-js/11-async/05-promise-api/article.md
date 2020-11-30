@@ -184,6 +184,7 @@ Jika peramban tidak mendukung `Promise.allSettled`, mudah untuk melakukan polyfi
 
 ```js
 if (!Promise.allSettled) {
+<<<<<<< HEAD
   Promise.allSettled = function (promises) {
     return Promise.all(
       promises.map((p) =>
@@ -199,6 +200,15 @@ if (!Promise.allSettled) {
         )
       )
     );
+=======
+  const rejectHandler = reason => ({ status: 'rejected', reason });
+
+  const resolveHandler = value => ({ status: 'fulfilled', value });
+
+  Promise.allSettled = function (promises) {
+    const convertedPromises = promises.map(p => Promise.resolve(p).then(resolveHandler, rejectHandler));
+    return Promise.all(convertedPromises);
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
   };
 }
 ```
@@ -232,6 +242,29 @@ Promise.race([
 ```
 
 Promise pertama di sini adalah yang tercepat, jadi promise tersebut menjadi hasilnya. Setelah promise pertama yang selesai "memenangkan balapan", semua hasil/errors lebih lanjut akan diabaikan.
+
+## Promise.any
+
+Similar to `Promise.race`, but waits only for the first fulfilled promise and gets its result. If all of the given promises are rejected, then the returned promise is rejected.
+
+The syntax is:
+
+```js
+let promise = Promise.any(iterable);
+```
+
+For instance, here the result will be `1`:
+
+```js run
+Promise.any([
+  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 1000)),
+  new Promise((resolve, reject) => setTimeout(() => resolve(1), 2000)),
+  new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000))
+]).then(alert); // 1
+```
+
+The first promise here was fastest, but it was rejected, so the second promise became the result. After the first fulfilled promise "wins the race", all further results are ignored.
+
 
 ## Promise.resolve/reject
 
@@ -296,7 +329,18 @@ Ada 5 method static dari class `Promise`:
 4. `Promise.resolve(value)` -- membuat promise yang resolved dengan nilai yang diberikan.
 5. `Promise.reject(error)` -- membuat promise rejected dengan error yang diberikan.
 
+<<<<<<< HEAD
 Dari lima ini, `Promise.all` mungkin yang paling umum dalam praktiknya.
+=======
+1. `Promise.all(promises)` -- waits for all promises to resolve and returns an array of their results. If any of the given promises rejects, it becomes the error of `Promise.all`, and all other results are ignored.
+2. `Promise.allSettled(promises)` (recently added method) -- waits for all promises to settle and returns their results as an array of objects with:
+    - `status`: `"fulfilled"` or `"rejected"`
+    - `value` (if fulfilled) or `reason` (if rejected).
+3. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
+4. `Promise.any(promises)` -- waits for the first promise to fulfill, and its result becomes the outcome. If all of the given promises rejects, it becomes the error of `Promise.any`.
+5. `Promise.resolve(value)` -- makes a resolved promise with the given value.
+6. `Promise.reject(error)` -- makes a rejected promise with the given error.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 ```
 
