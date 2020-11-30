@@ -1,35 +1,35 @@
-There are many ways to do it.
+Ada banyak cara untuk melakukannya.
 
-Here are some of them:
+Ini adalah salah satu caranya:
 
 ```js
-// 1. The table with `id="age-table"`.
+// 1. tabel dengan `id="age-table"`.
 let table = document.getElementById('age-table')
 
-// 2. All label elements inside that table
+// 2. Semua elemen label di dalam tabel.
 table.getElementsByTagName('label')
-// or
+// or 
 document.querySelectorAll('#age-table label')
 
-// 3. The first td in that table (with the word "Age")
+// 3. elemen td pertama pada tabel (dengan kata "Age").
 table.rows[0].cells[0]
-// or
+// atau
 table.getElementsByTagName('td')[0]
-// or
+// atau
 table.querySelector('td')
 
-// 4. The form with the name "search"
-// assuming there's only one element with name="search" in the document
+// 4. Formulir dengan nama "search".
+// mengasumsikan hanya ada satu elemen dengan nama="search" di dalam dokumen.
 let form = document.getElementsByName('search')[0]
-// or, form specifically
+// atau, khususnya formulir.
 document.querySelector('form[name="search"]')
 
-// 5. The first input in that form.
+// 5. Elemen input pertama pada formulir.
 form.getElementsByTagName('input')[0]
-// or
+// atau
 form.querySelector('input')
 
-// 6. The last input in that form
-let inputs = form.querySelectorAll('input') // find all inputs
-inputs[inputs.length-1] // take the last one
+// 6. Elemen input terakhir pada formulir.
+let inputs = form.querySelectorAll('input') // mencari semua elemen input.
+inputs[inputs.length-1] // mengambil elemen input terakhir.
 ```
