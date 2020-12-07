@@ -37,7 +37,11 @@ input::-webkit-slider-runnable-track {
 
 Sekali lagi, `pseudo` adalah atribut non-standar. Secara kronologis, browser pertama kali mulai bereksperimen dengan struktur DOM internal untuk mengimplementasikan kontrol, dan kemudian, setelah beberapa waktu, shadow DOM distandarisasi untuk memungkinkan kami, pengembang, melakukan hal serupa.
 
+<<<<<<< HEAD
 Selanjutnya, kita akan menggunakan standar shadow DOM modern, yang dicakup oleh [DOM Spec](https://dom.spec.whatwg.org/#shadow-trees) terkait spesifikasi lainnya.
+=======
+Further on, we'll use the modern shadow DOM standard, covered by [DOM spec](https://dom.spec.whatwg.org/#shadow-trees) and other related specifications.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 ## Shadow tree
 

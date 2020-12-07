@@ -133,7 +133,11 @@ Kita bisa menggambarkannya seperti:
   </li>
 </ul>
 
+<<<<<<< HEAD
 Itu ketika fungsi mulai dieksekusi. Kondisinya `n == 1` adalah false, jadi alurnya berlanjut ke cabang kedua dari `if`:
+=======
+That's when the function starts to execute. The condition `n == 1` is falsy, so the flow continues into the second branch of `if`:
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 ```js run
 function pow(x, n) {
@@ -190,7 +194,11 @@ Konteks eksekusi baru yang sekarang berada di atas (dan jelas), dan konteks yang
 Ketika kita menyelesaikan subcall -- itu akan mudah untuk melanjutkan konteks sebelumnya, karena itu tetap menyimpan kedua variabel dan tempat yang tepat dimana kode itu berhenti.
 
 ```smart
+<<<<<<< HEAD
 Disini dialam gambar kita gunakan kata "line", sebagai contoh disana terdapat satu subcall didalam baris, tapi secara umum sebuah baris dari kode mungkin mengandung subcall ganda, seperti `pow(…) + pow(…) + somethingElse(…)`.
+=======
+Here in the picture we use the word "line", as in our example there's only one subcall in line, but generally a single line of code may contain multiple subcalls, like `pow(…) + pow(…) + somethingElse(…)`.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 Jadi itu harus menjadi lebih presisi untuk dikatakan eksekusi berlanjut "langsung seterlah subcall".
 ```

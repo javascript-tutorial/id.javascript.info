@@ -71,8 +71,13 @@ Di dunia nyata, metode yang paling disukai adalah `document.getElementById`.
 Jika ada banyak elemen dengan `id` yang sama, maka perilaku dari metode yang digunakan tidak akan terduga, contoh `document.getElementById` akan mengembalikan elemen secara acak. Jadi tetap lakukan sesuai aturan dan buatlah `id` unik.
 ```
 
+<<<<<<< HEAD
 ```warn header="Hanya `document.getElementById`, bukan `anyElem.getElementById`"
 Metode `getElementById` yang hanya bisa di panggil pada objek `document`. ini mencari `id` yang diberikan di seluruh dokumen.
+=======
+```warn header="Only `document.getElementById`, not `anyElem.getElementById`"
+The method `getElementById` can be called only on `document` object. It looks for the given `id` in the whole document.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 ```
 
 ## querySelectorAll [#querySelectorAll]
@@ -359,7 +364,11 @@ Terdapat 6 metode utama untuk mencari *node* pada DOM:
 </tbody>
 </table>
 
+<<<<<<< HEAD
 Sejauh ini yang paling banyak digunakan adalah `querySelector` dan `querySelectorAll`, tetapi `getElementBy*` secara terkadang membantu atau dapat ditemukan pada kode skrip lama.
+=======
+By far the most used are `querySelector` and `querySelectorAll`, but `getElement(s)By*` can be sporadically helpful or found in the old scripts.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 Selain itu:
 
