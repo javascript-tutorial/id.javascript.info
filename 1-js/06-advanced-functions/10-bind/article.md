@@ -203,7 +203,7 @@ for (let key in user) {
 ```
 
 Librari Javascript juga menyediakan fungsi untuk memudahkan pengikatan/binding masal, contoh [_.bindAll(object, methodNames)](http://lodash.com/docs#bindAll) didalam lodash.
-````
+
 
 ## Partial functions/Fungsi sebagian
 
@@ -219,7 +219,6 @@ let bound = func.bind(context, [arg1], [arg2], ...);
 
 Yang mana mengijinkan kita untuk mengikat konteks sebagai `this` dan memulai argumen dari sebuah fungsi.
 
-For instance, we have a multiplication function `mul(a, b)`:
 Contoh, kita mempunyai sebuah fungsi perkalian `mul(a, b)`:
 
 ```js
@@ -244,14 +243,13 @@ alert( double(4) ); // = mul(2, 4) = 8
 alert( double(5) ); // = mul(2, 5) = 10
 ```
 
-The call to `mul.bind(null, 2)` creates a new function `double` that passes calls to `mul`, fixing `null` as the context and `2` as the first argument. Further arguments are passed "as is".
-Pemanggilan terhadap `mul.bind(null, 2)` membuat sebuah fungsi baru `double` yang mengirimkan pemanggilan terhadap `mul, memperbaiki `null` sebagai konteks dan `2` sebagai argumen pertamanya. Ar
+Panggilan pada `mul.bind(null, 2)` membuat function `double` baru yang memberikan panggilan terhadap `mul`, memperbaiki `null` sebagai konteksnya dan `2` sebagai argumen pertamanya. Argumen-argumen lebih lanjut yang diberikan "as is/sebagaimana adanya".
 
-That's called [partial function application](https://en.wikipedia.org/wiki/Partial_application) -- we create a new function by fixing some parameters of the existing one.
+Itu dipanggil [partial function application](https://en.wikipedia.org/wiki/Partial_application) -- kita membuat sebuah function baru dengan memperbaiki beberapa parameter dari yang sudah ada.
 
-Please note that here we actually don't use `this` here. But `bind` requires it, so we must put in something like `null`.
+Harap dicatat bahwa disini kita tidak menggunakan `this`. Tapi `bind` memerlukannya, jadi kita harus meletakkan di dalam sesuatu seperti `null`.
 
-The function `triple` in the code below triples the value:
+Function `triple` di dalam kode dibawah ini melipatkan tiga kali lipat nilai tersebut:
 
 ```js run
 function mul(a, b) {
@@ -267,23 +265,23 @@ alert( triple(4) ); // = mul(3, 4) = 12
 alert( triple(5) ); // = mul(3, 5) = 15
 ```
 
-Why do we usually make a partial function?
+Kenapa kita umumnya membuat function parsial?
 
-The benefit is that we can create an independent function with a readable name (`double`, `triple`). We can use it and not provide the first argument every time as it's fixed with `bind`.
+Manfaatnya bahwa kita dapat membuat sebuah function independen dengan nama yang dapat dibaca (`double`, `triple`). Kita bias menggunakannya dan tidak menyediakan argumen pertamanya setiap saat karena sudah diperbaiki dengan `bind`.
 
-In other cases, partial application is useful when we have a very generic function and want a less universal variant of it for convenience.
+Dalam kasus lain, aplikasi parsial berguna saat kita punya sebuah function generik dan menginginkan varian yang kurang universal untuk kenyamanan.
 
-For instance, we have a function `send(from, to, text)`. Then, inside a `user` object we may want to use a partial variant of it: `sendTo(to, text)` that sends from the current user.
+Contoh, kita punya sebuah function `send(from, to, text)`. Kemudian, di dalam objek `user` kita mungkin ingin menggunakan varian parsial darinya: `sendTo(to, text)` yang dikirim dari user saat ini.
 
-## Going partial without context
+## Menjadi parsial tanpa konteks
 
-What if we'd like to fix some arguments, but not the context `this`? For example, for an object method.
+Bagaimana jika kita ingin memperbaiki beberapa argumen, tetapi bukan konteks `this`? Contoh, untuk sebuah method objek.
 
-The native `bind` does not allow that. We can't just omit the context and jump to arguments.
+`bind` yang asli tidak mengizinkan itu. Kita tidak bisa begitu saja mengabaikan konteks dan lompat ke argumen.
 
-Fortunately, a function `partial` for binding only arguments can be easily implemented.
+Untungnya, function `partial` untuk mengikat argumen saja dapat dengan mudah diterapkan.
 
-Like this:
+Seperti ini:
 
 ```js run
 *!*
@@ -302,29 +300,28 @@ let user = {
   }
 };
 
-// add a partial method with fixed time
+// tambahkan metode parsial dengan waktu tetap
 user.sayNow = partial(user.say, new Date().getHours() + ':' + new Date().getMinutes());
 
 user.sayNow("Hello");
 // Something like:
 // [10:00] John: Hello!
 ```
+Hasil dari panggilan `partial(func[, arg1, arg2...])` yaitu sebuah pembungkus `(*)` yang memanggil `func` dengan:
+- `this` sama seperti yang didapat  (`user.sayNow` menyebutnya `user`)
+- Lalu berikan `...argsBound` -- argumen dari panggilan `partial` yaitu (`"10:00"`)
+- Lalu berikan `...args` -- argumen yang diberikan ke pembungkus (`" Hello "`)
 
-The result of `partial(func[, arg1, arg2...])` call is a wrapper `(*)` that calls `func` with:
-- Same `this` as it gets (for `user.sayNow` call it's `user`)
-- Then gives it `...argsBound` -- arguments from the `partial` call (`"10:00"`)
-- Then gives it `...args` -- arguments given to the wrapper (`"Hello"`)
+Sangat mudah melakukannya dengan sintaks penyebaran, bukan?
 
-So easy to do it with the spread syntax, right?
+Juga ada implementasi [_.partial](https://lodash.com/docs#pihak) yang siap dari perpustakaan lodash.
 
-Also there's a ready [_.partial](https://lodash.com/docs#partial) implementation from lodash library.
+## Kesimpulan
 
-## Summary
+Method `func.bind(context, ...args)` mengembalikan sebuah "varian terikat" dari function `func` yang memperbaiki konteks` this` dan argumen pertama jika diberikan.
 
-Method `func.bind(context, ...args)` returns a "bound variant" of function `func` that fixes the context `this` and first arguments if given.
+Biasanya kita menerapkan `bind` untuk memperbaiki `this` untuk sebuah method objek, sehingga kita bisa memberikannya ke suatu tempat. Misalnya, ke `setTimeout`.
 
-Usually we apply `bind` to fix `this` for an object method, so that we can pass it somewhere. For example, to `setTimeout`.
+Ketika kita memperbaiki beberapa argumen dari function yang ada, fungsi yang dihasilkan (less universal) disebut *partially applied* atau *partial*.
 
-When we fix some arguments of an existing function, the resulting (less universal) function is called *partially applied* or *partial*.
-
-Partials are convenient when we don't want to repeat the same argument over and over again. Like if we have a `send(from, to)` function, and `from` should always be the same for our task, we can get a partial and go on with it.
+Parsial lebih mudah digunakan jika kita tidak ingin mengulangi argumen yang sama berulang kali. Seperti jika kita memiliki function `send (from, to)`, dan `from` harus selalu sama untuk tugas kita, kita bisa mendapatkan sebuah partial dan melanjutkannya.
