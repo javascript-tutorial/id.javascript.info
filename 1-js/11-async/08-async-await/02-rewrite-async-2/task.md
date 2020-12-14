@@ -2,7 +2,13 @@
 
 Di bawah anda dapat menemukan contoh "rethrow" dari bab <info:promise-chaining>. Tulis ulang menggunakan `async/await` daripada `.then/catch`.
 
+<<<<<<< HEAD
 Dan singkirkan rekursi yang mendukung masuk loop dalam `demoGithubUser`: dengan `async/await` itu menjadi mudah untuk dilakukan.
+=======
+Below you can find the "rethrow" example. Rewrite it using `async/await` instead of `.then/catch`.
+
+And get rid of the recursion in favour of a loop in `demoGithubUser`: with `async/await` that becomes easy to do.
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 ```js run
 class HttpError extends Error {
@@ -14,6 +20,7 @@ class HttpError extends Error {
 }
 
 function loadJson(url) {
+<<<<<<< HEAD
   return fetch(url).then((response) => {
     if (response.status == 200) {
       return response.json();
@@ -21,6 +28,16 @@ function loadJson(url) {
       throw new HttpError(response);
     }
   });
+=======
+  return fetch(url)
+    .then(response => {
+      if (response.status == 200) {
+        return response.json();
+      } else {
+        throw new HttpError(response);
+      }
+    });
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 }
 
 // Tanya nama pengguna sampai github mengembalikkan user yang valid

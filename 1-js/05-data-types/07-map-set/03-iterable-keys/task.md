@@ -4,7 +4,11 @@ nilai penting: 5
 
 # Kunci-kunci iterable
 
+<<<<<<< HEAD
 Kami ingin mendapatkan array daripada `map.keys()` dalam satu variabel lalu mengaplikasikan metode yang array spesifik kepadanya, contoh `.push`.
+=======
+We'd like to get an array of `map.keys()` in a variable and then apply array-specific methods to it, e.g. `.push`.
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 Tapi itu tidak berhasil:
 

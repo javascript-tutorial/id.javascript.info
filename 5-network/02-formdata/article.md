@@ -47,7 +47,11 @@ Seperti yang Anda lihat, itu hampir hanya satu baris:
 </script>
 ```
 
+<<<<<<< HEAD
 Pada contoh ini, kode _server_ tidak ditampilkan karena itu diluar dari cakupan pembahasan topik ini. _Server_ menerima _request_ POST dan memberikan balasan "_User saved_"
+=======
+In this example, the server code is not presented, as it's beyond our scope. The server accepts the POST request and replies "User saved".
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 ## Metode FormData
 
@@ -73,9 +77,15 @@ let formData = new FormData();
 formData.append('kunci1', 'nilai1');
 formData.append('kunci2', 'nilai2');
 
+<<<<<<< HEAD
 // Daftar pasangan kunci/nilai
 for (let [name, value] of formData) {
     alert(`${name} = ${value}`); // kunci1=nilai1, maka kunci2=nilai2
+=======
+// List key/value pairs
+for(let [name, value] of formData) {
+  alert(`${name} = ${value}`); // key1 = value1, then key2 = value2
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 }
 ```
 

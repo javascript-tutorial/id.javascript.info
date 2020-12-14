@@ -25,10 +25,15 @@ Here's the code for it (uses the debounce decorator from the [Lodash library](ht
 ```js
 let f = _.debounce(alert, 1000);
 
-f("a"); 
+f("a");
 setTimeout( () => f("b"), 200);
+<<<<<<< HEAD
 setTimeout( () => f("c"), 500); 
 // fungsi debounce menunggu 1000ms setelah pemanggilan terakhir dan lalu menjalankan: alert("c")
+=======
+setTimeout( () => f("c"), 500);
+// debounced function waits 1000ms after the last call and then runs: alert("c")
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 ```
 
 Sekarang contoh yang lebih praktikal. Katakan, penggunakan mengetik sesuatu, dan kita ingin mengirim request kepada server ketika pengguna telah selesai mengetik.

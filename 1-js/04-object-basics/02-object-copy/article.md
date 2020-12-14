@@ -9,9 +9,9 @@ contoh:
 =======
 # Object references and copying
 
-One of the fundamental differences of objects versus primitives is that objects are stored and copied "by reference", as opposed to primitive values: strings, numbers, booleans, etc -- that are always copied "as a whole value".
+One of the fundamental differences of objects versus primitives is that objects are stored and copied "by reference", whereas primitive values: strings, numbers, booleans, etc -- are always copied "as a whole value".
 
-That's easy to understand if we look a bit "under a cover" of what happens when we copy a value.
+That's easy to understand if we look a bit under the hood of what happens when we copy a value.
 
 Let's start with a primitive, such as a string.
 
@@ -23,7 +23,11 @@ let message = "Hello!";
 let phrase = message;
 ```
 
+<<<<<<< HEAD
 Sebagai hasilnya kita punya dua variabel yang berdiri sendiri, dan keduanya menyimpan nilai string `"Hello!"`.
+=======
+As a result we have two independent variables, each one storing the string `"Hello!"`.
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 ![](variable-copy-value.svg)
 
@@ -38,10 +42,14 @@ Quite an obvious result, right?
 
 Objects are not like that.
 
-**A variable assigned to an object stores not the object itself, but its "address in memory", in other words "a reference" to it.**
+**A variable assigned to an object stores not the object itself, but its "address in memory" -- in other words "a reference" to it.**
 
+<<<<<<< HEAD
 Let's look at an example of such variable:
 >>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
+=======
+Let's look at an example of such a variable:
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 ```js
 let user = {
@@ -58,14 +66,18 @@ Disini, objek disimpan di suatu tempat didalam memori. Dan variabel `user` punya
 =======
 The object is stored somewhere in memory (at the right of the picture), while the `user` variable (at the left) has a "reference" to it.
 
-We may think of an object variable, such as `user`, as of a sheet of paper with the address.
+We may think of an object variable, such as `user`, as like a sheet of paper with the address of the object on it.
 
-When we perform actions with the object, e.g. take a property `user.name`, JavaScript engine looks into that address and performs the operation on the actual object.
+When we perform actions with the object, e.g. take a property `user.name`, the JavaScript engine looks at what's at that address and performs the operation on the actual object.
 
 Now here's why it's important.
 >>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
+<<<<<<< HEAD
 **Ketika sebuah variabel objek disalin -- referensinya akan tersalin, objeknya tidak terduplikasi.**
+=======
+**When an object variable is copied, the reference is copied, but the object itself is not duplicated.**
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 Contoh:
 
@@ -75,6 +87,7 @@ let user = { name: "John" };
 let admin = user; // menyalin referensinya
 ```
 
+<<<<<<< HEAD
 Kita sekarang punya dua variabel, masing-masing mereferensi ke objek yang sama:
 
 ![](variable-copy-reference.svg)
@@ -86,6 +99,15 @@ As you can see, there's still one object, now with two variables that reference 
 
 We can use any variable to access the object and modify its contents:
 >>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
+=======
+Now we have two variables, each storing a reference to the same object:
+
+![](variable-copy-reference.svg)
+
+As you can see, there's still one object, but now with two variables that reference it.
+
+We can use either variable to access the object and modify its contents:
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 ```js run
 let user = { name: 'John' };
@@ -100,6 +122,7 @@ alert(*!*user.name*/!*); // 'Pete', perubahan akan terlihat pada "user"
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Contoh diatas mendemonstrasikan bahwa disana hanya ada satu objek. Seperti jika kita punya sebuah lemari dengan dua kunci dan satunya (`admin`) digunakan untuk masuk kedalamnya. Lalu, jika kita nanti menggunakan kunci lainnya (`user`) kita bisa melihat perubahannya.
 
 ## Perbandingan dengan referensi
@@ -112,6 +135,9 @@ Dibawah adalah dua variabel yang mereferensi ke objek yang sama, dengan demikian
 =======
 
 It's just as if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use another key (`user`) we can see changes.
+=======
+It's as if we had a cabinet with two keys and used one of them (`admin`) to get into it and make changes. Then, if we later use another key (`user`), we are still opening the same cabinet and can access the changed contents.
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 ## Comparison by reference
 
@@ -142,10 +168,14 @@ alert( a == b ); // false
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Untuk perbandingan seperti `obj1 > obj2` atau untuk perbandingan dengan sebuah nilai primitif `obj == 5`, objek akan diubah dahulu menjadi primitif. Kita akan belajar bagaimana perubahan objek sebentar lagi, akan tetapi sebenarnya, perbandingan seperti itu muncul sangat jarang, biasanya hanya sebuah hasil dari kesalahan koding.
 =======
 For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are needed very rarely, usually they appear as a result of a programming mistake.
 >>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
+=======
+For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are needed very rarely -- usually they appear as a result of a programming mistake.
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 ## Penggandaan dan penggabungan, Object.assign
 
@@ -153,7 +183,11 @@ Jadi, menyalin sebuah variabel objek akan menciptakan satu lagi referensi kepada
 
 Tapi bagaimana jika kita butuh untuk menduplikasi objek? Membuat salinan yang berdiri sendiri, menggandakan atau meng-klon?
 
+<<<<<<< HEAD
 Hal itu juga bisa dilakukan, tapi sedikit lebih sulit, karena tidak ada method bawaan untuk hal itu di javascript. Sebenarnya, hal itu juga jarang dibutuhkan. Di kebanyakan waktu, menyalin referensinya sudah cukup.
+=======
+That's also doable, but a little bit more difficult, because there's no built-in method for that in JavaScript. But there is rarely a need -- copying by reference is good most of the time.
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 Tapi bagaimana jika kita benar-benar ingin hal itu, lalu kita membutuhkan untuk menciptakan sebuah objek dan mengulangi struktur dari objek yang sama dengan meng-iterasi propertinya dan menyalin mereka didalam level primitif.
 
@@ -274,6 +308,7 @@ user.sizes.width++;       // ganti properti dari satu tempat
 alert(clone.sizes.width); // 51, melihat hasilnya ditempat yang lain
 ```
 
+<<<<<<< HEAD
 Untuk membenarkan hal itu, kita harus menggunakan perulangan kloning yang memeriksa setip nilai dari `user[key]` dan, jika itu adalah sebuah objek, lalu duplikasi strukturnya juga. Hal itu dinamakan dengan "deep cloning".
 
 <<<<<<< HEAD
@@ -283,10 +318,43 @@ Kita bisa menggunakan rekursi untuk mengimplementasikannya. Atau, jangan ambil p
 =======
 We can use recursion to implement it. Or, not to reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
 >>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
+=======
+To fix that, we should use a cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
+
+We can use recursion to implement it. Or, to not reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
+
+````smart header="Const objects can be modified"
+An important side effect of storing objects as references is that an object declared as `const` *can* be modified.
+
+For instance:
+
+```js run
+const user = {
+  name: "John"
+};
+
+*!*
+user.name = "Pete"; // (*)
+*/!*
+
+alert(user.name); // Pete
+```
+
+It might seem that the line `(*)` would cause an error, but it does not. The value of `user` is constant, it must always reference the same object, but properties of that object are free to change.
+
+In other words, the `const user` gives an error only if we try to set `user=...` as a whole.
+
+That said, if we really need to make constant object properties, it's also possible, but using totally different methods. We'll mention that in the chapter <info:property-descriptors>.
+````
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 ## Ringkasan
 
+<<<<<<< HEAD
 objek dibuat dan disalin dengan menggunakan referensi. Dengan kata lain, sebuah variable menyimpan bukanlah "nilai objek", tapi sebuah "referensi" (address/alamat di memori) untuk nilainya. Jadi menyalin sebuah variabel atau memindahkannya sebagai fungsi argumen akan menyalin referensinya, bukan objeknya.
+=======
+Objects are assigned and copied by reference. In other words, a variable stores not the "object value", but a "reference" (address in memory) for the value. So copying such a variable or passing it as a function argument copies that reference, not the object itself.
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 Semua operasi yang disalin dengan menggunakan referensi (seperti menambah/menghapus properti) dilakukan didalam satu objek yang sama.
 
