@@ -6,33 +6,33 @@ libs:
 
 # DOM tree
 
-The backbone of an HTML document is tags.
+Tulang punggung dari dokumen HTML adalah tag.
 
-According to the Document Object Model (DOM), every HTML tag is an object. Nested tags are  "children" of the enclosing one. The text inside a tag is an object as well.
+Berdasarkan Document Object Model (DOM), setiap tag HTML merupakan sebuah objek. Tag berlapis adalah "anak" dari tag yang melampirkan. Teks di dalam sebuah tag merupakan sebuah objek juga.
 
-All these objects are accessible using JavaScript, and we can use them to modify the page.
+Semua objek ini dapat diakses menggunakan JavaScript, dan kita bisa menggunakannya untuk memodifikasi halaman.
 
-For example, `document.body` is the object representing the `<body>` tag.
+Misalnya, `document.body` merupakan objek yang merepresentasikan tag `<body>`.
 
-Running this code will make the `<body>` red for 3 seconds:
+Menjalankan kode ini akan membuat `<body>` menjadi merah selama 3 detik.
 
 ```js run
-document.body.style.background = 'red'; // make the background red
+document.body.style.background = 'red'; // buat background menjadi merah
 
-setTimeout(() => document.body.style.background = '', 3000); // return back
+setTimeout(() => document.body.style.background = '', 3000); // kembalikan seperti semula
 ```
 
-Here we used `style.background` to change the background color of `document.body`, but there are many other properties, such as:
+Disini kita menggunakan `style.background` untuk mengubah warna background `document.body`, tetapi ada banyak properti lain, seperti:
 
-- `innerHTML` -- HTML contents of the node.
-- `offsetWidth` -- the node width (in pixels)
-- ...and so on.
+- `innerHTML` -- Konten HTML dari node.
+- `offsetWidth` -- lebar node (dalam piksel)
+- ...dan seterusnya.
 
-Soon we'll learn more ways to manipulate the DOM, but first we need to know about its structure.
+Kita akan segera mempelajari lebih banyak cara untuk memanipulasi DOM, tetapi pertama-tama kita perlu mengetahui tentang strukturnya.
 
-## An example of the DOM
+## Contoh dari DOM
 
-Let's start with the following simple document:
+Mari kita mulai dengan dokumen sederhana berikut:
 
 ```html run no-beautify
 <!DOCTYPE HTML>
@@ -46,7 +46,7 @@ Let's start with the following simple document:
 </html>
 ```
 
-The DOM represents HTML as a tree structure of tags. Here's how it looks:
+DOM menggambarkan HTML seperti struktur pohon pada tag. Begini tampilannya:
 
 <div class="domtree"></div>
 
@@ -57,31 +57,31 @@ drawHtmlTree(node1, 'div.domtree', 690, 320);
 </script>
 
 ```online
-On the picture above, you can click on element nodes and their children will open/collapse.
+Pada gambar di atas, Anda dapat mengklik node elemen dan anaknya akan membuka/menutup.
 ```
 
-Every tree node is an object.
+Setiap node pohon merupakan sebuah objek.
 
-Tags are *element nodes* (or just elements) and form the tree structure: `<html>` is at the root, then `<head>` and `<body>` are its children, etc.
+Tag-tag merupakan *node elemen* (atau hanya elemen) dan membentuk struktur pohon: `<html>` merupakan root, kemudian `<head>` dan `<body>` adalah anak-anaknya, dll.
 
-The text inside elements forms *text nodes*, labelled as `#text`. A text node contains only a string. It may not have children and is always a leaf of the tree.
+Teks di dalam elemen-elemen membentuk *node teks*, dilabeli sebagai `#text`. Sebuah node teks hanya berisi string. Ia mungkin tidak memiliki anak-anak dan selalu menjadi daun pohon.
 
-For instance, the `<title>` tag has the text `"About elk"`.
+Misalnya, tag `<title>` memiliki teks `"About elk"`
 
-Please note the special characters in text nodes:
+Harap perhatikan karakter khusus dalam node teks:
 
-- a newline: `↵` (in JavaScript known as `\n`)
-- a space: `␣`
+- baris baru: `↵` (di dalam JavaScript seperti `\n`)
+- spasi: `␣`
 
-Spaces and newlines are totally valid characters, like letters and digits. They form text nodes and become a part of the DOM. So, for instance, in the example above the `<head>` tag contains some spaces before `<title>`, and that text becomes a `#text` node (it contains a newline and some spaces only).
+Spasi dan baris baru adalah karakter yang benar-benar valid, seperti huruf-huruf dan angka-angka. Mereka membentuk node teks dan menjadi bagian dari DOM. Jadi, misalnya, pada contoh di atas, tag `<head>` berisi beberapa spasi sebelum `<title>`, dan teks tersebut menjadi node `#teks` (ini berisi baris baru dan hanya beberapa spasi).
 
-There are only two top-level exclusions:
-1. Spaces and newlines before `<head>` are ignored for historical reasons.
-2. If we put something after `</body>`, then that is automatically moved inside the `body`, at the end, as the HTML spec requires that all content must be inside `<body>`. So there can't be any spaces after `</body>`.
+Hanya ada dua pengecualian top-level:
+1. Spasi dan baris baru sebelum `<head>` diabaikan karena alasan historis.
+2. Jika kita meletakkan sesuatu setelah `</body>`, maka secara otomatis dipindahkan ke dalam `body`, di bagian bawah, karena spesifikasi HTML mengharuskan semua konten harus berada di dalam `<body>`. Jadi tidak boleh ada spasi setelah `</body>`.
 
-In other cases everything's straightforward -- if there are spaces (just like any character) in the document, then they become text nodes in the DOM, and if we remove them, then there won't be any.
+Dalam kasus lain semuanya mudah -- Jika ada spasi-spasi (seperti karakter lainnya) di dalam dokumen, maka mereka menjadi node teks di DOM tersebut, dan jika kita menghapusnya, maka tidak akan ada.
 
-Here are no space-only text nodes:
+Berikut tidak ada node teks khusus spasi:
 
 ```html no-beautify
 <!DOCTYPE HTML>
