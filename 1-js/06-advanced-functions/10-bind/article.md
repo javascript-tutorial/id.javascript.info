@@ -245,11 +245,11 @@ alert( double(5) ); // = mul(2, 5) = 10
 
 Panggilan pada `mul.bind(null, 2)` membuat function `double` baru yang memberikan panggilan terhadap `mul`, memperbaiki `null` sebagai konteksnya dan `2` sebagai argumen pertamanya. Argumen-argumen lebih lanjut yang diberikan "as is/sebagaimana adanya".
 
-Itu dipanggil [partial function application](https://en.wikipedia.org/wiki/Partial_application) -- kita membuat sebuah function baru dengan memperbaiki beberapa parameter dari yang sudah ada.
+Itu dipanggil [partial function application](https://en.wikipedia.org/wiki/Partial_application) -- kita membuat sebuah fungsi baru dengan memperbaiki beberapa parameter dari yang sudah ada.
 
 Harap dicatat bahwa disini kita tidak menggunakan `this`. Tapi `bind` memerlukannya, jadi kita harus meletakkan di dalam sesuatu seperti `null`.
 
-Function `triple` di dalam kode dibawah ini melipatkan tiga kali lipat nilai tersebut:
+Fungsi `triple` di dalam kode dibawah ini melipatkan tiga kali lipat nilai tersebut:
 
 ```js run
 function mul(a, b) {
@@ -265,13 +265,13 @@ alert( triple(4) ); // = mul(3, 4) = 12
 alert( triple(5) ); // = mul(3, 5) = 15
 ```
 
-Kenapa kita umumnya membuat function parsial?
+Kenapa kita umumnya membuat fungsi parsial?
 
-Manfaatnya bahwa kita dapat membuat sebuah function independen dengan nama yang dapat dibaca (`double`, `triple`). Kita bias menggunakannya dan tidak menyediakan argumen pertamanya setiap saat karena sudah diperbaiki dengan `bind`.
+Manfaatnya bahwa kita dapat membuat sebuah fungsi independen dengan nama yang dapat dibaca (`double`, `triple`). Kita bisa menggunakannya dan tidak menyediakan argumen pertamanya setiap saat karena sudah diperbaiki dengan `bind`.
 
-Dalam kasus lain, aplikasi parsial berguna saat kita punya sebuah function generik dan menginginkan varian yang kurang universal untuk kenyamanan.
+Dalam kasus lain, aplikasi parsial berguna saat kita punya sebuah fungsi generik dan menginginkan varian yang kurang universal untuk kenyamanan.
 
-Contoh, kita punya sebuah function `send(from, to, text)`. Kemudian, di dalam objek `user` kita mungkin ingin menggunakan varian parsial darinya: `sendTo(to, text)` yang dikirim dari user saat ini.
+Contoh, kita punya sebuah fungsi `send(from, to, text)`. Kemudian, di dalam objek `user` kita mungkin ingin menggunakan varian parsial darinya: `sendTo(to, text)` yang dikirim dari user saat ini.
 
 ## Menjadi parsial tanpa konteks
 
@@ -279,7 +279,7 @@ Bagaimana jika kita ingin memperbaiki beberapa argumen, tetapi bukan konteks `th
 
 `bind` yang asli tidak mengizinkan itu. Kita tidak bisa begitu saja mengabaikan konteks dan lompat ke argumen.
 
-Untungnya, function `partial` untuk mengikat argumen saja dapat dengan mudah diterapkan.
+Untungnya, fungsi `partial` untuk mengikat argumen saja dapat dengan mudah diterapkan.
 
 Seperti ini:
 
@@ -300,7 +300,7 @@ let user = {
   }
 };
 
-// tambahkan metode parsial dengan waktu tetap
+// tambahkan method parsial dengan waktu tetap
 user.sayNow = partial(user.say, new Date().getHours() + ':' + new Date().getMinutes());
 
 user.sayNow("Hello");
@@ -324,4 +324,4 @@ Biasanya kita menerapkan `bind` untuk memperbaiki `this` untuk sebuah method obj
 
 Ketika kita memperbaiki beberapa argumen dari function yang ada, fungsi yang dihasilkan (less universal) disebut *partially applied* atau *partial*.
 
-Parsial lebih mudah digunakan jika kita tidak ingin mengulangi argumen yang sama berulang kali. Seperti jika kita memiliki function `send (from, to)`, dan `from` harus selalu sama untuk tugas kita, kita bisa mendapatkan sebuah partial dan melanjutkannya.
+Parsial lebih mudah digunakan ketika kita tidak ingin mengulangi argumen yang sama berulang kali. Seperti jika kita memiliki fungsi `send (from, to)`, dan `from` harus selalu sama untuk tugas kita, kita bisa mendapatkan sebuah partial dan melanjutkannya.
