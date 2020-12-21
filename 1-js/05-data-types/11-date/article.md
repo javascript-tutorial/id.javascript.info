@@ -391,10 +391,17 @@ Metode [Date.parse(str)](mdn:js/Date/parse) bisa membaca tanggal dari sebuah str
 
 Bentuk dari string haruslah: `YYYY-MM-DDTHH:mm:ss.sssZ`, dimana:
 
+<<<<<<< HEAD
 - `YYYY-MM-DD` -- adalah tanggal: tahun-bulan-hari.
 - Karakter dari `"T"` digunakan sebagai pembatas.
 - `HH:mm:ss.sss` -- adalah waktu: jam, menit, detik dan milidetik.
 - Bagian opsional `'Z'` menandakan zona waktu dalam format `+-hh:mm`. Huruf tunggal `Z` menandakan UTC+0.
+=======
+- `YYYY-MM-DD` -- is the date: year-month-day.
+- The character `"T"` is used as the delimiter.
+- `HH:mm:ss.sss` -- is the time: hours, minutes, seconds and milliseconds.
+- The optional `'Z'` part denotes the time zone in the format `+-hh:mm`. A single letter `Z` would mean UTC+0.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 Varian yang lebih pendek juga bisa, seperti `YYYY-MM-DD` atau `YYYY-MM` atau bahkan `YYYY`.
 
@@ -431,9 +438,15 @@ Terkadang kita ingin pengukuran yang lebih teliti. Javascript sendiri tidak mend
 
 ```js run
 alert(`Loading started ${performance.now()}ms ago`);
+<<<<<<< HEAD
 // Sesuatu seperti: "Loading started 34731.26000000001ms ago"
 // .26 adalah microdetik (260 microdetik)
 // lebih dari 3 angka setelah titik desimal adalah presisi error, tapi hanya 3 yang benar
+=======
+// Something like: "Loading started 34731.26000000001ms ago"
+// .26 is microseconds (260 microseconds)
+// more than 3 digits after the decimal point are precision errors, only the first 3 are correct
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 ```
 
 Node.js punya modul `microtime` dan cara lainnya. Secara teknis, hampir kebanyakan perangkat dan environment memperbolehkan untuk mendapatkan presisi, itu hanya bukan didalam `Date`.

@@ -50,7 +50,11 @@ let guestList = "Guests: // Error: Unexpected token ILLEGAL
 
 Petik satu dan petik dua berasal dari masa lalu saat bahasa pemrograman dibuat, dimana kebutuhan untuk string lebih dari satu baris belum dipikirkan. Backtick muncul di kemudian hari, dan lebih fleksibel.
 
+<<<<<<< HEAD
 Backtick juga memperbolehkan kita untuk menspesifikasi "fungsi template" sebelum backtick pertama. Syntaxnya yaitu: <code>func&#96;string&#96;</code>. Fungsi `func` dipanggil secara otomatis, menerima string dan ekspresi yang berada di dalamnya dan bisa memproses mereka. Ini disebut "tagged templates". Fitur ini membuat implementasi kustom templating lebih mudah, tapi jaran dipakai dalam praktik. Kamu bisa membaca lebih tentang ini di [manual](mdn:/JavaScript/Reference/Template_literals#Tagged_templates).
+=======
+Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. This is called "tagged templates". This feature makes it easier to implement custom templating, but is rarely used in practice. You can read more about it in the [manual](mdn:/JavaScript/Reference/Template_literals#Tagged_templates).
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 ## Karakter spesial
 
@@ -85,6 +89,7 @@ Berikut adalah daftar lengkapnya:
 |`\'`, `\"`|Petik-petik|
 |`\\`|Backslash|
 |`\t`|Tab|
+<<<<<<< HEAD
 |`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- tetap bisa digunakan untuk kompabilitas, sekarang sudah tidak digunakan. |
 |`\xXX`|Karakter unicode dengan nilai heksadesimal `XX`, misalnya `'\x7A'` itu sama saja dengan `'z'`.|
 |`\uXXXX`|Sebuah simbol unicode dengan nilai heksadesimal `XXXX` di dalam encoding UTF-16, sebagai contoh `\u00A9` -- adalah sebuah unicode untuk simbol copyright `©`. Simbol ini harus terdiri dari 4 digit heksadesimal. |
@@ -96,6 +101,19 @@ Contoh dengan unicode:
 alert( "\u00A9" ); // ©
 alert( "\u{20331}" ); // 佫, sebuah karakter mandarin (unicode panjang)
 alert( "\u{1F60D}" ); // 😍, sebuah simbol wajah tersenyum (unicode panjang lainnya)
+=======
+|`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- kept for compatibility, not used nowadays. |
+|`\xXX`|Unicode character with the given hexadecimal Unicode `XX`, e.g. `'\x7A'` is the same as `'z'`.|
+|`\uXXXX`|A Unicode symbol with the hex code `XXXX` in UTF-16 encoding, for instance `\u00A9` -- is a Unicode for the copyright symbol `©`. It must be exactly 4 hex digits. |
+|`\u{X…XXXXXX}` (1 to 6 hex characters)|A Unicode symbol with the given UTF-32 encoding. Some rare characters are encoded with two Unicode symbols, taking 4 bytes. This way we can insert long codes. |
+
+Examples with Unicode:
+
+```js run
+alert( "\u00A9" ); // ©
+alert( "\u{20331}" ); // 佫, a rare Chinese hieroglyph (long Unicode)
+alert( "\u{1F60D}" ); // 😍, a smiling face symbol (another long Unicode)
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 ```
 
 Karakter-karakter spesial yang diawali dengan karakter backslash `\` kadang dipanggil dengan sebutan "escape character".
@@ -243,7 +261,11 @@ alert( str.indexOf('widget') ); // -1, tidak ditemukan, karena pencarian bersifa
 alert( str.indexOf("id") ); // 1, "id" ditemukan pada posisi 1 (..idget with id)
 ```
 
+<<<<<<< HEAD
 Parameter kedua yang opsional memperbolehkan kita untuk mencari dari posisi yang ditentukan.
+=======
+The optional second parameter allows us to start searching from a given position.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 Misalnya, kemunculan pertama `"id"` ada di posisi `1`. Untuk mencari kemunculan berikutnya, ayo kita mulai pencarian dari posisi `2`:
 
@@ -511,7 +533,11 @@ Semua string menggunakan encoding [UTF-16](https://en.wikipedia.org/wiki/UTF-16)
     alert( String.fromCodePoint(90) ); // Z
     ```
 
+<<<<<<< HEAD
     Kita juga dapat membuat karakter unicode dengan kode mereka menggunakan `\u` yang diikuti oleh kode heksadesimal:
+=======
+    We can also add Unicode characters by their codes using `\u` followed by the hex code:
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
     ```js run
     // 90 bernilai 5a di dalam sistem heksadesimal
@@ -620,7 +646,11 @@ Di banyak bahasa terdapat simbol-simbol yang terdiri dari huruf dasar dengan tan
 
 Sebagai contoh, karakter `a` dapat menjadi huruf dasar untuk: `àáâäãåā`. Kebanyakan karakter "komposit" memiliki kode mereka sendiri di tabel UTF-16. Hal tersebut tidak selalu terjadi, karena terlalu banyak kemungkinan kombinasi.
 
+<<<<<<< HEAD
 Untuk mendukung komposisi yang fleksibel, UTF-16 memperbolehkan kita untuk menggunakan beberapa karakter unicode: sebuah huruf dasar yang diikuti oleh satu atau lebih karakter "tanda" yang "menghiasinya".
+=======
+To support arbitrary compositions, UTF-16 allows us to use several Unicode characters: the base character followed by one or many "mark" characters that "decorate" it.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 Sebagai contoh, jika kita memiliki `S` diikuti dengan karakter spesial "titik di atas" (kode `\u0307`), maka akan ditampilkan Ṡ.
 
@@ -638,7 +668,11 @@ Sebagai contoh:
 alert( 'S\u0307\u0323' ); // Ṩ
 ```
 
+<<<<<<< HEAD
 Hal tersebut memberikan banyak fleksibilitas, tetapi juga masalah yang menarik: dua karakter mungkin terlihat sama, tetapi dapat direpresentasikan dengan komposisi unicode yang berbeda.
+=======
+This provides great flexibility, but also an interesting problem: two characters may visually look the same, but be represented with different Unicode compositions.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 Sebagai contoh:
 
@@ -651,7 +685,11 @@ alert( `s1: ${s1}, s2: ${s2}` );
 alert( s1 == s2 ); // false walaupun karakter terlihat sama (?!)
 ```
 
+<<<<<<< HEAD
 Untuk menyelesaikan masalah ini, terdapat sebuah algoritma "normalisasi unicode" yang membuat setiap string menjadi satu bentuk "normal".
+=======
+To solve this, there exists a "Unicode normalization" algorithm that brings each string to the single "normal" form.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 Algoritma tersebut diimplementasikan oleh [str.normalize()](mdn:js/String/normalize).
 
@@ -673,6 +711,7 @@ Jika Anda ingin belajar lebih lanjut tentang aturan normalisasi dan variasinya -
 
 ## Kesimpulan
 
+<<<<<<< HEAD
 - Terdapat 3 jenis tanda petik. Backtick membolehkan string memiliki baris ganda dan menyisipkan expresi `${…}`.
 - String di Javascript diencode menggunakan UTF-16.
 - Kita bisa memakai karakter seperti `\n` dan memasukkan karakter berdasarkan unicode mereka menggunakan `\u...`.
@@ -681,6 +720,16 @@ Jika Anda ingin belajar lebih lanjut tentang aturan normalisasi dan variasinya -
 - Untuk mengubah case kecil/besar dari string, gunakan: `toLowerCase/toUpperCase`.
 - Untuk mencari substring, gunakan: `indexOf`, atau `includes/startsWith/endsWith` untuk pengecekan sederhana.
 - Untuk membandingkan string mengikuti bahasa, gunakan `localeCompare`, jika tidak mereka akan dibandingkan berdasarkan kode karakter.
+=======
+- There are 3 types of quotes. Backticks allow a string to span multiple lines and embed expressions `${…}`.
+- Strings in JavaScript are encoded using UTF-16.
+- We can use special characters like `\n` and insert letters by their Unicode using `\u...`.
+- To get a character, use: `[]`.
+- To get a substring, use: `slice` or `substring`.
+- To lowercase/uppercase a string, use: `toLowerCase/toUpperCase`.
+- To look for a substring, use: `indexOf`, or `includes/startsWith/endsWith` for simple checks.
+- To compare strings according to the language, use: `localeCompare`, otherwise they are compared by character codes.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 Ada beberapa metode string lain yang berguna:
 

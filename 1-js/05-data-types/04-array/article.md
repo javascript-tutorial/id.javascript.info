@@ -217,7 +217,11 @@ arr.push("Pear"); // modiikasi array oleh referensi
 alert( fruits ); // Banana, Pear - 2 elemen sekarang
 ```
 
+<<<<<<< HEAD
 ...Namun apa yang membuat *array* benar-benar istimewa adalah representasi internalnya. Mesin berusaha untuk menyimpan elemen *array* ke dalam area memori yang berdampingan, satu dengan yang lainnya, sepereti yang digambarkan pada ilustrasi di bab ini, serta ada cara optimasi lainnya, untuk membuat *array* bekerja lebih cepat lagi.
+=======
+...But what makes arrays really special is their internal representation. The engine tries to store its elements in the contiguous memory area, one after another, just as depicted on the illustrations in this chapter, and there are other optimizations as well, to make arrays work really fast.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 But they all break if we quit working with an array as with an "ordered collection" and start working with it as if it were a regular object.
 

@@ -109,7 +109,16 @@ alert(2 + 2 + '1' ); // "41" dan bukan "221"
 
 Disini, operator bekerja secara bergantian. Pertama `+` menambahkan dua angka, jadi akan menghasilkan `4`, lalu selanjutnya `+` menambahkan string `1` kedalamnya, jadi akan menjadi seperti `4 + '1' = 41`.
 
+<<<<<<< HEAD
 Operator `+` hanyalah satu-satunya operator yang mendukung penggunaan string dengan cara semacan itu. Operator aritmatika lainnya hanya bekerja dengan angka dan selalu mengubah operannya menjadi angka.
+=======
+```js run
+alert('1' + 2 + 2); // "122" and not "14"
+```
+Here, the first operand is a string, the compiler treats the other two operands as strings too. The `2` gets concatenated to `'1'`, so it's like `'1' + 2 = "12"` and `"12" + 2 = "122"`.
+
+The binary `+` is the only operator that supports strings in such a way. Other arithmetic operators work only with numbers and always convert their operands to numbers.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 Ini adalah contoh untuk pengurangan dan pembagian:
 

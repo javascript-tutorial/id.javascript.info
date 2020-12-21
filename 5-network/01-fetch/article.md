@@ -31,7 +31,11 @@ let promise = fetch(url, [options])
 
 Jika tidak menggunakan `options`, dan hanya menggunakan permintaan *GET* sederhana,sudah bisa mengunduh isi dari `url`.
 
+<<<<<<< HEAD
 *Browser* segera memulai permintaan dan mengembalikan sebuah *promise* yang memanggil kode yang akan di pakai untuk mendapatkan hasil.
+=======
+Without `options`, this is a simple GET request, downloading the contents of the `url`.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 Untuk mendapatkan sebuah tanggapan biasanya ada dua tahap proses.
 
