@@ -6,33 +6,33 @@ libs:
 
 # DOM tree
 
-The backbone of an HTML document is tags.
+Tulang punggung dari dokumen HTML adalah tag.
 
-According to the Document Object Model (DOM), every HTML tag is an object. Nested tags are  "children" of the enclosing one. The text inside a tag is an object as well.
+Berdasarkan Document Object Model (DOM), setiap tag HTML merupakan sebuah objek. Tag berlapis adalah "anak" dari tag yang melampirkan. Teks di dalam sebuah tag merupakan sebuah objek juga.
 
-All these objects are accessible using JavaScript, and we can use them to modify the page.
+Semua objek ini dapat diakses menggunakan JavaScript, dan kita bisa menggunakannya untuk memodifikasi halaman.
 
-For example, `document.body` is the object representing the `<body>` tag.
+Misalnya, `document.body` merupakan objek yang merepresentasikan tag `<body>`.
 
-Running this code will make the `<body>` red for 3 seconds:
+Menjalankan kode ini akan membuat `<body>` menjadi merah selama 3 detik.
 
 ```js run
-document.body.style.background = 'red'; // make the background red
+document.body.style.background = 'red'; // buat background menjadi merah
 
-setTimeout(() => document.body.style.background = '', 3000); // return back
+setTimeout(() => document.body.style.background = '', 3000); // kembalikan seperti semula
 ```
 
-Here we used `style.background` to change the background color of `document.body`, but there are many other properties, such as:
+Disini kita menggunakan `style.background` untuk mengubah warna background `document.body`, tetapi ada banyak properti lain, seperti:
 
-- `innerHTML` -- HTML contents of the node.
-- `offsetWidth` -- the node width (in pixels)
-- ...and so on.
+- `innerHTML` -- Konten-konten HTML dari node.
+- `offsetWidth` -- lebar node (dalam piksel)
+- ...dan seterusnya.
 
-Soon we'll learn more ways to manipulate the DOM, but first we need to know about its structure.
+Kita akan segera mempelajari lebih banyak cara untuk memanipulasi DOM, tetapi pertama-tama kita perlu mengetahui tentang strukturnya.
 
-## An example of the DOM
+## Contoh dari DOM
 
-Let's start with the following simple document:
+Mari kita mulai dengan dokumen sederhana berikut:
 
 ```html run no-beautify
 <!DOCTYPE HTML>
@@ -46,7 +46,7 @@ Let's start with the following simple document:
 </html>
 ```
 
-The DOM represents HTML as a tree structure of tags. Here's how it looks:
+DOM menggambarkan HTML seperti struktur pohon pada tag. Begini tampilannya:
 
 <div class="domtree"></div>
 
@@ -57,31 +57,31 @@ drawHtmlTree(node1, 'div.domtree', 690, 320);
 </script>
 
 ```online
-On the picture above, you can click on element nodes and their children will open/collapse.
+Pada gambar di atas, Anda dapat mengklik node elemen dan anaknya akan membuka/menutup.
 ```
 
-Every tree node is an object.
+Setiap node pohon merupakan sebuah objek.
 
-Tags are *element nodes* (or just elements) and form the tree structure: `<html>` is at the root, then `<head>` and `<body>` are its children, etc.
+Tag-tag merupakan *node elemen* (atau hanya elemen) dan membentuk struktur pohon: `<html>` merupakan root, kemudian `<head>` dan `<body>` adalah anak-anaknya, dll.
 
-The text inside elements forms *text nodes*, labelled as `#text`. A text node contains only a string. It may not have children and is always a leaf of the tree.
+Teks di dalam elemen-elemen membentuk *node teks*, dilabeli sebagai `#text`. Sebuah node teks hanya berisi string. Ia mungkin tidak memiliki anak dan selalu menjadi daun pohon.
 
-For instance, the `<title>` tag has the text `"About elk"`.
+Misalnya, tag `<title>` memiliki teks `"About elk"`
 
-Please note the special characters in text nodes:
+Harap perhatikan karakter khusus dalam node teks:
 
-- a newline: `↵` (in JavaScript known as `\n`)
-- a space: `␣`
+- baris baru: `↵` (di dalam JavaScript seperti `\n`)
+- spasi: `␣`
 
-Spaces and newlines are totally valid characters, like letters and digits. They form text nodes and become a part of the DOM. So, for instance, in the example above the `<head>` tag contains some spaces before `<title>`, and that text becomes a `#text` node (it contains a newline and some spaces only).
+Spasi dan baris baru adalah karakter yang benar-benar valid, seperti huruf-huruf dan angka-angka. Mereka membentuk node teks dan menjadi bagian dari DOM. Jadi, misalnya, pada contoh di atas, tag `<head>` berisi beberapa spasi sebelum `<title>`, dan teks tersebut menjadi node `#teks` (ini berisi baris baru dan beberapa spasi).
 
-There are only two top-level exclusions:
-1. Spaces and newlines before `<head>` are ignored for historical reasons.
-2. If we put something after `</body>`, then that is automatically moved inside the `body`, at the end, as the HTML spec requires that all content must be inside `<body>`. So there can't be any spaces after `</body>`.
+Hanya ada dua pengecualian top-level:
+1. Spasi dan baris baru sebelum `<head>` diabaikan karena alasan historis.
+2. Jika kita meletakkan sesuatu setelah `</body>`, maka secara otomatis dipindahkan ke dalam `body`, di bagian bawah, karena spesifikasi HTML mengharuskan semua konten harus berada di dalam `<body>`. Jadi tidak boleh ada spasi setelah `</body>`.
 
-In other cases everything's straightforward -- if there are spaces (just like any character) in the document, then they become text nodes in the DOM, and if we remove them, then there won't be any.
+Dalam kasus lain semuanya mudah -- Jika ada spasi-spasi (seperti karakter lainnya) di dalam dokumen, maka mereka menjadi node teks di DOM tersebut, dan jika kita menghapusnya, maka akan hilang.
 
-Here are no space-only text nodes:
+Berikut tidak ada node teks khusus spasi:
 
 ```html no-beautify
 <!DOCTYPE HTML>
@@ -96,22 +96,21 @@ let node2 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node2, 'div.domtree', 690, 210);
 </script>
 
-```smart header="Spaces at string start/end and space-only text nodes are usually hidden in tools"
-Browser tools (to be covered soon) that work with DOM usually do not show spaces at the start/end of the text and empty text nodes (line-breaks) between tags.
+```smart header="Spasi di awal/akhir string dan node teks khusus spasi biasanya disembunyikan di alat"
+Alat browser (akan segera dibahas) yang bekerja dengan DOM biasanya tidak menampilkan spasi di awal/akhir teks dan node teks kosong (jeda baris) di antara tag.
 
-Developer tools save screen space this way.
+Alat pengembang menghemat ruang layar dengan cara ini.
 
-On further DOM pictures we'll sometimes omit them when they are irrelevant. Such spaces usually do not affect how the document is displayed.
+Pada gambar DOM lebih lanjut, kita terkadang mengabaikannya saat mereka tidak relevan. Spasi seperti itu biasanya tidak mempengaruhi bagaimana dokumen ditampilkan.
 ```
 
 ## Autocorrection
 
-If the browser encounters malformed HTML, it automatically corrects it when making the DOM.
+Jika browser menemukan HTML yang salah format, browser akan memperbaikinya secara otomatis saat membuat DOM.
 
-For instance, the top tag is always `<html>`. Even if it doesn't exist in the document, it will exist in the DOM, because the browser will create it. The same goes for `<body>`.
+Misalnya, tag yang paling atas selalu `<html>`. Bahkan jika itu tidak ada di dalam dokumen, ia akan ada ada sendiri di dalam DOM, karena browser tersebut akan membuatnya. Hal yang sama berlaku untuk `<body>`.
 
-As an example, if the HTML file is the single word `"Hello"`, the browser will wrap it into `<html>` and `<body>`, and add the required `<head>`, and the DOM will be:
-
+Contoh, jika file HTML kata tunggal `"Hello"`, browser akan membungkusnya ke dalam `<html>` dan `<body>`, dan menambahkan `<head>` yang diperlukan, dan DOM akan menjadi seperti ini:
 
 <div class="domtree"></div>
 
@@ -121,9 +120,9 @@ let node3 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node3, 'div.domtree', 690, 150);
 </script>
 
-While generating the DOM, browsers automatically process errors in the document, close tags and so on.
+Selagi sedang menghasilkan DOM, browser secara otomatis memproses kesalahan-kesalahan di dalam dokumen, tag penutup, dan sebagainya.
 
-A document with unclosed tags:
+dokumen dengan tag yang tidak ditutup:
 
 ```html no-beautify
 <p>Hello
@@ -132,7 +131,7 @@ A document with unclosed tags:
 <li>Dad
 ```
 
-...will become a normal DOM as the browser reads tags and restores the missing parts:
+...Akan menjadi DOM normal saat browser membaca tag dan memulihkan bagian yang hilang:
 
 <div class="domtree"></div>
 
@@ -142,16 +141,16 @@ let node4 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node4, 'div.domtree', 690, 360);
 </script>
 
-````warn header="Tables always have `<tbody>`"
-An interesting "special case" is tables. By the DOM specification they must have `<tbody>`, but HTML text may (officially) omit it. Then the browser creates `<tbody>` in the DOM automatically.
+````warn header="Tabel selalu memiliki `<tbody>`"
+“Kasus khusus” yang menarik adalah tabel. Berdasarkan spesifikasi DOM, mereka harus memiliki tag <tbody>, tetapi teks HTML dapat menghilangkannya. Kemudian browser membuat <tbody> di DOM secara otomatis.
 
-For the HTML:
+Untuk HTML:
 
 ```html no-beautify
 <table id="table"><tr><td>1</td></tr></table>
 ```
 
-DOM-structure will be:
+Struktur DOM akan seperti ini:
 <div class="domtree"></div>
 
 <script>
@@ -160,14 +159,14 @@ let node5 = {"name":"TABLE","nodeType":1,"children":[{"name":"TBODY","nodeType":
 drawHtmlTree(node5,  'div.domtree', 600, 200);
 </script>
 
-You see? The `<tbody>` appeared out of nowhere. You should keep this in mind while working with tables to avoid surprises.
-````
+Anda lihat? `<tbody>` muncul entah dari mana. Kita harus mengingat ini saat bekerja dengan tabel untuk menghindari kejutan.
 
-## Other node types
 
-There are some other node types besides elements and text nodes.
+## Jenis-jenis node lain
 
-For example, comments:
+Ada beberapa jenis-jenis node lain selain node elemen dan teks.
+
+Contoh, komentar:
 
 ```html
 <!DOCTYPE HTML>
@@ -193,90 +192,90 @@ let node6 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node6, 'div.domtree', 690, 500);
 </script>
 
-We can see here a new tree node type -- *comment node*, labeled as `#comment`, between two text nodes.
+Kita bisa lihat disini sebuah jenis node pohon baru -- *comment node*, yang dilabeli sebagai `#comment`, diantar dua node teks.
 
-We may think -- why is a comment added to the DOM? It doesn't affect the visual representation in any way. But there's a rule -- if something's in HTML, then it also must be in the DOM tree.
+Kita mungkin berpikir -- kenapa komentar ditambahkan ke DOM? komentar tersebut tidak mempengaruhi representasi visual dengan cara apa pun. Tapi ada sebuah aturan -- jika sesuatu ada di dalam HTML, maka ia juga harus di dalam pohon DOM.
 
-**Everything in HTML, even comments, becomes a part of the DOM.**
+**Semuanya di dalam HTML, bahkan komentar, akan menjadi bagian dari DOM.**
 
-Even the `<!DOCTYPE...>` directive at the very beginning of HTML is also a DOM node. It's in the DOM tree right before `<html>`. We are not going to touch that node, we even don't draw it on diagrams for that reason, but it's there.
+Bahkan direktif `<!DOCTYPE ...>` di awal HTML juga merupakan node DOM. Letaknya di pohon DOM tepat sebelum `<html>`. Kita tidak akan menyentuh node itu, Kita bahkan tidak menggambarnya pada diagram karena alasan itu, tetapi node itu ada.
 
-The `document` object that represents the whole document is, formally, a DOM node as well.
+Objek `document` yang mewakili seluruh dokumen, secara formal, juga merupakan node DOM.
 
-There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usually work with 4 of them:
+Ada [12 jenis-jenis node](https://dom.spec.whatwg.org/#node). Dalam praktiknya kita biasanya bekerja dengan 4 di antaranya:
 
-1. `document` -- the "entry point" into DOM.
-2. element nodes -- HTML-tags, the tree building blocks.
-3. text nodes -- contain text.
-4. comments -- sometimes we can put information there, it won't be shown, but JS can read it from the DOM.
+1. `document` -- "titik masuk" ke DOM.
+2. node elemen -- tag-tag HTML, blok bangunan pohon.
+3. node teks -- berisi teks.
+4. komentar -- terkadang kita meletakkan informasi disini, ia tidak akan ditampilkan, tetapi JS bisa membacanya dari DOM.
 
-## See it for yourself
+## Melihatnya untuk kita sendiri
 
-To see the DOM structure in real-time, try [Live DOM Viewer](http://software.hixie.ch/utilities/js/live-dom-viewer/). Just type in the document, and it will show up as a DOM at an instant.
+Untuk melihat struktur DOM secara real-time, coba [Live DOM Viewer](http://software.hixie.ch/utilities/js/live-dom-viewer/). Cukup ketikkan dokumen, dan itu akan muncul sebagai DOM dalam sekejap.
 
-Another way to explore the DOM is to use the browser developer tools. Actually, that's what we use when developing.
+Cara lain untuk menjelajahi DOM gunakan alat pengembang browser. Sebenarnya itulah yang kita gunakan saat mengembangkan.
 
-To do so, open the web page [elk.html](elk.html), turn on the browser developer tools and switch to the Elements tab.
+Untuk melakukannya, buka halaman web [elk.html](elk.html), aktifkan alat pengembang browser dan beralih ke tab Elemen.
 
-It should look like this:
+Seharusnya tampil seperti ini:
 
 ![](elk.svg)
 
-You can see the DOM, click on elements, see their details and so on.
+Anda bisa melihat DOM tersebut, klik pada elemen-elemen, melihat detailnya, dan sebagainya.
 
-Please note that the DOM structure in developer tools is simplified. Text nodes are shown just as text. And there are no "blank" (space only) text nodes at all. That's fine, because most of the time we are interested in element nodes.
+Harap perhatikan bahwa struktur DOM di alat pengembang disederhanakan. Node teks ditampilkan hanya sebagai teks. Dan tidak ada samak sekali node teks "kosong" (hanya spasi). Tidak apa-apa, karena sebagian besar waktu kita berkepentingan pada node elemen.
 
-Clicking the <span class="devtools" style="background-position:-328px -124px"></span> button in the left-upper corner allows us to choose a node from the webpage using a mouse (or other pointer devices) and "inspect" it (scroll to it in the Elements tab). This works great when we have a huge HTML page (and corresponding huge DOM) and would like to see the place of a particular element in it.
+Mengklik tombol <span class="devtools" style="background-position:-328px -124px"></span> di pojok kiri atas memungkinkan kita memilih node dari halaman web menggunakan mouse (atau perangkat penunjuk lain) dan "memeriksanya" (gulir ke sana di tab Elemen). Ini berfungsi dengan baik ketika kita memiliki halaman HTML besar (dan DOM besar yang sesuai) dan ingin melihat tempat elemen tertentu di dalamnya.
 
-Another way to do it would be just right-clicking on a webpage and selecting "Inspect" in the context menu.
+Cara lain untuk melakukannya adalah dengan mengklik kanan pada halaman web dan memilih "Inspect" di menu konteks.
 
 ![](inspect.svg)
 
-At the right part of the tools there are the following subtabs:
-- **Styles** -- we can see CSS applied to the current element rule by rule, including built-in rules (gray). Almost everything can be edited in-place, including the dimensions/margins/paddings of the box below.
-- **Computed** -- to see CSS applied to the element by property: for each property we can see a rule that gives it (including CSS inheritance and such).
-- **Event Listeners** -- to see event listeners attached to DOM elements (we'll cover them in the next part of the tutorial).
-- ...and so on.
+Di bagian kanan alat ada subtabs berikut:
+- **Styles** -- kita bisa melihat CSS diterapkan ke elemen saat ini aturan demi aturan, termasuk aturan bawaan (abu-abu). Hampir semuanya dapat diedit di tempat, termasuk dimensi/margin/padding kotak di bawah ini.
+- **Computed** -- untuk melihat CSS diterapkan ke elemen berdasarkan properti: untuk setiap properti kita dapat melihat aturan yang memberikannya (termasuk pewarisan CSS dan semacamnya).
+- **Event Listeners** -- untuk melihat event listener yang dilampirkan ke elemen DOM (kita akan membahasnya di bagian selanjutnya dari tutorial).
+- ...dan seterusnya.
 
-The best way to study them is to click around. Most values are editable in-place.
+Cara terbaik untuk mempelajarinya adalah dengan mengklik. Sebagian besar nilai dapat diedit di tempat.
 
-## Interaction with console
+## Interaksi dengan konsol
 
-As we work the DOM, we also may want to apply JavaScript to it. Like: get a node and run some code to modify it, to see the result. Here are few tips to travel between the Elements tab and the console.
+Saat kami mengerjakan DOM, kita juga mungkin ingin menerapkan JavaScript padanya. Seperti: mendapatkan node dan jalankan beberapa kode untuk memodifikasinya, Berikut beberapa tip untuk berpindah antara tab Elemen dan konsol.
 
-For the start:
+Sebagai permulaan:
 
-1. Select the first `<li>` in the Elements tab.
-2. Press `key:Esc` -- it will open console right below the Elements tab.
+1. Pilih `<li>` pertama di dalam tab Elements.
+2. Tekan `key:Esc` -- itu akan membuka konsol tepat di bawah tab Elements.
 
-Now the last selected element is available as `$0`, the previously selected is `$1` etc.
+Sekarang elemen yang dipilih terakhir tersedia sebagai `$0`, yang dipilih sebelumnya adalah `$1` dll.
 
-We can run commands on them. For instance, `$0.style.background = 'red'` makes the selected list item red, like this:
+Kita bisa menjalankan perintah pada mereka. Misalnya , `$0.style.background = 'red'` membuat item list yang dipilih bewarna merah, seperti ini:
 
 ![](domconsole0.svg)
 
-That's how to get a node from Elements in Console.
+Begitulah cara mendapatkan node dari Elements di Console.
 
-There's also a road back. If there's a variable referencing a DOM node, then we can use the command `inspect(node)` in Console to see it in the Elements pane.
+Ada juga jalan kembali. Jika ada variabel yang mereferensikan node DOM, maka kita dapat menggunakan perintah `inspect (node)` di Console untuk melihatnya di panel Elements.
 
-Or we can just output the DOM node in the console and explore "in-place", like `document.body` below:
+Atau kita bisa mengeluarkan simpul DOM di konsol dan menjelajahi "di tempat", seperti `document.body` di bawah ini:
 
 ![](domconsole1.svg)
 
-That's for debugging purposes of course. From the next chapter on we'll access and modify DOM using JavaScript.
+Itu tentu saja untuk tujuan debugging. Dari bab selanjutnya kita akan mengakses dan memodifikasi DOM menggunakan JavaScript.
 
-The browser developer tools are a great help in development: we can explore the DOM, try things and see what goes wrong.
+Alat pengembang browser sangat membantu dalam pengembangan: kita dapat menjelajahi DOM, mencoba berbagai hal dan melihat apa yang salah.
 
 ## Summary
 
-An HTML/XML document is represented inside the browser as the DOM tree.
+Dokumen HTML/XML direpresentasikan di dalam browser sebagai pohon DOM.
 
-- Tags become element nodes and form the structure.
-- Text becomes text nodes.
-- ...etc, everything in HTML has its place in DOM, even comments.
+- Tag menjadi node elemen dan membentuk struktur.
+- Teks menjadi node teks.
+- ...dll, semuanya di dalam HTML mempunyai tempatnya di dalam DOM, bahkan komentar.
 
-We can use developer tools to inspect DOM and modify it manually.
+Kita dapat menggunakan alat pengembang untuk memeriksa DOM dan memodifikasinya secara manual.
 
-Here we covered the basics, the most used and important actions to start with. There's an extensive documentation about Chrome Developer Tools at <https://developers.google.com/web/tools/chrome-devtools>. The best way to learn the tools is to click here and there, read menus: most options are obvious. Later, when you know them in general, read the docs and pick up the rest.
+Di sini kami membahas dasar-dasar, tindakan yang paling sering digunakan dan penting untuk memulai. Ada dokumentasi lengkap tentang Alat Pengembang Chrome di <https://developers.google.com/web/tools/chrome-devtools>. Cara terbaik untuk mempelajari alat ini adalah dengan mengklik di sana-sini, membaca menu: sebagian besar opsi sudah jelas. Nanti, jika Anda mengenal mereka secara umum, bacalah dokumennya dan pelajari sisanya.
 
-DOM nodes have properties and methods that allow us to travel between them, modify them, move around the page, and more. We'll get down to them in the next chapters.
+Node DOM memiliki properti dan method yang memungkinkan kita untuk melakukan perjalanan di antara mereka, memodifikasinya, memindahkan halaman, dan banyak lagi. Kami akan membahasnya di bab berikutnya.
