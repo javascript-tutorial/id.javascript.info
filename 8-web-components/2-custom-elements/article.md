@@ -148,7 +148,11 @@ Selain itu, jika anda memikirkannya, itu lebih baik dari segi kinerja - menunda 
 
 Dalam implementasi `<time-formatted>` saat ini, setelah elemen dirender, perubahan atribut lebih lanjut tidak berpengaruh apa pun. Itu aneh untuk sebuah elemen HTML. Biasanya, ketika kita mengubah atribut, seperti ʻa.href`, kita mengharapkan perubahan itu segera terlihat. Jadi mari kita perbaiki ini.
 
+<<<<<<< HEAD
 Kita bisa mengamati atribut dengan memberikan daftarnya di static getter ʻobservedAttributes () `. Untuk atribut seperti, `attributeChangedCallback` dipanggil saat atribut-atributnya diubah. Ini tidak memicu atribut karena alasan kinerja.
+=======
+We can observe attributes by providing their list in `observedAttributes()` static getter. For such attributes, `attributeChangedCallback` is called when they are modified. It doesn't trigger for other, unlisted attributes (that's for performance reasons).
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 Ini adalah `<time-formatted>` baru, yang diperbarui secara otomatis ketika atribut berubah:
 
@@ -319,7 +323,11 @@ Misalnya, tombol adalah *instances* dari `HTMLButtonElement`, mari kita buat di 
     class HelloButton extends HTMLButtonElement { /* custom element methods */ }
     ```
 
+<<<<<<< HEAD
 2. Berikan argumen ketiga untuk `customElements.define`, yang menetapkan tag:
+=======
+2. Provide the third argument to `customElements.define`, that specifies the tag:
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
     ```js
     customElements.define('hello-button', HelloButton, *!*{extends: 'button'}*/!*);
     ```    

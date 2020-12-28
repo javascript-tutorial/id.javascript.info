@@ -1,10 +1,17 @@
 
 # Map dan Set
 
+<<<<<<< HEAD
 Sekarang kita telah membelajari struktur data compleks berikut:
 
 - Objek untuk menyimpan koleksi kunci.
 - Array untuk menyimpan koleksi berurut.
+=======
+Till now, we've learned about the following complex data structures:
+
+- Objects are used for storing keyed collections.
+- Arrays are used for storing ordered collections.
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 Tapi itu tidak cukup dalam kehidupan nyata. Itu sebabnya `Map` dan` Set` juga ada.
 
@@ -41,8 +48,13 @@ alert( map.size ); // 3
 
 Seperti yang dapat kita lihat, lain dari objek, kunci tidak dikonversi ke string. Jenis kunci apa pun dimungkinkan.
 
+<<<<<<< HEAD
 ```smart header="`map[key]` bukan cara yang baik untuk menggunakan `Map`"
 Meski `map[key]` juga bekerja, misal kita bisa mengeset `map[key] = 2`, ini memperlakukan `map` sebagai objek JavaScript biasa, berimplikasi pada semua limitasi yang sesuai (tak ada kunci objek dan lain-lain).
+=======
+```smart header="`map[key]` isn't the right way to use a `Map`"
+Although `map[key]` also works, e.g. we can set `map[key] = 2`, this is treating `map` as a plain JavaScript object, so it implies all corresponding limitations (only string/symbol keys and so on).
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 Jadi kita sebaiknya memakai metode `map`: `set`, `get` dan seterusnya.
 ```
@@ -63,15 +75,21 @@ visitsCountMap.set(john, 123);
 alert( visitsCountMap.get(john) ); // 123
 ```
 
+<<<<<<< HEAD
 Menggunakan objek sebagai kunci adalah salah satu fitur `Map` yang paling terkenal dan penting. Untuk kunci string, `Object` bisa dipakai, tetapi tidak untuk kunci objek.
+=======
+Using objects as keys is one of the most notable and important `Map` features. The same does not count for `Object`. String as a key in `Object` is fine, but we can't use another `Object` as a key in `Object`.
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 Mari kita coba:
 
 ```js run
 let john = { name: "John" };
+let ben = { name: "Ben" };
 
 let visitsCountObj = {}; // cobalah memakai objek
 
+<<<<<<< HEAD
 visitsCountObj[john] = 123; // cobalah memakai objek john sebagai kunci
 
 *!*
@@ -81,6 +99,18 @@ alert( visitsCountObj["[object Object]"] ); // 123
 ```
 
 Karena `visitsCountObj` adalah sebuah objek, ia mengubah semua kunci, seperti `john` menjadi string, jadi kita mendapatkan kunci string `"[object Object]"`. Jelas bukan yang kita inginkan.
+=======
+visitsCountObj[ben] = 234; // try to use ben object as the key
+visitsCountObj[john] = 123; // try to use john object as the key, ben object will get replaced
+
+*!*
+// That's what got written!
+alert( visitsCountObj["[object Object]"] ); // 123 
+*/!*
+```
+
+As `visitsCountObj` is an object, it converts all `Object` keys, such as `john` and `ben` above, to same string `"[object Object]"`. Definitely not what we want.
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 ```smart header="Cara `Map` membandingkan kunci"
 Untuk mengetes kesamaan kunci, `Map` menggunakan algoritma [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). Ini kira-kira sama dengan kesetaraan ketat `===`, tetapi perbedaannya adalah `NaN` dianggap sama dengan `NaN`. Jadi `NaN` bisa digunakan sebagai kunci juga.
@@ -303,6 +333,7 @@ Metode yang sama yang dimiliki `Map` untuk iterator juga didukung:
 
 Metode dan properti:
 
+<<<<<<< HEAD
 - `new Map([iterable])` -- membuat map, dengan `iterable` opsional (mis. array) dari pasangan `[key, value]` untuk inisialisasi.
 - `map.set(key, value)` -- menyimpan nilai dengan kunci.
 - `map.get(key)` -- mengembalikan nilai dengan kunci, `undefined` jika `key` tidak ada di map.
@@ -310,6 +341,15 @@ Metode dan properti:
 - `map.delete(key)` -- menghapus nilai dengan kunci.
 - `map.clear()` -- menghapus semuanya dari peta.
 - `map.size` -- mengembalikan jumlah elemen saat ini.
+=======
+- `new Map([iterable])` -- creates the map, with optional `iterable` (e.g. array) of `[key,value]` pairs for initialization.
+- `map.set(key, value)` -- stores the value by the key, returns the map itself.
+- `map.get(key)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
+- `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
+- `map.delete(key)` -- removes the value by the key, returns `true` if `key` existed at the moment of the call, otherwise `false`.
+- `map.clear()` -- removes everything from the map.
+- `map.size` -- returns the current element count.
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 Perbedaan dari `Object` biasa:
 

@@ -276,7 +276,11 @@ fetch("/article/promise-chaining/user.json")
 
 Sekarang mari lakukan sesuatu dengan memuat pengguna.
 
+<<<<<<< HEAD
 Sebagai contoh, kita dapat membuat satu atau lebih permintaan ke GitHub, muat profil pengguna dan tunjukkan avatarnya:
+=======
+For instance, we can make one more request to GitHub, load the user profile and show the avatar:
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 ```js run
 // Buat permintaan ke user.json
