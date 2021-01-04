@@ -25,7 +25,11 @@ Mengapa `.then` terpicu setelahnya? Apa yang sedang terjadi?
 
 Task asynchronous membutuhkan manajemen yang tepat. Untuk itu, standar menentukan antrean internal `PromiseJobs`, lebih sering disebut sebagai "antrean microtask" (istilah v8).
 
+<<<<<<< HEAD
 Seperti yang dikatakan di [spesifikasi](https://tc39.github.io/ecma262/#sec-jobs-and-job-queues):
+=======
+Asynchronous tasks need proper management. For that, the ECMA standard specifies an internal queue `PromiseJobs`, more often referred to as the "microtask queue" (V8 term).
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 - Antrean adalah yang pertama masuk-pertama keluar: tasks yang diantrekan pertama dijalankan terlebih dahulu.
 - Eksekusi dari task dimulai jika hanya tidak ada yang berjalan.
@@ -114,6 +118,10 @@ Penanganan promise selalu asynchronous, karena semua aksi promise melewati antre
 
 Jadi, handler-handler `.then/catch/finally` selalu dipanggil setelah kode saat ini selesai.
 
+<<<<<<< HEAD
+=======
+Promise handling is always asynchronous, as all promise actions pass through the internal "promise jobs" queue, also called "microtask queue" (V8 term).
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 Jika kita butuh untuk menjamin kalau potongan kode dieksekusi setelah `.then/catch/finally`, kita bisa menambahnya kedalam panggilan chain `.then`.
 

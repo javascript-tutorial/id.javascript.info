@@ -6,7 +6,11 @@ Itu simpel:
 let ourPlanetName = "Earth";
 ```
 
+<<<<<<< HEAD
 Ingat, kita bisa menggunakan nama lebih pendek `planet`, tapi itu tak akan jelas planet apa. Bagus jika lebih bertele-tele. Minimal hingga variabel isNotTooLong.
+=======
+Note, we could use a shorter name `planet`, but it might not be obvious what planet it refers to. It's nice to be more verbose. At least until the variable isNotTooLong.
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 ## Nama pengunjung saat ini
 

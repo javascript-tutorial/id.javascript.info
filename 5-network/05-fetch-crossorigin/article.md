@@ -100,10 +100,15 @@ Kemudian, metode jaringan muncul di browser Javascript.
 
 Mulanya, *request cross-orogin* itu dilarang. Tetapi dari hasil diskusi yang panjang, *request cross-origin* diizinkan, tetapi dengan kemampuan baru yang memerlukan izin tegas dari *server*, diekpresikan di *header* khusus.
 
+<<<<<<< HEAD
 ## Request yang simpel
+=======
+## Safe requests
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 Ada dua tipe dari *request cross-origin*:
 
+<<<<<<< HEAD
 1. **request** yang simpel.
 2. lain lainnya.
 
@@ -113,6 +118,17 @@ A [*request* yang simpel](http://www.w3.org/TR/cors/#terminology) adalah *reques
 
 1. [Metode yang simpel](http://www.w3.org/TR/cors/#simple-method): GET, POST atau HEAD.
 2. [*Header* yang simpel](http://www.w3.org/TR/cors/#simple-*header*) -- *header* khusus yang diizinkan adalah:
+=======
+1. Safe requests.
+2. All the others.
+
+Safe Requests are simpler to make, so let's start with them.
+
+A request is safe if it satisfies two conditions:
+
+1. [Safe method](https://fetch.spec.whatwg.org/#cors-safelisted-method): GET, POST or HEAD
+2. [Safe headers](https://fetch.spec.whatwg.org/#cors-safelisted-request-header) -- the only allowed custom headers are:
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
     - `Accept`,
     - `Accept-Language`,
     - `Content-Language`,
@@ -120,21 +136,39 @@ A [*request* yang simpel](http://www.w3.org/TR/cors/#terminology) adalah *reques
 
 *request* lainnya akan dipertimbangkan "tidak simpel". Misalnya, *request* dengan metode `PUT` atau dengan `API-key` *header* HTTP tidak sesuai batasannya.
 
+<<<<<<< HEAD
 **Perbedaan yang mendasar adalah "*request* yang simpel" bisa dibuat menggunakan `<form>` atau `<script>`, tanpa menggunakan metode khusus apa saja.**
 
 Jadi, meski *server* sudah lama tetap bisa menerima *request* yang simpel.
 
 Bertentangan dengan itu, *request* dengan *header* tidak standar. contoh metode `DELETE` tidak bisa dibuat seperti ini. Jadi *server* lama mungkin berasumsi bahwa *request* ini berasal dari sumber istimewa, "karena situs web tidak bisa mengirimkan *request*".
+=======
+Any other request is considered "unsafe". For instance, a request with `PUT` method or with an `API-Key` HTTP-header does not fit the limitations.
+
+**The essential difference is that a safe request can be made with a `<form>` or a `<script>`, without any special methods.**
+
+So, even a very old server should be ready to accept a safe request.
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 Saat kita mencoba untuk membuat *request* tidak simpel, browser mengirimkan *request* khusus *"preflight"* yang menanyakan *server* -- apakah bisa untuk menerima *request cross-origin* atau tidak?
 
+<<<<<<< HEAD
 Dan, kecuali *server* secara eksplisit mengonfirmasi hal itu dengan *header*, maka *request* tidak simpel tidak akan dikirimkan.
 
 Sekarang kita akan membahasnya lebih lanjut.
+=======
+When we try to make a unsafe request, the browser sends a special "preflight" request that asks the server -- does it agree to accept such cross-origin requests, or not?
+
+And, unless the server explicitly confirms that with headers, a unsafe request is not sent.
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 ## *CORS* untuk *request* yang simpel
 
+<<<<<<< HEAD
 Jika *request* adalah *request cross-origin*, maka browser akan selalu menambahkan *header* `Origin` di dalam *request*. 
+=======
+## CORS for safe requests
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 
 Misalnya, jika kita *request* `https://anywhere.com/*request*` dari `https://javascript.info/page`, *header* akan seperti ini:
@@ -169,7 +203,11 @@ Access-Control-Allow-Origin: https://javascript.info
 
 ## *Header* respon
 
+<<<<<<< HEAD
 Untuk **request** cross-origin, secara default Javascript hanya dapat mengakses file yang disebut *header* respon simpel:
+=======
+For cross-origin request, by default JavaScript may only access so-called "safe" response headers:
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 - `*cache*-Control`
 - `Content-Language`
@@ -186,7 +224,11 @@ Tidak ada *header* `Content-Length` di daftar!
 *Header* ini berisi panjang respon lengkap. Jadi, jika mengunduh sesuatu dan ingin melacak persentase progres, maka diperlukan izin tambahan untuk mengakses *header* tersebut (lihat di bawah).
 ```
 
+<<<<<<< HEAD
 Untuk memberikan Javascript akses ke *header* respon lainnya, *server* harus mengirimkan *header*  `Access-Control-Expose-*header*s`. Ini berisi daftar yang dipisahkan dengan koma dari nama *header* tidak simpel yang seharusnya dibuat untuk bisa di akses. 
+=======
+To grant JavaScript access to any other response header, the server must send  `Access-Control-Expose-Headers` header. It contains a comma-separated list of unsafe header names that should be made accessible.
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 Contoh:
 
@@ -203,18 +245,31 @@ Access-Control-Expose-*header*s: Content-Length,API-Key
 
 Dengan *header* `Access-Control-Expose-headers`, skrip diizinkan untuk membaca *header* `Content-Length` dan `API-Key` dari respon. 
 
+<<<<<<< HEAD
 ## *Request* tidak simpel
+=======
+## "Unsafe" requests
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 Kita bisa menggunakan metode HTTP apa saja: bukan hanya `GET/POST`, tetapi juga `PATCH`, `DELETE` dan lainnya.
 
 Beberapa waktu yang lalu tidak ada orang yang membayangkan bahwa halaman web bisa membuat *request* seperti ini. Jadi masih ada servis web yang memperlakukan metode tidak standar sebagai sinyal: "Itu bukan browser". Mereka dapat memperhitungkannya saat memeriksa hak akses.
 
+<<<<<<< HEAD
 Jadi untuk menghindari kesalah pahaman, *request* tidak simpel -- yang tidak bisa diselesaikan di waktu yang lama, browser tidak akan membuat *request* tersebut secara langsung. Sebelum dikirimkan ke pendahuluan yang disebut *request* "preflight", meminta izin.
+=======
+So, to avoid misunderstandings, any "unsafe" request -- that couldn't be done in the old times, the browser does not make such requests right away. Before it sends a preliminary, so-called "preflight" request, asking for permission.
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 *Request* preflight menggunakan metode `OPTIONS`, tidak ada *body* dan dua *header*:
 
+<<<<<<< HEAD
 - *Header* `Access-Control-request-Method` memiliki metode *request* tidak simpel.
 - *Header* `Access-Control-request-headers` menyediakan daftar yang dipisahkan dengan koma dari *header* HTTP tidak simpel.
+=======
+- `Access-Control-Request-Method` header has the method of the unsafe request.
+- `Access-Control-Request-Headers` header provides a comma-separated list of its unsafe HTTP-headers.
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 Jika *server* setuju untuk melayani *request*, maka akan merespon dengan *body* kosong, status 200 dan *header*:
 
@@ -237,10 +292,17 @@ let response = await fetch('https://site.com/service.json', {
 });
 ```
 
+<<<<<<< HEAD
 Ada tiga alasan kenapa *request* bisa menjadi tidak simpel( cukup pilih satu) :
 - Metode `PATCH`.
 - `Content-Type` bukan salah satu dari: *header* `application/x-www-form-*URL*encoded`, `multipart/form-data`, `text/plain`.
 - `API-key` "tidak simpel".
+=======
+There are three reasons why the request is unsafe (one is enough):
+- Method `PATCH`
+- `Content-Type` is not one of: `application/x-www-form-urlencoded`, `multipart/form-data`, `text/plain`.
+- "Unsafe" `API-Key` header.
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 ### Langkah 1 (*request preflight*)
 
@@ -254,12 +316,21 @@ Access-Control-*request*-Method: PATCH
 Access-Control-*request*-*header*s: Content-Type,API-Key
 ```
 
+<<<<<<< HEAD
 - Metode: `OPTIONS`.
 - Path -- Sama persis dengan *request* utama: `/service.json`.
 - *header* khusus *cross-origin*:
     - `Origin` -- asal sumber.
     - `Access-Control-*request*-Method` -- metode *request*.
     - `Access-Control-*request*-*header*s` -- daftar yang dipisahkan dengan koma dari *header* tidak simpel.
+=======
+- Method: `OPTIONS`.
+- The path -- exactly the same as the main request: `/service.json`.
+- Cross-origin special headers:
+    - `Origin` -- the source origin.
+    - `Access-Control-Request-Method` -- requested method.
+    - `Access-Control-Request-Headers` -- a comma-separated list of "unsafe" headers.
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 ### Langkah 2 (respon *preflight*)
 *Server* harus merespon dengan status 200 dan *header*:
@@ -287,7 +358,11 @@ Jika ada *header* `Access-Control-Max-Age` dengan jumlah detik, maka izin *prefl
 
 ### Langkah 3 (*request* sebenarnya)
 
+<<<<<<< HEAD
 Saat *preflight* berhasil, browser akan membuat *request* utama. Algoritmanya sama dengan *request* yang simpel.
+=======
+When the preflight is successful, the browser now makes the main request. The algorithm here is the same as for safe requests.
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 *request* yang utama memiliki *header* `Origin` (karena *request* ini memang *cross-origin*)
 
@@ -353,11 +428,19 @@ Perlu dicatat: `Access-Control-Allow-Origin` dilarang untuk menggunakan bintang 
 
 ## Ringkasan
 
+<<<<<<< HEAD
 Dari sudut pandang browser, ada dua jenis *request cross-origin*: simpel dan lain lainnya.
 
 [*Request* yang simpel](http://www.w3.org/TR/cors/#terminology) harus memenuhi kondisi dibawah:
 - Metode: GET, POST atau HEAD.
 - *header* -- bisa kita atur jika:
+=======
+From the browser point of view, there are two kinds of cross-origin requests: "safe" and all the others.
+
+"Safe" requests must satisfy the following conditions:
+- Method: GET, POST or HEAD.
+- Headers -- we can set only:
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
     - `Accept`
     - `Accept-Language`
     - `Content-Language`
@@ -365,6 +448,7 @@ Dari sudut pandang browser, ada dua jenis *request cross-origin*: simpel dan lai
 
 Perbedaan mendasar dari *request* simpel bisa dilakukan sejak zaman kuno menggunakan *tag* `<form>` atau `<script>`, sedangkan yang tidak simpel tidak mungkin dijalankan oleh browser untuk waktu yang lama.
 
+<<<<<<< HEAD
 Jadi, Perbedaan praktis dari *request* yang simpel di kirimkan segera, dengan *header* `Origin`, sedangkan untuk yang lainnya browser membuat awalan *request "preflight"* , untuk meminta izin.
 
 **Untuk *request* yang simpel**
@@ -375,11 +459,19 @@ Jadi, Perbedaan praktis dari *request* yang simpel di kirimkan segera, dengan *h
 - ← Untuk *request* dengan kredensial, *server* harus diatur:
     - `Access-Control-Allow-Origin` menjadi nilai yang sama dengan `Origin`
     - `Access-Control-Allow-Credentials` menjadi `true`
+=======
+The essential difference is that safe requests were doable since ancient times using `<form>` or `<script>` tags, while unsafe were impossible for browsers for a long time.
+
+So, the practical difference is that safe requests are sent right away, with `Origin` header, while for the other ones the browser makes a preliminary "preflight" request, asking for permission.
+
+**For safe requests:**
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 Sebagai tambahan, untuk memberikan Javascript akses kepada *header* respon apapun kecuali `*cache*-Control`,  `Content-Language`, `Content-Type`, `Expires`, `Last-Modified` or `Pragma`, *server* harus mendaftarkan *header* yang diizinkan di *header* `Access-Control-Expose-headers`.
 
 **Untuk *request* tidak simpel, awalan *request "preflight"* diberikan sebelum *request* yang diminta:**
 
+<<<<<<< HEAD
 - → Browser mengirimkan *request* `OPTIONS` di *URL* yang sama, dengan *header*:
     - `Access-Control-request-Method` memiliki metode *request*.
     - `Access-Control-request-headers` mendaftarkan *header request* yang tidak simpel.
@@ -389,3 +481,15 @@ Sebagai tambahan, untuk memberikan Javascript akses kepada *header* respon apapu
      - `Access-Control-Max-Age` dengan jumlah detik untuk izin menyimpan di *cache*.
 
 - Lalu *request* yang sebenarnya di kirimkan, skema yang "simpel" sebelumnya akan diterapkan.
+=======
+**For unsafe requests, a preliminary "preflight" request is issued before the requested one:**
+
+- → The browser sends `OPTIONS` request to the same URL, with headers:
+    - `Access-Control-Request-Method` has requested method.
+    - `Access-Control-Request-Headers` lists unsafe requested headers.
+- ← The server should respond with status 200 and headers:
+    - `Access-Control-Allow-Methods` with a list of allowed methods,
+    - `Access-Control-Allow-Headers` with a list of allowed headers,
+    - `Access-Control-Max-Age` with a number of seconds to cache permissions.
+- Then the actual request is sent, the previous "safe" scheme is applied.
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5

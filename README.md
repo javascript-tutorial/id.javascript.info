@@ -14,7 +14,11 @@ Kami juga ingin berkolaborasi dengan orang lain di tutorial ini.
 
 Apa ada yang salah? Apa ada topik yang hilang? Jelaskan ke semua orang, ajukan sebagai PR 👏
 
+<<<<<<< HEAD
 **Kamu bisa edit teks di editor apapun.** Tutorial ini memakai format "markdown" yang canggih, mudah dipahami. Jika kamu mau lihat bagaimana tampilan on-site-nya, ada server untuk menjalankan tutorial secara lokal di <https://github.com/javascript-tutorial/server>.  
+=======
+**You can edit the text in any editor.** The tutorial uses enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 Daftar kontributor tersedia di <https://javascript.info/about#contributors>.
 
@@ -49,6 +53,6 @@ Beberapa tips untuk penerjemah:
 ## Jalankan repo secara lokal
 Jika penerjemah ingin melihat repo dijalankan secara lokal, penerjemah dapat menggunakan https://github.com/javascript-tutorial/server.
 
----
+---  
 ♥  
 Ilya Kantor @iliakan

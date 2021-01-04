@@ -114,4 +114,10 @@ Mari kita jelaskan langkah demi langkah:
 
 Pada akhirnya kita memiliki hasil (sebagai string atau blob, apa pun yang Anda inginkan), dan pelacakan kemajuan dalam prosesnya.
 
+<<<<<<< HEAD
 Sekali lagi, harap diperhatikan, itu bukan untuk kemajuan _upload_ (sekarang belum ada cara dengan `fetch`), hanya untuk kemajuan _download_.
+=======
+Once again, please note, that's not for *upload* progress (no way now with `fetch`), only for *download* progress.
+
+Also, if the size is unknown, we should check `receivedLength` in the loop and break it once it reaches a certain limit. So that the `chunks` won't overflow the memory. 
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5

@@ -51,7 +51,7 @@ DOM menggambarkan HTML seperti struktur pohon pada tag. Begini tampilannya:
 <div class="domtree"></div>
 
 <script>
-let node1 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n    "},{"name":"TITLE","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"About elk"}]},{"name":"#text","nodeType":3,"content":"\n  "}]},{"name":"#text","nodeType":3,"content":"\n  "},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk."}]}]}
+let node1 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  "},{"name":"TITLE","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"About elk"}]},{"name":"#text","nodeType":3,"content":"\n"}]},{"name":"#text","nodeType":3,"content":"\n"},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk.\n\n\n"}]}]}
 
 drawHtmlTree(node1, 'div.domtree', 690, 320);
 </script>
@@ -141,8 +141,13 @@ let node4 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node4, 'div.domtree', 690, 360);
 </script>
 
+<<<<<<< HEAD
 ````warn header="Tabel selalu memiliki `<tbody>`"
 “Kasus khusus” yang menarik adalah tabel. Berdasarkan spesifikasi DOM, mereka harus memiliki tag <tbody>, tetapi teks HTML dapat menghilangkannya. Kemudian browser membuat <tbody> di DOM secara otomatis.
+=======
+````warn header="Tables always have `<tbody>`"
+An interesting "special case" is tables. By DOM specification they must have `<tbody>` tag, but HTML text may omit it. Then the browser creates `<tbody>` in the DOM automatically.
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 Untuk HTML:
 
@@ -159,8 +164,13 @@ let node5 = {"name":"TABLE","nodeType":1,"children":[{"name":"TBODY","nodeType":
 drawHtmlTree(node5,  'div.domtree', 600, 200);
 </script>
 
+<<<<<<< HEAD
 Anda lihat? `<tbody>` muncul entah dari mana. Kita harus mengingat ini saat bekerja dengan tabel untuk menghindari kejutan.
 
+=======
+You see? The `<tbody>` appeared out of nowhere. We should keep this in mind while working with tables to avoid surprises.
+````
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 ## Jenis-jenis node lain
 
@@ -187,7 +197,7 @@ Contoh, komentar:
 <div class="domtree"></div>
 
 <script>
-let node6 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[]},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk.\n    "},{"name":"OL","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n      "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"An elk is a smart"}]},{"name":"#text","nodeType":3,"content":"\n      "},{"name":"#comment","nodeType":8,"content":"comment"},{"name":"#text","nodeType":3,"content":"\n      "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"...and cunning animal!"}]},{"name":"#text","nodeType":3,"content":"\n    "}]},{"name":"#text","nodeType":3,"content":"\n  \n"}]}]};
+let node6 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[]},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk.\n  "},{"name":"OL","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n    "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"An elk is a smart"}]},{"name":"#text","nodeType":3,"content":"\n    "},{"name":"#comment","nodeType":8,"content":"comment"},{"name":"#text","nodeType":3,"content":"\n    "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"...and cunning animal!"}]},{"name":"#text","nodeType":3,"content":"\n  "}]},{"name":"#text","nodeType":3,"content":"\n\n\n"}]}]};
 
 drawHtmlTree(node6, 'div.domtree', 690, 500);
 </script>
@@ -198,7 +208,11 @@ Kita mungkin berpikir -- kenapa komentar ditambahkan ke DOM? komentar tersebut t
 
 **Semuanya di dalam HTML, bahkan komentar, akan menjadi bagian dari DOM.**
 
+<<<<<<< HEAD
 Bahkan direktif `<!DOCTYPE ...>` di awal HTML juga merupakan node DOM. Letaknya di pohon DOM tepat sebelum `<html>`. Kita tidak akan menyentuh node itu, Kita bahkan tidak menggambarnya pada diagram karena alasan itu, tetapi node itu ada.
+=======
+Even the `<!DOCTYPE...>` directive at the very beginning of HTML is also a DOM node. It's in the DOM tree right before `<html>`. Few people know about that. We are not going to touch that node, we even don't draw it on diagrams, but it's there.
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 Objek `document` yang mewakili seluruh dokumen, secara formal, juga merupakan node DOM.
 

@@ -57,7 +57,11 @@ alert( getMaxSubSum([1, 2, 3]) ); // 6
 alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 ```
 
+<<<<<<< HEAD
 Solusi tersebut memiliki waktu penyelesaian [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation). Dalam kata lain, jika kita menambah ukuran *array* 2 kali lipat, algoritma akan bekerja 4 kali lipat lebih lama.
+=======
+The solution has a time complexity of [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation). In other words, if we increase the array size 2 times, the algorithm will work 4 times longer.
+>>>>>>> 039716de8a96f49b5fccd7aed5effff2e719dfe5
 
 Untuk *array* yang besar (1000, 10000 *item* atau lebih) algoritma yang demikian akan mengarah pada kelambanan yang parah.
 
