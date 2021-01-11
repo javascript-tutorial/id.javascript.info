@@ -277,9 +277,15 @@ Kita meliput tiga cara membuat fungsi di JavaScript:
     ```
 
 
+<<<<<<< HEAD
 - Fungsi bisa punya variabel lokal: mereka yang dideklarasi dalam badannya. Variabel macam itu cuma terlihat di dalam fungsi.
 - Parameter bisa punya nilai default: `function sum(a = 1, b = 2) {...}`.
 - Fungsi selalu mengembalikan sesuatu. Jika tak ada pernyataan `return`, maka kembaliannya `undefined`.
+=======
+- Functions may have local variables: those declared inside its body or its parameter list. Such variables are only visible inside the function.
+- Parameters can have default values: `function sum(a = 1, b = 2) {...}`.
+- Functions always return something. If there's no `return` statement, then the result is `undefined`.
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
 Detil: lihat <info:function-basics>, <info:arrow-functions-basics>.
 

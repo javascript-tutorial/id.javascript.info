@@ -9,7 +9,11 @@ Jadi pertama, kita lihat bagaimana kita menyisipkan script ke laman web. Untuk l
 
 ## Tag "script"
 
+<<<<<<< HEAD
 Program JavaScript bisa disisipkan ke dalam bagian mana saja dari dokumen HTML dengan bantuan tag `<script>`.
+=======
+JavaScript programs can be inserted almost anywhere into an HTML document using the `<script>` tag.
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
 Contoh:
 

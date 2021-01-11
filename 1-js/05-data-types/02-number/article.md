@@ -383,7 +383,11 @@ Javascript memiliki objek [Math](https://developer.mozilla.org/en/docs/Web/JavaS
 Beberapa contoh:
 
 `Math.random()`
+<<<<<<< HEAD
 : Mengembalikan angka acak dari 0 hingga 1 (tidak termasuk 1)
+=======
+: Returns a random number from 0 to 1 (not including 1).
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
     ```js run
     alert( Math.random() ); // 0.1234567894322s
@@ -400,7 +404,11 @@ Beberapa contoh:
     ```
 
 `Math.pow(n, power)`
+<<<<<<< HEAD
 : Pengembalian `n` meningkatkan daya yang diberikan
+=======
+: Returns `n` raised to the given power.
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
     ```js run
     alert( Math.pow(2, 10) ); // 2 in power 10 = 1024

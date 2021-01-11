@@ -1,7 +1,11 @@
 
 # Iterables / Bisa di iterasi
 
+<<<<<<< HEAD
 Objek yang *bisa di iterasi* adalah sebuah generalisasi dari sebuah array. Konsep itu membolehkan kita untuk membuat objek apapun yang bisa digunakan didalam perulangan `for..of`.
+=======
+*Iterable* objects are a generalization of arrays. That's a concept that allows us to make any object useable in a `for..of` loop.
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
 Tentu saja, Array bisa di iterasi. Tapi disana terdapat objek bawaan (built-in objek) lainnya, yang tentu saja bisa di iterasi. Contoh string juga bisa di iterasi.
 
@@ -26,7 +30,11 @@ let range = {
 // for(let num of range) ... num=1,2,3,4,5
 ```
 
+<<<<<<< HEAD
 Untuk bisa membuat `range` bisa diiterasi (dan membuat `for..of` bekerja) kita harus menambahkan sebuah metode kedalam objeknya bernama `Symbol.iterator` (Simbol built-in spesian yang hanya digunakan untuk hal itu).
+=======
+To make the `range` object iterable (and thus let `for..of` work) we need to add a method to the object named `Symbol.iterator` (a special built-in symbol just for that).
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
 1. Ketika `for.of` dimulai, itu akan memanggil metodenya sekali (atau error jika tidak ditemukan). Metodenya haruslah mengembalikan sebuah *iterator* -- sebuah objek dengan metode `next`.
 2. Selanjutnya, `for..of` bekerja *hanya bila itu mengembalikan objek*.
@@ -140,7 +148,11 @@ for (let char of str) {
 
 ## Memanggil sebuah iterator secara jelas
 
+<<<<<<< HEAD
 Untuk pemahaman lebih dalam, kita lihat bagaimana untuk menggunakan sebuah iterator secara eksplisit.
+=======
+For deeper understanding, let's see how to use an iterator explicitly.
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
 Kita akan mengiterasi didalam sebuah string dengan cara yang sama seperti `for..of`, tapi dengan pemanggilan yang langsung. Kode ini membuat sebuah iterator string dan mendapatkan nilai dari itu secara "manual":
 
@@ -165,12 +177,20 @@ Hal itu sangat jarang dibutuhkan, tapi akan memberikan kita kontrol lebih terhad
 
 ## Bisa di iterasi dan seperti array [#array-like]
 
+<<<<<<< HEAD
 Terdapat dua istilah resmi yang terlihat mirip, akan tetapi sangat berbeda. Perhatikan mereka baik-baik dan pahamilah untuk terhindar dari kebingungan.
+=======
+Two official terms look similar, but are very different. Please make sure you understand them well to avoid the confusion.
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
 - *Iterables/bisa di iterasi* adalah objek yang mengimplementasikan metode `Symbol.iterator`, seperti yang dideskripsikan diatas.
 - *Array-likes/Seperti array* adalah objek yang memiliki indeks dan `length`, jadi mereka terlihat seperti array.
 
+<<<<<<< HEAD
 ketika kita menggunakan javascript untuk melakukan prakter didalam browser atau lingkungan pengembangan lainnya, kita mungkin bertemu objek yang bisa diiterasi atau yang seperti array, atau keduanya.
+=======
+When we use JavaScript for practical tasks in a browser or any other environment, we may meet objects that are iterables or array-likes, or both.
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
 Contoh, string adalah keduanya, bisa diiterasi (`for..of` dapat bekerja) dan seperti array(mempunyai indeks angka dan `length`(panjang)).
 
@@ -302,7 +322,7 @@ Objek yang bisa digunakan didalam `for..if` dipanggil dengan *iterable*.
 - Iterator string tahu tentang karakter pengganti (surrogate pairs).
 =======
 - Technically, iterables must implement the method named `Symbol.iterator`.
-    - The result of `obj[Symbol.iterator]()` is called an *iterator*. It handles the further iteration process.
+    - The result of `obj[Symbol.iterator]()` is called an *iterator*. It handles further iteration process.
     - An iterator must have the method named `next()` that returns an object `{done: Boolean, value: any}`, here `done:true` denotes the end of the iteration process, otherwise the `value` is the next value.
 - The `Symbol.iterator` method is called automatically by `for..of`, but we also can do it directly.
 - Built-in iterables like strings or arrays, also implement `Symbol.iterator`.

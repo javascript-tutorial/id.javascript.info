@@ -29,7 +29,11 @@ Untuk kedua kasus di atas `regexp` menjadi instance dari built-in object kelas `
 
 Perbedaan utama antara kedua syntax ini adalah garis miring `pattern:/.../` melarang penyisipan ekspresi (seperti string dengan `${...}`). Mereka benar-benar static.
 
+<<<<<<< HEAD
 Garis miring digunakan saat kita tahu ekspresi regular saat menulis kode -- dan itu situasi paling umum. Sedangkan `RegExp baru`, lebih sering dipakai saat kita harus membuat regexp baru "on the fly" dari string yang dihasilkan secara dinamis. Misalnya:
+=======
+Slashes are used when we know the regular expression at the code writing time -- and that's the most common situation. While `new RegExp` is more often used when we need to create a regexp "on the fly" from a dynamically generated string. For instance:
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
 ```js
 let tag = prompt("What tag do you want to find?", "h2");
@@ -56,7 +60,11 @@ Cuma ada 6 di antaranya di JavaScript:
 : Menyalakan mode "dotall", yang membolehkan dot `pattern:.` untuk cocok dengan karakter baris-baru `\n` (dibahas di bab <info:regexp-character-classes>).
 
 `pattern:u`
+<<<<<<< HEAD
 : Menyalakan dukungan penuh unicode. Flag ini menyalakan pemrosesan yang benar dari pasangan pengganti. Lebih lanjut tentang itu di bab <info:regexp-unicode>.
+=======
+: Enables full Unicode support. The flag enables correct processing of surrogate pairs. More about that in the chapter <info:regexp-unicode>.
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
 `pattern:y`
 : Mode "sticky": mencari posisi tepat di dalam teks  (dibahas di bab <info:regexp-sticky>)

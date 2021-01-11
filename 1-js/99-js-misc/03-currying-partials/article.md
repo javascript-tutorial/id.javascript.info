@@ -155,7 +155,7 @@ function curried(...args) {
   if (args.length >= func.length) { // (1)
     return func.apply(this, args);
   } else {
-    return function pass(...args2) { // (2)
+    return function(...args2) { // (2)
       return curried.apply(this, args.concat(args2));
     }
   }
@@ -164,6 +164,7 @@ function curried(...args) {
 
 Ketika kita menjalankannya, ada dua cabang eksekusi `if`:
 
+<<<<<<< HEAD
 1. Panggil sekarang: jika `args` diteruskan, hitungannya sama dengan fungsi asli yang ada dalam definisinya (`func.length`) atau lebih panjang, lalu teruskan saja panggilannya.
 2. Dapatkan sebagian: jika tidak, `func` belum dipanggil. Sebagai gantinya, pembungkus lain `pass` dikembalikan, yang akan menerapkan kembali `curried` dengan menyediakan argumen sebelumnya dengan yang baru. Kemudian, pada panggilan baru, kita akan mendapatkan parsial baru (jika argumennya tidak cukup) atau, akhirnya, sebuah hasilnya.
 
@@ -176,6 +177,12 @@ Untuk memanggil `curried(1)(2)(3)`:
 3. Pembungkus `pass` dipanggil lagi dengan `(3)`,  untuk pemanggilan berikutnya `pass(3)` mengambil argumen sebelumnya (`1`, `2`) dan menambahkan `3`, membuat panggilan `curried(1, 2, 3)` -- terdapat argumen `3` pada akhirnya, kemudian mereka akan diberikan ke fungsi aslinya.
 
 Jika masih belum jelas, cukup lacak lagi urutan pemanggilan dalam benak Anda atau coba tulis di kertas.
+=======
+1. If passed `args` count is the same or more than the original function has in its definition (`func.length`) , then just pass the call to it using `func.apply`. 
+2. Otherwise, get a partial: we don't call `func` just yet. Instead, another wrapper is returned, that will re-apply `curried` providing previous arguments together with the new ones. 
+
+Then, if we call it, again, we'll get either a new partial (if not enough arguments) or, finally, the result.
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
 ```smart header="Fixed-length functions only"
 Currying membutuhkan fungsi untuk memiliki sejumlah argumen tetap.
