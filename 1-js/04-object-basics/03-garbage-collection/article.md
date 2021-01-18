@@ -14,10 +14,17 @@ Sederhananya, sebuah nilai yang "terjangkau" adalah mereka yang masih dapat diak
 
     Contohnya:
 
+<<<<<<< HEAD
     - Variabel lokal dan parameter-parameter dari fungsi (yang di eksekusi) saat ini.
     - Variabel-variabel dan parameter-parameter dari fungsi-fungsi lain yang terkait dengan rantai panggilan bersarang saat ini.
     - Variabel-variabel global.
     - (ada beberapa hal lain, yang internal juga)
+=======
+    - The currently executing function, its local variables and parameters.
+    - Other functions on the current chain of nested calls, their local variables and parameters.
+    - Global variables.
+    - (there are some other, internal ones as well)
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
     Nilai-nilai tadi disebut *roots*.
 

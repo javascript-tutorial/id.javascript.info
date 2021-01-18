@@ -94,7 +94,13 @@ class CoffeeMachine {
   _waterAmount = 0;
 
   set waterAmount(value) {
+<<<<<<< HEAD
     if (value < 0) throw new Error('Negative water');
+=======
+    if (value < 0) {
+      value = 0;
+    }
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
     this._waterAmount = value;
   }
 
@@ -114,7 +120,11 @@ let coffeeMachine = new CoffeeMachine(100);
 coffeeMachine.waterAmount = -10; // Error: Negative water
 ```
 
+<<<<<<< HEAD
 Sekarang aksesnya terkendali, jadi pengaturan air di bawah nol gagal.
+=======
+Now the access is under control, so setting the water amount below zero becomes impossible.
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 ## _Read-only_ "power"
 
@@ -155,7 +165,7 @@ class CoffeeMachine {
   _waterAmount = 0;
 
   *!*setWaterAmount(value)*/!* {
-    if (value < 0) throw new Error("Negative water");
+    if (value < 0) value = 0;
     this._waterAmount = value;
   }
 
@@ -195,19 +205,28 @@ class CoffeeMachine {
 */!*
 
 *!*
-  #checkWater(value) {
-    if (value < 0) throw new Error("Negative water");
-    if (value > this.#waterLimit) throw new Error("Too much water");
+  #fixWaterAmount(value) {
+    if (value < 0) return 0;
+    if (value > this.#waterLimit) return this.#waterLimit;
   }
 */!*
+
+  setWaterAmount(value) {
+    this.#waterLimit = this.#fixWaterAmount(value);
+  }
 
 }
 
 let coffeeMachine = new CoffeeMachine();
 
 *!*
+<<<<<<< HEAD
 // tidak dapat mengakses privat dari luar kelas
 coffeeMachine.#checkWater(); // Error
+=======
+// can't access privates from outside of the class
+coffeeMachine.#fixWaterAmount(123); // Error
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 coffeeMachine.#waterLimit = 1000; // Error
 */!*
 ```
@@ -227,7 +246,11 @@ class CoffeeMachine {
   }
 
   set waterAmount(value) {
+<<<<<<< HEAD
     if (value < 0) throw new Error('Negative water');
+=======
+    if (value < 0) value = 0;
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
     this.#waterAmount = value;
   }
 }

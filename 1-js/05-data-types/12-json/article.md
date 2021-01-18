@@ -103,9 +103,15 @@ JSON adalah spessifikasi yang hanya terdiri dari data dan tidak terlekat bahasa 
 
 Properti-properti objek yang spesifik pada JavaScript tersebut yakni:
 
+<<<<<<< HEAD
 - Properti fungsi (metode-metode).
 - Properti simbolis.
 - Propert yang menyimpan `undefined`.
+=======
+- Function properties (methods).
+- Symbolic keys and values.
+- Properties that store `undefined`.
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 ```js run
 let user = {
@@ -275,6 +281,7 @@ name:         John
 name:         Alice
 place:        [object Object]
 number:       23
+occupiedBy: [object Object]
 */
 ```
 
@@ -327,7 +334,13 @@ alert(JSON.stringify(user, null, 2));
 */
 ```
 
+<<<<<<< HEAD
 Parameter `space` digunakan hanya untuk pencatatan dan tujuan-tujuan yang bertujuan menghasilkan *output* yang apik.
+=======
+The third argument can also be a string. In this case, the string is used for indentation instead of a number of spaces.
+
+The `space` parameter is used solely for logging and nice-output purposes.
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 ## "toJSON" khusus
 

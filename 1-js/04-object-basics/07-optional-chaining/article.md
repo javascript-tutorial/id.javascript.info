@@ -18,6 +18,7 @@ Jika kamu baru saja membaca tutorial dan belajar Javascript, mungkin masalahnya 
 <<<<<<< HEAD
 Contoh, beberapa dari pengguna kita punya alamat, tapi beberapa tidak memberikannya. Lalu kita tidak bisa dengan mudah menggunakan `user.address.street`:
 
+<<<<<<< HEAD
 ```js run
 let user = {}; // penggunanya tidak memiliki alamat
 =======
@@ -25,6 +26,9 @@ As an example, consider objects for user data. Most of our users have addresses 
 =======
 As an example, let's say we have `user` objects that hold the information about our users. 
 >>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
+=======
+As an example, let's say we have `user` objects that hold the information about our users.
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 Most of our users have addresses in `user.address` property, with the street `user.address.street`, but some did not provide them.
 
@@ -37,6 +41,7 @@ let user = {}; // a user without "address" property
 alert(user.address.street); // Error!
 ```
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 Atau, didalam pengembangan, kita ingin untuk mendapatkan informasi tentang sebuah elemen didalam halaman, tapi elemennya tidak ada:
@@ -53,6 +58,9 @@ Contoh:
 That's the expected result, JavaScript works like this. As `user.address` is `undefined`, the attempt to get `user.address.street` fails with an error. Although, in many practical cases we'd prefer to get `undefined` instead of an error here (meaning "no street").
 =======
 That's the expected result. JavaScript works like this. As `user.address` is `undefined`, an attempt to get `user.address.street` fails with an error. 
+=======
+That's the expected result. JavaScript works like this. As `user.address` is `undefined`, an attempt to get `user.address.street` fails with an error.
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 In many practical cases we'd prefer to get `undefined` instead of an error here (meaning "no street").
 >>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
@@ -88,7 +96,7 @@ let user = {}; // user has no address
 alert(user.address ? user.address.street ? user.address.street.name : null : null);
 ```
 
-That's just awful, one may even have problems understanding such code. 
+That's just awful, one may even have problems understanding such code.
 
 <<<<<<< HEAD
 Before the optional chaining `?.` was added to the language, people used the `&&` operator for such cases:
@@ -120,10 +128,14 @@ That's why the optional chaining `?.` was added to the language. To solve this p
 ## Rantai opsional
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Rantai opsional `?.` menghentikan evaluasi dan mengembalikan `undefined` jika bagian sebelum `?.` adalah `undefined` atau `null`.
 =======
 The optional chaining `?.` stops the evaluation if the part before `?.` is `undefined` or `null` and returns that part.
 >>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
+=======
+The optional chaining `?.` stops the evaluation if the value before `?.` is `undefined` or `null` and returns `undefined`.
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 **Selanjutnya di artikel ini, untuk meringkas, kita akan bilang bahwa sesuatu "ada" jika itu bukan `null` dan bukan `undefined`.**
 
@@ -133,8 +145,8 @@ Ini ada cara teraman untuk mengakses `user.address.street`:
 =======
 =======
 In other words, `value?.prop`:
-- is the same as `value.prop` if `value` exists,
-- otherwise (when `value` is `undefined/null`) it returns that `value`.
+- works as `value.prop`, if `value` exists,
+- otherwise (when `value` is `undefined/null`) it returns `undefined`.
 
 >>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 Here's the safe way to access `user.address.street` using `?.`:
@@ -172,11 +184,15 @@ In the example above, `user?.address.street` allows only `user` to be `null/unde
 
 Disisi lain, jika `user` ada, lalu itu harus memiliki properti `user.address`, sebaliknya `user?.address.street` memberikan error pada titik kedua.
 
+<<<<<<< HEAD
 ```warn header="Jangan terlalu berlebihan menggunakan rantai opsional"
 Kita harus menggunakan `?.` hanya dimana sesuatu itu tidak apa-apa bila tidak ada.
 =======
 E.g. in `user?.address.street.name` the `?.` allows `user` to be `null/undefined`, but it's all it does. Further properties are accessed in a regular way. If we want some of them to be optional, then we'll need to replace more `.` with `?.`.
 >>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
+=======
+E.g. in `user?.address.street.name` the `?.` allows `user` to safely be `null/undefined` (and returns `undefined` in that case), but that's only for `user`. Further properties are accessed in a regular way. If we want some of them to be optional, then we'll need to replace more `.` with `?.`.
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 <<<<<<< HEAD
 Contoh, jika berdasarkan logika koding kita objek `user` harus ada, tapi `address` bersifat opsional, lalu `user.address?.street` akan lebih baik.
@@ -275,18 +291,22 @@ Then `?.()` checks the left part: if the admin function exists, then it runs (th
 Sintaks `?.[]` juga bekerja, jika kita ingin menggunakan kurung siku `[]` untuk mengakses properti daripada dot `.`. Sama seperti kasus sebelumnya, hal itu akan memperbolehkan untuk membaca properti dari sebuah objek yang mungkin tidak ada.
 
 ```js run
+let key = "firstName";
+
 let user1 = {
   firstName: "John"
 };
 
+<<<<<<< HEAD
 let user2 = null; // Bayangkan, kita tidak bisa mengijinkan usernya.
 
 let key = "firstName";
+=======
+let user2 = null; 
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 alert( user1?.[key] ); // John
 alert( user2?.[key] ); // undefined
-
-alert( user1?.[key]?.something?.not?.existing); // undefined
 ```
 
 Juka kita bisa menggunakan `?.` dengan `delete`:
@@ -343,7 +363,11 @@ Rantai dari `?.` membolehkan untuk mengakses secara aman pada properti bercabang
 <<<<<<< HEAD
 Terlebih, kita harusnya menggunakan `?.` secara hati-hati, hanya dimana itu tidak apa-apa jika bagian kirinya tidak ada.
 
+<<<<<<< HEAD
 Jadi hal itu tidak akan menyembunyikan error dari jika, jika mereka terjadi.
 =======
 Still, we should apply `?.` carefully, only where it's acceptable that the left part doesn't to exist. So that it won't hide programming errors from us, if they occur.
 >>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
+=======
+Still, we should apply `?.` carefully, only where it's acceptable that the left part doesn't exist. So that it won't hide programming errors from us, if they occur.
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311

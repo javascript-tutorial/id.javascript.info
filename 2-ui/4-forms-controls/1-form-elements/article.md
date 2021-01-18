@@ -175,12 +175,19 @@ itu hanya menyimpan HTML yang mulanya ada di halaman, bukan nilai saat ini.
 
 Sebuah elemen `<select>` mempunyai 3 properti penting:
 
+<<<<<<< HEAD
 1. `select.options` -- adalah koleksi dari `<option>` sub-element,
 2. `select.value` -- adalah nilai saat ini yang dipilih(selected) `<option>`,
 3. `select.selectedIndex` -- adalah nomor yang saat ini dipilih(selected) `<option>`.
+=======
+1. `select.options` -- the collection of `<option>` subelements,
+2. `select.value` -- the *value* of the currently selected `<option>`,
+3. `select.selectedIndex` -- the *number* of the currently selected `<option>`.
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 Mereka menyediakan 3 cara berbeda untuk mengatur nilai pada `<select>`:
 
+<<<<<<< HEAD
 1. Mencari element `<option>` yang bersangkutan dan atur `option.selected` menjadi `true`.
 2. Atur `select.value`ke nilai.
 3. Atur `select.selectedIndex` ke nomor dari option.
@@ -188,6 +195,13 @@ Mereka menyediakan 3 cara berbeda untuk mengatur nilai pada `<select>`:
 Cara pertama adalah yang paling jelas, tetapi cara `(2)` dan `(3)` biasanya lebih nyaman.
 
 Lihat contoh berikut:
+=======
+1. Find the corresponding `<option>` element (e.g. among `select.options`) and set its `option.selected` to `true`.
+2. If we know a new value: set `select.value` to the new value.
+3. If we know the new option number: set `select.selectedIndex` to that number.
+
+Here is an example of all three methods:
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 ```html run
 <select id="select">
@@ -197,18 +211,32 @@ Lihat contoh berikut:
 </select>
 
 <script>
+<<<<<<< HEAD
   // semua 3 baris kode melakukan hal yang sama
   select.options[2].selected = true;
+=======
+  // all three lines do the same thing
+  select.options[2].selected = true; 
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
   select.selectedIndex = 2;
   select.value = 'banana';
+  // please note: options start from zero, so index 2 means the 3rd option.
 </script>
 ```
 
+<<<<<<< HEAD
 Tidak seperti kontrol pada umumnya, `<select>` membolehkan memilih banyak opsi sekaligus jika memiliki atribut`multiple`.Fitur itu jarang digunakan. 
 
 Jika anda harus, maka gunakan cara pertama: tambah/hapus `selected`properti dari `<option>` sub-element.
 
 Kita bisa mendapatkan koleksinya sebagai `select.options`, misalnya:
+=======
+Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. This attribute is rarely used though.
+
+For multiple selected values, use the first way of setting values: add/remove the `selected` property from `<option>` subelements.
+
+Here's an example of how to get selected values from a multi-select:
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 ```html run
 <select id="select" *!*multiple*/!*>
@@ -231,31 +259,47 @@ Penjelasan lengkap dari elemen`<select>` tersedia di <https://html.spec.whatwg.o
 
 ### new Option
 
+<<<<<<< HEAD
 Ini jarang digunakan. Namun masih ada hal yang menarik.
 
 Di dalam [penjelasan](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) disana ada sintak pendek yang bagus untuk membuat elemen `<option>`:
+=======
+In the [specification](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) there's a nice short syntax to create an `<option>` element:
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 ```js
 option = new Option(text, value, defaultSelected, selected);
 ```
 
-Parameters:
+This syntax is optional. We can use `document.createElement('option')` and set attributes manually. Still, it may be shorter, so here are the parameters:
 
 - `text` -- adalah teks didalam option,
 - `value` -- adalah nilai option,
 - `defaultSelected` -- jika `true`, maka `selected` HTML-attribute dibuat,
 - `selected` -- jika `true`, maka option nya *selected*.
 
+<<<<<<< HEAD
 Disana mungkin sedikit bingung tentang `defaultSelected` dan `selected`. That's simple: `defaultSelected` *set* HTML-attribute, dengan itu kita bisa dapat menggunakan  `option.getAttribute('selected')`. Dan `selected` - baik opsi *selected* atau tidak, itu yang lebih penting. Biasanya kedua nilai baik di *set* ke `true` atau tidak di *set* (sama dengan `false`).
 
 Misalnya:
+=======
+The difference between `defaultSelected` and `selected` is that `defaultSelected` sets the HTML-attribute (that we can get using `option.getAttribute('selected')`, while `selected` sets whether the option is selected or not.
+
+In practice, we usually should set both values to `true` or `false` (or omit, that's the same as `false`).
+
+For instance, here's a new "unselected" option:
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 ```js
 let option = new Option("Text", "value");
 // creates <option value="value">Text</option>
 ```
 
+<<<<<<< HEAD
 Elemen yang sama yang terpilih/*selected*:
+=======
+The same option, but selected:
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 ```js
 let option = new Option("Text", "value", true, true);

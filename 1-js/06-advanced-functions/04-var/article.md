@@ -49,7 +49,11 @@ if (true) {
 }
 
 *!*
+<<<<<<< HEAD
 alert(test); // Error: test tidak didefinisikan
+=======
+alert(test); // ReferenceError: test is not defined
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 */!*
 ```
 
@@ -79,10 +83,14 @@ function sayHi() {
 
 sayHi();
 <<<<<<< HEAD
+<<<<<<< HEAD
 alert(phrase); // Error: frasa tidak terdefinisi (periksa Developer Console)
 =======
 alert(phrase); // Error: phrase is not defined
 >>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
+=======
+alert(phrase); // ReferenceError: phrase is not defined
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 ```
 
 Seperti yang bisa kita lihat `var` menembus `if`, `for` atau blok kode lainnya. Itu karena sejak dahulu di blok Javascript tidak memiliki Lingkungan Leksikal. dan `var` adalah sisanya. 
@@ -223,8 +231,13 @@ Disini ekspresi fungsi dibuat dan segera dipangil. Sehingga kode dieksekusi sege
 
 Fungsi ekspresi dibungkus dengan tanda kurung `(function {...})`, karena ketika Javascript bertemu `"function"` dalam aliran kode utama, ia memahaminya sebagai awal dari Deklarasi Fungsi. tetapi sebuah Deklarasi Fungsi harus memiliki nama, sehingga kode seperti ini akan menghasilkan error:
 ```js run
+<<<<<<< HEAD
 // mencoba untuk mendeklarasikan dan langsung memanggil fungsinya
 function() { // <-- Error: Statmen Function membutuhkan sebuah nama fungsi
+=======
+// Tries to declare and immediately call a function
+function() { // <-- SyntaxError: Function statements require a function name
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
   var message = "Hello";
 

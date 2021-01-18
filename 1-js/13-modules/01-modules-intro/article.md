@@ -258,7 +258,11 @@ Bandingkan dengan kode skrip dibawah:
 
 <script>
 *!*
+<<<<<<< HEAD
   alert(typeof button); // Error: button is undefined, the script can't see elements below(Error: tombol tidak didefinisikan, kode skrip tidak bisa melihat elemen dibawahnya)
+=======
+  alert(typeof button); // button is undefined, the script can't see elements below
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 */!*
   // regular scripts run immediately, before the rest of the page is processed(kode skrip biasa dijalankan langsung, sebelum sisa dari halaman diproses)
 </script>

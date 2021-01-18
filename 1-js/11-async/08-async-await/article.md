@@ -139,6 +139,12 @@ Kita dapat membungkusnya kedalam fungsi async anonymous, seperti ini:
   ...
 })();
 ```
+<<<<<<< HEAD
+=======
+
+P.S. New feature: starting from V8 engine version 8.9+, top-level await works in [modules](info:modules).
+````
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 `````
 
