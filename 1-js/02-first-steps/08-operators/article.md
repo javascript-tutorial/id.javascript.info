@@ -107,7 +107,16 @@ Ini adalah contoh yang lebih rumit:
 alert(2 + 2 + '1' ); // "41" dan bukan "221"
 ```
 
+<<<<<<< HEAD
 Disini, operator bekerja secara bergantian. Pertama `+` menambahkan dua angka, jadi akan menghasilkan `4`, lalu selanjutnya `+` menambahkan string `1` kedalamnya, jadi akan menjadi seperti `4 + '1' = 41`.
+=======
+Here, operators work one after another. The first `+` sums two numbers, so it returns `4`, then the next `+` adds the string `1` to it, so it's like `4 + '1' = '41'`.
+
+```js run
+alert('1' + 2 + 2); // "122" and not "14"
+```
+Here, the first operand is a string, the compiler treats the other two operands as strings too. The `2` gets concatenated to `'1'`, so it's like `'1' + 2 = "12"` and `"12" + 2 = "122"`.
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 Operator `+` hanyalah satu-satunya operator yang mendukung penggunaan string dengan cara semacan itu. Operator aritmatika lainnya hanya bekerja dengan angka dan selalu mengubah operannya menjadi angka.
 
@@ -221,7 +230,11 @@ alert( x ); // 5
 
 Fakta dari `=` menjadi sebuah operator, bukanlah sebuah hal yang "fantastis" konstruksi dari bahasa memiliki implikasi yang menarik.
 
+<<<<<<< HEAD
 Kebanyakan operator di Javascript mengembalikan sebuah nilai. Sudah jelas untuk `+` dan `-`, tetapi berlaku juga untuk `=`.
+=======
+All operators in JavaScript return a value. That's obvious for `+` and `-`, but also true for `=`.
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 Panggilan `x = value` menulis `value` ke dalam `x` *dan mengembalikannya*.
 

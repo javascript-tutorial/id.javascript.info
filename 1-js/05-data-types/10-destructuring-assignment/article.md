@@ -2,19 +2,38 @@
 
 Dua stuktur data yang paling banyak digunakan di Javascript adalah `Object` dan `Array`
 
+<<<<<<< HEAD
 Objek memungkinkan kita untuk membuat entitas tunggal yang menyimpan data item berdasarkan kunci, dan array memungkinkan kita untuk mengumpulkan data item menjadi koleksi yang terurut.
 
 Tetapi ketika kita meneruskannya ke suatu fungsi, itu mungkin tidak perlu objek / array secara keseluruhan, melainkan potongan individual.
 
 *Destructuring assignment* adalah sebuah sintaks spesial yang memungkinkan kita untuk "membongkar" array atau objek menjadi variabel yang banyak, kadang-kadang itu memang lebih nyaman. Destrukturisasi juga berfungsi baik dengan fungsi-fungsi kompleks yang mempunyai banyak parameter, nilai default, dan sebagainya.
+=======
+- Objects allow us to create a single entity that stores data items by key. 
+- Arrays allow us to gather data items into an ordered list.
+
+Although, when we pass those to a function, it may need not an object/array as a whole. It may need individual pieces.
+
+*Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes that's more convenient. 
+
+Destructuring also works great with complex functions that have a lot of parameters, default values, and so on. Soon we'll see that.
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 ## Destrukturisasi Array
 
+<<<<<<< HEAD
 Contoh bagaimana array di-destrukturisasi menjadi variabel:
 
 ```js
 // kita mempunyai array dengan nama, dan nama keluarga
 let arr = ["Ilya", "Kantor"]
+=======
+Here's an example of how an array is destructured into variables:
+
+```js
+// we have an array with the name and surname
+let arr = ["John", "Smith"]
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 *!*
 // destructuring assignment
@@ -23,20 +42,29 @@ let arr = ["Ilya", "Kantor"]
 let [firstName, surname] = arr;
 */!*
 
-alert(firstName); // Ilya
-alert(surname);  // Kantor
+alert(firstName); // John
+alert(surname);  // Smith
 ```
 
 Sekarang kita bisa bekerja dengan variabel bukan anggota array.
 
 Ini terlihat hebat ketika dikombinasikan dengan `split` atau metode pengembalian array lainnya:
 
-```js
-let [firstName, surname] = "Ilya Kantor".split(' ');
+```js run
+let [firstName, surname] = "John Smith".split(' ');
+alert(firstName); // John
+alert(surname);  // Smith
 ```
 
+<<<<<<< HEAD
 ````smart header="\"Destructuring\" bukan berarti \"destructive\"."
 Ini disebut "destructuring assignment," karena "destructurizes" dengan menyalin item kedalam variabel. Tetapi array itu sendiri tidak dimodifikasi.
+=======
+As you can see, the syntax is simple. There are several peculiar details though. Let's see more examples, to better understand it.
+
+````smart header="\"Destructuring\" does not mean \"destructive\"."
+It's called "destructuring assignment," because it "destructurizes" by copying items into variables. But the array itself is not modified.
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 Ini hanya cara singkat untuk menulis:
 ```js
@@ -69,27 +97,38 @@ Pada kode diatas, elemen kedua dari array dilewati, yang ketiga ditetapkan untuk
 let [a, b, c] = "abc"; // ["a", "b", "c"]
 let [one, two, three] = new Set([1, 2, 3]);
 ```
-
+That works, because internally a destructuring assignment works by iterating over the right value. It's kind of syntax sugar for calling `for..of` over the value to the right of `=` and assigning the values.
 ````
 
 
+<<<<<<< HEAD
 ````smart header="Menetapkan ke apa saja pada sisi kiri"
 
 Kita bisa menggunakan "penetapan" apa saja pada sisi kiri.
+=======
+````smart header="Assign to anything at the left-side"
+We can use any "assignables" at the left side.
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 Misalnya, sebuah properti objek:
 ```js run
 let user = {};
-[user.name, user.surname] = "Ilya Kantor".split(' ');
+[user.name, user.surname] = "John Smith".split(' ');
 
-alert(user.name); // Ilya
+alert(user.name); // John
+alert(user.surname); // Smith
 ```
 
 ````
 
+<<<<<<< HEAD
 ````smart header="Pengulangan dengan .entries()"
 
 Di bagian sebelumnya kita melihat metode [Object.entries(obj)](mdn:js/Object/entries).
+=======
+````smart header="Looping with .entries()"
+In the previous chapter we saw the [Object.entries(obj)](mdn:js/Object/entries) method.
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 Kita bisa menggunakan itu untuk destrukturisasi untuk melompati kunci-dan-nilai sebuah objek:
 
@@ -107,7 +146,11 @@ for (let [key, value] of Object.entries(user)) {
 }
 ```
 
+<<<<<<< HEAD
 ...Dan sama untuk sebuah map:
+=======
+The similar code for a `Map` is simpler, as it's iterable:
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 ```js run
 let user = new Map();
@@ -115,6 +158,7 @@ user.set("name", "John");
 user.set("age", "30");
 
 *!*
+// Map iterates as [key, value] pairs, very convenient for destructuring
 for (let [key, value] of user) {
 */!*
   alert(`${key}:${value}`); // name:John, then age:30
@@ -122,47 +166,95 @@ for (let [key, value] of user) {
 ```
 ````
 
+<<<<<<< HEAD
 ```smart header="Trik menukar variabel"
 Trik yang paling diketahui untuk menukar nilai dari dua variabel:
+=======
+````smart header="Swap variables trick"
+There's a well-known trick for swapping values of two variables using a destructuring assignment:
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 ```js run
 let guest = "Jane";
 let admin = "Pete";
 
+<<<<<<< HEAD
 // Tukar nilai: buat guest=Pete, admin=Jane
+=======
+// Let's swap the values: make guest=Pete, admin=Jane
+*!*
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 [guest, admin] = [admin, guest];
+*/!*
 
 alert(`${guest} ${admin}`); // Pete Jane (penukaran berhasil!)
 ```
 
 Disini kita membuat array sementara untuk dua variabel dan langsung memisahkannya dengan urutan penukaran.
 
+<<<<<<< HEAD
 Kita bisa menukar lebih daripada dua variabel dengan cara ini.
 
+=======
+We can swap more than two variables this way.
+````
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 ### Sisanya '...'
 
+<<<<<<< HEAD
 Jika kita ingin tidak hanya mendapatkan nilai pertama, tetapi juga untuk mengumpulkan semua yang mengikuti -- kita dapat menambahkan satu parameter lagi dan mendapat "the rest" menggunakan tiga titik `"..."`:
+=======
+Usually, if the array is longer when the list at the left, the "extra" items are omitted.
+
+For example, here only two items are taken, and the rest is just ignored:
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
+
+```js run
+let [name1, name2] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+alert(name1); // Julius
+alert(name2); // Caesar
+// Further items aren't assigned anywhere
+```
+
+If we'd like also to gather all that follows -- we can add one more parameter that gets "the rest" using three dots `"..."`:
 
 ```js run
 let [name1, name2, *!*...rest*/!*] = ["Julius", "Caesar", *!*"Consul", "of the Roman Republic"*/!*];
 
-alert(name1); // Julius
-alert(name2); // Caesar
-
 *!*
+<<<<<<< HEAD
 // Catatan bahwa tipe dari `rest` adalah Array.
+=======
+// rest is array of items, starting from the 3rd one
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 alert(rest[0]); // Consul
 alert(rest[1]); // of the Roman Republic
 alert(rest.length); // 2
 */!*
 ```
 
+<<<<<<< HEAD
 Nilai dari `rest` adalah array dari elemen array yang tersisa. Kita bisa menggunakan variabel lain apapun pada `rest`, hanya pastikan memiliki tiga titik sebelum itu dan pergi terakhir di penetapan destrukturisasi.
+=======
+The value of `rest` is the array of the remaining array elements. 
+
+We can use any other variable name in place of `rest`, just make sure it has three dots before it and goes last in the destructuring assignment.
+
+```js run
+let [name1, name2, *!*...titles*/!*] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+// now titles = ["Consul", "of the Roman Republic"]
+```
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 ### Nilai default
 
+<<<<<<< HEAD
 Jika ada lebih sedikit nilai dalam array daripada variabel dalam penugasan, tidak akan ada kesalahan. Nilai absen dianggap undefined:
+=======
+If the array is shorter than the list of variables at the left, there'll be no errors. Absent values are considered undefined:
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 ```js run
 *!*
@@ -188,7 +280,11 @@ alert(surname); // Anonymous (digunakan default)
 Nilai default bisa berupa ekspresi yang lebih kompleks atau bahkan panggilan fungsi
 Default values can be more complex expressions or even function calls. Mereka dievaluasi hanya jika nilainya tidak diberikan.
 
+<<<<<<< HEAD
 Sebagai contoh, di sini kita menggunakan fungsi `prompt` untuk dua default. Tapi itu hanya akan berjalan untuk yang hilang:
+=======
+For instance, here we use the `prompt` function for two defaults:
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 ```js run
 // prompt hanya berjalan untuk nama keluarga (surname)
@@ -198,7 +294,7 @@ alert(name);    // Julius (dari array)
 alert(surname); // apapun yang prompt dapatkan
 ```
 
-
+Please note: the `prompt` will run only for the missing value (`surname`).
 
 ## Destrukturisasi objek
 
@@ -210,7 +306,11 @@ Sintaks dasarnya adalah:
 let {var1, var2} = {var1:…, var2:…}
 ```
 
+<<<<<<< HEAD
 Kita memiliki objek yang ada di sisi kanan, yang ingin kita pisah menjadi beberapa variabel. Sisi kiri berisi "pola" untuk properti yang sesuai. Dalam kasus sederhana, itu adalah daftar nama variabel di `{...}`.
+=======
+We should have an existing object at the right side, that we want to split into variables. The left side contains an object-like "pattern" for corresponding properties. In the simplest case, that's a list of variable names in `{...}`.
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 Contohnya:
 
@@ -230,7 +330,13 @@ alert(width);  // 100
 alert(height); // 200
 ```
 
+<<<<<<< HEAD
 Properti `options.title`, `options.width` dan `options.height` ditugaskan ke variabel yang sesuai. Urutannya tidak masalah. Ini juga berfungsi:
+=======
+Properties `options.title`, `options.width` and `options.height` are assigned to the corresponding variables. 
+
+The order does not matter. This works too:
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 ```js
 // mengganti urutan di let {...}
@@ -239,7 +345,11 @@ let {height, width, title} = { title: "Menu", height: 200, width: 100 }
 
 Pola di sisi kiri mungkin lebih kompleks dan menentukan pemetaan antara properti dan variabel.
 
+<<<<<<< HEAD
 Jika kita ingin menetapkan properti ke variabel dengan nama lain, misalnya, `options.width` untuk masuk ke variabel bernama` w`, maka kita dapat mengaturnya menggunakan tanda titik dua:
+=======
+If we want to assign a property to a variable with another name, for instance, make `options.width` go into the variable named `w`, then we can set the variable name using a colon:
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 ```js run
 let options = {

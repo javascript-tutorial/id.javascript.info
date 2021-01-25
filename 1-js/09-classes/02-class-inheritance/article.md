@@ -54,7 +54,11 @@ rabbit.run(5); // White Rabbit runs with speed 5.
 rabbit.hide(); // White Rabbit hides!
 ```
 
+<<<<<<< HEAD
 Objek dari kelas `Rabbit` mempunyai akses kedua metode `Rabbit`, seperti `rabbit.hide()`, dan juga untuk metode `Animal`, seperti `rabbit.run()`.
+=======
+Object of `Rabbit` class have access both to `Rabbit` methods, such as `rabbit.hide()`, and also to `Animal` methods, such as `rabbit.run()`.
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 Secara internal, kata kunci `extends` bekerja menggunakan mekanik prototipe lama yang bagus. Ini mengatur `Rabbit.prototype.[[Prototype]]` untuk `Animal.prototype`. Jadi, jika metode tidak ditemukan di `Rabbit.prototype`, JavaScript mengambilnya dari `Animal.prototype`.
 
@@ -152,7 +156,7 @@ class Rabbit extends Animal {
 let rabbit = new Rabbit("White Rabbit");
 
 rabbit.run(5); // White Rabbit runs with speed 5.
-rabbit.stop(); // White Rabbit stands still. White rabbit hides!
+rabbit.stop(); // White Rabbit stands still. White Rabbit hides!
 ```
 
 Sekarang `Rabbit` mempunyai metode `stop` yang memanggil induk `super.stop()` di dalam proses.

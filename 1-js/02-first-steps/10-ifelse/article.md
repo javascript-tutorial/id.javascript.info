@@ -69,7 +69,11 @@ if (kondisi) {
 
 ## Klausa "else"
 
+<<<<<<< HEAD
 Pernyataan `if` dapat berisi blok opsional "else" opsional. Block "else" dijalankan ketika semua kondisi di atas blok "else" salah (false) semua.
+=======
+The `if` statement may contain an optional "else" block. It executes when the condition is falsy.
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 Contohnya:
 ```js run

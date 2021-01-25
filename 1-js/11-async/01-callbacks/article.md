@@ -152,7 +152,7 @@ loadScript('/my/script.js', function(script) {
     });
 */!*
 
-  })
+  });
 
 });
 ```
@@ -229,7 +229,7 @@ loadScript('1.js', function(error, script) {
         });
 
       }
-    })
+    });
   }
 });
 ```
@@ -262,7 +262,7 @@ loadScript('1.js', function(error, script) {
           }
         });
       }
-    })
+    });
   }
 });
 -->
@@ -302,7 +302,7 @@ function step3(error, script) {
   } else {
     // ...berlanjut setelah semua script dimuat(*)
   }
-};
+}
 ```
 
 Lihat? Itu sama saja, dan tidak ada sarang yang dalam sekarang karena kita buat setiap action menjadi fungsi top-level yang terpisah.

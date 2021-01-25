@@ -176,7 +176,11 @@ newWindow.onload = function() {
 ```
 
 
+<<<<<<< HEAD
 ## Gulir dan merubah ukuran.
+=======
+## Moving and resizing
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 Ada metode untuk memindahkan/merubah ukuran sebuah jendela:
 

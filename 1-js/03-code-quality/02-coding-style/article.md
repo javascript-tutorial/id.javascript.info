@@ -116,7 +116,11 @@ Ada dua tipe indent:
 
     Satu keutamaan spasi dari tab ialah konfigurasi indent spasi lebih flexibel dari simbol tab.
 
+<<<<<<< HEAD
     Misalnya, kita bisa mengalinea argumen dengan bracket pembuka, seperti ini:
+=======
+    For instance, we can align the parameters with the opening bracket, like this:
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
     ```js no-beautify
     show(parameters,

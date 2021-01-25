@@ -134,8 +134,13 @@ Ada tombol untuk itu di ujung atas panel kanan. Ayo kita ikuti mereka.
 
     Mengklik ini akan melangkahi semua aksi script satu-satu.
 
+<<<<<<< HEAD
 <span class="devtools" style="background-position:-62px -192px"></span> -- "Langkahi atas": jalankan command berikutnya, tapi *jangan masuk ke fungsi*, hotkey `key:F10`.
 : Serupa dengan command "Step" sebelumnya, tapi berbeda jika pernyataan berikutnya berupa panggilan fungsi. Yaitu: bukan built-in, seperti `alert`, tapi fungsi kita sendiri.
+=======
+<span class="devtools" style="background-position:-62px -192px"></span> -- "Step over": run the next command, but *don't go into a function*, hotkey `key:F10`.
+: Similar to the previous "Step" command, but behaves differently if the next statement is a function call. That is: not a built-in, like `alert`, but a function of our own.
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
     Command "Langkahi" masuk ke dalam dan menjeda exekusi di baris pertama, sedangkan "Kangkangi" mengexekusi panggilan fungsi bersarang secara tak terlihat, mengabaikan internal fungsi.
 

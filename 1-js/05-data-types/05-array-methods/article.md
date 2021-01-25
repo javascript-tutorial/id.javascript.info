@@ -771,9 +771,14 @@ Metode-metode ini adalah yang paling sering digunakan, mencakupi 99% kasus pengg
 - [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) check the array.
 
   The function `fn` is called on each element of the array similar to `map`. If any/all results are `true`, returns `true`, otherwise `false`.
+<<<<<<< HEAD
   
   These methods behave sort of like `||` and `&&` operators: if `fn`  returns a truthy value, `arr.some()` immediately returns `true` and stops iterating over the rest items; if `fn`  returns a falsy value, `arr.every()` immediately returns `false` and stops iterating over the rest items as well.
 >>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
+=======
+
+  These methods behave sort of like `||` and `&&` operators: if `fn` returns a truthy value, `arr.some()` immediately returns `true` and stops iterating over the rest of items; if `fn` returns a falsy value, `arr.every()` immediately returns `false` and stops iterating over the rest of items as well.
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 <<<<<<< HEAD
 - [arr.fill(value, start, end)](mdn:js/Array/fill) -- mengisi *array* dengan mengulang `value` dari indeks `start` hingga `end`.

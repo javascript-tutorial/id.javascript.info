@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Secara definisi, sebuah faktorial adalah `n!` bisa ditulis juga sebagai `n * (n-1)`.
+=======
+By definition, a factorial `n!` can be written as `n * (n-1)!`.
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 Dengan kata lain, hasil dari `factorial(n)` bisa juga dikalkulasikan sebagai `n` dikalikan dengan hasil dari `factorial(n-1)`. Dan pemanggilan untuk `n-1` bisa secara rekursi menurun, dan terus menurun sampai `1`.
 

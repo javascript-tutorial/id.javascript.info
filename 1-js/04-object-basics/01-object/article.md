@@ -92,6 +92,7 @@ let user = {
 ```
 Itu disebut koma "buntut" atau "menggantung". Memudahkan kita menambah/menghapus/memindahkan properti, karena semua barus menjadi mirip.
 
+<<<<<<< HEAD
 ````smart header="Objek dengan const bisa diubah"
 Perhatikan: sebuah object yang dideklarasikan dengan `const` *bisa* diubah.
 
@@ -117,6 +118,9 @@ Ada cara lain untuk mengubah properti objek konstan(constant), kita akan mengula
 ````
 
 ## Kurung siku
+=======
+## Square brackets
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 Untuk properti multi-kata, akses dot tak bekerja:
 

@@ -91,7 +91,11 @@ Sintaks dari bagian ini jarang digunakan, lewati saja kecuali kamu ingin mengeta
 
 Di dalam sebuah fungsi, kita dapat memeriksa apakah fungsi tersebut dipanggil dengan atau tanpa `new`, dengan cara menggunakan sebuah properti khusus `new.target`.
 
+<<<<<<< HEAD
 Fungsi tersebut kosong untuk panggilan-panggilan reguler dan menyamai fungsi jika dipanggil dengan `new`:
+=======
+It is undefined for regular calls and equals the function if called with `new`:
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 ```js run
 function User() {

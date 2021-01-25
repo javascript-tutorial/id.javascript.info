@@ -247,7 +247,11 @@ Panggilan pada `mul.bind(null, 2)` membuat function `double` baru yang memberika
 
 Itu dipanggil [partial function application](https://en.wikipedia.org/wiki/Partial_application) -- kita membuat sebuah fungsi baru dengan memperbaiki beberapa parameter dari yang sudah ada.
 
+<<<<<<< HEAD
 Harap dicatat bahwa disini kita tidak menggunakan `this`. Tapi `bind` memerlukannya, jadi kita harus meletakkan di dalam sesuatu seperti `null`.
+=======
+Please note that we actually don't use `this` here. But `bind` requires it, so we must put in something like `null`.
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 Fungsi `triple` di dalam kode dibawah ini melipatkan tiga kali lipat nilai tersebut:
 

@@ -217,7 +217,11 @@ arr.push("Pear"); // modiikasi array oleh referensi
 alert( fruits ); // Banana, Pear - 2 elemen sekarang
 ```
 
+<<<<<<< HEAD
 ...Namun apa yang membuat *array* benar-benar istimewa adalah representasi internalnya. Mesin berusaha untuk menyimpan elemen *array* ke dalam area memori yang berdampingan, satu dengan yang lainnya, sepereti yang digambarkan pada ilustrasi di bab ini, serta ada cara optimasi lainnya, untuk membuat *array* bekerja lebih cepat lagi.
+=======
+...But what makes arrays really special is their internal representation. The engine tries to store its elements in the contiguous memory area, one after another, just as depicted on the illustrations in this chapter, and there are other optimizations as well, to make arrays work really fast.
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 But they all break if we quit working with an array as with an "ordered collection" and start working with it as if it were a regular object.
 
@@ -449,7 +453,7 @@ This operator has no special treatment for arrays, it works with them as with an
 Let's recall the rules:
 
 - Two objects are equal `==` only if they're references to the same object.
-- If one of arguments of `==` is an object, and the other one is a primitive, then the object gets converted to primitive, as explained in the chapter <info:object-toprimitive>.
+- If one of the arguments of `==` is an object, and the other one is a primitive, then the object gets converted to primitive, as explained in the chapter <info:object-toprimitive>.
 - ...With an exception of `null` and `undefined` that equal `==` each other and nothing else.
 
 The strict comparison `===` is even simpler, as it doesn't convert types. 
