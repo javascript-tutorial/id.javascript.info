@@ -109,6 +109,11 @@ alert(2 + 2 + '1' ); // "41" dan bukan "221"
 
 Disini, operator bekerja secara bergantian. Pertama `+` menambahkan dua angka, jadi akan menghasilkan `4`, lalu selanjutnya `+` menambahkan string `1` kedalamnya, jadi akan menjadi seperti `4 + '1' = 41`.
 
+```js run
+alert('1' + 2 + 2); // "122" dan bukan "14"
+```
+disini, bilangan pertama adalah string, kompiler memperlakukan dua bilangan lainnya sebagai string juga. Bilangan `2` ditambahkan dengan `1`, jadi `'1' + 2 = "12"` dan `"12" + 2 = "122"`.
+
 Operator `+` hanyalah satu-satunya operator yang mendukung penggunaan string dengan cara semacan itu. Operator aritmatika lainnya hanya bekerja dengan angka dan selalu mengubah operannya menjadi angka.
 
 Ini adalah contoh untuk pengurangan dan pembagian:
@@ -183,11 +188,7 @@ Tanda kurung mengesampingkan presedensi apapun, jadi jika kita tak puas dengan u
 
 Ada banyak operator di JavaScript. Tiap operator punya nomor presedensi masing-masing. Nomor yang lebih besar dieksekusi terlebih dahulu. Jika presedensinya sama, urutan eksekusinya dari kiri ke kanan.
 
-<<<<<<< HEAD
 Di sini adalah extrak dari [tabel presedensi](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence) (kamu tak usah mengingat ini, tapi catat bahwa operator unary lebih tinggi dari binary terkait):
-=======
-Here's an extract from the [precedence table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence) (you don't need to remember this, but note that unary operators are higher than corresponding binary ones):
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 | Presedensi | Nama | Tanda |
 |------------|------|------|
@@ -435,11 +436,7 @@ Daftar operator:
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
-<<<<<<< HEAD
 Operator seperti diatas sangat jarang digunakan, ketika kita membutuhkan untuk memainkan angka di level paling rendah (bitwise). Kita tidak akan membutuhkan operator seperti ini dalam waktu dekat, sebagaimana dalam pengembangan web penggunaan operator seperti itu lebih sedikit, tetapi di area yang spesial, seperti kriptographi, operator seperti itu sangan dibutuhkan. Kamu bisa membaca artikel [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) di MDN ketika kamu membutuhkannya.
-=======
-These operators are used very rarely, when we need to fiddle with numbers on the very lowest (bitwise) level. We won't need these operators any time soon, as web development has little use of them, but in some special areas, such as cryptography, they are useful. You can read the [Bitwise Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Bitwise) chapter on MDN when a need arises.
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## Koma
 

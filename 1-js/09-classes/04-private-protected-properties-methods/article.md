@@ -94,7 +94,9 @@ class CoffeeMachine {
   _waterAmount = 0;
 
   set waterAmount(value) {
-    if (value < 0) throw new Error('Negative water');
+    if (value < 0) {
+      value = 0;
+    }
     this._waterAmount = value;
   }
 
@@ -155,7 +157,7 @@ class CoffeeMachine {
   _waterAmount = 0;
 
   *!*setWaterAmount(value)*/!* {
-    if (value < 0) throw new Error("Negative water");
+    if (value < 0) value = 0;
     this._waterAmount = value;
   }
 
@@ -195,11 +197,15 @@ class CoffeeMachine {
 */!*
 
 *!*
-  #checkWater(value) {
-    if (value < 0) throw new Error("Negative water");
-    if (value > this.#waterLimit) throw new Error("Too much water");
+  #fixWaterAmount(value) {
+    if (value < 0) return 0;
+    if (value > this.#waterLimit) return this.#waterLimit;
   }
 */!*
+
+  setWaterAmount(value) {
+    this.#waterLimit = this.#fixWaterAmount(value);
+  }
 
 }
 
@@ -207,7 +213,7 @@ let coffeeMachine = new CoffeeMachine();
 
 *!*
 // tidak dapat mengakses privat dari luar kelas
-coffeeMachine.#checkWater(); // Error
+coffeeMachine.#fixWaterAmount(123); // Error
 coffeeMachine.#waterLimit = 1000; // Error
 */!*
 ```
@@ -227,7 +233,7 @@ class CoffeeMachine {
   }
 
   set waterAmount(value) {
-    if (value < 0) throw new Error('Negative water');
+    if (value < 0) value = 0;
     this.#waterAmount = value;
   }
 }

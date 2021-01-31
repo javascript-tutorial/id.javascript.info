@@ -69,10 +69,12 @@ Mari kita coba:
 
 ```js run
 let john = { name: "John" };
+let ben = { name: "Ben" };
 
 let visitsCountObj = {}; // cobalah memakai objek
 
-visitsCountObj[john] = 123; // cobalah memakai objek john sebagai kunci
+visitsCountObj[ben] = 234; // cobalah memakai ben sebagai kunci
+visitsCountObj[john] = 123; // cobalah memakai john sebagai kunci
 
 *!*
 // Inilah yang tertulis!

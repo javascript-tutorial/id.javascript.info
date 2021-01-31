@@ -114,7 +114,6 @@ Penanganan promise selalu asynchronous, karena semua aksi promise melewati antre
 
 Jadi, handler-handler `.then/catch/finally` selalu dipanggil setelah kode saat ini selesai.
 
-
 Jika kita butuh untuk menjamin kalau potongan kode dieksekusi setelah `.then/catch/finally`, kita bisa menambahnya kedalam panggilan chain `.then`.
 
 

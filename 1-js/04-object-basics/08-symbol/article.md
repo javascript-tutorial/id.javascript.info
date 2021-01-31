@@ -109,7 +109,7 @@ Tidak ada konflik antara pengidentifikasi kita dengan pengidentifikasi mereka, k
 
 ...Tapi jika kita menggunakan sebuah *string* `"id"` bukan sebuah simbol untuk tujuan yang sama, dengan demikian *akan menjadi* sebuah konflik:
 
-```js run
+```js
 let user = { name: "John" };
 
 // Script kita menggunakan properti "id"

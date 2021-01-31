@@ -1,22 +1,12 @@
-<<<<<<< HEAD
-# Menyalin objek, referensi
+# Referensi objek dan menyalinnya
 
-Salah satu perbedaan dasar dari objek dan tipe primitif adalah untuk menyimpan dan menyalin "dengan referensi/*by reference*".
+Salah satu perbedaan mendasar dari objek versus primitif adalah bahwa objek disimpan dan disalin "dengan referensi", sedangkan nilai primitif: string, angka, boolean, dll - selalu disalin "sebagai nilai keseluruhan".
 
-nilai primitif: string, angka, boolean -- akan disalin "seluruh nilainya".
+Itu mudah dipahami jika kita melihat sedikit ke belakang tentang apa yang terjadi saat kita menyalin sebuah nilai.
 
-contoh:
-=======
-# Object references and copying
+Mari kita mulai dengan yang primitif, seperti string.
 
-One of the fundamental differences of objects versus primitives is that objects are stored and copied "by reference", as opposed to primitive values: strings, numbers, booleans, etc -- that are always copied "as a whole value".
-
-That's easy to understand if we look a bit "under a cover" of what happens when we copy a value.
-
-Let's start with a primitive, such as a string.
-
-Here we put a copy of `message` into `phrase`:
->>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
+Di sini kami memasukkan salinan `pesan` ke dalam` frase`:
 
 ```js
 let message = "Hello!";
@@ -27,21 +17,13 @@ Sebagai hasilnya kita punya dua variabel yang berdiri sendiri, dan keduanya meny
 
 ![](variable-copy-value.svg)
 
-<<<<<<< HEAD
+Hasil yang cukup jelas, bukan?
+
 Objek tidak seperti itu.
 
 **Sebuah variabel tidak menyimpan objek itu sendiri, akan tetapi "disimpan didalam memori", dengan kata lain "mereferensi" kepadanya (ke data didalam memori).**
 
-Dibawah adalah gambar untuk sebuah objek:
-=======
-Quite an obvious result, right?
-
-Objects are not like that.
-
-**A variable assigned to an object stores not the object itself, but its "address in memory", in other words "a reference" to it.**
-
-Let's look at an example of such variable:
->>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
+Mari kita lihat contoh variabel tersebut:
 
 ```js
 let user = {
@@ -49,21 +31,17 @@ let user = {
 };
 ```
 
-And here's how it's actually stored in memory:
+Dan ini bagaimana kita menyimpannya di dalam memory:
 
 ![](variable-contains-reference.svg)
 
-<<<<<<< HEAD
-Disini, objek disimpan di suatu tempat didalam memori. Dan variabel `user` punya "referensi" ke data objek yang berada didalam memori itu.
-=======
-The object is stored somewhere in memory (at the right of the picture), while the `user` variable (at the left) has a "reference" to it.
+Objek disimpan di suatu tempat di memori (di sebelah kanan gambar), sedangkan variabel `user` (di sebelah kiri) memiliki" referensi "padanya.
 
-We may think of an object variable, such as `user`, as of a sheet of paper with the address.
+Kita mungkin menganggap variabel objek, seperti `pengguna`, seperti selembar kertas dengan alamat objek di atasnya.
 
-When we perform actions with the object, e.g. take a property `user.name`, JavaScript engine looks into that address and performs the operation on the actual object.
+Saat kita melakukan tindakan dengan objek, misalnya: mengambil properti `user.name`, mesin JavaScript melihat apa yang ada di alamat itu dan melakukan operasi pada objek sebenarnya.
 
-Now here's why it's important.
->>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
+Sekarang inilah mengapa itu penting.
 
 **Ketika sebuah variabel objek disalin -- referensinya akan tersalin, objeknya tidak terduplikasi.**
 
@@ -79,13 +57,10 @@ Kita sekarang punya dua variabel, masing-masing mereferensi ke objek yang sama:
 
 ![](variable-copy-reference.svg)
 
-<<<<<<< HEAD
-Kita bisa menggunakan variabel apapun untuk mengakses objek dan memodifikasi konten didalamnya:
-=======
-As you can see, there's still one object, now with two variables that reference it.
+Seperti yang Anda lihat, masih ada satu objek, sekarang dengan dua variabel yang mereferensikannya.
 
-We can use any variable to access the object and modify its contents:
->>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
+Kita dapat menggunakan variabel apa saja untuk mengakses objek dan mengubah isinya:
+
 
 ```js run
 let user = { name: 'John' };
@@ -99,26 +74,15 @@ admin.name = 'Pete'; // mengganti admin dengan menggunakan "referensi"
 alert(*!*user.name*/!*); // 'Pete', perubahan akan terlihat pada "user"
 ```
 
-<<<<<<< HEAD
-Contoh diatas mendemonstrasikan bahwa disana hanya ada satu objek. Seperti jika kita punya sebuah lemari dengan dua kunci dan satunya (`admin`) digunakan untuk masuk kedalamnya. Lalu, jika kita nanti menggunakan kunci lainnya (`user`) kita bisa melihat perubahannya.
+Seolah-olah kita memiliki lemari dengan dua kunci dan menggunakan salah satunya (admin) untuk masuk ke dalamnya dan membuat perubahan. Kemudian, jika nanti kita menggunakan kunci lain (pengguna), kita masih membuka lemari yang sama dan dapat mengakses konten yang diubah.
 
 ## Perbandingan dengan referensi
-
-Operator pembanding `==` dan pembanding ketat `===` untuk objek bekerja sama saja.
 
 **Dua objek adalah sama jika mereka objek yang sama.**
 
 Dibawah adalah dua variabel yang mereferensi ke objek yang sama, dengan demikian mereka sama:
-=======
 
-It's just as if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use another key (`user`) we can see changes.
-
-## Comparison by reference
-
-Two objects are equal only if they are the same object.
-
-For instance, here `a` and `b` reference the same object, thus they are equal:
->>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
+Contohnya, di sini a dan b mereferensikan objek yang sama, sehingga keduanya sama:
 
 ```js run
 let a = {};
@@ -128,11 +92,7 @@ alert( a == b ); // true, kedua variabel mereferensi ke objek yang sama
 alert( a === b ); // true
 ```
 
-<<<<<<< HEAD
 Dan dibawah adalah dua objek yang berdiri sendiri, tidaklah sama, walaupun keduanya kosong:
-=======
-And here two independent objects are not equal, even though they look alike (both are empty):
->>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 ```js run
 let a = {};
@@ -141,11 +101,7 @@ let b = {}; // dua objek yang berdiri sendiri
 alert( a == b ); // false
 ```
 
-<<<<<<< HEAD
 Untuk perbandingan seperti `obj1 > obj2` atau untuk perbandingan dengan sebuah nilai primitif `obj == 5`, objek akan diubah dahulu menjadi primitif. Kita akan belajar bagaimana perubahan objek sebentar lagi, akan tetapi sebenarnya, perbandingan seperti itu muncul sangat jarang, biasanya hanya sebuah hasil dari kesalahan koding.
-=======
-For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are needed very rarely, usually they appear as a result of a programming mistake.
->>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 ## Penggandaan dan penggabungan, Object.assign
 
@@ -276,13 +232,33 @@ alert(clone.sizes.width); // 51, melihat hasilnya ditempat yang lain
 
 Untuk membenarkan hal itu, kita harus menggunakan perulangan kloning yang memeriksa setip nilai dari `user[key]` dan, jika itu adalah sebuah objek, lalu duplikasi strukturnya juga. Hal itu dinamakan dengan "deep cloning".
 
-<<<<<<< HEAD
-Ada sebuah standar algoritma untuk melakukan deep cloning yang menangani kasus diatas dan kasus yang lebih rumit, dinamakan dengan [Structured cloning algorithm / algoritma kloning terstruktur](https://html.spec.whatwg.org/multipage/structured-data.html#safe-passing-of-structured-data)
+We can use recursion to implement it. Or, to not reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
 
-Kita bisa menggunakan rekursi untuk mengimplementasikannya. Atau, jangan ambil pusing, ambil implementasi yang sudah ada, contoh [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) jari librari javascript [lodash](https://lodash.com).
-=======
-We can use recursion to implement it. Or, not to reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
->>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
+
+````smart header="Const objects can be modified"
+An important side effect of storing objects as references is that an object declared as `const` *can* be modified.
+
+For instance:
+
+```js run
+const user = {
+  name: "John"
+};
+
+*!*
+user.name = "Pete"; // (*)
+*/!*
+
+alert(user.name); // Pete
+```
+
+Sepertinya baris `(*)` akan menyebabkan kesalahan, tetapi sebenarnya tidak. Nilai dari `user` adalah konstan, itu harus selalu mereferensikan objek yang sama, tetapi properti dari objek tersebut bebas untuk berubah.
+
+Dengan kata lain, `const user` memberikan kesalahan hanya jika kita mencoba menyetel` user = ... `secara keseluruhan.
+
+yang berarti, jika kita benar-benar perlu membuat properti objek konstan, itu juga mungkin, tetapi menggunakan metode yang sama sekali berbeda. Kita akan membahasnya di bab <info: property-descriptors>.
+````
+
 
 ## Ringkasan
 
@@ -290,5 +266,8 @@ objek dibuat dan disalin dengan menggunakan referensi. Dengan kata lain, sebuah 
 
 Semua operasi yang disalin dengan menggunakan referensi (seperti menambah/menghapus properti) dilakukan didalam satu objek yang sama.
 
-To make a "real copy" (a clone) we can use `Object.assign` for the so-called "shallow copy" (nested objects are copied by reference) or a "deep cloning" function, such as [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
-Untuk membuat "salinan asli" (sebuah klon/clone) kita bisa menggunakan `Object.assign` untuk yang disebut "shallow copy/penyalinan tingkat dasar" (objek bercabang disalin menggunakan referensi) atau fungsi "deep cloning", seperti [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+Untuk membuat "salinan asli" (kloning) kita dapat menggunakan `Object.assign` untuk apa yang disebut "shallow copy"(objek bersarang disalin dengan referensi) atau fungsi"deep cloning", seperti [_.cloneDeep (obj)](https://lodash.com/docs#cloneDeep).        
+
+
+
+

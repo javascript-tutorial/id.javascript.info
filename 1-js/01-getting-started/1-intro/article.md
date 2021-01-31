@@ -111,6 +111,7 @@ Contoh bahasa yang dimaksud:
 - [Flow](http://flow.org/) juga menambahkan data typing, tapi dalam cara berbeda. Dikembangkan oleh Facebook.
 - [Dart](https://www.dartlang.org/) ialah bahasa mandiri yang punya engine sendiri yang berjalan di lingkungan non-peramban (seperti mobile apps), tapi bisa juga ditranspile ke JavaScript. Dikembangkan oleh Google.
 - [Brython](https://brython.info/) adalah transpiler python untuk Javascript yang memperbolehkan untuk menulis kode aplikasi didalam Python murni tanpa Javascript.
+- [Kotlin](https://kotlinlang.org/docs/reference/js-overview.html) adalah sebuah bahasa pemograman modern, ringkas dan  aman yang dapat ditargetkan untuk browser atau Node.
 
 Masih banyak lagi. Tentunya, jika kita menggunakan salah satu bahasa yang ditranspile tersebut, kita sebaiknya juga paham JavaScript untuk mengerti apa yang mereka lakukan.
 

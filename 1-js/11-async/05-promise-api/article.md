@@ -184,21 +184,13 @@ Jika peramban tidak mendukung `Promise.allSettled`, mudah untuk melakukan polyfi
 
 ```js
 if (!Promise.allSettled) {
+  const rejectHandler = reason => ({ status: 'rejected', reason });
+
+  const resolveHandler = value => ({ status: 'fulfilled', value });
+
   Promise.allSettled = function (promises) {
-    return Promise.all(
-      promises.map((p) =>
-        Promise.resolve(p).then(
-          (value) => ({
-            state: "fulfilled",
-            value,
-          }),
-          (reason) => ({
-            state: "rejected",
-            reason,
-          })
-        )
-      )
-    );
+    const convertedPromises = promises.map(p => Promise.resolve(p).then(resolveHandler, rejectHandler));
+    return Promise.all(convertedPromises);
   };
 }
 ```
@@ -232,6 +224,43 @@ Promise.race([
 ```
 
 Promise pertama di sini adalah yang tercepat, jadi promise tersebut menjadi hasilnya. Setelah promise pertama yang selesai "memenangkan balapan", semua hasil/errors lebih lanjut akan diabaikan.
+
+## Promise.any
+
+Similar to `Promise.race`, but waits only for the first fulfilled promise and gets its result. If all of the given promises are rejected, then the returned promise is rejected with [`AggregateError`](mdn:js/AggregateError) - a special error object that stores all promise errors in its `errors` property.
+
+The syntax is:
+
+```js
+let promise = Promise.any(iterable);
+```
+
+For instance, here the result will be `1`:
+
+```js run
+Promise.any([
+  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 1000)),
+  new Promise((resolve, reject) => setTimeout(() => resolve(1), 2000)),
+  new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000))
+]).then(alert); // 1
+```
+
+The first promise here was fastest, but it was rejected, so the second promise became the result. After the first fulfilled promise "wins the race", all further results are ignored.
+
+Here's an example when all promises fail:
+
+```js run
+Promise.any([
+  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Ouch!")), 1000)),
+  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Error!")), 2000))
+]).catch(error => {
+  console.log(error.constructor.name); // AggregateError
+  console.log(error.errors[0]); // Error: Ouch!
+  console.log(error.errors[1]); // Error: Error
+});
+```
+
+As you can see, error objects for failed promises are available in the `errors` property of the `AggregateError` object.
 
 ## Promise.resolve/reject
 
@@ -286,17 +315,19 @@ Dalam praktiknya, method ini hampir tidak pernah digunakan.
 
 ## Ringkasan
 
-Ada 5 method static dari class `Promise`:
+Ada 6 method static dari class `Promise`:
 
 1. `Promise.all(promises)` -- menunggu semua promise selesai dan mengambalikan sebuah array sebagai hasilnya. Jika salah satu promises yang diberikan reject, maka menjadi error of `Promise.all`, dan semua hasil lainnya akan diabaikan.
 2. `Promise.allSettled(promises)` (method yang baru ditambahkan) -- menunggu semua promise selesai dan mengembalikan hasilnya sebagai objek array dengan:
    - `state`: `"fulfilled"` or `"rejected"`
    - `value` (jika fulfilled) atau `reason` (jika rejected).
 3. `Promise.race(promises)` -- menunggu promise pertama selesai, dan hasil/error menjadi hasilnya.
-4. `Promise.resolve(value)` -- membuat promise yang resolved dengan nilai yang diberikan.
-5. `Promise.reject(error)` -- membuat promise rejected dengan error yang diberikan.
+4. `Promise.any(promises)` (metode baru yang ditambahkan) - menunggu promise pertama terpenuhi, dan hasilnya menjadi hasil keseluruhan. Jika semua janji yang diberikan ditolak, [`AggregateError`] (mdn: js / AggregateError) menjadi eror`Promise.any`.
+5. `Promise.resolve(value)` -- membuat promise yang resolved dengan nilai yang diberikan.
+6. `Promise.reject(error)` -- membuat promise rejected dengan error yang diberikan.
 
-Dari lima ini, `Promise.all` mungkin yang paling umum dalam praktiknya.
+
+Dari semua ini, `Promise.all` mungkin yang paling umum dalam praktiknya.
 
 ```
 

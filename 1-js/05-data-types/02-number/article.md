@@ -16,6 +16,14 @@ Bayangkan kita harus menulis 1 milyar. Cara jelasnya begini:
 let billion = 1000000000;
 ```
 
+Kita juga bisa menggunakan `_` sebagai pemisahnya:
+
+```js
+let billion = 1_000_000_000;
+```
+
+Di sini, garis bawah `_` memainkan peran sebagai "syntactic sugar", ini membuat angka lebih mudah dibaca. Mesin JavaScript mengabaikan `_` di antara digit, jadi nilainya sama persis dengan satu miliar di atas.
+
 Tapi di kehidupan nyata, kita biasanya menghindari menulis string nol yang panjang karena rentan terjadi kesalahan. Selain itu, kita malas. Kita biasanya akan menulis sesuatu seperti `"1bn"` untuk milyar atau `"7.3bn"` untuk 7 milyar 300 juta. Sama halnya dengan angka besar lainnya.
 
 Di JavaScript, kita perpendek angka dengan menambah huruf `"e"` ke angka dan menspesifikasi jumlah nol:
@@ -29,8 +37,8 @@ alert( 7.3e9 );  // 7.3 milyar (7,300,000,000)
 Dengan kata lain, `"e"` kalikan angkanya dengan `1` dengan jumlah nol yang diberikan.
 
 ```js
-1e3 = 1 * 1000
-1.23e6 = 1.23 * 1000000
+1e3 = 1 * 1000 // e3 means *1000
+1.23e6 = 1.23 * 1000000 // e6 means *1000000
 ```
 
 Sekarang ayo tulis sesuatu lebih kecil. Katakan, 1 microsecond (sepersejuta second):
@@ -125,10 +133,10 @@ Ada beberapa fungsi built-in untuk pembulatan:
 : Membulat ke atas: `3.1` menjadi `4`, dan `-1.1` menjadi `-1`.
 
 `Math.round`
-: Membulat to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4` and `-1.1` becomes `-1`.
+: Membulatkan ke bilangan bulat terdekat: `3.1` menjadi` 3`, `3.6` menjadi` 4`, huruf tengah: `3.5` juga dibulatkan ke atas menjadi` 4`.
 
-`Math.trunc` (not supported by Internet Explorer)
-: Removes anything after the decimal point without rounding: `3.1` becomes `3`, `-1.1` becomes `-1`.
+`Math.trunc` (tidak didukung oleh Internet Explorer)
+: Menghapus apa pun setelah koma desimal tanpa pembulatan: `3.1` menjadi` 3`, `-1.1` menjadi` -1`.
 
 Ini tabel untuk meringkas perbedaan di antara mereka:
 
@@ -400,17 +408,13 @@ Beberapa contoh:
     ```
 
 `Math.pow(n, power)`
-: Pengembalian `n` meningkatkan daya yang diberikan
+: mengembalikan bilangan `n` yang dipangkatkan.
 
     ```js run
-    alert( Math.pow(2, 10) ); // 2 in power 10 = 1024
+    alert( Math.pow(2, 10) ); // 2 pangkat 10 = 1024
     ```
 
-<<<<<<< HEAD
 Ada lebih banyak fungsi dan konstanta dalam objek `Math`, termasuk trigonometri, yang dapat Anda temukan di [docs untuk objek Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math).
-=======
-There are more functions and constants in `Math` object, including trigonometry, which you can find in the [docs for the Math object](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math).
->>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 ## Kesimpulan
 

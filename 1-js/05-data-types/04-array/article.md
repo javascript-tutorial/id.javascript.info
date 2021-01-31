@@ -193,12 +193,8 @@ Sebuah *array* adalah objek yang spesial. Tanda kurung siku digunakan untuk meng
 
 Sintaks tersebut memperpanjang objek yang menyediakan metode khusus untuk berfungsi dengan koleksi-koleksi data yang tertata serta properti `length`. Tetapi pada intinya, *array* tetaplah sebuah objek.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 Ingat, ada 7 tipe (data) dasar dalamJavaScript. *Array* adalah sebuah objek dan oleh karena itu berperilaku selayaknya sebuah objek.
-=======
-Remember, there are only eight basic data types in JavaScript (see the [Data types](https://javascript.info/types) chapter for more info). Array is an object and thus behaves like an object.
->>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
 =======
 Remember, there are only eight basic data types in JavaScript (see the [Data types](info:types) chapter for more info). Array is an object and thus behaves like an object.
 >>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
@@ -437,34 +433,31 @@ alert( "1" + 1 ); // "11"
 alert( "1,2" + 1 ); // "1,21"
 ```
 
-<<<<<<< HEAD
-## Ringkasan
-=======
-## Don't compare arrays with ==
+## Jangan bandingkan array dengan ==
 
-Arrays in JavaScript, unlike some other programming languages, shouldn't be compared with operator `==`.
+Array dalam JavaScript, tidak seperti beberapa bahasa pemrograman lainnya, tidak boleh dibandingkan dengan operator `==`.
 
-This operator has no special treatment for arrays, it works with them as with any objects.
+Operator ini tidak memiliki perlakuan khusus untuk array, ia bekerja dengan mereka seperti pada objek lainnya.
 
-Let's recall the rules:
+Mari kita ingat aturannya:
 
-- Two objects are equal `==` only if they're references to the same object.
-- If one of arguments of `==` is an object, and the other one is a primitive, then the object gets converted to primitive, as explained in the chapter <info:object-toprimitive>.
-- ...With an exception of `null` and `undefined` that equal `==` each other and nothing else.
+- Dua objek sama `==` hanya jika mereka merujuk ke objek yang sama.
+- Jika salah satu argumen `==` adalah objek, dan argumen lainnya primitif, objek tersebut akan diubah menjadi primitif, seperti yang dijelaskan pada bab <info: object-toprimitive>.
+- ... Dengan pengecualian `null` dan` undefined` yang sama `==` satu sama lain dan tidak ada yang lain.
 
-The strict comparison `===` is even simpler, as it doesn't convert types. 
+Perbandingan ketat `===` bahkan lebih sederhana, karena tidak mengonversi jenis.
 
-So, if we compare arrays with `==`, they are never the same, unless we compare two variables that reference exactly the same array.
+Jadi, jika kita membandingkan array dengan `==`, keduanya tidak akan pernah sama, kecuali jika kita membandingkan dua variabel yang mereferensikan array yang sama persis.
 
-For example:
+Sebagai contoh:
 ```js run
 alert( [] == [] ); // false
 alert( [0] == [0] ); // false
 ```
 
-These arrays are technically different objects. So they aren't equal. The `==` operator doesn't do item-by-item comparison.
+Array ini adalah objek yang secara teknis berbeda. Jadi mereka tidak sama. Operator `==` tidak melakukan perbandingan item-demi-item.
 
-Comparison with primitives may give seemingly strange results as well:
+Perbandingan dengan primitif mungkin memberikan hasil yang tampak aneh juga:
 
 ```js run
 alert( 0 == [] ); // true
@@ -472,23 +465,22 @@ alert( 0 == [] ); // true
 alert('0' == [] ); // false
 ```
 
-Here, in both cases, we compare a primitive with an array object. So the array `[]` gets converted to primitive for the purpose of comparison and becomes an empty string `''`. 
+Di sini, dalam kedua kasus, kami membandingkan primitif dengan objek array. Jadi, array `[]` diubah menjadi primitif untuk tujuan perbandingan dan menjadi string kosong `` '' `.
 
-Then the comparison process goes on with the primitives, as described in the chapter <info:type-conversions>:
+Kemudian proses perbandingan berlanjut dengan primitif, seperti yang dijelaskan dalam bab <info: type-conversion>:
 
 ```js run
 // after [] was converted to ''
-alert( 0 == '' ); // true, as '' becomes converted to number 0
+alert( 0 == '' ); // true, karena '' diubah menjadi angka 0
 
-alert('0' == '' ); // false, no type conversion, different strings
+alert('0' == '' ); // false, tidak ada konversi tipe data, string berbeda
 ```
 
-So, how to compare arrays?
+Jadi, bagaimana cara membandingkan array?
 
-That's simple: don't use the `==` operator. Instead, compare them item-by-item in a loop or using iteration methods explained in the next chapter.
+Sederhana saja: jangan gunakan operator `==`. Sebaliknya, bandingkan item-by-item dalam satu putaran atau gunakan metode iterasi yang dijelaskan di bab berikutnya.
 
-## Summary
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
+## Kesimpulan
 
 *Array* adalah sebuah objek berjenis khusus, cocok untuk menyimpan dan mengelola data yang tersusun.
 
@@ -519,12 +511,8 @@ Untuk membuat pengulangan (*loop*) elemen *array*:
   - `for (let item of arr)` -- sintaks modern untuk *item* saja,
   - `for (let i in arr)` -- tidak pernah digunakan.
 
-<<<<<<< HEAD
-Kita akan kembali membahas *array* dan mempelajari lebih banyak metode untuk menambahkan, menghilangkan, mengekstrak elemen serta mengurutkan *array* di bab <info:array-methods>.
-=======
-To compare arrays, don't use the `==` operator (as well as `>`, `<` and others), as they have no special treatment for arrays. They handle them as any objects, and it's not what we usually want.
+Untuk membandingkan array, jangan gunakan operator `==` (serta `>`, `<` dan lainnya), karena mereka tidak memiliki perlakuan khusus untuk array. Mereka menanganinya sebagai objek apa pun, dan itu bukan yang biasanya kita inginkan.
 
-Instead you can use `for..of` loop to compare arrays item-by-item.
+Sebagai gantinya kamu bisa menggunakan loop `for..of` untuk membandingkan array item-by-item.
 
-We will continue with arrays and study more methods to add, remove, extract elements and sort arrays in the next chapter <info:array-methods>.
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
+Kita akan melanjutkan dengan array dan mempelajari lebih banyak metode untuk menambah, menghapus, mengekstrak elemen dan mengurutkan array di bab berikutnya <info: array-methods>.

@@ -140,6 +140,9 @@ Kita dapat membungkusnya kedalam fungsi async anonymous, seperti ini:
 })();
 ```
 
+P.S. Fitur baru: mulai dari mesin V8 versi 8.9+, tingkat atas menunggu bekerja di [modul](info: modul).
+````
+
 `````
 
 ````smart header="`await`menerima \"thenables\"" Seperti`promise.then`, `await`memperbolehkan kita menggunakan objek thenable (mereka dengan method`then`callable). Idenya adalah objek 3rd-party mungkin bukan promise, tetapi promise-compatible: jika objek tersebut mendukung`.then`, itu cukup digunakan dengan `await`.
