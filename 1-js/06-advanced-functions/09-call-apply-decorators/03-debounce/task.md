@@ -16,16 +16,12 @@ Maka jika fungsi pembungkus dipanggil pada 0ms, 200ms, dan 500ms, dan lalu tidak
 
 ...Dan itu akan mendapatkan argumen dari pemanggilan yang paling terakhir, pemanggilan lainnya akan diabaikan.
 
-<<<<<<< HEAD
 Ini adalah kodenya (digunakan untuk dekorator debounce dari [Lodash library](https://lodash.com/docs/4.17.15#debounce)):
-=======
-Here's the code for it (uses the debounce decorator from the [Lodash library](https://lodash.com/docs/4.17.15#debounce)):
->>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 
 ```js
 let f = _.debounce(alert, 1000);
 
-f("a"); 
+f("a");
 setTimeout( () => f("b"), 200);
 setTimeout( () => f("c"), 500); 
 // fungsi debounce menunggu 1000ms setelah pemanggilan terakhir dan lalu menjalankan: alert("c")

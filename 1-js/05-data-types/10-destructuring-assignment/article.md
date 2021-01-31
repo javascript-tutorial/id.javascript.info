@@ -14,7 +14,7 @@ Contoh bagaimana array di-destrukturisasi menjadi variabel:
 
 ```js
 // kita mempunyai array dengan nama, dan nama keluarga
-let arr = ["Ilya", "Kantor"]
+let arr = ["John", "Smith"]
 
 *!*
 // destructuring assignment
@@ -23,16 +23,18 @@ let arr = ["Ilya", "Kantor"]
 let [firstName, surname] = arr;
 */!*
 
-alert(firstName); // Ilya
-alert(surname);  // Kantor
+alert(firstName); // John
+alert(surname);  // Smith
 ```
 
 Sekarang kita bisa bekerja dengan variabel bukan anggota array.
 
 Ini terlihat hebat ketika dikombinasikan dengan `split` atau metode pengembalian array lainnya:
 
-```js
-let [firstName, surname] = "Ilya Kantor".split(' ');
+```js run
+let [firstName, surname] = "John Smith".split(' ');
+alert(firstName); // John
+alert(surname);  // Smith
 ```
 
 ````smart header="\"Destructuring\" bukan berarti \"destructive\"."
@@ -69,7 +71,7 @@ Pada kode diatas, elemen kedua dari array dilewati, yang ketiga ditetapkan untuk
 let [a, b, c] = "abc"; // ["a", "b", "c"]
 let [one, two, three] = new Set([1, 2, 3]);
 ```
-
+That works, because internally a destructuring assignment works by iterating over the right value. It's kind of syntax sugar for calling `for..of` over the value to the right of `=` and assigning the values.
 ````
 
 
@@ -80,9 +82,10 @@ Kita bisa menggunakan "penetapan" apa saja pada sisi kiri.
 Misalnya, sebuah properti objek:
 ```js run
 let user = {};
-[user.name, user.surname] = "Ilya Kantor".split(' ');
+[user.name, user.surname] = "John Smith".split(' ');
 
-alert(user.name); // Ilya
+alert(user.name); // John
+alert(user.surname); // Smith
 ```
 
 ````
@@ -107,7 +110,7 @@ for (let [key, value] of Object.entries(user)) {
 }
 ```
 
-...Dan sama untuk sebuah map:
+Kodingan yang sama untuk sebuah `Map` lebih sederhana, dan juga bisa diiterasi:
 
 ```js run
 let user = new Map();
@@ -115,6 +118,7 @@ user.set("name", "John");
 user.set("age", "30");
 
 *!*
+// Map iterates as [key, value] pairs, very convenient for destructuring
 for (let [key, value] of user) {
 */!*
   alert(`${key}:${value}`); // name:John, then age:30
@@ -131,6 +135,7 @@ let admin = "Pete";
 
 // Tukar nilai: buat guest=Pete, admin=Jane
 [guest, admin] = [admin, guest];
+*/!*
 
 alert(`${guest} ${admin}`); // Pete Jane (penukaran berhasil!)
 ```
@@ -145,10 +150,17 @@ Kita bisa menukar lebih daripada dua variabel dengan cara ini.
 Jika kita ingin tidak hanya mendapatkan nilai pertama, tetapi juga untuk mengumpulkan semua yang mengikuti -- kita dapat menambahkan satu parameter lagi dan mendapat "the rest" menggunakan tiga titik `"..."`:
 
 ```js run
-let [name1, name2, *!*...rest*/!*] = ["Julius", "Caesar", *!*"Consul", "of the Roman Republic"*/!*];
+let [name1, name2] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 
 alert(name1); // Julius
 alert(name2); // Caesar
+// Further items aren't assigned anywhere
+```
+
+If we'd like also to gather all that follows -- we can add one more parameter that gets "the rest" using three dots `"..."`:
+
+```js run
+let [name1, name2, *!*...rest*/!*] = ["Julius", "Caesar", *!*"Consul", "of the Roman Republic"*/!*];
 
 *!*
 // Catatan bahwa tipe dari `rest` adalah Array.
@@ -159,6 +171,11 @@ alert(rest.length); // 2
 ```
 
 Nilai dari `rest` adalah array dari elemen array yang tersisa. Kita bisa menggunakan variabel lain apapun pada `rest`, hanya pastikan memiliki tiga titik sebelum itu dan pergi terakhir di penetapan destrukturisasi.
+
+```js run
+let [name1, name2, *!*...titles*/!*] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+// now titles = ["Consul", "of the Roman Republic"]
+```
 
 ### Nilai default
 
@@ -198,7 +215,7 @@ alert(name);    // Julius (dari array)
 alert(surname); // apapun yang prompt dapatkan
 ```
 
-
+Please note: the `prompt` will run only for the missing value (`surname`).
 
 ## Destrukturisasi objek
 

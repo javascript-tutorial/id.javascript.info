@@ -3,11 +3,7 @@ Ini dia penjelasannya.
 
 1. Itu adalah sebuah panggilan metode objek biasa.
 
-<<<<<<< HEAD:1-js/04-object-basics/04-object-methods/3-why-this/solution.md
 2. Sama halnya, tanda kurung kurawa tidak merubah urutan operasi di sini, lagi pula tanda titik lah yang pertama di urutan operasi.
-=======
-2. The same, parentheses do not change the order of operations here, the dot is first anyway.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/99-js-misc/04-reference-type/3-why-this/solution.md
 
 3. Di sini kita memiliki sebuah panggilan yang lebih kompleks lagi yakni `(expression).method()`. Pagnggilan tersebut bekerja sebagaimana jika panggilan itu dipisah menjadi dua baris kode:
 

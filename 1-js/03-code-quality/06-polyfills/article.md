@@ -1,4 +1,4 @@
-# Polyfills
+# Polyfills and transpilers
 
 JavaScript secara konsisten terus berevolusi. Proposal-proposal untuk menambah fitur-fitur baru terus bermunculan. Proposal-proposal ini akan didaftarkan pada <https://tc39.github.io/ecma262/> jika memang berpotensi dan layak untuk ditambahkan dalam standard dalam bahasa pemrograman JavaScript. Kemudian proposal-proposal yang telah diterima akan dimasukkan dalam [daftar spesifikasi](http://www.ecma-international.org/publications/standards/Ecma-262.htm) JavaScript.
 
@@ -6,63 +6,85 @@ Tim yang mengurus JavaScript mengerti dan akan mengusulkan mana dari proposal-pr
 
 Sangat wajar jika kebanyakan dari browser-browser yang ada hanya mengimplementasikan bagian-bagian yang tidak terlalu sulit.
 
-Jika kalian ingin tahu apa saja yang didukung oleh JavaScript, bisa cek di: <https://kangax.github.io/compat-table/es6/> .
+Sebuah halaman yang bagus untuk melihat kondisi terkini dari fitur yang didukung oleh bahasa ini ialah <https://kangax.github.io/compat-table/es6/> (isinya banyak, kita masih banyak yang belum dipelajari)
 
-## Babel
+Sebagai programmer, kita suka untuk menggunakan fitur yang terbaru. lebih banyak fitur bagus - lebih baik lagi!
 
-Ketika kita menggunakan fitur-fitur modern dari JavaScript, beberapa engine browser bisa jadi belum mengenal bagaimana mengerjakan perintah dari fitur-fitur tersebut. Biasanya ada beberapa fitur baru tertentu yang masih belum didukung sepenuhnya oleh browser kebanyakan.
+di sisi lain, bagaimana membuat kodingan modern bekerja di mesin yang lama yang tidak mengetahui fitur-fitur terbaru ?
 
-Jadi, inilah gunanya Babel.
+Ada dua cara untuk itu:
 
-[Babel](https://babeljs.io) adalah [sebuah utilitas penerjemah](https://en.wikipedia.org/wiki/Source-to-source_compiler) perintah dari fitur-fitur baru ini dengan cara menuliskannya kembali kedalam perintah standar JavaScript.
+1. Transpilers.
+2. Polyfills.
 
-Sebenarnya, ada dua bagian dari Babel:
+di chapter ini, tujuan kita adalah untuk mendapatkan intisari cara kerjanya, dan tempatnya dalam proses pengembangan web.
 
-1. Traspiler, utilitas penerjemah dari Babel.
+## Transpilers
 
-   Biasanya, Developer akan menjalankan perintah ini di komputer mereka terlebih dahulu. Utilitas penerjemah dari Babel ini kemudian menuliskan kembali perintah-perintah di file JavaScript kedalam perintah-perintah yang dimengerti oleh JavaScript standar. Kemudian file Javascript yang berisi perintah standar Javascript inilah yang akan dibaca oleh browser yang dipakai pengguna. Sebagai contoh, [Webpack](http://webpack.github.io/) sudah memiliki fitur Babel yang akan melakukan proses penerjemahan setiap kali Developer menyimpan file JavaScript yang ditulis dengan fitur-fitur moderen. Ini tentu saja mempermudah proses pengembangan sebuah aplikasi.
+Sebuah [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) adalah perangkat lunak khusus yang dapat mengurai ("membaca dan memahami") kode modern, dan menulis ulang menggunakan konstruksi sintaks yang lebih lama, sehingga hasilnya akan sama.
 
-2. Polyfill itu sendiri.
+Misalnya. JavaScript sebelum tahun 2020 tidak memiliki "nullish coalescing operator" `??`. Jadi, jika pengunjung menggunakan browser yang sudah ketinggalan zaman, ia mungkin gagal memahami kode seperti `height = height ?? 100`
 
-   Fitur-fitur baru bisa saja memasukkan fungsi-fungsi built-in dan constructs jenis baru.
-   Transpiler, utilitas penerjemah dari poin 1 diatas, menulis fungsi-fungsi built-in dan constructs ini kembali kedalam perintah stardard dari JavaScript.
+Sebuah transpiler akan menganalisa kodingan kita dan menulis `height ?? 100` menjadi `(height !== undefined && height !== null) ? height : 100`.
 
-   Seperti disebutkan diatas, JavaScript adalah sebuah bahasa pemrograman yang sangat dinamis. Skrip-skrip baru terus ditambahkan kedalam JavaScript dengan tujuan untuk membuat fungsi-fungsi baru menjadi dapat dibaca oleh penerjemah JavaScript standar.
+```js
+// sebelum menjalankan transpiler
+height = height ?? 100;
 
-<<<<<<< HEAD
-   Skrip-skrip tambahan inilah yang disebut Polyfill. Skrip-skrip ini biasanya berupa fungsi-fungsi yang bertujuan menambah atau memodifikasi perbendaharaan JavaScript standar agar mampu mengenal fitur-fitur modern.
-=======
-    New language features may include not only syntax constructs, but also built-in functions.
-    The transpiler rewrites the code, transforming syntax constructs into older ones. But as for new built-in functions, we need to implement them. JavaScript is a highly dynamic language, scripts may add/modify any functions, so that they behave according to the modern standard.
->>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
-
-   Polifyll yang sering digunakan:
-
-   - [core js](https://github.com/zloirock/core-js).
-
-     Core js mendukung banyak fitur baru, dan bisa dipersonalisasi sehingga kita bisa memilih fitur-fitur baru apa saja yang hendak kita gunakan dalam proyek kita.
-
-   - [polyfill.io](http://polyfill.io).
-
-     Ini adalah sebuah website yang menyediakan skrip-skrip dan polifyll-nya. Kita juga bisa dapat mengetahui browser-browser apa saja yang mendukung fitur-fitur moderen tersebut.
-
-Oleh karena itu, jika kita ingin menggunakan fitur-fitur baru dari JavaScript, pastinya kita akan butuh sebuah Polifyll dan Transpiler (utilitas penerjemah)
-
-## Contoh Pada File Tutorial
-
-````online
-Contoh-contoh yang bekerja saat dipanggil, contohnya:
-
-```js run
-alert('Press the "Play" button in the upper-right corner to run');
+// setelah transpile dijalankan
+height = (height !== undefined && height !== null) ? height : 100;
 ```
 
-Contoh-contoh yang menggunakan JavaScript modern dan akan hanya bekerja pada browser-browser yang mendukungnya.
+Sekarang kode yang ditulis ulang cocok untuk mesin JavaScript lama.
 
-````
+Biasanya, pengembang menjalankan transpiler di komputer mereka sendiri, dan kemudian menyebarkan kode yang ditranspilasi ke server.
 
-```offline
-Karena kamu sedang membaca versi offline, maka contoh-contoh pada PDF ini tidak bisa dijalankan. Mungkin beberapa EPUB bisa.
+Berbicara tentang nama, [Babel](https://babeljs.io) adalah salah satu transpiler paling terkenal di luar sana. 
+
+Sistem pembangunan proyek modern, seperti [webpack](http://webpack.github.io/), menyediakan sarana untuk menjalankan transpiler secara otomatis pada setiap perubahan kode, sehingga sangat mudah untuk diintegrasikan ke dalam proses pengembangan.
+
+## Polyfills
+
+Fitur bahasa baru tidak hanya mencakup konstruksi dan operator sintaks, tetapi juga fungsi bawaan.
+
+Misalnya, `Math.trunc (n)` adalah fungsi yang "memotong" bagian desimal dari sebuah angka, misalnya `Math.trunc (1.23) = 1`.
+
+Di beberapa mesin JavaScript (sangat usang), tidak ada `Math.trunc`, jadi kode seperti itu akan gagal.
+
+karena kita berbicara tentang fungsi baru, bukan perubahan sintaks, tidak perlu mentranspilasi apa pun di sini. Kita hanya perlu mendeklarasikan fungsi yang hilang.
+
+Skrip yang memperbarui / menambahkan fungsi baru disebut "polyfill". Ini "mengisi" celah dan menambahkan implementasi yang hilang.
+
+Untuk kasus khusus ini, polyfill untuk `Math.trunc` adalah skrip yang mengimplementasikannya, seperti ini:
+
+```js
+if (!Math.trunc) { // kalo ga ada fungsi seperti ini
+  // implementasikan
+  Math.trunc = function(number) {
+    // Math.ceil dan Math.floor ada bahkan di mesin JavaScript yang lama
+    // mereka akan dibahas nanti di tutorial
+    return number < 0 ? Math.ceil(number) : Math.floor(number);
+  };
+}
 ```
 
-Google Chrome biasanya salah satu browser yang selalu mengikuti perkembangan implementasi fitur-fitur baru JavaScript. Kerennya lagi, jika kamu mengetik sebuah skrip menggunakan sebuah fitur baru, Google Chrome akan menterjemahkannya otomatis tanpa kamu harus menggunakan sebuah Polifyll dan sebuah mesin penerjemah.
+JavaScript adalah bahasa yang sangat dinamis, skrip dapat menambah / memodifikasi fungsi apa pun, bahkan termasuk yang sudah ada di dalamnya.
+
+Dua library polyfill yang menarik adalah:
+- [core js](https://github.com/zloirock/core-js) yang mendukung banyak hal, memungkinkan untuk kita memasukkan hanya fitur yang dibutuhkan.
+- [polyfill.io](http://polyfill.io) layanan yang menyediakan skrip dengan polyfills, bergantung pada fitur dan browser pengguna.
+
+
+## Kesimpulan
+
+Di bab ini, kami ingin memotivasi Anda untuk mempelajari fitur bahasa modern dan bahkan "yang paling mutakhir", meskipun fitur tersebut belum didukung dengan baik oleh mesin JavaScript.
+
+Jangan lupa untuk menggunakan transpiler (jika menggunakan sintaks atau operator modern) dan polyfill (untuk menambahkan fungsi yang mungkin hilang). Dan mereka akan memastikan bahwa kodenya berfungsi.
+
+Misalnya, nanti saat Anda sudah terbiasa dengan JavaScript, Anda dapat menyiapkan sistem pembuatan kode berdasarkan [webpack](http://webpack.github.io/) dengan [babel-loader](https://github.com/babel/babel-loader).
+
+Sumber daya bagus yang menunjukkan status dukungan saat ini untuk berbagai fitur:
+- <https://kangax.github.io/compat-table/es6/> - untuk JavaScript murni.
+- <https://caniuse.com/> - untuk fungsi terkait dengan browser.
+
+P.S. Google Chrome biasanya paling mutakhir dengan fitur bahasa, coba saja jika demo tutorial gagal. Sebagian besar demo tutorial berfungsi dengan browser modern apa pun.

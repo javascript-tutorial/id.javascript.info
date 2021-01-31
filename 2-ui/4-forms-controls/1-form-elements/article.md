@@ -201,6 +201,7 @@ Lihat contoh berikut:
   select.options[2].selected = true;
   select.selectedIndex = 2;
   select.value = 'banana';
+  // please note: options start from zero, so index 2 means the 3rd option.
 </script>
 ```
 
@@ -239,7 +240,7 @@ Di dalam [penjelasan](https://html.spec.whatwg.org/multipage/forms.html#the-opti
 option = new Option(text, value, defaultSelected, selected);
 ```
 
-Parameters:
+This syntax is optional. We can use `document.createElement('option')` and set attributes manually. Still, it may be shorter, so here are the parameters:
 
 - `text` -- adalah teks didalam option,
 - `value` -- adalah nilai option,

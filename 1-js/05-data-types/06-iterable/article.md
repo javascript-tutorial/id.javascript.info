@@ -293,29 +293,16 @@ alert( str.slice(1, 3) ); // tidak berguna (dua bagian dari karakter pengganti y
 
 Objek yang bisa digunakan didalam `for..if` dipanggil dengan *iterable*.
 
-<<<<<<< HEAD
 - Secara teknis, iterables harus mengimplementasi nama metode `Symbol.iterator`.
     - Hasil dari `obj[Symbol.iterator]` dipanggil dengan sebuah *iterator*. Itu menangani proses iterasi lebih jauh.
     - Sebuah iterator harus mempunyai nama metode `next()` yang mengembalikan sebuah objek `{done: Boolean, value: any}`, disini `done:true` menandakan akhir dari proses iterasi, sebaliknya `value` adalah nilai selanjutnya.
 - Metode `Symbol.iterator` dipanggil secara otomatis oleh `for..of`, tapi kita bisa melakukannya secara langsung.
 - Iterables bawaan seperti string atau array, juga mengimplementasikan `Symbol.iterator`.
 - Iterator string tahu tentang karakter pengganti (surrogate pairs).
-=======
-- Technically, iterables must implement the method named `Symbol.iterator`.
-    - The result of `obj[Symbol.iterator]()` is called an *iterator*. It handles the further iteration process.
-    - An iterator must have the method named `next()` that returns an object `{done: Boolean, value: any}`, here `done:true` denotes the end of the iteration process, otherwise the `value` is the next value.
-- The `Symbol.iterator` method is called automatically by `for..of`, but we also can do it directly.
-- Built-in iterables like strings or arrays, also implement `Symbol.iterator`.
-- String iterator knows about surrogate pairs.
->>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 
 
 Objek yang mempunyai properti indeks dan `length` dipanggil dengan *seperti-array/array-like*. Objek seperti itu mungkin mempunyai properti dan metode lainnya, tapi tidak memiliki metode bawaan dari array.
 
 Jika kita melihat kedalam spesifikasinya -- kita akan melihat kebanyakan metode bawaan yang mengasumsikan bahwa mereka bekerja dengan iterables atau seperti-array daripada dengan array "sungguhan", karena hal itu lebih abstrak.
 
-<<<<<<< HEAD
 `Array.from(obj[, mapFn, thisArg])` membuak `Array` sungguhan dari sebuah iterable atau seperti-array `obj`, dan lalu kita bisa menggunakan metode array didalamnya. Argumen opsional `mapFn` dan `thisArg` memperbolehan kita untuk menerapkan sebuah fungsi kedalam setiap item.
-=======
-`Array.from(obj[, mapFn, thisArg])` makes a real `Array` from an iterable or array-like `obj`, and we can then use array methods on it. The optional arguments `mapFn` and `thisArg` allow us to apply a function to each item.
->>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017

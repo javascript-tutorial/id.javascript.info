@@ -155,7 +155,7 @@ function curried(...args) {
   if (args.length >= func.length) { // (1)
     return func.apply(this, args);
   } else {
-    return function pass(...args2) { // (2)
+    return function(...args2) { // (2)
       return curried.apply(this, args.concat(args2));
     }
   }
@@ -164,18 +164,10 @@ function curried(...args) {
 
 Ketika kita menjalankannya, ada dua cabang eksekusi `if`:
 
-1. Panggil sekarang: jika `args` diteruskan, hitungannya sama dengan fungsi asli yang ada dalam definisinya (`func.length`) atau lebih panjang, lalu teruskan saja panggilannya.
-2. Dapatkan sebagian: jika tidak, `func` belum dipanggil. Sebagai gantinya, pembungkus lain `pass` dikembalikan, yang akan menerapkan kembali `curried` dengan menyediakan argumen sebelumnya dengan yang baru. Kemudian, pada panggilan baru, kita akan mendapatkan parsial baru (jika argumennya tidak cukup) atau, akhirnya, sebuah hasilnya.
+1. Jika lewat `args` count adalah sama atau lebih dari fungsi asli memiliki definisi (` func.length`), maka cukup teruskan panggilan menggunakan `func.apply`.
+2. Jika tidak, dapatkan sebagian: kita belum memanggil `func`. Sebagai gantinya, pembungkus lain dikembalikan, yang akan menerapkan kembali `curried` yang memberikan argumen sebelumnya bersama dengan yang baru.
 
-Sebagai contoh, mari kita lihat apa yang terjadi dalam kasus `sum(a, b, c)`. Tiga argumen, jadi `sum.length = 3`.
-
-Untuk memanggil `curried(1)(2)(3)`:
-
-1. Panggilan pertama `curried(1)` mengingat `1` di dalam lingkungan leksikal-nya, dan mengembalikan pembungkus `pass`.
-2. Pembungkus `pass` dipanggil dengan `(2)`: ia menambil argumen sebelumnya (`1`), menggabungkannya `(2)` kemudian memanggil `curried(1, 2)` secara bersama-sama. Karena jumlah argumen masih kurang dari 3, `curry` mengembalikan `pass`.
-3. Pembungkus `pass` dipanggil lagi dengan `(3)`,  untuk pemanggilan berikutnya `pass(3)` mengambil argumen sebelumnya (`1`, `2`) dan menambahkan `3`, membuat panggilan `curried(1, 2, 3)` -- terdapat argumen `3` pada akhirnya, kemudian mereka akan diberikan ke fungsi aslinya.
-
-Jika masih belum jelas, cukup lacak lagi urutan pemanggilan dalam benak Anda atau coba tulis di kertas.
+Kemudian, jika kita menyebutnya, sekali lagi, kita akan mendapatkan parsial baru (jika tidak cukup argumen) atau, akhirnya, hasilnya.
 
 ```smart header="Fixed-length functions only"
 Currying membutuhkan fungsi untuk memiliki sejumlah argumen tetap.

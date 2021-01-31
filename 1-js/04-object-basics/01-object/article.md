@@ -92,30 +92,6 @@ let user = {
 ```
 Itu disebut koma "buntut" atau "menggantung". Memudahkan kita menambah/menghapus/memindahkan properti, karena semua barus menjadi mirip.
 
-````smart header="Objek dengan const bisa diubah"
-Perhatikan: sebuah object yang dideklarasikan dengan `const` *bisa* diubah.
-
-Contoh:
-
-```js run
-const user = {
-  name: "John"
-};
-
-*!*
-user.name = "Pete"; // (*)
-*/!*
-
-alert(user.name); // Pete
-```
-
-Terlihat bahwa baris `(*)` menciptakan error, tapi tidak. `const` menentukan nilai dari `user`, tapi tidak untuk isinya.
-
-`const` harusnya mengembalikan error jika kita mencoba mengubah `user=...` seluruhnya.
-
-Ada cara lain untuk mengubah properti objek konstan(constant), kita akan mengulasnya nanti didalam bab <info:property-descriptors>.
-````
-
 ## Kurung siku
 
 Untuk properti multi-kata, akses dot tak bekerja:
