@@ -190,7 +190,13 @@ let clone = Object.assign({}, user);
 
 Kode diatas akan menyalin seluruh properti dari `user` kedalam objek yang kosong dan mengembalikan/me-return hasilnya.
 
+<<<<<<< HEAD
 ## Penggandaan bercabang / Nested cloning
+=======
+There are also other methods of cloning an object, e.g. using the [spread operator](info:rest-parameters-spread) `clone = {...user}`, covered later in the tutorial.
+
+## Nested cloning
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 Sampai sekarang kita telah berasumsi bahwa seluruh properti dari `user` adalah primitif. Tapi properti bisa di referensi ke objek lainnya. Apa yang harus dilakukan dengan mereka?
 

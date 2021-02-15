@@ -225,7 +225,11 @@ Tapi disana terdapat perbedaan yang tipis diantara `Array.from(obj)` dan `[...ob
 Jadi, task untuk mengubah sesuatu menjadi sebuah array, `Array.from` cenderung lebih banyak digunakan.
 
 
+<<<<<<< HEAD
 ## Mendapatkan salinan baru dari sebuah array/objek
+=======
+## Copy an array/object
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 Inget ketika kita berbicara tentang `Object.assign()` [sebelumnya](info:object-copy#cloning-and-merging-object-assign)?
 
@@ -233,8 +237,16 @@ Itu adalah hal yang bisa dilakukan untuk melakukan hal yang sama dengan sintaks 
 
 ```js run
 let arr = [1, 2, 3];
+<<<<<<< HEAD
 let arrCopy = [...arr]; // sebarkan arraynya menjadi list dari parameter
                         // lalu masukan hasilnya kedalam array yang baru
+=======
+
+*!*
+let arrCopy = [...arr]; // spread the array into a list of parameters
+                        // then put the result into a new array
+*/!*
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 // apakah arraynya mempunyai konten yang sama?
 alert(JSON.stringify(arr) === JSON.stringify(arrCopy)); // true
@@ -252,8 +264,16 @@ Perhatikan bahwa melakukan hal yang sama seperti menyalin sebuah objek adalah ha
 
 ```js run
 let obj = { a: 1, b: 2, c: 3 };
+<<<<<<< HEAD
 let objCopy = { ...obj }; // sebarkan objeknya menjadi daftar dari parameter
                           // lalu kembalikan hasilnya kedalam objek baru.
+=======
+
+*!*
+let objCopy = { ...obj }; // spread the object into a list of parameters
+                          // then return the result in a new object
+*/!*
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 // apakah objeknya memiliki kontent yang sama?
 alert(JSON.stringify(obj) === JSON.stringify(objCopy)); // true
@@ -267,7 +287,11 @@ alert(JSON.stringify(obj)); // {"a":1,"b":2,"c":3,"d":4}
 alert(JSON.stringify(objCopy)); // {"a":1,"b":2,"c":3}
 ```
 
+<<<<<<< HEAD
 Menyalin objek dengan cara ini lebih pendek daripada `let objCopy = Object.assign({}, obj);` atau untuk sebuah array `let arrCopy = Objek.assign([], arr);` jadi kita lebih memilih menggunakannya kapanpun bila bisa digunakan.
+=======
+This way of copying an object is much shorter than `let objCopy = Object.assign({}, obj)` or for an array `let arrCopy = Object.assign([], arr)` so we prefer to use it whenever we can.
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 
 ## Ringkasan
