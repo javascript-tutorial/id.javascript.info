@@ -38,8 +38,12 @@ Mohon jangan bergantung dengan itu! Perilaku ini ada untuk alasan kompatibilitas
 =======
 The same effect have function declarations (statements with `function` keyword in the main code flow, not function expressions).
 
+<<<<<<< HEAD
 Please don't rely on that! This behavior exists for compatibility reasons. Modern scripts use [JavaScript modules](info:modules) where such thing doesn't happen.
 >>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
+=======
+Please don't rely on that! This behavior exists for compatibility reasons. Modern scripts use [JavaScript modules](info:modules) where such a thing doesn't happen.
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 Jika kita menggunakan `let`, hal tersebut tidak akan terjadi:
 

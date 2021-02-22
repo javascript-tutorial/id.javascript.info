@@ -2,6 +2,7 @@
 
 [recent browser="new"]
 
+<<<<<<< HEAD
 Disini, didalam artikel ini, kita bisa mengatakan sebuah ekspresi telah "didefinisikan" ketika nilainya bukanlah `null` ataupun `undefined`.
 
 Operator penggabungan nullish ditulis sebagai dua tanda tanya `??`.
@@ -14,6 +15,16 @@ Hasil dari `a ?? b` adalah:
 <<<<<<< HEAD
 Dengan kata lain, `??` mengembalikan argumen pertama jika argumen tersebut telah didefinisikan. Sebaliknya, mengembalikan argumen kedua jika argumen pertama belum didefinisikan.
 =======
+=======
+The nullish coalescing operator is written as two question marks `??`.
+
+As it treats `null` and `undefined` similarly, we'll use a special term here, in this article. We'll say that an expression is "defined" when it's neither `null` nor `undefined`.
+
+The result of `a ?? b` is:
+- if `a` is defined, then `a`,
+- if `a` isn't defined, then `b`.
+
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 In other words, `??` returns the first argument if it's not `null/undefined`. Otherwise, the second one.
 >>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
@@ -25,22 +36,34 @@ Kita bisa menulis ulang `result = a ?? b` menggunakan operator yang sudah kita k
 result = (a !== null && a !== undefined) ? a : b;
 ```
 
+<<<<<<< HEAD
 Penggunaan umum untuk `??` adalah untuk menyediakan nilai _default_ untuk variabel yang mungkin _undefined_.
 
 Sebagai contoh, kita disini menampilkan `Anonymous` jika `user` belum didefinisikan:
+=======
+Now it should be absolutely clear what `??` does. Let's see where it helps.
+
+The common use case for `??` is to provide a default value for a potentially undefined variable.
+
+For example, here we show `user` if defined, otherwise `Anonymous`:
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 ```js run
 let user;
 
-alert(user ?? "Anonymous"); // Anonymous
+alert(user ?? "Anonymous"); // Anonymous (user not defined)
 ```
 
+<<<<<<< HEAD
 tentu saja, jika `user` memiliki nilai apapun kecuali `null/undefined`, maka kita akan bisa melihat nilainya:
+=======
+Here's the example with `user` assigned to a name:
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 ```js run
 let user = "John";
 
-alert(user ?? "Anonymous"); // John
+alert(user ?? "Anonymous"); // John (user defined)
 ```
 
 <<<<<<< HEAD
@@ -49,9 +72,15 @@ Kita juga bisa menggunakan rentetan `??` untuk mendapatkan nilai yang telah dide
 We can also use a sequence of `??` to select the first value from a list that isn't `null/undefined`.
 >>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
+<<<<<<< HEAD
 Katakan kita memiliki sebuah data _user_ didalam sebuah variabel `firstName`, `lastName`, atau `nickName`. Semuanya mungkin saya memiliki nilai _undefined_, jika _user_ nya tidak memasukan nilainya.
 
 Kita ingin menampilkan nama _user_ menggunakan salah satu dari variabel ini, atau menampilkan "Anonymous" jika semua nilainya adalah _undefined_.
+=======
+Let's say we have a user's data in variables `firstName`, `lastName` or `nickName`. All of them may be not defined, if the user decided not to enter a value.
+
+We'd like to display the user name using one of these variables, or show "Anonymous" if all of them aren't defined.
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 Kita coba gunakan operator `??` untuk hal itu:
 
@@ -83,7 +112,11 @@ alert(firstName || lastName || nickName || "Anonymous"); // Supercoder
 */!*
 ```
 
+<<<<<<< HEAD
 Operator OR `||` sudah ada sejak awal mula dari Javascript, jadi sudah sejak lama pengembang menggunakan operator _or_ untuk kebutuhan seperti contoh diatas.
+=======
+Historically, the OR `||` operator was there first. It exists since the beginning of JavaScript, so developers were using it for such purposes for a long time.
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 <<<<<<< HEAD
 Disisi yang lain, operator penggabung nullish `??` baru saja ditambahkan, dan alasan penambahannya adalah karena para pengembang kurang senang dengan `||`.
@@ -114,6 +147,7 @@ alert(height ?? 100); // 0
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Disini, kita memiliki _height_ nol.
 
 - Bagian `height || 100` memeriksa `height` sebagai nilai yang _falsy_, dan ternyata benar.
@@ -130,10 +164,24 @@ Jika kita asumsikan bahwa _height_ nol adalah nilai yang valid, maka nilainya ti
 
 If the zero height is a valid value, that shouldn't be replaced with the default, then `??` does just the right thing.
 >>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
+=======
+- The `height || 100` checks `height` for being a falsy value, and it's `0`, falsy indeed.
+    - so the result of `||` is the second argument, `100`.
+- The `height ?? 100` checks `height` for being `null/undefined`, and it's not,
+    - so the result is `height` "as is", that is `0`.
+
+In practice, the zero height is often a valid value, that shouldn't be replaced with the default. So `??` does just the right thing.
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 ## Precedence/Hak lebih tinggi
 
+<<<<<<< HEAD
 _Precedence_ dari operator `??` agak rendah: `5` didalam [tabel MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table). Jadi `??` akan dievaluasi sebelum `=` dan `?`, tapi setelah di kebanyakan dari operasi lainnya, seperti `+`, `*`.
+=======
+The precedence of the `??` operator is about the same as `||`, just a bit lower. It equals `5` in the [MDN table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table), while `||` is `6`.
+
+That means that, just like `||`, the nullish coalescing operator `??` is evaluated before `=` and `?`, but after most other operations, such as `+`, `*`.
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 Jadi jika kita ingin memilih sebuah nilai dengan `??` didalam sebuah ekspresi dengan operator lain, cobalah untuk menggunakan kurung:
 
@@ -167,7 +215,11 @@ Kode dibawah akan menampilkan sintaks error:
 let x = 1 && 2 ?? 3; // Syntax error
 ```
 
+<<<<<<< HEAD
 Tentu saja batasan seperti itu bisa diperdebatkan, akan tetapi hal itu telah ditambahkan kedalam spesifikasi bahasanya dengan tujuan untuk menghindari kesalahan memprogram, sebagaimana orang-orang mulai berpindah dari `??` ke `||`.
+=======
+The limitation is surely debatable, it was added to the language specification with the purpose to avoid programming mistakes, when people start to switch from `||` to `??`.
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 Gunakan kurung yang jelas jika ingin menggunakannya:
 
