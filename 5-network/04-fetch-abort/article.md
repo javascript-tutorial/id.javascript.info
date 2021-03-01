@@ -19,7 +19,12 @@ Pengontrol adalah objek yang sangat sederhana.
 - Hanya memiliki satu metode `abort()`,
 - dan sebuah properti `signal` yang memungkinkan untuk menyetel `listener` pada objek pengontrol.
 
+<<<<<<< HEAD
 Ketika `abort()` dipanggil:
+=======
+- It has a single method `abort()`,
+- And a single property `signal` that allows to set event listeners on it.
+>>>>>>> f6ae0b5a5f3e48074312ca3e47c17c92a5a52328
 
 - `contoller.signal` mengeluarkan _event_ `"abort"`
 - Properti `controller.signal.aborted` menjadi bernilai `true`

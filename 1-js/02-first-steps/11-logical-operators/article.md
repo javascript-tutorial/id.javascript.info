@@ -1,6 +1,10 @@
 # Operator logika
 
+<<<<<<< HEAD
 Ada tiga operator logika di JavaScript: `||` (OR), `&&` (AND), `!` (NOT).
+=======
+There are four logical operators in JavaScript: `||` (OR), `&&` (AND), `!` (NOT), `??` (Nullish Coalescing). Here we cover the first three, the `??` operator is in the next article.
+>>>>>>> f6ae0b5a5f3e48074312ca3e47c17c92a5a52328
 
 Meski mereka dipanggil "logika", mereka bisa diaplikasikan ke nilai tipe apapun, bukan cuma boolean. Hasil mereka bisa juga tipe apapun.
 

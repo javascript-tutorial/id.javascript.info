@@ -13,7 +13,11 @@ Versi spesifikasi baru dirilis tiap tahun. Di antara rilis ini, draft spesifikas
 
 Untuk membaca tentang fitur terkini, termasuk yang "hampir menjadi standar" (disebut "stage 3"), lihat proposalnya di <https://github.com/tc39/proposals>.
 
+<<<<<<< HEAD
 Juga, jika kamu dalam pengembangan untuk peramban, maka ada spek lain yang dibahas di [bagian kedua](info:browser-environment) di tutorial ini.
+=======
+Also, if you're developing for the browser, then there are other specifications covered in the [second part](info:browser-environment) of the tutorial.
+>>>>>>> f6ae0b5a5f3e48074312ca3e47c17c92a5a52328
 
 ## Manual
 

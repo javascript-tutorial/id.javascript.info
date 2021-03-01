@@ -1,9 +1,17 @@
 # Promise
 
+<<<<<<< HEAD
+=======
+Imagine that you're a top singer, and fans ask day and night for your upcoming song.
+>>>>>>> f6ae0b5a5f3e48074312ca3e47c17c92a5a52328
 
 Bayangkan kamu adalah seorang penyanyi top, dan penggemarmu bertanya siang dan malam untuk *single* terbarumu.
 
+<<<<<<< HEAD
 Untuk mendapatkan kelegaan, kamu berjanji untuk mengirimkan *single* tersebut kepada mereka ketika diterbitkan. Kamu memberikan sebuah daftar kepada penggemarmu. Mereka dapat mengisi alamat surel mereka, sehingga saat lagu sudah tersedia, semua pihak yang berlangganan langsung menerimanya. Dan bahkan jika ada yang salah, katakanlah, ada kebakaran di dalam studio, sehingga kamu tidak dapat menerbitkan lagu, mereka masih akan diberitahu.
+=======
+Everyone is happy: you, because the people don't crowd you anymore, and fans, because they won't miss the song.
+>>>>>>> f6ae0b5a5f3e48074312ca3e47c17c92a5a52328
 
 Semua orang senang: kamu, karena orang-orang tidak memadati kamu lagi, dan penggemar, karena mereka tidak ketinggalan *single*nya.
 

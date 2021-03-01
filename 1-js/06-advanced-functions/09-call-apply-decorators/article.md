@@ -37,11 +37,19 @@ function cachingDecorator(func) {
 
 slow = cachingDecorator(slow);
 
+<<<<<<< HEAD
 alert( slow(1) ); // slow(1) telah dimasukan kedalam cache
 alert( "Again: " + slow(1) ); // sama seperti baris sebelumnya
 
 alert( slow(2) ); // slow(2) telah dimasukan kedalam cache
 alert( "Again: " + slow(2) ); // sama seperti baris sebelumnya
+=======
+alert( slow(1) ); // slow(1) is cached and the result returned
+alert( "Again: " + slow(1) ); // slow(1) result returned from cache
+
+alert( slow(2) ); // slow(2) is cached and the result returned
+alert( "Again: " + slow(2) ); // slow(2) result returned from cache
+>>>>>>> f6ae0b5a5f3e48074312ca3e47c17c92a5a52328
 ```
 
 Didalam kode diatas `cachingDecorator` adalah sebuah *decorator/dekorator*: sebuah fungsi spesial yang menerima fungsi dan mengubah tingkah lakunya.
