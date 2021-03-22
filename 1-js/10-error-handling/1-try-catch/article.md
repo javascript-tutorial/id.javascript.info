@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 # Penanganan eror, "try..catch"
+=======
+# Error handling, "try...catch"
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 
 Tidak peduli seberapa hebatnya kita dalam pemograman, terkadang kodingan kita memiliki banyak eror. Mereka mungkin muncul dikarenakan kesalahan kita, input dari user yang tidak terduga, eror respon dari server, dan juga berbagai macam alasan lainnya.
 
+<<<<<<< HEAD
 Biasanya, sebuah kodingan/scrip "terhenti" (tiba-tiba berhenti) dikarenakan adanya eror, menampilkan erornya pada console. 
 
 Tapi terdapat sebuah sintaks `try..catch` yang memperbolehkan kita untuk "menangkap" hasil eror sehingga skrip bisa berjalan sesuai dengan arahan kita, dibanding hanya berhenti saja.
@@ -10,6 +15,13 @@ Tapi terdapat sebuah sintaks `try..catch` yang memperbolehkan kita untuk "menang
 ## Sintaks "try..catch"
 
 Sintaks `try..catch` membentuk dua bagian utama: pertama `try`, dan kemudian `catch`:
+=======
+But there's a syntax construct `try...catch` that allows us to "catch" errors so the script can, instead of dying, do something more reasonable.
+
+## The "try...catch" syntax
+
+The `try...catch` construct has two main blocks: `try`, and then `catch`:
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 ```js
 try {
@@ -25,6 +37,7 @@ try {
 
 Mereka akan bekerja seperti ini:
 
+<<<<<<< HEAD
 1. Pertama, kodingan pada `try {...}` akan dijalankan.
 2. Jika tidak terdapat eror, maka `catch(err)` akan dihiraukan: prosesnya akan mencapai ujung bagian `try` dan kemudian berlanjut, melewati bagian `catch`.
 3. Jika terdapat eror, maka bagian `try` akan berhenti berjalan, dan alur prosesnya akan berlanjut pada awal bagian `catch(err)`. Variabel `err` (yang mana kita bisa ganti dengan nama apapun) akan mengandung eror objek dengan keterangan eror didalamnya.
@@ -32,6 +45,15 @@ Mereka akan bekerja seperti ini:
 ![](try-catch-flow.svg)
 
 Jadi, sebuah eror didalam bagian `try {…}` tidak akan memberhentikan kodingan tersebut -- kita memiliki sebuah kesempatan untuk menanganinya pada bagian `catch`.
+=======
+1. First, the code in `try {...}` is executed.
+2. If there were no errors, then `catch (err)` is ignored: the execution reaches the end of `try` and goes on, skipping `catch`.
+3. If an error occurs, then the `try` execution is stopped, and control flows to the beginning of `catch (err)`. The `err` variable (we can use any name for it) will contain an error object with details about what happened.
+
+![](try-catch-flow.svg)
+
+So, an error inside the `try {...}` block does not kill the script -- we have a chance to handle it in `catch`.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Mari kita lihat contoh lainnya.
 
@@ -46,7 +68,7 @@ Mari kita lihat contoh lainnya.
 
       alert('End of try runs');   // *!*(2) <--*/!*
 
-    } catch(err) {
+    } catch (err) {
 
       alert('Catch is ignored, because there are no errors'); // (3)
 
@@ -65,7 +87,7 @@ Mari kita lihat contoh lainnya.
 
       alert('End of try (never reached)');  // (2)
 
-    } catch(err) {
+    } catch (err) {
 
       alert(`Error has occurred!`); // *!*(3) <--*/!*
 
@@ -73,38 +95,55 @@ Mari kita lihat contoh lainnya.
     ```
 
 
+<<<<<<< HEAD
 ````warn header="`try..catch` hanya akan bekerja pada eror runtime"
 Untuk `try..catch` agar bekerja, kodingan tersebut harus bisa dijalankan. Dengan artian lain, itu harus dalam bahasa javascript yang valid.
 
 Mereka tidak akan bekerja jika kodingan tersebut secara sintaks salah, sebagai contoh jika mereka memiliki kurung kurawal yang tidak sama:
+=======
+````warn header="`try...catch` only works for runtime errors"
+For `try...catch` to work, the code must be runnable. In other words, it should be valid JavaScript.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 
 ```js run
 try {
   {{{{{{{{{{{{
-} catch(e) {
+} catch (err) {
   alert("The engine can't understand this code, it's invalid");
 }
 ```
 Mesin Javascript pertama membaca kodingan tersebut, dan menjalankannya. eror yang terjadi pada saat proses pembacaan disebut sebagai eror "parse-time" dan tidak dapat dipulihkan (dari dalam kodingan tersebut). Itu dikarenakan mesin javascript tidak mengerti kodingan .
 
+<<<<<<< HEAD
 Jadi, `try..catch` hanya dapat menangani eror yang terjadi pada kodingan yang valid. eror demikian biasanya dinamakan sebagai "eror runtime" atau terkadang, "exceptions".
 ````
 
 
 ````warn header="`try..catch` bekerja secara sinkronis"
 Jika sebuah exception terjadi pada kodingan yang "terjadwal", seperti pada `setTimeout`, maka `try..catch` tidak akan menangkapnya: 
+=======
+The JavaScript engine first reads the code, and then runs it. The errors that occur on the reading phase are called "parse-time" errors and are unrecoverable (from inside that code). That's because the engine can't understand the code.
+
+So, `try...catch` can only handle errors that occur in valid code. Such errors are called "runtime errors" or, sometimes, "exceptions".
+````
+
+
+````warn header="`try...catch` works synchronously"
+If an exception happens in "scheduled" code, like in `setTimeout`, then `try...catch` won't catch it:
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 ```js run
 try {
   setTimeout(function() {
     noSuchVariable; // kodingan akan berhenti disini
   }, 1000);
-} catch (e) {
+} catch (err) {
   alert( "won't work" );
 }
 ```
 
+<<<<<<< HEAD
 Itu dikarenakan fungsi tersebut dijalankan nanti, ketika mesin javascript telah meninggalkan bagian pada `try..catch`.
 
 Untuk menangkap sebuah exception didalam sebuah fungsi yang terjadwal, `try..catch` harus terjadi didalam fungsi tersebut:
@@ -112,6 +151,15 @@ Untuk menangkap sebuah exception didalam sebuah fungsi yang terjadwal, `try..cat
 setTimeout(function() {
   try {    
     noSuchVariable; // try..catch menangani eror tersebut!
+=======
+That's because the function itself is executed later, when the engine has already left the `try...catch` construct.
+
+To catch an exception inside a scheduled function, `try...catch` must be inside that function:
+```js run
+setTimeout(function() {
+  try {    
+    noSuchVariable; // try...catch handles the error!
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
   } catch {
     alert( "error is caught here!" );
   }
@@ -126,7 +174,11 @@ Ketika sebuah eror terjadi, Javascript menghasilkan sebuah ojek yang berisikan k
 ```js
 try {
   // ...
+<<<<<<< HEAD
 } catch(err) { // <-- "error object", bisa menggunakan kata lain selain err
+=======
+} catch (err) { // <-- the "error object", could use another word instead of err
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
   // ...
 }
 ```
@@ -152,7 +204,7 @@ try {
 *!*
   lalala; // error, variable is not defined!
 */!*
-} catch(err) {
+} catch (err) {
   alert(err.name); // ReferenceError
   alert(err.message); // lalala is not defined
   alert(err.stack); // ReferenceError: lalala is not defined at (...call stack)
@@ -177,9 +229,15 @@ try {
 }
 ```
 
+<<<<<<< HEAD
 ## Menggunakan "try..catch"
 
 Mari kita telusuri contoh penggunaan nyata dari `try..catch`.
+=======
+## Using "try...catch"
+
+Let's explore a real-life use case of `try...catch`.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Seperti yang telah kita ketahui, Javascript mendukung method [JSON.parse(str)](mdn:js/JSON/parse) yang membaca dari nilai JSON-encoded. 
 
@@ -207,7 +265,11 @@ Cukupkah kita puas dengan itu? Tentu saja tidak!
 
 Dengan cara ini, jika ada yang salah dengan datanya, pengunjung tidak akan pernah mengetahuinya (kecuali mereka membuka konsol pengembang). Dan orang biasanya tidak suka ketika sesuatu "berhenti begitu saja" tanpa ada pesan kesalahan.
 
+<<<<<<< HEAD
 Mari gunakan `try..catch` untuk menangani kesalahan:
+=======
+Let's use `try...catch` to handle the error:
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 ```js run
 let json = "{ bad json }";
@@ -219,12 +281,12 @@ try {
 */!*
   alert( user.name ); // tidak berjalan
 
-} catch (e) {
+} catch (err) {
 *!*
   // ...proses eksekusinya akan lompat kesini
   alert( "Our apologies, the data has errors, we'll try to request it one more time." );
-  alert( e.name );
-  alert( e.message );
+  alert( err.name );
+  alert( err.message );
 */!*
 }
 ```
@@ -246,7 +308,7 @@ try {
   alert( user.name ); // tidak ada nama!
 */!*
 
-} catch (e) {
+} catch (err) {
   alert( "doesn't execute" );
 }
 ```
@@ -295,11 +357,11 @@ Mari kita lihat jenis kesalahan apa yang dihasilkan `JSON.parse`:
 ```js run
 try {
   JSON.parse("{ bad json o_O }");
-} catch(e) {
+} catch (err) {
 *!*
-  alert(e.name); // SyntaxError
+  alert(err.name); // SyntaxError
 */!*
-  alert(e.message); // Unexpected token b in JSON at position 2
+  alert(err.message); // Unexpected token b in JSON at position 2
 }
 ```
 
@@ -324,8 +386,8 @@ try {
 
   alert( user.name );
 
-} catch(e) {
-  alert( "JSON Error: " + e.message ); // JSON Error: Incomplete data: no name
+} catch (err) {
+  alert( "JSON Error: " + err.message ); // JSON Error: Incomplete data: no name
 }
 ```
 
@@ -335,7 +397,11 @@ Sekarang `catch` menjadi satu tempat untuk semua penanganan error: baik untuk` J
 
 ## Rethrowing
 
+<<<<<<< HEAD
 Pada contoh di atas kami menggunakan `try..catch` untuk menangani data yang salah. Tetapi apakah mungkin terjadi kesalahan tak terduga lainnya dalam blok `try {...}`? Seperti kesalahan pemrograman (variabel tidak terdefinisi) atau sesuatu yang lain, bukan hanya hal terkait "data yang salah " ini.
+=======
+In the example above we use `try...catch` to handle incorrect data. But is it possible that *another unexpected error* occurs within the `try {...}` block? Like a programming error (variable is not defined) or something else, not just this "incorrect data" thing.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Sebagai contoh:
 
@@ -346,7 +412,7 @@ try {
   user = JSON.parse(json); // <-- lupa meletakkan "let" sebelum user
 
   // ...
-} catch(err) {
+} catch (err) {
   alert("JSON Error: " + err); // JSON Error: ReferenceError: user is not defined
   // (no JSON Error actually)
 }
@@ -354,7 +420,11 @@ try {
 
 Tentu saja, semuanya bisa! Pemrogram memang membuat kesalahan. Bahkan dalam projek pembantu pada sumber terbuka(open source) yang digunakan oleh jutaan orang selama beberapa dekade - tiba-tiba bug dapat ditemukan yang mengarah ke peretasan yang mengerikan.
 
+<<<<<<< HEAD
 Dalam kasus kita, `try..catch` ditempatkan untuk menangkap eror `"data yang tidak valid "`. Tetapi pada dasarnya, `catch` mendapatkan *semua* error dari` try`. Di sini ia mendapat eror yang tak terduga, tetapi masih menampilkan pesan `"JSON Error"` yang sama. Itu salah dan juga membuat kode lebih sulit untuk di-debug.
+=======
+In our case, `try...catch` is placed to catch "incorrect data" errors. But by its nature, `catch` gets *all* errors from `try`. Here it gets an unexpected error, but still shows the same `"JSON Error"` message. That's wrong and also makes the code more difficult to debug.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Untuk menghindari masalah seperti itu, kita dapat menggunakan teknik "rethrowing". Aturannya sederhana:
 
@@ -362,16 +432,22 @@ Untuk menghindari masalah seperti itu, kita dapat menggunakan teknik "rethrowing
 
 Teknik "rethrowing" dapat dijelaskan lebih detail sebagai:
 
+<<<<<<< HEAD
 1. Catch mendapatkan semua eror.
 2. Dalam blok `catch (err) {...}` kita menganalisis eror objek `err`.
 3. Jika kita tidak tahu bagaimana menanganinya, kita melakukan `throw err`.
+=======
+1. Catch gets all errors.
+2. In the `catch (err) {...}` block we analyze the error object `err`.
+3. If we don't know how to handle it, we do `throw err`.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Biasanya, kita dapat memeriksa jenis erornya menggunakan operator `instanceof`:
 
 ```js run
 try {
   user = { /*...*/ };
-} catch(err) {
+} catch (err) {
 *!*
   if (err instanceof ReferenceError) {
 */!*
@@ -400,24 +476,32 @@ try {
 
   alert( user.name );
 
-} catch(e) {
+} catch (err) {
 
 *!*
-  if (e instanceof SyntaxError) {
-    alert( "JSON Error: " + e.message );
+  if (err instanceof SyntaxError) {
+    alert( "JSON Error: " + err.message );
   } else {
-    throw e; // rethrow (*)
+    throw err; // rethrow (*)
   }
 */!*
 
 }
 ```
 
+<<<<<<< HEAD
 Eror saat yang dilempar pada baris `(*)` dari dalam blok `catch` "jatuh" dari` try..catch` dan dapat ditangkap oleh bagian luar `try..catch`(jika ada), atau itu memberhentikan kodingannya.
+=======
+The error throwing on line `(*)` from inside `catch` block "falls out" of `try...catch` and can be either caught by an outer `try...catch` construct (if it exists), or it kills the script.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Jadi, blok `catch` sebenarnya hanya menangani error yang tahu cara penanganannya dan "melewatkan" semua error lainnya.
 
+<<<<<<< HEAD
 Contoh di bawah ini menunjukkan bagaimana eror tersebut dapat ditangkap oleh satu level lagi dari blok `try..catch`:
+=======
+The example below demonstrates how such errors can be caught by one more level of `try...catch`:
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 ```js run
 function readData() {
@@ -428,11 +512,15 @@ function readData() {
 *!*
     blabla(); // error!
 */!*
-  } catch (e) {
+  } catch (err) {
     // ...
-    if (!(e instanceof SyntaxError)) {
+    if (!(err instanceof SyntaxError)) {
 *!*
+<<<<<<< HEAD
       throw e; // rethrow (tidak tahu bagaimana cara menanganinya)
+=======
+      throw err; // rethrow (don't know how to deal with it)
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 */!*
     }
   }
@@ -440,20 +528,32 @@ function readData() {
 
 try {
   readData();
-} catch (e) {
+} catch (err) {
 *!*
+<<<<<<< HEAD
   alert( "External catch got: " + e ); // menangkapnya!
+=======
+  alert( "External catch got: " + err ); // caught it!
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 */!*
 }
 ```
 
+<<<<<<< HEAD
 Di sini `readData` hanya mengetahui cara menangani` SyntaxError`, sedangkan bagian `try..catch` luar mengetahui cara menangani semuanya.
+=======
+Here `readData` only knows how to handle `SyntaxError`, while the outer `try...catch` knows how to handle everything.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
-## try..catch..finally
+## try...catch...finally
 
 Tunggu, itu belum semuanya.
 
+<<<<<<< HEAD
 Blok `try..catch` mungkin memiliki satu klausa kode lagi yaitu:`finally`.
+=======
+The `try...catch` construct may have one more code clause: `finally`.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Jika ada, maka itu akan berjalan di semua kasus:
 
@@ -465,7 +565,7 @@ Contoh sintaks lengkapnya seperti ini:
 ```js
 *!*try*/!* {
    ... try to execute the code ...
-} *!*catch*/!*(e) {
+} *!*catch*/!* (err) {
    ... handle errors ...
 } *!*finally*/!* {
    ... execute always ...
@@ -478,7 +578,7 @@ Try running this code:
 try {
   alert( 'try' );
   if (confirm('Make an error?')) BAD_CODE();
-} catch (e) {
+} catch (err) {
   alert( 'catch' );
 } finally {
   alert( 'finally' );
@@ -514,7 +614,7 @@ let start = Date.now();
 
 try {
   result = fib(num);
-} catch (e) {
+} catch (err) {
   result = 0;
 *!*
 } finally {
@@ -532,14 +632,23 @@ Kalian dapat memeriksa dengan menjalankan kode dengan memasukkan `35` ke dalam` 
 Dengan kata lain, fungsi tersebut mungkin diakhiri dengan `return` atau `throw`, itu tidak masalah. Klausa `finally` dijalankan di kedua kasus.
 
 
+<<<<<<< HEAD
 ```smart header="Variables are local inside `try..catch..finally`"
 Tolong diperhatikan bahwa variabel `result` dan `diff` pada kode di atas dideklarasikan *sebelum* `try..catch`.
+=======
+```smart header="Variables are local inside `try...catch...finally`"
+Please note that `result` and `diff` variables in the code above are declared *before* `try...catch`.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Sebaliknya, jika kita mendeklarasikan `let` di blok` try`, itu hanya akan terlihat di dalamnya.
 ```
 
 ````smart header="`finally` and `return`"
+<<<<<<< HEAD
 Klausa `finally` berfungsi untuk *apa saja* yang keluar dari` try..catch`. Itu termasuk `return` eksplisit.
+=======
+The `finally` clause works for *any* exit from `try...catch`. That includes an explicit `return`.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Pada contoh di bawah ini, terdapat `return` dalam `try`. Dalam kasus ini, `finally` dijalankan tepat sebelum kontrol kembali ke kode luar.
 
@@ -551,7 +660,7 @@ function func() {
     return 1;
 */!*
 
-  } catch (e) {
+  } catch (err) {
     /* ... */
   } finally {
 *!*
@@ -564,9 +673,13 @@ alert( func() ); //pertama alert bekerja dari finally, dan kemudian yang satu in
 ```
 ````
 
-````smart header="`try..finally`"
+````smart header="`try...finally`"
 
+<<<<<<< HEAD
 Bagian `try..finally`, tanpa klausa` catch`, juga berguna. Kita menerapkannya ketika kita tidak ingin menangani eror di sini (biarkan eror itu terjadi), tetapi ingin memastikan bahwa proses yang kita mulai sudah selesai.
+=======
+The `try...finally` construct, without `catch` clause, is also useful. We apply it when we don't want to handle errors here (let them fall through), but want to be sure that processes that we started are finalized.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 ```js
 function func() {
@@ -587,7 +700,11 @@ Pada kode di atas, eror di dalam `try` selalu terjadi, karena tidak ada `catch`.
 Informasi dari bagian ini bukan merupakan bagian dari inti JavaScript.
 ```
 
+<<<<<<< HEAD
 Bayangkan kita mendapatkan eror yang fatal di luar `try..catch`, dan kodingannya mati. Seperti eror pemrograman atau hal buruk lainnya.
+=======
+Let's imagine we've got a fatal error outside of `try...catch`, and the script died. Like a programming error or some other terrible thing.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Adakah cara untuk bereaksi atas kejadian seperti itu? kita mungkin ingin mencatat kesalahan, menunjukkan sesuatu kepada pengguna (biasanya mereka tidak melihat pesan eror), dll.
 
@@ -644,22 +761,37 @@ Mereka bekerja seperti ini:
 
 ## Kesimpulan
 
+<<<<<<< HEAD
 Bagian `try..catch` memungkinkan untuk menangani error runtime. Secara harfiah memungkinkan untuk "mencoba" menjalankan kode dan "menangkap" kesalahan yang mungkin terjadi di dalamnya.
+=======
+The `try...catch` construct allows to handle runtime errors. It literally allows to "try" running the code and "catch" errors that may occur in it.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Sintaksnya adalah:
 
 ```js
 try {
+<<<<<<< HEAD
   // Jalankan kode ini
 } catch(err) {
   // jika terjadi kesalahan, lompat ke sini
   // err adalah eror objek 
+=======
+  // run this code
+} catch (err) {
+  // if an error happened, then jump here
+  // err is the error object
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 } finally {
   // lakukan dalam hal apa pun setelah try / catch
 }
 ```
 
+<<<<<<< HEAD
 Mungkin tidak ada bagian `catch` atau `finally`, jadi bagian yang lebih pendek `try..catch` dan` try..finally` juga valid.
+=======
+There may be no `catch` section or no `finally`, so shorter constructs `try...catch` and `try...finally` are also valid.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Eror objek memiliki properti berikut ini:
 
@@ -667,10 +799,18 @@ Eror objek memiliki properti berikut ini:
 - `name` -- string dengan nama eror (nama konstruktor eror).
 - `stack` (non-standar, tetapi didukung dengan baik) - tumpukan/stack pada saat pembuatan eror.
 
+<<<<<<< HEAD
 Jika eror objek tidak diperlukan, kita bisa menghilangkannya dengan menggunakan `catch {` daripada `catch (err) {`.
+=======
+If an error object is not needed, we can omit it by using `catch {` instead of `catch (err) {`.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Kita juga bisa menghasilkan error kita sendiri menggunakan operator `throw`. Secara teknis, argumen dari `throw` bisa berupa apa saja, tetapi biasanya itu adalah eror objek yang diturunkan dari kelas ʻError` bawaan. Lebih lanjut tentang memperluas eror objek di bab berikutnya.
 
 *Rethrowing* adalah pola yang sangat penting dari penanganan eror: blok `catch` biasanya mengharapkan dan mengetahui bagaimana menangani jenis kesalahan tertentu, jadi blok tersebut harus menampilkan kembali kesalahan yang tidak diketahuinya.
 
+<<<<<<< HEAD
 Bahkan jika kita tidak memiliki `try..catch`, sebagian besar lingkungan memungkinkan kita menyiapkan penangan eror "global" untuk menangkap eror yang "terjadi". Di dalam browser, itu adalah `window.onerror`.
+=======
+Even if we don't have `try...catch`, most environments allow us to setup a "global" error handler to catch errors that "fall out". In-browser, that's `window.onerror`.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
