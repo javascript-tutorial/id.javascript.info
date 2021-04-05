@@ -26,9 +26,15 @@ Kode diatas mendemonstrasikan hal itu.
 ```js
 function func() {
 *!*
+<<<<<<< HEAD
   // variabel lokal x dikenal mesinnya di awal dari fungsinya,
   // tapi "belum diinisialisasi" (tidak dapat digunakan) sampai let ("zona mati")
   // karenanya terdapat error
+=======
+  // the local variable x is known to the engine from the beginning of the function,
+  // but "uninitialized" (unusable) until let ("dead zone")
+  // hence the error
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 */!*
 
   console.log(x); // ReferenceError: Cannot access 'x' before initialization

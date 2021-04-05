@@ -25,7 +25,11 @@ messages.shift();
 // sekarang readMessages mempunyai 1 elemen (secara teknis memory mungkin akan dibersihkan nanti)
 ```
 
+<<<<<<< HEAD
 `WeakSet` membolehkan untuk menyimpan satu set dari messages dan dengan mudah memeriksa apakah sebuah pesan ada didalamnya.
+=======
+The `WeakSet` allows to store a set of messages and easily check for the existence of a message in it.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 Itu akan membersihkan dirinya sendiri secara otomatis. Timbal baliknya adalah kita tidak bisa melakukan iterasi didalamnya, tidak bisa mendapatkan "semua pesan yang telah dibaca" darinya secara langsung. Tapi kita bisa melakukan iterasi kepada seluruh pesan dan memfilter semuanya yang ada didalam set.
 

@@ -5,7 +5,7 @@ Terdapat sintaks lain yang sangat sederhana dan ringkas untuk membuat fungsi-fun
 Disebut sebagai "fungsi *arrow* (panah)", karena sintaks fungsinya terlihat seperti ini:
 
 ```js
-let func = (arg1, arg2, ...argN) => expression
+let func = (arg1, arg2, ..., argN) => expression
 ```
 
 ...Ini membuat sebuah fungsi `func` yang menerima argumen `arg1..argN`, kemudian mengevaluasi `expression` yang ada di sisi kanan serta kegunaannya dan mengembalikan hasilnya.
@@ -13,7 +13,7 @@ let func = (arg1, arg2, ...argN) => expression
 Dalam kata lain, fungsi tersebut adalah versi yang lebih pendek dari:
 
 ```js
-let func = function(arg1, arg2, ...argN) {
+let func = function(arg1, arg2, ..., argN) {
   return expression;
 };
 ```

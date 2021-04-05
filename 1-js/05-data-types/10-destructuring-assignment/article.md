@@ -145,7 +145,11 @@ Disini kita membuat array sementara untuk dua variabel dan langsung memisahkanny
 Kita bisa menukar lebih daripada dua variabel dengan cara ini.
 
 
+<<<<<<< HEAD
 ### Sisanya '...'
+=======
+Usually, if the array is longer than the list at the left, the "extra" items are omitted.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 Jika kita ingin tidak hanya mendapatkan nilai pertama, tetapi juga untuk mengumpulkan semua yang mengikuti -- kita dapat menambahkan satu parameter lagi dan mendapat "the rest" menggunakan tiga titik `"..."`:
 

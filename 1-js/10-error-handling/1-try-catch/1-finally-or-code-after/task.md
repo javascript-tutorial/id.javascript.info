@@ -6,12 +6,16 @@ Nilai Penting: 5
 
 Bandingkan dua fragmen kode.
 
+<<<<<<< HEAD
 1. Yang pertama menggunakan `finally` untuk mengeksekusi kode setelah` try..catch`:
+=======
+1. The first one uses `finally` to execute the code after `try...catch`:
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
     ```js
     try {
       work work
-    } catch (e) {
+    } catch (err) {
       handle errors
     } finally {
     *!*
@@ -19,12 +23,16 @@ Bandingkan dua fragmen kode.
     */!*
     }
     ```
+<<<<<<< HEAD
 2. Fragmen kedua melakukan pembersihan tepat setelah `try..catch`:
+=======
+2. The second fragment puts the cleaning right after `try...catch`:
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
     ```js
     try {
       work work
-    } catch (e) {
+    } catch (err) {
       handle errors
     }
 
