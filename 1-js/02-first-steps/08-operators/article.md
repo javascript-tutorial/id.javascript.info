@@ -56,11 +56,18 @@ alert( 8 % 3 ); // 2, sisa dari pembagian antara 8 dibagi 3
 
 ### Eksponensial **
 
+<<<<<<< HEAD
 Operator eksponensial `a ** b` mengkalikan `a` dengan nilai itu sendiri sebanyak `b` kali.
+=======
+The exponentiation operator `a ** b` raises `a` to the power of `b`.
+
+In school maths, we write that as a<sup>b</sup>.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 Contoh:
 
 ```js run
+<<<<<<< HEAD
 alert( 2 ** 2 ); // 4  (2 dikalikan dengan nilai itu sendiri sebanyak 2 kali)
 alert( 2 ** 3 ); // 8  (2 * 2 * 2, 3 kali)
 alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2, 4 kali)
@@ -68,6 +75,16 @@ alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2, 4 kali)
 
 Secara matematis, eksponensial juga bisa digunakan untuk nomor yang bukan integer.
 Contoh, akar kuadrat adalah eksponen dari `1/2`:
+=======
+alert( 2 ** 2 ); // 2² = 4  
+alert( 2 ** 3 ); // 2³ = 8 
+alert( 2 ** 4 ); // 2⁴ = 16
+```
+
+Just like in maths, the exponentiation operator is defined for non-integer numbers as well. 
+
+For example, a square root is an exponentiation by ½:
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 ```js run
 alert( 4 ** (1/2) ); // 2 (pangkat 1/2 sama dengan akar kuadrat)

@@ -52,4 +52,8 @@ function f(b) {
 }
 ```
 
+<<<<<<< HEAD
 `f` ini akan digunakan didalam pemanggilan selanjutnya, dan lagi akan mengembalikan dirinya-sendiri, berapa kalipun seperti yang dibutuhkan. Lalu, ketika digunakan sebagai angka atau sebuah string -- `toString` mengembalikan `currentSum`. Kita jadi bisa menggunakan `Symbol.toPrimitive` atau `valueOf` disini sebagai perubahan.
+=======
+This `f` will be used in the next call, again return itself, as many times as needed. Then, when used as a number or a string -- the `toString` returns the `currentSum`. We could also use `Symbol.toPrimitive` or `valueOf` here for the conversion.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3

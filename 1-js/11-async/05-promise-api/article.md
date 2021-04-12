@@ -1,6 +1,10 @@
 # API Promise
 
+<<<<<<< HEAD
 Ada 5 method static di dalam class `Promise`. Kita akan segera membahas kasus penggunaan method-method tersebut di sini.
+=======
+There are 6 static methods in the `Promise` class. We'll quickly cover their use cases here.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 ## Promise.all
 
