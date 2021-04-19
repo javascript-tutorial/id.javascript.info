@@ -124,7 +124,11 @@ Itu sama dengan penugasan langsung ke `Article`:
 Article.publisher = 'Ilya Kantor';
 ```
 
+<<<<<<< HEAD
 ## Pewarisan properti dan metode statis
+=======
+## Inheritance of static properties and methods [#statics-and-inheritance]
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Properti dan metode statis diwarisi.
 

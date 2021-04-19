@@ -103,4 +103,8 @@ let doublePrices = Object.fromEntries(
 alert(doublePrices.meat); // 8
 ```   
 
+<<<<<<< HEAD
 Mungkin ini terlihat susah pertama kalinya, tetapi ini akan menjadi mudah untuk di mengerti setelah kamu menggunakannya beberapa kali. Kita bisa membuat perantaian hebat dengan cara ini.
+=======
+It may look difficult at first sight, but becomes easy to understand after you use it once or twice. We can make powerful chains of transforms this way. 
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96

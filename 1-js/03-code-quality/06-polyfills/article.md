@@ -47,7 +47,11 @@ Sistem pembangunan proyek modern, seperti [webpack](http://webpack.github.io/), 
 
 Fitur bahasa baru tidak hanya mencakup konstruksi dan operator sintaks, tetapi juga fungsi bawaan.
 
+<<<<<<< HEAD
 Misalnya, `Math.trunc (n)` adalah fungsi yang "memotong" bagian desimal dari sebuah angka, misalnya `Math.trunc (1.23) = 1`.
+=======
+For example, `Math.trunc(n)` is a function that "cuts off" the decimal part of a number, e.g `Math.trunc(1.23)` returns `1`.
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Di beberapa mesin JavaScript (sangat usang), tidak ada `Math.trunc`, jadi kode seperti itu akan gagal.
 
