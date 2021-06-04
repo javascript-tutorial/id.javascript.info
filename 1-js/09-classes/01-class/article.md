@@ -109,8 +109,13 @@ alert(typeof User); // function
 // ...atau, lebih tepatnya, Method constructor
 alert(User === User.prototype.constructor); // true
 
+<<<<<<< HEAD
 // Method tersebut berada pada User.prototype, contoh:
 alert(User.prototype.sayHi); // alert(this.name);
+=======
+// The methods are in User.prototype, e.g:
+alert(User.prototype.sayHi); // the code of the sayHi method
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 // Didalamnya terdapat dua method pada prototipe
 alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi

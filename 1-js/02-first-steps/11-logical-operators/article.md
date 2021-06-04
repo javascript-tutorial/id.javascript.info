@@ -1,6 +1,10 @@
 # Operator logika
 
+<<<<<<< HEAD
 Ada tiga operator logika di JavaScript: `||` (OR), `&&` (AND), `!` (NOT).
+=======
+There are four logical operators in JavaScript: `||` (OR), `&&` (AND), `!` (NOT), `??` (Nullish Coalescing). Here we cover the first three, the `??` operator is in the next article.
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Meski mereka dipanggil "logika", mereka bisa diaplikasikan ke nilai tipe apapun, bukan cuma boolean. Hasil mereka bisa juga tipe apapun.
 
@@ -64,7 +68,11 @@ if (hour < 10 || hour > 18 || isWeekend) {
 }
 ```
 
+<<<<<<< HEAD
 ## OR "||" mencari nilai truthy pertama
+=======
+## OR "||" finds the first truthy value [#or-finds-the-first-truthy-value]
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Logika di atas memang klasik. Sekarang, mari bawa fitur "extra" JavaScript.
 

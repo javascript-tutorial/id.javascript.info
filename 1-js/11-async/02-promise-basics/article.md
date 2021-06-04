@@ -1,9 +1,17 @@
 # Promise
 
+<<<<<<< HEAD
+=======
+Imagine that you're a top singer, and fans ask day and night for your upcoming song.
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Bayangkan kamu adalah seorang penyanyi top, dan penggemarmu bertanya siang dan malam untuk *single* terbarumu.
 
+<<<<<<< HEAD
 Untuk mendapatkan kelegaan, kamu berjanji untuk mengirimkan *single* tersebut kepada mereka ketika diterbitkan. Kamu memberikan sebuah daftar kepada penggemarmu. Mereka dapat mengisi alamat surel mereka, sehingga saat lagu sudah tersedia, semua pihak yang berlangganan langsung menerimanya. Dan bahkan jika ada yang salah, katakanlah, ada kebakaran di dalam studio, sehingga kamu tidak dapat menerbitkan lagu, mereka masih akan diberitahu.
+=======
+Everyone is happy: you, because the people don't crowd you anymore, and fans, because they won't miss the song.
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Semua orang senang: kamu, karena orang-orang tidak memadati kamu lagi, dan penggemar, karena mereka tidak ketinggalan *single*nya.
 
@@ -26,10 +34,17 @@ Fungsi yang dilewatkan ke `new Promise` disebut sebagai *exekutor*. Ketika `new 
 Argumen `resolve` dan `reject` adalah *callback* yang disediakan oleh JavaScript itu sendiri. Kode kita hanya ada di dalam eksekutor.
 
 
+<<<<<<< HEAD
 Ketika eksekutor mendapatkan hasilnya, baik itu cepat atau lambat - tidak masalah, eksekutor harus memanggil salah satu dari *callback* ini:
 
 - `resolve(value)` — jika pekerjaan selesai dengan sukses, dengan hasil `value`.
 - `reject(error)` — jika terjadi kesalahan, `error` adalah objek kesalahan.
+=======
+- `resolve(value)` — if the job is finished successfully, with result `value`.
+- `reject(error)` — if an error has occurred, `error` is the error object.
+
+So to summarize: the executor runs automatically and attempts to perform a job. When it is finished with the attempt, it calls `resolve` if it was successful or `reject` if there was an error.
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 
 Jadi untuk meringkas: eksekutor berjalan secara otomatis, eksekutor harus melakukan pekerjaan dan kemudian memanggil salah satu dari `resolve` atau `reject`.

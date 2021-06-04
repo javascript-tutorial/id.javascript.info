@@ -364,7 +364,7 @@ Tombol baru kita meng-*extends* tombol bawaan. Jadi, style dan fitur standar tet
 ## Referensi
 
 - HTML Living Standard: <https://html.spec.whatwg.org/#custom-elements>.
-- Compatiblity: <https://caniuse.com/#feat=custom-elements>.
+- Compatiblity: <https://caniuse.com/#feat=custom-elementsv1>.
 
 ## Ringkasan
 
@@ -396,5 +396,9 @@ Elemen kustom dapat terdiri dari dua jenis:
     /* <button is="my-button"> */
     ```
 
+<<<<<<< HEAD
 Elemen kustom didukung dengan baik di antara browser. Edge agak tertinggal, tetapi ada *polyfill*
 <https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs>.
+=======
+Custom elements are well-supported among browsers. There's a polyfill <https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs>.
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96

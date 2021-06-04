@@ -318,7 +318,11 @@ alert('Done!');
 
 Kita butuh cara untuk menghentikan proses jika pengguna membatalkan input.
 
+<<<<<<< HEAD
 `break` biasa setelah `input` hanya akan menghentikan perulangan dalam. Itu tidak cukup--label, datang untuk menyelamatkan!
+=======
+The ordinary `break` after `input` would only break the inner loop. That's not sufficient -- labels, come to the rescue!
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Label adalah sebuah pengidentifikasi dengan sebuah titik dua sebelum perulangan:
 ```js
@@ -363,12 +367,31 @@ Label tidak mengizinkan kita untuk lompat ke sembarang tempat dalam kode.
 
 Misalnya, mustahil melakukan ini:
 ```js
+<<<<<<< HEAD
 break label;  // tidak lompak ke label di bawah
+=======
+break label; // jump to the label below (doesn't work)
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 label: for (...)
 ```
 
+<<<<<<< HEAD
 Sebuah panggilan untuk `break/continue` hanya mungkin dari dalam sebuah perulangan dan label harus berada diatas perintah.
+=======
+A `break` directive must be inside a code block. Technically, any labelled code block will do, e.g.:
+```js
+label: {
+  // ...
+  break label; // works
+  // ...
+}
+```
+
+...Although, 99.9% of the time `break` used is inside loops, as we've seen in the examples above.
+
+A `continue` is only possible from inside a loop.
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 ````
 
 ## Ringkasan

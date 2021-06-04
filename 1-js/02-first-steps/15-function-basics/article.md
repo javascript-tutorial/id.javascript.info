@@ -415,7 +415,11 @@ Fungsi yang *digunakan secara sering* kadang-kadang memiliki nama yang sangat pe
 
 Sebagai contoh, framework [jQuary](http://jquary.com) mendefinisikan fungsi dengan simbol `$`. Library [Lodash](https://lodash.com) memiliki fungsi inti yang dinamakan dengan `_`.
 
+<<<<<<< HEAD
 Hal-hal tersebut adalah pengecualian. Secara umum, nama fungsi sebaiknya ringkas dan menjelaskan maksudnya.
+=======
+These are exceptions. Generally function names should be concise and descriptive.
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 ```
 
 ## Fungsi == komen
