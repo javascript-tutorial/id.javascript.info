@@ -1,14 +1,14 @@
-# Character classes
+# Kelas-kelas Karakter (Character classes)
 
-Consider a practical task -- we have a phone number like `"+7(903)-123-45-67"`, and we need to turn it into pure numbers: `79031234567`.
+Bayangkan sebuah tugas praktik -- kita memiliki sebuah nomor telepon `"+7(903)-123-45-67"`, dan kita harus mengubah nomor telepon tersebut menjadi angka murni: `79031234567`.
 
-To do so, we can find and remove anything that's not a number. Character classes can help with that.
+Untuk melakukan hal itu, kita harus menemukan apapun yang bukan merupakan angka. Kelas karakter dapat membantu membereskan hal tersebut.
 
-A *character class* is a special notation that matches any symbol from a certain set.
+Sebuah *Kelas Karakter* adalah sebuah notasi yang spesial yang membandingkan simbol apapun dengan aturan tertentu.
 
-For the start, let's explore the "digit" class. It's written as `pattern:\d` and corresponds to "any single digit".
+Untuk memulai, ayo kita *explore* kelas "angka" (digit). Kelas "angka" ditulis seperti `pattern:\d` dan dapat disamakan dengan "setiap angka yang ada".
 
-For instance, let's find the first digit in the phone number:
+Untuk contoh, kita akan mencoba mencari angka pertama pada nomor telepon:
 
 ```js run
 let str = "+7(903)-123-45-67";
@@ -18,73 +18,73 @@ let regexp = /\d/;
 alert( str.match(regexp) ); // 7
 ```
 
-Without the flag `pattern:g`, the regular expression only looks for the first match, that is the first digit `pattern:\d`.
+Tanpa tanda `pattern:g`, ekspresi regularnya hanya akan mencari satu kecocokan, yaitu angka pertama `pattern:/d`.
 
-Let's add the `pattern:g` flag to find all digits:
+Coba kita tambahkan tanda `pattern:g` untuk mencari seluruh angka:
 
 ```js run
 let str = "+7(903)-123-45-67";
 
 let regexp = /\d/g;
 
-alert( str.match(regexp) ); // array of matches: 7,9,0,3,1,2,3,4,5,6,7
+alert( str.match(regexp) ); // array: 7,9,0,3,1,2,3,4,5,6,7
 
-// let's make the digits-only phone number of them:
+// kita coba untuk membuat "hanya angka" dari nomor teleponnya:
 alert( str.match(regexp).join('') ); // 79031234567
 ```
 
-That was a character class for digits. There are other character classes as well.
+Itu adalah kelas karakter untuk angka. Tentu saja ada karakter kelas lainnya.
 
-Most used are:
+Yang paling banyak digunakan adalah:
 
-`pattern:\d` ("d" is from "digit")
-: A digit: a character from `0` to `9`.
+`pattern:\d` ("d" untuk "digit" / "angka")
+: Angka: adalah karakter dari `0` sampai `9`.
 
-`pattern:\s` ("s" is from "space")
-: A space symbol: includes spaces, tabs `\t`, newlines `\n` and few other rare characters, such as `\v`, `\f` and `\r`.
+`pattern:\s` ("s" untuk "space" / "spasi" / untuk mencari *whitespace*)
+: Simbol *space* / spasi: termasuk spasi, *tabs* `\t`, garis baru `\n` dan beberapa karakter lainnya yang jarang digunakan, seperti `\v`, `\f` dan `\r`.
 
-`pattern:\w` ("w" is from "word")
-: A "wordly" character: either a letter of Latin alphabet or a digit or an underscore `_`. Non-Latin letters (like cyrillic or hindi) do not belong to `pattern:\w`.
+`pattern:\w` ("w" untuk "word" / "karakter kata")
+: "karakter kata": antara sebuah huruf dari alfabet latin atau sebuah angka atau sebuah *underscore* `_` (a-z, A-Z, 0-9). `pattern:\w` tidak bisa digunakan untuk huruf yang bukan huruf latin (seperti *cyrillic* atau *hindi*).
 
-For instance, `pattern:\d\s\w` means a "digit" followed by a "space character" followed by a "wordly character", such as `match:1 a`.
+Contohnya, `pattern:\d\s\w` menandakan sebuah "digit" yang diikuti dengan "karakter *space*" diikuti dengan "karakter kata", seperti `match:1 a`.
 
-**A regexp may contain both regular symbols and character classes.**
+**Regular ekspresi mungkin mengandung simbol dan kelas karakter.**
 
-For instance, `pattern:CSS\d` matches a string `match:CSS` with a digit after it:
+Contoh, `pattern:CSS\d` cocok dengan *string* `match:CSS` dengan angka setelahnya:
 
 ```js run
-let str = "Is there CSS4?";
+let str = "Apakah CSS4 telah rilis?";
 let regexp = /CSS\d/
 
 alert( str.match(regexp) ); // CSS4
 ```
 
-Also we can use many character classes:
+Dan juga kita bisa menggunakan banyak kelas karakter:
 
 ```js run
 alert( "I love HTML5!".match(/\s\w\w\w\w\d/) ); // ' HTML5'
 ```
 
-The match (each regexp character class has the corresponding result character):
+Kecocokannya (setiap karakter kelas regexp yang menghasilkan hasil yang sesuai):
 
 ![](love-html5-classes.svg)
 
-## Inverse classes
+## Kelas kebalikan (Inverse Classes)
 
-For every character class there exists an "inverse class", denoted with the same letter, but uppercased.
+Untuk setiap kelas karakter yang ada terdapat sebuah "kelas kebalikan", ditunjukan dengan huruf yang sama, tapi dengan huruf besar / kapital.
 
-The "inverse" means that it matches all other characters, for instance:
+"Kebalikan" berarti kelas tersebut cocok dengan seluruh karakter lainnya, contoh:
 
 `pattern:\D`
-: Non-digit: any character except `pattern:\d`, for instance a letter.
+: Bukan angka: karakter apapun kecuali `pattern:\d`, contoh huruf.
 
 `pattern:\S`
-: Non-space: any character except `pattern:\s`, for instance a letter.
+: Bukan spasi: karakter apapun kecuali `pattern:\s`, contoh huruf.
 
 `pattern:\W`
-: Non-wordly character: anything but `pattern:\w`, e.g a non-latin letter or a space.
+: Bukan karakter kata: apapun kecuali `pattern:\w`, contoh huruf yang bukan latin atau sebuah spasi.
 
-In the beginning of the chapter we saw how to make a number-only phone number from a string like `subject:+7(903)-123-45-67`: find all digits and join them.
+Pada awal bab kita melihat bagaimana cara membuat nomor telepon yang hanya angka dari string seperti `subject:+7(903)-123-45-67`: cari seluruh angka dan gabungkan.
 
 ```js run
 let str = "+7(903)-123-45-67";
@@ -92,7 +92,7 @@ let str = "+7(903)-123-45-67";
 alert( str.match(/\d/g).join('') ); // 79031234567
 ```
 
-An alternative, shorter way is to find non-digits `pattern:\D` and remove them from the string:
+Alternatif, cara pendeknya adalah dengan mencari karakter yang bukan angka dan hilangkan dari stringnya:
 
 ```js run
 let str = "+7(903)-123-45-67";
@@ -100,104 +100,105 @@ let str = "+7(903)-123-45-67";
 alert( str.replace(/\D/g, "") ); // 79031234567
 ```
 
-## A dot is "any character"
+## Sebuah titik adalah "karakter apapun"
 
-A dot `pattern:.` is a special character class that matches "any character except a newline".
+Sebuah titik `pattern:.` adalah sebuah kelas karakter spesial yang cocok "dengan karakter apapun kecuali garis baru".
 
-For instance:
+Contoh:
 
 ```js run
 alert( "Z".match(/./) ); // Z
 ```
 
-Or in the middle of a regexp:
+Atau ditengah dari sebuah ekspresi regular:
 
 ```js run
 let regexp = /CS.4/;
 
 alert( "CSS4".match(regexp) ); // CSS4
 alert( "CS-4".match(regexp) ); // CS-4
-alert( "CS 4".match(regexp) ); // CS 4 (space is also a character)
+alert( "CS 4".match(regexp) ); // CS 4 (spasi juga merupakan karakter)
 ```
 
-Please note that a dot means "any character", but not the "absence of a character". There must be a character to match it:
+Ingatlah bahwa titik berarti "karakter apapun", tapi bukan sebuah "ketiadaan karakter". Harusnya ada karakter yang mirip dengannya:
 
 ```js run
-alert( "CS4".match(/CS.4/) ); // null, no match because there's no character for the dot
+alert( "CS4".match(/CS.4/) ); // null, tidak ada yang cocok karena tidak terdapat karakter untuk titiknya.
 ```
 
-### Dot as literally any character with "s" flag
+### Titik secara literal adalah karakter apapun dengan tanda "s"
 
-By default, a dot doesn't match the newline character `\n`.
+Pada dasarnya, sebuah titik tidak cocok dengan karakter garis baru `\n`.
 
-For instance, the regexp `pattern:A.B` matches `match:A`, and then `match:B` with any character between them, except a newline `\n`:
+Contoh, ekspresi regular `pattern:A.B` cocok dengan `match:A`, dan lalu `match:B` dengan karakter apapun diantaranya, kecuali garis baru `\n`:
 
 ```js run
-alert( "A\nB".match(/A.B/) ); // null (no match)
+alert( "A\nB".match(/A.B/) ); // null (tidak ada yang cocok)
 ```
 
-There are many situations when we'd like a dot to mean literally "any character", newline included.
+Terdapat beberapa situasi ketika kita ingin memperlakukan titik sebagai "karakter apapun", garis baru termasuk.
 
-That's what flag `pattern:s` does. If a regexp has it, then a dot `pattern:.` matches literally any character:
+Itulah yang dilakukan oleh `pattern:s`. Jika sebuah ekspresi regular memilikinya, maka sebuah titik `pattern:.` secara literal cocok dengan karakter apapun:
 
 ```js run
-alert( "A\nB".match(/A.B/s) ); // A\nB (match!)
+alert( "A\nB".match(/A.B/s) ); // A\nB (cocok!)
 ```
 
-````warn header="Not supported in IE"
-The `pattern:s` flag is not supported in IE.
+````warn header="Tidak didukung IE"
+Tanda `pattern:s` tidak didukung pada IE.
 
-Luckily, there's an alternative, that works everywhere. We can use a regexp like `pattern:[\s\S]` to match "any character" (this pattern will be covered in the article <info:regexp-character-sets-and-ranges>).
+Beruntungnya, masih terdapat alternatif untuk hal itu yang mana dapat berjalan dimanapun. Kita bisa menggunakan *regexp* seperti `pattern:[\s\S]` untuk dicocokan dengan "karakter apapun" (pola ini akan dijelaskan pada bab <info:regexp-character-sets-and-ranges>).
 
 ```js run
-alert( "A\nB".match(/A[\s\S]B/) ); // A\nB (match!)
+alert( "A\nB".match(/A[\s\S]B/) ); // A\nB (cocok!)
 ```
 
-The pattern `pattern:[\s\S]` literally says: "a space character OR not a space character". In other words, "anything". We could use another pair of complementary classes, such as `pattern:[\d\D]`, that doesn't matter. Or even the `pattern:[^]` -- as it means match any character except nothing.
+Pola `pattern:[\s\S]` bisa dikatakan: "sebuah karakter spasi ATAU bukan sebuah karakter spasi". Dengan kata lain, "apapun". Kita bisa menggunakan kelas komplemen pasangan lainnya, seperti `pattern:[\d\D]`, itu tidak penting. Atau bahkan `pattern:[^]` -- sama seperti mencocokan karakter apapun kecuali tidak ada.
 
-Also we can use this trick if we want both kind of "dots" in the same pattern: the actual dot `pattern:.` behaving the regular way ("not including a newline"), and also a way to match "any character" with `pattern:[\s\S]` or alike.
+Kita juga bisa menggunakan trik ini jika kita ingin dua bentuk "titik" didalam pola yang sama: titik yang sebenarnya `pattern:.` bertingkah seperti biasa ("tidak termasuk garis baru"), dan juga sebuah cara untuk mencocokan "karakter apapun" dengan `pattern:[\s\S]` atau sejenisnya.
 ````
 
-````warn header="Pay attention to spaces"
-Usually we pay little attention to spaces. For us strings `subject:1-5` and `subject:1 - 5` are nearly identical.
+````warn header="Perhatikan spasinya"
+Biasanya kita hanya memberikan sedikit perhatian pada spasi. Untuk kita string `subject:1-5` dan `subject:1 - 5` adalah hal yang hampir mirip.
 
-But if a regexp doesn't take spaces into account, it may fail to work.
+Tapi jika sebuah ekspresi regular tidak memperhatikan spasinya, maka pencocokannya akan gagal.
 
-Let's try to find digits separated by a hyphen:
-
-```js run
-alert( "1 - 5".match(/\d-\d/) ); // null, no match!
-```
-
-Let's fix it adding spaces into the regexp `pattern:\d - \d`:
+Kita coba untuk mencari angka yang dipisahkan dengan tanda penghubung:
 
 ```js run
-alert( "1 - 5".match(/\d - \d/) ); // 1 - 5, now it works
-// or we can use \s class:
-alert( "1 - 5".match(/\d\s-\s\d/) ); // 1 - 5, also works
+alert( "1 - 5".match(/\d-\d/) ); // null, tidak cocok!
 ```
 
-**A space is a character. Equal in importance with any other character.**
+Sekarang kita benarkan dengan menambahkan spasi pada regexp-nya `pattern: \d - \d`:
 
-We can't add or remove spaces from a regular expression and expect it to work the same.
+```js run
+alert( "1 - 5".match(/\d - \d/) ); // 1 - 5, sekarang pencocokannya bekerja
+// atau kita bisa menggunakan kelas \s:
+alert( "1 - 5".match(/\d\s-\s\d/) ); // 1 - 5, juga bekerja
+```
 
-In other words, in a regular expression all characters matter, spaces too.
+**Sebuah spasi adalah sebuah karakter. Sama pentingnya dengan karakter lainnya**
+
+Kita tidak bisa menambah atau menghilangkan spasi dari ekspresi regular dan berharap pencocokanya akan berjalan sama.
+
+Dengan kata lain, didalam ekspresi regular seluruh karakter bersifat penting, spasi pun sama.
 ````
 
-## Summary
+## Ringkasan
 
-There exist following character classes:
+Terdapat karakter kelas:
 
-- `pattern:\d` -- digits.
-- `pattern:\D` -- non-digits.
-- `pattern:\s` -- space symbols, tabs, newlines.
-- `pattern:\S` -- all but `pattern:\s`.
-- `pattern:\w` -- Latin letters, digits, underscore `'_'`.
-- `pattern:\W` -- all but `pattern:\w`.
-- `pattern:.` -- any character if with the regexp `'s'` flag, otherwise any except a newline `\n`.
+- `pattern:\d` -- digits / Angka.
+- `pattern:\D` -- non-digits / Bukan angka.
+- `pattern:\s` -- simbol spasi, tabs, garis baru.
+- `pattern:\S` -- semuanya kecuali `pattern:\s`.
+- `pattern:\w` -- huruf latin, angka, *underscore* `'_'`.
+- `pattern:\W` -- semuanya kecuali `pattern:\w`.
+- `pattern:.` -- karakter apapun jika dengan regexp tanda `'s'`, sebaliknya semuanya kecuali sebuah garis baru `\n`.
 
-...But that's not all!
+...Tapi ini belum semuanya!
 
-Unicode encoding, used by JavaScript for strings, provides many properties for characters, like: which language the letter belongs to (if it's a letter), is it a punctuation sign, etc.
+*Unicode encoding*, digunakan oleh Javascript untuk *string*, menyediakan berbagai properti untuk karakter, seperti: bahasa mana yang cocok dengan surat ini (jika sebuah surat), tanda bacanya, dll.
 
 We can search by these properties as well. That requires flag `pattern:u`, covered in the next article.
+Tentu saja kita bisa mencari dengan propertinya. Yang mana membutuhkan tanda `pattern:u`, yang akan dibahas didalam bab selanjutnya.

@@ -45,6 +45,7 @@ Request | Permintaan| _Request_
 ## S
 Inggris | Indonesia | Gunakan
 ------- | --------- | -------
+Summary | Ringkasan | Ringkasan
 Syntax  | Sintaks   | Sintaks
 Synchronously | Sinkronus | Sinkronus
 
