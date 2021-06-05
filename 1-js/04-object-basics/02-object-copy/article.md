@@ -103,7 +103,11 @@ alert( a == b ); // false
 
 Untuk perbandingan seperti `obj1 > obj2` atau untuk perbandingan dengan sebuah nilai primitif `obj == 5`, objek akan diubah dahulu menjadi primitif. Kita akan belajar bagaimana perubahan objek sebentar lagi, akan tetapi sebenarnya, perbandingan seperti itu muncul sangat jarang, biasanya hanya sebuah hasil dari kesalahan koding.
 
+<<<<<<< HEAD
 ## Penggandaan dan penggabungan, Object.assign
+=======
+## Cloning and merging, Object.assign [#cloning-and-merging-object-assign]
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Jadi, menyalin sebuah variabel objek akan menciptakan satu lagi referensi kepada objek yang sama.
 
@@ -190,7 +194,13 @@ let clone = Object.assign({}, user);
 
 Kode diatas akan menyalin seluruh properti dari `user` kedalam objek yang kosong dan mengembalikan/me-return hasilnya.
 
+<<<<<<< HEAD
 ## Penggandaan bercabang / Nested cloning
+=======
+There are also other methods of cloning an object, e.g. using the [spread syntax](info:rest-parameters-spread) `clone = {...user}`, covered later in the tutorial.
+
+## Nested cloning
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Sampai sekarang kita telah berasumsi bahwa seluruh properti dari `user` adalah primitif. Tapi properti bisa di referensi ke objek lainnya. Apa yang harus dilakukan dengan mereka?
 

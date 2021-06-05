@@ -145,7 +145,11 @@ Meski sederhana, varian kode itu yang sedikit dimodifikasi punya kegunaan prakti
 
 How does this work? If we create multiple counters, will they be independent? What's going on with the variables here?
 
+<<<<<<< HEAD
 Memahami hal begini bagus untuk pengetahuan keseluruhan JavaScript dan menguntungkan untuk skenario yang lebih komplex. Jadi ayo kita selami lebih dalam.
+=======
+Understanding such things is great for the overall knowledge of JavaScript and beneficial for more complex scenarios. So let's go a bit in-depth.
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 ## Lingkungan Lexikal
 

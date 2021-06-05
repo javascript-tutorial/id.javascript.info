@@ -389,6 +389,8 @@ Contoh penggunaan (menunjukkan penulis _commit_ di konsol):
     }
   }
 })();
+
+// Note: If you are running this in an external sandbox, you'll need to paste here the function fetchCommits described above 
 ```
 
 Itulah yang kita inginkan.

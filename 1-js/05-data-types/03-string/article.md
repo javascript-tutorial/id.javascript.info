@@ -528,7 +528,11 @@ Karakter-karakter dibandingkan berdasarkan kode numeriknya. Kode yang lebih besa
 - Semua huruf kecil muncul setelah huruf kapital karena kode mereka lebih besar.
 - Beberapa karakter seperti `Ö` terpisah dari alfabet utama. Disini, kodenya lebih besar dibandingkan semua karakter dari `a` to `z`.
 
+<<<<<<< HEAD
 ### Perbandingan yang benar
+=======
+### Correct comparisons [#correct-comparisons]
+>>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Algoritma yang "benar" untuk melakukan perbandingan string lebih kompleks dari kelihatannya, setiap bahasa memiliki alfabet mereka masing-masing.
 
