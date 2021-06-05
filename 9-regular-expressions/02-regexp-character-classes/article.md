@@ -18,7 +18,7 @@ let regexp = /\d/;
 alert( str.match(regexp) ); // 7
 ```
 
-Tanpa tanda `pattern:g`, ekspresi regularnya hanya akan mencari satu kecocokan, yaitu angka pertama `pattern:/d`.
+Tanpa tanda `pattern:g`, ekspresi regularnya hanya akan mencari satu kecocokan, yaitu angka pertama `pattern:\d`.
 
 Coba kita tambahkan tanda `pattern:g` untuk mencari seluruh angka:
 
