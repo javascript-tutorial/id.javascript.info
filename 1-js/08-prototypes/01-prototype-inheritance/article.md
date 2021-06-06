@@ -1,22 +1,22 @@
-# Prototypal inheritance
+# Pewarisan *Prototype* (*Prototypal Inheritance*)
 
-In programming, we often want to take something and extend it.
+Dalam *programming*, terkadang kita ingin mengambil sesuatu lalu dikembangkan lagi.
 
-For instance, we have a `user` object with its properties and methods, and want to make `admin` and `guest` as slightly modified variants of it. We'd like to reuse what we have in `user`, not copy/reimplement its methods, just build a new object on top of it.
+Contoh, kita memiliki objek `user` lengkap dengan properti dan metodenya, dan kita ingin membuat `admin` dan `guest` sebagai varian yang sedikit diubah dari objek `user`. Kita ingin menggunakan apa yang dimiliki oleh `user`, bukan menyalin ataupun meimplementasikan ulang metode-metodenya, akan tetapi menciptakan objek baru diatasnya.
 
-*Prototypal inheritance* is a language feature that helps in that.
+*Pewarisan Prototype* adalah fitur yang bisa membantu untuk melakukan hal itu.
 
 ## [[Prototype]]
 
-In JavaScript, objects have a special hidden property `[[Prototype]]` (as named in the specification), that is either `null` or references another object. That object is called "a prototype":
+Didalam Javascript, objek memiliki properti tersembunyi yang spesial `[[Prototype]]` (seperti yang dinamakan didalam spesifikasinya), yang mana dapat mereferensi pada `null` atau mereferensi pada objek lainnya. Objek itu disebut dengan *prototype*:
 
 ![prototype](object-prototype-empty.svg)
 
-When we read a property from `object`, and it's missing, JavaScript automatically takes it from the prototype. In programming, such thing is called "prototypal inheritance". And soon we'll study many examples of such inheritance, as well as cooler language features built upon it.
+Ketika kita membaca properti dari sebuah objek dan ternyata propertinya tidak ada, maka Javascript akan secara otomatis mengambilnya dari *prototype*nya. Dialam pemrograman, hal ini disebut dengan "Pewarisan *prototype*" atau *Prototypal Inheritance*. Dan tidak lama lagi kita akan belajar banyak contoh-contoh pewarisan, sama seperti banyak bahasa yang menggunakannya.
 
-The property `[[Prototype]]` is internal and hidden, but there are many ways to set it.
+Properti yang dimiliki `[[Prototype]]` bersifat internal dan tersembunyi, tapi ada banyak cara untuk melihat properti tersebut.
 
-One of them is to use the special name `__proto__`, like this:
+Salah satunya adalah menggunakan nama spesial `__proto__`, seperti:
 
 ```js run
 let animal = {
@@ -31,9 +31,9 @@ rabbit.__proto__ = animal; // sets rabbit.[[Prototype]] = animal
 */!*
 ```
 
-Now if we read a property from `rabbit`, and it's missing, JavaScript will automatically take it from `animal`.
+Sekarang jika kita ingin membaca properti dari `rabbit`, dan ternyada tidak ada, Javascript akan mengambilnya dari `animal`.
 
-For instance:
+Contoh:
 
 ```js
 let animal = {
@@ -47,24 +47,24 @@ let rabbit = {
 rabbit.__proto__ = animal; // (*)
 */!*
 
-// we can find both properties in rabbit now:
+// sekarang kita bisa menggunakan kedua propertinya didalam *rabbit*:
 *!*
 alert( rabbit.eats ); // true (**)
 */!*
 alert( rabbit.jumps ); // true
 ```
 
-Here the line `(*)` sets `animal` to be a prototype of `rabbit`.
+Pada baris `(*)` menyetel `animal` untuk menjadi prototype dari `rabbit`.
 
-Then, when `alert` tries to read property `rabbit.eats` `(**)`, it's not in `rabbit`, so JavaScript follows the `[[Prototype]]` reference and finds it in `animal` (look from the bottom up):
+Lalu, ketika `alert` mencoba untuk membaca properti `rabbit.eats` `(**)`, ternyata `rabbit` tidak memiliki propertinya, maka Javascript mengikuti referensi `[[Prototype]]`nya dan menemukan `animal` (mencari dari bawah ke atas):
 
 ![](proto-animal-rabbit.svg)
 
-Here we can say that "`animal` is the prototype of `rabbit`" or "`rabbit` prototypically inherits from `animal`".
+Disini kita bisa berkata bahwa "`animal` adalah prototype dari `rabbit`" atau "`rabbit` secara prototype mewarisi dari `animal`".
 
-So if `animal` has a lot of useful properties and methods, then they become automatically available in `rabbit`. Such properties are called "inherited".
+Jadi jika `animal` memiliki banyak properti dan metode yang berguna, maka properti dan metode tersebut secara otomatis akan tersedia didalam `rabbit`. Properti tersebut dinamakan "pewarisan".
 
-If we have a method in `animal`, it can be called on `rabbit`:
+Jika kita memiliki metode didalam `animal`, maka metode tersebut dapat dipanggil didalam `rabbit`:
 
 ```js run
 let animal = {
@@ -81,17 +81,17 @@ let rabbit = {
   __proto__: animal
 };
 
-// walk is taken from the prototype
+// walk diambil dari prototype
 *!*
 rabbit.walk(); // Animal walk
 */!*
 ```
 
-The method is automatically taken from the prototype, like this:
+Metodenya secara otomatis diambil dari *prototype*nya, seperti:
 
 ![](proto-animal-rabbit-walk.svg)
 
-The prototype chain can be longer:
+Rantai *prototype* bisa lebih panjang:
 
 ```js run
 let animal = {
@@ -115,48 +115,48 @@ let longEar = {
 */!*
 };
 
-// walk is taken from the prototype chain
+// walk diambil dari rantai prototype
 longEar.walk(); // Animal walk
-alert(longEar.jumps); // true (from rabbit)
+alert(longEar.jumps); // true (dari rabbit)
 ```
 
 ![](proto-animal-rabbit-chain.svg)
 
-Now if we read something from `longEar`, and it's missing, JavaScript will look for it in `rabbit`, and then in `animal`.
+Sekarang jika kita membaca sesuatu dari `longEar`, dan ternyata tidak ada, Javascript akan mencarinya didalam `rabbit`, dan lalu didalam `animal`.
 
-There are only two limitations:
+Akan tetapi terdapat dua batasan:
 
-1. The references can't go in circles. JavaScript will throw an error if we try to assign `__proto__` in a circle.
-2. The value of `__proto__` can be either an object or `null`. Other types are ignored.
+1. Referensinya tidak bisa berputar (seperti lingkaran atau perulangan tak terhingga). Javascript akan mengembalikan error jika kita mencoba untuk membuat `__proto__` berputar.
+2. Nilai dari `__proto__` bisa antara sebuah objek atau `null`. Tipe lainnya akan diabaikan.
 
-Also it may be obvious, but still: there can be only one `[[Prototype]]`. An object may not inherit from two others.
+Dan juga tentu saja: hanya terdapat satu `[[Prototype]]`. Sebuah objek tidak bisa mewarisi dari dua objek.
 
 
-```smart header="`__proto__` is a historical getter/setter for `[[Prototype]]`"
-It's a common mistake of novice developers not to know the difference between these two.
+```smart header="`__proto__` adalah asal usul getter/setter untuk `[[Prototype]]`"
+Biasanya kesalan *developer* pemula adalah tidak mengetahui perbedaan antara keduanya.
 
-Please note that `__proto__` is *not the same* as the internal `[[Prototype]]` property. It's a getter/setter for `[[Prototype]]`. Later we'll see situations where it matters, for now let's just keep it in mind, as we build our understanding of JavaScript language.
+Perlu diingat bahwa `__proto__` *tidak sama* dengan properti internal `[[Prototype]]`. Itu hanyalah *getter/setter* untuk `[[Prototype]]`. Nanti kita akan melihat situasi dimana hal itu akan digunakan, untuk sekarang kita hanya perlu tahu, kita akan terus bangun pemahaman kita tentang Javascript.
 
-The `__proto__` property is a bit outdated. It exists for historical reasons, modern JavaScript suggests that we should use `Object.getPrototypeOf/Object.setPrototypeOf` functions instead that get/set the prototype. We'll also cover these functions later.
+Properti `__proto__` sedikit ketinggalan jaman. Properti tersebut ada karena alasan lama, pada Javascript terbaru merekomendasikan kita untuk menggunakan fungsi `Object.getPrototypeOf/Object.setPrototypeOf` daripada *prototype* get/set. Kita akan belajar tentang fungsi ini nanti.
 
-By the specification, `__proto__` must only be supported by browsers. In fact though, all environments including server-side support `__proto__`, so we're quite safe using it.
+Dari spesifikasinya, `__proto__` telah didukung oleh banyak *browser*. Faktanya, seluruh lingkungan termasuk dibagian *server* juga mendukung `__proto__`, jadi kita aman untuk menggunakannya.
 
-As the `__proto__` notation is a bit more intuitively obvious, we use it in the examples.
+Karena notasi `__proto__` sedikit lebih jelas, kita akan menggunakannya didalam contoh.
 ```
 
-## Writing doesn't use prototype
+## Menulis tanpa menggunakan *prototype*
 
-The prototype is only used for reading properties.
+*Prototype* hanya digunakan untuk membaca properti.
 
-Write/delete operations work directly with the object.
+Operasi menulis / menghapus bekerja secara langsung dengan objeknya.
 
-In the example below, we assign its own `walk` method to `rabbit`:
+Didalam contoh dibawah, kita memasukan metode `walk` kedalam `rabbit`:
 
 ```js run
 let animal = {
   eats: true,
   walk() {
-    /* this method won't be used by rabbit */  
+    /* metode ini tidak akan digunakan oleh rabbit */
   }
 };
 
@@ -173,13 +173,13 @@ rabbit.walk = function() {
 rabbit.walk(); // Rabbit! Bounce-bounce!
 ```
 
-From now on, `rabbit.walk()` call finds the method immediately in the object and executes it, without using the prototype:
+Mulai sekarang, pemanggilan `rabbit.walk()` akan menemukan metodenya secara langsung didalam objek dan langsung dieksekusi tanpa menggunakan *prototype*:
 
 ![](proto-animal-rabbit-walk-2.svg)
 
-Accessor properties are an exception, as assignment is handled by a setter function. So writing to such a property is actually the same as calling a function.
+Properti pengakses adalah pengecualian, sebagaimana memasukan nilai dipegang oleh fungsi *setter*. Jadi menulis properti seperti itu sebenarnya sama dengan memanggil sebuah fungsi.
 
-For that reason `admin.fullName` works correctly in the code below:
+Untuk alasan itu `admin.fullName` akan bekerja dengan benar pada contoh dibawah:
 
 ```js run
 let user = {
@@ -202,33 +202,33 @@ let admin = {
 
 alert(admin.fullName); // John Smith (*)
 
-// setter triggers!
+// memicu setter!
 admin.fullName = "Alice Cooper"; // (**)
 
-alert(admin.fullName); // Alice Cooper, state of admin modified
-alert(user.fullName); // John Smith, state of user protected
+alert(admin.fullName); // Alice Cooper, state dari admin diubah
+alert(user.fullName); // John Smith, state dari user dilindungi / *protected*
 ```
 
-Here in the line `(*)` the property `admin.fullName` has a getter in the prototype `user`, so it is called. And in the line `(**)` the property has a setter in the prototype, so it is called.
+Disini pada baris `(*)` properti `admin.fullName` memiliki *getter* didalam prototype `user`, jadi itu akan dipanggil. Pada baris `(**)` properti memiliki *setter* didalam *prototype*, jadi itu dipanggil.
 
-## The value of "this"
+## Nilai dari "this"
 
-An interesting question may arise in the example above: what's the value of `this` inside `set fullName(value)`? Where are the properties `this.name` and `this.surname` written: into `user` or `admin`?
+Sebuah pertanyaan menarik mungkin muncul didalam contoh diatas: apa nilai dari `this` didalam `set fullName(value)`? Dimanakah properti dari `this.name` dan `this.surname` ditulis: kedalam `user` atau `admin`?
 
-The answer is simple: `this` is not affected by prototypes at all.
+Jawabannya sederhana: `this` sama sekali tidak terkena efek oleh *prototype*.
 
-**No matter where the method is found: in an object or its prototype. In a method call, `this` is always the object before the dot.**
+**Tidak peduli dimana metodenya ditemukan: didalam objek atau didalam *prototype*nya. Dalam pemanggilan metode, `this` adalah objeknya sebelum titik.**
 
-So, the setter call `admin.fullName=` uses `admin` as `this`, not `user`.
+Jadi, pemanggilan *setter* `admin.fullName=` menggunakan `admin` sebagai `this` dan bukan `user`.
 
-That is actually a super-important thing, because we may have a big object with many methods, and have objects that inherit from it. And when the inheriting objects run the inherited methods, they will modify only their own states, not the state of the big object.
+Itu sebenarnya adalah sebuah hal yang sangat penting, karena kita mungkin memiliki objek yang besar dengan banyak metode, dan memiliki objek yang mewarisinya. Dan ketika pewarisan objek berjalan metode yang diwariskan, mereka hanya akan memodifikasi bagian / *state* mereka sendiri, bukan bagian dari objek besarnya.
 
-For instance, here `animal` represents a "method storage", and `rabbit` makes use of it.
+Contoh, disini `animal` merepresentasikan sebuah "method storage (penyimpanan metode)", dan `rabbit` menggunakannya.
 
-The call `rabbit.sleep()` sets `this.isSleeping` on the `rabbit` object:
+Pemanggilan `rabbit.sleep()` menyetel `this.isSleeping` didalam objek `rabbit`:
 
 ```js run
-// animal has methods
+// animal memiliki metode
 let animal = {
   walk() {
     if (!this.isSleeping) {
@@ -245,26 +245,26 @@ let rabbit = {
   __proto__: animal
 };
 
-// modifies rabbit.isSleeping
+// memodifikasi rabbit.isSleeping
 rabbit.sleep();
 
 alert(rabbit.isSleeping); // true
-alert(animal.isSleeping); // undefined (no such property in the prototype)
+alert(animal.isSleeping); // undefined (no such property in the prototype / tidak ada property seperti itu didalam prototype)
 ```
 
-The resulting picture:
+Hasilnya:
 
 ![](proto-animal-rabbit-walk-3.svg)
 
-If we had other objects, like `bird`, `snake`, etc., inheriting from `animal`, they would also gain access to methods of `animal`. But `this` in each method call would be the corresponding object, evaluated at the call-time (before dot), not `animal`. So when we write data into `this`, it is stored into these objects.
+Jika kita memiliki objek lainnya, seperti `bird`, `snake`, dll., Mewarisi dari `animal`, mereka juga akan memiliki kases kepada metode dari `animal`. Tapi `this` didalam setiap pemanggilan metode adalah objeknya itu sendiri, mengevaluasi pada saat pemanggilan (sebelum titik), bukan `animal`. Jadi ketika kita menulis data kedalam `this`, itu akan tersimpan kedalam objeknya.
 
-As a result, methods are shared, but the object state is not.
+Sebagai hasilnya, metodenya dibagi bersama, tapi *state* dari objeknya tidak.
 
-## for..in loop
+## Perulangan for..in
 
-The `for..in` loop iterates over inherited properties too.
+Perulangan `for..in` mengiterasi properti yang diwariskan juga.
 
-For instance:
+Contoh: 
 
 ```js run
 let animal = {
@@ -277,19 +277,19 @@ let rabbit = {
 };
 
 *!*
-// Object.keys only returns own keys
+// Object.keys hanya mengembalikan kunci / keys miliknya sendiri
 alert(Object.keys(rabbit)); // jumps
 */!*
 
 *!*
-// for..in loops over both own and inherited keys
-for(let prop in rabbit) alert(prop); // jumps, then eats
+// perulangan for..in mengiterasi kunci milik sendiri dan kunci yang diwariskan
+for(let prop in rabbit) alert(prop); // jumps, lalu eats
 */!*
 ```
 
-If that's not what we want, and we'd like to exclude inherited properties, there's a built-in method [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty): it returns `true` if `obj` has its own (not inherited) property named `key`.
+Jika itu bukanlah hal yang kita inginkanm dan kita ingin untuk mengecualikan properti warisan, terdapat metode bawaan [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty): yang mengembalikan `true` jika `obj` memiliki properti bernama `key` (bukan properti warisan).
 
-So we can filter out inherited properties (or do something else with them):
+Jadi kita bisa memisahkan properti warisan (atau melakukan sesuatu dengan properti warisan itu):
 
 ```js run
 let animal = {
@@ -312,28 +312,28 @@ for(let prop in rabbit) {
 }
 ```
 
-Here we have the following inheritance chain: `rabbit` inherits from `animal`, that inherits from `Object.prototype` (because `animal` is a literal object `{...}`, so it's by default), and then `null` above it:
+Disini kita memiliki rantai pewarisan: `rabbit` mewarisi dari `animal`, pewarisan itu dari `Object.prototype` (karena `animal` adalah objek literal `{...}`, jadi itu terjadi secara otomatis), dan lalu `null` diatasnya:
 
 ![](rabbit-animal-object.svg)
 
-Note, there's one funny thing. Where is the method `rabbit.hasOwnProperty` coming from? We did not define it. Looking at the chain we can see that the method is provided by `Object.prototype.hasOwnProperty`. In other words, it's inherited.
+Catat bahwa ada satu hal lucu. darimanakah `rabbit.hasOwnProperty` datang? Kita tidak membuatnya. Lihat rantainya dan kita bisa melihat metodenya disediakan oleh `Object.prototype.hasOwnProperty`. Dengan kata lain, itu diwariskan.
 
-...But why does `hasOwnProperty` not appear in the `for..in` loop like `eats` and `jumps` do, if `for..in` lists inherited properties?
+...Tapi kenapa `hasOwnProperty` tidak muncul didalam perulangan `for..in` seperti `eats` dan `jumps`, jika `for..in` adalah properti yang diwariskan?
 
-The answer is simple: it's not enumerable. Just like all other properties of `Object.prototype`, it has `enumerable:false` flag. And `for..in` only lists enumerable properties. That's why it and the rest of the `Object.prototype` properties are not listed.
+Jawabanya sederhana: properti tersebut tidak dapat terhitung(*enumerable*). Sama seperti properti lainnya dari `Object.prototype`, yang mana memiliki tanda `enumerable:false`. Dan `for..in` hanya akan menampilkan properti yang dapat dihitung (*enumerable*). Itulah kenapa properti `Object.prototype`tidak terlihat.
 
-```smart header="Almost all other key/value-getting methods ignore inherited properties"
-Almost all other key/value-getting methods, such as `Object.keys`, `Object.values` and so on ignore inherited properties.
+```smart header="Hampir semua metode key/value mengabaikan properti warisan"
+Hampir semua metode key/value, seperti `Object.keys`, `Object.values` dan lainnya mengabaikan properti warisan.
 
-They only operate on the object itself. Properties from the prototype are *not* taken into account.
+Mereka hanya akan beroperasi pada objeknya sendiri. Properti dari *prototype* *tidak* akan dihitung.
 ```
 
-## Summary
+## Ringkasan
 
-- In JavaScript, all objects have a hidden `[[Prototype]]` property that's either another object or `null`.
-- We can use `obj.__proto__` to access it (a historical getter/setter, there are other ways, to be covered soon).
-- The object referenced by `[[Prototype]]` is called a "prototype".
-- If we want to read a property of `obj` or call a method, and it doesn't exist, then JavaScript tries to find it in the prototype.
-- Write/delete operations act directly on the object, they don't use the prototype (assuming it's a data property, not a setter).
-- If we call `obj.method()`, and the `method` is taken from the prototype, `this` still references `obj`. So methods always work with the current object even if they are inherited.
-- The `for..in` loop iterates over both its own and its inherited properties. All other key/value-getting methods only operate on the object itself.
+- Dalam Javascript, seluruh objek memiliki `[[Prototype]]` tersembunyi yang mana bisa objek atau `null`.
+- Kita bisa menggunakan `obj.__proto__` untuk mengaksesnya (selain getter/setter, terdapat cara lain, yang mana akan dibahas nanti).
+- Objek yang diferensi oleh `[[Prototype]]` dipanggil dengan sebuah "prototype".
+- Jika kita ingin membaca sebuah properti dari `obj` atau memanggil metode, dan ternyata tidak ada maka Javascript akan mencoba mencari didalam *prototype*nya
+- Operasi menulis/menghapus langsung bekerja didalam objeknya, mereka tidak menggunakan *prototype* (asumsikan propertinya adalah data, bukan sebuah *setter*).
+- Jika kita memanggil `obj.method()`, dan `method`nya diambil dari prototype, `this` akan mereferensi `obj`. Jadi metode selalu bekerja dengan objek yang sedang digunakannya bahkan jika objeknya adalah hasil pewarisan.
+- Perulangan `for..in` mengiterasi properti asli dan properti warisan. Semua metode key/value hanya akan bekerja pada objeknya sendiri.
