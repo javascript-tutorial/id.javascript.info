@@ -1,12 +1,12 @@
-importance: 5
+Nilai: 5
 
 ---
 
-# Working with prototype
+# Bekerja dengan prototype
 
-Here's the code that creates a pair of objects, then modifies them.
+Ini adalah kode yang membuat sepasang objek, lalu dimodifikasi.
 
-Which values are shown in the process?
+Nilai manakan yang akan muncul?
 
 ```js
 let animal = {
@@ -28,4 +28,4 @@ delete animal.jumps;
 alert( rabbit.jumps ); // ? (3)
 ```
 
-There should be 3 answers.
+Seharusnya ada 3 jawaban.

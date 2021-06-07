@@ -1,12 +1,12 @@
-importance: 5
+Nilai: 5
 
 ---
 
-# Where does it write?
+# Dimanakah akan tertulis?
 
-We have `rabbit` inheriting from `animal`.
+Kita memiliki `rabbit` mewarisi dari `animal`.
 
-If we call `rabbit.eat()`, which object receives the `full` property: `animal` or `rabbit`? 
+Jika kita memanggil `rabbit.eat()`, yang mana objeknya menerima properti `full`: `animal` atau `rabbit`?
 
 ```js
 let animal = {
