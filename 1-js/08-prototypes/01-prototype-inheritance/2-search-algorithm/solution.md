@@ -27,6 +27,6 @@
     alert( table.money ); // undefined
     ```
 
-2. In modern engines, performance-wise, there's no difference whether we take a property from an object or its prototype. They remember where the property was found and reuse it in the next request.
+2. Dalam mesin modern, kinerja yang bagus, tidak ada perbedaan apakan kita mengambil properti dari sebuah objek atau dari *prototype*nya. Mesinnya akan ingat darimana mengambil propertinya dan menggunakannya kembali pada request selanjutnya.
 
-    For instance, for `pockets.glasses` they remember where they found `glasses` (in `head`), and next time will search right there. They are also smart enough to update internal caches if something changes, so that optimization is safe.
+    Contoh, untuk `pockets.glasses` mereka ingat dimana `glasses` ditemukan (dalam `head`), dan pencarian selanjutnya akan dicari ditempat yang sama. Mesinnya juga cukup pintar untuk memperbaharui *cache internal* jika sesuatu berubah, jadi optimasinya akan aman.

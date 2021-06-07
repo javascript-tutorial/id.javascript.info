@@ -1,12 +1,12 @@
-importance: 5
+Nilai: 5
 
 ---
 
-# Searching algorithm
+# Algoritma pencarian
 
-The task has two parts.
+Tugasnya memiliki dua bagian.
 
-Given the following objects:
+Diberikan objek-objek berikut:
 
 ```js
 let head = {
@@ -27,5 +27,5 @@ let pockets = {
 };
 ```
 
-1. Use `__proto__` to assign prototypes in a way that any property lookup will follow the path: `pockets` -> `bed` -> `table` -> `head`. For instance, `pockets.pen` should be `3` (found in `table`), and `bed.glasses` should be `1` (found in `head`).
-2. Answer the question: is it faster to get `glasses` as `pockets.glasses` or `head.glasses`? Benchmark if needed.
+1. Gunakan `__proto__` untuk memasukan *prototype* dengan cara yang mana membuat property yang mencari akan mengikuti *path*: `pockets` -> `bed` -> `table` -> `head`. Contoh, `pockets.pen` haruslah `3` (ditemukan di `table`), dan `bed.glasses` haruslah `1` (ditemukan didalam `head`).
+2. Jawab pertanyaan: mana yang lebih cepat didapatkan `glasses` sebagai `pockets.glasses` atau `head.glasses`? Jika diperlukan gunakanlah *benchmark*.

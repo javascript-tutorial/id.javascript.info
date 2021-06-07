@@ -1,12 +1,13 @@
-importance: 5
+Nilai: 5
 
 ---
 
-# Why are both hamsters full?
+# Kenapa kedua hamster kenyang?
 
-We have two hamsters: `speedy` and `lazy` inheriting from the general `hamster` object. 
+Kita memiliki dua hamster: `speedy` dan `lazy` yang mewarisi objek `hamster`.
 
-When we feed one of them, the other one is also full. Why? How can we fix it?
+Ketika kita memberi makan salah satunya, yang satunya lagi akan ikut kenyang. Kenapa? Bagaimana cara memperbaikinya?
+
 
 ```js run
 let hamster = {
@@ -25,11 +26,11 @@ let lazy = {
   __proto__: hamster
 };
 
-// This one found the food
+// Yang satu ini menemukan makanan
 speedy.eat("apple");
 alert( speedy.stomach ); // apple
 
-// This one also has it, why? fix please.
+// Yang ini juga memilikinya, kenapa? perbaikilah.
 alert( lazy.stomach ); // apple
 ```
 
