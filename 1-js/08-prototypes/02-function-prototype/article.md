@@ -1,18 +1,18 @@
 # F.prototype
 
-Remember, new objects can be created with a constructor function, like `new F()`.
+Ingat ketika objek baru bisa dibuat dengan menggunakan fungsi konstruktor seperti `new F()`.
 
-If `F.prototype` is an object, then the `new` operator uses it to set `[[Prototype]]` for the new object.
+Jika `F.prototype` adalah sebuah objek, maka operator `new` menggunakannya untuk menyetel `[[Prototype]]` untuk objek barunya.
 
 ```smart
-JavaScript had prototypal inheritance from the beginning. It was one of the core features of the language.
+Javascript memiliki pewarisan *prototype* dari awal. Itu adalah salah satu fitur utama dari bahasanya.
 
-But in the old times, there was no direct access to it. The only thing that worked reliably was a `"prototype"` property of the constructor function, described in this chapter. So there are many scripts that still use it.
+Tapi dimasa lalu, hal itu tidak memiliki akses langsung. Hal yang dapat diandalkan adalah properti `"prototype"` dari fungsi konstruktor, yang akan dijelaskan didalam bab ini. Jadi masih banyak skrip yang masih menggunakannya.
 ```
 
-Please note that `F.prototype` here means a regular property named `"prototype"` on `F`. It sounds something similar to the term "prototype", but here we really mean a regular property with this name.
+Catat bahwa `F.prototype` disini berarti properti biasa yang bernama `"prototype"` didalam `F`. Terdengar seperti istilah "prototype", tapi disini kita menunjuk properti biasa dengan nama itu.
 
-Here's the example:
+Contohnya:
 
 ```js run
 let animal = {
@@ -32,27 +32,27 @@ let rabbit = new Rabbit("White Rabbit"); //  rabbit.__proto__ == animal
 alert( rabbit.eats ); // true
 ```
 
-Setting `Rabbit.prototype = animal` literally states the following: "When a `new Rabbit` is created, assign its `[[Prototype]]` to `animal`".
+Menyetel `Rabbit.prototype = animal` secara literal kita mengartikan: "Ketika sebuah `new Rabbit` dibuat, itu akan memasukan `[[Prototype]]`nya ke `animal`".
 
-That's the resulting picture:
+Hasilnya akan seperti gambar dibawah:
 
 ![](proto-constructor-animal-rabbit.svg)
 
-On the picture, `"prototype"` is a horizontal arrow, meaning a regular property, and `[[Prototype]]` is vertical, meaning the inheritance of `rabbit` from `animal`.
+Dalam gambar, `"prototype"` adalah panah *horizontal*, menandakan properti *regular*, dan `[[Prototype]]` adalah panah vertikal, menandakan pewarisan `rabbit` dari `animal`.
 
-```smart header="`F.prototype` only used at `new F` time"
-`F.prototype` property is only used when `new F` is called, it assigns `[[Prototype]]` of the new object.
+```smart header="`F.prototype` hanya digunakan pada `new F`"
+Properti `F.prototype` hanya digunakan ketika `new F` dipanggil, itu memasukan `[[Prototype]]` dari objek barunya.
 
-If, after the creation, `F.prototype` property changes (`F.prototype = <another object>`), then new objects created by `new F` will have another object as `[[Prototype]]`, but already existing objects keep the old one.
+Jika, setelah pembuatan, properti `F.prototype` berubah (`F.prototype = <objek lain>`), maka objek baru yang dibuat menggunakan `new F` akan memiliki objek lain sebagai `[[Prototype]]`, tapi objek yang sudah ada akan menyimpan yang lama.
 ```
 
-## Default F.prototype, constructor property
+## F.prototype bawaan, properti konstruktor
 
-Every function has the `"prototype"` property even if we don't supply it.
+Setiap fungsi memiliki properti `"prototype"` bahkan jika kita tidak memberikannya.
 
-The default `"prototype"` is an object with the only property `constructor` that points back to the function itself.
+`"prototype"` bawaan adalah sebuah objek dengan properti `constructor` yang menunjuk balik pada fungsinya sendiri.
 
-Like this:
+Seperti:
 
 ```js
 function Rabbit() {}
@@ -64,33 +64,33 @@ Rabbit.prototype = { constructor: Rabbit };
 
 ![](function-prototype-constructor.svg)
 
-We can check it:
+Kita bisa periksa:
 
 ```js run
 function Rabbit() {}
-// by default:
+// secara *default*:
 // Rabbit.prototype = { constructor: Rabbit }
 
 alert( Rabbit.prototype.constructor == Rabbit ); // true
 ```
 
-Naturally, if we do nothing, the `constructor` property is available to all rabbits through  `[[Prototype]]`:
+Secara teknis, jika kita tidak melakukan apapun, properti `constructor` akan tersedia untuk semua "rabbits" melalui `[[Prototype]]`:
 
 ```js run
 function Rabbit() {}
-// by default:
+// secara default:
 // Rabbit.prototype = { constructor: Rabbit }
 
-let rabbit = new Rabbit(); // inherits from {constructor: Rabbit}
+let rabbit = new Rabbit(); // mewarisi dari {constructor: Rabbit}
 
 alert(rabbit.constructor == Rabbit); // true (from prototype)
 ```
 
 ![](rabbit-prototype-constructor.svg)
 
-We can use `constructor` property to create a new object using the same constructor as the existing one.
+Kita bisa menggunakan properti `constructor` untuk membuat objek baru menggunakan konstruktor yang sama seperti yang sudah ada.
 
-Like here:
+Seperti:
 
 ```js run
 function Rabbit(name) {
@@ -105,17 +105,17 @@ let rabbit2 = new rabbit.constructor("Black Rabbit");
 */!*
 ```
 
-That's handy when we have an object, don't know which constructor was used for it (e.g. it comes from a 3rd party library), and we need to create another one of the same kind.
+Hal itu akan mudak ketika kita memiliki sebuah objek, tidak tahu konstruktor yang mana yang menggunakannya (mis. ketika datang dari *library* pihak ketiga), dan kita butuh membuat satu lagi dengan bentuk yang sama.
 
-But probably the most important thing about `"constructor"` is that...
+Tapi mungkin hal yang paling penting tentang `"constructor"` adalah...
 
-**...JavaScript itself does not ensure the right `"constructor"` value.**
+**...Javascript sendiri tidak yakin dengan nilai `"constructor"`.**
 
-Yes, it exists in the default `"prototype"` for functions, but that's all. What happens with it later -- is totally on us.
+Ya, terdapat nilai untuk fungsi bawaan `"prototype"`, tapi hanya itu. Apa yang terjadi setelahnya -- semuanya bergantung pada kita.
 
-In particular, if we replace the default prototype as a whole, then there will be no `"constructor"` in it.
+Khususnya, jika kita mengganti seluruh prototype bawaannya, maka disana tidak akan terdapat `"constructor"`.
 
-For instance:
+Contoh:
 
 ```js run
 function Rabbit() {}
@@ -129,18 +129,18 @@ alert(rabbit.constructor === Rabbit); // false
 */!*
 ```
 
-So, to keep the right `"constructor"` we can choose to add/remove properties to the default `"prototype"` instead of overwriting it as a whole:
+Jadi, untuk menyimpan `"constructor"` dengan benar kita bisa memilih untuk menambahkan/menghapus properti menjadi `"prototype"` bawaan daripada menimpahnya dengan yang baru:
 
 ```js
 function Rabbit() {}
 
-// Not overwrite Rabbit.prototype totally
-// just add to it
+// Tidak menimpah Rabbit.prototype selurunya
+// hanya menambahkan
 Rabbit.prototype.jumps = true
-// the default Rabbit.prototype.constructor is preserved
+// Rabbit.prototype.constructor bawaan diamankan
 ```
 
-Or, alternatively, recreate the `constructor` property manually:
+Atau, alternatifnya, membuat ulang properti `constructor` secara manual:
 
 ```js
 Rabbit.prototype = {
@@ -150,26 +150,26 @@ Rabbit.prototype = {
 */!*
 };
 
-// now constructor is also correct, because we added it
+// sekarang konstruktor tidak berubah, karena kita menambahkan yang baru
 ```
 
 
-## Summary
+## Ringkasan
 
-In this chapter we briefly described the way of setting a `[[Prototype]]` for objects created via a constructor function. Later we'll see more advanced programming patterns that rely on it.
+Didalam chapter ini kita secara jelas mendeskripsikan cara untuk menyetel `[[Prototype]]` untuk objek yang dibuat dengan menggunakan fungsi konstruktor. Nanti kita akan melihat lebih banyak alur *programming* lanjutan yang akan menggunakannya.
 
-Everything is quite simple, just a few notes to make things clear:
+Semuanya cukup simpel, hanya tinggal mengingat beberapa langkah untuk membuat lebih jelas:
 
-- The `F.prototype` property (don't mistake it for `[[Prototype]]`) sets `[[Prototype]]` of new objects when `new F()` is called.
-- The value of `F.prototype` should be either an object or `null`: other values won't work.
--  The `"prototype"` property only has such a special effect when set on a constructor function, and invoked with `new`.
+- Properti `F.prototype` (jangan keliru tentang `[[Prototype]]`) menyetel `[[Prototype]]` dari objek baru ketika `new F()` dipanggil.
+- Nilai dari `F.prototype` harusnya antara sebuah objek atau `null`: nilai lainnya tidak akan bekerja.
+- Properti `"prototype"` hanya memiliki efek spesial ketika menyetel fungsi konstruktor, dan dipanggil dengan `new`.
 
-On regular objects the `prototype` is nothing special:
+Dalam objek biasa `prototype` tidaklah spesial:
 ```js
 let user = {
   name: "John",
-  prototype: "Bla-bla" // no magic at all
+  prototype: "Bla-bla" // tidak ada yang spesial disini
 };
 ```
 
-By default all functions have `F.prototype = { constructor: F }`, so we can get the constructor of an object by accessing its `"constructor"` property.
+Secara teknis semua fungsi memiliki `F.prototype = { constructor: F }`, jadi kita bisa mendapatkan konstruktor dari sebuah objek dengan mengakses properti `"constructor"` miliknya sendiri.
