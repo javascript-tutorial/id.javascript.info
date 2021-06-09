@@ -1,20 +1,20 @@
 
-Answers:
+Jawaban:
 
 1. `true`. 
 
-    The assignment to `Rabbit.prototype` sets up `[[Prototype]]` for new objects, but it does not affect the existing ones. 
+    Memasukan ke `Rabbit.prototype` menyetel `[[Prototype]]` untuk objek baru, tapi itu tidak memberikan efek pada yang sudah ada.
 
 2. `false`. 
 
-    Objects are assigned by reference. The object from `Rabbit.prototype` is not duplicated, it's still a single object referenced both by `Rabbit.prototype` and by the `[[Prototype]]` of `rabbit`. 
+    Objek yang dimasukan dengan menggunakan referensi. Objek dari `Rabbit.prototype` bukanlah di duplikasi, itu masih tetap objek tunggal yang direferensikan dari `Rabbit.prototype` dan dari `[[Prototype]]` dari `rabbit`.
 
-    So when we change its content through one reference, it is visible through the other one.
+    Jadi ketika kita mengubah kontennya melalui satu referensi, itu masih terlihat melalui yang lainnya.
 
 3. `true`.
 
-    All `delete` operations are applied directly to the object. Here `delete rabbit.eats` tries to remove `eats` property from `rabbit`, but it doesn't have it. So the operation won't have any effect.
+    Semua operasi `delete` diterapkan langsung ke objeknya. Disini `delete rabbit.eats` mencoba untuk menghapus properti `eats` dari `rabbit`, tapi itu tidak memilikinya. Jadi operasinya tidak akan menghasilkan efek apapun.
 
 4. `undefined`.
 
-    The property `eats` is deleted from the prototype, it doesn't exist any more.
+    Properti `eats` dihapus dari *prototype*, itu tidak akan ada lagi.

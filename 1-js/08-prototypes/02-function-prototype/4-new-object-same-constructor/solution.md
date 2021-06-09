@@ -1,6 +1,6 @@
-We can use such approach if we are sure that `"constructor"` property has the correct value.
+Kita bisa menggunakan pendekatan jika kita yakin properti `"constructor"` memiliki nilai yang benar.
 
-For instance, if we don't touch the default `"prototype"`, then this code works for sure:
+Contoh, kita tidak ingin menyentuh `"prototype"` bawaan, maka kode ini akan berjalan dengan semestinya:
 
 ```js run
 function User(name) {
@@ -10,14 +10,14 @@ function User(name) {
 let user = new User('John');
 let user2 = new user.constructor('Pete');
 
-alert( user2.name ); // Pete (worked!)
+alert( user2.name ); // Pete (bekerja!)
 ```
 
-It worked, because `User.prototype.constructor == User`.
+Kode diatas bekerja karena `User.prototype.constructor == User`.
 
-..But if someone, so to speak, overwrites `User.prototype` and forgets to recreate `constructor` to reference `User`, then it would fail.
+Tapi jika seseorang, menimpah `User.prototype` dan lupa untuk membuat ulang `constructor` untuk `User`, maka akan membuat kegagalan.
 
-For instance:
+Contoh:
 
 ```js run
 function User(name) {
@@ -33,12 +33,12 @@ let user2 = new user.constructor('Pete');
 alert( user2.name ); // undefined
 ```
 
-Why `user2.name` is `undefined`?
+Kenapa `user2.name` menghasilan `undefined`?
 
-Here's how `new user.constructor('Pete')` works:
+Ini bagaimana `new user.constructor('Pete')` bekerja:
 
-1. First, it looks for `constructor` in `user`. Nothing.
-2. Then it follows the prototype chain. The prototype of `user` is `User.prototype`, and it also has nothing.
-3. The value of `User.prototype` is a plain object `{}`, its prototype is `Object.prototype`. And there is `Object.prototype.constructor == Object`. So it is used.
+1. Pertama, itu akan mencari `constructor` didalam `user`. Tidak ditemukan.
+2. Lalu akan mengukuti rantai *prototype*. *Prototype* dari `user` adalah `User.prototype`, dan itu juga tidak memilikinya.
+3. Nilai dari `User.prototype` adalah sebuah objek polos `{}`, prototypenya adalah `Object.prototype`. dan disana terdapat `Object.prototype.constructor == Object`. Jadi itu digunakan.
 
-At the end, we have `let user2 = new Object('Pete')`. The built-in `Object` constructor ignores arguments, it always creates an empty object, similar to `let user2 = {}`, that's what we have in `user2` after all.
+Pada akhirnya kita memiliki `let user2 = new Object('Pete')`. Konstruktor `Object` bawaan menghiraukan argumen, itu selalu menciptakan objek kosong, sama seperti `let user2 = {}`, itulah yang kita punya didalam `user2`.
