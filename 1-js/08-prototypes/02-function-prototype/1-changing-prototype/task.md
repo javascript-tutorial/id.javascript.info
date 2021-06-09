@@ -1,12 +1,12 @@
-importance: 5
+nilai: 5
 
 ---
 
-# Changing "prototype"
+# Merubah "prototype"
 
-In the code below we create `new Rabbit`, and then try to modify its prototype.
+Di kode dibawah kita membuat `new Rabbit`, dan mencoba memodifikasi prototypenya.
 
-In the start, we have this code:
+Pada awalnya kita memiliki kode ini:
 
 ```js run
 function Rabbit() {}
@@ -20,7 +20,7 @@ alert( rabbit.eats ); // true
 ```
 
 
-1. We added one more string (emphasized). What will `alert` show now?
+1. Kita menambah satu string (ditekankan). What will `alert` show now?
 
     ```js
     function Rabbit() {}
@@ -37,7 +37,7 @@ alert( rabbit.eats ); // true
     alert( rabbit.eats ); // ?
     ```
 
-2. ...And if the code is like this (replaced one line)?
+2. ...Dan jika kodenya seperti ini (diganti satu baris)?
 
     ```js
     function Rabbit() {}
@@ -54,7 +54,7 @@ alert( rabbit.eats ); // true
     alert( rabbit.eats ); // ?
     ```
 
-3. And like this (replaced one line)?
+3. Dan seperti ini (diganti satu baris)?
 
     ```js
     function Rabbit() {}
@@ -71,7 +71,7 @@ alert( rabbit.eats ); // true
     alert( rabbit.eats ); // ?
     ```
 
-4. The last variant:
+4. varian terakhir:
 
     ```js
     function Rabbit() {}

@@ -1,15 +1,15 @@
-importance: 5
+nilai: 5
 
 ---
 
-# Create an object with the same constructor
+# Buat sebuah objek dengan konstruktor yang sama
 
-Imagine, we have an arbitrary object `obj`, created by a constructor function -- we don't know which one, but we'd like to create a new object using it.
+Bayangkan, kita memiliki objek yang berubah-ubah, dibuat dengan menggunakan fungsi konstruktor -- kita tidak tahu yang mana, tapi kita ingin membuat sebuah objek menggunakannya.
 
-Can we do it like that?
+Bisakah kita melakukannya?
 
 ```js
 let obj2 = new obj.constructor();
 ```
 
-Give an example of a constructor function for `obj` which lets such code work right. And an example that makes it work wrong.
+Beri sebuah contoh dari menggunakan fungsi konstruktor untuk `obj` yang mana membiarkan kode seperti itu bekerja. Dan sebuah contoh yang mana membuat kodenya menjadi tidak bekerja semestinya.
