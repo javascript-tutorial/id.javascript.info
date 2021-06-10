@@ -1,33 +1,33 @@
-# Native prototypes
+# *Prototype* asli
 
-The `"prototype"` property is widely used by the core of JavaScript itself. All built-in constructor functions use it.
+Properti `"prototype"` adalah properti yang banyak digunakan oleh Javascript itu sendiri. Semua konstruktor fungsi menggunakannya.
 
-First we'll see at the details, and then how to use it for adding new capabilities to built-in objects.
+Pertama kita akan melihat lebih lengkapnya dan bagaimana cara menggunakannya untuk menambah kemampuan dari objek-objek bawaan.
 
 ## Object.prototype
 
-Let's say we output an empty object:
+katakan kita mengeluarkan sebuah objek kosong:
 
 ```js run
 let obj = {};
 alert( obj ); // "[object Object]" ?
 ```
 
-Where's the code that generates the string `"[object Object]"`? That's a built-in `toString` method, but where is it? The `obj` is empty!
+Dimanakah kode yang menghasilkan *string* `"[object Object]"`? Itu adalah metode bawaan `toString`, tapi diamanakah itu berara? `obj` tidak berisi apapun!
 
-...But the short notation `obj = {}` is the same as `obj = new Object()`, where `Object` is a built-in object constructor function, with its own `prototype` referencing a huge object with `toString` and other methods.
+...Tapi notasi pendek dari `obj = {}` sama seperti `obj = new Object()`, dimana `Object` adalah fungsi konstruktor objek bawaan, dengan properti `prototype`nya sendiri yang mereferensi sebuah objek besar `toString` dan metode lainnya.
 
-Here's what's going on:
+Inilah yang terjadi:
 
 ![](object-prototype.svg)
 
-When `new Object()` is called (or a literal object `{...}` is created), the `[[Prototype]]` of it is set to `Object.prototype` according to the rule that we discussed in the previous chapter:
+Ketika `new Object()` dipanggil (atau sebuah objek literal `{...}` dibuat), `[[Prototype]]`nya disetel ke `Object.prototype` mengikuti aturan yang telah kita bahas di bab sebelumnya:
 
 ![](object-prototype-1.svg)
 
-So then when `obj.toString()` is called the method is taken from `Object.prototype`.
+Jadi ketika `obj.toString()` dipanggil metodenya dibawa dari `Object.prototype`.
 
-We can check it like this:
+Kita bisa periksa seperti ini:
 
 ```js run
 let obj = {};
@@ -38,80 +38,81 @@ alert(obj.toString === obj.__proto__.toString); //true
 alert(obj.toString === Object.prototype.toString); //true
 ```
 
-Please note that there is no more `[[Prototype]]` in the chain above `Object.prototype`:
+Ingat bahwa disana sudah tidak ada lagi `[[Prototype]]` didalam rantai diatas `Object.prototype`:
 
 ```js run
 alert(Object.prototype.__proto__); // null
 ```
 
-## Other built-in prototypes
+## *prototype* bawaan lainnya
 
-Other built-in objects such as `Array`, `Date`, `Function` and others also keep methods in prototypes.
+Objek bawaan lainnya seperti `Array`, `Date`, `Function` dan lainnya juga tetap menyimpan metode didalam *prototype*.
 
-For instance, when we create an array `[1, 2, 3]`, the default `new Array()` constructor is used internally. So `Array.prototype` becomes its prototype and provides methods. That's very memory-efficient.
+Contoh, ketika kita membuat sebuah *array* `[1, 2, 3]`, konstruktor bawaan `new Array()` digunakan secara internal. Jadi `Array.prototype` menjadi *prototype* miliknya dan menyediakan metode-metode. Itu akan membuatnya menjadi efisien dalam penggunaan memori.
 
-By specification, all of the built-in prototypes have `Object.prototype` on the top. That's why some people say that "everything inherits from objects".
+Sebagaimana spesifikasinya, semua *prototype* bawaan memiliki `Object.prototype` diatasnya. Itulah kenapa beberapa orang berkata bahwa "semuanya diwarisi dari objek".
 
-Here's the overall picture (for 3 built-ins to fit):
+Ini adalah gambar keseluruhan (memasangkan 3 fungsi):
 
 ![](native-prototypes-classes.svg)
 
-Let's check the prototypes manually:
+Sekarang kita cek *prototype*nya secara manual:
 
 ```js run
 let arr = [1, 2, 3];
 
-// it inherits from Array.prototype?
+// apakah diwarisi dari Array.prototype?
 alert( arr.__proto__ === Array.prototype ); // true
 
-// then from Object.prototype?
+// maka dari Object.prototype?
 alert( arr.__proto__.__proto__ === Object.prototype ); // true
 
-// and null on the top.
+// dan null diatasnya.
 alert( arr.__proto__.__proto__.__proto__ ); // null
 ```
 
-Some methods in prototypes may overlap, for instance, `Array.prototype` has its own `toString` that lists comma-delimited elements:
+Beberapa metode didalam *prototype* mungkin tumpang tindih, contoh, `Array.prototype` memiliki `toString`nya sendiri yang menyusun elemen yang dipisahkan dengan koma:
 
 ```js run
 let arr = [1, 2, 3]
-alert(arr); // 1,2,3 <-- the result of Array.prototype.toString
+alert(arr); // 1,2,3 <-- hasil dari Array.prototype.toString
 ```
 
-As we've seen before, `Object.prototype` has `toString` as well, but `Array.prototype` is closer in the chain, so the array variant is used.
+Seperti yang telah kita lihat, `Object.prototype` memiliki `toString` juga, tapi `Array.prototype` lebih dekat dengan rantainya, jadi varian dari *array* mungkin akan digunakan.
 
 
 ![](native-prototypes-array-tostring.svg)
 
 
-In-browser tools like Chrome developer console also show inheritance (`console.dir` may need to be used for built-in objects):
+
+Dialam alat *browser* seperti *Chrome Developer Conolse* juga menunjukan pewarisannya (`console.dir` mungkin butuh untuk digunakan seperti objek bawaan):
 
 ![](console_dir_array.png)
 
-Other built-in objects also work the same way. Even functions -- they are objects of a built-in `Function` constructor, and their methods (`call`/`apply` and others) are taken from `Function.prototype`. Functions have their own `toString` too.
+Objek bawaan lainnya juga mungkin bekerja mirip seperti itu. Bahkan fungsi -- mereka adalah objek dari konstruktor bawaan `Function`, dan metode mereka (`call`/`apply` dan lainnya) juga diambil dari `Function.prototype`. Fungsi juga memiliki `toString` mereka masing-masing.
 
 ```js run
 function f() {}
 
 alert(f.__proto__ == Function.prototype); // true
-alert(f.__proto__.__proto__ == Object.prototype); // true, inherit from objects
+alert(f.__proto__.__proto__ == Object.prototype); // true, warisan dari objek
 ```
 
-## Primitives
+## Primitif-primitif
 
-The most intricate thing happens with strings, numbers and booleans.
+Hal yang paling rumit terjadi dengan *string*, *number* dan *boolean*.
 
-As we remember, they are not objects. But if we try to access their properties, temporary wrapper objects are created using built-in constructors `String`, `Number` and `Boolean`. They provide the methods and disappear.
+Seperti yang kita ingat, mereka bukanlah objek. Tapi jika kita mencoba untuk mengakses propertinya, objek pembungkus sementara menggunakan konstruktor bawaan `String`, `Number` dan `Boolean`. Mereka menyediakan metodenya dan menghilang.
 
-These objects are created invisibly to us and most engines optimize them out, but the specification describes it exactly this way. Methods of these objects also reside in prototypes, available as `String.prototype`, `Number.prototype` and `Boolean.prototype`.
+Objek-objek ini dibuat tak terlihat untuk kita dan kebanyakan mesin mengoptimalkan mereka, tapi spesifikasinya menjelaskannya juga seperti itu. Metode dari objek ini juga tinggal didalam *prototype*, tersedia sebagai `String.prototype`, `Number.prototype` dan `Boolean.prototype`.
 
-```warn header="Values `null` and `undefined` have no object wrappers"
-Special values `null` and `undefined` stand apart. They have no object wrappers, so methods and properties are not available for them. And there are no corresponding prototypes either.
+```warn header="Nilai `null` dan `undefined` tidak memiliki objek pembungkus"
+Nilai spesial `null` dan `undefined` memiliki pendiriannya sendiri. Mereka tidak memiliki objek pembungkus, jadi metode dan properti tidak tersedia untuk mereka. Dan juga tidak terdapat prototypenya.
 ```
 
 ## Changing native prototypes [#native-prototype-change]
 
-Native prototypes can be modified. For instance, if we add a method to `String.prototype`,  it becomes available to all strings:
+Prototipe asli bisa dimodifikasi. Contoh, jika kita menambahkan metode kepada `String.prototype`, itu akan menjadi tersedia untuk selurung *string*.
 
 ```js run
 String.prototype.show = function() {
@@ -121,32 +122,32 @@ String.prototype.show = function() {
 "BOOM!".show(); // BOOM!
 ```
 
-During the process of development, we may have ideas for new built-in methods we'd like to have, and we may be tempted to add them to native prototypes. But that is generally a bad idea.
+Selama proses pembangunan, kita mungkin memiliki ide untuk metode bawaan baru yang kita ingin punya, dan kita mungkin tergoda untuk menambahkannya sebagai *prototype* asli. Tapi itu sebenarnya bukan ide yang bagus.
 
 ```warn
-Prototypes are global, so it's easy to get a conflict. If two libraries add a method `String.prototype.show`, then one of them will be overwriting the method of the other.
+Prototype terlihat di global, jadi akan mudah membuat konflik. Jika dua library menambahkan sebuah metode `String`prototype.show`, maka salah satu dari mereka akan menimpah yang lainnya.
 
-So, generally, modifying a native prototype is considered a bad idea.
+Jadi, umumnya, memodifikasi prototype asli bisa dikatakan bukan ide bagus.
 ```
 
-**In modern programming, there is only one case where modifying native prototypes is approved. That's polyfilling.**
+**Didalam *programming* modern, terdapat satu kasus dimana memodifikasi *prototype* asli dapat diterima. Disebut dengan *polyfilling*.**
 
-Polyfilling is a term for making a substitute for a method that exists in the JavaScript specification, but is not yet supported by a particular JavaScript engine.
+*Polyfilling* adalah sebuah istilah untuk membuat sebuah metode pengganti yang ada didalam spesifikasi Javascript, tapi itu tidak didukung oleh mesin Javascript tertentu.
 
-We may then implement it manually and populate the built-in prototype with it.
+Kita mungkin mengimplementasi manual dan mengisi prototype bawaan dengan itu.
 
-For instance:
+Contoh:
 
 ```js run
-if (!String.prototype.repeat) { // if there's no such method
-  // add it to the prototype
+if (!String.prototype.repeat) { // Jika tidak terdapat metode
+  // tambahkan kedalam prototype
 
   String.prototype.repeat = function(n) {
-    // repeat the string n times
+    // ulangi stringnya n kali
 
-    // actually, the code should be a little bit more complex than that
-    // (the full algorithm is in the specification)
-    // but even an imperfect polyfill is often considered good enough
+    // sebenarnya, kodenya haruslah lebih rumit dari itu
+    // (algoritma lengkapnya ada didalam spesifikasinya)
+    // bahkan sebuah polyfill tidak sempurna kadang bisa dikatakan cukup bagus
     return new Array(n + 1).join(this);
   };
 }
@@ -155,15 +156,15 @@ alert( "La".repeat(3) ); // LaLaLa
 ```
 
 
-## Borrowing from prototypes
+## meminjam dari *prototype*
 
-In the chapter <info:call-apply-decorators#method-borrowing> we talked about method borrowing.
+Didalam bab <info:call-apply-decorators#method-borrowing> kita berbicara tentang peminjaman metode.
 
-That's when we take a method from one object and copy it into another.
+Itulah ketika kita mengambil metode dari satu objek dan menyalinnya ke objek lain.
 
-Some methods of native prototypes are often borrowed.
+Beberapa metode dari *prototype* asli sering dipinjam.
 
-For instance, if we're making an array-like object, we may want to copy some `Array` methods to it.
+Contoh, jika kita membuat objek yang mirip array, kita mungkin ingin menyalin beberapa metode `Array` darinya.
 
 E.g.
 
@@ -181,18 +182,18 @@ obj.join = Array.prototype.join;
 alert( obj.join(',') ); // Hello,world!
 ```
 
-It works because the internal algorithm of the built-in `join` method only cares about the correct indexes and the `length` property. It doesn't check if the object is indeed an array. Many built-in methods are like that.
+Contoh diatas bekerja karena algoritma internal bawaan `join` yang memperhatikan tentang indeks yang benar dan `length` dari properti. Itu tidak akan memeriksa apakah objeknya adalah array. Beberapa metode bawaan memang seperti itu.
 
-Another possibility is to inherit by setting `obj.__proto__` to `Array.prototype`, so all `Array` methods are automatically available in `obj`.
+Kemungkinan lainnya adalah pewarisan dari `obj.__proto__` ke `Array.prototype`, jadi seluruh metode `Array` secara otomatis tersedia didalam `obj`.
 
-But that's impossible if `obj` already inherits from another object. Remember, we only can inherit from one object at a time.
+Tapi itu menjadi tidak mungkin jika `obj` sudah mewarisi dari objek lainnya. Ingat, kita hanya bisa mewarisi dari satu objek pada satu waktu.
 
-Borrowing methods is flexible, it allows to mix functionalities from different objects if needed.
+Meminjam metode sebenarnya cukup fleksibel, hal itu memperbolehkan kita untuk mencampur fungsionalitas dari objek yang berbeda-beda jika dibutuhkan.
 
-## Summary
+## Ringkasan
 
-- All built-in objects follow the same pattern:
-    - The methods are stored in the prototype (`Array.prototype`, `Object.prototype`, `Date.prototype`, etc.)
-    - The object itself stores only the data (array items, object properties, the date)
-- Primitives also store methods in prototypes of wrapper objects: `Number.prototype`, `String.prototype` and `Boolean.prototype`. Only `undefined` and `null` do not have wrapper objects
-- Built-in prototypes can be modified or populated with new methods. But it's not recommended to change them. The only allowable case is probably when we add-in a new standard, but it's not yet supported by the JavaScript engine
+- Seluruh objek bawaan mengikuti alur yang sama:
+    - Metode disimpan didalam prototype (`Array.prototype`, `Object.prototype`, `Date.prototype`, etc.)
+    - Objeknya sendiri hanya menyimpan data (item array, properti objek, tanggal)
+- Prototype Asli menyimpan metode didalam prototype dari objek pembungkus: `Number.prototype`, `String.prototype` dan `Boolean.prototype`. Only `undefined` dan `null` tidak memiliki objek pembungkus.
+- *Prototype* bawaan bisa dimodifikasi atau diisi ulang dengan metode baru. Tapi tidak direkomendasikan untuk mengubahnya. Hal yang diperbolehkan dalam beberapa kasus mungkun ketika kita menambahkan peraturan baru, tapi itu belum sepenuhnya didukung oleh mesin Javascript.
