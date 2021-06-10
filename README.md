@@ -48,7 +48,3 @@ Beberapa tips untuk penerjemah:
 
 ## Jalankan repo secara lokal
 Jika penerjemah ingin melihat repo dijalankan secara lokal, penerjemah dapat menggunakan https://github.com/javascript-tutorial/server.
-
----  
-♥  
-Ilya Kantor @iliakan
