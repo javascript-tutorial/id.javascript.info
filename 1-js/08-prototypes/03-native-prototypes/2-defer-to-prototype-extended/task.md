@@ -1,19 +1,19 @@
-importance: 4
+nilai: 4
 
 ---
 
-# Add the decorating "defer()" to functions
+# Menambah dekorasi "defer()" ke fungsi.
 
-Add to the prototype of all functions the method `defer(ms)`, that returns a wrapper, delaying the call by `ms` milliseconds.
+Tambahkan prototype dari semua fungsi metode` defer(ms)`, yang mengembalikan pembungkus, menunda pemanggilan dengan `ms` milidetik.
 
-Here's an example of how it should work:
+Contoh:
 
 ```js
 function f(a, b) {
   alert( a + b );
 }
 
-f.defer(1000)(1, 2); // shows 3 after 1 second
+f.defer(1000)(1, 2); // tampilkan 3 setelah 1 detik
 ```
 
-Please note that the arguments should be passed to the original function.
+Perhatikan bahwa argumennya harus diberikan ke fungsi aslinya.

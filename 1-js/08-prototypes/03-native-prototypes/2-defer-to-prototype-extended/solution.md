@@ -13,12 +13,12 @@ function f(a, b) {
   alert( a + b );
 }
 
-f.defer(1000)(1, 2); // shows 3 after 1 sec
+f.defer(1000)(1, 2); // menampilkan 3 setelah 1 detik
 ```
 
-Please note: we use `this` in `f.apply` to make our decoration work for object methods.
+Ingatlah: kita menggunakan `this` didalam `f.apply` untuk membuat dekorasi kita bekerja untuk metode objek.
 
-So if the wrapper function is called as an object method, then `this` is passed to the original method `f`.
+Jadi jika pembungkus fungsinya dipanggil sebagai metode objek, maka `this` diberikan kepada metode asli `f`.
 
 ```js run
 Function.prototype.defer = function(ms) {
