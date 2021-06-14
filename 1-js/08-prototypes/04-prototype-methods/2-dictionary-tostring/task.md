@@ -1,31 +1,31 @@
-importance: 5
+nilai: 5
 
 ---
 
 # Add toString to the dictionary
 
-There's an object `dictionary`, created as `Object.create(null)`, to store any `key/value` pairs.
+Terdapat sebuah objek `dictionary`, dibuat sebagai `Object.create(null)`, untuk menyimpan pasangan `key/value`.
 
-Add method `dictionary.toString()` into it, that should return a comma-delimited list of keys. Your `toString` should not show up in `for..in` over the object.
+Tambahkan metode `dictionary.toString()` kedalamnya, yang harus mengembalikan daftar yang dibatasi dengan koma. `toString` milikmu haruslah tidak tampil didalam `for..in` dalam objeknya.
 
-Here's how it should work:
+Ini adalah contohnya:
 
 ```js
 let dictionary = Object.create(null);
 
 *!*
-// your code to add dictionary.toString method
+// metode yang ditambahkan dictionary.toString
 */!*
 
-// add some data
+// tambahkan beberapa data
 dictionary.apple = "Apple";
-dictionary.__proto__ = "test"; // __proto__ is a regular property key here
+dictionary.__proto__ = "test"; // __proto__ adalah kunci properti biasa disini
 
-// only apple and __proto__ are in the loop
+// hanya apple dan __proto__ yang berada di perulangan
 for(let key in dictionary) {
-  alert(key); // "apple", then "__proto__"
+  alert(key); // "apple", lalu "__proto__"
 }  
 
-// your toString in action
+// toString milikmu
 alert(dictionary); // "apple,__proto__"
 ```
