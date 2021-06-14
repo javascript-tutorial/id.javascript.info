@@ -1,13 +1,13 @@
 
-The method can take all enumerable keys using `Object.keys` and output their list.
+Pemanggilan metode bisa mengambil semua kunci yang terhitung menggunakan `Object.keys` dan mengeluarkan daftarnya.
 
-To make `toString` non-enumerable, let's define it using a property descriptor. The syntax of `Object.create` allows us to provide an object with property descriptors as the second argument.
+Untuk membuat `toString` tidak bisa dihitung, kita bisa mendefinisikannya menggunakan deskriptor properti. Sintaks dari `Object.create` membolehkan kita untuk menyediakan sebuah objek dengan deskriptor properti sebagai argumen kedua.
 
 ```js run
 *!*
 let dictionary = Object.create(null, {
-  toString: { // define toString property
-    value() { // the value is a function
+  toString: { // definisikan properti tostring
+    value() { // nilainya adalah fungsi
       return Object.keys(this).join();
     }
   }
@@ -17,15 +17,15 @@ let dictionary = Object.create(null, {
 dictionary.apple = "Apple";
 dictionary.__proto__ = "test";
 
-// apple and __proto__ is in the loop
+// apple dan __proto berada didalam perulangan
 for(let key in dictionary) {
-  alert(key); // "apple", then "__proto__"
+  alert(key); // "apple", lalu "__proto__"
 }  
 
-// comma-separated list of properties by toString
+// properti dari daftar yang dipisahkan dengan koma oleh toString
 alert(dictionary); // "apple,__proto__"
 ```
 
-When we create a property using a descriptor, its flags are `false` by default. So in the code above, `dictionary.toString` is non-enumerable.
+Ketika kita membuat sebuah properti menggunakan deskriptor, tandanya akan menjadi `false` secara bawaan. Jadi kode diatas, `dictionary.toString` tidak bisa dihitung.
 
-See the the chapter [](info:property-descriptors) for review.
+Lihat bab [](info:property-descriptors) untuk review.
