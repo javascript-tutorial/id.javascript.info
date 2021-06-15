@@ -1,10 +1,10 @@
-importance: 5
+nilai: 5
 
 ---
 
-# The difference between calls
+# Perbedaan diantara pemanggilan
 
-Let's create a new `rabbit` object:
+Kita buat sebuah objek `rabbit` baru:
 
 ```js
 function Rabbit(name) {
@@ -17,7 +17,7 @@ Rabbit.prototype.sayHi = function() {
 let rabbit = new Rabbit("Rabbit");
 ```
 
-These calls do the same thing or not?
+Apakah panggilan-panggilan dibawah sama atau tidak?
 
 ```js
 rabbit.sayHi();
