@@ -20,10 +20,14 @@ function showMessage() {
 }
 ```
 
+<<<<<<< HEAD
 Katakunci `fungsi` ditulis duluan, lalu *nama fungsinya*, kemudian daftar semua *parameter* antara tanda kurung () (pada contoh di atas, tanda kurung kosong) dan bagian terakhir adalah fungsi kode, yang juga disebut sebagai "badan fungsi", antara kurung kurawal {}.
+=======
+The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* between the parentheses (comma-separated, empty in the example above, we'll see examples later) and finally the code of the function, also named "the function body", between curly braces.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```js
-function name(parameters) {
+function name(parameter1, parameter2, ... parameterN) {
   ...body...
 }
 ```
@@ -137,25 +141,33 @@ Ini menjadi suatu cara yang baik untuk mengurangi penggunaan variabel global. Ko
 
 ## Parameters
 
+<<<<<<< HEAD
 Kita dapat meloloskan data yang begitu acak kepada fungsi sebagai parameter (disebut juga sebagai *fungsi argumen*).
+=======
+We can pass arbitrary data to functions using parameters.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Pada contoh di bawah, fungsi memiliki dua paramter: `from` dan `text`.
 
 ```js run
-function showMessage(*!*from, text*/!*) { // arguments: from, text
+function showMessage(*!*from, text*/!*) { // parameters: from, text
   alert(from + ': ' + text);
 }
 
+<<<<<<< HEAD
 *!*
 showMessage('Ann', 'Hello!'); // Ann: Hallo! (*)
 showMessage('Ann', "What's up?"); // Ann: Ada apa? (**)
 */!*
+=======
+*!*showMessage('Ann', 'Hello!');*/!* // Ann: Hello! (*)
+*!*showMessage('Ann', "What's up?");*/!* // Ann: What's up? (**)
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 ```
 
 Ketika fungsi dipanggil pada penanda `(*)` dan `(**)`, nilai yang diberikan dipindahkan ke variabel lokal `from` dan `text`. Lalu fungsi menggunakan nilai-nilai tersebut.
 
 Ini terdapat satu lagi contoh: kita memiliki variabel `from` dan memindahkannya ke fungsi. Dengan catatan: fungsi akan mengubah `from`, tapi perubahan ini tidak akan terlihat di luar fungsi, karena sebuah fungsi akan selalu mendapatkan salinan nilai:
-
 
 ```js run
 function showMessage(from, text) {
@@ -175,9 +187,27 @@ showMessage(from, "Hello"); // *Ann*: Hallo
 alert( from ); // Ann
 ```
 
+<<<<<<< HEAD
 ## Nilai default
 
 Jika parameter tidak diberi nilai, maka nilainya menjadi `undefined`.
+=======
+When a value is passed as a function parameter, it's also called an *argument*.
+
+In other words, to put these terms straight:
+
+- A parameter is the variable listed inside the parentheses in the function declaration (it's a declaration time term)
+- An argument is the value that is passed to the function when it is called (it's a call time term).
+
+We declare functions listing their parameters, then call them passing arguments.
+
+In the example above, one might say: "the function `sayMessage` is declared with two parameters, then called with two arguments: `from` and `"Hello"`".
+
+
+## Default values
+
+If a function is called, but an argument is not provided, then the corresponding value becomes `undefined`.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Sebagai gambaran, fungsi yang telah tersebut di atas `showMessage(from, text)` dapat dipanggil dengan argumen tunggal:
 
@@ -186,12 +216,18 @@ showMessage("Ann");
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Itu tidak terjadi kesalahan. Malah pemanggilan tersebut akan menghasilkan `"Ann: undefined"`. Tidak ada argumen untuk parameter `text`, jadi ini diasumsikan bahwa `text === undefined`.
 =======
 That's not an error. Such a call would output `"*Ann*: undefined"`. There's no `text`, so it's assumed that `text === undefined`.
 >>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 Jika kita ingin menggunakan suatu `text` "default" pada kasus ini, lalu kita dapat menentukannya setelah `=`:
+=======
+That's not an error. Such a call would output `"*Ann*: undefined"`. As the value for `text` isn't passed, it becomes `undefined`.
+
+We can specify the so-called "default" (to use if omitted) value for a parameter in the function declaration, using `=`:
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```js run
 function showMessage(from, *!*text = "no text given"*/!*) {
@@ -215,19 +251,33 @@ function showMessage(from, text = anotherFunction()) {
 ```smart header="Evaluasi parameter default"
 Di Javascript, parameter default dievaluasi tiap kali fungsi dipanggil tanpa parameter.
 
+<<<<<<< HEAD
 Pada contoh di atas, `anotherFunction()` dipanggil tiap kali `showMessage()` dipanggil tanpa parameter `text`.
+=======
+In the example above, `anotherFunction()` isn't called at all, if the `text` parameter is provided.
+
+On the other hand, it's independently called every time when `text` is missing.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 ```
 
 ### Alternatif nilai default parameter
 
+<<<<<<< HEAD
 Terkadang akan dapat dimengerti untuk memberikan nilai default untuk variabel bukan didalam deklarasi fungsi, tapi di tahap selanjutnya, didalam proses eksekusinya.
 
 Untuk memeriksa parameter yang tidak ada, kita bisa membandingkannya dengan `undefined`:
+=======
+Sometimes it makes sense to assign default values for parameters not in the function declaration, but at a later stage.
+
+We can check if the parameter is passed during the function execution, by comparing it with `undefined`:
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```js run
 function showMessage(text) {
+  // ...
+
 *!*
-  if (text === undefined) {
+  if (text === undefined) { // if the parameter is missing
     text = 'empty message';
   }
 */!*
@@ -238,21 +288,35 @@ function showMessage(text) {
 showMessage(); // empty message
 ```
 
+<<<<<<< HEAD
 ...Atau kita bisa menggunakan operator `||`:
 
 ```js
 // jika teks parameter tidak ada atau "", set variabel ke 'empty'
+=======
+...Or we could use the `??` operator:
+
+```js
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 function showMessage(text) {
+  // if text is undefined or otherwise falsy, set it to 'empty'
   text = text || 'empty';
   ...
 }
 ```
 
+<<<<<<< HEAD
 Javascript yang modern mendukung [nullish coalescing operator/operator penggabung nullish](info:nullish-coalescing-operator) `??`, akan lebih baik jika nilai falsy, seperti `0`, dianggap biasa:
 
 ```js run
 // jika tidak ada parameter "count", tampilkan "unknown"
+=======
+Modern JavaScript engines support the [nullish coalescing operator](info:nullish-coalescing-operator) `??`, it's better when most falsy values, such as `0`, should be considered "normal":
+
+```js run
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 function showCount(count) {
+  // if count is undefined or null, show "unknown"
   alert(count ?? "unknown");
 }
 

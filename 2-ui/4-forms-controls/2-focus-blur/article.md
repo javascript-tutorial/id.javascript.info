@@ -110,9 +110,13 @@ Beberapa fitur ini membuat `focus/blur` handler menjadi misbehave -- trigger dis
 Resep yang baik adalah berhati-hati mengunakan event ini. Jika kita ingin melacak focus-loss yang dimulai oleh user, maka kita harus menghidari yang dapat menyebabkan pada kita sendiri.
 ```
 
+<<<<<<< HEAD
 ## Memungkinkan fokus pada elemen apapun: tabindex
 
 Secara default banyak elemen yang tidak support focusing.
+=======
+By default, many elements do not support focusing.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Daftarnya sedikit bervariasi dibeda browser, etapi satu hal yang pasti benar: `focus/blur` dukungannya terjamin untuk elemen-elemen yang pengunjung bisa berinteraksi dengan: `<button>`, `<input>`, `<select>`, `<a>` dan lainnya.
 
@@ -126,7 +130,11 @@ Itu adalah: jika kita memilki 2 elemen, yang pertama memilki `tabindex="1"`, dan
 
 Urutuan pindahnya ialah: elemen dengan `tabindex` dari `1` dan diatasnya menjadi yang pertama (pada urutan`tabindex`), dan baru kemudian elemen tanpa `tabindex` (seperti `<input>` input biasa).
 
+<<<<<<< HEAD
 Element dengan `tabindex` yang sesuai berpindah pada urutan sumber dokumen (urutan default).
+=======
+Elements without matching `tabindex` are switched in the document source order (the default order).
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Disana ada dua nilai khusus:
 

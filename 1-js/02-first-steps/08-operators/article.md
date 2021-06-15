@@ -68,6 +68,7 @@ Contoh:
 
 ```js run
 <<<<<<< HEAD
+<<<<<<< HEAD
 alert( 2 ** 2 ); // 4  (2 dikalikan dengan nilai itu sendiri sebanyak 2 kali)
 alert( 2 ** 3 ); // 8  (2 * 2 * 2, 3 kali)
 alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2, 4 kali)
@@ -78,6 +79,10 @@ Contoh, akar kuadrat adalah eksponen dari `1/2`:
 =======
 alert( 2 ** 2 ); // 2² = 4  
 alert( 2 ** 3 ); // 2³ = 8 
+=======
+alert( 2 ** 2 ); // 2² = 4
+alert( 2 ** 3 ); // 2³ = 8
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 alert( 2 ** 4 ); // 2⁴ = 16
 ```
 

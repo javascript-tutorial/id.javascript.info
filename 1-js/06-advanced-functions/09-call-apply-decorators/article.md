@@ -311,18 +311,32 @@ Perbedaan sintaks antara `call` dan `apply` adalah bahwa `call` mengharapkan seb
 Jadi kedua pemanggilan dibawah hampir sama:
 
 ```js
+<<<<<<< HEAD
 func.call(context, ...args); // mengirimkan sebuah array sebagai daftar dengan sintaks spread
 func.apply(context, args);   // sama seperti pemanggilan call
 ```
 
 Hanya terdapat perbedaan yang tipis:
+=======
+func.call(context, ...args);
+func.apply(context, args);
+```
+
+They perform the same call of `func` with given context and arguments.
+
+There's only a subtle difference regarding `args`:
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 - Sintaks spread `...` mengijinkan untuk mengirimkan *iterable* `args` sebagai list untuk `call`.
 - `apply` hanya menerima `args` yang *seperti-array*.
 
+<<<<<<< HEAD
 Jadi, dimana kita mengharapkan sebuah iterasi, gunakan `call`, dan dimana kita menggunakan seperti-array, gunakan `apply`.
 
 Dan untuk objek yang bisa diiterasi dan seperti-array, seperti array yang asli, kita bisa gunakan keduanya, tapi `apply` akan lebih cepat, karena kebanyakan mesin Javascript secara internal mengoptimasi `apply` lebih baik.
+=======
+...And for objects that are both iterable and array-like, such as a real array, we can use any of them, but `apply` will probably be faster, because most JavaScript engines internally optimize it better.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Mengirimkan seluruh argumen bersamaan dengan konteks ke fungsi lainnya dipanggil dengan *call forwarding*.
 

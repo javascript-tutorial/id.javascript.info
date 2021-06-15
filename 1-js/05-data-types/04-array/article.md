@@ -383,9 +383,13 @@ alert( arr[0] ); // undefined! tidak ada elemen.
 alert( arr.length ); // length atau panjangnya adalah 2
 ```
 
+<<<<<<< HEAD
 Dalam kode di atas, `new Array(number)` memiliki semua elemen yang `undefined`.
 
 Untuk menghindari kejutan-kejutan yang demikian, kita biasanya menggunakan tanda kurung siku, kecuali kita benar-benar tahu kode apa yang sedang kita tulis.
+=======
+To avoid such surprises, we usually use square brackets, unless we really know what we're doing.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ## *Array* multidimensi
 
