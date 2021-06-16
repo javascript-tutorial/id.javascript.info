@@ -188,7 +188,11 @@ Ada proposal JavaScript yang sudah selesai, hampir dalam standar, yang memberika
 
 Privat harus dimulai dengan `#`. Mereka hanya dapat diakses dari dalam kelas.
 
+<<<<<<< HEAD
 Misalnya, ada properti privat `#waterLimit` dan metode privat pemeriksaan air `#checkWater`:
+=======
+For instance, here's a private `#waterLimit` property and the water-checking private method `#fixWaterAmount`:
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```js run
 class CoffeeMachine {

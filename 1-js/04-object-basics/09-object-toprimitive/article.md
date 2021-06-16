@@ -3,7 +3,28 @@
 
 Apa yang terjadi ketika objek-objek ditamahkan `obj1 + obj2`, dikurangi `obj1 - obj2` atau dicetak menggunakan `alert(obj)`?
 
+<<<<<<< HEAD
 Dalam kasus itu, objek-objek secara otomatis dikonversi menjadi *primitive*, dan setelahnya operasi tersebut dilakukan.
+=======
+JavaScript doesn't exactly allow to customize how operators work on objects. Unlike some other programming languages, such as Ruby or C++, we can't implement a special object method to handle an addition (or other operators).
+
+In case of such operations, objects are auto-converted to primitives, and then the operation is carried out over these primitives and results in a primitive value.
+
+That's an important limitation, as the result of `obj1 + obj2` can't be another object!
+
+E.g. we can't make objects representing vectors or matrices (or archievements or whatever), add them and expect a "summed" object as the result. Such architectural feats are automatically "off the board".
+
+So, because we can't do much here, there's no maths with objects in real projects. When it happens, it's usually because of a coding mistake.
+
+In this chapter we'll cover how an object converts to primitive and how to customize it.
+
+We have two purposes:
+
+1. It will allow us to understand what's going on in case of coding mistakes, when such an operation happened accidentally.
+2. There are exceptions, where such operations are possible and look good. E.g. subtracting or comparing dates (`Date` objects). We'll come across them later.
+
+## Conversion rules
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Dalam bab <info:type-conversions> kita sudah tahu aturan-aturan untuk konversi numerik, *string* dan *boolean* dari *primitive*. Tetapi kita meninggalkan sebuah celah untuk objek. Kini, sebagaimana yang kita tahu tentang metode dan simbol, hal-hal tersebut memungkinkan kita untuk mengisi celah tersebut.
 
@@ -11,12 +32,20 @@ Dalam bab <info:type-conversions> kita sudah tahu aturan-aturan untuk konversi n
 2. Konversi numerik terjadi ketika kita mengurangi objek atau menerapkan fungsi matermatika. Contohnya, objek `Date` (akan dibahas di bab <info:date>) dapat dikurangi, dan hasil dari `date1 - date2` adalah selisih waktu di antara kedua tanggal tersebut.
 3. Sedangkan untuk konversi *string* -- biasanya terjadi ketika kita mengeluarkan hasil sebuah objek seperti `alert(obj)` dan dalam konteks yang serupa.
 
+<<<<<<< HEAD
 ## *ToPrimitive*
 
 Kita dapat menyetel dengan baik konversi *string* dan konversi numerik, menggunakan metode-metode objek khusus.
 
 Terdapat tiga varian konversi tipe (data), disebut juga
  "*hints*" ("petunjuk"), dideskripsikan dalam [spesifikasi](https://tc39.github.io/ecma262/#sec-toprimitive):
+=======
+We can fine-tune string and numeric conversion, using special object methods.
+
+There are three variants of type conversion, that happen in various situations.
+
+They're called "hints", as described in the [specification](https://tc39.github.io/ecma262/#sec-toprimitive):
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 `"string"`
 : untuk sebuah konversi objek-ke-string, ketika kita melakukan sebuah operasi pada sebuah objek yang diharapkan (menghasilkan) sebuah *string*, seperti `alert`:
@@ -82,12 +111,24 @@ Mari mulai dari metode pertama. Terdapat simbol bawaan yang bernama `Symbol.toPr
 
 ```js
 obj[Symbol.toPrimitive] = function(hint) {
+<<<<<<< HEAD
   // harus mengembalikan sebuah nilai primitive
   // hint/petunjuk = salah satu antara "string", "number", "default"
 };
 ```
 
 Sebagai contoh, di sini objek `user` mengimplementasikannya:
+=======
+  // here goes the code to convert this object to a primitive
+  // it must return a primitive value
+  // hint = one of "string", "number", "default"
+};
+```
+
+If the method `Symbol.toPrimitive` exists, it's used for all hints, and no more methods are needed.
+
+For instance, here `user` object implements it:
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```js run
 let user = {
@@ -111,12 +152,21 @@ Seperti yang bisa kita lihat dari kode tersebut, `user` menjadi sebuah *string* 
 
 ## toString/valueOf
 
+<<<<<<< HEAD
 Metode-metode `toString` dan `valueOf` berasal dari zaman dulu. Metode-metode tersebut bukanlah simbol (simbol belum ada waktu itu), melainkan metode-metode "reguler" yang dinamakan (dengan) *string*. Kedua metode itu menyediakan sebuah cara alternatif "gaya lawas" untuk mengimplementasikan konversi.
 
 Jika tidak ada `Symbol.toPrimitive` maka JavaScript mencoba untuk menemukan metode tersebut dan mencoba keduanya dengan urutan:
 
 - `toString -> valueOf` untuk petunjuk "string".
 - `valueOf -> toString` jika sebaliknya.
+=======
+If there's no `Symbol.toPrimitive` then JavaScript tries to find methods `toString` and `valueOf`:
+
+- For the "string" hint: `toString`, and if it doesn't exist, then `valueOf` (so `toString` has the priority for stirng conversions).
+- For other hints: `valueOf`, and if it doesn't exist, then `toString` (so `valueOf` has the priority for maths).
+
+Methods `toString` and `valueOf` come from ancient times. They are not symbols (symbols did not exist that long ago), but rather "regular" string-named methods. They provide an alternative "old-style" way to implement the conversion.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Dua metode ini harus mengembalikan sebuah nilai *primitive*. Jika `toString` atau `valueOf` mengembalikan sebuah objek, maka objek tersebut diabaikan (sama halnya jika tidak ada metode).
 
@@ -136,9 +186,15 @@ alert(user.valueOf() === user); // true
 
 Jadi jika kita coba untuk menggunakan sebuah objek sebagai sebuah *string*, seperti dalam sebuah `alert` atau sejenisnya, maka secara standar kita melihat `[object Object]`.
 
+<<<<<<< HEAD
 Dan standar dari `valueOf` disebutkan di sini hanya demi tujuan melengkapi saja, untuk menghindari kebingungan. Seperti yang bisa dilihat, metode tesebut mengembalikan objeknya sendiri, dan juga mengabaikannya. Jangan tanya mengapa demikian, itulah alasan-alasan historisnya. Jadi kita anggap hal tersebut tidak ada.
 
 Mari implementasikan metode-metode berikut ini.
+=======
+The default `valueOf` is mentioned here only for the sake of completeness, to avoid any confusion. As you can see, it returns the object itself, and so is ignored. Don't ask me why, that's for historical reasons. So we can assume it doesn't exist.
+
+Let's implement these methods to customize the conversion.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Sebagai contoh, di sini `user` melakukan hal yag sama seperti di atas menggunakan sebuah kombinasi `toString` serta `valueOf` ketimbang menggunakan `Symbol.toPrimitive`:
 
@@ -183,7 +239,11 @@ alert(user + 500); // toString -> John500
 
 Dalam ketidakberadaan `Symbol.toPrimitive` dan `valueOf`, `toString` akan menangani semua konversi *primitive*.
 
+<<<<<<< HEAD
 ## Tipe *return* (kembalian)
+=======
+### A conversion can return any primitive type
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Hal penting yang harus diketahui tentang semua metode-metode konversi ke-*primitive* adalah bahwa metode-metode tersebut tidak selalu mengembalikan *primitive* "yang diberikan petunjuk".
 
@@ -252,4 +312,10 @@ Konversi algoritma tersebut yakni:
 3. Selain kondisi di atas jika petunjuknya adalah `"number"` atau `"default"`
     - coba `obj.valueOf()` dan `obj.toString()`, atau apapun yang ada.
 
+<<<<<<< HEAD
 Dalam latihan, cukup sering untuk mengimplementasikan `obj.toString()` saja sebagai sebuah metode yang "menangkap semuanya" untuk semua konversi yang mengembalikan sebuah representasi sebuah objek yang "mudah dibaca manusia", untuk tujuan-tujuan pencatatan serta *debugging*.  
+=======
+In practice, it's often enough to implement only `obj.toString()` as a "catch-all" method for string conversions that should return a "human-readable" representation of an object, for logging or debugging purposes.  
+
+As for math operations, JavaScript doesn't provide a way to "override" them using methods, so real life projects rarely use them on objects.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c

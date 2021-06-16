@@ -46,7 +46,11 @@ alert(3 +
 + 2);
 ```
 
+<<<<<<< HEAD
 Output dari kode itu adalah `6` karena JavaScript tak menyisipkan titik koma di sini. Sudah jelas sekali bahwa barisnya selesai dengan tanda plus `"+"`, sehingga itu menjadi "expresi tak lengkap", jadi tak butuh titik koma. Dan dalam hal ini memang seperti itu.
+=======
+The code outputs `6` because JavaScript does not insert semicolons here. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an "incomplete expression", so a semicolon there would be incorrect. And in this case, that works as intended.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 **Tapi ada situasi di mana JavaScript "gagal" mengasumsi titik koma di mana itu benar-benar dibutuhkan.**
 
@@ -56,40 +60,63 @@ Galat yang muncul pada kasus ini agak sulit dicari dan dibetulkan.
 Jika kamu penasaran untuk melihat contoh konkrit dari galat ini, cek kode ini:
 
 ```js run
-[1, 2].forEach(alert)
+alert("Hello");
+
+[1, 2].forEach(alert);
 ```
 
+<<<<<<< HEAD
 Untuk sekarang tak usah memikirkan makna kurung siku `[]` dan `forEach`. Kita akan mempelajari mereka nanti. Untuk sekarang, ingat hasil kode tersebut: yaitu `1` lalu `2`.
 
 Sekarang, ayo kita tambahkan `alert` sebelum kodenya *tanpa* diikuti titik koma:
+=======
+No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of running the code: it shows `Hello`, then `1`, then `2`.
+
+Now let's remove the semicolon after the `alert`:
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```js run no-beautify
-alert("There will be an error")
+alert("Hello")
 
-[1, 2].forEach(alert)
+[1, 2].forEach(alert);
 ```
 
+<<<<<<< HEAD
 Sekarang jika kita menjalankan kodenya, hanya `alert` pertama yang tampil dan kemudian galat!
 
 Tapi semua akan baik-baik saja jika kita menambahkan titik koma setelah `alert`:
 ```js run
 alert("All fine now");
+=======
+The difference compared to the code above is only one character: the semicolon at the end of the first line is gone.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
-[1, 2].forEach(alert)  
-```
+If we run this code, only the first `Hello` shows (and there's an error, you may need to open the console to see it). There are no numbers any more.
 
+<<<<<<< HEAD
 Sekarang kita punya pesan "All fine now" diikuti dengan `1` dan `2`.
 
 
 Galat muncul pada varian tanpa titik koma karena JavaScript tak mengasumsikan titik koma sebelum kurung siku `[...]`.
 
 Jadi, karena titik koma tidak otomatis disisipkan, kode di contoh pertama diperlakukan sebagai pernyataan tunggal. Inilah cara engine melihatnya:
+=======
+That's because JavaScript does not assume a semicolon before square brackets `[...]`. So, the code in the last example is treated as a single statement.
+
+Here's how the engine sees it:
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```js run no-beautify
-alert("There will be an error")[1, 2].forEach(alert)
+alert("Hello")[1, 2].forEach(alert);
 ```
 
+<<<<<<< HEAD
 Tapi itu harus jadi dua pernyataan terpisah, bukan satu. Penyatuan macam ini salah pada kasus ini, makanya galat. Ini bisa terjadi dalam situasi lain.
+=======
+Looks weird, right? Such merging in this case is just wrong. We need to put a semicolon after `alert` for the code to work correctly.
+
+This can happen in other situations also.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 ````
 
 Kami sarankan menaruh titik koma di antara pernyataan meski mereka dipisahkan garis baru. Ini aturan yang diterima secara luas oleh komunitas. Harap diingat sekali lagi bahwa -- *bisa saja* menanggalkan titik koma di banyak kesempatan. Tapi akan lebih aman -- terutama untuk pemula -- untuk menggunakan mereka.

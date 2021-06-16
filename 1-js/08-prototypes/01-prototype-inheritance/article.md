@@ -12,7 +12,11 @@ Didalam Javascript, objek memiliki properti tersembunyi yang spesial `[[Prototyp
 
 ![prototype](object-prototype-empty.svg)
 
+<<<<<<< HEAD
 Ketika kita membaca properti dari sebuah objek dan ternyata propertinya tidak ada, maka Javascript akan secara otomatis mengambilnya dari *prototype*nya. Dialam pemrograman, hal ini disebut dengan "Pewarisan *prototype*" atau *Prototypal Inheritance*. Dan tidak lama lagi kita akan belajar banyak contoh-contoh pewarisan, sama seperti banyak bahasa yang menggunakannya.
+=======
+When we read a property from `object`, and it's missing, JavaScript automatically takes it from the prototype. In programming, this is called "prototypal inheritance". And soon we'll study many examples of such inheritance, as well as cooler language features built upon it.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Properti yang dimiliki `[[Prototype]]` bersifat internal dan tersembunyi, tapi ada banyak cara untuk melihat properti tersebut.
 

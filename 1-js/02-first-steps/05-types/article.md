@@ -64,7 +64,7 @@ Nilai numerik spesial formalnya merupakan bagian dari tipe "number". Tentu saja 
 
 Kita akan melihat lebih tentang cara bekerja dengan angka di bab <info:number>.
 
-## BigInt
+## BigInt [#bigint-type]
 
 Didalam Javascript, tipe data "number" tidak bisa mengandung nilai lebih dari <code>(2<sup>53</sup>-1)</code> (sama dengan `9007199254740991`) atau kurang dari <code>-(2<sup>53</sup>-1)</code>. Itu adalah batasan teknik yang dibuat.
 

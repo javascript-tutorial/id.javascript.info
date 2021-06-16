@@ -525,8 +525,13 @@ Sekarang terlihat jelas kenapa `a > Z`.
 
 Karakter-karakter dibandingkan berdasarkan kode numeriknya. Kode yang lebih besar berarti karakter tersebut lebih besar. Kode untuk `a` (97) lebih besar dibandingkan dengan kode untuk `Z` (90).
 
+<<<<<<< HEAD
 - Semua huruf kecil muncul setelah huruf kapital karena kode mereka lebih besar.
 - Beberapa karakter seperti `Ö` terpisah dari alfabet utama. Disini, kodenya lebih besar dibandingkan semua karakter dari `a` to `z`.
+=======
+- All lowercase letters go after uppercase letters because their codes are greater.
+- Some letters like `Ö` stand apart from the main alphabet. Here, its code is greater than anything from `a` to `z`.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 <<<<<<< HEAD
 ### Perbandingan yang benar

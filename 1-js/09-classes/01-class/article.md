@@ -149,7 +149,11 @@ Hasil dari pendefinisian berikut adalah sama. Jadi memang ada alasan mengapa `cl
 
 Tetap saja, ada perbedaan penting.
 
+<<<<<<< HEAD
 1. Pertama, sebuah fungsi yang dibentuk dengan `class` dilabeli oleh properti internal yang khusus `[[FunctionKind]]:"classConstructor"`. Jadi tidak sepenuhnya sama dengan membuatnya secara manual.
+=======
+1. First, a function created by `class` is labelled by a special internal property `[[IsClassConstructor]]: true`. So it's not entirely the same as creating it manually.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
     Javascript sendiri mengecek properti tersebut diberbagai tempat. sebagai contoh, tidak seperti fungsi biasa, itu harus dijalankan dengan sintaks `new`:
 
