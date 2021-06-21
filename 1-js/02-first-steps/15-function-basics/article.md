@@ -289,12 +289,16 @@ showMessage(); // empty message
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ...Atau kita bisa menggunakan operator `||`:
 
 ```js
 // jika teks parameter tidak ada atau "", set variabel ke 'empty'
 =======
 ...Or we could use the `??` operator:
+=======
+...Or we could use the `||` operator:
+>>>>>>> 8558fa8f5cfb16ef62aa537d323e34d9bef6b4de
 
 ```js
 >>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
