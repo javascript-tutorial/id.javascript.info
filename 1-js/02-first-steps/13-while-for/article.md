@@ -388,7 +388,7 @@ label: {
 }
 ```
 
-...Although, 99.9% of the time `break` used is inside loops, as we've seen in the examples above.
+...Although, 99.9% of the time `break` is used inside loops, as we've seen in the examples above.
 
 A `continue` is only possible from inside a loop.
 >>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
