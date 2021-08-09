@@ -80,9 +80,15 @@ Jika kita ingin mengapplikasikan method-method tersebut, kita bisa menggunakan `
 If we'd like to apply them, then we can use `Object.entries` followed by `Object.fromEntries`:
 >>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
+<<<<<<< HEAD
 1. Gunakan `Object.entries(obj)` untuk mendapatkan array pasangan kunci/nilai dari `obj`.
 2. Gunakan method array di array tersebut, contoh `map`. 
 3. Gunakan `Object.fromEntries(array)` di array hasil untuk mengubahnya kembali menjadi objek.
+=======
+1. Use `Object.entries(obj)` to get an array of key/value pairs from `obj`.
+2. Use array methods on that array, e.g. `map`, to transform these key/value pairs.
+3. Use `Object.fromEntries(array)` on the resulting array to turn it back into an object.
+>>>>>>> bc08fd1b32285304b14afea12a9deaa10d13452b
 
 Sebagai contoh, kita mempunyai objek dengan harga-harga, dan mau melipat duakan harga-harganya:
 
@@ -95,16 +101,26 @@ let prices = {
 
 *!*
 let doublePrices = Object.fromEntries(
+<<<<<<< HEAD
   // ubah menjadi array, map, lalu fromEntries mengembalikan objeknya
   Object.entries(prices).map(([key, value]) => [key, value * 2])
+=======
+  // convert prices to array, map each key/value pair into another pair
+  // and then fromEntries gives back the object
+  Object.entries(prices).map(entry => [entry[0], entry[1] * 2])
+>>>>>>> bc08fd1b32285304b14afea12a9deaa10d13452b
 );
 */!*
 
 alert(doublePrices.meat); // 8
-```   
+```
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 Mungkin ini terlihat susah pertama kalinya, tetapi ini akan menjadi mudah untuk di mengerti setelah kamu menggunakannya beberapa kali. Kita bisa membuat perantaian hebat dengan cara ini.
 =======
 It may look difficult at first sight, but becomes easy to understand after you use it once or twice. We can make powerful chains of transforms this way. 
 >>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
+=======
+It may look difficult at first sight, but becomes easy to understand after you use it once or twice. We can make powerful chains of transforms this way.
+>>>>>>> bc08fd1b32285304b14afea12a9deaa10d13452b

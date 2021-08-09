@@ -37,8 +37,8 @@ alert( 7.3e9 );  // 7.3 milyar (7,300,000,000)
 Dengan kata lain, `"e"` kalikan angkanya dengan `1` dengan jumlah nol yang diberikan.
 
 ```js
-1e3 = 1 * 1000 // e3 means *1000
-1.23e6 = 1.23 * 1000000 // e6 means *1000000
+1e3 === 1 * 1000; // e3 means *1000
+1.23e6 === 1.23 * 1000000; // e6 means *1000000
 ```
 
 Sekarang ayo tulis sesuatu lebih kecil. Katakan, 1 microsecond (sepersejuta second):
@@ -58,11 +58,19 @@ Jika kita hitung nol di `0.000001`, ada 6 dari mereka. Jadi alaminya `1e-6`.
 Dengan kata lain, angka negatif setelah `"e"` artinya pembagian 1 dengan jumlah nol yang diberikan:
 
 ```js
+<<<<<<< HEAD
 // -3 membagi 1 dengan 3 nol
 1e-3 = 1 / 1000 (=0.001)
 
 // -6 membagi 1 dengan 6 nol
 1.23e-6 = 1.23 / 1000000 (=0.00000123)
+=======
+// -3 divides by 1 with 3 zeroes
+1e-3 === 1 / 1000; // 0.001
+
+// -6 divides by 1 with 6 zeroes
+1.23e-6 === 1.23 / 1000000; // 0.00000123
+>>>>>>> bc08fd1b32285304b14afea12a9deaa10d13452b
 ```
 
 ### Hex, angka binary dan octal
@@ -117,7 +125,12 @@ Tolong ingat bahwa dua dot di `123456..toString(36)` bukan typo. Jika kita mau m
 
 Jika kita menaruh dot tunggal: `123456.toString(36)`, maka akan ada galat, karena syntax JavaScript berimplikasi bahwa bagian desimal setelah dot pertama. Dan jika kita menaruh satu dot lagi, maka JavaScript tahu bahwa bagian desimal kosong dan sekarang pergi ke metode.
 
+<<<<<<< HEAD
 Juga bisa menulis `(123456).toString(36)`.
+=======
+Also could write `(123456).toString(36)`.
+
+>>>>>>> bc08fd1b32285304b14afea12a9deaa10d13452b
 ```
 
 ## Pembulatan
