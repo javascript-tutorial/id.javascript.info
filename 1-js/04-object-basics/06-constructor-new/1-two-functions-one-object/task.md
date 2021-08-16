@@ -4,7 +4,11 @@ importance: 2
 
 # Dua fungsi – satu objek
 
+<<<<<<< HEAD
 Apakah mungkin untuk membuat fungsi `A` dan fungsi `B` seperti `new A()==new B()`?
+=======
+Is it possible to create functions `A` and `B` so that `new A() == new B()`?
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602
 
 ```js no-beautify
 function A() { ... }
