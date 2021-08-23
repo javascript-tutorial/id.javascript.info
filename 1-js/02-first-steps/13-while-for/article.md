@@ -106,10 +106,17 @@ Mari bahas pernyataan `for` bagian demi bagian:
 
 | bagian  |          |                                                                            |
 |-------|----------|----------------------------------------------------------------------------|
+<<<<<<< HEAD
 | begin | `i = 0`    | Jalankan sekali masuk ke loop.                                      |
 | condition | `i < 3`| Cek sebelum tiap iterasi loop. Jika salah, loop berhenti.              |
 | body | `alert(i)`| Jalankan lagi dan lagi selama kondisi bernilai truthy.                         |
 | step | `i++`      | Exekusi setelah badan di tiap iterasi. |
+=======
+| begin | `let i = 0`    | Executes once upon entering the loop.                                      |
+| condition | `i < 3`| Checked before every loop iteration. If false, the loop stops.              |
+| body | `alert(i)`| Runs again and again while the condition is truthy.                         |
+| step| `i++`      | Executes after the body on each iteration. |
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602
 
 Cara kerja algoritma perulangan umum seperti ini:
 
@@ -388,7 +395,7 @@ label: {
 }
 ```
 
-...Although, 99.9% of the time `break` used is inside loops, as we've seen in the examples above.
+...Although, 99.9% of the time `break` is used inside loops, as we've seen in the examples above.
 
 A `continue` is only possible from inside a loop.
 >>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96

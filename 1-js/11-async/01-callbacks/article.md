@@ -34,7 +34,11 @@ function loadScript(src) {
 }
 ```
 
+<<<<<<< HEAD
 Fungsi tersebut menambahkan ke dokumen baru, dibuat secara dinamis, tag `<script src="…">` dengan `src` yang diberikan. Browser kemudian secara otomatis memuat dan menjalankannya ketika lengkap.
+=======
+It inserts into the document a new, dynamically created, tag `<script src="…">` with the given `src`. The browser automatically starts loading it and executes when complete.
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602
 
 Kita bisa menggunakan fungsi tersebut seperti ini:
 

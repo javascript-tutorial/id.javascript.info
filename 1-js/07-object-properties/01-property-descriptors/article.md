@@ -19,7 +19,11 @@ Properti Objek, selain sebuah **`Nilai`**, memiliki tiga atribut spesial (yang d
 
 Kita belum melihat mereka, karena biasanya mereka tidak muncul. Ketika kita membuat sebuah properti "dengan cara biasa", Semua dari tiga attribut diatas biasanya bernilai `benar`.namun, kita juga bisa mengubahnya kapan pun kita mau.
 
+<<<<<<< HEAD
 Pertama, mari kita lihat bagaimana cara mendapatkan properti flag tersebut.
+=======
+The method [Object.getOwnPropertyDescriptor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor) allows to query the *full* information about a property.
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602
 
 Pada Method [Object.getOwnPropertyDescriptor](mdn:js/Object/getOwnPropertyDescriptor) memperbolehkan kita untuk melakukan query terhadap informasi *komplit* dari sebuah properti.
 
@@ -56,7 +60,11 @@ alert( JSON.stringify(descriptor, null, 2 ) );
 */
 ```
 
+<<<<<<< HEAD
 Untuk mengganti flag tersebut, kita dapat menggunakan [Object.defineProperty](mdn:js/Object/defineProperty).
+=======
+To change the flags, we can use [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty).
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602
 
 Sintaksnya adalah:
 
@@ -196,7 +204,11 @@ alert(Object.keys(user)); // name
 
 Flag non-configurable  (`configurable:false`) terkadang sudah diatur sebelumnya untuk objek dan properti bawaan.
 
+<<<<<<< HEAD
 Sebuah properti non-configurable tidak bisa di hapus.
+=======
+A non-configurable property can't be deleted, its attributes can't be modified.
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602
 
 Sebagai contoh, `Math.PI` adalah non-writable, non-enumerable and non-configurable:
 
@@ -216,12 +228,13 @@ alert( JSON.stringify(descriptor, null, 2 ) );
 Jadi, seorang programer tidak akan bisa mengganti nilai dari sebuah `Math.PI` atau juga menimpanya.
 
 ```js run
-Math.PI = 3; // Error
+Math.PI = 3; // Error, because it has writable: false
 
 // menghapus Math.PI juga tidak akan bekerja
 ```
 Membuat sebuah properti non-configurable adalah jalan satu arah. kita tidak bisa mengubahnya kembali dengan `defineProperty`.
 
+<<<<<<< HEAD
 Tepatnya, non-configurable memberlakukan beberapa pembatasan pada `defineProperty`:
 1. tidak bisa mengubah flag `configurable` .
 2. tidak bisa mengubah flag `enumerable` .
@@ -236,8 +249,20 @@ To be precise, non-configurability imposes several restrictions on `defineProper
 2. Can't change `enumerable` flag.
 3. Can't change `writable: false` to `true` (the other way round works).
 4. Can't change `get/set` for an accessor property (but can assign them if absent).
+=======
+We also can't change `Math.PI` to be `writable` again:
 
-**The idea of "configurable: false" is to prevent changes of property flags and its deletion, while allowing to change its value.**
+```js run
+// Error, because of configurable: false
+Object.defineProperty(Math, "PI", { writable: true });
+```
+
+There's absolutely nothing we can do with `Math.PI`.
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602
+
+Making a property non-configurable is a one-way road. We cannot change it back with `defineProperty`.
+
+**Please note: `configurable: false` prevents changes of property flags and its deletion, while allowing to change its value.**
 
 Here `user.name` is non-configurable, but we can still change it (as it's writable):
 >>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
@@ -255,7 +280,7 @@ user.name = "Pete"; // works fine
 delete user.name; // Error
 ```
 
-And here we make `user.name` a "forever sealed" constant:
+And here we make `user.name` a "forever sealed" constant, just like the built-in `Math.PI`:
 
 ```js run
 let user = {
@@ -291,11 +316,23 @@ delete user.name;
 Object.defineProperty(user, "name", { value: "Pete" });
 ```
 
+<<<<<<< HEAD
 >>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## Object.defineProperties
 
 Ada sebuah method [Object.defineProperties(obj, descriptors)](mdn:js/Object/defineProperties) yang memperbolehkan untuk mendefinisikan banyak properti pada satu waktu.
+=======
+```smart header="The only attribute change possible: writable true -> false"
+There's a minor exception about changing flags.
+
+We can change `writable: true` to `false` for a non-configurable property, thus preventing its value modification (to add another layer of protection). Not the other way around though.
+```
+
+## Object.defineProperties
+
+There's a method [Object.defineProperties(obj, descriptors)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties) that allows to define many properties at once.
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602
 
 Sintaksnya adalah:
 
@@ -321,7 +358,11 @@ Jadi, kita bisa mengatur banyak properti dalam satu waktu.
 
 ## Object.getOwnPropertyDescriptors
 
+<<<<<<< HEAD
 Untuk mendapat semua properti deskriptor pada satu waktu, kita dapat menggunakan sebuah method [Object.getOwnPropertyDescriptors(obj)](mdn:js/Object/getOwnPropertyDescriptors).
+=======
+To get all property descriptors at once, we can use the method [Object.getOwnPropertyDescriptors(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors).
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602
 
 Bersamaan dengan `Object.defineProperties` itu dapat digunakan menjadi cara "flags-aware" untuk mengkloning sebuah objek:
 
@@ -346,6 +387,7 @@ Properti deskriptor bekerja pada level invidual propertinya.
 
 Dan ada juga method yang memberi batasan akses terkait *keselurhan* objek:
 
+<<<<<<< HEAD
 [Object.preventExtensions(obj)](mdn:js/Object/preventExtensions)
 : Melarang penambahan pada properti baru dalam objek.
 
@@ -354,9 +396,20 @@ Dan ada juga method yang memberi batasan akses terkait *keselurhan* objek:
 
 [Object.freeze(obj)](mdn:js/Object/freeze)
 : Melarang penambahan/pengurangan/pengubahan pada properti. Menetapkan `configurable: false, writable: false` untuk semua properti yang ada.
+=======
+[Object.preventExtensions(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions)
+: Forbids the addition of new properties to the object.
+
+[Object.seal(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/seal)
+: Forbids adding/removing of properties. Sets `configurable: false` for all existing properties.
+
+[Object.freeze(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)
+: Forbids adding/removing/changing of properties. Sets `configurable: false, writable: false` for all existing properties.
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602
 
 Dan ada juga test untuk mereka:
 
+<<<<<<< HEAD
 [Object.isExtensible(obj)](mdn:js/Object/isExtensible)
 : Mengembalikan `false` jika menambahkan properti itu dilarang, selain itu `true`.
 
@@ -365,5 +418,15 @@ Dan ada juga test untuk mereka:
 
 [Object.isFrozen(obj)](mdn:js/Object/isFrozen)
 : Mengembalikan `true` jika menambahkan/mengurangi/mengubah properti itu dilarang, dan semua properti yang sekarang memiliki `configurable: false, writable: false`.
+=======
+[Object.isExtensible(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible)
+: Returns `false` if adding properties is forbidden, otherwise `true`.
+
+[Object.isSealed(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isSealed)
+: Returns `true` if adding/removing properties is forbidden, and all existing properties have `configurable: false`.
+
+[Object.isFrozen(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isFrozen)
+: Returns `true` if adding/removing/changing properties is forbidden, and all current properties are `configurable: false, writable: false`.
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602
 
 Method diatas biasanya jarang digunakan pada prakteknya.
