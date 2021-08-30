@@ -12,7 +12,7 @@ In case of such operations, objects are auto-converted to primitives, and then t
 
 That's an important limitation, as the result of `obj1 + obj2` can't be another object!
 
-E.g. we can't make objects representing vectors or matrices (or archievements or whatever), add them and expect a "summed" object as the result. Such architectural feats are automatically "off the board".
+E.g. we can't make objects representing vectors or matrices (or achievements or whatever), add them and expect a "summed" object as the result. Such architectural feats are automatically "off the board".
 
 So, because we can't do much here, there's no maths with objects in real projects. When it happens, it's usually because of a coding mistake.
 
@@ -162,7 +162,7 @@ Jika tidak ada `Symbol.toPrimitive` maka JavaScript mencoba untuk menemukan meto
 =======
 If there's no `Symbol.toPrimitive` then JavaScript tries to find methods `toString` and `valueOf`:
 
-- For the "string" hint: `toString`, and if it doesn't exist, then `valueOf` (so `toString` has the priority for stirng conversions).
+- For the "string" hint: `toString`, and if it doesn't exist, then `valueOf` (so `toString` has the priority for string conversions).
 - For other hints: `valueOf`, and if it doesn't exist, then `toString` (so `valueOf` has the priority for maths).
 
 Methods `toString` and `valueOf` come from ancient times. They are not symbols (symbols did not exist that long ago), but rather "regular" string-named methods. They provide an alternative "old-style" way to implement the conversion.
@@ -318,4 +318,7 @@ Dalam latihan, cukup sering untuk mengimplementasikan `obj.toString()` saja seba
 In practice, it's often enough to implement only `obj.toString()` as a "catch-all" method for string conversions that should return a "human-readable" representation of an object, for logging or debugging purposes.  
 
 As for math operations, JavaScript doesn't provide a way to "override" them using methods, so real life projects rarely use them on objects.
+<<<<<<< HEAD
 >>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
+=======
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602

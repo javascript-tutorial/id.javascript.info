@@ -201,7 +201,7 @@ In other words, to put these terms straight:
 
 We declare functions listing their parameters, then call them passing arguments.
 
-In the example above, one might say: "the function `sayMessage` is declared with two parameters, then called with two arguments: `from` and `"Hello"`".
+In the example above, one might say: "the function `showMessage` is declared with two parameters, then called with two arguments: `from` and `"Hello"`".
 
 
 ## Default values
@@ -289,12 +289,16 @@ showMessage(); // empty message
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ...Atau kita bisa menggunakan operator `||`:
 
 ```js
 // jika teks parameter tidak ada atau "", set variabel ke 'empty'
 =======
 ...Or we could use the `??` operator:
+=======
+...Or we could use the `||` operator:
+>>>>>>> 4d01fc20d4d82358e61518a31efe80dec9bb2602
 
 ```js
 >>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
