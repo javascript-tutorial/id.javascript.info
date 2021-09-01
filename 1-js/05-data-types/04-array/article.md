@@ -195,9 +195,6 @@ Sintaks tersebut memperpanjang objek yang menyediakan metode khusus untuk berfun
 
 
 Ingat, ada 7 tipe (data) dasar dalamJavaScript. *Array* adalah sebuah objek dan oleh karena itu berperilaku selayaknya sebuah objek.
-=======
-Remember, there are only eight basic data types in JavaScript (see the [Data types](info:types) chapter for more info). Array is an object and thus behaves like an object.
->>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 
 Sebagai contoh, *array* disalin oleh referensi:
 
