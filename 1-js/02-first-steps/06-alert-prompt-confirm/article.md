@@ -30,13 +30,8 @@ Ia menampilkan modal window dengan pesan teks, input field untuk pengunjung, dan
 `default`
 : Parameter kedua opsional, nilai inisial untuk input field.
 
-<<<<<<< HEAD
 ```smart header="Kurung siku didalam sintaks `[...]`"
 Kurung siku di sintaks `default` di kode sintaks di atas menandakan bahwa parameter itu bersifat opsional, tidak benar-benar dibutuhkan.
-=======
-```smart header="The square brackets in syntax `[...]`"
-The square brackets around `default` in the syntax above denote that the parameter is optional, not required.
->>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 ```
 
 Pengunjung halaman bisa mengetik sesuatu didalam kotak prompt dan menekan tombol OK. Lalu kita akan mendapatkan teksnya didalam `result`. Atau pengunjung halaman bisa membatalkan kotak promp dengan menekan *Cancel* atau menekan `key:Esc` pada *keyboard*, lalu kita akan mendapatkan `null` sebagai `result`.

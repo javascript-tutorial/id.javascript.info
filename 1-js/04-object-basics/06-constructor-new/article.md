@@ -64,17 +64,10 @@ Sekarang jika kita ingin membuat *user* lain, kita bisa memanggil `new User("Ann
 
 Itulah tujuan utama dari konstruktor -- untuk mengimplementasikan kode pembuatan objek yang dapat dipakai ulang (*reusable*).
 
-<<<<<<< HEAD
 Mari ingat sekali lagi -- secara teknis, fungsi apapun dapat digunakan sebagai sebuah konstruktor. Hal tersebut berarti: fungsi apapun dapat dijalankan dengan `new`, dan bisa mengeksekusi algoritma di atas. "Huruf kapital dulu" adalah kesepakatan umum, untuk membuatnya lebih jelas bahwa sebuah fungsi untuk dijalankan dengan `new`.
 
 ````smart header="function() { ... } baru"
 Jika kita memiliki banyak baris kode tentang pembuatan sebuah objek tunggal yang kompleks, kita dapat membungkus kode tersebut dalam fungsi konstruktor, seperti ini:
-=======
-Let's note once again -- technically, any function (except arrow functions, as they don't have `this`) can be used as a constructor. It can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
-
-````smart header="new function() { ... }"
-If we have many lines of code all about creation of a single complex object, we can wrap them in an immediately called constructor function, like this:
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```js
 // create a function and immediately call it with new
@@ -88,11 +81,7 @@ let user = new function() {
 };
 ```
 
-<<<<<<< HEAD
 Konstruktor tersebut tidak dapat dipanggil lagi, karena tidak disimpan dimanapun, hanya dibuat dan dipanggil. Jadi trik ini ditujukan untuk mengenkapsulasi kode yang mengonstruksi objek tunggal, tanpa penggunaan di masa yang akan datang.
-=======
-This constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 ````
 
 ## Constructor mode test: new.target

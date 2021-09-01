@@ -74,11 +74,7 @@ Biasanya itu mudah. Tapi jika kita mau kunci simbolis juga, ada method lain [Obj
 
 Objek kekurangan banyak method yang ada untuk arrays, contoh `map`, `filter` dan yang lainnya.
 
-<<<<<<< HEAD
 Jika kita ingin mengapplikasikan method-method tersebut, kita bisa menggunakan `Object.entries` diikuti oleh `Object.fromEntries`:
-=======
-If we'd like to apply them, then we can use `Object.entries` followed by `Object.fromEntries`:
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 1. Gunakan `Object.entries(obj)` untuk mendapatkan array pasangan kunci/nilai dari `obj`.
 2. Gunakan method array di array tersebut, contoh `map`. 
@@ -103,8 +99,4 @@ let doublePrices = Object.fromEntries(
 alert(doublePrices.meat); // 8
 ```   
 
-<<<<<<< HEAD
 Mungkin ini terlihat susah pertama kalinya, tetapi ini akan menjadi mudah untuk di mengerti setelah kamu menggunakannya beberapa kali. Kita bisa membuat perantaian hebat dengan cara ini.
-=======
-It may look difficult at first sight, but becomes easy to understand after you use it once or twice. We can make powerful chains of transforms this way. 
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96

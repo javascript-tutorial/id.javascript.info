@@ -145,11 +145,7 @@ Meski sederhana, varian kode itu yang sedikit dimodifikasi punya kegunaan prakti
 
 How does this work? If we create multiple counters, will they be independent? What's going on with the variables here?
 
-<<<<<<< HEAD
 Memahami hal begini bagus untuk pengetahuan keseluruhan JavaScript dan menguntungkan untuk skenario yang lebih komplex. Jadi ayo kita selami lebih dalam.
-=======
-Understanding such things is great for the overall knowledge of JavaScript and beneficial for more complex scenarios. So let's go a bit in-depth.
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 ## Lingkungan Lexikal
 
@@ -317,11 +313,7 @@ Ketika dalam interview, frontend developer mendapat pertanyaan tentang "apa itu 
 
 Biasanya, Lingkungan Lexikal dihapus dengan semua variabel setelah panggilan fungsinya selesai. Ini karena tak ada referensi ke situ. Sebagai objek JavaScript apapun, ia cuma ditahan di memory selama ia dapat digapai.
 
-<<<<<<< HEAD
 ...Tapi jika ada fungsi bersarang yang masih dapat digapai setelah akhir fungsi, maka ia punya properti `[[Environment]]` yang mereferensi lingkungan lexikal.
-=======
-However, if there's a nested function that is still reachable after the end of a function, then it has `[[Environment]]` property that references the lexical environment.
->>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 Dalam hal Lingkungan Lexikal masih bisa digapai meski setelah berakhirnya fungsi itu, ia tetap hidup.
 
@@ -340,11 +332,7 @@ let g = f(); // g.[[Environment]] menyimpan referensi ke Lingkungan Lexikal
 // dari panggilan f() yang sesuai
 ```
 
-<<<<<<< HEAD
 Tolong diperhatikan apabila `f()` dipanggil beberapa kali, dan fungsi kembaliannya disimpan, maka seluruh objek lingkungan leksikal akan disimpan di memori. Ketiga-tiganya pada kode di bawah:
-=======
-Please note that if `f()` is called many times, and resulting functions are saved, then all corresponding Lexical Environment objects will also be retained in memory. In the code below, all 3 of them:
->>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 ```js
 function f() {
@@ -382,11 +370,7 @@ Seperti yang kita lihat, di teori selama sebuah fungsi masih hidup, seluruh vari
 
 Tetapi di praktiknya, mesin JavaScript mencoba untuk mengoptimalkannya. Mereka menganalisis penggunaan variabel dan apabila sudah jelas bahwa variabel luar sudah tidak digunakan -- mereka dihapus.
 
-<<<<<<< HEAD
 **Sebuah efek samping yang penting di V8 (Chrome, Opera) adalah variabel akan tak dapat diakses saat debugging**
-=======
-**An important side effect in V8 (Chrome, Edge, Opera) is that such variable will become unavailable in debugging.**
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 Cobalah jalankan contoh di bawah di Chrome dengan Developer Tools.
 
@@ -428,16 +412,8 @@ let g = f();
 g();
 ```
 
-<<<<<<< HEAD
 Fitur V8 ini baik untuk diketahui. Jika kamu melakukan debug memakai Chrome/Opera, cepat atau lambat kamu akan menemuinya.
-=======
-This feature of V8 is good to know. If you are debugging with Chrome/Edge/Opera, sooner or later you will meet it.
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
-<<<<<<< HEAD
 Ini bukan bug di debugger, melainkan fitur spesial dari V8. Mungkin ini akan diganti suatu saat.
 Kamu bisa mengeceknya dengan menjalankan contoh di laman ini.
 ```
-=======
-That is not a bug in the debugger, but rather a special feature of V8. Perhaps it will be changed sometime. You can always check for it by running the examples on this page.
->>>>>>> ff152b126ec70a9de919bfdc1913215539d37187

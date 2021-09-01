@@ -2,11 +2,7 @@
 
 Pengetesan terotomasi akan dipakai di tugas lebih lanjut, dan juga luas dipakai di proyek riil.
 
-<<<<<<< HEAD
 ## Kenapa kita butuh tes?
-=======
-## Why do we need tests?
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Saat kita menulis fungsi, kita biasanya akan membayangkan apa yang ia harus lakukan: parameter apa memberikan hasil apa.
 

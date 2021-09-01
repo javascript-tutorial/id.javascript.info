@@ -195,9 +195,6 @@ Sintaks tersebut memperpanjang objek yang menyediakan metode khusus untuk berfun
 
 
 Ingat, ada 7 tipe (data) dasar dalamJavaScript. *Array* adalah sebuah objek dan oleh karena itu berperilaku selayaknya sebuah objek.
-=======
-Remember, there are only eight basic data types in JavaScript (see the [Data types](info:types) chapter for more info). Array is an object and thus behaves like an object.
->>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 
 Sebagai contoh, *array* disalin oleh referensi:
 
@@ -383,13 +380,9 @@ alert( arr[0] ); // undefined! tidak ada elemen.
 alert( arr.length ); // length atau panjangnya adalah 2
 ```
 
-<<<<<<< HEAD
 Dalam kode di atas, `new Array(number)` memiliki semua elemen yang `undefined`.
 
 Untuk menghindari kejutan-kejutan yang demikian, kita biasanya menggunakan tanda kurung siku, kecuali kita benar-benar tahu kode apa yang sedang kita tulis.
-=======
-To avoid such surprises, we usually use square brackets, unless we really know what we're doing.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ## *Array* multidimensi
 

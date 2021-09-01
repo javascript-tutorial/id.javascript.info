@@ -70,16 +70,9 @@ Eksekusi fungsi tersebut "dipause" pada baris `(*)` dan dilanjutkan ketika promi
 
 Mari kita tekankan: `await` benar-benar membuat JavaScript menunggu sampai promise selesai, lalu lanjutkan dengan hasilnya. Hal tersebut tidak membebani _resource_ CPU apapun, karena mesin dapat melakukan pekerjaan lain sementara itu: eksekusi script lain, menangani event dan lain-lain.
 
-<<<<<<< HEAD
 Ini hanya sintaksis yang lebih elegan untuk mendapatkan hasil dari promise daripada `promise.then`, mudah untuk dibaca dan ditulis.
 
 ````warn header="Tidak dapat menggunakan `await`di dalam fungsi biasa" Jika kita coba untuk menggunakan`await` di dalam fungsi non-async, akan ada error sintaksis:
-=======
-It's just a more elegant syntax of getting the promise result than `promise.then`. And, it's easier to read and write.
-
-````warn header="Can't use `await` in regular functions"
-If we try to use `await` in a non-async function, there would be a syntax error:
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 ```js run
 function f() {
@@ -90,12 +83,7 @@ function f() {
 }
 ```
 
-<<<<<<< HEAD
 Kita akan mendapatkan error ini jika kita tidak meletakkan `async` sebelum fungsi. Seperti yang dikatakan, `await` hanya bekerja di dalam sebuah `fungsi async`.
-=======
-We may get this error if we forget to put `async` before a function. As stated earlier, `await` only works inside an `async` function.
-````
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 `````
 Mari kita ambil contoh `showAvatar()` dari bab <info:promise-chaining> dan menulisnya ulang menggunakan `async/await`:

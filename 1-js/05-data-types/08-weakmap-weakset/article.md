@@ -1,10 +1,6 @@
 # WeakMap dan WeakSet
 
-<<<<<<< HEAD
 Seperti yang kita tahu dari bab <info:garbage-collection>, Mesin Javascript menyimpan sebuah nilai didalam memori selama itu bisa terjangkau (dan secara potensial bisa digunakan).
-=======
-As we know from the chapter <info:garbage-collection>, JavaScript engine keeps a value in memory while it is "reachable" and can potentially be used.
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Contoh:
 ```js

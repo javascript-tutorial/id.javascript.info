@@ -34,8 +34,4 @@ let user = {
 (user.go)() // John
 ```
 
-<<<<<<< HEAD:1-js/04-object-basics/04-object-methods/2-check-syntax/solution.md
 Tolong ingat bahwa tanda kurung kurawa yang merangkap `(user.go)` tidak melakukan apapun di sini. Biasanya  Biasanya tanda kurung kurawa mengatur urutan operasi, tapi di sini tanda titik-lah (`.`) yang berjalan terlebih dulu, jadi tidak ada pengaruh apapun. Hanya tanda titik koma yang berpengaruh.
-=======
-Please note that parentheses around `(user.go)` do nothing here. Usually they setup the order of operations, but here the dot `.` works first anyway, so there's no effect. Only the semicolon thing matters.
->>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c:1-js/99-js-misc/04-reference-type/2-check-syntax/solution.md
