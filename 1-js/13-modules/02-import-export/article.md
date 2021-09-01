@@ -327,11 +327,7 @@ Kenapa hal tersebut diperlukan? mari lihat praktik penggunaannya.
 
 Bayangkan kita menulis sebuah "paket": sebuah direktori dengan banyak modul, dengan beberapa fungsi yang diekpor ke luar (perkakas seperti NPM memungkinkan kita untuk menerbitkan dan mendistribusikan paket seperti itu), dan kebanyakan modul hanyalah "pembantu" untuk penggunaan internal di paket modul lainnya.
 
-<<<<<<< HEAD
 Struktur berkas bisa seperti ini:
-=======
-Imagine, we're writing a "package": a folder with a lot of modules, with some of the functionality exported outside (tools like NPM allow us to publish and distribute such packages, but we don't have to use them), and many modules are just "helpers", for internal use in other package modules.
->>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 ```
 auth/
@@ -346,27 +342,13 @@ auth/
         ...
 ```
 
-<<<<<<< HEAD
 Kita ingin menunjukkan fungsionalitas paket melalui satu titik masuk, "Berkas utama" `auth/index.js` dapat digunakan seperti ini.
-=======
-We'd like to expose the package functionality via a single entry point.
-
-In other words, a person who would like to use our package, should import only from the "main file" `auth/index.js`.
-
-Like this:
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 ```js
 import { login, logout } from 'auth/index.js';
 ```
 
-<<<<<<< HEAD
 Idenya adalah bahwa orang luar (pengembang) yang menggunakan paket kita tidak boleh ikut campur dengan struktur internalnya, serta mencari berkas didalam direktori paket kita. Kita hanya mengekspor apa yang penting di dalam `auth/index.js` dan menyembunyikan sisaya dari pengintaian.
-=======
-The "main file", `auth/index.js` exports all the functionality that we'd like to provide in our package.
-
-The idea is that outsiders, other programmers who use our package, should not meddle with its internal structure, search for files inside our package folder. We export only what's necessary in `auth/index.js` and keep the rest hidden from prying eyes.
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Karena fungsionalitas yang diekspor sebenarnya tersebar diantara paket, kita dapat mengimpornya ke dalam `auth/index.js` dan kemudian kembali mengekspornya:
 
@@ -389,36 +371,19 @@ Sintaks `export ... from ...` hanyalah notasi pendek untuk proses impor-ekspor.
 
 ```js
 // 📁 auth/index.js
-<<<<<<< HEAD
 // impor login/logout dan kemudian segera mengekspornya kembali
 export {login, logout} from './helpers.js';
 
 // impor default sebagai User kemudian mengekspornya
-=======
-// re-export login/logout 
-export {login, logout} from './helpers.js';
-
-// re-export the default export as User
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 export {default as User} from './user.js';
 ...
 ```
 
-<<<<<<< HEAD
 ### Ekspor ulang ekspor bawaan
-=======
-The notable difference of `export ... from` compared to `import/export` is that re-exported modules aren't available in the current file. So inside the above example of `auth/index.js` we can't use re-exported `login/logout` functions. 
-
-### Re-exporting the default export
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Ekspor bawaan memerlukan penanganan terpisah ketika melakukan ekspor ulang.
 
-<<<<<<< HEAD
 Misalnya kita memiliki `user.js` dan kita ingin melakukan ekspor ulang kelas `User` tersebut:
-=======
-Let's say we have `user.js` with the `export default class User` and would like to re-export it:
->>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 ```js
 // 📁 user.js
@@ -427,13 +392,7 @@ export default class User {
 }
 ```
 
-<<<<<<< HEAD
 1. `export User form './user.js'` tidak dapat digunakan. Apa yang salah?... Ini adalah kesalahan sintaks!
-=======
-We can come across two problems with it:
-
-1. `export User from './user.js'` won't work. That would lead to a syntax error.
->>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
     Untuk melakukan ekspor ulang ekspor bawaan, kita harus menuliskan `export { default as User }` seperti contoh diatas.
 
@@ -446,13 +405,9 @@ We can come across two problems with it:
     export { default } from './user.js'; // ekspor ulang ekspor bawaan
     ```
 
-<<<<<<< HEAD
 Keanehan dari proses mengekspor ulang ekspor bawaan adalah salah satu alasan mengapa beberapa pengembang tidak menyukainya.
 
 ## Ringkasan
-=======
-Such oddities of re-exporting a default export are one of the reasons why some developers don't like default exports and prefer named ones.
->>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 Berikut merupakan semua jenis `export` yang kita bahas di artikel ini dan sebelumnya.
 
@@ -471,7 +426,6 @@ Ekspor:
 
 Impor:
 
-<<<<<<< HEAD
 -   Ekspor bernama dari modul:
     -   `import {x [as y], ...} from "module"`
 -   Ekspor bawaan:
@@ -481,17 +435,6 @@ Impor:
     -   `import * as obj from "module"`
 -   Impor modul (ini menjalankan kode), tetapi tidak disimpan kedalam variabel:
     -   `import "module"`
-=======
-- Importing named exports:
-  - `import {x [as y], ...} from "module"`
-- Importing the default export:  
-  - `import x from "module"`
-  - `import {default as x} from "module"`
-- Import all:
-  - `import * as obj from "module"`
-- Import the module (its code runs), but do not assign any of its exports to variables:
-  - `import "module"`
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Kita dapat meletakkan pernyataan `import/export` di bagian atas atau bawah dari skrip, itu tidak masalah.
 

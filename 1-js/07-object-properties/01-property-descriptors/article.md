@@ -228,19 +228,7 @@ Tepatnya, non-configurable memberlakukan beberapa pembatasan pada `definePropert
 3. tidak bisa mengubah `writable: false` menjadi `true` (kebalikannya masih bisa bekerja).
 4. tidak bisa mengubah `get/set` untuk sebuah properti aksesor (tapi bisa menetapkannya jika kosong).
 
-<<<<<<< HEAD
 Disini kita membuat `user.name` menjadi sebuah konstant "yang selamanya tersegel":
-=======
-To be precise, non-configurability imposes several restrictions on `defineProperty`:
-1. Can't change `configurable` flag.
-2. Can't change `enumerable` flag.
-3. Can't change `writable: false` to `true` (the other way round works).
-4. Can't change `get/set` for an accessor property (but can assign them if absent).
-
-**The idea of "configurable: false" is to prevent changes of property flags and its deletion, while allowing to change its value.**
-
-Here `user.name` is non-configurable, but we can still change it (as it's writable):
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js run
 let user = {
@@ -267,7 +255,6 @@ Object.defineProperty(user, "name", {
   configurable: false
 });
 
-<<<<<<< HEAD
 *!*
 // tidak bisa mengubah user.name atau flag nya
 // semua dibawah ini tidak akan bekerja:
@@ -283,15 +270,6 @@ Catatan pengecualian: sebuah nilai dari non-configurable, tapi writable properti
 
 Ide dari `configurable: false` adalah untuk mencegah perubahan properti flag dan penghapusannya, bukan perubahan dalam nilainya.
 ```
-=======
-// won't be able to change user.name or its flags
-// all this won't work:
-user.name = "Pete";
-delete user.name;
-Object.defineProperty(user, "name", { value: "Pete" });
-```
-
->>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## Object.defineProperties
 

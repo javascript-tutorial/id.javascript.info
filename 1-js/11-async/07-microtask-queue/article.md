@@ -31,11 +31,7 @@ Seperti yang dikatakan di [spesifikasi](https://tc39.github.io/ecma262/#sec-jobs
 - Eksekusi dari task dimulai jika hanya tidak ada yang berjalan.
 
 
-<<<<<<< HEAD
-Atau, untuk mengatakannya secara sederhana, ketika promise sudah siap, handler-handler `.then/catch/finally` ini dimasukkan kedalam antrean. Handler-handler tersebut belum dieksekusi. Mesin JavaScript mengambil task dari antrean dan menjalankannya, ketika sudah bebas dari kode saat ini.
-=======
-Or, to put it more simply, when a promise is ready, its `.then/catch/finally` handlers are put into the queue; they are not executed yet. When the JavaScript engine becomes free from the current code, it takes a task from the queue and executes it.
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
+Atau, untuk mengatakannya secara sederhana, ketika promise sudah siap, handler-handler `.then/catch/finally` ini dimasukkan kedalam antrean. Handler-handler tersebut belum dieksekusi. Mesin JavaScript mengambil tugas dari antrean dan menjalankannya.
 
 Itulah kenapa "code finished" pada contoh di atas muncul lebih dahulu.
 
@@ -44,11 +40,7 @@ Itulah kenapa "code finished" pada contoh di atas muncul lebih dahulu.
 
 Handler-handler promise selalu melalui antrean internal.
 
-<<<<<<< HEAD
 Jika ada chain dengan banyak `.then/catch/finally`, maka masing-masing dieksekusi secara asynchronous. Artinya, itu pertama kali masuk ke antrean, dan dieksekusi ketika kode saat ini sudah selesai dan antrean handler-handler sebelumnya sudah selesai.
-=======
-**What if the order matters for us? How can we make `code finished` appear after `promise done`?**
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 **Bagaimana jika urutan penting untuk kita? Bagaimana kita membuat `code finished` berjalan setelah `promise done`?**
 

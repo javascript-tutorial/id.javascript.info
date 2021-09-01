@@ -8,11 +8,7 @@ Bekerja dengan form akan lebih mudah ketika kita mempelajarinya.
 
 Form dokumen adalah anggota dari koleksi khusus `document.forms`.
 
-<<<<<<< HEAD
 Itu disebut _"named collection"_: itu keduanya memiliki nama(name) dan terurut(index). Kita bisa menggunakan keduanya baik dengan nama atau nomor(index) pada dokumen untuk mendapatkan form.
-=======
-That's a so-called *"named collection"*: it's both named and ordered. We can use both the name or the number in the document to get the form.
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 ```js no-beautify
 document.forms.my; // the form with name="my"
@@ -40,15 +36,9 @@ Misalnya:
 </script>
 ```
 
-<<<<<<< HEAD
 Ada suatu saat dimana ada beberapa elemen dengan nama yang sama, hal itu sering terjadi dengan _radio buttons_.
 
 Dalam hal tersebut `form.elements[name]`adalah sebuah _collection/koleksi_, misalnya:
-=======
-There may be multiple elements with the same name. This is typical with radio buttons and checkboxes.
-
-In that case, `form.elements[name]` is a *collection*. For instance:
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 ```html run height=40
 <form>
@@ -127,11 +117,7 @@ Itu akan lebih mudah saat kita lihat pada sebuah contoh:
 </script>
 ```
 
-<<<<<<< HEAD
 Itu biasanya bukan sebuah masalah, karena kita jarang mengubah nama dari elemen form.
-=======
-That's usually not a problem, however, because we rarely change names of form elements.
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 ````
 
@@ -219,11 +205,7 @@ Lihat contoh berikut:
 </script>
 ```
 
-<<<<<<< HEAD
 Tidak seperti kontrol pada umumnya, `<select>` membolehkan memilih banyak opsi sekaligus jika memiliki atribut`multiple`.Fitur itu jarang digunakan. 
-=======
-Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. This attribute is rarely used, though.
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Jika anda harus, maka gunakan cara pertama: tambah/hapus `selected`properti dari `<option>` sub-element.
 
@@ -267,13 +249,7 @@ This syntax is optional. We can use `document.createElement('option')` and set a
 
 Disana mungkin sedikit bingung tentang `defaultSelected` dan `selected`. That's simple: `defaultSelected` *set* HTML-attribute, dengan itu kita bisa dapat menggunakan  `option.getAttribute('selected')`. Dan `selected` - baik opsi *selected* atau tidak, itu yang lebih penting. Biasanya kedua nilai baik di *set* ke `true` atau tidak di *set* (sama dengan `false`).
 
-<<<<<<< HEAD
 Misalnya:
-=======
-In practice, one should usually set _both_ values to `true` or `false`. (Or, simply omit them; both default to `false`.)
-
-For instance, here's a new "unselected" option:
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 ```js
 let option = new Option("Text", "value");
@@ -314,15 +290,9 @@ Navigasi Form:
 `element.form`
 : Elemen referensi formulirnya dalam `form` properti.
 
-<<<<<<< HEAD
 Nilai tersedia sebagai `input.value`, `textarea.value`, `select.value` dll, atau`input.checked` untuk *checkboxes* dan *radio buttons*.
 
 Untuk `<select>` kita juga bisa mendapatkan nilainya dengan index `select.selectedIndex` atau lewat koleksi option `select.options`.
-=======
-Value is available as `input.value`, `textarea.value`, `select.value`, etc. (For checkboxes and radio buttons, use `input.checked` to determine whether a value is selected.)
-
-For `<select>`, one can also get the value by the index `select.selectedIndex` or through the options collection `select.options`.
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 Ini adalah dasar-dasar untuk mulai bekerja dengan form. Kita akan melihat banyak contoh lebih lanjut di tutorial.
 

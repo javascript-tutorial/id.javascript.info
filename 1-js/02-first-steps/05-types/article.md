@@ -81,20 +81,10 @@ const bigInt = 1234567890123456789012345678901234567890n;
 
 Sebenarnya `BigInt` jarang dibutuhkan, kita tidak akan mempelajarinya disini, tetapi akan dipisahkan didalam bagian <info:bigint>. Baca saja saat kamu membutuhkan nilai *integer* yang sangat panjang.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 ```smart header="Masalah Kompabilitas"
 Sekarang `BigInt` sudah didukung oleh Firefox/Chrome/Edge, tapi tidak didalam Safari/Internet Explorer.
-=======
-```smart header="Compatibility issues"
-Right now `BigInt` is supported in Firefox/Chrome/Edge, but not in Safari/IE.
->>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
-=======
 
-```smart header="Compatibility issues"
-Right now, `BigInt` is supported in Firefox/Chrome/Edge/Safari, but not in IE.
->>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
-```
 
 You can check [*MDN* BigInt compatibility table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#Browser_compatibility) to know which versions of a browser are supported.
 
@@ -140,11 +130,7 @@ Kita akan mengcover string lebih dalam di bab <info:string>.
 ```smart header="Tidak ada tipe *character*."
 Dalam beberapa bahasa, ada tipe "character" spesial untuk karakter tunggal. Misalnya, di bahasa C dan di Java adalah `char`.
 
-<<<<<<< HEAD
 Di JavaScript, tak ada tipe semacam itu. Cuma ada satu tipe: `string`. String bisa berisi satu karakter atau lebih.
-=======
-In JavaScript, there is no such type. There's only one type: `string`. A string may consist of zero characters (be empty), one character or many of them.
->>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 ```
 
 ## Boolean (tipe logika)
@@ -272,7 +258,6 @@ Tiga baris terakhir mungkin butuh penjelasan tambahan:
 
 Ada 7 tipe data dasar dalam JavaScript.
 
-<<<<<<< HEAD
 - `number` untuk nomor dengan bentuk apapun: integer ataupun nilai yang memiliki nilai desimal, batas dari integer adalah ±2<sup>53</sup>.
 - `bigint` untuk nomor integer yang sangat panjang.
 - `string` untuk string. Sebuah string mungkin memiliki 0 atau lebih karakter, tidak ada tipe data untuk string yang memiliki panjang 1 karakter.
@@ -281,16 +266,6 @@ Ada 7 tipe data dasar dalam JavaScript.
 - `undefined` untuk nilai yang tidak ada atau tidak diberikan nilai -- sebuah tipe data mandiri yang memiliki satu nilai yaitu `null`.
 - `object` untuk struktur data yang lebih rumit.
 - `symbol` untuk identifier atau pengenal yang unik.
-=======
-- `number` for numbers of any kind: integer or floating-point, integers are limited by <code>±(2<sup>53</sup>-1)</code>.
-- `bigint` is for integer numbers of arbitrary length.
-- `string` for strings. A string may have zero or more characters, there's no separate single-character type.
-- `boolean` for `true`/`false`.
-- `null` for unknown values -- a standalone type that has a single value `null`.
-- `undefined` for unassigned values -- a standalone type that has a single value `undefined`.
-- `object` for more complex data structures.
-- `symbol` for unique identifiers.
->>>>>>> ff152b126ec70a9de919bfdc1913215539d37187
 
 Operator `typeof` memungkinkan kita melihat tipe mana yang disimpan dalam variable.
 

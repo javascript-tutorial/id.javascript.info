@@ -39,11 +39,7 @@ Objek lebih "berat" dari primitif. Dan mereka membutuhkan sumber daya tambahan u
 
 Ini adalah paradoks yang dihadapi dari pencipta Javascript:
 
-<<<<<<< HEAD
 - Terdapat banyak hal yang harus dilakukan dengan primitif seperti string atau angka. Akan menjadi lebih baik jika mereka bisa diakses sebagai method.
-=======
-- There are many things one would want to do with a primitive like a string or a number. It would be great to access them using methods.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 - Primitives must be as fast and lightweight as possible.
 - Sebisa mungkin primitif haruslah cepat dan ringan.
 

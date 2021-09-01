@@ -32,19 +32,11 @@ user.sayHi = function() {
 user.sayHi(); // Hello!
 ```
 
-<<<<<<< HEAD
 Di sini kita hanya menggunakan sebuah fungsi ekspresi untuk membuat fungsi dan menugaskannya ke properti `user.sayHi` pada objek.
 
 Kemudian kita memanggil fungsi tersebut. Kini "pengguna" bisa berbicara!
 
 Sebuah fungsi yang mana merupakan properti dari sebuah objek disebut sebagai *metode*-nya.
-=======
-Here we've just used a Function Expression to create a function and assign it to the property `user.sayHi` of the object.
-
-Then we can call it as `user.sayHi()`. The user can now speak!
-
-A function that is a property of an object is called its *method*.
->>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 Jadi, di sini kita memiliki sebuah metode `sayHi` dari objek`user`.
 
@@ -89,11 +81,7 @@ user = {
 // metode ringkas terlihat lebih bagus, kan?
 user = {
 *!*
-<<<<<<< HEAD
   sayHi() { // sama seperti "sayHi: function()"
-=======
-  sayHi() { // same as "sayHi: function(){...}"
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 */!*
     alert("Hello");
   }
@@ -172,24 +160,14 @@ let user = {
 let admin = user;
 user = null; // timpa/overwrite agar terlihat lebih jelas
 
-<<<<<<< HEAD
 admin.sayHi(); // Uups! dalam sayHi(), nama yang lama sedang digunakan! error!
-=======
-*!*
-admin.sayHi(); // TypeError: Cannot read property 'name' of null
-*/!*
->>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 ```
 
 Jika kita menggunakan `this.name` ketimbang `user.name` dalam `alert`, maka kodenya akhirnya berfungsi.
 
 ## "this" tidak ditemukan
 
-<<<<<<< HEAD
 Dalam JavaScript, kata kunci `this` berperilaku tidak seperti kebanyak bahasa pemrograman lainnya. 'this' juga bisa digunakan dalam fungsi apapun.
-=======
-In JavaScript, keyword `this` behaves unlike most other programming languages. It can be used in any function, even if it's not a method of an object.
->>>>>>> d6e88647b42992f204f57401160ebae92b358c0d
 
 Tidak ada *syntax error* dalam contoh berikut ini:
 

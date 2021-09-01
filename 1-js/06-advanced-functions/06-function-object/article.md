@@ -326,11 +326,7 @@ welcome(); // Hello, Guest (pemanggilan bercabang bekerja)
 
 Sekarang hal itu bekerja karena nama `"func"` adalah fungsi-lokal. Fungsi itu tidak diambil dari luar (dan tidak terlihat dari luar). Spesifikasinya menjamin itu akan selalu mereferensi fungsi saat ini. 
 
-<<<<<<< HEAD
 Fungsi dari luar kode mempunyai variabel `sayHi` atau `welcome`nya sendiri. Dan `func` adalah sebuah "nama fungsi internal", bagaimana fungsi bisa memanggil dirinya sendiri secara internal.
-=======
-The outer code still has its variable `sayHi` or `welcome`. And `func` is an "internal function name", how the function can call itself internally.
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 ```smart header="Tidak ada hal semacam itu untuk deklarasi fungsi"
 Fitur "nama internal" dideskripsikan disini hanya tersedia untuk ekspresi fungsi, bukan deklarasi fungsi. Untuk deklarasi fungsi, tidak terdapat sintaks untuk menambahkan sebuah nama "internal".
@@ -351,11 +347,7 @@ Jika fungsinya di deklarasikan sebagai ekspresi fungsi (tidak didalam alur kode 
 
 Juga, fungsi mungkin memiliki properti tambahan. Beberapa librari Javascript yang cukup terkenal banyak menggunakan fitur ini.
 
-<<<<<<< HEAD
 Mereka membuat sebuah fungsi "utama" dan mengkaitkannya dengan fungsi "pembantu". Contoh librari [jQuery](https://jquery.com) menciptakan fungsi bernama `$`. Librari The [lodash](https://lodash.com) membuat sebuah fungsi `_` dan lalu menambahkan `_.clone`, `_.keyBy`dan properti lainnya kedalamnya (lihat [dokumentasinya](https://lodash.com/docs) ketika kamu mau tau lebih dalam). Sebenarnya, mereka melakukannya untuk mengurangi penggunaan dari ruang global, jadi librari tunggal itu hanya menggunakan satu variabel global. Itu mengurangi kemungkinan dari konflik penamaan variabel.
-=======
-They create a "main" function and attach many other "helper" functions to it. For instance, the [jQuery](https://jquery.com) library creates a function named `$`. The [lodash](https://lodash.com) library creates a function `_`, and then adds `_.clone`, `_.keyBy` and other properties to it (see the [docs](https://lodash.com/docs) when you want to learn more about them). Actually, they do it to lessen their pollution of the global space, so that a single library gives only one global variable. That reduces the possibility of naming conflicts.
->>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 
 Jadi, sebuah fungsi bisa melakukan hal-hal yang berguna dengan dirinya-sendiri dan juga membawa setumpuk fungsionalitas didalam propertinya sendiri.

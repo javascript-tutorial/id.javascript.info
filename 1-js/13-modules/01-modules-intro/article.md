@@ -56,12 +56,7 @@ Seperti ini:
 
 Browser otomatis mengambil dan mengevaluasi modul impor (dan impornya jika diperlukan), dan kemudian menjalankan kode skrip.
 
-<<<<<<< HEAD
 ```warn header="Modul hanya bekerja melalui HTTP(s), dan tidak di file lokal" Jika kamu mencoba membuka file halaman web secara lokal, melalui protokol `file://`, kamu akan mengetahui bahwa pengarahan `import/export` tidak bekerja. Gunakan *server* web lokal, seperti [server-statis](https://www.npmjs.com/package/static-*server*#getting-started) atau kemampuan "live server" di editor, seperti VS Code [Ekstensi live server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.Live*server*) untuk mengecek modul.
-=======
-```warn header="Modules work only via HTTP(s), not locally"
-If you try to open a web-page locally, via `file://` protocol, you'll find that `import/export` directives don't work. Use a local web-server, such as [static-server](https://www.npmjs.com/package/static-server#getting-started) or use the "live server" capability of your editor, such as VS Code [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) to test modules.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 ```
 
 ## Inti dari fitur modul 
@@ -72,11 +67,7 @@ Terdapat inti dari fitur, valid untuk browser dan javascript di sisi *server*.
 
 ### Selalu menggunakan "use strict"
 
-<<<<<<< HEAD
 Modul selalu menggunakan `use strict` secara default. Misalnya untuk menetapkan variabel yang tidak dideklarasikan akan menjadi error.
-=======
-Modules always work in strict mode. E.g. assigning to an undeclared variable will give an error.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```html run
 <script type="module">
@@ -88,7 +79,6 @@ Modules always work in strict mode. E.g. assigning to an undeclared variable wil
 
 Setiap modul memiliki batasan level-tinggi sendiri. Dengan kata lain, variabel level-tinggi dan fungsi dari modul tidak bisa dilihat di kode skrip lainnya.
 
-<<<<<<< HEAD
 Contoh dibawah ini, dua kode skrip di impor, dan `hello.js` mencoba untuk menggunakan variabel `user` yang dideklarasikan di `user.js`, maka akan gagal:
 
 [codetabs src="scopes" height="140" current="index.html"]
@@ -96,30 +86,12 @@ Contoh dibawah ini, dua kode skrip di impor, dan `hello.js` mencoba untuk menggu
 Modul diharapkan untuk `export`  yang ingin bisa diakses dari luar `import` yang dibutuhkan.
 
 Jadi kita harus impor `user.js` pada `hello.js` untuk mendapatkan fungsi yang dibutuhkan dari `user.js` daripada mengandalkan variabel global.
-=======
-In the example below, two scripts are imported, and `hello.js` tries to use `user` variable declared in `user.js`. It fails, because it's a separate module (you'll see the error in the console):
-
-[codetabs src="scopes" height="140" current="index.html"]
-
-Modules should `export` what they want to be accessible from outside and `import` what they need.
-
-- `user.js` should export the `user` variable.
-- `hello.js` should import it from `user.js` module.
-
-In other words, with modules we use import/export instead of relying on global variables.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Ini variasi yang benar:
 
 [codetabs src="scopes-working" height="140" current="hello.js"]
 
-<<<<<<< HEAD
 Pada browser, batasan level-tinggi independen juga ada untuk setiap `<script type="module">`:
-=======
-In the browser, if we talk about HTML pages, independent top-level scope also exists for each `<script type="module">`.
-
-Here are two scripts on the same page, both `type="module"`. They don't see each other's top-level variables:
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```html run
 <script type="module">
@@ -134,31 +106,13 @@ Here are two scripts on the same page, both `type="module"`. They don't see each
 </script>
 ```
 
-<<<<<<< HEAD
 Jika kita benar-benar perlu untuk membuat variabel global tingkat *window*, kita akan menetapkan secara eksplisit pada `window` dan mengaksesnya sebagai `window.user`. Tetapi itu adalah pengecualian yang membutukan alasan bagus. 
-=======
-```smart
-In the browser, we can make a variable window-level global by explicitly assigning it to a `window` property, e.g. `window.user = "John"`. 
-
-Then all scripts will see it, both with `type="module"` and without it. 
-
-That said, making such global variables is frowned upon. Please try to avoid them.
-```
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ### Kode modul dievaluasi saat pertama kali saat di impor
 
-<<<<<<< HEAD
 Jika modul yang sama di impor di banyak tempat yang lain, kode yang akan dijalankan hanya yang pertama saja, lalu ekspor akan di berikan pada semua modul impor.
 
 Hal ini memiliki konsekuensi yang penting. Mari kita lihat dengan contoh:
-=======
-If the same module is imported into multiple other modules, its code is executed only once, upon the first import. Then its exports are given to all further importers.
-
-The one-time evaluation has important consequences, that we should be aware of. 
-
-Let's see a couple of examples.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Pertama, jika kode modul dijalankan akan memberikan efek samping, seperti menampilkan pesan, maka mengimpornya berkali-kali hanya akan memicu pesan satu kali saja: 
 
@@ -177,17 +131,9 @@ import `./alert.js`; // Module is evaluated!(modul dievaluasi)
 import `./alert.js`; // (shows nothing)(menampilkan kosong)
 ```
 
-<<<<<<< HEAD
 Pada praktek, modul level-tinggi banyak di gunakan untuk inisialisasi, membuat struktur data internal, dan jika kita ingin membuat sesuatu bisa digunakan kembali -- ekspor saja.
 
 Sekarang, contoh yang lebih lanjut.
-=======
-The second import shows nothing, because the module has already been evaluated.
-
-There's a rule: top-level module code should be used for initialization, creation of module-specific internal data structures. If we need to make something callable multiple times - we should export it as a function, like we did with `sayHi` above.
-
-Now, let's consider a deeper example.
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Katakanlah, modul mengekspor sebuah objek:
 
@@ -212,7 +158,6 @@ import {admin} from './admin.js';
 alert(admin.name); // Pete
 
 *!*
-<<<<<<< HEAD
 // Both 1.js and 2.js imported the same object(1.js dan 2.js mengimpor objek yang sama)
 // Changes made in 1.js are visible in 2.js(perubahan di buat di 1.js terlihat di 2.js)
 */!*
@@ -223,27 +168,6 @@ Jadi, mari kita ulangi -- modul hanya dijalankan satu kali, ekspor akan dihasilk
 Perilaku seperti itu mengizinkan kita untuk bisa *mengkonfigurasi* modul di impor pertama. Kita bisa mengatur properti satu kali, dan file impor lebih lanjut sudah siap.
 
 Misalnya, modul `admin.js` mungkin menyediakan fungsi tertentu, tetapi ingin mendapatkan kredensial pada objek `admin` dari luar:
-=======
-// Both 1.js and 2.js reference the same admin object
-// Changes made in 1.js are visible in 2.js
-*/!*
-```
-
-As you can see, when `1.js` changes the `name` property in the imported `admin`, then `2.js` can see the new `admin.name`.
-
-That's exactly because the module is executed only once. Exports are generated, and then they are shared between importers, so if something changes the `admin` object, other modules will see that.
-
-**Such behavior is actually very convenient, because it allows us to *configure* modules.**
-
-In other words, a module can provide a generic functionality that needs a setup. E.g. authentication needs credentials. Then it can export a configuration object expecting the outer code to assign to it.
-
-Here's the classical pattern:
-1. A module exports some means of configuration, e.g. a configuration object.
-2. On the first import we initialize it, write to its properties. The top-level application script may do that.
-3. Further imports use the module.
-
-For instance, the `admin.js` module may provide certain functionality (e.g. authentication), but expect the credentials to come into the `config` object from outside:
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```js
 // 📁 admin.js
@@ -254,13 +178,7 @@ export function sayHi() {
 }
 ```
 
-<<<<<<< HEAD
 Pada `init.js`, kode skrip pertama dari aplikasi, kita mengatur `admin.name`. Kemudian semua orang akan melihatnya, termasuk pemanggilan yang dibuat di dalam `admin.js` itu sendiri:
-=======
-Here, `admin.js` exports the `config` object (initially empty, but may have default properties too).
-
-Then in `init.js`, the first script of our app, we import `config` from it and set `config.user`:
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```js
 // 📁 init.js
@@ -268,13 +186,9 @@ import {config} from './admin.js';
 config.user = "Pete";
 ```
 
-<<<<<<< HEAD
-Modul lainnya juga bisa melihat `admin.name`:
-=======
-...Now the module `admin.js` is configured. 
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
+...Sekarang modul `admin.js` telah dikonfigurasi.
 
-Further importers can call it, and it correctly shows the current user:
+Importir lebih lanjut dapat memanggilnya, dan itu menunjukkan dengan benar pengguna saat ini:
 
 ```js
 // 📁 another.js
@@ -288,11 +202,7 @@ sayHi(); // Ready to serve, *!*Pete*/!*!
 
 Objek `import.meta` berisi informasi tentang modul saat ini.
 
-<<<<<<< HEAD
 Kontennya tergantung dengan lingkungannya. Pada browser, berisi *url* dari kode skrip, atau *url* halaman web saat ini di dalam HTML:
-=======
-Its content depends on the environment. In the browser, it contains the URL of the script, or a current webpage URL if inside HTML:
->>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ```html run height=0
 <script type="module">

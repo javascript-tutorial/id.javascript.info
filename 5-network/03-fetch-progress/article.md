@@ -8,13 +8,7 @@ Untuk melacak kemajuan _download_, kita dapat menggunakan properti `response.bod
 
 Tidak seperti `response.text()`, `response.json()` dan metode lainnya, `response.body` memberikan kontrol penuh atas proses pembacaan dan kita dapat menghitung berapa banyak _data_ yang diterima setiap saat.
 
-<<<<<<< HEAD
 Berikut adalah sketsa kode yang membaca respon dari `response.body`:
-=======
-Unlike `response.text()`, `response.json()` and other methods, `response.body` gives full control over the reading process, and we can count how much is consumed at any moment.
-
-Here's the sketch of code that reads the response from `response.body`:
->>>>>>> 6ab384f2512902d74e4b0ff5a6be60e48ab52e96
 
 ```js
 // sebagai ganti response.json() dan metode lainnya
