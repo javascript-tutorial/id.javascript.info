@@ -1,3 +1,3 @@
 # Browser: Document, Events, Interfaces 
 
-Learning how to manage the browser page: add elements, manipulate their size and position, dynamically create interfaces and interact with the visitor.
+Mempelajari cara mengelola halaman pada browser: menambahkan elemen, memanipulasi ukuran dan posisinya, membuat antarmuka secara dinamis, dan berinteraksi dengan pengunjung.
