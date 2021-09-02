@@ -25,7 +25,7 @@ Sederhananya, sebuah nilai yang "terjangkau" adalah mereka yang masih dapat diak
 
     Contoh, jika terdapat sebuah objek didalam global variabel, dan objek tersebut memiliki sebuah properti yang mereferensi objek lain, objek itu dianggap dapat dijangkau. Dan referensinya juga bisa dijangkau. Contoh lengkap dibawah ini.
 
-Ada sebuah _background process_ di _engine_ JavaScript yang disebut [_garbage collector_](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). Ia mengamati seluruh objek dan menyingkirkan semua yang sudah tak terjangkau.
+Ada sebuah _background process_ di _engine_ JavaScript yang disebut [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). Ia mengamati seluruh objek dan menyingkirkan semua yang sudah tak terjangkau.
 
 ## Contoh Sederhana
 
