@@ -1,4 +1,4 @@
-# Dasar-dasar fungsi *Arrow*
+# Dasar-dasar fungsi Arrow
 
 Terdapat sintaks lain yang sangat sederhana dan ringkas untuk membuat fungsi-fungsi, bahkan sering kali lebih baik ketimbang fungsi-fungsi *Expression*.
 
