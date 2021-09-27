@@ -346,9 +346,13 @@ function loadJson(url) {
 }
 
 function loadGithubUser(name) {
+<<<<<<< HEAD
   return fetch(`https://api.github.com/users/${name}`).then((response) =>
     response.json()
   );
+=======
+  return loadJson(`https://api.github.com/users/${name}`);
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 }
 
 function showAvatar(githubUser) {
