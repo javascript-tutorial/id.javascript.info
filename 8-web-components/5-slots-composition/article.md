@@ -1,29 +1,27 @@
-# Shadow DOM slots, composition
+#  Slot shadow DOM, komposisi
 
-Many types of components, such as tabs, menus, image galleries, and so on, need the content to render.
+Banyak jenis komponen seperti tab, menu, galeri gambar, dan sebagainya, memerlukan konten untuk di-*render*
 
-Just like built-in browser `<select>` expects `<option>` items, our `<custom-tabs>` may expect the actual tab content to be passed. And a `<custom-menu>` may expect menu items.
+Sama seperti `<select>` bawaan peramban mengharapkan item `<option>`, `<custom-tabs>` kita juga mungkin mengharapkan konten tab yang sebenarnya untuk diteruskan. Dan sebuah `<custom-menu>` mungkin mengharapkan item menu.
 
-The code that makes use of `<custom-menu>` can look like this:
-
+Kode untuk membuat `<custom-menu>` dapat terlihat seperti berikut:
 ```html
 <custom-menu>
-  <title>Candy menu</title>
-  <item>Lollipop</item>
-  <item>Fruit Toast</item>
-  <item>Cup Cake</item>
+	<title>Candy menu</title>
+	<item>Lollipop</item>
+	<item>Fruit Toast</item>
+	<item>Cup Cake</item>
 </custom-menu>
 ```
+...Maka komponen kita harus me-*render*-nya dengan benar, sebagai menu yang bagus dengan judul dan item yang diberikan, menangani *events*  menu, dll.
 
-...Then our component should render it properly, as a nice menu with given title and items, handle menu events, etc.
+Bagaimana mengimplementasikannya?
 
-How to implement it?
+Kita dapat mencoba menganalisis konten elemen dan secara dinamis menyalin-mengatur ulang node DOM. Itu memungkinkan, tetapi jika kita memindahkan elemen ke shadow DOM, maka gaya CSS dari dokumen tidak berlaku di sana, sehingga gaya visual mungkin hilang. Juga itu membutuhkan beberapa pengkodean.
 
-We could try to analyze the element content and dynamically copy-rearrange DOM nodes. That's possible, but if we're moving elements to shadow DOM, then CSS styles from the document do not apply in there, so the visual styling may be lost. Also that requires some coding.
+Untungnya, kita tidak perlu melakukannya. Shadow DOM mendukung elemen `<slot>`, yang secara otomatis diisi oleh konten dari light DOM.
 
-Luckily, we don't have to. Shadow DOM supports `<slot>` elements, that are automatically filled by the content from light DOM.
-
-## Named slots
+##  Slot bernama
 
 Let's see how slots work on a simple example.
 
@@ -54,13 +52,14 @@ customElements.define('user-card', class extends HTMLElement {
   <span *!*slot="username"*/!*>John Smith</span>
   <span *!*slot="birthday"*/!*>01.01.2001</span>
 </user-card>
+
 ```
 
-In the shadow DOM, `<slot name="X">` defines an "insertion point", a place where elements with `slot="X"` are rendered.
+Dalam shadow DOM, `<slot name="X">` mendefinisikan sebuah "titik penyisipan", sebuah tempat dimana elemen dengan `slot="X"` di-*render*.
 
-Then the browser performs "composition": it takes elements from the light DOM and renders them in corresponding slots of the shadow DOM. At the end, we have exactly what we want -- a component that can be filled with data.
+Kemudian browser melakukan "komposisi": mengambil elemen dari light DOM dan me-*render*-nya di slot shadow DOM yang sesuai. Pada akhirnya, kita memiliki apa yang kita inginkan -- sebuah komponen yang dapat diisi dengan data.
 
-Here's the DOM structure after the script, not taking composition into account:
+Ini adalah struktur DOM setelah script, tidak memperhitungkan komposisi:
 
 ```html
 <user-card>
@@ -76,13 +75,13 @@ Here's the DOM structure after the script, not taking composition into account:
 </user-card>
 ```
 
-We created the shadow DOM, so here it is, under `#shadow-root`. Now the element has both light and shadow DOM.
+Kita membuat shadow DOM, seperti ini, dibawah `#shadow-root`. Sekarang elemen memiliki light dan shadow DOM.
 
-For rendering purposes, for each `<slot name="...">` in shadow DOM, the browser looks for `slot="..."` with the same name in the light DOM. These elements are rendered inside the slots:
+Untuk tujuan *rendering*, untuk setiap `<slot name="...">` di dalam shadow DOM, peramban mencari `slot="..."` dengan nama yang sama di light DOM. Elemen-elemen ini ditampilkan di dalam slot:
 
 ![](shadow-dom-user-card.svg)
 
-The result is called "flattened" DOM:
+Hasilnya disebut "flattened" DOM:
 
 ```html
 <user-card>
@@ -101,35 +100,37 @@ The result is called "flattened" DOM:
 </user-card>
 ```
 
-...But the flattened DOM exists only for rendering and event-handling purposes. It's kind of "virtual". That's how things are shown. But the nodes in the document are actually not moved around!
+...Tetapi flattened DOM hanya ada untuk tujuan *rendering* dan *event-handling*. Ini semacam "virtual". Begitulah cara slot elemen ditampilkan. Tetapi *nodes* dalam dokumen sebenarnya tidak dipindahkan!
 
-That can be easily checked if we run `querySelectorAll`: nodes are still at their places.
+Itu dapat dengan mudah diperiksa jika kita menjalankan `querySelectorAll`: *nodes* masih di tempatnya.
 
 ```js
-// light DOM <span> nodes are still at the same place, under `<user-card>`
+// light DOM <span> nodes masih di tempat yang sama, di bawah `<user-card>`
 alert( document.querySelectorAll('user-card span').length ); // 2
 ```
 
-So, the flattened DOM is derived from shadow DOM by inserting slots. The browser renders it and uses for style inheritance, event propagation (more about that later). But JavaScript still sees the document "as is", before flattening.
+Jadi, flattened DOM diturunkan dari shadow DOM dengan menyisipkan slots, Peramban me-*render*-nya dan menggunakannya untuk pewarisan gaya, event propagation (lebih lanjut tentang itu nanti). Tetapi JavaScript masih melihat dokumen "sebagaimana adanya", sebelum *flattening*.
 
 ````warn header="Only top-level children may have slot=\"...\" attribute"
-The `slot="..."` attribute is only valid for direct children of the shadow host (in our example, `<user-card>` element). For nested elements it's ignored.
+Atribut `slot="..."` hanya valid untuk direct children (anak langsung) dari shadow host (dalam contoh kita, elemen `<user-card>`). Untuk elemen bersarang diabaikan.
 
-For example, the second `<span>` here is ignored (as it's not a top-level child of `<user-card>`):
+Sebagai contoh, `<span>` kedua disini diabaikan (karena ini bukan top-level child dari `<user-card>`):
 ```html
 <user-card>
   <span slot="username">John Smith</span>
   <div>
-    <!-- invalid slot, must be direct child of user-card -->
+    <!-- slot tidak valid, harus anak langsung dari user-card -->
     <span slot="birthday">01.01.2001</span>
   </div>
 </user-card>
 ```
+
 ````
 
-If there are multiple elements in light DOM with the same slot name, they are appended into the slot, one after another.
+Jika ada beberapa elemen di light DOM dengan nama slot yang sama, mereka ditambahkan ke dalam slot, satu demi satu.
 
-For example, this:
+Sebagai contoh:
+
 ```html
 <user-card>
   <span slot="username">John</span>
@@ -137,7 +138,7 @@ For example, this:
 </user-card>
 ```
 
-Gives this flattened DOM with two elements in `<slot name="username">`:
+Memberikan flattened DOM ini dengan dua elemen di `<slot name="username">`:
 
 ```html
 <user-card>
@@ -154,11 +155,11 @@ Gives this flattened DOM with two elements in `<slot name="username">`:
 </user-card>
 ```
 
-## Slot fallback content
+##  Konten pengganti slot
 
-If we put something inside a `<slot>`, it becomes the fallback, "default" content. The browser shows it if there's no corresponding filler in light DOM.
+Jika kita memasukkan sesuatu ke dalam sebuah `<slot>`, itu akan menjadi pengganti konten bawaan. Peramban menampilkannya jika tidak ada pengisi yang sesuai di light DOM.
 
-For example, in this piece of shadow DOM, `Anonymous` renders if there's no `slot="username"` in light DOM.
+Sebagai contoh, di dalam bagian shadow DOM ini,  `Anonymous` di-*render* jika tidak ada `slot="username"` di light DOM.
 
 ```html
 <div>Name:
@@ -166,11 +167,11 @@ For example, in this piece of shadow DOM, `Anonymous` renders if there's no `slo
 </div>
 ```
 
-## Default slot: first unnamed
+##  Slot default: slot pertama yang tidak bernama
 
-The first `<slot>` in shadow DOM that doesn't have a name is a "default" slot. It gets all nodes from the light DOM that aren't slotted elsewhere.
+`<slot>` pertama di shadow DOM yang tidak memiliki nama adalah slot "default". slot default ini mendapatkan semua node dari light DOM yang tidak ditempatkan di tempat lain. 
 
-For example, let's add the default slot to our `<user-card>` that shows all unslotted information about the user:
+Sebagai contoh, mari tambahkan slot default pada `<user-card>` yang menampilkan semua informasi tanpa slot tentang pengguna:
 
 ```html run autorun="no-epub" untrusted height=140
 <script>
@@ -207,11 +208,13 @@ customElements.define('user-card', class extends HTMLElement {
 </user-card>
 ```
 
-All the unslotted light DOM content gets into the "Other information" fieldset.
+Semua konten light DOM yang tidak memiliki slot masuk ke dalam *fieldset* "Other information".
 
 Elements are appended to a slot one after another, so both unslotted pieces of information are in the default slot together.
 
-The flattened DOM looks like this:
+Elemen ditambahkan ke slot satu demi satu, sehingga kedua potongan informasi yang tidak memiliki slot berada di slot default bersama-sama.
+
+DOM yang diratakan terlihat seperti ini:
 
 ```html
 <user-card>
@@ -238,13 +241,13 @@ The flattened DOM looks like this:
 </user-card>
 ```
 
-## Menu example
+##  Contoh: menu
 
-Now let's back to `<custom-menu>`, mentioned at the beginning of the chapter.
+Sekarang mari kembali ke `<custom-menu>`, yang disebutkan di awal bab.
 
-We can use slots to distribute elements.
+Kita dapat menggunakan slot untuk mendistribusikan elemen
 
-Here's the markup for `<custom-menu>`:
+Berikut *markup* untuk `<custom-menu>`:
 
 ```html
 <custom-menu>
@@ -255,7 +258,7 @@ Here's the markup for `<custom-menu>`:
 </custom-menu>
 ```
 
-The shadow DOM template with proper slots:
+Template shadow DOM dengan slot yang tepat:
 
 ```html
 <template id="tmpl">
@@ -267,10 +270,11 @@ The shadow DOM template with proper slots:
 </template>
 ```
 
-1. `<span slot="title">` goes into `<slot name="title">`.
-2. There are many `<li slot="item">` in the template, but only one `<slot name="item">` in the template. So all such `<li slot="item">` are appended to `<slot name="item">` one after another, thus forming the list.
+1. `<span slot="title">` masuk ke `<slot name="title">`.
 
-The flattened DOM becomes:
+2. Ada banyak `<li slot="item">` di template, tetapi hanya satu `<slot name="item">` di template. Jadi semua `<li slot="item">` tersebut ditambahkan ke `<slot name="item">` satu demi satu, sehingga membentuk *list*.
+
+DOM yang diratakan menjadi:
 
 ```html
 <custom-menu>
@@ -291,9 +295,9 @@ The flattened DOM becomes:
 </custom-menu>
 ```
 
-One might notice that, in a valid DOM, `<li>` must be a direct child of `<ul>`. But that's flattened DOM, it describes how the component is rendered, such thing happens naturally here.
+Mungkin ada yang memperhatikan bahwa, dalam DOM yang valid, `<li>` harus merupakan *direct child* (anak langsung) dari `<ul>`. Tetapi itu adalah DOM yang diratakan, ini menjelaskan bagaimana komponen di-*render*, hal seperti itu terjadi secara alami di sini.
 
-We just need to add a `click` handler to open/close the list, and the `<custom-menu>` is ready:
+Kita hanya perlu menambahkan *handler* `click` untuk membuka/menutup *list*, dan `<custom-menu>` sudah siap:
 
 ```js
 customElements.define('custom-menu', class extends HTMLElement {
@@ -312,23 +316,23 @@ customElements.define('custom-menu', class extends HTMLElement {
 });
 ```
 
-Here's the full demo:
+Berikut adalah demo lengkapnya:
 
 [iframe src="menu" height=140 edit]
 
-Of course, we can add more functionality to it: events, methods and so on.
+Tentu saja, kita dapat menambahkan lebih banyak fungsionalitas ke dalamnya: *events*, *method*, dan sebagainya.
 
-## Updating slots
+##  Memperbarui slot
 
-What if the outer code wants to add/remove menu items dynamically?
+Bagaimana jika kode luar ingin menambah/menghapus item menu secara dinamis?
 
-**The browser monitors slots and updates the rendering if slotted elements are added/removed.**
+**Browser memantau slot dan memperbarui *rendering* jika elemen slot ditambahkan/dihapus.**
 
-Also, as light DOM nodes are not copied, but just rendered in slots, the changes inside them immediately become visible.
+Juga, karena node light DOM tidak disalin, tetapi hanya di-*render* di dalam slot, perubahan di dalamnya segera terlihat.
 
-So we don't have to do anything to update rendering. But if the component code wants to know about slot changes, then `slotchange` event is available.
+Jadi kita tidak perlu melakukan apapun untuk memperbarui *rendering*. Namun jika kode komponen ingin mengetahui tentang perubahan slot, maka tersedia *event* `slotchange`.
 
-For example, here the menu item is inserted dynamically after 1 second, and the title changes after 2 seconds:
+Misalnya, di sini item menu dimasukkan secara dinamis setelah 1 detik, dan *title* berubah setelah 2 detik:
 
 ```html run untrusted height=80
 <custom-menu id="menu">
@@ -361,34 +365,39 @@ setTimeout(() => {
 </script>
 ```
 
-The menu rendering updates each time without our intervention.
+*Render* menu diperbarui setiap kali tanpa campur tangan kita.
 
-There are two `slotchange` events here:
+Ada dua *events* `slotchange` di sini:
 
-1. At initialization:
+1. Saat inisialisasi:
 
-    `slotchange: title` triggers immediately, as the `slot="title"` from the light DOM gets into the corresponding slot.
-2. After 1 second:
+`slotchange: title` langsung terpicu, saat `slot="title"` dari light DOM masuk ke slot yang sesuai.
 
-    `slotchange: item` triggers, when a new `<li slot="item">` is added.
+2. Setelah 1 detik:
+
+`slotchange: item` terpicu, saat `<li slot="item">` baru ditambahkan.
 
 Please note: there's no `slotchange` event after 2 seconds, when the content of `slot="title"` is modified. That's because there's no slot change. We modify the content inside the slotted element, that's another thing.
 
-If we'd like to track internal modifications of light DOM from JavaScript, that's also possible using a more generic mechanism: [MutationObserver](info:mutation-observer).
+Harap diperhatikan: tidak ada *event* `slotchange` setelah 2 detik, ketika konten `slot="title"` diubah. Itu karena tidak ada perubahan slot. Kita memodifikasi konten di dalam elemen yang ber-slot, itu adalah hal lain.
 
-## Slot API
+Jika kita ingin melacak modifikasi internal light DOM dari JavaScript, itu juga dimungkinkan menggunakan mekanisme yang lebih umum: [MutationObserver](info:mutation-observer).
 
-Finally, let's mention the slot-related JavaScript methods.
+##  Slot API
 
-As we've seen before, JavaScript looks at the "real" DOM, without flattening. But, if the shadow tree has `{mode: 'open'}`, then we can figure out which elements assigned to a slot and, vise-versa, the slot by the element inside it:
+Terakhir, mari kita bahas *method* JavaScript terkait slot.
 
-- `node.assignedSlot` -- returns the `<slot>` element that the `node` is assigned to.
-- `slot.assignedNodes({flatten: true/false})` -- DOM nodes, assigned to the slot. The `flatten` option is `false` by default. If explicitly set to `true`, then it looks more deeply into the flattened DOM, returning nested slots in case of nested components and the fallback content if no node assigned.
-- `slot.assignedElements({flatten: true/false})` -- DOM elements, assigned to the slot (same as above, but only element nodes).
+Seperti yang telah kita lihat sebelumnya, JavaScript melihat DOM "asli", tanpa meratakan. Akan tetapi, jika *shadow tree* memiliki `{mode: 'open'}`, maka kita dapat mengetahui elemen mana yang ditetapkan ke slot dan, sebaliknya, slot dengan elemen di dalamnya:
 
-These methods are useful when we need not just show the slotted content, but also track it in JavaScript.
+- `node.assignedSlot` -- mengembalikan elemen `<slot>` tempat `node` ditetapkan.
 
-For example, if `<custom-menu>` component wants to know, what it shows, then it could track `slotchange` and get the items from `slot.assignedElements`:
+- `slot.assignedNodes({flatten: true/false})` -- Node DOM, ditetapkan ke slot. Opsi `flatten` adalah `false` secara default. Jika secara eksplisit disetel ke `true`, maka akan melihat lebih dalam ke DOM yang diratakan, mengembalikan slot bersarang jika ada komponen bersarang dan konten pengganti jika tidak ada node yang ditetapkan.
+
+- `slot.assignedElements({flatten: true/false})` -- Elemen DOM, ditetapkan ke slot (sama seperti di atas, tetapi hanya elemen node).
+
+Metode ini berguna ketika kita tidak hanya perlu menampilkan konten yang ditempatkan, tetapi juga perlu melacaknya dalam JavaScript.
+
+Sebagai contoh, jika komponen `<custom-menu>` ingin mengetahui apa yang ditampilkannya, maka komponen tersebut dapat melacak `slotchange` dan mendapatkan item dari `slot.assignedElements`:
 
 ```html run untrusted height=120
 <custom-menu id="menu">
@@ -428,30 +437,35 @@ setTimeout(() => {
 </script>
 ```
 
+##  Ringkasan
 
-## Summary
+Biasanya, jika sebuah elemen memiliki shadow DOM, maka light DOM-nya tidak ditampilkan. Slot memungkinkan untuk menampilkan elemen dari light DOM di tempat tertentu dari shadow DOM.
 
-Usually, if an element has shadow DOM, then its light DOM is not displayed. Slots allow to show elements from light DOM in specified places of shadow DOM.
+Ada dua jenis slot:
 
-There are two kinds of slots:
+- Slot bernama: `<slot name="X">...</slot>` -- mendapatkan *light children* dengan `slot="X"`.
 
-- Named slots: `<slot name="X">...</slot>` -- gets light children with `slot="X"`.
-- Default slot: the first `<slot>` without a name (subsequent unnamed slots are ignored) -- gets unslotted light children.
-- If there are many elements for the same slot -- they are appended one after another.
-- The content of `<slot>` element is used as a fallback. It's shown if there are no light children for the slot.
+- Slot default: `<slot>` pertama tanpa nama (slot tanpa nama berikutnya diabaikan) -- mendapatkan *light children* yang tidak diberi slot.
 
-The process of rendering slotted elements inside their slots is called "composition". The result is called a "flattened DOM".
+- Jika ada banyak elemen untuk slot yang sama -- elemen-elemen tersebut ditambahkan satu demi satu.
 
-Composition does not really move nodes, from JavaScript point of view the DOM is still same.
+- Konten elemen `<slot>` digunakan sebagai pengganti. Ini ditampilkan jika tidak ada *light children* untuk slot.
 
-JavaScript can access slots using methods:
-- `slot.assignedNodes/Elements()` -- returns nodes/elements inside the `slot`.
-- `node.assignedSlot` -- the reverse property, returns slot by a node.
+Proses *rendering* elemen yang ber-slot di dalam slot mereka disebut "komposisi". Hasilnya disebut "DOM yang diratakan".
 
-If we'd like to know what we're showing, we can track slot contents using:
-- `slotchange` event -- triggers the first time a slot is filled, and on any add/remove/replace operation of the slotted element, but not its children. The slot is `event.target`.
-- [MutationObserver](info:mutation-observer) to go deeper into slot content, watch changes inside it.
+Komposisi tidak benar-benar memindahkan node, dari sudut pandang JavaScript DOM masih sama.
 
-Now, as we know how to show elements from light DOM in shadow DOM, let's see how to style them properly. The basic rule is that shadow elements are styled inside, and light elements -- outside, but there are notable exceptions.
+JavaScript dapat mengakses slot menggunakan *method*:
 
-We'll see the details in the next chapter.
+- `slot.assignedNodes/Elements()` -- mengembalikan node/elemen di dalam `slot`.
+
+- `node.assignedSlot` -- properti terbalik, mengembalikan slot dengan sebuah node.
+
+Jika kita ingin mengetahui apa yang kita tampilkan, kita dapat melacak konten slot menggunakan:
+- *event* `slotchange` -- memicu pertama kali saat slot diisi, dan pada setiap operasi tambah/hapus/ganti elemen slot, tetapi bukan anaknya. Slotnya adalah `event.target`.
+
+- [MutationObserver](info:mutation-observer) untuk masuk lebih dalam ke konten slot, memperhatikan perubahan di dalamnya.
+
+Saat ini, seperti yang kita tahu cara untuk menampilkan elemen dari light DOM di shadow DOM, mari kita lihat cara menata gaya dengan benar. Aturan dasarnya adalah elemen  *shadow* ditata di dalam, dan elemen *light* -- di luar, tetapi ada pengecualian penting.
+
+Kita akan melihat detailnya di bab berikutnya.
