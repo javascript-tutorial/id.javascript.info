@@ -1,16 +1,16 @@
-# Shadow DOM styling
+# Gaya shadow DOM
 
-Shadow DOM may include both `<style>` and `<link rel="stylesheet" href="…">` tags. In the latter case, stylesheets are HTTP-cached, so they are not redownloaded for multiple components that use same template.
+Shadow DOM dapat memuat tag `<style>` dan `<link rel="stylesheet" href="…">`. Dalam kasus terakhir, stylesheet di-cache HTTP, sehingga tidak diunduh ulang untuk beberapa komponen yang menggunakan template yang sama.
 
-As a general rule, local styles work only inside the shadow tree, and document styles work outside of it. But there are few exceptions.
+Sebagai sebuah aturan umum, gaya lokal hanya berfungsi di dalam *shadow tree*, dan gaya dokumen bekerja di luarnya. Tapi ada beberapa pengecualian.
 
 ## :host
 
-The `:host` selector allows to select the shadow host (the element containing the shadow tree).
+*Selector* `:host` memungkinkan untuk memilih *shadow host* (elemen yang berisi *shadow tree*).
 
-For instance, we're making `<custom-dialog>` element that should be centered. For that we need to style the `<custom-dialog>` element itself.
+Sebagai contoh, kita membuat elemen `<custom-dialog>` yang harus berada di bagian tengah. Untuk itu kita perlu menata elemen `<custom-dialog>` itu sendiri.
 
-That's exactly what `:host` does:
+Itulah tepatnya yang dilakukan `:host`:
 
 ```html run autorun="no-epub" untrusted height=80
 <template id="tmpl">
@@ -44,11 +44,11 @@ customElements.define('custom-dialog', class extends HTMLElement {
 
 ## Cascading
 
-The shadow host (`<custom-dialog>` itself) resides in the light DOM, so it's affected by document CSS rules.
+Shadow host (`<custom-dialog>` itu sendiri) berada di light DOM, sehingga dipengaruhi oleh aturan CSS dokumen.
 
-If there's a property styled both in `:host` locally, and in the document, then the document style takes precedence.
+Jika ada properti yang diberikan gaya baik di `:host` secara lokal, dan di dokumen, maka gaya dokumen akan diutamakan.
 
-For instance, if in the document we had:
+Sebagai contoh, jika dalam dokumen kita memiliki:
 ```html
 <style>
 custom-dialog {
@@ -56,18 +56,17 @@ custom-dialog {
 }
 </style>
 ```
-...Then the `<custom-dialog>` would be without padding.
+...Maka `<custom-dialog>` tidak akan memiliki padding.
 
-It's very convenient, as we can setup "default" component styles in its `:host` rule, and then easily override them in the document.
+Ini sangat memudahkan, karena kita dapat mengatur gaya komponen "default" dalam aturan `:host`-nya, dan kemudian dengan mudah menimpanya dalam dokumen.
 
-The exception is when a local property is labelled `!important`, for such properties, local styles take precedence.
-
+Pengecualiannya adalah ketika properti lokal diberi label `!important`, untuk properti seperti itu, gaya lokal diutamakan.
 
 ## :host(selector)
 
-Same as `:host`, but applied only if the shadow host matches the `selector`.
+Sama seperti `:host`, tetapi hanya diterapkan jika shadow host cocok dengan `selector`.
 
-For example, we'd like to center the `<custom-dialog>` only if it has `centered` attribute:
+Sebagai contoh, kita ingin membuat `<custom-dialog>` berada di tengah jika hanya memiliki atribut `centered`:
 
 ```html run autorun="no-epub" untrusted height=80
 <template id="tmpl">
@@ -109,17 +108,17 @@ customElements.define('custom-dialog', class extends HTMLElement {
 </custom-dialog>
 ```
 
-Now the additional centering styles are only applied to the first dialog: `<custom-dialog centered>`.
+Sekarang gaya penengah tambahan hanya diterapkan pada dialog pertama: `<custom-dialog centered>`.
 
-To summarize, we can use `:host`-family of selectors to style the main element of the component. These styles (unless `!important`) can be overridden by the document.
+Ringkasnya, kita dapat menggunakan *selector* `:host` untuk menata elemen utama komponen. Gaya ini (kecuali `!important`) dapat ditimpa oleh dokumen.
 
-## Styling slotted content
+## Menata gaya konten yang ber-slot
 
-Now let's consider the situation with slots.
+Sekarang mari kita pertimbangkan situasi ketika menggunakan slot.
 
-Slotted elements come from light DOM, so they use document styles. Local styles do not affect slotted content.
+Elemen yang ber-slot berasal dari light DOM, jadi mereka menggunakan gaya dokumen. Gaya lokal tidak memengaruhi konten yang menggunakan slot.
 
-In the example below, slotted `<span>` is bold, as per document style, but does not take `background` from the local style:
+Pada contoh dibawah, `<span>` yang berada di slot dicetak tebal, sesuai dengan gaya dokumen, tetapi tidak mengambil `background` dari gaya lokal:
 ```html run autorun="no-epub" untrusted height=80
 <style>
 *!*
@@ -148,11 +147,11 @@ customElements.define('user-card', class extends HTMLElement {
 </script>
 ```
 
-The result is bold, but not red.
+Hasilnya dicetak tebal, tapi tidak memiliki latar belakang merah.
 
-If we'd like to style slotted elements in our component, there are two choices.
+Jika kita ingin menata gaya pada elemen ber-slot pada komponen kita, ada dua pilihan.
 
-First, we can style the `<slot>` itself and rely on CSS inheritance:
+Pertama, kita dapat menata gaya `<slot>` itu sendiri dan mengandalkan pewarisan CSS:
 
 ```html run autorun="no-epub" untrusted height=80
 <user-card>
@@ -176,14 +175,14 @@ customElements.define('user-card', class extends HTMLElement {
 </script>
 ```
 
-Here `<p>John Smith</p>` becomes bold, because CSS inheritance is in effect between the `<slot>` and its contents. But in CSS itself not all properties are inherited.
+Di sini `<p>John Smith</p>` menjadi tebal, karena pewarisan CSS berlaku di antara `<slot>` dan isinya. Tetapi dalam CSS itu sendiri tidak semua properti diwariskan.
 
-Another option is to use `::slotted(selector)` pseudo-class. It matches elements based on two conditions:
+Pilihan lainnya adalah menggunakan pseudo-class `::slotted(selector)`. Pseudo-class ini cocok dengan elemen berdasarkan dua kondisi:
 
-1. That's a slotted element, that comes from the light DOM. Slot name doesn't matter. Just any slotted element, but only the element itself, not its children.
-2. The element matches the `selector`.
+1. Elemen itu adalah elemen yang ber-slot, yang berasal dari light DOM. Nama slot tidak masalah. apapun elemen yang ber-slot, tetapi hanya elemen itu sendiri, bukan anak-anaknya.
+2. Elemen cocok dengan `selector`.
 
-In our example, `::slotted(div)` selects exactly `<div slot="username">`, but not its children:
+Dalam contoh kita, `::slotted(div)` memilih dengan tepat `<div slot="username">`, tetapi bukan turunannya:
 
 ```html run autorun="no-epub" untrusted height=80
 <user-card>
@@ -209,44 +208,43 @@ customElements.define('user-card', class extends HTMLElement {
 </script>
 ```
 
-Please note, `::slotted` selector can't descend any further into the slot. These selectors are invalid:
+Harap perhatikan, *selector* `::slotted` tidak dapat turun lebih jauh ke dalam slot. *selector* ini tidak valid:
 
 ```css
 ::slotted(div span) {
-  /* our slotted <div> does not match this */
+  /* <div> kita yang ber-slot tidak cocok dengan ini */
 }
 
 ::slotted(div) p {
-  /* can't go inside light DOM */
+  /* tidak bisa masuk ke dalam light DOM */
 }
 ```
 
-Also, `::slotted` can only be used in CSS. We can't use it in `querySelector`.
+Juga, `::slotted` hanya dapat digunakan di CSS. Kita tidak dapat menggunakannya di `querySelector`.
 
-## CSS hooks with custom properties
+## CSS hooks dengan properti kustom
+Bagaimana kita menata gaya elemen internal komponen dari dokumen utama?
 
-How do we style internal elements of a component from the main document?
+*Selector* seperti `:host` menerapkan aturan ke elemen `<custom-dialog>` atau `<user-card>`, tetapi bagaimana cara menata elemen shadow DOM di dalamnya?
 
-Selectors like `:host` apply rules to `<custom-dialog>` element or `<user-card>`, but how to style shadow DOM elements inside them?
+Tidak ada *selector* yang dapat secara langsung memengaruhi gaya shadow DOM dari dokumen. Tapi seperti kita mengekspos *method* untuk berinteraksi dengan komponen kita, kita bisa mengekspos variabel CSS (Properti kustom CSS) untuk menatanya.
 
-There's no selector that can directly affect shadow DOM styles from the document. But just as we expose methods to interact with our component, we can expose CSS variables (custom CSS properties) to style it.
+**Properti kustom CSS ada di semua tingkatan, baik dalam light DOM maupun shadow DOM**
 
-**Custom CSS properties exist on all levels, both in light and shadow.**
-
-For example, in shadow DOM we can use `--user-card-field-color` CSS variable to  style fields, and the outer document can set its value:
+Misalnya, dalam shadow DOM kita dapat menggunakan variabel CSS `--user-card-field-color` untuk menata *field*, dan dokumen luar dapat mengatur nilainya:
 
 ```html
 <style>
   .field {
     color: var(--user-card-field-color, black);
-    /* if --user-card-field-color is not defined, use black color */
+    /* jika --user-card-field-color tidak didefinisikan, gunakan warna hitam */
   }
 </style>
 <div class="field">Name: <slot name="username"></slot></div>
 <div class="field">Birthday: <slot name="birthday"></slot></div>
 ```
 
-Then, we can declare this property in the outer document for `<user-card>`:
+Kemudian, kita dapat mendeklarasikan properti ini di dokumen luar untuk `<user-card>`:
 
 ```css
 user-card {
@@ -254,9 +252,9 @@ user-card {
 }
 ```
 
-Custom CSS properties pierce through shadow DOM, they are visible everywhere, so the inner `.field` rule will make use of it.
+Properti kustom CSS menembus shadow DOM, artinya mereka bisa dilihat di mana-mana, sehingga aturan `.field` yang berada di dalam akan memanfaatkannya.
 
-Here's the full example:
+Berikut contoh lengkapnya:
 
 ```html run autorun="no-epub" untrusted height=80
 <style>
@@ -294,26 +292,24 @@ customElements.define('user-card', class extends HTMLElement {
 </user-card>
 ```
 
+## Ringkasan
 
+Shadow DOM dapat menyertakan gaya, seperti `<style>` atau `<link rel="stylesheet">`.
 
-## Summary
+Gaya lokal dapat memengaruhi: 
+- shadow tree, 
+- shadow host dengan pseudoclass `:host` dan `:host()`, 
+- elemen yang ber-slot (berasal dari light DOM), `::slotted(selector)` memungkinkan untuk memilih elemen yang ber-slot, tetapi bukan anaknya.
 
-Shadow DOM can include styles, such as `<style>` or `<link rel="stylesheet">`.
+Gaya dokumen dapat memengaruhi:
+- shadow host (karena berada di dokumen luar)
+- elemen ber-slot dan isinya (yang juga karena berada di dokumen luar)
 
-Local styles can affect:
-- shadow tree,
-- shadow host with `:host` and `:host()` pseudoclasses,
-- slotted elements (coming from light DOM), `::slotted(selector)` allows to select  slotted elements themselves, but not their children.
+Saat properti CSS bertentangan, biasanya gaya dokumen didahulukan, kecuali jika properti diberi label sebagai `!important`. Maka gaya lokal diutamakan.
 
-Document styles can affect:
-- shadow host (as it lives in the outer document)
-- slotted elements and their contents (as that's also in the outer document)
+Properti kustom CSS menembus shadow DOM. Mereka digunakan sebagai "hooks" untuk menata gaya komponen:
 
-When CSS properties conflict, normally document styles have precedence, unless the property is labelled as `!important`. Then local styles have precedence.
-
-CSS custom properties pierce through shadow DOM. They are used as "hooks" to style the component:
-
-1. The component uses a custom CSS property to style key elements, such as `var(--component-name-title, <default value>)`.
-2. Component author publishes these properties for developers, they are same important as other public component methods.
-3. When a developer wants to style a title, they assign `--component-name-title` CSS property for the shadow host or above.
+1. Komponen menggunakan properti CSS kustom untuk menata gaya *key* elemen, seperti `var(--component-name-title, <default value>)`.
+2. Penulis komponen mempublikasikan properti ini untuk para pengembang, mereka sama pentingnya dengan *method* komponen publik lainnya.
+3. Saat pengembang ingin memberi gaya pada *title*, mereka menetapkan properti CSS `--component-name-title` untuk shadow host atau di atasnya.
 4. Profit!
