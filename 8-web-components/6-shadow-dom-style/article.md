@@ -1,4 +1,4 @@
-# Gaya shadow DOM
+# Menata gaya shadow DOM
 
 Shadow DOM dapat memuat tag `<style>` dan `<link rel="stylesheet" href="…">`. Dalam kasus terakhir, stylesheet di-cache HTTP, sehingga tidak diunduh ulang untuk beberapa komponen yang menggunakan template yang sama.
 
