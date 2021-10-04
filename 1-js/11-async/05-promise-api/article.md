@@ -18,7 +18,11 @@ let promise = Promise.all([...promises...]);
 
 `Promise.all` mengambil sebuah array promise (secara teknis bisa menjadi iterable, tetapi biasanya sebuah array) dan mengembalikkan promise baru.
 
+<<<<<<< HEAD
 Promise baru resolve ketika semua promise yang terdaftar diselesaikan dan array dari hasil promise menjadi hasilnya itu sendiri.
+=======
+The new promise resolves when all listed promises are resolved, and the array of their results becomes its result.
+>>>>>>> b09e38c5573346c401a9f9f7410b4ff9be5f4115
 
 Sebagai contoh, `Promise.all` di bawah selesai setelah 3 detik, dan kemudian hasilnya adalah sebuah array `[1, 2, 3]`:
 
