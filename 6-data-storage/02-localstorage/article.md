@@ -42,15 +42,11 @@ localStorage.setItem('test', 1);
 alert( localStorage.getItem('test') ); // 1
 ```
 
-We only have to be on the same origin (domain/port/protocol), the url path can be different.
-
 Kita hanya harus berada di *origin* yang sama (domain/port/protocol), *path* urlnya bisa berbeda.
 
 `localStorage` dibagi antara semua *window* dengan *origin* yang sama, jadi jika kita mengatur data di satu *window*, perubahan akan terlihat di *window* lain.
 
 ## Akses seperti objek
-
-We can also use a plain object way of getting/setting keys, like this:
 
 Kita juga dapat menggunakan cara sebuah objek biasa untuk mendapatkan/mengatur *key*, seperti ini:
 
@@ -137,7 +133,7 @@ Kita dapat menggunakan `JSON` untuk menyimpan objek:
 ```js run
 localStorage.user = JSON.stringify({name: "John"});
 
-// sometime later
+// kemudian
 let user = JSON.parse( localStorage.user );
 alert( user.name ); // John
 ```
@@ -145,7 +141,7 @@ alert( user.name ); // John
 Juga dimungkinkan untuk *stringify* seluruh objek penyimpanan, sebagai contoh untuk tujuan *debugging*:
 
 ```js run
-// added formatting options to JSON.stringify to make the object look nicer
+// menambahkan opsi pemformatan pada JSON.stringify untuk membuat objek terlihat lebih bagus
 alert( JSON.stringify(localStorage, null, 2) );
 ```
 
@@ -213,7 +209,7 @@ localStorage.setItem('now', Date.now());
 
 Harap perhatikan bahwa *event* juga berisi: `event.url` -- url dokumen tempat data diperbarui.
 
-Also, `event.storageArea` contains the storage object -- the event is the same for both `sessionStorage` and `localStorage`, so `event.storageArea` references the one that was modified. We may even want to set something back in it, to "respond" to a change.
+Selain itu, `event.storageArea` berisi objek penyimpanan -- *event*-nya sama untuk `sessionStorage` dan `localStorage`, jadi `event.storageArea` merujuk ke yang telah dimodifikasi. Kita bahkan mungkin ingin mengatur sesuatu kembali di dalamnya, untuk "merespons" perubahan.
 
 **Itu memungkinkan window yang berbeda dari origin yang sama untuk bertukar pesan.**
 
