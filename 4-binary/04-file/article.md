@@ -1,27 +1,27 @@
-# File and FileReader
+# File dan FileReader
 
-A [File](https://www.w3.org/TR/FileAPI/#dfn-file) object inherits from `Blob` and is extended with filesystem-related capabilities.
+Objek [File](https://www.w3.org/TR/FileAPI/#dfn-file) diwariskan dari `Blob` dan di-*extend* dengan kapabilitas terkait sistem file.
 
-There are two ways to obtain it.
+Ada dua cara untuk menggunakannya.
 
-First, there's a constructor, similar to `Blob`:
+Pertama, menggunakan konstruktor, mirip dengan `Blob`:
 
 ```js
 new File(fileParts, fileName, [options])
 ```
 
-- **`fileParts`** -- is an array of Blob/BufferSource/String values.
-- **`fileName`** -- file name string.
-- **`options`** -- optional object:
-    - **`lastModified`** -- the timestamp (integer date) of last modification.
+- **`fileParts`** -- adalah larik (array) dengan *value* Blob/BufferSource/String.
+- **`fileName`** -- string nama file.
+- **`options`** -- objek opsional:
+    - **`lastModified`** -- *timestamp* (tanggal *integer*) dari modifikasi terakhir.
 
-Second, more often we get a file from `<input type="file">` or drag'n'drop or other browser interfaces. In that case, the file gets this information from OS.
+Kedua, lebih sering kita mendapatkan file dari `<input type="file">` atau *drag'n'drop* atau antarmuka peramban lainnya. Dalam hal ini, file mendapatkan informasi ini dari OS.
 
-As `File` inherits from `Blob`, `File` objects have the same properties, plus:
-- `name` -- the file name,
-- `lastModified` -- the timestamp of last modification.
+Karena `File` diwariskan dari `Blob`, objek `File` memiliki properti yang sama, dengan tambahan:
+- `name` -- nama file,
+- `lastModified` -- *timestamp* modifikasi terakhir.
 
-That's how we can get a `File` object from `<input type="file">`:
+Beginilah cara kita mendapatkan objek `File` dari `<input type="file">`:
 
 ```html run
 <input type="file" onchange="showFile(this)">
@@ -37,49 +37,49 @@ function showFile(input) {
 ```
 
 ```smart
-The input may select multiple files, so `input.files` is an array-like object with them. Here we have only one file, so we just take `input.files[0]`.
+Input memungkinkan untuk memilih beberapa file, jadi `input.files` adalah sebuah objek yang seperti array. Di sini kita hanya memiliki satu file, jadi kita hanya mengambil `input.files[0]`.
 ```
 
 ## FileReader
 
-[FileReader](https://www.w3.org/TR/FileAPI/#dfn-filereader) is an object with the sole purpose of reading data from `Blob` (and hence `File` too) objects.
+[FileReader](https://www.w3.org/TR/FileAPI/#dfn-filereader) adalah objek dengan tujuan tunggal untuk membaca data dari objek `Blob` (dan karenanya `File` juga).
 
-It delivers the data using events, as reading from disk may take time.
+FileReader mengirimkan data menggunakan *event*, karena membaca dari *disk* mungkin memakan waktu.
 
-The constructor:
+Konstruktor:
 
 ```js
-let reader = new FileReader(); // no arguments
+let reader = new FileReader(); // tanpa argumen
 ```
 
-The main methods:
+*Method* utama:
 
-- **`readAsArrayBuffer(blob)`** -- read the data in binary format `ArrayBuffer`.
-- **`readAsText(blob, [encoding])`** -- read the data as a text string with the given encoding (`utf-8` by default).
-- **`readAsDataURL(blob)`** -- read the binary data and encode it as base64 data url.
-- **`abort()`** -- cancel the operation.
+- **`readAsArrayBuffer(blob)`** -- membaca data dalam format *binary* `ArrayBuffer`.
+- **`readAsText(blob, [encoding])`** -- membaca data sebagai string teks dengan *encoding* yang diberikan (`utf-8` secara default).
+- **`readAsDataURL(blob)`** -- membaca data *binary* dan menyandikannya sebagai url data base64.
+- **`abort()`** -- membatalkan operasi.
 
-The choice of `read*` method depends on which format we prefer, how we're going to use the data.
+Pilihan *method* `read*` bergantung pada format yang kita inginkan, bagaimana kita akan menggunakan datanya.
 
-- `readAsArrayBuffer` -- for binary files, to do low-level binary operations. For high-level operations, like slicing, `File` inherits from `Blob`, so we can call them directly, without reading.
-- `readAsText` -- for text files, when we'd like to get a string.
-- `readAsDataURL` -- when we'd like to use this data in `src` for `img` or another tag. There's an alternative to reading a file for that, as discussed in chapter <info:blob>: `URL.createObjectURL(file)`.
+- `readAsArrayBuffer` -- untuk file *binary*, untuk melakukan operasi *binary* tingkat rendah. Untuk operasi tingkat tinggi, seperti *slicing*, `File` mewarisi dari `Blob`, sehingga kita dapat memanggilnya secara langsung, tanpa membacanya.
+- `readAsText` -- untuk file teks, ketika kita ingin mendapatkan string.
+- `readAsDataURL` -- ketika kita ingin menggunakan data ini di `src` untuk `img` atau tag lainnya. Ada alternatif untuk membaca file untuk itu, seperti yang dibahas dalam bab <info:blob>: `URL.createObjectURL(file)`.
 
-As the reading proceeds, there are events:
-- `loadstart` -- loading started.
-- `progress` -- occurs during reading.
-- `load` -- no errors, reading complete.
-- `abort` -- `abort()` called.
-- `error` -- error has occurred.
-- `loadend` -- reading finished with either success or failure.
+Saat pembacaan file berlangsung, ada *event*:
+- `loadstart` -- pemuatan dimulai.
+- `progress` -- terjadi selama membaca file.
+- `load` -- tidak ada kesalahan, membaca file selesai.
+- `abort` -- `abort()` dipanggil.
+- `error` -- terjadi kesalahan.
+- `loadend` -- membaca file selesai, baik sukses ataupun gagal.
 
-When the reading is finished, we can access the result as:
-- `reader.result` is the result (if successful)
-- `reader.error` is the error (if failed).
+Ketika pembacaan  file selesai, kita dapat mengakses hasilnya sebagai:
+- `reader.result` adalah hasilnya (jika berhasil)
+- `reader.error` adalah kesalahan (jika gagal).
 
-The most widely used events are for sure `load` and `error`.
+Peristiwa yang pasti paling banyak digunakan adalah `load` dan `error`.
 
-Here's an example of reading a file:
+Berikut ini contoh membaca sebuah file:
 
 ```html run
 <input type="file" onchange="readFile(this)">
@@ -104,35 +104,35 @@ function readFile(input) {
 </script>
 ```
 
-```smart header="`FileReader` for blobs"
-As mentioned in the chapter <info:blob>, `FileReader` can read not just files, but any blobs.
+```smart header="`FileReader` untuk blobs"
+Seperti disebutkan dalam bab <info:blob>, `FileReader` tidak hanya dapat membaca file, tetapi semua blob.
 
-We can use it to convert a blob to another format:
-- `readAsArrayBuffer(blob)` -- to `ArrayBuffer`,
-- `readAsText(blob, [encoding])` -- to string (an alternative to `TextDecoder`),
-- `readAsDataURL(blob)` -- to base64 data url.
+Kita dapat menggunakannya untuk mengonversi blob ke dalam format yang lain:
+- `readAsArrayBuffer(blob)` -- ke `ArrayBuffer`,
+- `readAsText(blob, [encoding])` -- ke string (alternatif untuk `TextDecoder`),
+- `readAsDataURL(blob)` -- ke url data base64.
 ```
 
 
-```smart header="`FileReaderSync` is available inside Web Workers"
-For Web Workers, there also exists a synchronous variant of `FileReader`, called [FileReaderSync](https://www.w3.org/TR/FileAPI/#FileReaderSync).
+```smart header="`FileReaderSync` tersedia di dalam Web Workers"
+Untuk Web Workers, ada juga sebuah varian synchronous dari `FileReader`, yang disebut [FileReaderSync](https://www.w3.org/TR/FileAPI/#FileReaderSync).
 
-Its reading methods `read*` do not generate events, but rather return a result, as regular functions do.
+Method pembacaannya `read*` tidak menghasilkan event, melainkan mengembalikan hasil, seperti yang dilakukan fungsi biasa.
 
-That's only inside a Web Worker though, because delays in synchronous calls, that are possible while reading from files, in Web Workers are less important. They do not affect the page.
+FileReaderSync hanya di dalam Web Worker, karena penundaan dalam panggilan synchronous, yang memungkinkan saat membaca dari file, di Web Worker kurang penting. Mereka tidak mempengaruhi halaman.
 ```
 
-## Summary
+## Ringkasan
 
-`File` objects inherit from `Blob`.
+Objek `File` diwariskan dari `Blob`.
 
-In addition to `Blob` methods and properties, `File` objects also have `name` and `lastModified` properties, plus the internal ability to read from filesystem. We usually get `File` objects from user input, like `<input>` or Drag'n'Drop events (`ondragend`).
+Selain *method* dan properti seperti `Blob`, objek `File` juga memiliki properti `name` dan `lastModified`, ditambah kemampuan internal untuk membaca dari sistem file. Kita biasanya mendapatkan objek `File` dari input pengguna, seperti *event* `<input>` atau Drag'n'Drop (`ondragend`).
 
-`FileReader` objects can read from a file or a blob, in one of three formats:
+Objek `FileReader` dapat membaca dari file atau blob, dalam salah satu dari tiga format berikut:
 - String (`readAsText`).
 - `ArrayBuffer` (`readAsArrayBuffer`).
-- Data url, base-64 encoded (`readAsDataURL`).
+- Url data, di-*encode* ke base-64 (`readAsDataURL`).
 
-In many cases though, we don't have to read the file contents. Just as we did with blobs, we can create a short url with `URL.createObjectURL(file)` and assign it to `<a>` or `<img>`. This way the file can be downloaded or shown up as an image, as a part of canvas etc.
+Namun, dalam banyak kasus, kita tidak perlu membaca konten file. Seperti yang kita lakukan dengan blob, kita dapat membuat url pendek dengan `URL.createObjectURL(file)` dan menetapkannya ke `<a>` atau `<img>`. Dengan cara ini file dapat diunduh atau ditampilkan sebagai gambar, sebagai bagian dari kanvas, dll.
 
-And if we're going to send a `File` over a network, that's also easy: network API like `XMLHttpRequest` or `fetch` natively accepts `File` objects.
+Dan jika kita akan mengirim `File` melalui jaringan, itu juga mudah: API jaringan seperti `XMLHttpRequest` atau `fetch` secara *native* menerima objek `File`.
