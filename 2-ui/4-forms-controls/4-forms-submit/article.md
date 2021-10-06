@@ -1,25 +1,25 @@
-# Forms: event and method submit
+# Forms: *event* dan *method* submit
 
-The `submit` event triggers when the form is submitted, it is usually used to validate the form before sending it to the server or to abort the submission and process it in JavaScript.
+Event `submit` terpicu saat *form* dikirimkan, biasanya digunakan untuk memvalidasi *form* sebelum mengirimkannya ke *server* atau untuk membatalkan pengiriman dan memprosesnya dalam JavaScript.
 
-The method `form.submit()` allows to initiate form sending from JavaScript. We can use it to dynamically create and send our own forms to server.
+*Method* `form.submit()` memungkinkan untuk memulai pengiriman *form* dari JavaScript. Kita dapat menggunakannya untuk membuat dan mengirim *form* kita sendiri secara dinamis ke *server*.
 
-Let's see more details of them.
+Mari kita lihat lebih detail
 
 ## Event: submit
 
-There are two main ways to submit a form:
+Ada dua cara utama untuk mengirimkan *form*:
 
-1. The first -- to click `<input type="submit">` or `<input type="image">`.
-2. The second -- press `key:Enter` on an input field.
+1. Pertama -- untuk mengklik `<input type="submit">` atau `<input type="image">`.
+2. Kedua -- tekan `key:Enter` pada kolom input.
 
-Both actions lead to `submit` event on the form. The handler can check the data, and if there are errors, show them and call `event.preventDefault()`, then the form won't be sent to the server.
+Kedua tindakan tersebut mengarah ke *event* `submit` pada *form*. *Handler* dapat memeriksa data, dan jika ada kesalahan, tunjukkan dan panggil `event.preventDefault()`, maka formulir tidak akan dikirim ke server.
 
-In the form below:
-1. Go into the text field and press `key:Enter`.
-2. Click `<input type="submit">`.
+Dalam *form* di bawah ini:
+1. Masuk ke *field* teks dan tekan `key: Enter`.
+2. Klik `<input type="submit">`.
 
-Both actions show `alert` and the form is not sent anywhere due to `return false`:
+Kedua tindakan menunjukkan `alert` dan *form* tidak dikirim ke mana pun karena `return false`:
 
 ```html autorun height=60 no-beautify
 <form onsubmit="alert('submit!');return false">
@@ -28,12 +28,12 @@ Both actions show `alert` and the form is not sent anywhere due to `return false
 </form>
 ```
 
-````smart header="Relation between `submit` and `click`"
-When a form is sent using `key:Enter` on an input field, a `click` event triggers on the `<input type="submit">`.
+````smart header="Hubungan antara `submit` dan `click`"
+Saat *form* dikirim menggunakan `key:Enter` pada *field* input, *event* `click` akan dipicu pada `<input type="submit">`.
 
-That's rather funny, because there was no click at all.
+Itu agak lucu, karena tidak ada klik sama sekali.
 
-Here's the demo:
+Berikut demonya:
 ```html autorun height=60
 <form onsubmit="return false">
  <input type="text" size="30" value="Focus here and press enter">
@@ -45,11 +45,11 @@ Here's the demo:
 
 ## Method: submit
 
-To submit a form to the server manually, we can call `form.submit()`.
+Untuk mengirimkan *form* ke *server* secara manual, kita dapat memanggil `form.submit()`.
 
-Then the `submit` event is not generated. It is assumed that if the programmer calls `form.submit()`, then the script already did all related processing.
+Maka *event* `submit` tidak dibuat. Diasumsikan bahwa jika programmer memanggil `form.submit()`, maka skrip telah melakukan semua pemrosesan terkait.
 
-Sometimes that's used to manually create and send a form, like this:
+Terkadang itu digunakan untuk membuat dan mengirim formulir secara manual, seperti ini:
 
 ```js run
 let form = document.createElement('form');
@@ -58,7 +58,7 @@ form.method = 'GET';
 
 form.innerHTML = '<input name="q" value="test">';
 
-// the form must be in the document to submit it
+// form harus berada di dalam dokumen untuk mengirimkannya.
 document.body.append(form);
 
 form.submit();
