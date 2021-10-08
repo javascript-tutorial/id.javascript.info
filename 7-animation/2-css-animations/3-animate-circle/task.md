@@ -1,16 +1,16 @@
-importance: 5
+Nilai: 5
 
 ---
 
-# Animated circle
+# Animasikan Lingkaran
 
-Create a function `showCircle(cx, cy, radius)` that shows an animated growing circle.
+Buat sebuah fungsi `showCircle(cx, cy, radius)` yang menampilkan animasi lingkaran yang membesar.
 
-- `cx,cy` are window-relative coordinates of the center of the circle,
-- `radius` is the radius of the circle.
+- `cx, cy` adalah koordinat *window-relative* dari tengah lingkaran,
+- `radius` adalah radius dari lingkarannya.
 
-Click the button below to see how it should look like:
+Klik pada tombol dibawah untuk melihat contoh:
 
 [iframe src="solution" height=260]
 
-The source document has an example of a circle with right styles, so the task is precisely to do the animation right.
+Dokumen utamanya memiliki contoh dari lingkaran dengan *styles* yang benar, jadi tugasnya adalah untuk membuat animasinya benar.
