@@ -1,9 +1,9 @@
-importance: 5
+Nilai: 5
 
 ---
 
-# Animate the bouncing ball
+# Animasikan bola yang memantul
 
-Make a bouncing ball. Click to see how it should look:
+Buatlah bola yang memantul. Klik untuk melihat contohnya:
 
 [iframe height=250 src="solution"]
