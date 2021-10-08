@@ -1,10 +1,10 @@
-To bounce we can use CSS property `top` and `position:absolute` for the ball inside the field with `position:relative`.
+Untuk membuatnya memantul kita bisa menggunakan properti CSS `top` dan `position:absolute` untuk bola yang berada didalam bidang dengan `position:relative`.
 
-The bottom coordinate of the field is `field.clientHeight`. The CSS `top` property refers to the upper edge of the ball. So it should go from `0` till `field.clientHeight - ball.clientHeight`, that's the final lowest position of the upper edge of the ball.
+Koordinat bawah dari bidangnya adalah `field.clientHeight`. Properti CSS `top` mengacu pada bagian atas dari bolanya. Jadi itu haruslah berasal dari `0` sampai `field.clientHeight - ball. clientHeight`, itulah yang menjadi posisi terbawah dari bagian atas bolanya.
 
-To get the "bouncing" effect we can use the timing function `bounce` in `easeOut` mode.
+Untuk mendapatkan efek "memantul" kita bisa menggunakan fungsi waktu `bounce` di mode `easeOut`.
 
-Here's the final code for the animation:
+Ini adalah kode akhir dari animasinya:
 
 ```js
 let to = field.clientHeight - ball.clientHeight;
