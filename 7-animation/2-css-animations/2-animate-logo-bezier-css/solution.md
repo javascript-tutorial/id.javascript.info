@@ -1,7 +1,7 @@
-We need to choose the right Bezier curve for that animation. It should have `y>1` somewhere for the plane to "jump out".
+Kita harus memilih *Bezier Curve* yang cocok untuk animasinya. Yang mana harus memiliki `y>1` agar bidangnya dapat "melompat keluar".
 
-For instance, we can take both control points with `y>1`, like: `cubic-bezier(0.25, 1.5, 0.75, 1.5)`.
+Contoh, kita bisa menggunakan titik kontrol dengan `y>1`, seperti `cubic-bezier(0.25, 1.5, 0.75, 1.5)`.
 
-The graph:
+Grafiknya:
 
 ![](bezier-up.svg)

@@ -1,13 +1,14 @@
-importance: 5
+Nilai: 5
 
 ---
 
-# Animate the flying plane (CSS)
+# Animasikan bidang yang terbang (CSS)
 
-Modify the solution of the previous task <info:task/animate-logo-css> to make the plane grow more than its original size 400x240px (jump out), and then return to that size.
+Modifikasi solusi dari tugas sebelumnya <info:task/animate-logo-css> untuk membuat bidang yang tumbuh dari ukuran aslinya 400x240px (melompat keluar)
+, dan kembalikan ukuran tersebut.
 
-Here's how it should look (click on the plane):
+Ini adalah contoh bagaimana bidangnya terlihat (klik pada bidangnya):
 
 [iframe src="solution" height=350]
 
-Take the solution of the previous task as the source.
+Gunakan solusi dari tugas sebelumnya sebagai acuan.
