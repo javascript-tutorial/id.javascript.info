@@ -1,21 +1,21 @@
 # Events: change, input, cut, copy, paste
 
-Let's cover various events that accompany data updates.
+Mari kita bahas berbagai *event* yang menyertai pembaruan data.
 
 ## Event: change
 
-The `change` event triggers when the element has finished changing.
+*Event* `change` terpicu saat elemen selesai diubah.
 
-For text inputs that means that the event occurs when it loses focus.
+Untuk input teks, itu berarti bahwa *event* terjadi ketika kehilangan fokus.
 
-For instance, while we are typing in the text field below -- there's no event. But when we move the focus somewhere else, for instance, click on a button -- there will be a `change` event:
+Misalnya, saat kita mengetik di *field* teks di bawah -- tidak ada *event*. Tetapi ketika kita memindahkan fokus ke tempat lain, misalnya, klik tombol -- akan ada *event* `change`:
 
 ```html autorun height=40 run
 <input type="text" onchange="alert(this.value)">
 <input type="button" value="Button">
 ```
 
-For other elements: `select`, `input type=checkbox/radio` it triggers right after the selection changes:
+Untuk elemen lain: `select`, `input type=checkbox/radio` yang dipicu tepat setelah pilihan berubah:
 
 ```html autorun height=40 run
 <select onchange="alert(this.value)">
@@ -29,11 +29,11 @@ For other elements: `select`, `input type=checkbox/radio` it triggers right afte
 
 ## Event: input
 
-The `input` event triggers every time after a value is modified by the user.
+*Event* `input` terpicu setiap kali nilai telah diubah oleh pengguna.
 
-Unlike keyboard events, it triggers on any value change, even those that does not involve keyboard actions: pasting with a mouse or using speech recognition to dictate the text.
+Tidak seperti *event* keyboard, *event* `input` memicu perubahan *value* apa pun, bahkan yang tidak melibatkan tindakan keyboard: menempelkan dengan mouse atau menggunakan pengenalan suara untuk mendikte teks.
 
-For instance:
+Contohnya:
 
 ```html autorun height=40 run
 <input type="text" id="input"> oninput: <span id="result"></span>
@@ -44,25 +44,25 @@ For instance:
 </script>
 ```
 
-If we want to handle every modification of an `<input>` then this event is the best choice.
+Jika kita ingin menangani setiap modifikasi `<input>` maka *event* ini adalah pilihan terbaik.
 
-On the other hand, `input` event doesn't trigger on keyboard input and other actions that do not involve value change, e.g. pressing arrow keys `key:⇦` `key:⇨` while in the input.
+Di sisi lain, *event* `input` tidak dipicu pada input keyboard dan tindakan lain yang tidak melibatkan perubahan nilai, misalnya menekan tombol panah `key:⇦` `key:⇨` saat memasukkan.
 
-```smart header="Can't prevent anything in `oninput`"
-The `input` event occurs after the value is modified.
+```smart header="Tidak dapat mencegah apa pun di `oninput`"
+*Event* `input` terjadi setelah nilai diubah.
 
-So we can't use `event.preventDefault()` there -- it's just too late, there would be no effect.
+Jadi kita tidak bisa menggunakan `event.preventDefault()` disana -- terlalu terlambat, tidak akan ada efeknya.
 ```
 
 ## Events: cut, copy, paste
 
-These events occur on cutting/copying/pasting a value.
+*Event* ini terjadi saat memotong/menyalin/menempelkan nilai.
 
-They belong to [ClipboardEvent](https://www.w3.org/TR/clipboard-apis/#clipboard-event-interfaces) class and provide access to the data that is copied/pasted.
+Mereka termasuk dalam kelas [ClipboardEvent](https://www.w3.org/TR/clipboard-apis/#clipboard-event-interfaces) dan menyediakan akses ke data yang disalin/ditempel.
 
-We also can use `event.preventDefault()` to abort the action, then nothing gets copied/pasted.
+Kita juga bisa menggunakan `event.preventDefault()` untuk membatalkan aksi, maka tidak akan ada yang disalin/ditempel.
 
-For instance, the code below prevents all such events and shows what we are trying to cut/copy/paste:
+Contohnya, kode di bawah ini mencegah semua *event* tersebut dan menunjukkan apa yang kita coba potong/salin/tempel:
 
 ```html autorun height=40 run
 <input type="text" id="input">
@@ -74,22 +74,22 @@ For instance, the code below prevents all such events and shows what we are tryi
 </script>
 ```
 
-Please note, that it's possible to copy/paste not just text, but everything. For instance, we can copy a file in the OS file manager, and paste it.
+Harap dicatat, bahwa memungkinkan untuk salin/tempel tidak hanya teks, tetapi semuanya. Misalnya, kita dapat menyalin file di manajer file OS, dan menempelkannya.
 
-That's because `clipboardData` implements `DataTransfer` interface, commonly used for drag'n'drop and copy/pasting. It's bit beyound our scope now, but you can find its methods [in the specification](https://html.spec.whatwg.org/multipage/dnd.html#the-datatransfer-interface).
+Itu karena `clipboardData` mengimplementasikan *interface* `DataTransfer`, yang biasa digunakan untuk drag'n'drop dan salin/tempel. Ini sedikit di luar jangkauan kita sekarang, tetapi Anda dapat menemukan metodenya [dalam spesifikasi ini](https://html.spec.whatwg.org/multipage/dnd.html#the-datatransfer-interface).
 
-```warn header="ClipboardAPI: user safety restrictions"
-The clipboard is a "global" OS-level thing. So most browsers allow read/write access to the clipboard only in the scope of certain user actions for the safety, e.g. in `onclick` event handlers.
+```warn header="ClipboardAPI: batasan keamanan pengguna"
+*Clipboard* adalah hal "global" tingkat OS. Jadi sebagian besar peramban mengizinkan akses baca/tulis ke *clipboard* hanya dalam lingkup tindakan pengguna tertentu untuk keamanan, misalnya di *event handler* `onclick`.
 
-Also it's forbidden to generate "custom" clipboard events with `dispatchEvent` in all browsers except Firefox.
+Juga dilarang untuk membuat *event* *clipboard* "custom" dengan `dispatchEvent` di semua peramban kecuali Firefox.
 ```
 
-## Summary
+## Ringkasan
 
-Data change events:
+*Event* perubahan data:
 
-| Event | Description | Specials |
+| *Event* | Deskripsi | Specials |
 |---------|----------|-------------|
-| `change`| A value was changed. | For text inputs triggers on focus loss. |
-| `input` | For text inputs on every change. | Triggers immediately unlike `change`. |
-| `cut/copy/paste` | Cut/copy/paste actions. | The action can be prevented. The `event.clipboardData` property gives read/write access to the clipboard. |
+| `change`| Sebuah *value* diubah. | Untuk pemicu input teks pada saat kehilangan fokus. |
+| `input` | Untuk input teks pada setiap perubahan. | Pemicu langsung tidak seperti `change`. |
+| `cut/copy/paste` | Tindakan potong/salin/tempel. | Tindakan tersebut dapat dicegah. Properti `event.clipboardData` memberikan akses baca/tulis ke *clipboard*. |
