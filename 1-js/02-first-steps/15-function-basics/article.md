@@ -181,7 +181,11 @@ Dengan kata lain, untuk meluruskan istilah-istilah ini:
 - Parameter adalah variabel yang tercantum di dalam tanda kurung dalam deklarasi fungsi (ini adalah istilah waktu deklarasi)
 - Argumen adalah nilai yang diteruskan ke fungsi saat dipanggil (ini adalah istilah waktu panggilan).
 
+<<<<<<< HEAD
 Kami mendeklarasikan fungsi yang mencantumkan parameternya, lalu memanggilnya lewat argumen.
+=======
+In the example above, one might say: "the function `showMessage` is declared with two parameters, then called with two arguments: `from` and `"Hello"`".
+>>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
 
 Dalam contoh di atas, seseorang mungkin mengatakan: "fungsi `sayMessage` dideklarasikan dengan dua parameter, kemudian dipanggil dengan dua argumen: `from` dan `"Hello"`".
 
@@ -250,7 +254,11 @@ function showMessage(text) {
 showMessage(); // empty message
 ```
 
+<<<<<<< HEAD
 ...Atau kita bisa menggunakan operator `||`:
+=======
+...Or we could use the `||` operator:
+>>>>>>> 193319c963b9ba86ac7d9590f7261a36ecdcc4d2
 
 ```js
 // jika teks parameter tidak ada atau "", set variabel ke 'empty'
