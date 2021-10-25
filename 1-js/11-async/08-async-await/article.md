@@ -121,16 +121,34 @@ showAvatar();
 
 Cukup bersih dan mudah dibaca, bukan? Jauh lebih baik dari sebelumnya.
 
+<<<<<<< HEAD
 ````smart header="`await` tidak bekerja pada top-level code"
 Orang yang baru mulai menggunakan `await` cenderung lupa faktanya bahwa kita tidak bisa menggunakan `await` pada top-level code. Sebagai contoh, ini tidak akan bekerja:
 
 ```js run
 // error sintaksis pada top-level code
+=======
+````smart header="Modern browsers allow top-level `await` in modules"
+In modern browsers, `await` on top level works just fine, when we're inside a module. We'll cover modules in article <info:modules-intro>.
+
+For instance:
+
+```js run module
+// we assume this code runs at top level, inside a module
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 let response = await fetch('/article/promise-chaining/user.json');
 let user = await response.json();
+
+console.log(user);
 ```
 
+<<<<<<< HEAD
 Kita dapat membungkusnya kedalam fungsi async anonymous, seperti ini:
+=======
+If we're not using modules, or [older browsers](https://caniuse.com/mdn-javascript_operators_await_top_level) must be supported, there's a universal recipe: wrapping into an anonymous async function.
+
+Lke this:
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 ```js
 (async () => {
@@ -140,7 +158,10 @@ Kita dapat membungkusnya kedalam fungsi async anonymous, seperti ini:
 })();
 ```
 
+<<<<<<< HEAD
 P.S. Fitur baru: mulai dari mesin V8 versi 8.9+, tingkat atas menunggu bekerja di [modul](info: modul).
+=======
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 ````
 
 `````

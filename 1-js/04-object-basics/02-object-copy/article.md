@@ -136,7 +136,11 @@ clone.name = "Pete"; // ubah data didalamnya
 alert( user.name ); // masih John didalam objek yang asli
 ```
 
+<<<<<<< HEAD
 Juga kita bisa menggunakan method [Object.assign](mdn:js/Object/assign) untuk itu.
+=======
+Also we can use the method [Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) for that.
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 sintaksnya adalah:
 
