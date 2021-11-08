@@ -53,7 +53,7 @@ let num = Number(str); // menjadi angka 123
 alert(typeof num); // angka
 ```
 
-Konversi explisit biasanya dibutuhkan ketika kita membaca nilai dari sumber berbasis string seperti form teks namun menrharapkan angka untuk dienter.
+Konversi explisit biasanya dibutuhkan ketika kita membaca nilai dari sumber berbasis string seperti form teks namun mengharapkan angka untuk dienter.
 
 Jika stringnya angka tak valid, hasilnya konversi macam ini ialah `NaN`. Misalnya:
 
