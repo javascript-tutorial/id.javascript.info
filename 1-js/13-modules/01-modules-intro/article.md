@@ -233,7 +233,11 @@ Dibedakan dengan kode skrip tidak modul, dimana `this` adalah objek global:
 
 Ada juga beberapa perbedaan spesifik browser skrip dengan `type="module"` dibandingkan dengan yang biasa.
 
+<<<<<<< HEAD
 Kamu mungkin ingin melewati bagian ini jika kamu baru membacanya pertama kali, atau jika kamu tidak menggunakan Javascript pada browser.
+=======
+You may want to skip this section for now if you're reading for the first time, or if you don't use JavaScript in a browser.
+>>>>>>> a82915575863d33db6b892087975f84dea6cb425
 
 ### Kode skrip modul di tangguhkan
 
