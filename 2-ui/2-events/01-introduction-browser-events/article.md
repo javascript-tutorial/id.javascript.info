@@ -5,27 +5,26 @@
 Berikut ini daftar peristiwa DOM yang paling berguna:
 
 **Peristiwa mouse (_Mouse events_):**
-- `click` -- pada saat mouse mengklik sebuah elemen (perangkat layar sentuh menghasilkan peristiwa ini pada saat di tekan)
+- `click` -- pada saat mouse mengklik sebuah elemen (perangkat layar sentuh menghasilkan peristiwa ini pada saat ditekan)
 - `contextmenu` -- pada saat mouse mengklik kanan sebuah elemen.
 - `mouseover` / `mouseout` -- pada saat kursor mouse menghampiri / meninggalkan sebuah elemen.
-- `mousedown` / `mouseup` -- pada saat tombol mouse button di tekan / di lepaskan diatas sebuah elemen.
+- `mousedown` / `mouseup` -- pada saat tombol mouse button ditekan / dilepaskan diatas sebuah elemen.
 - `mousemove` -- pada saat mouse bergerak.
 
 **Peristiwa papan ketik (_Keyboard events_):**
-- `keydown` dan `keyup` -- pada saat tombol papan ketik di tekan dan di lepaskan.
+- `keydown` dan `keyup` -- pada saat tombol papan ketik ditekan dan dilepaskan.
 
 **Peristiwa Elemen form (_Form element events_):**
 - `submit` -- pada saat pengunjung memasukan sebuah `<form>`.
 - `focus` --  pada saat pengunjung menekan/mengfokus pada sebuah elemen, contoh pada sebuah `<input>`.
-- `focus` --  when the visitor focuses on an element, e.g. on an `<input>`.
 
-**Document events:**
-- `DOMContentLoaded` -- when the HTML is loaded and processed, DOM is fully built.
+**Peristiwa dokumen (_Document events_):**
+- `DOMContentLoaded` -- pada saat HTML telah dimuat dan diproses, DOM telah sepenuhnya dibuat.
 
-**CSS events:**
-- `transitionend` -- when a CSS-animation finishes.
+**Peristiwa CSS (_CSS events_):**
+- `transitionend` -- pada saat animasi CSS selesai.
 
-There are many other events. We'll get into more details of particular events in next chapters.
+Masih banyak lagi peristiwa lain. Kita akan membahas lebih detail tentang peristiwa tertentu pada bab selanjutnya.
 
 ## Event handlers
 
