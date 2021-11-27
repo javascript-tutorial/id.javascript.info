@@ -26,105 +26,105 @@ Berikut ini daftar peristiwa DOM yang paling berguna:
 
 Masih banyak lagi peristiwa lain. Kita akan membahas lebih detail tentang peristiwa tertentu pada bab selanjutnya.
 
-## Event handlers
+## Pengendali peristiwa (_Event handlers_)
 
-To react on events we can assign a *handler* -- a function that runs in case of an event.
+Untuk menanggapi sebuah perristiwa kita dapat membuat pengendali -- sebuah fungsi yang akan dijalankan pada saat peristiwa itu terjadi.
 
-Handlers are a way to run JavaScript code in case of user actions.
+Pengendali adalah sebuah cara untuk menjalankan kode Javascript pada saat pengguna melakukan sesuatu.
 
-There are several ways to assign a handler. Let's see them, starting from the simplest one.
+Ada banyak cara untuk membuat sebuah handler. Mari kita pelajari, dimulai dari yang paling sederhana.
 
-### HTML-attribute
+### Atribut HTML (_HTML-attribute_)
 
-A handler can be set in HTML with an attribute named `on<event>`.
+Sebuah pengendali bisa di atur pada HTML dengan menggunakan atribute `on<event>`.
 
-For instance, to assign a `click` handler for an `input`, we can use `onclick`, like here:
+Contohnya, untuk mengatur sebuah pengendali `klik` untuk `input`, kita bisa gunakan `onclick`, seperti ini:
 
 ```html run
-<input value="Click me" *!*onclick="alert('Click!')"*/!* type="button">
+<input value="Klik saya" *!*onclick="alert('Klik!')"*/!* type="button">
 ```
 
-On mouse click, the code inside `onclick` runs.
+Pada klik mouse, kode didalam `onclick` dijalankan.
 
-Please note that inside `onclick` we use single quotes, because the attribute itself is in double quotes. If we forget that the code is inside the attribute and use double quotes inside, like this:  `onclick="alert("Click!")"`, then it won't work right.
+Harap di catat bahwa didalam `onclick` kita gunakan tanda kutipan tunggal (_single quotes_), karena atribute itu sendiri menggunakan tanda kutip ganda (_double quotes_). Jika lupa bahwa kode tersebut didalam atribut dan menggunakan tanda kutip ganda (_double quotes_), seperti ini: `onclick="alert("Klik!")"`, maka itu tidak akan bekerja dengan benar.
 
-An HTML-attribute is not a convenient place to write a lot of code, so we'd better create a JavaScript function and call it there.
+Sebuah atribute-HTML bukan tempat yang cocok untuk menulis banyak kode, jadi kita buat sebuah fungsi Javascript dan memanggilnya disana.
 
-Here a click runs the function `countRabbits()`:
+Sebuah kilk menjalankan sebuah fungsi `hitungKelinci()`:
 
 ```html autorun height=50
 <script>
-  function countRabbits() {
+  function hitungKelinci() {
     for(let i=1; i<=3; i++) {
-      alert("Rabbit number " + i);
+      alert("Kelinci nomor " + i);
     }
   }
 </script>
 
-<input type="button" *!*onclick="countRabbits()"*/!* value="Count rabbits!">
+<input type="button" *!*onclick="hitungKelinci()"*/!* value="Hitung Kelinci!">
 ```
 
-As we know, HTML attribute names are not case-sensitive, so `ONCLICK` works as well as `onClick` and `onCLICK`... But usually attributes are lowercased: `onclick`.
+Seperti yang kita ketahui, atribut HTML tidak _case-sensitive_, jadi `ONCLICK`, `onClick` dan `onCLICK` bisa digunakan... Tapi biasanya atribut menggunakan huruf kecil: `onclick`.
 
-### DOM property
+### Properti DOM (_DOM property_)
 
-We can assign a handler using a DOM property `on<event>`.
+Sebuah pengendali bisa di atur menggunakan properti DOM`on<event>`.
 
-For instance, `elem.onclick`:
+Contohnya, `elem.onclick`:
 
 ```html autorun
-<input id="elem" type="button" value="Click me">
+<input id="elem" type="button" value="Klik saya">
 <script>
 *!*
   elem.onclick = function() {
-    alert('Thank you');
+    alert('Terima Kasih');
   };
 */!*
 </script>
 ```
 
-If the handler is assigned using an HTML-attribute then the browser reads it, creates a new function from the attribute content and writes it to the DOM property.
+Jika pengendali di atur menggunakan atribut-HTML maka peramban membaca, membuat sebuah fungsi baru dari konten atribute dan menulisnya pada properti DOM.
 
-So this way is actually the same as the previous one.
+Jadi cara ini sebenarnya sama dengan yang sebelumnya.
 
-These two code pieces work the same:
+Kedua kode ini memiliki cara kerja yang sama:
 
-1. Only HTML:
+1. Hanya HTML:
 
     ```html autorun height=50
-    <input type="button" *!*onclick="alert('Click!')"*/!* value="Button">
+    <input type="button" *!*onclick="alert('Klik!')"*/!* value="Tombol">
     ```
 2. HTML + JS:
 
     ```html autorun height=50
-    <input type="button" id="button" value="Button">
+    <input type="button" id="button" value="Tombol">
     <script>
     *!*
       button.onclick = function() {
-        alert('Click!');
+        alert('Klik!');
       };
     */!*
     </script>
     ```
 
-In the first example, the HTML attribute is used to initialize the `button.onclick`, while in the second example -- the script, that's all the difference.
+Pada contoh pertama, atribut HTML digunakan untuk menginisialisasikan `tombol.onclick`, sedangkan pada contoh kedua -- _script_, dan hanya itu perbedaanya.
 
-**As there's only one `onclick` property, we can't assign more than one event handler.**
+**Karena hanya ada satu properti `onclick`, kita tidak bisa mengatur lebih dari satu pengendali peristiwa.**
 
-In the example below adding a handler with JavaScript overwrites the existing handler:
+Pada contoh dibawah menambah sebuah pengendali menggunakan Javascript akan menimpa pengendali yang sudah ada:
 
 ```html run height=50 autorun
-<input type="button" id="elem" onclick="alert('Before')" value="Click me">
+<input type="button" id="elem" onclick="alert('Sebelum')" value="Klik saya">
 <script>
 *!*
-  elem.onclick = function() { // overwrites the existing handler
-    alert('After'); // only this will be shown
+  elem.onclick = function() { // menimpa pengendali yang sudah ada
+    alert('Sesudah'); // hanya ini yang akan ditunjukan
   };
 */!*
 </script>
 ```
 
-To remove a handler -- assign `elem.onclick = null`.
+Untuk menghapus sebuah pengendali -- atur `elem.onclick = null`
 
 ## Accessing the element: this
 
