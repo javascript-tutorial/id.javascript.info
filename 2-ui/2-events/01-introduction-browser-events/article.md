@@ -1,21 +1,22 @@
-# Introduction to browser events
+# Pengenalan ke peristiwa peramban (_browser events_)
 
-*An event* is a signal that something has happened. All DOM nodes generate such signals (but events are not limited to DOM).
+*Sebuah Peristiwa* adalah penanda bahwa sesuatu telah terjadi. Semua _DOM nodes_ menghasilakan sebuah penanda (tapi peristiwa tidak hanya terbatas pada DOM).
 
-Here's a list of the most useful DOM events, just to take a look at:
+Berikut ini daftar peristiwa DOM yang paling berguna:
 
-**Mouse events:**
-- `click` -- when the mouse clicks on an element (touchscreen devices generate it on a tap).
-- `contextmenu` -- when the mouse right-clicks on an element.
-- `mouseover` / `mouseout` -- when the mouse cursor comes over / leaves an element.
-- `mousedown` / `mouseup` -- when the mouse button is pressed / released over an element.
-- `mousemove` -- when the mouse is moved.
+**Peristiwa mouse (_Mouse events_):**
+- `click` -- pada saat mouse mengklik sebuah elemen (perangkat layar sentuh menghasilkan peristiwa ini pada saat di tekan)
+- `contextmenu` -- pada saat mouse mengklik kanan sebuah elemen.
+- `mouseover` / `mouseout` -- pada saat kursor mouse menghampiri / meninggalkan sebuah elemen.
+- `mousedown` / `mouseup` -- pada saat tombol mouse button di tekan / di lepaskan diatas sebuah elemen.
+- `mousemove` -- pada saat mouse bergerak.
 
-**Keyboard events:**
-- `keydown` and `keyup` -- when a keyboard key is pressed and released.
+**Peristiwa papan ketik (_Keyboard events_):**
+- `keydown` dan `keyup` -- pada saat tombol papan ketik di tekan dan di lepaskan.
 
-**Form element events:**
-- `submit` -- when the visitor submits a `<form>`.
+**Peristiwa Elemen form (_Form element events_):**
+- `submit` -- pada saat pengunjung memasukan sebuah `<form>`.
+- `focus` --  pada saat pengunjung menekan/mengfokus pada sebuah elemen, contoh pada sebuah `<input>`.
 - `focus` --  when the visitor focuses on an element, e.g. on an `<input>`.
 
 **Document events:**
