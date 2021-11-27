@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Kilk untuk menyembunyikan
+# Klik untuk menyembunyikan
 
 Tambah Javascript ke `button` untuk membuat `<div id="text">` hilang pada saat di klik.
 

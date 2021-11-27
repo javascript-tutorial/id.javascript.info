@@ -1,6 +1,6 @@
 # Pengenalan ke peristiwa peramban (_browser events_)
 
-*Sebuah Peristiwa* adalah penanda bahwa sesuatu telah terjadi. Semua _DOM nodes_ menghasilakan sebuah penanda (tapi peristiwa tidak hanya terbatas pada DOM).
+*Sebuah Peristiwa* adalah penanda bahwa sesuatu telah terjadi. Semua _DOM nodes_ menghasilkan sebuah penanda (tapi peristiwa tidak hanya terbatas pada DOM).
 
 Berikut ini daftar peristiwa DOM yang paling berguna:
 
