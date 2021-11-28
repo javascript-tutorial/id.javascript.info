@@ -283,70 +283,70 @@ Beberapa pemanggilan ke `addEventListener` mengijinkan untuk menambahkan beberap
 </script>
 ```
 
-As we can see in the example above, we can set handlers *both* using a DOM-property and `addEventListener`. But generally we use only one of these ways.
+Seperti yang bisa kita lihat pada contoh di atas, kita bisa mengatur *kedua* pengendali menggunakan properti DOM dan `addEventListener`. Tapi pada umumnya kita hanya akan menggunakan salah satu.
 
-````warn header="For some events, handlers only work with `addEventListener`"
-There exist events that can't be assigned via a DOM-property. Only with `addEventListener`.
+````warn header="Untuk beberapa peristiwa, pengendali bekerja hanya dengan `addEventListener`"
+Ada beberapa peristiwa yang tidak dapat di atur menggunakan properti DOM. hanya dengan `addEventListener`.
 
-For instance, the `DOMContentLoaded` event, that triggers when the document is loaded and DOM is built.
+Contohnya, peristiwa `DOMContentLoaded`, yang akan terpicu pada saat dokumen telah berhasil di dimuat dan dibuat.
 
 ```js
-// will never run
+// tidak akan perna berjalan
 document.onDOMContentLoaded = function() {
-  alert("DOM built");
+  alert("DOM dibuat");
 };
 ```
 
 ```js
-// this way it works
+// akan berjalan dengan cara ini
 document.addEventListener("DOMContentLoaded", function() {
-  alert("DOM built");
+  alert("DOM dibuat");
 });
 ```
-So `addEventListener` is more universal. Although, such events are an exception rather than the rule.
+Jadi `addEventListener` lebih universal. Walaupun, aturan semacam itu merupakan sebuah pengecualian daripada aturan. 
 ````
 
-## Event object
+## Objek peristiwa (Event object)
 
-To properly handle an event we'd want to know more about what's happened. Not just a "click" or a "keydown", but what were the pointer coordinates? Which key was pressed? And so on.
+Untuk menangani peristiwa secara benar sebuah peristiwa kita mau tahu lebih tentang apa yang terjadi. Tidak hanya sebuah "klik" atau sebuah "penekanan tombol", tapi apa koordinat pointer? tombol mana yang di tekan? dan seterusnya.
 
-When an event happens, the browser creates an *event object*, puts details into it and passes it as an argument to the handler.
+Pada saat sebuah peristiwa terjadi, peramban akan membuat *objek peristiwa*, memasukan detail kedalamnya dan meneruskan peristiwa tersebut ke pengendali sebagai sebuah argumen.
 
-Here's an example of getting pointer coordinates from the event object:
+Ini merupakan contoh cara untuk mendapat koordinat pointer dari objek peristiwa:
 
 ```html run
-<input type="button" value="Click me" id="elem">
+<input type="button" value="Klik saya" id="elem">
 
 <script>
-  elem.onclick = function(*!*event*/!*) {
-    // show event type, element and coordinates of the click
-    alert(event.type + " at " + event.currentTarget);
-    alert("Coordinates: " + event.clientX + ":" + event.clientY);
+  elem.onclick = function(*!*peristiwa*/!*) {
+    // tampilkan tipe peristiwa, elemen dan koordinat dari klik
+    alert(peristiwa.type + " pada " + peristiwa.currentTarget);
+    alert("Koordinat: " + peristiwa.clientX + ":" + peristiwa.clientY);
   };
 </script>
 ```
 
-Some properties of `event` object:
+Beberapa properti dari objek `peristiwa`:
 
-`event.type`
-: Event type, here it's `"click"`.
+`peristiwa.type`
+: Tipe peristiwa, disini tipenya `"click"`.
 
-`event.currentTarget`
-: Element that handled the event. That's exactly the same as `this`, unless the handler is an arrow function, or its `this` is bound to something else, then we can get the element from  `event.currentTarget`.
+`peristiwa.currentTarget`
+: elemen yang ditangani oleh peristiwa. Sama persis dengan `this`, kecuali jika pengendali merupakan fungsi anak panah (arrow function), atau `this` sudah di atur untuk hal lain, maka kita dapat menggunakan `peristiwa.currentTarget` untuk mendapati elemen.
 
-`event.clientX / event.clientY`
-: Window-relative coordinates of the cursor, for pointer events.
+`peristiwa.clientX / peristiwa.clientY`
+: koordinat kursor relatif pada jendela (window), untuk peristwa pointer.
 
-There are more properties. Many of them depend on the event type: keyboard events have one set of properties, pointer events - another one, we'll study them later when we come to different events in details.
+Masih banyak lagi properti. Banyak yang tergantung pada tipe peristiwa: peristiwa papan ketik memilik satu set properti, peristiwa pointer - memiliki set yang berbeda, kita nanti akan mempelajari mereka pada saat kita mendapati peristiwa lainnya secara detail. 
 
-````smart header="The event object is also available in HTML handlers"
-If we assign a handler in HTML, we can also use the `event` object, like this:
+````smart header="Objek peristiwa juga ada pada pengendali HTML"
+Jika kita mengatur pengendali pada HTML, kita bisa juga menggunakan objek peristiwa, seperti ini:
 
 ```html autorun height=60
-<input type="button" onclick="*!*alert(event.type)*/!*" value="Event type">
+<input type="button" onclick="*!*alert(event.type)*/!*" value="Tipe Peristiwa">
 ```
 
-That's possible because when the browser reads the attribute, it creates a handler like this:  `function(event) { alert(event.type) }`. That is: its first argument is called `"event"`, and the body is taken from the attribute.
+Ini terjadi karena pada saat peramban membaca atribut, itu membuat sebuah pengendali seperti ini: `function(event) {alert(event.type) }`. yaitu: argumen pertamanya disebut dengan `"event"`, dan tubuhnya di ambil dari atribut.
 ````
 
 
