@@ -2,20 +2,20 @@ importance: 5
 
 ---
 
-# Move the ball across the field
+# Pindahkan bola ke seberang lapangan
 
-Move the ball across the field to a click. Like this:
+Pindahkan bola ke seberang lapangan pada saat di klik. Seperti ini:
 
 [iframe src="solution" height="260" link]
 
-Requirements:
+Syarat-Syarat:
 
-- The ball center should come exactly under the pointer on click (if possible without crossing the field edge).
-- CSS-animation is welcome.
-- The ball must not cross field boundaries.
-- When the page is scrolled, nothing should break.
+- Pusat bola harus berada tepat dibawah pointer pada saat di klik (jika memungkinkan tanpa melintasi ujung lapangan).
+- Animasi CSS jika memungkinkan.
+- Bola tidak boleh melintasi batas lapangan.
+- Saat halaman di digulir, tidak ada yang rusak.
 
-Notes:
+Tambahan:
 
-- The code should also work with different ball and field sizes, not be bound to any fixed values.
-- Use properties `event.clientX/event.clientY` for click coordinates.
+- Kode harus juga bekerja dengan bola yang berbeda dan berbagai ukuran lapangan, tidak hanya pada ukuran tertentu.
+- Gunakan properti `event.clientX/event.clientY` untuk koordinat klik.
