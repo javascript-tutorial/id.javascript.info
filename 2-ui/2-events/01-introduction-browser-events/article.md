@@ -149,6 +149,7 @@ function ucapkanTerimaKasih() {
 
 elem.onclick = ucapkanTerimaKasih;
 ```
+
 Tetapi berhati-hatilah: fungsi harus di atur sebagai `ucapkanTerimaKasih`, bukan `ucapkanTerimaKasih()`.
 
 ```js
@@ -158,6 +159,7 @@ button.onclick = ucapkanTerimaKasih;
 // salah
 button.onclick = ucapkanTerimaKasih();
 ```
+
 Jika kita tambahkan tanda kurung, maka `ucapkanTerimaKasih()` menjadi proses pemanggilan fungsi. Jadi baris terakhir akan mengambil *hasil* dari pengeksekusian fungsi, yang merupakan `tidak terdefinisi` (_`undefined`_ — karena fungsi tidak mengembalikan apapun), dan mengatur nilai itu ke peristiwa `onclick`. Maka peristiwa tersebut tidak akan menjalankan apapun.
 
 ...Namun, jika kita menambahkan secara langsung ke HTML, maka kita harus menambahkan tanda kurung:
@@ -204,6 +206,7 @@ input.onclick = function() { alert(1); }
 // ...
 input.onclick = function() { alert(2); } // menganti pengedali yang lama
 ```
+
 Pengembang dari standar situs web paham sejak lama, dan menyarankan cara alternatif untuk mengelola pengendali menggunakan metode khusus `addEventListener` dan `removeEventListener`. Kedua hal tersebut tidak memiliki permasalahan seperti itu.
 
 Sintaks (_syntax_) untuk menambahkan sebuah pengendali:
@@ -255,27 +258,27 @@ input.addEventListener("click", handler);
 input.removeEventListener("click", handler);
 ```
 
-Please note -- if we don't store the function in a variable, then we can't remove it. There's no way to "read back" handlers assigned by `addEventListener`.
+Harap dicatat -- Jika kita tidak menyimpan fungsi tersebut kedalam variable, maka kita tidak bisa menghapusnya. Tidak ada cara untuk "membaca kembali" pengendali yang di atur pada `addEventListener`.
 ````
 
-Multiple calls to `addEventListener` allow to add multiple handlers, like this:
+Beberapa pemanggilan ke `addEventListener` mengijinkan untuk menambahkan beberapa pengendali, seperti ini:
 
 ```html run no-beautify
-<input id="elem" type="button" value="Click me"/>
+<input id="elem" type="button" value="Klik saya"/>
 
 <script>
-  function handler1() {
-    alert('Thanks!');
+  function pengendali1() {
+    alert('Terima Kasih!');
   };
 
-  function handler2() {
-    alert('Thanks again!');
+  function pengendali2() {
+    alert('Terima Kasih lagi!');
   }
 
 *!*
-  elem.onclick = () => alert("Hello");
-  elem.addEventListener("click", handler1); // Thanks!
-  elem.addEventListener("click", handler2); // Thanks again!
+  elem.onclick = () => alert("Halo");
+  elem.addEventListener("click", pengendali1); // Terima Kasih!
+  elem.addEventListener("click", pengendali2); // Terima Kasih lagi!
 */!*
 </script>
 ```
