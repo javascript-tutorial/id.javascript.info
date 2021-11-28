@@ -126,131 +126,128 @@ Pada contoh dibawah menambah sebuah pengendali menggunakan Javascript akan menim
 
 Untuk menghapus sebuah pengendali -- atur `elem.onclick = null`
 
-## Accessing the element: this
+## Mengakses elemen: this
 
-The value of `this` inside a handler is the element. The one which has the handler on it.
+nilai dari `this` didalam pengendali adalah elemen tersebut. Elemen yang dimana pengendali itu berada.
 
-In the code below `button` shows its contents using `this.innerHTML`:
+Pada kode dibawah `button` menampilkan kontennya dengan menggunakan `this.innerHTML`:
 
 ```html height=50 autorun
-<button onclick="alert(this.innerHTML)">Click me</button>
+<button onclick="alert(this.innerHTML)">Klik saya</button>
 ```
 
-## Possible mistakes
+## Kemungkinan kesalahan
 
-If you're starting to work with events -- please note some subtleties.
+Jika kamu mulai bekerja dengan menggunakan peristiwa -- harap perhatikan beberapa detail. 
 
-We can set an existing function as a handler:
+Kita bisa mengatur sebuah fungsi yang telah ada sebagai pengendali:
 
 ```js
-function sayThanks() {
-  alert('Thanks!');
+function ucapkanTerimaKasih() {
+  alert('Terima Kasih!');
 }
 
-elem.onclick = sayThanks;
+elem.onclick = ucapkanTerimaKasih;
 ```
-
-But be careful: the function should be assigned as `sayThanks`, not `sayThanks()`.
+Tetapi berhati-hatilah: fungsi harus di atur sebagai `ucapkanTerimaKasih`, bukan `ucapkanTerimaKasih()`.
 
 ```js
-// right
-button.onclick = sayThanks;
+// benar
+button.onclick = ucapkanTerimaKasih;
 
-// wrong
-button.onclick = sayThanks();
+// salah
+button.onclick = ucapkanTerimaKasih();
 ```
+Jika kita tambahkan tanda kurung, maka `ucapkanTerimaKasih()` menjadi proses pemanggilan fungsi. Jadi baris terakhir akan mengambil *hasil* dari pengeksekusian fungsi, yang merupakan `tidak terdefinisi` (_`undefined`_ — karena fungsi tidak mengembalikan apapun), dan mengatur nilai itu ke peristiwa `onclick`. Maka peristiwa tersebut tidak akan menjalankan apapun.
 
-If we add parentheses, then `sayThanks()` becomes is a function call. So the last line actually takes the *result* of the function execution, that is `undefined` (as the function returns nothing), and assigns it to `onclick`. That doesn't work.
-
-...On the other hand, in the markup we do need the parentheses:
+...Namun, jika kita menambahkan secara langsung ke HTML, maka kita harus menambahkan tanda kurung:
 
 ```html
-<input type="button" id="button" onclick="sayThanks()">
+<input type="button" id="button" onclick="ucapkanTerimaKasih()">
 ```
 
-The difference is easy to explain. When the browser reads the attribute, it creates a handler function with body from the attribute content.
+Perbedaannya mudah untuk di jelaskan. Pada saat peramban membaca atribute, peramban akan membuat fungsi pengendali yang didalamnya terdapat konten dari atribut tersebut.
 
-So the markup generates this property:
+Jadi HTML akan menghasilkan properti ini:
 ```js
 button.onclick = function() {
 *!*
-  sayThanks(); // <-- the attribute content goes here
+  ucapkanTerimaKasih(); // <-- konten dari atribut akan ditambahkan kesini
 */!*
 };
 ```
 
-**Don't use `setAttribute` for handlers.**
+**Jangan gunakna `setAttribute` untuk membuat pengendali.**
 
-Such a call won't work:
+Penggunaan tersebut tidak akan berjalan:
 
 ```js run no-beautify
-// a click on <body> will generate errors,
-// because attributes are always strings, function becomes a string
+// sebuah klik pada <body> akan menghasilakn eror
+// karena atribute akan selalu menjadi teks (string), dimana fungsi akan menjadi teks (string)
 document.body.setAttribute('onclick', function() { alert(1) });
 ```
 
-**DOM-property case matters.**
+**Properti DOM mementingkan kesamaan huruf.**
 
-Assign a handler to `elem.onclick`, not `elem.ONCLICK`, because DOM properties are case-sensitive.
+Atur sebuah pengendali ke `elem.onclick`, bukan `elem.ONCLICK`, karena properti DOM mementingkan kesamaan huruf (_case-sensitive_).
 
-## addEventListener
+## tambahkanPendengarPeristiwa (_addEventListener_)
 
-The fundamental problem of the aforementioned ways to assign handlers -- we can't assign multiple handlers to one event.
+Salah satu masalah mendasar pada cara mengatur pengedali sebelumnya -- kita tidak bisa mengatur beberapa pengendali pada sebuah peristiwa.
 
-Let's say, one part of our code wants to highlight a button on click, and another one wants to show a message on the same click.
+Mari kata, sebuah bagian pada koded kita ingin menyoroti sebuah tombol pada saat diklik, dan satu lagi ingin menunjukan seubah pesan pada proses pengklikan tersebut.
 
-We'd like to assign two event handlers for that. But a new DOM property will overwrite the existing one:
+Kita ingin mengatur dua pengendali peristiwa untuk hal tersebut. Tapi properti DOM yang baru akan menimpa properti DOM yang telah ada.
 
 ```js no-beautify
 input.onclick = function() { alert(1); }
 // ...
-input.onclick = function() { alert(2); } // replaces the previous handler
+input.onclick = function() { alert(2); } // menganti pengedali yang lama
 ```
+Pengembang dari standar situs web paham sejak lama, dan menyarankan cara alternatif untuk mengelola pengendali menggunakan metode khusus `addEventListener` dan `removeEventListener`. Kedua hal tersebut tidak memiliki permasalahan seperti itu.
 
-Developers of web standards understood that long ago and suggested an alternative way of managing handlers using special methods `addEventListener` and `removeEventListener`. They are free of such a problem.
-
-The syntax to add a handler:
+Sintaks (_syntax_) untuk menambahkan sebuah pengendali:
 
 ```js
 element.addEventListener(event, handler, [options]);
 ```
 
-`event`
-: Event name, e.g. `"click"`.
+`peristiwa`/`event`
+: nama Peristiwa, contoh `"click"`.
 
-`handler`
-: The handler function.
+`pengendali`/`handler`
+: pengendali fungsi.
 
-`options`
-: An additional optional object with properties:
-    - `once`: if `true`, then the listener is automatically removed after it triggers.
-    - `capture`: the phase where to handle the event, to be covered later in the chapter <info:bubbling-and-capturing>. For historical reasons, `options` can also be `false/true`, that's the same as `{capture: false/true}`.
-    - `passive`: if `true`, then the handler will not call `preventDefault()`, we'll explain that later in <info:default-browser-action>.
+`pilihan`/`options`
+: sebuah objek pilihan tambahan dengan properti:
+    - `once`: jika `true`, maka pendengar akan secara otomatis dihapus setelah terpicu.
+    - `capture`: fase dimana untuk menangani peristiwa, akan di bahas lebih lanjut pada bab <info:bubbling-and-capturing>. untuk alasan sejarah, `options` bisa juga diatur `false/true`, sama halnya dengan `{capture: false/true}`.
+    - `passive`: jika `true`, maka pengendali tidak akan memanggil `preventDefault()`, kita akan membahas lebih lanjut pada bab <info:default-browser-action>.
 
-To remove the handler, use `removeEventListener`:
+Untuk menghapus pengendali, gunakan `removeEventListener`:
 
 ```js
 element.removeEventListener(event, handler, [options]);
 ```
 
-````warn header="Removal requires the same function"
-To remove a handler we should pass exactly the same function as was assigned.
+````warn header="Penghapusan membutuhkan fungsi yang sama"
+Untuk menghapus sebuah pengendali kita melewatkan fungsi yang sama dengan yang kita atur.
 
-This doesn't work:
+Ini tidak akan berfungsi:
 
 ```js no-beautify
-elem.addEventListener( "click" , () => alert('Thanks!'));
+elem.addEventListener( "click" , () => alert('Terima Kasih!'));
 // ....
-elem.removeEventListener( "click", () => alert('Thanks!'));
+elem.removeEventListener( "click", () => alert('Terima Kasih!'));
 ```
 
-The handler won't be removed, because `removeEventListener` gets another function -- with the same code, but that doesn't matter, as it's a different function object.
+Pengedali tidak akan dihapus, karena `removeEventListener` mendapat sebuah fungsi lain -- dengan kode yang sama, tetapi hal tersebut tidak penting, karena itu merupakan objek fungsi yang berbeda.
 
-Here's the right way:
+Inilah cara yang benar:
 
 ```js
 function handler() {
-  alert( 'Thanks!' );
+  alert( 'Terima Kasih!' );
 }
 
 input.addEventListener("click", handler);
