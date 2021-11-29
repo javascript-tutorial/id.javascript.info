@@ -350,20 +350,20 @@ Ini terjadi karena pada saat peramban membaca atribut, itu membuat sebuah penang
 ````
 
 
-## Object handlers: handleEvent
+## Objek penangan: handleEvent
 
-We can assign not just a function, but an object as an event handler using `addEventListener`. When an event occurs, its `handleEvent` method is called.
+Kita bisa mengatur bukan hanya fungsi, tapi sebuah objek sebagai penangan peristiwa menggunakan `addEventListener`. Pada saat sebuah peristiwa terjadi, Itu memanggil metode `handleEvent`. 
 
-For instance:
+Contohnya:
 
 
 ```html run
-<button id="elem">Click me</button>
+<button id="elem">Klik saya</button>
 
 <script>
   let obj = {
     handleEvent(event) {
-      alert(event.type + " at " + event.currentTarget);
+      alert(event.type + " pada " + event.currentTarget);
     }
   };
 
@@ -371,23 +371,23 @@ For instance:
 </script>
 ```
 
-As we can see, when `addEventListener` receives an object as the handler, it calls `obj.handleEvent(event)` in case of an event.
+Seperti yang bisa kita lihat, pada saat `addEventListener` menerima objek sebagai penangan, itu akan memanggil `obj.handleEvent(event)` jika sebuah peristiwa terjadi.
 
-We could also use a class for that:
+Kita juga dapat menggunakan Kelas (_class_) untuk hal itu:
 
 
 ```html run
-<button id="elem">Click me</button>
+<button id="elem">Klik saya</button>
 
 <script>
   class Menu {
     handleEvent(event) {
       switch(event.type) {
         case 'mousedown':
-          elem.innerHTML = "Mouse button pressed";
+          elem.innerHTML = "Tombol mouse ditekan";
           break;
         case 'mouseup':
-          elem.innerHTML += "...and released.";
+          elem.innerHTML += "...dan dilepas.";
           break;
       }
     }
@@ -401,12 +401,12 @@ We could also use a class for that:
 </script>
 ```
 
-Here the same object handles both events. Please note that we need to explicitly setup the events to listen using `addEventListener`. The `menu` object only gets `mousedown` and `mouseup` here, not any other types of events.
+Disini objek yang sama menanggani kedua peristiwa. Tolong di catat bahwa kita harus secara eksplisit mengatur peristiwa untuk mendengar menggunakan `addEventListener`. Objek `menu` hanya dapat menerima `mousedown` dan `mouseup` pada contoh diatas, bukan tipe peristiwa lainnya.
 
-The method `handleEvent` does not have to do all the job by itself. It can call other event-specific methods instead, like this:
+Metode `handleEvent` tidak harus melakukan semua proses secara mandiri. Itu dapat memanggil metode lain yang menanggani peristiwa secara spesifik, seperti ini:
 
 ```html run
-<button id="elem">Click me</button>
+<button id="elem">Klik saya</button>
 
 <script>
   class Menu {
@@ -417,11 +417,11 @@ The method `handleEvent` does not have to do all the job by itself. It can call 
     }
 
     onMousedown() {
-      elem.innerHTML = "Mouse button pressed";
+      elem.innerHTML = "Tombol mouse ditekan";
     }
 
     onMouseup() {
-      elem.innerHTML += "...and released.";
+      elem.innerHTML += "...dan dilepas.";
     }
   }
 
@@ -431,22 +431,22 @@ The method `handleEvent` does not have to do all the job by itself. It can call 
 </script>
 ```
 
-Now event handlers are clearly separated, that may be easier to support.
+Sekarang penangan peristiwa berbeda, dan memudahkan proses pendukungan.
 
-## Summary
+## Ringkasan
 
-There are 3 ways to assign event handlers:
+Ada 3 cara untuk mengatur penangan peristiwa:
 
-1. HTML attribute: `onclick="..."`.
-2. DOM property: `elem.onclick = function`.
-3. Methods: `elem.addEventListener(event, handler[, phase])` to add, `removeEventListener` to remove.
+1. Atribute HTML: `onclick="..."`
+2. Properti DOM: `elem.onclick = function`.
+3. Metode: `elem.addEventListener(event, handler[, phase])` untuk menambahkan, `removeEventListener` untuk menghapuskan.
 
-HTML attributes are used sparingly, because JavaScript in the middle of an HTML tag looks a little bit odd and alien. Also can't write lots of code in there.
+Atribute HTML digunakan untuk kasus tertentu, karena Javascript ditengah tag HTML akan kelihatan aneh. Dan juga akan sulit untuk menulis banyak kode di dalam tag HTML.
 
-DOM properties are ok to use, but we can't assign more than one handler of the particular event. In many cases that limitation is not pressing.
+Properti DOM boleh digunakan, tapi kita tidak dapat mengatur lebih dari 1 penangan untuk peristiwa tertentu. Namun tidak sering kita membutuhkan lebih dari 2 penangan.
 
-The last way is the most flexible, but it is also the longest to write. There are few events that only work with it, for instance `transitionend` and `DOMContentLoaded` (to be covered). Also `addEventListener` supports objects as event handlers. In that case the method `handleEvent` is called in case of the event.
+Cara terakhir lebih fleksible, tapi itu juga merupakan cara terpanjang untuk menulis. Ada beberapa peristiwa yang hanya akan bisa digunakan pada cara ini, seperti misalnya `transitionend` dan `DOMContentLoaded` (akan di bahas). Dan juga objek dapat digunakan sebagai penangan pada `addEventListener`. Pada kasus ini metode `handleEvent` akan dipanggil pada saat peristiwa terjadi.
 
-No matter how you assign the handler -- it gets an event object as the first argument. That object contains the details about what's happened.
+Tidak penting bagaimana kamu mengatur penangan -- itu akan mendapat sebuah objek peristiwa sebagai argumen pertama. Objek itu memiliki detail tentang apa yang terjadi.
 
-We'll learn more about events in general and about different types of events in the next chapters.
+Kita akan mempelajari lebih lanjut tentang peristiwa secara umum dan perbedaan tipe peristiwa di bab selanjutnya.
