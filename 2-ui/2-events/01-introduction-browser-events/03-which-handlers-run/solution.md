@@ -1,8 +1,8 @@
-The answer: `1` and `2`.
+Jawabannya: `1` dan `2`.
 
-The first handler triggers, because it's not removed by `removeEventListener`. To remove the handler we need to pass exactly the function that was assigned. And in the code a new function is passed, that looks the same, but is still another function.
+Pengendali pertama dijalankan, karena tidak di hapuskan oleh `removeEventListener`. Untuk menghapuskan pengendali kita harus meneruskan secara tepat fungsi yang telah di atur. Dan pada kode sebuah fungsi baru di teruskan, terlihat sama, tapi berbeda fungsi.
 
-To remove a function object, we need to store a reference to it, like this:
+Untuk menghapuskan objek fungsi, kita harus menyimpan refensi ke fungsi tersebut, seperti ini:
 
 ```js
 function handler() {
@@ -13,4 +13,4 @@ button.addEventListener("click", handler);
 button.removeEventListener("click", handler);
 ```
 
-The handler `button.onclick` works independently and in addition to `addEventListener`.
+Pengendali `button.onclick` bekerja secara sendiri dan sebagai tambahan untuk `addEvenetListener`.

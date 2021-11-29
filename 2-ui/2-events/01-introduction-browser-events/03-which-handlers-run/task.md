@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Which handlers run?
+# Pengendali mana yang dijalankan?
 
-There's a button in the variable. There are no handlers on it.
+Ada sebuah tombol pada variable. Tidak ada pengedali di tombol tersebut.
 
-Which handlers run on click after the following code? Which alerts show up?
+Manakah pengendali yang dijalankan pada saat klik pada kode berikut ini? Manakah `alert` yang akan ditunjukan?
 
 ```js no-beautify
 button.addEventListener("click", () => alert("1"));

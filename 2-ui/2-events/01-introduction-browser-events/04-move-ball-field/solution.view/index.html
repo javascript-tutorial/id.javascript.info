@@ -27,7 +27,7 @@
 
 <body style="height:2000px">
 
-  Click on a field to move the ball there.
+  Klik pada lapangan untuk memindahkan bola kesana.
   <br>
 
 
@@ -39,29 +39,29 @@
   <script>
     field.onclick = function(event) {
 
-      // window-relative field coordinates
+      // Koordinat lapangan relatif terhadap jendela (window)
       let fieldCoords = this.getBoundingClientRect();
 
-      // the ball has position:absolute, the field: position:relative
-      // so ball coordinates are relative to the field inner left-upper corner
+      // bola memiliki position:absolute, lapangan: position:relative
+      // jadi koordinat bola relatif terhadap sudut dalam kiri atas lapangan
       let ballCoords = {
         top: event.clientY - fieldCoords.top - field.clientTop - ball.clientHeight / 2,
         left: event.clientX - fieldCoords.left - field.clientLeft - ball.clientWidth / 2
       };
 
-      // prevent crossing the top field boundary
+      // mencegah melewati batas atas lapangan
       if (ballCoords.top < 0) ballCoords.top = 0;
 
-      // prevent crossing the left field boundary
+      // mencegah melewati kiri atas lapangan
       if (ballCoords.left < 0) ballCoords.left = 0;
 
 
-      // // prevent crossing the right field boundary
+      // mencegah melewati batas kanan lapangan
       if (ballCoords.left + ball.clientWidth > field.clientWidth) {
         ballCoords.left = field.clientWidth - ball.clientWidth;
       }
 
-      // prevent crossing the bottom field boundary
+      // mencegah melewati batas bawah lapangan
       if (ballCoords.top + ball.clientHeight > field.clientHeight) {
         ballCoords.top = field.clientHeight - ball.clientHeight;
       }
