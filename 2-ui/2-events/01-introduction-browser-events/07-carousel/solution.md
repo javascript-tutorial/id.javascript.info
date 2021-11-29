@@ -1,17 +1,18 @@
-The images ribbon can be represented as `ul/li` list of images `<img>`.
+Pita gambar bisa di diwakili sebagai `ul/li` daftar dari gambar `<img>`.
 
-Normally, such a ribbon is wide, but we put a fixed-size `<div>` around to "cut" it, so that only a part of the ribbon is visible:
+Biasanya, pita seperti itu sangat luas, tapi kita akan menambahkan ukuran tetap pada `<div>` untuk "memotong" pita, jadi hanya sebagian dari pita yang kelihatan:
 
 ![](carousel1.svg)
 
-To make the list show horizontally we need to apply correct CSS properties for `<li>`, like `display: inline-block`.
+Untuk menampilkan daftar secara horisontal kita perlu menambahkan properti CSS yang benar pada `<li>`, seperti `display: inline-block`.
 
-For `<img>` we should also adjust `display`, because by default it's `inline`. There's extra space reserved under `inline` elements for "letter tails", so we can use `display:block` to remove it.
+Untuk `<img>` kita sebaiknya juga mengatur `display`, karena bawaanya merupakan `inline`. Ada 
+For `<img>` we should also adjust `display`, because by default it's `inline`. Ada ruang ekstra yang disediakan di bawah elemen `inline` untuk "ekor huruf", jadi kita bisa menggunakan `display:block` untuk menghapusnya.
 
-To do the scrolling, we can shift `<ul>`. There are many ways to do it, for instance by changing `margin-left` or (better performance) use `transform: translateX()`:
+Untuk membuat pengulirannya, kita bisa menggeser `<ul>`. Ada banyak cara untuk melakukannya, contohnya dengan menganti `margin-left` atau (performa lebih baik) gunakan `transform: translateX()`:
 
 ![](carousel2.svg)
 
-The outer `<div>` has a fixed width, so "extra" images are cut.
+`<div>` luar memiliki lebar tetap, jadi gambar "ekstra" dipotong.
 
-The whole carousel is a self-contained "graphical component" on the page, so we'd better wrap it into a single `<div class="carousel">` and style things inside it.
+Keseluruhan korsel(_carousel_) adalah "komponen grafis" mandiri pada halaman, jadi sebaiknya kita membungkusnya menjadi satu `<div class="carousel">` dan menata elemen-elemen ke dalamnya.
