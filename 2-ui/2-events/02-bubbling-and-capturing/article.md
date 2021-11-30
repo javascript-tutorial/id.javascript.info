@@ -1,18 +1,18 @@
-# Bubbling and capturing
+# Menggelembung (_bubbling_) dan menangkap (_capturing_)
 
-Let's start with an example.
+Ayo mulai dengan sebuah contoh.
 
-This handler is assigned to `<div>`, but also runs if you click any nested tag like `<em>` or `<code>`:
+Sebuah penangan (_handler_) di atur ke `<div>`, tapi juga dijalankan jika kita klik salah satu tag bawaan seperti `<em>` or `<code>`:
 
 ```html autorun height=60
-<div onclick="alert('The handler!')">
-  <em>If you click on <code>EM</code>, the handler on <code>DIV</code> runs.</em>
+<div onclick="alert('Penangan (handler)!')">
+  <em>Jika kamu menekan pada <code>EM</code>, penangan pada <code>DIV</code> akan berjalan.</em>
 </div>
 ```
 
-Isn't it a bit strange? Why does the handler on `<div>` run if the actual click was on `<em>`?
+Bukan kah itu sedikit aneh? kenapa penangan (_handler_) pada `<div>` berjalan padahal elemen yang di klik adalah `<em>`?
 
-## Bubbling
+## Menggelembung (_bubbling_)
 
 The bubbling principle is simple.
 
