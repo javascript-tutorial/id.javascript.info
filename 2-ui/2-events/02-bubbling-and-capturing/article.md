@@ -14,11 +14,11 @@ Bukan kah itu sedikit aneh? kenapa penangan (_handler_) pada `<div>` berjalan pa
 
 ## Menggelembung (_bubbling_)
 
-The bubbling principle is simple.
+Prinsip menggelembung (_bubbling_) itu sederhana.
 
-**When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.**
+**Pada saat sebuah peristiwa terjadi ke sebuah elemen, peristiwa itu akan menjalankan penangan (_handler_) yang ada pada elemen itu, kemudian pada elemen orang tua (_parent_), dan seterusnya hingga sampai ke elemen yang paling atas (_ancestors_).**
 
-Let's say we have 3 nested elements `FORM > DIV > P` with a handler on each of them:
+Bayangkan kita memiliki tiga elemen bersarang `FORM > DIV > P` dengan penagan (_handler_) pada setiap elemen:
 
 ```html run autorun
 <style>
@@ -34,16 +34,15 @@ Let's say we have 3 nested elements `FORM > DIV > P` with a handler on each of t
   </div>
 </form>
 ```
-
-A click on the inner `<p>` first runs `onclick`:
-1. On that `<p>`.
-2. Then on the outer `<div>`.
-3. Then on the outer `<form>`.
-4. And so on upwards till the `document` object.
+Sebuah klik pada bagian dalam `<p>` akan menjalankan `onclick`:
+1. Yang ada pada `<p>`.
+2. Kemudian pada `<div>`.
+3. Kemudian pada `<form>`.
+4. Dan seterusnya hingga sampai ke objek `document`.
 
 ![](event-order-bubbling.svg)
 
-So if we click on `<p>`, then we'll see 3 alerts: `p` -> `div` -> `form`.
+Jadi jika kita klik pada `<p>`, kemudia kita akan melihat 3 buah peringatan (_alerts_): `p` -> `div` -> `form`.
 
 The process is called "bubbling", because events "bubble" from the inner element up through parents like a bubble in the water.
 
