@@ -44,26 +44,26 @@ Sebuah klik pada bagian dalam `<p>` akan menjalankan `onclick`:
 
 Jadi jika kita klik pada `<p>`, kemudia kita akan melihat 3 buah peringatan (_alerts_): `p` -> `div` -> `form`.
 
-The process is called "bubbling", because events "bubble" from the inner element up through parents like a bubble in the water.
+Proses ini disebut dengan "menggelembung (_bubbling_)", karena peristiwa akan "mengelembung (_bubble_)" dari bagian dalam elemen ke atas melalui elemen orang tua (_parents_) seperti sebuah gelembung di air.
 
-```warn header="*Almost* all events bubble."
-The key word in this phrase is "almost".
+```warn header="*Hampir* semua peristiwa bergelembung."
+Kata kunci pada kata tersebut adalah "hampir".
 
-For instance, a `focus` event does not bubble. There are other examples too, we'll meet them. But still it's an exception, rather than a rule, most events do bubble.
+Contohnya, peristiwa `focus` tidak bergelembung. Masih ada contoh lain, kita akan membahas mereka. Tapi tetap itu hanya pengecualian, dan bukan aturan baku, hampir semua peristiwa mengelembung.
 ```
 
 ## event.target
 
-A handler on a parent element can always get the details about where it actually happened.
+Sebuah penangan (_handler_) pada elemen orang tua bisa selalu mendapat detail tentang dimana kejadian itu terjadi.
 
-**The most deeply nested element that caused the event is called a *target* element, accessible as `event.target`.**
+**elemen bersarang yang mengakibatkan peristiwa (_event_) di panggil di sebut sebuah *target* elemen, diakses dengan menggunakan `event.target`.**
 
-Note the differences from `this` (=`event.currentTarget`):
+Catat perbedaan dari `this` (=`event.currentTarget`):
 
-- `event.target` -- is the "target" element that initiated the event, it doesn't change through the bubbling process.
-- `this` -- is the "current" element, the one that has a currently running handler on it.
+- `event.target` -- adalah "target" elemen yang menginisialisasi peristiwa (_event_), dan tidak berubah pada proses pengelembungan.
+- `this` -- adalah elemen tersebut, elemen yang sedang menjalankan penangan (_handler_).
 
-For instance, if we have a single handler `form.onclick`, then it can "catch" all clicks inside the form. No matter where the click happened, it bubbles up to `<form>` and runs the handler.
+Contohnya, jika sebuah penangan (_handler_) `form.onclick`, kemudian form itu akan "menangkap" semua klik yang terjadi didalam form. Tidak peduli dimana klik itu terjadi, klik itu akan mengelembung ke `<form>` dan akan menjalankan penangan (_handler_).
 
 In `form.onclick` handler:
 
