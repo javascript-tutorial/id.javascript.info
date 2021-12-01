@@ -26,19 +26,19 @@ Berikut ini daftar peristiwa DOM yang paling berguna:
 
 Masih banyak lagi peristiwa lain. Kita akan membahas lebih detail tentang peristiwa tertentu pada bab selanjutnya.
 
-## Pengendali peristiwa (_Event handlers_)
+## Penangan peristiwa (_Event handlers_)
 
-Untuk menanggapi sebuah perristiwa kita dapat membuat pengendali -- sebuah fungsi yang akan dijalankan pada saat peristiwa itu terjadi.
+Untuk menanggapi sebuah perristiwa kita dapat membuat penangan -- sebuah fungsi yang akan dijalankan pada saat peristiwa itu terjadi.
 
-Pengendali adalah sebuah cara untuk menjalankan kode Javascript pada saat pengguna melakukan sesuatu.
+penangan adalah sebuah cara untuk menjalankan kode Javascript pada saat pengguna melakukan sesuatu.
 
 Ada banyak cara untuk membuat sebuah handler. Mari kita pelajari, dimulai dari yang paling sederhana.
 
 ### Atribut HTML (_HTML-attribute_)
 
-Sebuah pengendali bisa di atur pada HTML dengan menggunakan atribute `on<event>`.
+Sebuah penangan bisa di atur pada HTML dengan menggunakan atribute `on<event>`.
 
-Contohnya, untuk mengatur sebuah pengendali `klik` untuk `input`, kita bisa gunakan `onclick`, seperti ini:
+Contohnya, untuk mengatur sebuah penangan `klik` untuk `input`, kita bisa gunakan `onclick`, seperti ini:
 
 ```html run
 <input value="Klik saya" *!*onclick="alert('Klik!')"*/!* type="button">
@@ -68,7 +68,7 @@ Seperti yang kita ketahui, atribut HTML tidak _case-sensitive_, jadi `ONCLICK`, 
 
 ### Properti DOM (_DOM property_)
 
-Sebuah pengendali bisa di atur menggunakan properti DOM`on<event>`.
+Sebuah penangan bisa di atur menggunakan properti DOM`on<event>`.
 
 Contohnya, `elem.onclick`:
 
@@ -83,7 +83,7 @@ Contohnya, `elem.onclick`:
 </script>
 ```
 
-Jika pengendali di atur menggunakan atribut-HTML maka peramban membaca, membuat sebuah fungsi baru dari konten atribute dan menulisnya pada properti DOM.
+Jika penangan di atur menggunakan atribut-HTML maka peramban membaca, membuat sebuah fungsi baru dari konten atribute dan menulisnya pada properti DOM.
 
 Jadi cara ini sebenarnya sama dengan yang sebelumnya.
 
@@ -109,26 +109,26 @@ Kedua kode ini memiliki cara kerja yang sama:
 
 Pada contoh pertama, atribut HTML digunakan untuk menginisialisasikan `tombol.onclick`, sedangkan pada contoh kedua -- _script_, dan hanya itu perbedaanya.
 
-**Karena hanya ada satu properti `onclick`, kita tidak bisa mengatur lebih dari satu pengendali peristiwa.**
+**Karena hanya ada satu properti `onclick`, kita tidak bisa mengatur lebih dari satu penangan peristiwa.**
 
-Pada contoh dibawah menambah sebuah pengendali menggunakan Javascript akan menimpa pengendali yang sudah ada:
+Pada contoh dibawah menambah sebuah penangan menggunakan Javascript akan menimpa penangan yang sudah ada:
 
 ```html run height=50 autorun
 <input type="button" id="elem" onclick="alert('Sebelum')" value="Klik saya">
 <script>
 *!*
-  elem.onclick = function() { // menimpa pengendali yang sudah ada
+  elem.onclick = function() { // menimpa penangan yang sudah ada
     alert('Sesudah'); // hanya ini yang akan ditunjukan
   };
 */!*
 </script>
 ```
 
-Untuk menghapus sebuah pengendali -- atur `elem.onclick = null`
+Untuk menghapus sebuah penangan -- atur `elem.onclick = null`
 
 ## Mengakses elemen: this
 
-nilai dari `this` didalam pengendali adalah elemen tersebut. Elemen yang dimana pengendali itu berada.
+nilai dari `this` didalam penangan adalah elemen tersebut. Elemen yang dimana penangan itu berada.
 
 Pada kode dibawah `button` menampilkan kontennya dengan menggunakan `this.innerHTML`:
 
@@ -140,7 +140,7 @@ Pada kode dibawah `button` menampilkan kontennya dengan menggunakan `this.innerH
 
 Jika kamu mulai bekerja dengan menggunakan peristiwa -- harap perhatikan beberapa detail. 
 
-Kita bisa mengatur sebuah fungsi yang telah ada sebagai pengendali:
+Kita bisa mengatur sebuah fungsi yang telah ada sebagai penangan:
 
 ```js
 function ucapkanTerimaKasih() {
@@ -168,7 +168,7 @@ Jika kita tambahkan tanda kurung, maka `ucapkanTerimaKasih()` menjadi proses pem
 <input type="button" id="button" onclick="ucapkanTerimaKasih()">
 ```
 
-Perbedaannya mudah untuk di jelaskan. Pada saat peramban membaca atribute, peramban akan membuat fungsi pengendali yang didalamnya terdapat konten dari atribut tersebut.
+Perbedaannya mudah untuk di jelaskan. Pada saat peramban membaca atribute, peramban akan membuat fungsi penangan yang didalamnya terdapat konten dari atribut tersebut.
 
 Jadi HTML akan menghasilkan properti ini:
 ```js
@@ -179,7 +179,7 @@ button.onclick = function() {
 };
 ```
 
-**Jangan gunakna `setAttribute` untuk membuat pengendali.**
+**Jangan gunakna `setAttribute` untuk membuat penangan.**
 
 Penggunaan tersebut tidak akan berjalan:
 
@@ -191,15 +191,15 @@ document.body.setAttribute('onclick', function() { alert(1) });
 
 **Properti DOM mementingkan kesamaan huruf.**
 
-Atur sebuah pengendali ke `elem.onclick`, bukan `elem.ONCLICK`, karena properti DOM mementingkan kesamaan huruf (_case-sensitive_).
+Atur sebuah penangan ke `elem.onclick`, bukan `elem.ONCLICK`, karena properti DOM mementingkan kesamaan huruf (_case-sensitive_).
 
 ## tambahkanPendengarPeristiwa (_addEventListener_)
 
-Salah satu masalah mendasar pada cara mengatur pengedali sebelumnya -- kita tidak bisa mengatur beberapa pengendali pada sebuah peristiwa.
+Salah satu masalah mendasar pada cara mengatur pengedali sebelumnya -- kita tidak bisa mengatur beberapa penangan pada sebuah peristiwa.
 
 Mari kata, sebuah bagian pada koded kita ingin menyoroti sebuah tombol pada saat diklik, dan satu lagi ingin menunjukan seubah pesan pada proses pengklikan tersebut.
 
-Kita ingin mengatur dua pengendali peristiwa untuk hal tersebut. Tapi properti DOM yang baru akan menimpa properti DOM yang telah ada.
+Kita ingin mengatur dua penangan peristiwa untuk hal tersebut. Tapi properti DOM yang baru akan menimpa properti DOM yang telah ada.
 
 ```js no-beautify
 input.onclick = function() { alert(1); }
@@ -207,9 +207,9 @@ input.onclick = function() { alert(1); }
 input.onclick = function() { alert(2); } // menganti pengedali yang lama
 ```
 
-Pengembang dari standar situs web paham sejak lama, dan menyarankan cara alternatif untuk mengelola pengendali menggunakan metode khusus `addEventListener` dan `removeEventListener`. Kedua hal tersebut tidak memiliki permasalahan seperti itu.
+Pengembang dari standar situs web paham sejak lama, dan menyarankan cara alternatif untuk mengelola penangan menggunakan metode khusus `addEventListener` dan `removeEventListener`. Kedua hal tersebut tidak memiliki permasalahan seperti itu.
 
-Sintaks (_syntax_) untuk menambahkan sebuah pengendali:
+Sintaks (_syntax_) untuk menambahkan sebuah penangan:
 
 ```js
 element.addEventListener(event, handler, [options]);
@@ -218,23 +218,23 @@ element.addEventListener(event, handler, [options]);
 `peristiwa`/`event`
 : nama Peristiwa, contoh `"click"`.
 
-`pengendali`/`handler`
-: pengendali fungsi.
+`penangan`/`handler`
+: penangan fungsi.
 
 `pilihan`/`options`
 : sebuah objek pilihan tambahan dengan properti:
     - `once`: jika `true`, maka pendengar akan secara otomatis dihapus setelah terpicu.
     - `capture`: fase dimana untuk menangani peristiwa, akan di bahas lebih lanjut pada bab <info:bubbling-and-capturing>. untuk alasan sejarah, `options` bisa juga diatur `false/true`, sama halnya dengan `{capture: false/true}`.
-    - `passive`: jika `true`, maka pengendali tidak akan memanggil `preventDefault()`, kita akan membahas lebih lanjut pada bab <info:default-browser-action>.
+    - `passive`: jika `true`, maka penangan tidak akan memanggil `preventDefault()`, kita akan membahas lebih lanjut pada bab <info:default-browser-action>.
 
-Untuk menghapus pengendali, gunakan `removeEventListener`:
+Untuk menghapus penangan, gunakan `removeEventListener`:
 
 ```js
 element.removeEventListener(event, handler, [options]);
 ```
 
 ````warn header="Penghapusan membutuhkan fungsi yang sama"
-Untuk menghapus sebuah pengendali kita melewatkan fungsi yang sama dengan yang kita atur.
+Untuk menghapus sebuah penangan kita melewatkan fungsi yang sama dengan yang kita atur.
 
 Ini tidak akan berfungsi:
 
@@ -258,112 +258,112 @@ input.addEventListener("click", handler);
 input.removeEventListener("click", handler);
 ```
 
-Harap dicatat -- Jika kita tidak menyimpan fungsi tersebut kedalam variable, maka kita tidak bisa menghapusnya. Tidak ada cara untuk "membaca kembali" pengendali yang di atur pada `addEventListener`.
+Harap dicatat -- Jika kita tidak menyimpan fungsi tersebut kedalam variable, maka kita tidak bisa menghapusnya. Tidak ada cara untuk "membaca kembali" penangan yang di atur pada `addEventListener`.
 ````
 
-Beberapa pemanggilan ke `addEventListener` mengijinkan untuk menambahkan beberapa pengendali, seperti ini:
+Beberapa pemanggilan ke `addEventListener` mengijinkan untuk menambahkan beberapa penangan, seperti ini:
 
 ```html run no-beautify
 <input id="elem" type="button" value="Klik saya"/>
 
 <script>
-  function pengendali1() {
+  function penangan1() {
     alert('Terima Kasih!');
   };
 
-  function pengendali2() {
+  function penangan2() {
     alert('Terima Kasih lagi!');
   }
 
 *!*
   elem.onclick = () => alert("Halo");
-  elem.addEventListener("click", pengendali1); // Terima Kasih!
-  elem.addEventListener("click", pengendali2); // Terima Kasih lagi!
+  elem.addEventListener("click", penangan1); // Terima Kasih!
+  elem.addEventListener("click", penangan2); // Terima Kasih lagi!
 */!*
 </script>
 ```
 
-As we can see in the example above, we can set handlers *both* using a DOM-property and `addEventListener`. But generally we use only one of these ways.
+Seperti yang bisa kita lihat pada contoh di atas, kita bisa mengatur *kedua* penangan menggunakan properti DOM dan `addEventListener`. Tapi pada umumnya kita hanya akan menggunakan salah satu.
 
-````warn header="For some events, handlers only work with `addEventListener`"
-There exist events that can't be assigned via a DOM-property. Only with `addEventListener`.
+````warn header="Untuk beberapa peristiwa, penangan bekerja hanya dengan `addEventListener`"
+Ada beberapa peristiwa yang tidak dapat di atur menggunakan properti DOM. hanya dengan `addEventListener`.
 
-For instance, the `DOMContentLoaded` event, that triggers when the document is loaded and DOM is built.
+Contohnya, peristiwa `DOMContentLoaded`, yang akan terpicu pada saat dokumen telah berhasil di dimuat dan dibuat.
 
 ```js
-// will never run
+// tidak akan perna berjalan
 document.onDOMContentLoaded = function() {
-  alert("DOM built");
+  alert("DOM dibuat");
 };
 ```
 
 ```js
-// this way it works
+// akan berjalan dengan cara ini
 document.addEventListener("DOMContentLoaded", function() {
-  alert("DOM built");
+  alert("DOM dibuat");
 });
 ```
-So `addEventListener` is more universal. Although, such events are an exception rather than the rule.
+Jadi `addEventListener` lebih universal. Walaupun, aturan semacam itu merupakan sebuah pengecualian daripada aturan. 
 ````
 
-## Event object
+## Objek peristiwa (Event object)
 
-To properly handle an event we'd want to know more about what's happened. Not just a "click" or a "keydown", but what were the pointer coordinates? Which key was pressed? And so on.
+Untuk menangani peristiwa secara benar sebuah peristiwa kita mau tahu lebih tentang apa yang terjadi. Tidak hanya sebuah "klik" atau sebuah "penekanan tombol", tapi apa koordinat pointer? tombol mana yang di tekan? dan seterusnya.
 
-When an event happens, the browser creates an *event object*, puts details into it and passes it as an argument to the handler.
+Pada saat sebuah peristiwa terjadi, peramban akan membuat *objek peristiwa*, memasukan detail kedalamnya dan meneruskan peristiwa tersebut ke penangan sebagai sebuah argumen.
 
-Here's an example of getting pointer coordinates from the event object:
+Ini merupakan contoh cara untuk mendapat koordinat pointer dari objek peristiwa:
 
 ```html run
-<input type="button" value="Click me" id="elem">
+<input type="button" value="Klik saya" id="elem">
 
 <script>
-  elem.onclick = function(*!*event*/!*) {
-    // show event type, element and coordinates of the click
-    alert(event.type + " at " + event.currentTarget);
-    alert("Coordinates: " + event.clientX + ":" + event.clientY);
+  elem.onclick = function(*!*peristiwa*/!*) {
+    // tampilkan tipe peristiwa, elemen dan koordinat dari klik
+    alert(peristiwa.type + " pada " + peristiwa.currentTarget);
+    alert("Koordinat: " + peristiwa.clientX + ":" + peristiwa.clientY);
   };
 </script>
 ```
 
-Some properties of `event` object:
+Beberapa properti dari objek `peristiwa`:
 
-`event.type`
-: Event type, here it's `"click"`.
+`peristiwa.type`
+: Tipe peristiwa, disini tipenya `"click"`.
 
-`event.currentTarget`
-: Element that handled the event. That's exactly the same as `this`, unless the handler is an arrow function, or its `this` is bound to something else, then we can get the element from  `event.currentTarget`.
+`peristiwa.currentTarget`
+: elemen yang ditangani oleh peristiwa. Sama persis dengan `this`, kecuali jika penangan merupakan fungsi anak panah (arrow function), atau `this` sudah di atur untuk hal lain, maka kita dapat menggunakan `peristiwa.currentTarget` untuk mendapati elemen.
 
-`event.clientX / event.clientY`
-: Window-relative coordinates of the cursor, for pointer events.
+`peristiwa.clientX / peristiwa.clientY`
+: koordinat kursor relatif pada jendela (window), untuk peristwa pointer.
 
-There are more properties. Many of them depend on the event type: keyboard events have one set of properties, pointer events - another one, we'll study them later when we come to different events in details.
+Masih banyak lagi properti. Banyak yang tergantung pada tipe peristiwa: peristiwa papan ketik memilik satu set properti, peristiwa pointer - memiliki set yang berbeda, kita nanti akan mempelajari mereka pada saat kita mendapati peristiwa lainnya secara detail. 
 
-````smart header="The event object is also available in HTML handlers"
-If we assign a handler in HTML, we can also use the `event` object, like this:
+````smart header="Objek peristiwa juga ada pada penangan HTML"
+Jika kita mengatur penangan pada HTML, kita bisa juga menggunakan objek peristiwa, seperti ini:
 
 ```html autorun height=60
-<input type="button" onclick="*!*alert(event.type)*/!*" value="Event type">
+<input type="button" onclick="*!*alert(event.type)*/!*" value="Tipe Peristiwa">
 ```
 
-That's possible because when the browser reads the attribute, it creates a handler like this:  `function(event) { alert(event.type) }`. That is: its first argument is called `"event"`, and the body is taken from the attribute.
+Ini terjadi karena pada saat peramban membaca atribut, itu membuat sebuah penangan seperti ini: `function(event) {alert(event.type) }`. yaitu: argumen pertamanya disebut dengan `"event"`, dan tubuhnya di ambil dari atribut.
 ````
 
 
-## Object handlers: handleEvent
+## Objek penangan: handleEvent
 
-We can assign not just a function, but an object as an event handler using `addEventListener`. When an event occurs, its `handleEvent` method is called.
+Kita bisa mengatur bukan hanya fungsi, tapi sebuah objek sebagai penangan peristiwa menggunakan `addEventListener`. Pada saat sebuah peristiwa terjadi, Itu memanggil metode `handleEvent`. 
 
-For instance:
+Contohnya:
 
 
 ```html run
-<button id="elem">Click me</button>
+<button id="elem">Klik saya</button>
 
 <script>
   let obj = {
     handleEvent(event) {
-      alert(event.type + " at " + event.currentTarget);
+      alert(event.type + " pada " + event.currentTarget);
     }
   };
 
@@ -371,23 +371,23 @@ For instance:
 </script>
 ```
 
-As we can see, when `addEventListener` receives an object as the handler, it calls `obj.handleEvent(event)` in case of an event.
+Seperti yang bisa kita lihat, pada saat `addEventListener` menerima objek sebagai penangan, itu akan memanggil `obj.handleEvent(event)` jika sebuah peristiwa terjadi.
 
-We could also use a class for that:
+Kita juga dapat menggunakan Kelas (_class_) untuk hal itu:
 
 
 ```html run
-<button id="elem">Click me</button>
+<button id="elem">Klik saya</button>
 
 <script>
   class Menu {
     handleEvent(event) {
       switch(event.type) {
         case 'mousedown':
-          elem.innerHTML = "Mouse button pressed";
+          elem.innerHTML = "Tombol mouse ditekan";
           break;
         case 'mouseup':
-          elem.innerHTML += "...and released.";
+          elem.innerHTML += "...dan dilepas.";
           break;
       }
     }
@@ -401,12 +401,12 @@ We could also use a class for that:
 </script>
 ```
 
-Here the same object handles both events. Please note that we need to explicitly setup the events to listen using `addEventListener`. The `menu` object only gets `mousedown` and `mouseup` here, not any other types of events.
+Disini objek yang sama menanggani kedua peristiwa. Tolong di catat bahwa kita harus secara eksplisit mengatur peristiwa untuk mendengar menggunakan `addEventListener`. Objek `menu` hanya dapat menerima `mousedown` dan `mouseup` pada contoh diatas, bukan tipe peristiwa lainnya.
 
-The method `handleEvent` does not have to do all the job by itself. It can call other event-specific methods instead, like this:
+Metode `handleEvent` tidak harus melakukan semua proses secara mandiri. Itu dapat memanggil metode lain yang menanggani peristiwa secara spesifik, seperti ini:
 
 ```html run
-<button id="elem">Click me</button>
+<button id="elem">Klik saya</button>
 
 <script>
   class Menu {
@@ -417,11 +417,11 @@ The method `handleEvent` does not have to do all the job by itself. It can call 
     }
 
     onMousedown() {
-      elem.innerHTML = "Mouse button pressed";
+      elem.innerHTML = "Tombol mouse ditekan";
     }
 
     onMouseup() {
-      elem.innerHTML += "...and released.";
+      elem.innerHTML += "...dan dilepas.";
     }
   }
 
@@ -431,22 +431,22 @@ The method `handleEvent` does not have to do all the job by itself. It can call 
 </script>
 ```
 
-Now event handlers are clearly separated, that may be easier to support.
+Sekarang penangan peristiwa berbeda, dan memudahkan proses pendukungan.
 
-## Summary
+## Ringkasan
 
-There are 3 ways to assign event handlers:
+Ada 3 cara untuk mengatur penangan peristiwa:
 
-1. HTML attribute: `onclick="..."`.
-2. DOM property: `elem.onclick = function`.
-3. Methods: `elem.addEventListener(event, handler[, phase])` to add, `removeEventListener` to remove.
+1. Atribute HTML: `onclick="..."`
+2. Properti DOM: `elem.onclick = function`.
+3. Metode: `elem.addEventListener(event, handler[, phase])` untuk menambahkan, `removeEventListener` untuk menghapuskan.
 
-HTML attributes are used sparingly, because JavaScript in the middle of an HTML tag looks a little bit odd and alien. Also can't write lots of code in there.
+Atribute HTML digunakan untuk kasus tertentu, karena Javascript ditengah tag HTML akan kelihatan aneh. Dan juga akan sulit untuk menulis banyak kode di dalam tag HTML.
 
-DOM properties are ok to use, but we can't assign more than one handler of the particular event. In many cases that limitation is not pressing.
+Properti DOM boleh digunakan, tapi kita tidak dapat mengatur lebih dari 1 penangan untuk peristiwa tertentu. Namun tidak sering kita membutuhkan lebih dari 2 penangan.
 
-The last way is the most flexible, but it is also the longest to write. There are few events that only work with it, for instance `transitionend` and `DOMContentLoaded` (to be covered). Also `addEventListener` supports objects as event handlers. In that case the method `handleEvent` is called in case of the event.
+Cara terakhir lebih fleksible, tapi itu juga merupakan cara terpanjang untuk menulis. Ada beberapa peristiwa yang hanya akan bisa digunakan pada cara ini, seperti misalnya `transitionend` dan `DOMContentLoaded` (akan di bahas). Dan juga objek dapat digunakan sebagai penangan pada `addEventListener`. Pada kasus ini metode `handleEvent` akan dipanggil pada saat peristiwa terjadi.
 
-No matter how you assign the handler -- it gets an event object as the first argument. That object contains the details about what's happened.
+Tidak penting bagaimana kamu mengatur penangan -- itu akan mendapat sebuah objek peristiwa sebagai argumen pertama. Objek itu memiliki detail tentang apa yang terjadi.
 
-We'll learn more about events in general and about different types of events in the next chapters.
+Kita akan mempelajari lebih lanjut tentang peristiwa secara umum dan perbedaan tipe peristiwa di bab selanjutnya.

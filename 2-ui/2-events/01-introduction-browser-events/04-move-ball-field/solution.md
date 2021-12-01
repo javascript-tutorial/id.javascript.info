@@ -1,11 +1,11 @@
 
-First we need to choose a method of positioning the ball.
+Pertama kita perlu memilih metode untuk memposisikan bola.
 
-We can't use `position:fixed` for it, because scrolling the page would move the ball from the field.
+Kita tidak dapat menggunakan `position:fixed` untuk itu, karena pada saat halaman digulir bola akan berpindah dari lapangan.
 
-So we should use `position:absolute` and, to make the positioning really solid, make `field` itself positioned.
+Jadi kita sebaiknya menggunakan `position:absolute` dan, untuk membuat posisinya benar-benar tepat, buat lapangan(_`field`_) itu sendiri diposisikan.
 
-Then the ball will be positioned relatively to the field:
+Kemudian bola akan diposisikan relatif terhadap lapangan(_`field`_):
 
 ```css
 #field {
@@ -16,36 +16,36 @@ Then the ball will be positioned relatively to the field:
 
 #ball {
   position: absolute;
-  left: 0; /* relative to the closest positioned ancestor (field) */
+  left: 0; /* relatif ke posisi terdekat blok atas (lapangan) */
   top: 0;
-  transition: 1s all; /* CSS animation for left/top makes the ball fly */
+  transition: 1s all; /* Animasi CSS untuk left/top untuk membuat bolanya terbang */
 }
 ```
 
-Next we need to assign the correct `ball.style.left/top`. They contain field-relative coordinates now.
+Selanjutnya kita harus mengatur dengan benar `ball.style.left/top`. Mereka memiliki koordinat relatif ke lapangan(_`field`_) sekarang.
 
-Here's the picture:
+Berikut ini gambarnya:
 
 ![](move-ball-coords.svg)
 
-We have `event.clientX/clientY` -- window-relative coordinates of the click.
+Kita memiliki `event.clientX/clientY` -- koordinat relatif jendela (_window_) dari klik.
 
-To get field-relative `left` coordinate of the click, we can substract the field left edge and the border width:
+Untuk mendapatkan koordinat kiri relatif terhadap lapangan(_`field`_), kita kurangkan dengan nilai dari ujung dan pembatas kiri lapangan:
 
 ```js
 let left = event.clientX - fieldCoords.left - field.clientLeft;
 ```
 
-Normally, `ball.style.left` means the "left edge of the element" (the ball). So if we assign that `left`, then the ball edge, not center, would be under the mouse cursor.
+Biasanya, `ball.style.left` artinya "ujung kiri dari elemen" (bola). Jadi kita mengatur nilai `left`, kemudian ujung bola, bukan tengah, akan berada tepat dibawah kursor mouse.
 
-We need to move the ball half-width left and half-height up to make it center.
+Kita perlu memindahkan bola setengah lebar kiri dan setengah tinggi atas untuk membuatnya di tengah.
 
-So the final `left` would be:
+Jadi nilai terakhir `left` akan menjadi:
 
 ```js
 let left = event.clientX - fieldCoords.left - field.clientLeft - ball.offsetWidth/2;
 ```
 
-The vertical coordinate is calculated using the same logic.
+Koordinat vertikal di ukur dengan menggunakan logika yang sama.
 
-Please note that the ball width/height must be known at the time we access `ball.offsetWidth`. Should be specified in HTML or CSS.
+Harap dicatat bahwa lebar/tinggi bola harus di ketahui pada saat kita mengakses `ball.offsetWidth`. Sebaiknya di atur pada HTML atau CSS.

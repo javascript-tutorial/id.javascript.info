@@ -2,10 +2,10 @@ importance: 5
 
 ---
 
-# Create a sliding menu
+# Buat sebuah menu geser
 
-Create a menu that opens/collapses on click:
+Buat sebuah menu yang terbuka/tertutup pada saat ditekan:
 
 [iframe border=1 height=100 src="solution"]
 
-P.S. HTML/CSS of the source document is to be modified.
+Tambahan: HTML/CSS dari dokumen harus dimodifikasi. 

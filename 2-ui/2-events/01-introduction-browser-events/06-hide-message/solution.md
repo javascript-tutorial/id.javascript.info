@@ -1,12 +1,11 @@
 
-To add the button we can use either `position:absolute` (and make the pane `position:relative`) or `float:right`. The `float:right` has the benefit that the button never overlaps the text, but `position:absolute` gives more freedom. So the choice is yours.
+Untuk Menambahkan tombol kita bisa menggunakan `position:absolute` (dan membuat pane `position:relative`) atau `float:right`. `float:right` memiliki keuntung dimana tombol tidak akan perna tumpang tindih dengan teks, tetapi `position:absolute` memberikan lebih banyak kebebasan. Jadi pilihannya pada kamu.
 
-Then for each pane the code can be like:
+Kemudian pada setiap `pane` kodenya akan seperti ini:
 ```js
 pane.insertAdjacentHTML("afterbegin", '<button class="remove-button">[x]</button>');
 ```
-
-Then the `<button>` becomes `pane.firstChild`, so we can add a handler to it like this:
+Kemudian `<button>` menjadi `pane.firstChild`, jadi kita tambahkan sebuah penangan seperti ini:
 
 ```js
 pane.firstChild.onclick = () => pane.remove();

@@ -1,48 +1,47 @@
 
 # HTML/CSS
-First let's create HTML/CSS.
+Pertama buat HTML/CSS.
 
-A menu is a standalone graphical component on the page, so it's better to put it into a single DOM element.
+Sebuah menu adalah komponen tersendiri pada halaman, jadi lebih baik untuk menaruhnya kedalam satu elemen DOM.
 
-A list of menu items can be laid out as a list `ul/li`.
+Sebuah daftar dari item menu bisa dapat diatur kedalam daftar menggunakan `ul/li`.
 
-Here's the example structure:
+Ini contoh strukturnya:
 
 ```html
 <div class="menu">
-  <span class="title">Sweeties (click me)!</span>
+  <span class="title">Manis-Manis (Tekan saya)!</span>
   <ul>
-    <li>Cake</li>
-    <li>Donut</li>
-    <li>Honey</li>
+    <li>Kue</li>
+    <li>Donat</li>
+    <li>Madu</li>
   </ul>
 </div>
 ```
 
-We use `<span>` for the title, because `<div>` has an implicit `display:block` on it, and it will occupy 100% of the horizontal width.
+Kita dapat menggunakan `<span>` untuk judul, karena `<div>` memiliki `display:block`, dan akan memenuhi 100% horisontal lebar elemen.
 
-Like this:
-
-```html autorun height=50
-<div style="border: solid red 1px" onclick="alert(1)">Sweeties (click me)!</div>
-```
-
-So if we set `onclick` on it, then it will catch clicks to the right of the text.
-
-As `<span>` has an implicit `display: inline`, it occupies exactly enough place to fit all the text:
+Seperti ini:
 
 ```html autorun height=50
-<span style="border: solid red 1px" onclick="alert(1)">Sweeties (click me)!</span>
+<div style="border: solid red 1px" onclick="alert(1)">Manis-Manis (Tekan saya)!</div>
 ```
 
-# Toggling the menu
+Jadi jika kita mengatur `onclick` pada judul, maka itu akan menangkap klik diselah kanan teks.
 
-Toggling the menu should change the arrow and show/hide the menu list.
+Sedangkan `<span>` memiliki `display:inline`, dan akan memenuhi ruang yang cukup sesuai dengan teks:
 
-All these changes are perfectly handled by CSS. In JavaScript we should label the current state of the menu by adding/removing the class `.open`.
+```html autorun height=50
+<span style="border: solid red 1px" onclick="alert(1)">Manis-Manis (Tekan saya)!</span>
+```
 
-Without it, the menu will be closed:
+# Membuka dan menutup menu
 
+Membuka dan menutup menu seharusnya menganti posisi anak panah dan menunjukan atau menyembunyikan daftar menu.
+
+Semua pergantian ini sangat sempurna untuk di tanggani oleh CSS. Pada Javascript kita harus memberi label pada kondisi menu saat ini dengan menambahkan/menghapuskan kelas(_class_) `.open`.
+
+Tanpanya, menu akan tetap tertutup:
 ```css
 .menu ul {
   margin: 0;
@@ -58,7 +57,7 @@ Without it, the menu will be closed:
 }
 ```
 
-...And with `.open` the arrow changes and the list shows up:
+...Dan dengan `.open` anak panah akan berubah dan daftar akan kelihatan:
 
 ```css
 .menu.open .title::before {

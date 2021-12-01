@@ -2,12 +2,12 @@ importance: 5
 
 ---
 
-# Add a closing button
+# Tambahkan tombol untuk menutup
 
-There's a list of messages.
+Ada sebuah daftar pesan.
 
-Use JavaScript to add a closing button to the right-upper corner of each message.
+Gunakan Javascript untuk menambahkan tombol untuk menutup pada bagian pojok kanan atas setiap pesan.
 
-The result should look like this:
+Hasil seharusnya seperti ini:
 
 [iframe src="solution" height=450]

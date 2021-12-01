@@ -22,11 +22,11 @@
       color: green;
     }
 
-    .menu.open .title::before {
+    .menu.buka .title::before {
       content: '▼ ';
     }
 
-    .menu.open ul {
+    .menu.buka ul {
       display: block;
     }
   </style>
@@ -35,11 +35,11 @@
 <body>
 
   <div id="sweeties" class="menu">
-    <span class="title">Sweeties (click me)!</span>
+    <span class="title">Manis-Manis (Klik Saya)!</span>
     <ul>
-      <li>Cake</li>
-      <li>Donut</li>
-      <li>Honey</li>
+      <li>Kue</li>
+      <li>Donat</li>
+      <li>Madu</li>
     </ul>
 
   </div>
@@ -49,7 +49,7 @@
     let titleElem = menuElem.querySelector('.title');
 
     titleElem.onclick = function() {
-      menuElem.classList.toggle('open');
+      menuElem.classList.toggle('buka');
     };
   </script>
 
