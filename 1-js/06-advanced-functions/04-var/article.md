@@ -1,9 +1,16 @@
 
 # Si Tua "var"
 
+<<<<<<< HEAD
 ```smart header="Artikel ini untuk memahami script lama"
 Informasi yang terdapat di artikel ini berguna untuk memahami script lama.
 Hal itu bukanlah cara kita menulis kode baru.
+=======
+```smart header="This article is for understanding old scripts"
+The information in this article is useful for understanding old scripts.
+
+That's not how we write new code.
+>>>>>>> a82915575863d33db6b892087975f84dea6cb425
 ```
 
 Di bab paling awal tentang [variabel](info:variables), kami menyebutkan tiga cara untuk deklarasi variabel:
