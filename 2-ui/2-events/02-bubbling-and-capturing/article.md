@@ -65,57 +65,57 @@ Catat perbedaan dari `this` (=`event.currentTarget`):
 
 Contohnya, jika sebuah penangan (_handler_) `form.onclick`, kemudian form itu akan "menangkap" semua klik yang terjadi didalam form. Tidak peduli dimana klik itu terjadi, klik itu akan mengelembung ke `<form>` dan akan menjalankan penangan (_handler_).
 
-In `form.onclick` handler:
+Pada penangan (_handler_) `form.onclick`:
 
-- `this` (=`event.currentTarget`) is the `<form>` element, because the handler runs on it.
-- `event.target` is the actual element inside the form that was clicked.
+- `this` (=`event.currentTarget`) adalah elemen `<form>`, karena penangan (_handler_) dijalankan pada `<form>`.
+- `event.target` adalah elemen didalam `<form>` dimana peristiwa klik terjadi.
 
-Check it out:
+Contohnya:
 
 [codetabs height=220 src="bubble-target"]
 
-It's possible that `event.target` could equal `this` -- it happens when the click is made directly on the `<form>` element.
+`this` dan `event.target` bisa merupakan elemen yang sama -- itu terjadi pada saat klik terjadi tepat di elemen `<form>`.
 
-## Stopping bubbling
+## Menghentikan Menggelembung (_bubbling_)
 
-A bubbling event goes from the target element straight up. Normally it goes upwards till `<html>`, and then to `document` object, and some events even reach `window`, calling all handlers on the path.
+Sebuah proses menggelembung berasal dari `target` elemen akan naik keatas. Biasanya proses itu akan terjadi sampai mencapai elemen `<html>`, dan kemudian ke objek `document`, dan ada beberapa peristiwa (_event_) yang bahkan bisa mencapai jendela (_`window`_), sambil menjalankan semua penangan (_handler_) yang ada di setiap elemen.
 
-But any handler may decide that the event has been fully processed and stop the bubbling.
+Tapi salah satu penangan (_handler_) dapat menghentikan peristiwa (_event_) jika penangan (_handler_) beranggapan bahwa proses tersebut telah berhasil di proses.
 
-The method for it is `event.stopPropagation()`.
+Metode untuk melakukan perhentian adalah `event.stpoPropagation()`.
 
-For instance, here `body.onclick` doesn't work if you click on `<button>`:
+Contohnya, `body.onclick` tidak akan dijalankan jika kamu mengklik pada `<button>`:
 
 ```html run autorun height=60
-<body onclick="alert(`the bubbling doesn't reach here`)">
-  <button onclick="event.stopPropagation()">Click me</button>
+<body onclick="alert(`Proses menggelembung tidak mencapai penangan ini`)">
+  <button onclick="event.stopPropagation()">Klik saya</button>
 </body>
 ```
 
 ```smart header="event.stopImmediatePropagation()"
-If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.
+Jika sebuah elemen memiliki beberapa penangan (handler) untuk satu peristiwa (event), maka bahkan jika salah satu dari penangan menghentikan proses pengelembungan, penagan yang lain akan tetap di jalankan.
 
-In other words, `event.stopPropagation()` stops the move upwards, but on the current element all other handlers will run.
+Dengan kata lain, `event.stopPropagation()` menghentinkan proses yang keatas, tapi pada elemen yang sama penangan (handler) lain akan tetap di jalankan.
 
-To stop the bubbling and prevent handlers on the current element from running, there's a method `event.stopImmediatePropagation()`. After it no other handlers execute.
+Untuk menghentukan pengelembungan (handler) dan mencegah penangan (handler) lain yang ada pada elemen tersebut untuk dijalankan, harus menggunakan metode `event.stopImmediatePropagation()`. Setelah itu tidak akan ada penangan (handler) yang dijalankan.
 ```
 
-```warn header="Don't stop bubbling without a need!"
-Bubbling is convenient. Don't stop it without a real need: obvious and architecturally well thought out.
+```warn header="Jangan menghentikan proses mengelembung jika tidak perlu!"
+Proses mengelembung cukup berguna. Jangan menghentikan proses ini jika tidak ada perlu: tentu saja harus di pikir dengan baik-baik.
 
-Sometimes `event.stopPropagation()` creates hidden pitfalls that later may become problems.
+Terkadang `event.stopPropagation()` akan menyebabkan jebakan tersembunyi yang mungkin akan menjadi masalah.
 
-For instance:
+Contoh:
 
-1. We create a nested menu. Each submenu handles clicks on its elements and calls `stopPropagation` so that the outer menu won't trigger.
-2. Later we decide to catch clicks on the whole window, to track users' behavior (where people click). Some analytic systems do that. Usually the code uses `document.addEventListener('click'…)` to catch all clicks.
-3. Our analytic won't work over the area where clicks are stopped by `stopPropagation`. Sadly, we've got a "dead zone".
+1. Kita membuat sebuah menu yang bersarang. Pada setiap submenu penangan (_handles_) klik pada elemen itu dan menjalankan `stopPropagation` jadi bagian luar menu tidak akan dijalankan.
+2. Kemudian kita memutuskan untuk menangkap klik pada keseluruhan jendela (_window_), untuk melacak kebiasaan pengguna (dimana biasa penggunana mengklik). Beberapa sistem analisa menggunakan metode ini. Biasanya code yang digunakan `document.addEventListener('click'…)` untuk menangkap semua klik.
+3. Analisis kita tidak akan bekerja pada area dimana kita telah menghentikan peristiwa klik dengan menggunakan `stopPropagation`. Dengan kata lain kita telah membuat daerah mati (_dead zone_).
 
-There's usually no real need to prevent the bubbling. A task that seemingly requires that may be solved by other means. One of them is to use custom events, we'll cover them later. Also we can write our data into the `event` object in one handler and read it in another one, so we can pass to handlers on parents information about the processing below.
+Biasanya tidak ada keperluan utama yang membuat kita harus menghentikan proses mengelembung. Sebuah fungsi yang kelihatannya membutuhkan penggunaaan metode itu bisa di selesaikan dengan menggunakan cara lain. Salah satunya dengan menggunakan peristiwa khusus, kita akan membahasnya nanti. Dan juka kita dapat menulis data kedalam objek `event` pada sebuah penangan (handler) dan membacanya pada penangan (handler) lainnya, jadi kita dapat meneruskan data tentang proses yang terjadi dibawah ke penangan (handler) elemen atas.
 ```
 
 
-## Capturing
+## Penangkapan (_Capturing_)
 
 There's another phase of event processing called "capturing". It is rarely used in real code, but sometimes can be useful.
 
