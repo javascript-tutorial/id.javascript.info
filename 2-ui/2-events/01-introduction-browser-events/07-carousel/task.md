@@ -4,8 +4,7 @@ importance: 4
 
 # Korsel (_Carousel_)
 
-Buat sebuah "korsel" -- 
-Create a "carousel" -- pita gambar yang dapat digulir dengan mengklik panah.
+Buat sebuah "korsel" -- pita gambar yang dapat digulir dengan mengklik panah.
 
 [iframe height=200 src="solution"]
 
