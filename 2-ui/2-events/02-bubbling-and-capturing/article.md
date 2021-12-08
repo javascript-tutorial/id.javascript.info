@@ -117,41 +117,40 @@ Biasanya tidak ada keperluan utama yang membuat kita harus menghentikan proses m
 
 ## Penangkapan (_Capturing_)
 
-There's another phase of event processing called "capturing". It is rarely used in real code, but sometimes can be useful.
+Ada juga sebuah fase pada proses peristiwa yang disebut dengan Penangkapan (_capturing_). proses ini jarang digunakan, tapi akan berguna pada saat dibutuhkan.
 
-The standard [DOM Events](http://www.w3.org/TR/DOM-Level-3-Events/) describes 3 phases of event propagation:
+Standar sebuah [Peristiwa DOM](http://www.w3.org/TR/DOM-Level-3-Events/) terbagi menjadi 3 fase, yaitu:
 
-1. Capturing phase -- the event goes down to the element.
-2. Target phase -- the event reached the target element.
-3. Bubbling phase -- the event bubbles up from the element.
+1. fase penangkapan (_capturing phase_) -- peristiwa mulai mencari elemen.
+2. fase target (_target phase_) -- peristiwa menemukan elemen.
+3. fase mengelembung (_bubbling phase_) -- peristiwa mulai naik ke atas dari elemen dasar.
 
-Here's the picture of a click on `<td>` inside a table, taken from the specification:
+Berikut ini sebuah gambar tentang klik yang terjadi pada `<td>` didalam sebuah tabel, yang diambil dari spesifikasi:
 
 ![](eventflow.svg)
 
-That is: for a click on `<td>` the event first goes through the ancestors chain down to the element (capturing phase), then it reaches the target and triggers there (target phase), and then it goes up (bubbling phase), calling handlers on its way.
+Maka: untuk klik pada `<td>` peristiwa (_event_) akan pertama melewati elemen paling atas dan turun ke elemen yang bawaha (fase penangkapan), kemudian pada saat mencapai elemen yang di target akan di jalankan pada elemen tersebut (fase target), dan kemudia peristiwa itu akan naik ke atas (fase mengelembung), sambil memanggil penangan (_handler_) yang ada.
 
-**Before we only talked about bubbling, because the capturing phase is rarely used. Normally it is invisible to us.**
+**Sebelumnya kita hanya membahas tentang proses pengelembungan, karena proses penangkapan jarang digunakan, biasanya proses ini tidak terlihat oleh kita.**
 
-Handlers added using `on<event>`-property or using HTML attributes or using two-argument `addEventListener(event, handler)` don't know anything about capturing, they only run on the 2nd and 3rd phases.
+Penangan (_Handlers_) yang di tambahkan menggunakan `on<event>`-properti atau menggunakan atribut HTML atau menggunakan dua argumen `addEventListener(event, handler)` tidak mengetahui tentang proses penangkapan, mereka hanya menjalankan fase ke 2 dan fase ke 3.
 
-To catch an event on the capturing phase, we need to set the handler `capture` option to `true`:
+Untuk menangkap sebuah peristiwa pada fase penangkapan, kita perlu mengatur penangan (_handler_) pilihan `capture` menjadi `true`:
 
 ```js
 elem.addEventListener(..., {capture: true})
-// or, just "true" is an alias to {capture: true}
+// atau, hanya "true" karena merupakan alias dari {capture: true}
 elem.addEventListener(..., true)
 ```
 
-There are two possible values of the `capture` option:
+Hanya ada 2 kemungkinan nilai dari pilihan `capture`:
 
-- If it's `false` (default), then the handler is set on the bubbling phase.
-- If it's `true`, then the handler is set on the capturing phase.
+- Jika `false` (bawaan (_default_) ), maka penangan (_handler_) di atur pada fase pengelembungan atau fase ke 3.
+- Jika `true`, aka penangan (_handler_) di atur pada fase penangkapan atau fase pertama.
 
+Catatan, sementara secara umum hanya ada 3 fase, dan fase ke dua ("fase target": peristiwa mencapai elemen yang di target) tidak di tangani secara terpisah: penangan (_handler_) pada kedua fase penangkapan dan pengelembungan di jalankan pada fase tersebut.
 
-Note that while formally there are 3 phases, the 2nd phase ("target phase": the event reached the element) is not handled separately: handlers on both capturing and bubbling phases trigger at that phase.
-
-Let's see both capturing and bubbling in action:
+Mari lihat kedua fase penangkapan dan pengelembungan:
 
 ```html run autorun height=140 edit
 <style>
@@ -169,35 +168,34 @@ Let's see both capturing and bubbling in action:
 
 <script>
   for(let elem of document.querySelectorAll('*')) {
-    elem.addEventListener("click", e => alert(`Capturing: ${elem.tagName}`), true);
-    elem.addEventListener("click", e => alert(`Bubbling: ${elem.tagName}`));
+    elem.addEventListener("click", e => alert(`Penangkapan: ${elem.tagName}`), true);
+    elem.addEventListener("click", e => alert(`Pengelembungan: ${elem.tagName}`));
   }
 </script>
 ```
 
-The code sets click handlers on *every* element in the document to see which ones are working.
+Kode mengatur penangan(_handler_) klik pada *setiap* elemen yang ada di dalam dokumen untuk melihat elemen mana yang berfungsi.
 
-If you click on `<p>`, then the sequence is:
+Jika kamu klik pada `<p>`, maka rangkaian peristiwa sebagai berikut:
 
-1. `HTML` -> `BODY` -> `FORM` -> `DIV` (capturing phase, the first listener):
-2. `P` (target phase, triggers two times, as we've set two listeners: capturing and bubbling)
-3. `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
+1. `HTML` -> `BODY` -> `FORM` -> `DIV` (fase penangkapan, pendengar pertama),
+2. `P` (fase target, dijalankan 2 kali, karena kita mengatur 2 pendengar: penangkapan dan pengelembungan),
+3. `DIV` -> `FORM` -> `BODY` -> `HTML` (fase pengelembungan, pendengar kedua).
 
-There's a property `event.eventPhase` that tells us the number of the phase on which the event was caught. But it's rarely used, because we usually know it in the handler.
+Ada sebuah properti `event.eventPhase` yang akan memberikan kita nomor dari fase yang dimana peristiwa tersebut di tangkap. Tapi properti ini jarang digunakan, karena kita biasanya mendapat info itu dari penangan(_handler_) itu sendiri.
 
-```smart header="To remove the handler, `removeEventListener` needs the same phase"
-If we `addEventListener(..., true)`, then we should mention the same phase in `removeEventListener(..., true)` to correctly remove the handler.
+```smart header="Untuk menghapus penangan, `removeEventListener` membutuhkan fase yang sama"
+Jika kita menggunakan `addEventListener(..., true)`, maka kita harus menggunakan fase yang sama pada `removeEventListener(..., true)` untuk menghapus penangan secara benar.
 ```
 
-````smart header="Listeners on same element and same phase run in their set order"
-If we have multiple event handlers on the same phase, assigned to the same element with `addEventListener`, they run in the same order as they are created:
+````smart header="Pendengar pada elemen dan fase yang sama akan dijalankan berdasarkan urutan mereka"
+Jika kita memiliki beberapa penangan pada fase yang sama, dan di atur pada elemen yang sama dengan menggunakan `addEventListener`, mereka akan berjalan sesuai dengan urutan mereka di buat:
 
 ```js
-elem.addEventListener("click", e => alert(1)); // guaranteed to trigger first
+elem.addEventListener("click", e => alert(1)); // akan selalu berjalan duluan
 elem.addEventListener("click", e => alert(2));
 ```
 ````
-
 
 ## Summary
 
