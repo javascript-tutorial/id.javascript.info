@@ -197,26 +197,26 @@ elem.addEventListener("click", e => alert(2));
 ```
 ````
 
-## Summary
+## Ringkasan
 
-When an event happens -- the most nested element where it happens gets labeled as the "target element" (`event.target`).
+Pada saat sebuah peristiwa (_event_) terjadi -- elemen yang paling dalam dimana peristiwa itu terjadi akan di tandai dengan label "target elemen" (`event.target`).
 
-- Then the event moves down from the document root to `event.target`, calling handlers assigned with `addEventListener(..., true)` on the way (`true` is a shorthand for `{capture: true}`).
-- Then handlers are called on the target element itself.
-- Then the event bubbles up from `event.target` to the root, calling handlers assigned using `on<event>`, HTML attributes and `addEventListener` without the 3rd argument or with the 3rd argument `false/{capture:false}`.
+- Kemudian peristiwa akan turun kebawah dari akar dokumen ke `event.target`, memanggil penangan yang di atur dengan `addEventListener(...,true)` (`true` kependekan dari `{capture: true}`).
+- Kemudian penangan akan di panggil pada target elemen itu sendiri.
+- Kemudian peristiwa akan naik ekatas dari `event.target` ke akar dokumen, memanggil penangan yang di ataur menggunakan `on<event>`, atribut HTML dan `addEventListener` tanpa argumen ke tiga atau dengan `false/{capture:false}.
 
-Each handler can access `event` object properties:
+Setiap penangan(_handler_) memiliki akses ke properti objek `event`:
 
-- `event.target` -- the deepest element that originated the event.
-- `event.currentTarget` (=`this`) -- the current element that handles the event (the one that has the handler on it)
-- `event.eventPhase` -- the current phase (capturing=1, target=2, bubbling=3).
+- `event.target` -- elemen paling bawah dimana peristiwa itu terjadi.
+- `event.currentTarget` (=`this`) -- merupakan elemen yang menangani peristiwa (elemen yang memiliki penangan (_handler_)).
+- `event.eventPhase` -- fase yang sedang terjadi (penangkapan=1, target=2, pengelembungan=3).
 
-Any event handler can stop the event by calling `event.stopPropagation()`, but that's not recommended, because we can't really be sure we won't need it above, maybe for completely different things.
+Penangan dapat menghentikan peristiwa dengan memanggil `event.stopPropagation()`, tapi tidak direkomendasikan, karena kita tidak belum tentu tidak memerlukan peristiwa itu pada elemen di atas, mungkin untuk hal yang berbeda.
 
-The capturing phase is used very rarely, usually we handle events on bubbling. And there's a logic behind that.
+Fase penangkapan jarang digunakan, biasanya kita menangani peristiwa yang mengelembung. Dan ada logika dibaliknya.
 
-In real world, when an accident happens, local authorities react first. They know best the area where it happened. Then higher-level authorities if needed.
+Pada dunianya, pada saat kecelakaan terjadi, petugas setempat akan bereaksi duluan. Mereka lebih mengetahui daerah dimana kejadian itu terjadi. Kemudian petugas yang bertingkat tinggil jika dibutuhkan.
 
-The same for event handlers. The code that set the handler on a particular element knows maximum details about the element and what it does. A handler on a particular `<td>` may be suited for that exactly `<td>`, it knows everything about it, so it should get the chance first. Then its immediate parent also knows about the context, but a little bit less, and so on till the very top element that handles general concepts and runs the last one.
+Hal yang sama juga untuk penanganan peristiwa. Kode yang mengatur penangan (_handler_) pada elemen tertentu mengetahui dengan maksimum rincian tentang elemen tersebut dan apa yang harus dilakukan. Sebuah penangan (_handler_) pada `<td>` mungkin lebih cocok untuk `<td>`, penangan itu mengetahui segalanya, jadi penangan itu harus dijalankan duluan. Kemudian elemen yang diatasnya mengetahui tentang konteksnya, mungkin lebih sedikit, dan seterusnya sampai pada elemen yang paling atas, yang mengatur tentang konsep secara umum dan dijalankan paling akhir.
 
-Bubbling and capturing lay the foundation for "event delegation" -- an extremely powerful event handling pattern that we study in the next chapter.
+Pengelembungan dan Penangkapan menyediakan sebuah fondasi untuk "event delegation" -- sebuah pola penanganan peristiwa yang cukup penting yang akan kita pelajari pada bab selanjutnya.
