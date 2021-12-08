@@ -1,24 +1,24 @@
-# Bubbling and capturing
+# Menggelembung (_bubbling_) dan menangkap (_capturing_)
 
-Let's start with an example.
+Ayo mulai dengan sebuah contoh.
 
-This handler is assigned to `<div>`, but also runs if you click any nested tag like `<em>` or `<code>`:
+Sebuah penangan (_handler_) di atur ke `<div>`, tapi juga dijalankan jika kita klik salah satu tag bawaan seperti `<em>` or `<code>`:
 
 ```html autorun height=60
-<div onclick="alert('The handler!')">
-  <em>If you click on <code>EM</code>, the handler on <code>DIV</code> runs.</em>
+<div onclick="alert('Penangan (handler)!')">
+  <em>Jika kamu menekan pada <code>EM</code>, penangan pada <code>DIV</code> akan berjalan.</em>
 </div>
 ```
 
-Isn't it a bit strange? Why does the handler on `<div>` run if the actual click was on `<em>`?
+Bukan kah itu sedikit aneh? kenapa penangan (_handler_) pada `<div>` berjalan padahal elemen yang di klik adalah `<em>`?
 
-## Bubbling
+## Menggelembung (_bubbling_)
 
-The bubbling principle is simple.
+Prinsip menggelembung (_bubbling_) itu sederhana.
 
-**When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.**
+**Pada saat sebuah peristiwa terjadi ke sebuah elemen, peristiwa itu akan menjalankan penangan (_handler_) yang ada pada elemen itu, kemudian pada elemen orang tua (_parent_), dan seterusnya hingga sampai ke elemen yang paling atas (_ancestors_).**
 
-Let's say we have 3 nested elements `FORM > DIV > P` with a handler on each of them:
+Bayangkan kita memiliki tiga elemen bersarang `FORM > DIV > P` dengan penagan (_handler_) pada setiap elemen:
 
 ```html run autorun
 <style>
@@ -34,125 +34,123 @@ Let's say we have 3 nested elements `FORM > DIV > P` with a handler on each of t
   </div>
 </form>
 ```
-
-A click on the inner `<p>` first runs `onclick`:
-1. On that `<p>`.
-2. Then on the outer `<div>`.
-3. Then on the outer `<form>`.
-4. And so on upwards till the `document` object.
+Sebuah klik pada bagian dalam `<p>` akan menjalankan `onclick`:
+1. Yang ada pada `<p>`.
+2. Kemudian pada `<div>`.
+3. Kemudian pada `<form>`.
+4. Dan seterusnya hingga sampai ke objek `document`.
 
 ![](event-order-bubbling.svg)
 
-So if we click on `<p>`, then we'll see 3 alerts: `p` -> `div` -> `form`.
+Jadi jika kita klik pada `<p>`, kemudia kita akan melihat 3 buah peringatan (_alerts_): `p` -> `div` -> `form`.
 
-The process is called "bubbling", because events "bubble" from the inner element up through parents like a bubble in the water.
+Proses ini disebut dengan "menggelembung (_bubbling_)", karena peristiwa akan "mengelembung (_bubble_)" dari bagian dalam elemen ke atas melalui elemen orang tua (_parents_) seperti sebuah gelembung di air.
 
-```warn header="*Almost* all events bubble."
-The key word in this phrase is "almost".
+```warn header="*Hampir* semua peristiwa bergelembung."
+Kata kunci pada kata tersebut adalah "hampir".
 
-For instance, a `focus` event does not bubble. There are other examples too, we'll meet them. But still it's an exception, rather than a rule, most events do bubble.
+Contohnya, peristiwa `focus` tidak bergelembung. Masih ada contoh lain, kita akan membahas mereka. Tapi tetap itu hanya pengecualian, dan bukan aturan baku, hampir semua peristiwa mengelembung.
 ```
 
 ## event.target
 
-A handler on a parent element can always get the details about where it actually happened.
+Sebuah penangan (_handler_) pada elemen orang tua bisa selalu mendapat detail tentang dimana kejadian itu terjadi.
 
-**The most deeply nested element that caused the event is called a *target* element, accessible as `event.target`.**
+**elemen bersarang yang mengakibatkan peristiwa (_event_) di panggil di sebut sebuah *target* elemen, diakses dengan menggunakan `event.target`.**
 
-Note the differences from `this` (=`event.currentTarget`):
+Catat perbedaan dari `this` (=`event.currentTarget`):
 
-- `event.target` -- is the "target" element that initiated the event, it doesn't change through the bubbling process.
-- `this` -- is the "current" element, the one that has a currently running handler on it.
+- `event.target` -- adalah "target" elemen yang menginisialisasi peristiwa (_event_), dan tidak berubah pada proses pengelembungan.
+- `this` -- adalah elemen tersebut, elemen yang sedang menjalankan penangan (_handler_).
 
-For instance, if we have a single handler `form.onclick`, then it can "catch" all clicks inside the form. No matter where the click happened, it bubbles up to `<form>` and runs the handler.
+Contohnya, jika sebuah penangan (_handler_) `form.onclick`, kemudian form itu akan "menangkap" semua klik yang terjadi didalam form. Tidak peduli dimana klik itu terjadi, klik itu akan mengelembung ke `<form>` dan akan menjalankan penangan (_handler_).
 
-In `form.onclick` handler:
+Pada penangan (_handler_) `form.onclick`:
 
-- `this` (=`event.currentTarget`) is the `<form>` element, because the handler runs on it.
-- `event.target` is the actual element inside the form that was clicked.
+- `this` (=`event.currentTarget`) adalah elemen `<form>`, karena penangan (_handler_) dijalankan pada `<form>`.
+- `event.target` adalah elemen didalam `<form>` dimana peristiwa klik terjadi.
 
-Check it out:
+Contohnya:
 
 [codetabs height=220 src="bubble-target"]
 
-It's possible that `event.target` could equal `this` -- it happens when the click is made directly on the `<form>` element.
+`this` dan `event.target` bisa merupakan elemen yang sama -- itu terjadi pada saat klik terjadi tepat di elemen `<form>`.
 
-## Stopping bubbling
+## Menghentikan Menggelembung (_bubbling_)
 
-A bubbling event goes from the target element straight up. Normally it goes upwards till `<html>`, and then to `document` object, and some events even reach `window`, calling all handlers on the path.
+Sebuah proses menggelembung berasal dari `target` elemen akan naik keatas. Biasanya proses itu akan terjadi sampai mencapai elemen `<html>`, dan kemudian ke objek `document`, dan ada beberapa peristiwa (_event_) yang bahkan bisa mencapai jendela (_`window`_), sambil menjalankan semua penangan (_handler_) yang ada di setiap elemen.
 
-But any handler may decide that the event has been fully processed and stop the bubbling.
+Tapi salah satu penangan (_handler_) dapat menghentikan peristiwa (_event_) jika penangan (_handler_) beranggapan bahwa proses tersebut telah berhasil di proses.
 
-The method for it is `event.stopPropagation()`.
+Metode untuk melakukan perhentian adalah `event.stpoPropagation()`.
 
-For instance, here `body.onclick` doesn't work if you click on `<button>`:
+Contohnya, `body.onclick` tidak akan dijalankan jika kamu mengklik pada `<button>`:
 
 ```html run autorun height=60
-<body onclick="alert(`the bubbling doesn't reach here`)">
-  <button onclick="event.stopPropagation()">Click me</button>
+<body onclick="alert(`Proses menggelembung tidak mencapai penangan ini`)">
+  <button onclick="event.stopPropagation()">Klik saya</button>
 </body>
 ```
 
 ```smart header="event.stopImmediatePropagation()"
-If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.
+Jika sebuah elemen memiliki beberapa penangan (handler) untuk satu peristiwa (event), maka bahkan jika salah satu dari penangan menghentikan proses pengelembungan, penagan yang lain akan tetap di jalankan.
 
-In other words, `event.stopPropagation()` stops the move upwards, but on the current element all other handlers will run.
+Dengan kata lain, `event.stopPropagation()` menghentinkan proses yang keatas, tapi pada elemen yang sama penangan (handler) lain akan tetap di jalankan.
 
-To stop the bubbling and prevent handlers on the current element from running, there's a method `event.stopImmediatePropagation()`. After it no other handlers execute.
+Untuk menghentukan pengelembungan (handler) dan mencegah penangan (handler) lain yang ada pada elemen tersebut untuk dijalankan, harus menggunakan metode `event.stopImmediatePropagation()`. Setelah itu tidak akan ada penangan (handler) yang dijalankan.
 ```
 
-```warn header="Don't stop bubbling without a need!"
-Bubbling is convenient. Don't stop it without a real need: obvious and architecturally well thought out.
+```warn header="Jangan menghentikan proses mengelembung jika tidak perlu!"
+Proses mengelembung cukup berguna. Jangan menghentikan proses ini jika tidak ada perlu: tentu saja harus di pikir dengan baik-baik.
 
-Sometimes `event.stopPropagation()` creates hidden pitfalls that later may become problems.
+Terkadang `event.stopPropagation()` akan menyebabkan jebakan tersembunyi yang mungkin akan menjadi masalah.
 
-For instance:
+Contoh:
 
-1. We create a nested menu. Each submenu handles clicks on its elements and calls `stopPropagation` so that the outer menu won't trigger.
-2. Later we decide to catch clicks on the whole window, to track users' behavior (where people click). Some analytic systems do that. Usually the code uses `document.addEventListener('click'…)` to catch all clicks.
-3. Our analytic won't work over the area where clicks are stopped by `stopPropagation`. Sadly, we've got a "dead zone".
+1. Kita membuat sebuah menu yang bersarang. Pada setiap submenu penangan (_handles_) klik pada elemen itu dan menjalankan `stopPropagation` jadi bagian luar menu tidak akan dijalankan.
+2. Kemudian kita memutuskan untuk menangkap klik pada keseluruhan jendela (_window_), untuk melacak kebiasaan pengguna (dimana biasa penggunana mengklik). Beberapa sistem analisa menggunakan metode ini. Biasanya code yang digunakan `document.addEventListener('click'…)` untuk menangkap semua klik.
+3. Analisis kita tidak akan bekerja pada area dimana kita telah menghentikan peristiwa klik dengan menggunakan `stopPropagation`. Dengan kata lain kita telah membuat daerah mati (_dead zone_).
 
-There's usually no real need to prevent the bubbling. A task that seemingly requires that may be solved by other means. One of them is to use custom events, we'll cover them later. Also we can write our data into the `event` object in one handler and read it in another one, so we can pass to handlers on parents information about the processing below.
+Biasanya tidak ada keperluan utama yang membuat kita harus menghentikan proses mengelembung. Sebuah fungsi yang kelihatannya membutuhkan penggunaaan metode itu bisa di selesaikan dengan menggunakan cara lain. Salah satunya dengan menggunakan peristiwa khusus, kita akan membahasnya nanti. Dan juka kita dapat menulis data kedalam objek `event` pada sebuah penangan (handler) dan membacanya pada penangan (handler) lainnya, jadi kita dapat meneruskan data tentang proses yang terjadi dibawah ke penangan (handler) elemen atas.
 ```
 
 
-## Capturing
+## Penangkapan (_Capturing_)
 
-There's another phase of event processing called "capturing". It is rarely used in real code, but sometimes can be useful.
+Ada juga sebuah fase pada proses peristiwa yang disebut dengan Penangkapan (_capturing_). proses ini jarang digunakan, tapi akan berguna pada saat dibutuhkan.
 
-The standard [DOM Events](http://www.w3.org/TR/DOM-Level-3-Events/) describes 3 phases of event propagation:
+Standar sebuah [Peristiwa DOM](http://www.w3.org/TR/DOM-Level-3-Events/) terbagi menjadi 3 fase, yaitu:
 
-1. Capturing phase -- the event goes down to the element.
-2. Target phase -- the event reached the target element.
-3. Bubbling phase -- the event bubbles up from the element.
+1. fase penangkapan (_capturing phase_) -- peristiwa mulai mencari elemen.
+2. fase target (_target phase_) -- peristiwa menemukan elemen.
+3. fase mengelembung (_bubbling phase_) -- peristiwa mulai naik ke atas dari elemen dasar.
 
-Here's the picture of a click on `<td>` inside a table, taken from the specification:
+Berikut ini sebuah gambar tentang klik yang terjadi pada `<td>` didalam sebuah tabel, yang diambil dari spesifikasi:
 
 ![](eventflow.svg)
 
-That is: for a click on `<td>` the event first goes through the ancestors chain down to the element (capturing phase), then it reaches the target and triggers there (target phase), and then it goes up (bubbling phase), calling handlers on its way.
+Maka: untuk klik pada `<td>` peristiwa (_event_) akan pertama melewati elemen paling atas dan turun ke elemen yang bawaha (fase penangkapan), kemudian pada saat mencapai elemen yang di target akan di jalankan pada elemen tersebut (fase target), dan kemudia peristiwa itu akan naik ke atas (fase mengelembung), sambil memanggil penangan (_handler_) yang ada.
 
-**Before we only talked about bubbling, because the capturing phase is rarely used. Normally it is invisible to us.**
+**Sebelumnya kita hanya membahas tentang proses pengelembungan, karena proses penangkapan jarang digunakan, biasanya proses ini tidak terlihat oleh kita.**
 
-Handlers added using `on<event>`-property or using HTML attributes or using two-argument `addEventListener(event, handler)` don't know anything about capturing, they only run on the 2nd and 3rd phases.
+Penangan (_Handlers_) yang di tambahkan menggunakan `on<event>`-properti atau menggunakan atribut HTML atau menggunakan dua argumen `addEventListener(event, handler)` tidak mengetahui tentang proses penangkapan, mereka hanya menjalankan fase ke 2 dan fase ke 3.
 
-To catch an event on the capturing phase, we need to set the handler `capture` option to `true`:
+Untuk menangkap sebuah peristiwa pada fase penangkapan, kita perlu mengatur penangan (_handler_) pilihan `capture` menjadi `true`:
 
 ```js
 elem.addEventListener(..., {capture: true})
-// or, just "true" is an alias to {capture: true}
+// atau, hanya "true" karena merupakan alias dari {capture: true}
 elem.addEventListener(..., true)
 ```
 
-There are two possible values of the `capture` option:
+Hanya ada 2 kemungkinan nilai dari pilihan `capture`:
 
-- If it's `false` (default), then the handler is set on the bubbling phase.
-- If it's `true`, then the handler is set on the capturing phase.
+- Jika `false` (bawaan (_default_) ), maka penangan (_handler_) di atur pada fase pengelembungan atau fase ke 3.
+- Jika `true`, aka penangan (_handler_) di atur pada fase penangkapan atau fase pertama.
 
+Catatan, sementara secara umum hanya ada 3 fase, dan fase ke dua ("fase target": peristiwa mencapai elemen yang di target) tidak di tangani secara terpisah: penangan (_handler_) pada kedua fase penangkapan dan pengelembungan di jalankan pada fase tersebut.
 
-Note that while formally there are 3 phases, the 2nd phase ("target phase": the event reached the element) is not handled separately: handlers on both capturing and bubbling phases trigger at that phase.
-
-Let's see both capturing and bubbling in action:
+Mari lihat kedua fase penangkapan dan pengelembungan:
 
 ```html run autorun height=140 edit
 <style>
@@ -170,56 +168,55 @@ Let's see both capturing and bubbling in action:
 
 <script>
   for(let elem of document.querySelectorAll('*')) {
-    elem.addEventListener("click", e => alert(`Capturing: ${elem.tagName}`), true);
-    elem.addEventListener("click", e => alert(`Bubbling: ${elem.tagName}`));
+    elem.addEventListener("click", e => alert(`Penangkapan: ${elem.tagName}`), true);
+    elem.addEventListener("click", e => alert(`Pengelembungan: ${elem.tagName}`));
   }
 </script>
 ```
 
-The code sets click handlers on *every* element in the document to see which ones are working.
+Kode mengatur penangan(_handler_) klik pada *setiap* elemen yang ada di dalam dokumen untuk melihat elemen mana yang berfungsi.
 
-If you click on `<p>`, then the sequence is:
+Jika kamu klik pada `<p>`, maka rangkaian peristiwa sebagai berikut:
 
-1. `HTML` -> `BODY` -> `FORM` -> `DIV` (capturing phase, the first listener):
-2. `P` (target phase, triggers two times, as we've set two listeners: capturing and bubbling)
-3. `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
+1. `HTML` -> `BODY` -> `FORM` -> `DIV` (fase penangkapan, pendengar pertama),
+2. `P` (fase target, dijalankan 2 kali, karena kita mengatur 2 pendengar: penangkapan dan pengelembungan),
+3. `DIV` -> `FORM` -> `BODY` -> `HTML` (fase pengelembungan, pendengar kedua).
 
-There's a property `event.eventPhase` that tells us the number of the phase on which the event was caught. But it's rarely used, because we usually know it in the handler.
+Ada sebuah properti `event.eventPhase` yang akan memberikan kita nomor dari fase yang dimana peristiwa tersebut di tangkap. Tapi properti ini jarang digunakan, karena kita biasanya mendapat info itu dari penangan(_handler_) itu sendiri.
 
-```smart header="To remove the handler, `removeEventListener` needs the same phase"
-If we `addEventListener(..., true)`, then we should mention the same phase in `removeEventListener(..., true)` to correctly remove the handler.
+```smart header="Untuk menghapus penangan, `removeEventListener` membutuhkan fase yang sama"
+Jika kita menggunakan `addEventListener(..., true)`, maka kita harus menggunakan fase yang sama pada `removeEventListener(..., true)` untuk menghapus penangan secara benar.
 ```
 
-````smart header="Listeners on same element and same phase run in their set order"
-If we have multiple event handlers on the same phase, assigned to the same element with `addEventListener`, they run in the same order as they are created:
+````smart header="Pendengar pada elemen dan fase yang sama akan dijalankan berdasarkan urutan mereka"
+Jika kita memiliki beberapa penangan pada fase yang sama, dan di atur pada elemen yang sama dengan menggunakan `addEventListener`, mereka akan berjalan sesuai dengan urutan mereka di buat:
 
 ```js
-elem.addEventListener("click", e => alert(1)); // guaranteed to trigger first
+elem.addEventListener("click", e => alert(1)); // akan selalu berjalan duluan
 elem.addEventListener("click", e => alert(2));
 ```
 ````
 
+## Ringkasan
 
-## Summary
+Pada saat sebuah peristiwa (_event_) terjadi -- elemen yang paling dalam dimana peristiwa itu terjadi akan di tandai dengan label "target elemen" (`event.target`).
 
-When an event happens -- the most nested element where it happens gets labeled as the "target element" (`event.target`).
+- Kemudian peristiwa akan turun kebawah dari akar dokumen ke `event.target`, memanggil penangan yang di atur dengan `addEventListener(...,true)` (`true` kependekan dari `{capture: true}`).
+- Kemudian penangan akan di panggil pada target elemen itu sendiri.
+- Kemudian peristiwa akan naik ekatas dari `event.target` ke akar dokumen, memanggil penangan yang di ataur menggunakan `on<event>`, atribut HTML dan `addEventListener` tanpa argumen ke tiga atau dengan `false/{capture:false}.
 
-- Then the event moves down from the document root to `event.target`, calling handlers assigned with `addEventListener(..., true)` on the way (`true` is a shorthand for `{capture: true}`).
-- Then handlers are called on the target element itself.
-- Then the event bubbles up from `event.target` to the root, calling handlers assigned using `on<event>`, HTML attributes and `addEventListener` without the 3rd argument or with the 3rd argument `false/{capture:false}`.
+Setiap penangan(_handler_) memiliki akses ke properti objek `event`:
 
-Each handler can access `event` object properties:
+- `event.target` -- elemen paling bawah dimana peristiwa itu terjadi.
+- `event.currentTarget` (=`this`) -- merupakan elemen yang menangani peristiwa (elemen yang memiliki penangan (_handler_)).
+- `event.eventPhase` -- fase yang sedang terjadi (penangkapan=1, target=2, pengelembungan=3).
 
-- `event.target` -- the deepest element that originated the event.
-- `event.currentTarget` (=`this`) -- the current element that handles the event (the one that has the handler on it)
-- `event.eventPhase` -- the current phase (capturing=1, target=2, bubbling=3).
+Penangan dapat menghentikan peristiwa dengan memanggil `event.stopPropagation()`, tapi tidak direkomendasikan, karena kita tidak belum tentu tidak memerlukan peristiwa itu pada elemen di atas, mungkin untuk hal yang berbeda.
 
-Any event handler can stop the event by calling `event.stopPropagation()`, but that's not recommended, because we can't really be sure we won't need it above, maybe for completely different things.
+Fase penangkapan jarang digunakan, biasanya kita menangani peristiwa yang mengelembung. Dan ada logika dibaliknya.
 
-The capturing phase is used very rarely, usually we handle events on bubbling. And there's a logic behind that.
+Pada dunianya, pada saat kecelakaan terjadi, petugas setempat akan bereaksi duluan. Mereka lebih mengetahui daerah dimana kejadian itu terjadi. Kemudian petugas yang bertingkat tinggil jika dibutuhkan.
 
-In real world, when an accident happens, local authorities react first. They know best the area where it happened. Then higher-level authorities if needed.
+Hal yang sama juga untuk penanganan peristiwa. Kode yang mengatur penangan (_handler_) pada elemen tertentu mengetahui dengan maksimum rincian tentang elemen tersebut dan apa yang harus dilakukan. Sebuah penangan (_handler_) pada `<td>` mungkin lebih cocok untuk `<td>`, penangan itu mengetahui segalanya, jadi penangan itu harus dijalankan duluan. Kemudian elemen yang diatasnya mengetahui tentang konteksnya, mungkin lebih sedikit, dan seterusnya sampai pada elemen yang paling atas, yang mengatur tentang konsep secara umum dan dijalankan paling akhir.
 
-The same for event handlers. The code that set the handler on a particular element knows maximum details about the element and what it does. A handler on a particular `<td>` may be suited for that exactly `<td>`, it knows everything about it, so it should get the chance first. Then its immediate parent also knows about the context, but a little bit less, and so on till the very top element that handles general concepts and runs the last one.
-
-Bubbling and capturing lay the foundation for "event delegation" -- an extremely powerful event handling pattern that we study in the next chapter.
+Pengelembungan dan Penangkapan menyediakan sebuah fondasi untuk "event delegation" -- sebuah pola penanganan peristiwa yang cukup penting yang akan kita pelajari pada bab selanjutnya.
