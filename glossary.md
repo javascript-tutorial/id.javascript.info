@@ -19,6 +19,7 @@ Browser | Peramban  | _Browser_
 Inggris | Indonesia | Gunakan
 ------- | --------- | -------
 Code    | Kode      | Kode
+Carousel| Korsel    | Carousel
 
 
 ## E

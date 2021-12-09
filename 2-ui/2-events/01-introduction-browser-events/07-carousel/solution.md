@@ -15,4 +15,4 @@ Untuk membuat pengulirannya, kita bisa menggeser `<ul>`. Ada banyak cara untuk m
 
 `<div>` luar memiliki lebar tetap, jadi gambar "ekstra" dipotong.
 
-Keseluruhan korsel(_carousel_) adalah "komponen grafis" mandiri pada halaman, jadi sebaiknya kita membungkusnya menjadi satu `<div class="carousel">` dan menata elemen-elemen ke dalamnya.
+Keseluruhan carousel adalah "komponen grafis" mandiri pada halaman, jadi sebaiknya kita membungkusnya menjadi satu `<div class="carousel">` dan menata elemen-elemen ke dalamnya.

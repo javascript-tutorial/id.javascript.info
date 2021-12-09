@@ -42,7 +42,7 @@ Sebuah klik pada bagian dalam `<p>` akan menjalankan `onclick`:
 
 ![](event-order-bubbling.svg)
 
-Jadi jika kita klik pada `<p>`, kemudia kita akan melihat 3 buah peringatan (_alerts_): `p` -> `div` -> `form`.
+Jadi jika kita klik pada `<p>`, kemudian kita akan melihat 3 buah peringatan (_alerts_): `p` -> `div` -> `form`.
 
 Proses ini disebut dengan "menggelembung (_bubbling_)", karena peristiwa akan "mengelembung (_bubble_)" dari bagian dalam elemen ke atas melalui elemen orang tua (_parents_) seperti sebuah gelembung di air.
 
@@ -95,7 +95,7 @@ Contohnya, `body.onclick` tidak akan dijalankan jika kamu mengklik pada `<button
 ```smart header="event.stopImmediatePropagation()"
 Jika sebuah elemen memiliki beberapa penangan (handler) untuk satu peristiwa (event), maka bahkan jika salah satu dari penangan menghentikan proses pengelembungan, penagan yang lain akan tetap di jalankan.
 
-Dengan kata lain, `event.stopPropagation()` menghentinkan proses yang keatas, tapi pada elemen yang sama penangan (handler) lain akan tetap di jalankan.
+Dengan kata lain, `event.stopPropagation()` menghentikan proses yang keatas, tapi pada elemen yang sama penangan (handler) lain akan tetap di jalankan.
 
 Untuk menghentukan pengelembungan (handler) dan mencegah penangan (handler) lain yang ada pada elemen tersebut untuk dijalankan, harus menggunakan metode `event.stopImmediatePropagation()`. Setelah itu tidak akan ada penangan (handler) yang dijalankan.
 ```
@@ -108,10 +108,10 @@ Terkadang `event.stopPropagation()` akan menyebabkan jebakan tersembunyi yang mu
 Contoh:
 
 1. Kita membuat sebuah menu yang bersarang. Pada setiap submenu penangan (_handles_) klik pada elemen itu dan menjalankan `stopPropagation` jadi bagian luar menu tidak akan dijalankan.
-2. Kemudian kita memutuskan untuk menangkap klik pada keseluruhan jendela (_window_), untuk melacak kebiasaan pengguna (dimana biasa penggunana mengklik). Beberapa sistem analisa menggunakan metode ini. Biasanya code yang digunakan `document.addEventListener('click'…)` untuk menangkap semua klik.
+2. Kemudian kita memutuskan untuk menangkap klik pada keseluruhan jendela (_window_), untuk melacak kebiasaan pengguna (dimana biasa pengguna mengklik). Beberapa sistem analisa menggunakan metode ini. Biasanya code yang digunakan `document.addEventListener('click'…)` untuk menangkap semua klik.
 3. Analisis kita tidak akan bekerja pada area dimana kita telah menghentikan peristiwa klik dengan menggunakan `stopPropagation`. Dengan kata lain kita telah membuat daerah mati (_dead zone_).
 
-Biasanya tidak ada keperluan utama yang membuat kita harus menghentikan proses mengelembung. Sebuah fungsi yang kelihatannya membutuhkan penggunaaan metode itu bisa di selesaikan dengan menggunakan cara lain. Salah satunya dengan menggunakan peristiwa khusus, kita akan membahasnya nanti. Dan juka kita dapat menulis data kedalam objek `event` pada sebuah penangan (handler) dan membacanya pada penangan (handler) lainnya, jadi kita dapat meneruskan data tentang proses yang terjadi dibawah ke penangan (handler) elemen atas.
+Biasanya tidak ada keperluan utama yang membuat kita harus menghentikan proses mengelembung. Sebuah fungsi yang kelihatannya membutuhkan penggunaan metode itu bisa di selesaikan dengan menggunakan cara lain. Salah satunya dengan menggunakan peristiwa khusus, kita akan membahasnya nanti. Dan juga kita dapat menulis data kedalam objek `event` pada sebuah penangan (handler) dan membacanya pada penangan (handler) lainnya, jadi kita dapat meneruskan data tentang proses yang terjadi dibawah ke penangan (handler) elemen atas.
 ```
 
 
