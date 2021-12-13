@@ -187,8 +187,13 @@ let user = {
 
 let say = user.say.bind(user);
 
+<<<<<<< HEAD
 say("Hello"); // Hello, John (argumen "Hello" dikirim untuk digunakan)
 say("Bye"); // Bye, John ("Bye" dikirim untuk digunakan)
+=======
+say("Hello"); // Hello, John! ("Hello" argument is passed to say)
+say("Bye"); // Bye, John! ("Bye" is passed to say)
+>>>>>>> c5358c59494b53efb832c81a5338e0a23b22c269
 ```
 
 ````smart header="Metode yang bermanfaat: `bindAll`"
