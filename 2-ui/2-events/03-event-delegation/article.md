@@ -1,32 +1,32 @@
 
-# Event delegation
+# Delegasi Peristiwa
 
-Capturing and bubbling allow us to implement one of most powerful event handling patterns called *event delegation*.
+Menangkap dan pengelembungan mengizinkan kita untuk mengimplementasikan salah satu pola penanganan peristiwa paling kuat yang disebut dengan *delegasi peristiwa (_event delegation_)*.
 
-The idea is that if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them -- we put a single handler on their common ancestor.
+Ide utama yaitu jika kita memiliki banyak elemen yang akan di tanggani dengan cara yang sama, maka sebaiknya daripada memberikan sebuah penangan pada setiap elemen tersebut -- kita buat sebuah penangan (_handler_) pada elemen atas yang melingkupi semua elemen tersebut.
 
-In the handler we get `event.target` to see where the event actually happened and handle it.
+Pada penangan kita mendapatkan `event.target` untuk melihat dimanakah kejadian itu terjadi, dan akan menangani kejadian itu.
 
-Let's see an example -- the [Ba-Gua diagram](http://en.wikipedia.org/wiki/Ba_gua) reflecting the ancient Chinese philosophy.
+Mari lihat sebuah contoh -- [Ba-Gua diagram](http://en.wikipedia.org/wiki/Ba_gua) mencerminkan filosofi Cina kuno.
 
-Here it is:
+Ini dia:
 
 [iframe height=350 src="bagua" edit link]
 
-The HTML is like this:
+HTMLnya seperti ini:
 
 ```html
 <table>
   <tr>
-    <th colspan="3"><em>Bagua</em> Chart: Direction, Element, Color, Meaning</th>
+    <th colspan="3"><em>Bagua</em> Bagan: Arah, Elemen, Warna, Arti</th>
   </tr>
   <tr>
-    <td class="nw"><strong>Northwest</strong><br>Metal<br>Silver<br>Elders</td>
+    <td class="nw"><strong>Barat Laut</strong><br>Logam<br>Perak<br>Orang Tua</td>
     <td class="n">...</td>
     <td class="ne">...</td>
   </tr>
-  <tr>...2 more lines of this kind...</tr>
-  <tr>...2 more lines of this kind...</tr>
+  <tr>...2 buah teks seperti di atas...</tr>
+  <tr>...2 buah teks seperti di atas...</tr>
 </table>
 ```
 
