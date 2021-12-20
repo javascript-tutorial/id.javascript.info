@@ -3,7 +3,7 @@
 
 Menangkap dan pengelembungan mengizinkan kita untuk mengimplementasikan salah satu pola penanganan peristiwa paling kuat yang disebut dengan *delegasi peristiwa (_event delegation_)*.
 
-Ide utama yaitu jika kita memiliki banyak elemen yang akan di tanggani dengan cara yang sama, maka sebaiknya daripada memberikan sebuah penangan pada setiap elemen tersebut -- kita buat sebuah penangan (_handler_) pada elemen atas yang melingkupi semua elemen tersebut.
+Ide utama yaitu jika kita memiliki banyak elemen yang akan di tangani dengan cara yang sama, maka sebaiknya daripada memberikan sebuah penangan pada setiap elemen tersebut -- kita buat sebuah penangan (_handler_) pada elemen atas yang melingkupi semua elemen tersebut.
 
 Pada penangan kita mendapatkan `event.target` untuk melihat dimanakah kejadian itu terjadi, dan akan menangani kejadian itu.
 
@@ -180,18 +180,18 @@ Pola memiliki 2 bagian:
 1. Kita tambahkan sebuah atribut khusus ke sebuah elemen yang menjelaskan perilakunya.
 2. Penangan dokumen secara umum untuk melacak peristiwa, dan jika sebuah peristiwa terjadi pada elemen yang memiliki atribut khusus -- jalankan sebuah proses.
 
-### Behavior: Counter
+### Perilaku: Menghitung
 
-For instance, here the attribute `data-counter` adds a behavior: "increase value on click" to buttons:
+Contohnya, disini atribut `data-counter` menambahkan sebuah perilaku: "Menambah nilai pada klik" ke tombol:
 
 ```html run autorun height=60
-Counter: <input type="button" value="1" data-counter>
-One more counter: <input type="button" value="2" data-counter>
+Penghitung: <input type="button" value="1" data-counter>
+Penghitung lainnya: <input type="button" value="2" data-counter>
 
 <script>
   document.addEventListener('click', function(event) {
 
-    if (event.target.dataset.counter != undefined) { // if the attribute exists...
+    if (event.target.dataset.counter != undefined) { // Jika ada atributnya...
       event.target.value++;
     }
 
@@ -199,27 +199,27 @@ One more counter: <input type="button" value="2" data-counter>
 </script>
 ```
 
-If we click a button -- its value is increased. Not buttons, but the general approach is important here.
+Jika kita mengklik sebuah tombol -- nilainya akan bertambah. Bukan tombol, tapi pendekatan secara umum penting pada kasus ini.
 
-There can be as many attributes with `data-counter` as we want. We can add new ones to HTML at any moment. Using the event delegation we "extended" HTML, added an attribute that describes a new behavior.
+Bisa ada banyak atribut dengan `data-counter` sebanyak yang kita mau. Kta bisa menambah atribut baru ke HTML kapanpun kita mau. Menggunakan delegasi peristiwa kita "memperpanjang" HTML, menambahkan sebuah atribut baru untuk menjelaskan sebuah perilaku baru.
 
-```warn header="For document-level handlers -- always `addEventListener`"
-When we assign an event handler to the `document` object, we should always use `addEventListener`, not `document.on<event>`, because the latter will cause conflicts: new handlers overwrite old ones.
+```warn header="Untuk penangan tingkat dokumen -- selalu gunakan `addEventListener`"
+Pada saat kita mengatur sebuah penangan peristiwa (_event handler_) ke objek `dokumen`, sebaiknya selalu gunakan `addEvenListener`, dan bukan `document.on<event>`, karena yang kedua akan mengakibatkan konflik: penangan baru akan menimpah penangan yang lama.
 
-For real projects it's normal that there are many handlers on `document` set by different parts of the code.
+Untuk projek asli, adalah normal untuk memiliki banyak penangan (_handler_) yang di atur ke `document` pada bagian code yang berbeda.
 ```
 
-### Behavior: Toggler
+### Perilaku: Pengalih
 
-One more example of behavior. A click on an element with the attribute `data-toggle-id` will show/hide the element with the given `id`:
+Satu lagi contoh dari perilaku. Sebuah klik pada elemen dengan atribut `data-toggle-id` akan menampilkan/menyembunyikan elemen dengan `id` yang sama:
 
 ```html autorun run height=60
 <button *!*data-toggle-id="subscribe-mail"*/!*>
-  Show the subscription form
+  Tampilkan formulir berlangganan
 </button>
 
 <form id="subscribe-mail" hidden>
-  Your mail: <input type="email">
+  Email kamu: <input type="email">
 </form>
 
 <script>
@@ -236,37 +236,37 @@ One more example of behavior. A click on an element with the attribute `data-tog
 </script>
 ```
 
-Let's note once again what we did. Now, to add toggling functionality to an element -- there's no need to know JavaScript, just use the attribute `data-toggle-id`.
+Catat lagi apa yang kita lakukan. Sekarang, untuk menambahkan fungsi beralih pada elemen -- tidak memerlukan pengetahuan tentang JavaScript, hanya perlu menggunakan atribut `data-toggle-id`.
 
-That may become really convenient -- no need to write JavaScript for every such element. Just use the behavior. The document-level handler makes it work for any element of the page.
+Hal ini akan sangat menyederhanakan proses -- tidak perlu menulis JavaScript untuk setiap elemen. Hanya perlu menggunakan perilaku. Penangan (_handler_) tingkat dokumen akan membuat proses ini berfungsi pada setiap elemen yang ada di dalam halaman tersebut.
 
-We can combine multiple behaviors on a single element as well.
+Kita juga bisa menggabungkan beberapa perilaku pada sebuah elemen.
 
-The "behavior" pattern can be an alternative to mini-fragments of JavaScript.
+"Perilaku" pola bisa menjadi alternatif terhadap fargmen kecil JavaScript.
 
-## Summary
+## Ringkisan
 
-Event delegation is really cool! It's one of the most helpful patterns for DOM events.
+Delegasi peristiwa sangatlah keren! Itu salah satu pola yang paling berguna untuk peristiwa DOM.
 
-It's often used to add the same handling for many similar elements, but not only for that.
+Itu sering digunakan untuk menambahkan penangan untuk elemen yang mirip, tapi bukan hanya untuk itu.
 
-The algorithm:
+Algoritmanya:
 
-1. Put a single handler on the container.
-2. In the handler -- check the source element `event.target`.
-3. If the event happened inside an element that interests us, then handle the event.
+1. Taruh sebuah penangan (_handler_) pada elemen atas.
+2. Di penangan (_handler_) -- periksa sumber elemen dengan menggunakan `event.target`.
+3. Jika peristiwa terjadi didalam elemen yang kita inginkan, maka tangani peristiwa itu.
 
-Benefits:
+Keuntungan:
 
 ```compare
-+ Simplifies initialization and saves memory: no need to add many handlers.
-+ Less code: when adding or removing elements, no need to add/remove handlers.
-+ DOM modifications: we can mass add/remove elements with `innerHTML` and the like.
++ Menyederhanakan proses inisialisasi dan menghemat memori: tidak perlu membuat banyak penangan (_handler_).
++ Sedikit Kode: saat menambahkan dan menghapus elemen, kita tidak perlu tambah/hapus penangan (_handler_).
++ Modifikasi DOM: Kita bisa secara banyak menambahkan/menghapuskan elemen dengan `innerHTML` dan sejenisnya.
 ```
 
-The delegation has its limitations of course:
+Delegasi tentu juga memiliki batasannya:
 
 ```compare
-- First, the event must be bubbling. Some events do not bubble. Also, low-level handlers should not use `event.stopPropagation()`.
-- Second, the delegation may add CPU load, because the container-level handler reacts on events in any place of the container, no matter whether they interest us or not. But usually the load is negligible, so we don't take it into account.
+- Pertama, peristiwa harus bisa mengelembung. Bebebrapa peristiwa tidak mengelembung. Juga, penangan (_handler_) pada level bawah tidak boleh menggunakan `event.stopPropagation()`.
+- Kedua, delegasi mungkin menambahkan muatan pada CPU, karena penangan (_handler_) pada level atas akan bereaksi pada peristiwa yang terjadi didalam elemen itu, tidak peduli jika peristiwa itu yang kita inginkan atau tidak. Tapi biasanya proses muatannya tidak besar dan bisa diabaikan, jadi kita tidak perlu memperhitungkannya.
 ```
