@@ -2,37 +2,37 @@ importance: 5
 
 ---
 
-# Tooltip behavior
+# Perilaku Tooltip
 
-Create JS-code for the tooltip behavior.
+Buat Kode JS untuk perilaku tooltip.
 
-When a mouse comes over an element with `data-tooltip`, the tooltip should appear over it, and when it's gone then hide.
+Pada saat mouse menghampir sebuah elemen dengan `data-tooltip`, tooltip harus tampil diatasnya, dan pada saat mouse itu pindah tooltipnya di sembunyikan.
 
-An example of annotated HTML:
+Contoh dari HTML yang beranotasi:
 ```html
-<button data-tooltip="the tooltip is longer than the element">Short button</button>
-<button data-tooltip="HTML<br>tooltip">One more button</button>
+<button data-tooltip="Tooltip lebih panjang dari elemen tombol">Tombol pendek</button>
+<button data-tooltip="HTML<br>tooltip">Sebuah tombol lainnya</button>
 ```
 
-Should work like this:
+Harus berfungsi seperti ini:
 
 [iframe src="solution" height=200 border=1]
 
-In this task we assume that all elements with `data-tooltip` have only text inside. No nested tags (yet).
+Pada tugas ini kita beranggapan bawah semua elemen dengan `data-tooltip` memiliki teks didalamnya, Tidak ada elemen bersarang (belum).
 
-Details:
+Rincian:
 
-- The distance between the element and the tooltip should be `5px`.
-- The tooltip should be centered relative to the element, if possible.
-- The tooltip should not cross window edges. Normally it should be above the element, but if the element is at the page top and there's no space for the tooltip, then below it.
-- The tooltip content is given in the `data-tooltip` attribute. It can be arbitrary HTML.
+- Jarak antara elemen dan tooltip harusnya `5px`.
+- Jika memungkinkan, tooltip harus ditengah relatif pada elemen yang beranotasi.
+- Tooltip tidak boleh melewati ujung dari jendela (_window_). Biasanya tooltip harus berada di atas elemen, tapi jika elemen itu berada pada bagian atas halaman, dan tidak ada area untuk tooltip, maka posisi tooltip dibawah elemen.
+- Konten tooltip diberikan dalam atribut 'data-tooltip'. Ini bisa menjadi HTML asalan.
 
-You'll need two events here:
-- `mouseover` triggers when a pointer comes over an element.
-- `mouseout` triggers when a pointer leaves an element.
+Kamu akan membutuhkan 2 peristiwa:
+- `mouseover` akan dijalankan pada saat pointer berada di atas elemen beranotasi.
+- `mouseout` akan dijalankan pada saat pointer meninggalkan elemen yang beranotasi.
 
-Please use event delegation: set up two handlers on `document` to track all "overs" and "outs" from elements with `data-tooltip` and manage tooltips from there.
+Tolong gunakan delegasi peristiwa: atur 2 buah penangan pada `document` untuk melacak semua "masukan" dan "keluaran" dari elemen yang memiliki `data-tooltip` dan untuk menanggani tooltip dari elemen itu.
 
-After the behavior is implemented, even people unfamiliar with JavaScript can add annotated elements.
+Setelah perilaku tooltip dibuat, bahkan orang yang tidak familiar dengan JavaScript bisa menambahkan elemen yang beranotasi.
 
-P.S. Only one tooltip may show up at a time.
+Tambahan: Tooltip hanya bisa ditujukan satu-satu.
