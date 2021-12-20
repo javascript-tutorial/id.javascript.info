@@ -17,36 +17,36 @@
 <body>
 
   <ul class="tree" id="tree">
-    <li>Animals
+    <li>Hewan
       <ul>
-        <li>Mammals
+        <li>Mamalia
           <ul>
-            <li>Cows</li>
-            <li>Donkeys</li>
-            <li>Dogs</li>
-            <li>Tigers</li>
+            <li>Sapi</li>
+            <li>Keledai</li>
+            <li>Anjing</li>
+            <li>Harimau</li>
           </ul>
         </li>
-        <li>Other
+        <li>Lain
           <ul>
-            <li>Snakes</li>
-            <li>Birds</li>
-            <li>Lizards</li>
+            <li>Ular</li>
+            <li>Burung</li>
+            <li>Kadal</li>
           </ul>
         </li>
       </ul>
     </li>
-    <li>Fishes
+    <li>Ikan
       <ul>
-        <li>Aquarium
+        <li>Akuarium
           <ul>
-            <li>Guppy</li>
-            <li>Angelfish</li>
+            <li>Gupi (ikan seribu)</li>
+            <li>Ikan bidadari</li>
           </ul>
         </li>
-        <li>Sea
+        <li>Laut
           <ul>
-            <li>Sea trout</li>
+            <li>Trout laut</li>
           </ul>
         </li>
       </ul>
@@ -54,15 +54,15 @@
   </ul>
 
   <script>
-    // move all text into <span>
-    // they occupy exactly the place necessary for the text,
+    // pindahkan semua teks kedalam <span>
+    // mereka menempati tempat yang tepat diperlukan untuk teks,
     for (let li of tree.querySelectorAll('li')) {
       let span = document.createElement('span');
       li.prepend(span);
-      span.append(span.nextSibling); // move the text node into span
+      span.append(span.nextSibling); // memindahkan node teks ke dalam span
     }
 
-    // catch clicks on whole tree
+    // tangkap klik pada keseluruhan pohon (tree)
     tree.onclick = function(event) {
 
       if (event.target.tagName != 'SPAN') {
@@ -70,7 +70,7 @@
       }
 
       let childrenContainer = event.target.parentNode.querySelector('ul');
-      if (!childrenContainer) return; // no children
+      if (!childrenContainer) return; // tidak ada elemen bawah
 
       childrenContainer.hidden = !childrenContainer.hidden;
     }
