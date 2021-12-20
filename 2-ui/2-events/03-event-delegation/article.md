@@ -30,62 +30,62 @@ HTMLnya seperti ini:
 </table>
 ```
 
-The table has 9 cells, but there could be 99 or 9999, doesn't matter.
+Tabel memiliki 9 sel, tapi bisa saja memiliki 99 atau 9999 sell, tidaklah penting.
 
-**Our task is to highlight a cell `<td>` on click.**
+**Tugas kita adalah untuk memberikan highlight ke sel `<td>` yang di klik.**
 
-Instead of assign an `onclick` handler to each `<td>` (can be many) -- we'll setup the "catch-all" handler on `<table>` element.
+Daripada mengatur sebuah penangan `onclick` pada setiap `<td>` (yang bisa sangat banyak) -- kita akan mengatur sebuah penangan "penangkap-semua" pada elemen `<table>`.
 
-It will use `event.target` to get the clicked element and highlight it.
+Penangan itu akan menggunakan `event.target` untuk mendapatkan elemen yang diklik dan menghighlightnya.
 
-The code:
+Kodenya:
 
 ```js
 let selectedTd;
 
 *!*
 table.onclick = function(event) {
-  let target = event.target; // where was the click?
+  let target = event.target; // dimanakah klik terjadi?
 
-  if (target.tagName != 'TD') return; // not on TD? Then we're not interested
+  if (target.tagName != 'TD') return; // bukan di TD? kita tidak peduli
 
-  highlight(target); // highlight it
+  highlight(target); // highlight elemen itu
 };
 */!*
 
 function highlight(td) {
-  if (selectedTd) { // remove the existing highlight if any
+  if (selectedTd) { // hapus elemen lain yang sudah di highlight
     selectedTd.classList.remove('highlight');
   }
   selectedTd = td;
-  selectedTd.classList.add('highlight'); // highlight the new td
+  selectedTd.classList.add('highlight'); // menghighlight elemen yang baru
 }
 ```
 
-Such a code doesn't care how many cells there are in the table. We can add/remove `<td>` dynamically at any time and the highlighting will still work.
+Kode seperti itu, tidak peduli berapa banyak sel yang ada pada table tersebut. Kita bisa menambahkan/menghapuskan `td` secara dinamis pada waktu kapanpun dan proses menghighlight akan tetap berfungsi.
 
-Still, there's a drawback.
+Tapi, tetap ada kekurangannya.
 
-The click may occur not on the `<td>`, but inside it.
+Klik mungkin tidak terjadi pada `<td>`, tapi pada elemen didalamnya.
 
-In our case if we take a look inside the HTML, we can see nested tags inside `<td>`, like `<strong>`:
+Pada kasus kita jika dilihat pada HTML, kita memiliki sebuah elemen bersarang pada `<td>`, seperti `<strong>`:
 
 ```html
 <td>
 *!*
-  <strong>Northwest</strong>
+  <strong>Barat Laut</strong>
 */!*
   ...
 </td>
 ```
 
-Naturally, if a click happens on that `<strong>` then it becomes the value of `event.target`.
+Biasanya, jika klik terjadi pada `<strong>` maka elemen itu akan menjadi nilai dari `event.target`.
 
 ![](bagua-bubble.svg)
 
-In the handler `table.onclick` we should take such `event.target` and find out whether the click was inside `<td>` or not.
+Pada penangan (_handler_) `table.onclick` kita sebaiknya mengambil `event.target` dan mencari tahu apakah klik terjadi didalam `<td>` atau tidak.
 
-Here's the improved code:
+Ini kode yang sudah diperbaiki:
 
 ```js
 table.onclick = function(event) {
@@ -99,13 +99,13 @@ table.onclick = function(event) {
 };
 ```
 
-Explanations:
-1. The method `elem.closest(selector)` returns the nearest ancestor that matches the selector. In our case we look for `<td>` on the way up from the source element.
-2. If `event.target` is not inside any `<td>`, then the call returns immediately, as there's nothing to do.
-3. In case of nested tables, `event.target` may be a `<td>`, but lying outside of the current table. So we check if that's actually *our table's* `<td>`.
-4. And, if it's so, then highlight it.
+Penjelasan:
+1. Metode `elem.closest(selector)` akan mengembalikan elemen atas terdekat yang sama dengan pemilih (_selector_). Pada kasus kita yang dicari adalah `<td>` pada bagian atas dari elemen sumber.
+2. Jika `event.target` tidak didalam `<td>`, maka kita akan langsung mengembalikan, karena tidak ada yang bisa dilakukan.
+3. Jika pada kasus elemen bersarang didalam tabel, `event.target` bisa saja merupakan elemen `<td>`, tapi berada diluar tabel yang kita atur. Jadi kita memeriksa jika tabel itu adalah *tabel yang kita butuh* `<td>`.
+4. Dan, jika benar, maka beri highlight pada elemen itu.
 
-As the result, we have a fast, efficient highlighting code, that doesn't care about the total number of `<td>` in the table.
+Hasilnya, kita memiliki kode yang cepat, efisien dalam memberikan highlight, yang tidak peduli terhadap jumlah dari elemen `<td>` pada sebuah tabel.
 
 ## Delegation example: actions in markup
 
