@@ -107,25 +107,25 @@ Penjelasan:
 
 Hasilnya, kita memiliki kode yang cepat, efisien dalam memberikan highlight, yang tidak peduli terhadap jumlah dari elemen `<td>` pada sebuah tabel.
 
-## Delegation example: actions in markup
+## Contoh Delegasi: tindakan dalam markup
 
-There are other uses for event delegation.
+Ada kegunaan lain untuk delegasi acara.
 
-Let's say, we want to make a menu with buttons "Save", "Load", "Search" and so on. And there's an object with methods `save`, `load`, `search`... How to match them?
+Bayangkan, kita mau membuat sebuah menu dengan tombol "Simpan", "Muat", "Cari" dan seterusnya. Dan ada sebuah objek dengan metode `simpan`, `muat`, `cari`... Bagaimana cara untuk menyamakan mereka?
 
-The first idea may be to assign a separate handler to each button. But there's a more elegant solution. We can add a handler for the whole menu and `data-action` attributes for buttons that has the method to call:
+Ide pertama yaitu dengan mengatur penangan (_handler_) berbeda pada setiap tombol, Tapi ada solusi yang lebih elegan. Kita bisa menambahkan sebuah penangan (_handler_) untuk seseluruhan menu dan menambahkan atribut `data-action` untuk tombol yang bisa memanggil/memiliki sebuah metode:
 
 ```html
-<button *!*data-action="save"*/!*>Click to Save</button>
+<button *!*data-action="save"*/!*>Klik untuk simpan</button>
 ```
 
-The handler reads the attribute and executes the method. Take a look at the working example:
+Penangan (_handler_) membaca atribut dan mengeksekusi metode yang sama dengan atribut. Coba lihat contohnya:
 
 ```html autorun height=60 run untrusted
 <div id="menu">
-  <button data-action="save">Save</button>
-  <button data-action="load">Load</button>
-  <button data-action="search">Search</button>
+  <button data-action="save">Simpan</button>
+  <button data-action="load">Muat</button>
+  <button data-action="search">Cari</button>
 </div>
 
 <script>
@@ -136,15 +136,15 @@ The handler reads the attribute and executes the method. Take a look at the work
     }
 
     save() {
-      alert('saving');
+      alert('Menyimpan');
     }
 
     load() {
-      alert('loading');
+      alert('Memuat');
     }
 
     search() {
-      alert('searching');
+      alert('Mencari');
     }
 
     onClick(event) {
@@ -161,24 +161,24 @@ The handler reads the attribute and executes the method. Take a look at the work
 </script>
 ```
 
-Please note that `this.onClick` is bound to `this` in `(*)`. That's important, because otherwise `this` inside it would reference the DOM element (`elem`), not the `Menu` object, and `this[action]` would not be what we need.
+Harap dicatat bahwa `this.onClick` terikat pada `this` di `(*)`. Itu penting, karena jika tidak `this` didalamnya akan menyimpan referensi ke DOM elemen (`elem`), buka ke objek `Menu`, dan `this[action]` tidak akan seperti yang kita inginkan.
 
-So, what advantages does delegation give us here?
+Jadi,apakah keuntuk yang diberikan delegasi kepada kita disini?
 
 ```compare
-+ We don't need to write the code to assign a handler to each button. Just make a method and put it in the markup.
-+ The HTML structure is flexible, we can add/remove buttons at any time.
++ Kita teidak perlu lagi menulis kode untuk mengatur penangan (_handler_) untuk setiap tombol. Kita hanya perlu membuat sebuah metode dan menaruh markup didalamnya.
++ Struktur HTML menjadi fleksible, dan kita bisa menambah/menghapus tombol kapanpun kita mau.
 ```
 
-We could also use classes `.action-save`, `.action-load`, but an attribute `data-action` is better semantically. And we can use it in CSS rules too.
+Kita juga bisa menggunakan _class_ `.action-save`, `action-load`, tapi sebuah atribut `data-action` lebih baik secara semantik. Dan kita bisa gunakan itu pada aturan CSS juga.  
 
-## The "behavior" pattern
+## Perilaku pola
 
-We can also use event delegation to add "behaviors" to elements *declaratively*, with special attributes and classes.
+Kita juga bisa menggunakan delegasi peristiwa untuk menambahkan 'perilaku' kepada elemen secara deklarasi, dengan atribut khusus dan _class_.
 
-The pattern has two parts:
-1. We add a custom attribute to an element that describes its behavior.
-2. A document-wide handler tracks events, and if an event happens on an attributed element -- performs the action.
+Pola memiliki 2 bagian:
+1. Kita tambahkan sebuah atribut khusus ke sebuah elemen yang menjelaskan perilakunya.
+2. Penangan dokumen secara umum untuk melacak peristiwa, dan jika sebuah peristiwa terjadi pada elemen yang memiliki atribut khusus -- jalankan sebuah proses.
 
 ### Behavior: Counter
 
