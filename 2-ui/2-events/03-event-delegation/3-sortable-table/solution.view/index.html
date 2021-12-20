@@ -25,8 +25,8 @@
   <table id="grid">
     <thead>
       <tr>
-        <th data-type="number">Age</th>
-        <th data-type="string">Name</th>
+        <th data-type="number">Umur</th>
+        <th data-type="string">Nama</th>
       </tr>
     </thead>
     <tbody>
@@ -59,10 +59,10 @@
       if (e.target.tagName != 'TH') return;
 
       let th = e.target;
-      // if TH, then sort
-      // cellIndex is the number of th:
-      //   0 for the first column
-      //   1 for the second column, etc
+      // Jika TH, maka urutkan
+      // cellIndex adalah nomor dari th:
+      //   0 untuk kolom pertama
+      //   1 untuk kolom kedua, dan seterusnya
       sortGrid(th.cellIndex, th.dataset.type);
     };
 
@@ -71,7 +71,7 @@
 
       let rowsArray = Array.from(tbody.rows);
 
-      // compare(a, b) compares two rows, need for sorting
+      // bandingkan(a, b) bandikna kedua baris, untuk di urutkan
       let compare;
 
       switch (type) {
@@ -87,7 +87,7 @@
           break;
       }
 
-      // sort
+      // urutkan
       rowsArray.sort(compare);
 
       tbody.append(...rowsArray);

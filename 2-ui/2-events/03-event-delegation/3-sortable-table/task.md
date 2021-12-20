@@ -2,19 +2,19 @@ importance: 4
 
 ---
 
-# Sortable table
+# Tabel yang bisa diurutkan
 
-Make the table sortable: clicks on `<th>` elements should sort it by corresponding column.
+Buat sebuah table yang dapat diurutkan: klik pada elemen `<th>` harus mengurutkan kolom dibawahnya.
 
-Each `<th>` has the type in the attribute, like this:
+Setiap `<th>` memiliki tipe pada atribut, seperti ini:
 
 ```html
 <table id="grid">
   <thead>
     <tr>
 *!*
-      <th data-type="number">Age</th>
-      <th data-type="string">Name</th>
+      <th data-type="number">Umur</th>
+      <th data-type="string">Nama</th>
 */!*
     </tr>
   </thead>
@@ -32,12 +32,12 @@ Each `<th>` has the type in the attribute, like this:
 </table>
 ```
 
-In the example above the first column has numbers, and the second one -- strings. The sorting function should handle sort according to the type.
+Pada contoh diatas kolom memiliki nomor, dan kolom kedua - string (teks). Fungsi pengurutan harus menanggani pengurutan berdasarkan tipenya.
 
-Only `"string"` and `"number"` types should be supported.
+Hanya tipe `"string"` dan `"number"` yang bisa di urutkan.
 
-The working example:
+Contoh yang sudah jadi:
 
 [iframe border=1 src="solution" height=190]
 
-P.S. The table can be big, with any number of rows and columns.
+Tambahan: Tabel bisa besar, dengan banyak baris dan kolom.
