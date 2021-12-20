@@ -49,7 +49,11 @@ Solusinya terlihat sedikit aneh, tapi inilah solusinya:
 2. Bahasanya membolehkan untuk mengakses method dan properti dari string, number, boolean dan symbols.
 3. Untuk membuat itu bekerja, "objek pembungkus" spesial yang menyediakan fungsionalitas tambahan dibuat, dan lalu dihancurkan.
 
+<<<<<<< HEAD
 "Objek pembungkus" berbeda untuk setiap tipe primitif dan dipanggil: `String`, `Number`, `Boolean` dan `Symbol`. Lalu, mereka menyediakan metode-metode yang berbeda.
+=======
+The "object wrappers" are different for each primitive type and are called: `String`, `Number`, `Boolean`, `Symbol` and `BigInt`. Thus, they provide different sets of methods.
+>>>>>>> 8d04d0d2db97276dbb2b451c30a7bd3e05d65831
 
 Contoh, ada methode string [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) yang mengembalikan string `str` yang telah diubah menjadi huruf kapital.
 
