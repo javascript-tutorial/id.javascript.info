@@ -1,91 +1,91 @@
 
-# Event delegation
+# Delegasi Peristiwa
 
-Capturing and bubbling allow us to implement one of most powerful event handling patterns called *event delegation*.
+Menangkap dan pengelembungan mengizinkan kita untuk mengimplementasikan salah satu pola penanganan peristiwa paling kuat yang disebut dengan *delegasi peristiwa (_event delegation_)*.
 
-The idea is that if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them -- we put a single handler on their common ancestor.
+Ide utama yaitu jika kita memiliki banyak elemen yang akan di tangani dengan cara yang sama, maka sebaiknya daripada memberikan sebuah penangan pada setiap elemen tersebut -- kita buat sebuah penangan (_handler_) pada elemen atas yang melingkupi semua elemen tersebut.
 
-In the handler we get `event.target` to see where the event actually happened and handle it.
+Pada penangan kita mendapatkan `event.target` untuk melihat dimanakah kejadian itu terjadi, dan akan menangani kejadian itu.
 
-Let's see an example -- the [Ba-Gua diagram](http://en.wikipedia.org/wiki/Ba_gua) reflecting the ancient Chinese philosophy.
+Mari lihat sebuah contoh -- [Ba-Gua diagram](http://en.wikipedia.org/wiki/Ba_gua) mencerminkan filosofi Cina kuno.
 
-Here it is:
+Ini dia:
 
 [iframe height=350 src="bagua" edit link]
 
-The HTML is like this:
+HTMLnya seperti ini:
 
 ```html
 <table>
   <tr>
-    <th colspan="3"><em>Bagua</em> Chart: Direction, Element, Color, Meaning</th>
+    <th colspan="3"><em>Bagua</em> Bagan: Arah, Elemen, Warna, Arti</th>
   </tr>
   <tr>
-    <td class="nw"><strong>Northwest</strong><br>Metal<br>Silver<br>Elders</td>
+    <td class="nw"><strong>Barat Laut</strong><br>Logam<br>Perak<br>Orang Tua</td>
     <td class="n">...</td>
     <td class="ne">...</td>
   </tr>
-  <tr>...2 more lines of this kind...</tr>
-  <tr>...2 more lines of this kind...</tr>
+  <tr>...2 buah teks seperti di atas...</tr>
+  <tr>...2 buah teks seperti di atas...</tr>
 </table>
 ```
 
-The table has 9 cells, but there could be 99 or 9999, doesn't matter.
+Tabel memiliki 9 sel, tapi bisa saja memiliki 99 atau 9999 sell, tidaklah penting.
 
-**Our task is to highlight a cell `<td>` on click.**
+**Tugas kita adalah untuk memberikan highlight ke sel `<td>` yang di klik.**
 
-Instead of assign an `onclick` handler to each `<td>` (can be many) -- we'll setup the "catch-all" handler on `<table>` element.
+Daripada mengatur sebuah penangan `onclick` pada setiap `<td>` (yang bisa sangat banyak) -- kita akan mengatur sebuah penangan "penangkap-semua" pada elemen `<table>`.
 
-It will use `event.target` to get the clicked element and highlight it.
+Penangan itu akan menggunakan `event.target` untuk mendapatkan elemen yang diklik dan menghighlightnya.
 
-The code:
+Kodenya:
 
 ```js
 let selectedTd;
 
 *!*
 table.onclick = function(event) {
-  let target = event.target; // where was the click?
+  let target = event.target; // dimanakah klik terjadi?
 
-  if (target.tagName != 'TD') return; // not on TD? Then we're not interested
+  if (target.tagName != 'TD') return; // bukan di TD? kita tidak peduli
 
-  highlight(target); // highlight it
+  highlight(target); // highlight elemen itu
 };
 */!*
 
 function highlight(td) {
-  if (selectedTd) { // remove the existing highlight if any
+  if (selectedTd) { // hapus elemen lain yang sudah di highlight
     selectedTd.classList.remove('highlight');
   }
   selectedTd = td;
-  selectedTd.classList.add('highlight'); // highlight the new td
+  selectedTd.classList.add('highlight'); // menghighlight elemen yang baru
 }
 ```
 
-Such a code doesn't care how many cells there are in the table. We can add/remove `<td>` dynamically at any time and the highlighting will still work.
+Kode seperti itu, tidak peduli berapa banyak sel yang ada pada table tersebut. Kita bisa menambahkan/menghapuskan `td` secara dinamis pada waktu kapanpun dan proses menghighlight akan tetap berfungsi.
 
-Still, there's a drawback.
+Tapi, tetap ada kekurangannya.
 
-The click may occur not on the `<td>`, but inside it.
+Klik mungkin tidak terjadi pada `<td>`, tapi pada elemen didalamnya.
 
-In our case if we take a look inside the HTML, we can see nested tags inside `<td>`, like `<strong>`:
+Pada kasus kita jika dilihat pada HTML, kita memiliki sebuah elemen bersarang pada `<td>`, seperti `<strong>`:
 
 ```html
 <td>
 *!*
-  <strong>Northwest</strong>
+  <strong>Barat Laut</strong>
 */!*
   ...
 </td>
 ```
 
-Naturally, if a click happens on that `<strong>` then it becomes the value of `event.target`.
+Biasanya, jika klik terjadi pada `<strong>` maka elemen itu akan menjadi nilai dari `event.target`.
 
 ![](bagua-bubble.svg)
 
-In the handler `table.onclick` we should take such `event.target` and find out whether the click was inside `<td>` or not.
+Pada penangan (_handler_) `table.onclick` kita sebaiknya mengambil `event.target` dan mencari tahu apakah klik terjadi didalam `<td>` atau tidak.
 
-Here's the improved code:
+Ini kode yang sudah diperbaiki:
 
 ```js
 table.onclick = function(event) {
@@ -99,33 +99,33 @@ table.onclick = function(event) {
 };
 ```
 
-Explanations:
-1. The method `elem.closest(selector)` returns the nearest ancestor that matches the selector. In our case we look for `<td>` on the way up from the source element.
-2. If `event.target` is not inside any `<td>`, then the call returns immediately, as there's nothing to do.
-3. In case of nested tables, `event.target` may be a `<td>`, but lying outside of the current table. So we check if that's actually *our table's* `<td>`.
-4. And, if it's so, then highlight it.
+Penjelasan:
+1. Metode `elem.closest(selector)` akan mengembalikan elemen atas terdekat yang sama dengan pemilih (_selector_). Pada kasus kita yang dicari adalah `<td>` pada bagian atas dari elemen sumber.
+2. Jika `event.target` tidak didalam `<td>`, maka kita akan langsung mengembalikan, karena tidak ada yang bisa dilakukan.
+3. Jika pada kasus elemen bersarang didalam tabel, `event.target` bisa saja merupakan elemen `<td>`, tapi berada diluar tabel yang kita atur. Jadi kita memeriksa jika tabel itu adalah *tabel yang kita butuh* `<td>`.
+4. Dan, jika benar, maka beri highlight pada elemen itu.
 
-As the result, we have a fast, efficient highlighting code, that doesn't care about the total number of `<td>` in the table.
+Hasilnya, kita memiliki kode yang cepat, efisien dalam memberikan highlight, yang tidak peduli terhadap jumlah dari elemen `<td>` pada sebuah tabel.
 
-## Delegation example: actions in markup
+## Contoh Delegasi: tindakan dalam markup
 
-There are other uses for event delegation.
+Ada kegunaan lain untuk delegasi acara.
 
-Let's say, we want to make a menu with buttons "Save", "Load", "Search" and so on. And there's an object with methods `save`, `load`, `search`... How to match them?
+Bayangkan, kita mau membuat sebuah menu dengan tombol "Simpan", "Muat", "Cari" dan seterusnya. Dan ada sebuah objek dengan metode `simpan`, `muat`, `cari`... Bagaimana cara untuk menyamakan mereka?
 
-The first idea may be to assign a separate handler to each button. But there's a more elegant solution. We can add a handler for the whole menu and `data-action` attributes for buttons that has the method to call:
+Ide pertama yaitu dengan mengatur penangan (_handler_) berbeda pada setiap tombol, Tapi ada solusi yang lebih elegan. Kita bisa menambahkan sebuah penangan (_handler_) untuk seseluruhan menu dan menambahkan atribut `data-action` untuk tombol yang bisa memanggil/memiliki sebuah metode:
 
 ```html
-<button *!*data-action="save"*/!*>Click to Save</button>
+<button *!*data-action="save"*/!*>Klik untuk simpan</button>
 ```
 
-The handler reads the attribute and executes the method. Take a look at the working example:
+Penangan (_handler_) membaca atribut dan mengeksekusi metode yang sama dengan atribut. Coba lihat contohnya:
 
 ```html autorun height=60 run untrusted
 <div id="menu">
-  <button data-action="save">Save</button>
-  <button data-action="load">Load</button>
-  <button data-action="search">Search</button>
+  <button data-action="save">Simpan</button>
+  <button data-action="load">Muat</button>
+  <button data-action="search">Cari</button>
 </div>
 
 <script>
@@ -136,15 +136,15 @@ The handler reads the attribute and executes the method. Take a look at the work
     }
 
     save() {
-      alert('saving');
+      alert('Menyimpan');
     }
 
     load() {
-      alert('loading');
+      alert('Memuat');
     }
 
     search() {
-      alert('searching');
+      alert('Mencari');
     }
 
     onClick(event) {
@@ -161,37 +161,37 @@ The handler reads the attribute and executes the method. Take a look at the work
 </script>
 ```
 
-Please note that `this.onClick` is bound to `this` in `(*)`. That's important, because otherwise `this` inside it would reference the DOM element (`elem`), not the `Menu` object, and `this[action]` would not be what we need.
+Harap dicatat bahwa `this.onClick` terikat pada `this` di `(*)`. Itu penting, karena jika tidak `this` didalamnya akan menyimpan referensi ke DOM elemen (`elem`), buka ke objek `Menu`, dan `this[action]` tidak akan seperti yang kita inginkan.
 
-So, what advantages does delegation give us here?
+Jadi,apakah keuntuk yang diberikan delegasi kepada kita disini?
 
 ```compare
-+ We don't need to write the code to assign a handler to each button. Just make a method and put it in the markup.
-+ The HTML structure is flexible, we can add/remove buttons at any time.
++ Kita teidak perlu lagi menulis kode untuk mengatur penangan (_handler_) untuk setiap tombol. Kita hanya perlu membuat sebuah metode dan menaruh markup didalamnya.
++ Struktur HTML menjadi fleksible, dan kita bisa menambah/menghapus tombol kapanpun kita mau.
 ```
 
-We could also use classes `.action-save`, `.action-load`, but an attribute `data-action` is better semantically. And we can use it in CSS rules too.
+Kita juga bisa menggunakan _class_ `.action-save`, `action-load`, tapi sebuah atribut `data-action` lebih baik secara semantik. Dan kita bisa gunakan itu pada aturan CSS juga.  
 
-## The "behavior" pattern
+## Perilaku pola
 
-We can also use event delegation to add "behaviors" to elements *declaratively*, with special attributes and classes.
+Kita juga bisa menggunakan delegasi peristiwa untuk menambahkan 'perilaku' kepada elemen secara deklarasi, dengan atribut khusus dan _class_.
 
-The pattern has two parts:
-1. We add a custom attribute to an element that describes its behavior.
-2. A document-wide handler tracks events, and if an event happens on an attributed element -- performs the action.
+Pola memiliki 2 bagian:
+1. Kita tambahkan sebuah atribut khusus ke sebuah elemen yang menjelaskan perilakunya.
+2. Penangan dokumen secara umum untuk melacak peristiwa, dan jika sebuah peristiwa terjadi pada elemen yang memiliki atribut khusus -- jalankan sebuah proses.
 
-### Behavior: Counter
+### Perilaku: Menghitung
 
-For instance, here the attribute `data-counter` adds a behavior: "increase value on click" to buttons:
+Contohnya, disini atribut `data-counter` menambahkan sebuah perilaku: "Menambah nilai pada klik" ke tombol:
 
 ```html run autorun height=60
-Counter: <input type="button" value="1" data-counter>
-One more counter: <input type="button" value="2" data-counter>
+Penghitung: <input type="button" value="1" data-counter>
+Penghitung lainnya: <input type="button" value="2" data-counter>
 
 <script>
   document.addEventListener('click', function(event) {
 
-    if (event.target.dataset.counter != undefined) { // if the attribute exists...
+    if (event.target.dataset.counter != undefined) { // Jika ada atributnya...
       event.target.value++;
     }
 
@@ -199,27 +199,27 @@ One more counter: <input type="button" value="2" data-counter>
 </script>
 ```
 
-If we click a button -- its value is increased. Not buttons, but the general approach is important here.
+Jika kita mengklik sebuah tombol -- nilainya akan bertambah. Bukan tombol, tapi pendekatan secara umum penting pada kasus ini.
 
-There can be as many attributes with `data-counter` as we want. We can add new ones to HTML at any moment. Using the event delegation we "extended" HTML, added an attribute that describes a new behavior.
+Bisa ada banyak atribut dengan `data-counter` sebanyak yang kita mau. Kta bisa menambah atribut baru ke HTML kapanpun kita mau. Menggunakan delegasi peristiwa kita "memperpanjang" HTML, menambahkan sebuah atribut baru untuk menjelaskan sebuah perilaku baru.
 
-```warn header="For document-level handlers -- always `addEventListener`"
-When we assign an event handler to the `document` object, we should always use `addEventListener`, not `document.on<event>`, because the latter will cause conflicts: new handlers overwrite old ones.
+```warn header="Untuk penangan tingkat dokumen -- selalu gunakan `addEventListener`"
+Pada saat kita mengatur sebuah penangan peristiwa (_event handler_) ke objek `dokumen`, sebaiknya selalu gunakan `addEvenListener`, dan bukan `document.on<event>`, karena yang kedua akan mengakibatkan konflik: penangan baru akan menimpah penangan yang lama.
 
-For real projects it's normal that there are many handlers on `document` set by different parts of the code.
+Untuk projek asli, adalah normal untuk memiliki banyak penangan (_handler_) yang di atur ke `document` pada bagian code yang berbeda.
 ```
 
-### Behavior: Toggler
+### Perilaku: Pengalih
 
-One more example of behavior. A click on an element with the attribute `data-toggle-id` will show/hide the element with the given `id`:
+Satu lagi contoh dari perilaku. Sebuah klik pada elemen dengan atribut `data-toggle-id` akan menampilkan/menyembunyikan elemen dengan `id` yang sama:
 
 ```html autorun run height=60
 <button *!*data-toggle-id="subscribe-mail"*/!*>
-  Show the subscription form
+  Tampilkan formulir berlangganan
 </button>
 
 <form id="subscribe-mail" hidden>
-  Your mail: <input type="email">
+  Email kamu: <input type="email">
 </form>
 
 <script>
@@ -236,37 +236,37 @@ One more example of behavior. A click on an element with the attribute `data-tog
 </script>
 ```
 
-Let's note once again what we did. Now, to add toggling functionality to an element -- there's no need to know JavaScript, just use the attribute `data-toggle-id`.
+Catat lagi apa yang kita lakukan. Sekarang, untuk menambahkan fungsi beralih pada elemen -- tidak memerlukan pengetahuan tentang JavaScript, hanya perlu menggunakan atribut `data-toggle-id`.
 
-That may become really convenient -- no need to write JavaScript for every such element. Just use the behavior. The document-level handler makes it work for any element of the page.
+Hal ini akan sangat menyederhanakan proses -- tidak perlu menulis JavaScript untuk setiap elemen. Hanya perlu menggunakan perilaku. Penangan (_handler_) tingkat dokumen akan membuat proses ini berfungsi pada setiap elemen yang ada di dalam halaman tersebut.
 
-We can combine multiple behaviors on a single element as well.
+Kita juga bisa menggabungkan beberapa perilaku pada sebuah elemen.
 
-The "behavior" pattern can be an alternative to mini-fragments of JavaScript.
+"Perilaku" pola bisa menjadi alternatif terhadap fargmen kecil JavaScript.
 
-## Summary
+## Ringkisan
 
-Event delegation is really cool! It's one of the most helpful patterns for DOM events.
+Delegasi peristiwa sangatlah keren! Itu salah satu pola yang paling berguna untuk peristiwa DOM.
 
-It's often used to add the same handling for many similar elements, but not only for that.
+Itu sering digunakan untuk menambahkan penangan untuk elemen yang mirip, tapi bukan hanya untuk itu.
 
-The algorithm:
+Algoritmanya:
 
-1. Put a single handler on the container.
-2. In the handler -- check the source element `event.target`.
-3. If the event happened inside an element that interests us, then handle the event.
+1. Taruh sebuah penangan (_handler_) pada elemen atas.
+2. Di penangan (_handler_) -- periksa sumber elemen dengan menggunakan `event.target`.
+3. Jika peristiwa terjadi didalam elemen yang kita inginkan, maka tangani peristiwa itu.
 
-Benefits:
+Keuntungan:
 
 ```compare
-+ Simplifies initialization and saves memory: no need to add many handlers.
-+ Less code: when adding or removing elements, no need to add/remove handlers.
-+ DOM modifications: we can mass add/remove elements with `innerHTML` and the like.
++ Menyederhanakan proses inisialisasi dan menghemat memori: tidak perlu membuat banyak penangan (_handler_).
++ Sedikit Kode: saat menambahkan dan menghapus elemen, kita tidak perlu tambah/hapus penangan (_handler_).
++ Modifikasi DOM: Kita bisa secara banyak menambahkan/menghapuskan elemen dengan `innerHTML` dan sejenisnya.
 ```
 
-The delegation has its limitations of course:
+Delegasi tentu juga memiliki batasannya:
 
 ```compare
-- First, the event must be bubbling. Some events do not bubble. Also, low-level handlers should not use `event.stopPropagation()`.
-- Second, the delegation may add CPU load, because the container-level handler reacts on events in any place of the container, no matter whether they interest us or not. But usually the load is negligible, so we don't take it into account.
+- Pertama, peristiwa harus bisa mengelembung. Bebebrapa peristiwa tidak mengelembung. Juga, penangan (_handler_) pada level bawah tidak boleh menggunakan `event.stopPropagation()`.
+- Kedua, delegasi mungkin menambahkan muatan pada CPU, karena penangan (_handler_) pada level atas akan bereaksi pada peristiwa yang terjadi didalam elemen itu, tidak peduli jika peristiwa itu yang kita inginkan atau tidak. Tapi biasanya proses muatannya tidak besar dan bisa diabaikan, jadi kita tidak perlu memperhitungkannya.
 ```

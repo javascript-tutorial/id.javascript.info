@@ -2,12 +2,12 @@ importance: 5
 
 ---
 
-# Hide messages with delegation
+# Menyembunyikan pesan menggunakan delegasi
 
-There's a list of messages with removal buttons `[x]`. Make the buttons work.
+Ada sebuah daftar dengan tombol `[x]`. Buat tombol itu berfungsi.
 
-Like this:
+Seperti ini:
 
 [iframe src="solution" height=420]
 
-P.S. Should be only one event listener on the container, use event delegation.
+Tambahan: Gunakan 1 event listener pada container, gunakan delegasi peristiwa (_event delegation_).

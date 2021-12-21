@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Tree menu
+# Menu pohon (_tree menu_)
 
-Create a tree that shows/hides node children on click:
+Buat sebuah pohon yang akan menampilkan/menyembunyikan elemen bawahan pada saat di klik:
 
 [iframe border=1 src="solution"]
 
-Requirements:
+Syarat:
 
-- Only one event handler (use delegation)
-- A click outside the node title (on an empty space) should not do anything.
+- Hanya satu penangan peristiwa (_event handler_) gunakan delegasi peristiwa.
+- Klik di luar judul node (pada ruang kosong) tidak boleh melakukan apa-apa.
