@@ -33,7 +33,15 @@ new Promise(function (resolve, reject) {
 
 Idenya adalah bahwa **result** diteruskan melalui rantai _handlers_ `.then`.
 
+<<<<<<< HEAD
 Ini alurnya:
+=======
+Here the flow is:
+1. The initial promise resolves in 1 second `(*)`,
+2. Then the `.then` handler is called `(**)`, which in turn creates a new promise (resolved with `2` value).
+3. The next `then` `(***)` gets the result of the previous one, processes it (doubles) and passes it to the next handler.
+4. ...and so on.
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
 1. Promise pertama selesai dalam 1 detik `(*)`,
 2. Kemudian _handler_ `.then` dipanggil `(**)`.
@@ -44,9 +52,13 @@ Selama **result** diteruskan di sepanjang rantai _handlers_, kita bisa melihat u
 
 ![](promise-then-chain.svg)
 
+<<<<<<< HEAD
 Seluruhnya bekerja, karena pemanggilan ke `promise.then` mengembalikan sebuah _promise_, jadi kita bisa memanggil `.then` selanjutnya.
 
 Ketika sebuah _handler_ mengembalikan nilai, _handler_ tersebut menjadi hasil dari promise, jadi `.then` selanjutnya dipanggil dengan itu.
+=======
+The whole thing works, because every call to a `.then` returns a new promise, so that we can call the next `.then` on it.
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
 **Kesalahan klasik pemula: secara teknis kita juga dapat menambahkan banyak `.then` ke satu promise. Ini bukan chaining.**
 
@@ -346,9 +358,13 @@ function loadJson(url) {
 }
 
 function loadGithubUser(name) {
+<<<<<<< HEAD
   return fetch(`https://api.github.com/users/${name}`).then((response) =>
     response.json()
   );
+=======
+  return loadJson(`https://api.github.com/users/${name}`);
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 }
 
 function showAvatar(githubUser) {
