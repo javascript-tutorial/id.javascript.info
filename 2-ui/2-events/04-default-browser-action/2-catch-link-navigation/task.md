@@ -1,16 +1,15 @@
 importance: 5
 
 ---
+# Tangkap link pada elemen
 
-# Catch links in the element
+Buat semua link yang ada didalam elemen dengan `id="contents"` akan menanyakan kepada pengguna jika mereka mau meninggalkan website. Dan jika mereka tidak mau maka halaman tidak akan berpindah.
 
-Make all links inside the element with `id="contents"` ask the user if they really want to leave. And if they don't then don't follow.
-
-Like this:
+Seperti ini:
 
 [iframe height=100 border=1 src="solution"]
 
-Details:
+Rincian:
 
-- HTML inside the element may be loaded or regenerated dynamically at any time, so we can't find all links and put handlers on them. Use event delegation.
-- The content may have nested tags. Inside links too, like `<a href=".."><i>...</i></a>`.
+- HTML didalam elemen bisa di muat dan di buat kembali secara dinamis secara acak, jadi kita tidak bisa menemukan semua link dan memberikan penangan (_handler_). Gunakan delegasi peristiwa.
+- Kontent bisa saja merupakan tag bersarang. Di dalam link juga, seperti `<a href=".."><i>...</i></a>`.
