@@ -1,16 +1,16 @@
-When the browser reads the `on*` attribute like `onclick`, it creates the handler from its content.
+Pada saat _browser_ membaca atribut `on*` seperti `onclick`, _browser_ akan membuat sebuah penangan (_handler_) dari kontennya.
 
-For `onclick="handler()"` the function will be:
+Untuk `onclick"handler()"` fungsinya akan menjadi:
 
 ```js
 function(event) {
-  handler() // the content of onclick
+  handler() // konten dari onclick
 }
 ```
 
-Now we can see that the value returned by `handler()` is not used and does not affect the result.
+Sekarang kita bisa melihat bahwa nilai yang dikembalikan oleh `handler()` tidak digunakan dan tidak mempengaruhi hasilnya.
 
-The fix is simple:
+Cara memperbaikinnya mudah:
 
 ```html run
 <script>
@@ -23,7 +23,7 @@ The fix is simple:
 <a href="https://w3.org" onclick="*!*return handler()*/!*">w3.org</a>
 ```
 
-Also we can use `event.preventDefault()`, like this:
+Kita juga bisa menggunakan `event.preventDefault()`, seperti ini:
 
 ```html run
 <script>
