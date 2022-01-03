@@ -315,13 +315,21 @@ new Rabbit(); // animal
 */!*
 ```
 
+<<<<<<< HEAD
 Di sini, kelas `Rabbit` memperluas `Animal` dan mengganti bidang `nama` dengan nilainya sendiri.
+=======
+Here, class `Rabbit` extends `Animal` and overrides the `name` field with its own value.
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
 Tidak ada konstruktor sendiri dalam `Rabbit`, jadi konstruktor `Animal` dipanggil.
 
 Yang menarik adalah dalam kedua kasus: `new Animal()` dan `new Rabbit()`, `alert` di baris `(*)` menampilkan `animal`.
 
+<<<<<<< HEAD
 **Dengan kata lain, konstruktor induk selalu menggunakan nilai bidangnya sendiri, bukan yang diganti.**
+=======
+**In other words, the parent constructor always uses its own field value, not the overridden one.**
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
 Apa yang aneh tentang itu?
 
@@ -358,9 +366,17 @@ Dan itulah yang secara natural kita harapkan. Ketika konstruktor induk dipanggil
 
 ...Tetapi untuk bidang kelas tidak demikian. Seperti yang dikatakan, konstruktor induk selalu menggunakan bidang induk.
 
+<<<<<<< HEAD
 Mengapa ada bedanya?
 
 Nah, alasannya ada di urutan bidang inisialisasi. Bidang kelas diinisialisasi:
+=======
+Why is there a difference?
+
+Well, the reason is the field initialization order. The class field is initialized:
+- Before constructor for the base class (that doesn't extend anything),
+- Immediately after `super()` for the derived class.
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
 - Sebelum konstruktor untuk kelas dasar (yang tidak memperluas apa pun),
 - Langsung setelah `super()` untuk kelas turunan.
