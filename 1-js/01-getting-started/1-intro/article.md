@@ -24,11 +24,19 @@ Browser punya engine yang tertanam didalamnya yang disebut "JavaScript virtual m
 
 Tiap engine punya *codename*-nya sendiri. Misalnya:
 
+<<<<<<< HEAD
 - [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- di Chrome dan Opera.
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- di Firefox.
 - ...Ada juga codename lain seperti "Trident" dan "Chakra" untuk versi berbeda dari IE, "ChakraCore" untuk Microsoft Edge, "Nitro" dan "SquirrelFish" untuk Safari, dll.
 
 Istilah di atas sebaiknya diingat karena akan sering digunakan dalam artikel para developer di internet. Kita akan menggunakannya juga. Misalnya, jika "fitur X didukung V8", kemungkinan ia bisa jalan di Chrome dan Opera.
+=======
+- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- in Chrome, Opera and Edge.
+- [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- in Firefox.
+- ...There are other codenames like "Chakra" for IE, "JavaScriptCore", "Nitro" and "SquirrelFish" for Safari, etc.
+
+The terms above are good to remember because they are used in developer articles on the internet. We'll use them too. For instance, if "a feature X is supported by V8", then it probably works in Chrome, Opera and Edge.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 ```smart header="Bagaimana engine bekerja?"
 
@@ -59,7 +67,11 @@ Misalnya, *in-browser JavaScript* mampu:
 
 ## Apa yang TIDAK BISA dilakukan *in-browser JavaScript*?
 
+<<<<<<< HEAD
 Kemampuan JavaScript yang ada di dalam browser terbatas demi keamanan pengguna. Tujuannya supaya mencegah halaman web berbahya mengakses informasi pribadi atau merusak data pengguna.
+=======
+JavaScript's abilities in the browser are limited for the sake of a user's safety. The aim is to prevent an evil webpage from accessing private information or harming the user's data.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 Contoh keterbatasan tersebut meliputi:
 
@@ -84,9 +96,15 @@ Pembatasan macam ini tidak ada jika JavaScript digunakan di luar browser, misaln
 Paling tidak ada *tiga* hal unik dari JavaScript:
 
 ```compare
+<<<<<<< HEAD
 + Integrasi penuh dengan HTML/CSS.
 + Hal sederhana diselesaikan dengan sederhana.
 + Dukungan dari mayoritas web browser dan aktif secara default.
+=======
++ Full integration with HTML/CSS.
++ Simple things are done simply.
++ Supported by all major browsers and enabled by default.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 ```
 JavaScript merupakan satu-satunya teknologi browser yang mengkombinasikan ketiga poin di atas.
 
@@ -117,6 +135,12 @@ Masih banyak lagi. Tentunya, jika kita menggunakan salah satu bahasa yang ditran
 
 ## Kesimpulan
 
+<<<<<<< HEAD
 - JavaScript awalnya diciptakan sebagai bahasa khusus browser, namun sekarang banyak digunakan di lingkungan lain.
 - Sekarang, JavaScript mempunyai posisi unik sebagai bahasa browser paling banyak diadopsi dengan integrasi penuh dengan HTML/CSS.
 - Ada banyak bahasa yang "ditranspile" ke JavaScript dan menyediakan fitur tertentu. Disarankan untuk mempelajari mereka juga, minimal sebentar, setelah menguasai JavaScript.
+=======
+- JavaScript was initially created as a browser-only language, but it is now used in many other environments as well.
+- Today, JavaScript has a unique position as the most widely-adopted browser language, fully integrated with HTML/CSS.
+- There are many languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
