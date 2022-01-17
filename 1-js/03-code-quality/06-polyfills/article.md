@@ -21,7 +21,11 @@ di chapter ini, tujuan kita adalah untuk mendapatkan intisari cara kerjanya, dan
 
 ## Transpilers
 
+<<<<<<< HEAD
 Sebuah [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) adalah perangkat lunak khusus yang dapat mengurai ("membaca dan memahami") kode modern, dan menulis ulang menggunakan konstruksi sintaks yang lebih lama, sehingga hasilnya akan sama.
+=======
+A [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) is a special piece of software that translates source code to another source code. It can parse ("read and understand") modern code and rewrite it using older syntax constructs, so that it'll also work in outdated engines.
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
 
 Misalnya. JavaScript sebelum tahun 2020 tidak memiliki "nullish coalescing operator" `??`. Jadi, jika pengunjung menggunakan browser yang sudah ketinggalan zaman, ia mungkin gagal memahami kode seperti `height = height ?? 100`
 

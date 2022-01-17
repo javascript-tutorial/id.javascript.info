@@ -198,8 +198,13 @@ Anda mungkin ingin membuka halaman ini di dua window peramban untuk menguji kode
 Jika kedua *window* mendengarkan (listening) `window.onstorage`, maka masing-masing akan bereaksi terhadap pembaruan yang terjadi di *window* lainnya.
 
 ```js run
+<<<<<<< HEAD
 // memicu pembaruan yang dibuat ke penyimpanan yang sama dari dokumen lain
 window.onstorage = event => { //sama seperti window.addEventListener('storage', event => {
+=======
+// triggers on updates made to the same storage from other documents
+window.onstorage = event => { // can also use window.addEventListener('storage', event => {
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
   if (event.key != 'now') return;
   alert(event.key + ':' + event.newValue + " at " + event.url);
 };
