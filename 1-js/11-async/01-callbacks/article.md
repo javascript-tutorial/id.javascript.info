@@ -28,7 +28,11 @@ function loadScript(src) {
 }
 ```
 
+<<<<<<< HEAD
 Fungsi tersebut menambahkan ke dokumen baru, dibuat secara dinamis, tag `<script src="…">` dengan `src` yang diberikan. Browser kemudian secara otomatis memuat dan menjalankannya ketika lengkap.
+=======
+It inserts into the document a new, dynamically created, tag `<script src="…">` with the given `src`. The browser automatically starts loading it and executes when complete.
+>>>>>>> bae0ef44d0208506f6e9b7f3421ee640ab41af2b
 
 Kita bisa menggunakan fungsi tersebut seperti ini:
 
@@ -196,9 +200,15 @@ Jadi fungsi `callback` single tersebut keduanya digunakan untuk pelaporan error 
 
 ## Pyramid of Doom
 
+<<<<<<< HEAD
 Dari tampilan pertama, itu adalah cara yang layak untuk coding secara asynchronous. Dan memang demikian. Untuk satu atau bahkan dua pemanggilan bersarang itu tidak masalah.
 
 Tetapi untuk beberapa action asynchronous yang mengikuti satu demi satu kita akan punya kode seperti ini:
+=======
+At first glance, it looks like a viable approach to asynchronous coding. And indeed it is. For one or maybe two nested calls it looks fine.
+
+But for multiple asynchronous actions that follow one after another, we'll have code like this:
+>>>>>>> bae0ef44d0208506f6e9b7f3421ee640ab41af2b
 
 ```js
 loadScript('1.js', function(error, script) {
@@ -228,10 +238,17 @@ loadScript('1.js', function(error, script) {
 });
 ```
 
+<<<<<<< HEAD
 Dalam kode di atas:
 1. Kita memuat `1.js`, kemudian jika tidak ada error.
 2. Kita muat `2.js`, kemudian jika tidak ada error.
 3. Kita muat `3.js`, jika tidak ada error -- lakukan sesuatu yang lain `(*)`.
+=======
+In the code above:
+1. We load `1.js`, then if there's no error...
+2. We load `2.js`, then if there's no error...
+3. We load `3.js`, then if there's no error -- do something else `(*)`.
+>>>>>>> bae0ef44d0208506f6e9b7f3421ee640ab41af2b
 
 Saat pemanggilan jadi lebih bersarang, kode akan menjadi lebih dalam dan semakin susah untuk diatur, khususnya jika kita punya kode asli daripada `...`, itu mungkin berisi loop yang lebih, pernyataan bersyarat dan seterusnya.
 
@@ -299,7 +316,11 @@ function step3(error, script) {
 }
 ```
 
+<<<<<<< HEAD
 Lihat? Itu sama saja, dan tidak ada sarang yang dalam sekarang karena kita buat setiap action menjadi fungsi top-level yang terpisah.
+=======
+See? It does the same thing, and there's no deep nesting now because we made every action a separate top-level function.
+>>>>>>> bae0ef44d0208506f6e9b7f3421ee640ab41af2b
 
 Ini berfungsi, tetapi kode-nya terlihat seperti sebuah spreadsheet yang terkoyak. Itu sulit di baca, dan kamu mungkin memperhatikan kalau yang satu butuh untuk eye-jump antara potongan lainnya saat di baca. Itu tidak nyaman, khususnya jika pembaca tidak terbiasa dengan kode dan tidak tahu harus kemana saat eye-jump.
 

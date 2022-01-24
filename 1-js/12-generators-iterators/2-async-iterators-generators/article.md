@@ -378,10 +378,16 @@ Contoh penggunaan (menunjukkan penulis _commit_ di konsol):
 (async () => {
   let count = 0;
 
+<<<<<<< HEAD
   for await (const commit of fetchCommits(
     'javascript-tutorial/en.javascript.info'
   )) {
     console.log(commit.author.login);
+=======
+  for await (const commit of fetchCommits('javascript-tutorial/en.javascript.info')) {
+
+    console.log(commit.author.name);
+>>>>>>> bae0ef44d0208506f6e9b7f3421ee640ab41af2b
 
     if (++count == 100) {
       // mari berhenti di 100 commits

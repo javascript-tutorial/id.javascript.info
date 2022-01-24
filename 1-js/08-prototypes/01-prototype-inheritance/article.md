@@ -54,7 +54,11 @@ alert( rabbit.eats ); // true (**)
 alert( rabbit.jumps ); // true
 ```
 
+<<<<<<< HEAD
 Pada baris `(*)` menyetel `animal` untuk menjadi prototype dari `rabbit`.
+=======
+Here the line `(*)` sets `animal` to be the prototype of `rabbit`.
+>>>>>>> bae0ef44d0208506f6e9b7f3421ee640ab41af2b
 
 Lalu, ketika `alert` mencoba untuk membaca properti `rabbit.eats` `(**)`, ternyata `rabbit` tidak memiliki propertinya, maka Javascript mengikuti referensi `[[Prototype]]`nya dan menemukan `animal` (mencari dari bawah ke atas):
 
@@ -287,7 +291,11 @@ for(let prop in rabbit) alert(prop); // jumps, lalu eats
 */!*
 ```
 
+<<<<<<< HEAD
 Jika itu bukanlah hal yang kita inginkanm dan kita ingin untuk mengecualikan properti warisan, terdapat metode bawaan [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty): yang mengembalikan `true` jika `obj` memiliki properti bernama `key` (bukan properti warisan).
+=======
+If that's not what we want, and we'd like to exclude inherited properties, there's a built-in method [obj.hasOwnProperty(key)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty): it returns `true` if `obj` has its own (not inherited) property named `key`.
+>>>>>>> bae0ef44d0208506f6e9b7f3421ee640ab41af2b
 
 Jadi kita bisa memisahkan properti warisan (atau melakukan sesuatu dengan properti warisan itu):
 
