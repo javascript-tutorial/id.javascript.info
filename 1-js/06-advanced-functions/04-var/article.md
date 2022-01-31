@@ -1,9 +1,16 @@
 
 # Si Tua "var"
 
+<<<<<<< HEAD
 ```smart header="Artikel ini untuk memahami script lama"
 Informasi yang terdapat di artikel ini berguna untuk memahami script lama.
 Hal itu bukanlah cara kita menulis kode baru.
+=======
+```smart header="This article is for understanding old scripts"
+The information in this article is useful for understanding old scripts.
+
+That's not how we write new code.
+>>>>>>> 0f748275e20a81700c8514f22a7cc80c4422d09c
 ```
 
 Di bab paling awal tentang [variabel](info:variables), kami menyebutkan tiga cara untuk deklarasi variabel:
@@ -246,12 +253,21 @@ Ada beberapa cara lain selain tanda kurung untuk memberi tahu Javascript bahwa y
 ```js run
 // Cara membuat IIFE
 
+<<<<<<< HEAD
 (function() {
   alert("kurung disekitar fungsi");
 }*!*)*/!*();
 
 (function() {
   alert("kurung disekitar semuanya");
+=======
+*!*(*/!*function() {
+  alert("Parentheses around the function");
+}*!*)*/!*();
+
+*!*(*/!*function() {
+  alert("Parentheses around the whole thing");
+>>>>>>> 0f748275e20a81700c8514f22a7cc80c4422d09c
 }()*!*)*/!*;
 
 *!*!*/!*function() {

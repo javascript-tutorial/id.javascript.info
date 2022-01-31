@@ -24,7 +24,11 @@ Kini, kita bisa menaruh beberapa data ke dalamnya dengan menggunakan operator pe
 let message;
 
 *!*
+<<<<<<< HEAD
 message = 'Hello'; // simpan string
+=======
+message = 'Hello'; // store the string 'Hello' in the variable named message
+>>>>>>> 0f748275e20a81700c8514f22a7cc80c4422d09c
 */!*
 ```
 
