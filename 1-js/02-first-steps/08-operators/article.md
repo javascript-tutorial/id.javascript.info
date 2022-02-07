@@ -193,6 +193,7 @@ Di sini adalah extrak dari [tabel presedensi](https://developer.mozilla.org/en/J
 | Presedensi | Nama | Tanda |
 |------------|------|------|
 | ... | ... | ... |
+<<<<<<< HEAD
 | 17 | plus unary | `+` |
 | 17 | negasi unary | `-` |
 | 16 | akar pangkat | `**` |
@@ -205,10 +206,28 @@ Di sini adalah extrak dari [tabel presedensi](https://developer.mozilla.org/en/J
 | ... | ... | ... |
 
 Seperti yang kita lihat, "plus unary" punya prioritas `17` yang lebih tinggi dari `13` "penambahan" (plus binary). Itulah kenapa, dalam expresi `"+apples + +oranges"`, plus unary bekerja sebelum penambahan.
+=======
+| 15 | unary plus | `+` |
+| 15 | unary negation | `-` |
+| 14 | exponentiation | `**` |
+| 13 | multiplication | `*` |
+| 13 | division | `/` |
+| 12 | addition | `+` |
+| 12 | subtraction | `-` |
+| ... | ... | ... |
+| 2 | assignment | `=` |
+| ... | ... | ... |
+
+As we can see, the "unary plus" has a priority of `15` which is higher than the `13` of "addition" (binary plus). That's why, in the expression `"+apples + +oranges"`, unary pluses work before the addition.
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 ## Penetapan
 
+<<<<<<< HEAD
 Mari ingat bahwa penetapan `=` juga merupakan operator. Ia terdaftar di tabel presedensi dengan prioritas sangat rendah `3`.
+=======
+Let's note that an assignment `=` is also an operator. It is listed in the precedence table with the very low priority of `2`.
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 Itulah kenapa, ketika kita tetapkan variabel, seperti `x = 2 * 2 + 1`, kalkulasinya dilakukan pertama dan kemudian `=` dievaluasi, menyimpan hasilnya dalam in `x`.
 

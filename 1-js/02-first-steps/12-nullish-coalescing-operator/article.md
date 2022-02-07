@@ -106,7 +106,11 @@ Dalam praktiknya, ketinggian nol seringkali merupakan nilai yang valid, yang tid
 
 ## Prioritas
 
+<<<<<<< HEAD
 Prioritas operator `??` hampir sama dengan `||`, hanya sedikit lebih rendah. Ini sama dengan `5` di [tabel MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table), sedangkan `||` adalah `6` .
+=======
+The precedence of the `??` operator is the same as `||`. They both equal `4` in the [MDN table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table).
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 Artinya, seperti halnya `||`, operator penggabungan nullish `??` dievaluasi sebelum `=` dan `?`, tetapi setelah sebagian besar operasi lain, seperti `+`, `*`.
 
