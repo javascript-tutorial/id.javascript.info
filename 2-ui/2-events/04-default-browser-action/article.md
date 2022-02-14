@@ -17,7 +17,11 @@ Ada 2 cara untuk memberitahukan _browser_ bahwa kita tidak mau peristiwa itu ter
 - Cara utama dengan menggunakan objek `event`. Ada sebuah metode dengan nama `event.preventDefault()`.
 - Jika penangan (_handler_) di atur menggunakan `on<event>` (bukan `addEventListener`), maka mengembalikan `false` juga bisa befungsi.
 
+<<<<<<< HEAD
 Pada HTML dibawah, sebuah klik pada link tidak akan memindahkan halaman, _browser_ tidak melakukan apapun:
+=======
+In this HTML, a click on a link doesn't lead to navigation; the browser doesn't do anything:
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 ```html autorun height=60 no-beautify
 <a href="/" onclick="return false">Klik disini</a>
@@ -96,7 +100,11 @@ Itu karena tindakan browser dibatalkan pada `mousedown`. Pemfokusan masih dimung
 
 Pilihan `passive: true` opsional dari `addEventListener` memberi sinyal kepada _browser_ bahwa penangan tidak akan memanggil `preventDefault()`.
 
+<<<<<<< HEAD
 Mengapa itu mungkin diperlukan?
+=======
+Why might that be needed?
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 Ada beberapa peristiwa seperti `touchmove` pada perangkat seluler (ketika pengguna menggerakkan jari mereka melintasi layar), yang menyebabkan pengguliran secara bawaan, tetapi pengguliran tersebut dapat dicegah menggunakan `preventDefault()` di pengendali.
 

@@ -63,7 +63,12 @@ delete localStorage.test;
 
 Itu diizinkan karena alasan historis, dan sebagian besar berfungsi, tetapi umumnya tidak disarankan, karena:
 
+<<<<<<< HEAD
 1. Jika *key* dibuat oleh pengguna, itu bisa apa saja, seperti `length` atau `toString`, atau *method* bawaan `localStorage` lainnya. Dalam hal itu `getItem/setItem` berfungsi dengan baik, sementara akses seperti objek akan gagal:
+=======
+1. If the key is user-generated, it can be anything, like `length` or `toString`, or another built-in method of `localStorage`. In that case `getItem/setItem` work fine, while object-like access fails:
+
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
     ```js run
     let key = 'length';
     localStorage[key] = 5; // Error, can't assign length
@@ -115,9 +120,15 @@ for(let key of keys) {
 }
 ```
 
+<<<<<<< HEAD
 Yang terakhir berfungsi, karena `Object.keys` hanya mengembalikan kunci milik objek, mengabaikan *prototype*.
 
 ## Hanya string
+=======
+The latter works, because `Object.keys` only returns the keys that belong to the object, ignoring the prototype.
+
+## Strings only
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 Harap dicatat bahwa *key* dan *value* harus berupa string.
 
@@ -144,7 +155,6 @@ Juga dimungkinkan untuk *stringify* seluruh objek penyimpanan, sebagai contoh un
 // menambahkan opsi pemformatan pada JSON.stringify untuk membuat objek terlihat lebih bagus
 alert( JSON.stringify(localStorage, null, 2) );
 ```
-
 
 ## sessionStorage
 
@@ -177,7 +187,11 @@ Itu persis terjadi karena `sessionStorage` terikat tidak hanya pada *origin*, te
 
 ## Event storage
 
+<<<<<<< HEAD
 Saat data diperbarui di `localStorage` atau `sessionStorage`, *event* [storage](https://www.w3.org/TR/webstorage/#the-storage-event) terpicu, dengan properti:
+=======
+When the data gets updated in `localStorage` or `sessionStorage`, [storage](https://html.spec.whatwg.org/multipage/webstorage.html#the-storageevent-interface) event triggers, with properties:
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 - `key` – *key* yang diubah (`null` jika `.clear()` dipanggil).
 - `oldValue` – *value* lama (`null` jika *key* baru ditambahkan).
@@ -198,8 +212,13 @@ Anda mungkin ingin membuka halaman ini di dua window peramban untuk menguji kode
 Jika kedua *window* mendengarkan (listening) `window.onstorage`, maka masing-masing akan bereaksi terhadap pembaruan yang terjadi di *window* lainnya.
 
 ```js run
+<<<<<<< HEAD
 // memicu pembaruan yang dibuat ke penyimpanan yang sama dari dokumen lain
 window.onstorage = event => { //sama seperti window.addEventListener('storage', event => {
+=======
+// triggers on updates made to the same storage from other documents
+window.onstorage = event => { // can also use window.addEventListener('storage', event => {
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
   if (event.key != 'now') return;
   alert(event.key + ':' + event.newValue + " at " + event.url);
 };
@@ -217,11 +236,20 @@ Peramban modern juga mendukung [Broadcast channel API](mdn:/api/Broadcast_Channe
 
 ## Ringkasan
 
+<<<<<<< HEAD
 Objek penyimpanan web `localStorage` dan `sessionStorage` memungkinkan untuk menyimpan *key*/*value* di peramban.
 - Baik `key` dan `value` harus berupa string.
 - Batasnya adalah 5mb+, tergantung pada peramban.
 - Mereka tidak kedaluwarsa.
 - Data terikat pada *origin* (domain/port/protokol).
+=======
+Web storage objects `localStorage` and `sessionStorage` allow to store key/value in the browser.
+
+- Both `key` and `value` must be strings.
+- The limit is 5mb+, depends on the browser.
+- They do not expire.
+- The data is bound to the origin (domain/port/protocol).
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 | `localStorage` | `sessionStorage` |
 |----------------|------------------|
