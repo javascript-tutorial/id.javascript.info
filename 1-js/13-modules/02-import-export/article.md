@@ -95,7 +95,11 @@ Jadi, ini adalah beberapa alasannya.
 
 1. Perkakas penggabung yang modern ([webpack](http://webpack.github.io) dan lainnya) menggabungkan semua modul sekaligus dan mengoptimalkannya untuk mempercepat proses pemuatan dan menghapus modul yang tidak digunakan.
 
+<<<<<<< HEAD
     Katakanlah kita menambahkan sebuah pustaka pihak ketiga `say.js` ke dalam proyek dengan banyak fungsi:
+=======
+1. Modern build tools ([webpack](https://webpack.js.org/) and others) bundle modules together and optimize them to speedup loading and remove unused stuff.
+>>>>>>> e2f9e5840737e00846bfd492192d8a3828820c60
 
     ```js
     // 📁 say.js
@@ -400,6 +404,10 @@ export default class User {
 
     Jika kita ingin melakukan ekspor ulang keduanya (ekspor bernama dan ekspor bawaan), maka diperlukan dua pernyataan seperti berikut:
 
+<<<<<<< HEAD
+=======
+    If we'd like to re-export both named and default exports, then two statements are needed:
+>>>>>>> e2f9e5840737e00846bfd492192d8a3828820c60
     ```js
     export * from './user.js'; // ekspor ulang ekspor bernama
     export { default } from './user.js'; // ekspor ulang ekspor bawaan

@@ -163,7 +163,13 @@ alert(admin.name); // Pete
 */!*
 ```
 
+<<<<<<< HEAD
 Jadi, mari kita ulangi -- modul hanya dijalankan satu kali, ekspor akan dihasilkan, dan kemudian dibagikan diantara impor, jadi jika sesuatu merubah objek `admin`, modul lainnya bisa melihat hal tersebut. 
+=======
+As you can see, when `1.js` changes the `name` property in the imported `admin`, then `2.js` can see the new `admin.name`.
+
+That's exactly because the module is executed only once. Exports are generated, and then they are shared between importers, so if something changes the `admin` object, other importers will see that.
+>>>>>>> e2f9e5840737e00846bfd492192d8a3828820c60
 
 Perilaku seperti itu mengizinkan kita untuk bisa *mengkonfigurasi* modul di impor pertama. Kita bisa mengatur properti satu kali, dan file impor lebih lanjut sudah siap.
 
@@ -233,7 +239,11 @@ Dibedakan dengan kode skrip tidak modul, dimana `this` adalah objek global:
 
 Ada juga beberapa perbedaan spesifik browser skrip dengan `type="module"` dibandingkan dengan yang biasa.
 
+<<<<<<< HEAD
 Kamu mungkin ingin melewati bagian ini jika kamu baru membacanya pertama kali, atau jika kamu tidak menggunakan Javascript pada browser.
+=======
+You may want to skip this section for now if you're reading for the first time, or if you don't use JavaScript in a browser.
+>>>>>>> e2f9e5840737e00846bfd492192d8a3828820c60
 
 ### Kode skrip modul di tangguhkan
 
