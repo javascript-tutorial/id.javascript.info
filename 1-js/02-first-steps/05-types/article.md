@@ -46,13 +46,23 @@ Selain angka reguler, ada yang disebut "nilai numerik spesial" yang juga bagian 
     alert( "not a number" / 2 ); // NaN, pembagian macam ini keliru
     ```
 
+<<<<<<< HEAD
     `NaN` itu lengket. Operasi lanjutan apapun pada `NaN` menghasilkan `NaN`:
+=======
+    `NaN` is sticky. Any further mathematical operation on `NaN` returns `NaN`:
+>>>>>>> 2cca9a9d09fdd45819832294225aa3721fa5a2d4
 
     ```js run
-    alert( "not a number" / 2 + 5 ); // NaN
+    alert( NaN + 1 ); // NaN
+    alert( 3 * NaN ); // NaN
+    alert( "not a number" / 2 - 1 ); // NaN
     ```
 
+<<<<<<< HEAD
     Jadi, jika ada `NaN` di manapun di expresi matematika, ia mempropagasi hasil keseluruhan.
+=======
+    So, if there's a `NaN` somewhere in a mathematical expression, it propagates to the whole result (there's only one exception to that: `NaN ** 0` is `1`).
+>>>>>>> 2cca9a9d09fdd45819832294225aa3721fa5a2d4
 
 ```smart header="Operasi matematika itu aman"
 Melakukan matematika itu "aman" dalam JavaScript. Kita bisa melakukan apapun: pembagian dengan nol, memperlakukan string non-numerik sebagai angka, dll.
@@ -213,6 +223,7 @@ Tipe `symbol` digunakan untuk menciptakan identifier unik untuk sebuah objek. Un
 
 Operator `typeof` mengembalikan tipe argumen. Berguna ketika kita ingin memproses nilai dari tipe berbeda secara berbeda atau cuma ingin mengecek sekilas.
 
+<<<<<<< HEAD
 Ia mendukung dua bentuk syntax:
 
 1. Sebagai operator: `typeof x`.
@@ -221,6 +232,9 @@ Ia mendukung dua bentuk syntax:
 Dengan kata lain, ia berjalan dengan atau tanpa kurung. Hasilnya sama saja.
 
 Panggilan ke `typeof x` mengembalikan string dengan nama tipenya:
+=======
+A call to `typeof x` returns a string with the type name:
+>>>>>>> 2cca9a9d09fdd45819832294225aa3721fa5a2d4
 
 ```js
 typeof undefined // "undefined"
@@ -250,11 +264,29 @@ typeof alert // "function"  (3)
 
 Tiga baris terakhir mungkin butuh penjelasan tambahan:
 
+<<<<<<< HEAD
 1. `Math` ialah objek built-in yang menyediakan operasi matematik. Kita akan belajar itu di bab <info:number>. Di sini, ia cuma sekedar contoh dari objek.
 2. Hasil `typeof null` yaitu `"object"`. Itu salah. Ia merupakan error yang terkenal resmi dalam `typeof`, yang dijaga untuk kompatibilitas. Tentu saja, `null` bukanlah objek. Ia merupakan nilai spesial dengan tipe terpisah miliknya sendiri. Jadi, lagi, ini merupakan error dalam bahasa.
 3. Hasil dari `typeof alert` yaitu `"function"`, karena `alert` merupakan fungsi. Kita akan belajar fungsi di bab berikutnya di mana kita juga akan melihat bahwa tak ada tipe "fungsi" spesial di JavaScript. Fungsi merupakan bagian dari tipe objek. Tapi `typeof` memperlakukan mereka secara berbeda, yang mengembalikan `"fungsi"`. Itu tak sepenuhnya benar, tapi sangat nyaman pada praktiknya.
 
 ## Kesimpulan
+=======
+1. `Math` is a built-in object that provides mathematical operations. We will learn it in the chapter <info:number>. Here, it serves just as an example of an object.
+2. The result of `typeof null` is `"object"`. That's an officially recognized error in `typeof`, coming from very early days of JavaScript and kept for compatibility. Definitely, `null` is not an object. It is a special value with a separate type of its own. The behavior of `typeof` is wrong here.
+3. The result of `typeof alert` is `"function"`, because `alert` is a function. We'll study functions in the next chapters where we'll also see that there's no special "function" type in JavaScript. Functions belong to the object type. But `typeof` treats them differently, returning `"function"`. That also comes from the early days of JavaScript. Technically, such behavior isn't correct, but can be convenient in practice.
+
+```smart header="The `typeof(x)` syntax"
+You may also come across another syntax: `typeof(x)`. It's the same as `typeof x`.
+
+To put it clear: `typeof` is an operator, not a function. The parentheses here aren't a part of `typeof`. It's the kind of parentheses used for mathematical grouping.
+
+Usually, such parentheses contain a mathematical expression, such as `(2 + 2)`, but here they contain only one argument `(x)`. Syntactically, they allow to avoid a space between the `typeof` operator and its argument, and some people like it.
+
+Some people prefer `typeof(x)`, although the `typeof x` syntax is much more common.
+```
+
+## Summary
+>>>>>>> 2cca9a9d09fdd45819832294225aa3721fa5a2d4
 
 Ada 7 tipe data dasar dalam JavaScript.
 
@@ -269,8 +301,14 @@ Ada 7 tipe data dasar dalam JavaScript.
 
 Operator `typeof` memungkinkan kita melihat tipe mana yang disimpan dalam variable.
 
+<<<<<<< HEAD
 - Dua form: `typeof x` atau `typeof(x)`.
 - Mengembalikan string dengan nama tipe, seperti `"string"`.
 - Untuk `null` mengembalikan `"object"` -- ada error dalam bahasa, yang sebenarnya bukan objek.
+=======
+- Usually used as `typeof x`, but `typeof(x)` is also possible.
+- Returns a string with the name of the type, like `"string"`.
+- For `null` returns `"object"` -- this is an error in the language, it's not actually an object.
+>>>>>>> 2cca9a9d09fdd45819832294225aa3721fa5a2d4
 
 Di bab berikutnya, kita akan fokus pada nilai primitive dan sekali kita familiar dengan mereka, kita akan lanjut ke objek.

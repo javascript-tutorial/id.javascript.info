@@ -5,10 +5,14 @@ Terdapat sintaks lain yang sangat sederhana dan ringkas untuk membuat fungsi-fun
 Disebut sebagai "fungsi *arrow* (panah)", karena sintaks fungsinya terlihat seperti ini:
 
 ```js
-let func = (arg1, arg2, ..., argN) => expression
+let func = (arg1, arg2, ..., argN) => expression;
 ```
 
+<<<<<<< HEAD
 ...Ini membuat sebuah fungsi `func` yang menerima argumen `arg1..argN`, kemudian mengevaluasi `expression` yang ada di sisi kanan serta kegunaannya dan mengembalikan hasilnya.
+=======
+This creates a function `func` that accepts arguments `arg1..argN`, then evaluates the `expression` on the right side with their use and returns its result.
+>>>>>>> 2cca9a9d09fdd45819832294225aa3721fa5a2d4
 
 Dalam kata lain, fungsi tersebut adalah versi yang lebih pendek dari:
 
@@ -33,7 +37,11 @@ let sum = function(a, b) {
 alert( sum(1, 2) ); // 3
 ```
 
+<<<<<<< HEAD
 Seperti yang bisa dilihat, perhatikan `(a, b) => a + b` berarti sebuah fungsi yang menerima dua argumen yang diberinama `a` dan `b`. Ketika eksekusi, fungsi tersebut mengevaluasi ekpresi `a + b` dan mengembalikan hasilnya.
+=======
+As you can see, `(a, b) => a + b` means a function that accepts two arguments named `a` and `b`. Upon the execution, it evaluates the expression `a + b` and returns the result.
+>>>>>>> 2cca9a9d09fdd45819832294225aa3721fa5a2d4
 
 - Jika kita memiliki satu argumen saja, maka *parentheses* di sekitar parameter bisa diabaikan, membuat sintaksnya jadi semakin pendek.
 
@@ -86,7 +94,11 @@ Seperti ini:
 let sum = (a, b) => {  // tanda kurung kurawal membuka fungsi multi-baris
   let result = a + b;
 *!*
+<<<<<<< HEAD
   return result; // jika kita menggunakan kurung kurawal, selajutnya kita perlu menuliskan "return" 
+=======
+  return result; // if we use curly braces, then we need an explicit "return"
+>>>>>>> 2cca9a9d09fdd45819832294225aa3721fa5a2d4
 */!*
 };
 
