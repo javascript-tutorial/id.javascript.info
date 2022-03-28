@@ -160,7 +160,11 @@ button.onclick = ucapkanTerimaKasih;
 button.onclick = ucapkanTerimaKasih();
 ```
 
+<<<<<<< HEAD
 Jika kita tambahkan tanda kurung, maka `ucapkanTerimaKasih()` menjadi proses pemanggilan fungsi. Jadi baris terakhir akan mengambil *hasil* dari pengeksekusian fungsi, yang merupakan `tidak terdefinisi` (_`undefined`_ — karena fungsi tidak mengembalikan apapun), dan mengatur nilai itu ke peristiwa `onclick`. Maka peristiwa tersebut tidak akan menjalankan apapun.
+=======
+If we add parentheses, then `sayThanks()` becomes a function call. So the last line actually takes the *result* of the function execution, that is `undefined` (as the function returns nothing), and assigns it to `onclick`. That doesn't work.
+>>>>>>> 741d90ce8a730d66e987bff5e9794d6e41cb2f05
 
 ...Namun, jika kita menambahkan secara langsung ke HTML, maka kita harus menambahkan tanda kurung:
 
