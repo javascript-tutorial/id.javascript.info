@@ -161,7 +161,11 @@ for (let key in user) alert(key); // name, age (bukan simbol)
 alert( "Direct: " + user[id] );
 ```
 
+<<<<<<< HEAD
 `Object.keys(user)` juga mengabaikannya. Itu adalah bagian dari prinsip umum "menyembunyikan properti simbolis" (*hiding symbolic properties*). Jika *script* lain atau sebuah *library* melakukan pengulanagn pada objek kita, hal tersebut tidak akan mengakses sebuah properti simbolis tanpa diduga.
+=======
+[Object.keys(user)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys) also ignores them. That's a part of the general "hiding symbolic properties" principle. If another script or a library loops over our object, it won't unexpectedly access a symbolic property.
+>>>>>>> 45934debd9bb31376ea5da129e266df5b43e545f
 
 Sebaliknya, [Object.assign](mdn:js/Object/assign) menyalin baik *string* properti maupun simbol properti:
 

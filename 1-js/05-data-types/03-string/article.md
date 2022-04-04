@@ -80,9 +80,15 @@ Berikut adalah daftar lengkapnya:
 
 | Character | Description |
 |-----------|-------------|
+<<<<<<< HEAD
 |`\n`|Baris baru|
 |`\r`|Carriage return: tidak digunakan sendiri. File teks milik di Windows menggunakan kombinasi dari dua karakter `\r\n` untuk menandakan baris baru.|
 |`\'`, `\"`|Petik-petik|
+=======
+|`\n`|New line|
+|`\r`|In Windows text files a combination of two characters `\r\n` represents a new break, while on non-Windows OS it's just `\n`. That's for historical reasons, most Windows software also understands `\n`. |
+|`\'`, `\"`|Quotes|
+>>>>>>> 45934debd9bb31376ea5da129e266df5b43e545f
 |`\\`|Backslash|
 |`\t`|Tab|
 |`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- tetap bisa digunakan untuk kompabilitas, sekarang sudah tidak digunakan. |

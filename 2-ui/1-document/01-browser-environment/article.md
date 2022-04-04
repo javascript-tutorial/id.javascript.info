@@ -17,7 +17,11 @@ Ada sebuah "root" objek yang dinamakan `window`. Mempunyai 2 peranan:
 
 Misalnya, disini kita akan menggunakannya sebagai sebuah global objek:
 
+<<<<<<< HEAD
 ```js berjalan
+=======
+```js run global
+>>>>>>> 45934debd9bb31376ea5da129e266df5b43e545f
 function sayHi() {
   alert("Hello");
 }

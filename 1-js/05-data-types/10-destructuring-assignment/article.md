@@ -4,7 +4,11 @@ Dua stuktur data yang paling banyak digunakan di Javascript adalah `Object` dan 
 
 Objek memungkinkan kita untuk membuat entitas tunggal yang menyimpan data item berdasarkan kunci, dan array memungkinkan kita untuk mengumpulkan data item menjadi koleksi yang terurut.
 
+<<<<<<< HEAD
 Tetapi ketika kita meneruskannya ke suatu fungsi, itu mungkin tidak perlu objek / array secara keseluruhan, melainkan potongan individual.
+=======
+Although, when we pass those to a function, it may need not be an object/array as a whole. It may need individual pieces.
+>>>>>>> 45934debd9bb31376ea5da129e266df5b43e545f
 
 *Destructuring assignment* adalah sebuah sintaks spesial yang memungkinkan kita untuk "membongkar" array atau objek menjadi variabel yang banyak, kadang-kadang itu memang lebih nyaman. Destrukturisasi juga berfungsi baik dengan fungsi-fungsi kompleks yang mempunyai banyak parameter, nilai default, dan sebagainya.
 
