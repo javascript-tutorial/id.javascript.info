@@ -154,7 +154,7 @@ Contoh:
 <div class="contents">
   <ul class="book">
     <li class="chapter">Chapter 1</li>
-    <li class="chapter">Chapter 1</li>
+    <li class="chapter">Chapter 2</li>
   </ul>
 </div>
 
