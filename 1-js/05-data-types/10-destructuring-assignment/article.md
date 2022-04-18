@@ -2,11 +2,20 @@
 
 Dua stuktur data yang paling banyak digunakan di Javascript adalah `Object` dan `Array`
 
+<<<<<<< HEAD
 Objek memungkinkan kita untuk membuat entitas tunggal yang menyimpan data item berdasarkan kunci, dan array memungkinkan kita untuk mengumpulkan data item menjadi koleksi yang terurut.
 
 Tetapi ketika kita meneruskannya ke suatu fungsi, itu mungkin tidak perlu objek / array secara keseluruhan, melainkan potongan individual.
 
 *Destructuring assignment* adalah sebuah sintaks spesial yang memungkinkan kita untuk "membongkar" array atau objek menjadi variabel yang banyak, kadang-kadang itu memang lebih nyaman. Destrukturisasi juga berfungsi baik dengan fungsi-fungsi kompleks yang mempunyai banyak parameter, nilai default, dan sebagainya.
+=======
+- Objects allow us to create a single entity that stores data items by key.
+- Arrays allow us to gather data items into an ordered list.
+
+Although, when we pass those to a function, it may need not be an object/array as a whole. It may need individual pieces.
+
+*Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes that's more convenient.
+>>>>>>> 291b5c05b99452cf8a0d32bd32426926dbcc0ce0
 
 ## Destrukturisasi Array
 
@@ -71,13 +80,18 @@ Pada kode diatas, elemen kedua dari array dilewati, yang ketiga ditetapkan untuk
 let [a, b, c] = "abc"; // ["a", "b", "c"]
 let [one, two, three] = new Set([1, 2, 3]);
 ```
-That works, because internally a destructuring assignment works by iterating over the right value. It's kind of syntax sugar for calling `for..of` over the value to the right of `=` and assigning the values.
+That works, because internally a destructuring assignment works by iterating over the right value. It's a kind of syntax sugar for calling `for..of` over the value to the right of `=` and assigning the values.
 ````
 
 
+<<<<<<< HEAD
 ````smart header="Menetapkan ke apa saja pada sisi kiri"
 
 Kita bisa menggunakan "penetapan" apa saja pada sisi kiri.
+=======
+````smart header="Assign to anything at the left-side"
+We can use any "assignables" on the left side.
+>>>>>>> 291b5c05b99452cf8a0d32bd32426926dbcc0ce0
 
 Misalnya, sebuah properti objek:
 ```js run
@@ -170,7 +184,13 @@ alert(rest.length); // 2
 */!*
 ```
 
+<<<<<<< HEAD
 Nilai dari `rest` adalah array dari elemen array yang tersisa. Kita bisa menggunakan variabel lain apapun pada `rest`, hanya pastikan memiliki tiga titik sebelum itu dan pergi terakhir di penetapan destrukturisasi.
+=======
+The value of `rest` is the array of the remaining array elements.
+
+We can use any other variable name in place of `rest`, just make sure it has three dots before it and goes last in the destructuring assignment.
+>>>>>>> 291b5c05b99452cf8a0d32bd32426926dbcc0ce0
 
 ```js run
 let [name1, name2, *!*...titles*/!*] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
@@ -227,7 +247,11 @@ Sintaks dasarnya adalah:
 let {var1, var2} = {var1:…, var2:…}
 ```
 
+<<<<<<< HEAD
 Kita memiliki objek yang ada di sisi kanan, yang ingin kita pisah menjadi beberapa variabel. Sisi kiri berisi "pola" untuk properti yang sesuai. Dalam kasus sederhana, itu adalah daftar nama variabel di `{...}`.
+=======
+We should have an existing object on the right side, that we want to split into variables. The left side contains an object-like "pattern" for corresponding properties. In the simplest case, that's a list of variable names in `{...}`.
+>>>>>>> 291b5c05b99452cf8a0d32bd32426926dbcc0ce0
 
 Contohnya:
 
@@ -247,7 +271,13 @@ alert(width);  // 100
 alert(height); // 200
 ```
 
+<<<<<<< HEAD
 Properti `options.title`, `options.width` dan `options.height` ditugaskan ke variabel yang sesuai. Urutannya tidak masalah. Ini juga berfungsi:
+=======
+Properties `options.title`, `options.width` and `options.height` are assigned to the corresponding variables.
+
+The order does not matter. This works too:
+>>>>>>> 291b5c05b99452cf8a0d32bd32426926dbcc0ce0
 
 ```js
 // mengganti urutan di let {...}
@@ -411,7 +441,11 @@ alert( title ); // Menu
 
 Jika suatu objek atau array berisi objek dan array bersarang lainnya, kita dapat menggunakan pola sisi kiri yang lebih kompleks untuk mengekstraksi bagian yang lebih dalam.
 
+<<<<<<< HEAD
 Dalam kode di bawah ini `options` memiliki objek lain di properti` size` dan sebuah array di properti `items`. Pola di sisi kiri penugasan memiliki struktur yang sama untuk mengekstrak nilai dari mereka:
+=======
+In the code below `options` has another object in the property `size` and an array in the property `items`. The pattern on the left side of the assignment has the same structure to extract values from them:
+>>>>>>> 291b5c05b99452cf8a0d32bd32426926dbcc0ce0
 
 ```js run
 let options = {
@@ -420,7 +454,7 @@ let options = {
     height: 200
   },
   items: ["Cake", "Donut"],
-  extra: true   
+  extra: true
 };
 
 // tugas dekstukturisasi dibagi dalam beberapa baris untuk kejelasan

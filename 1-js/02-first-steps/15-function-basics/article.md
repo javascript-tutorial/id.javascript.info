@@ -176,12 +176,21 @@ alert( from ); // Ann
 
 Ketika sebuah nilai dilewatkan sebagai parameter fungsi, itu juga disebut *argumen*.
 
+<<<<<<< HEAD
 Dengan kata lain, untuk meluruskan istilah-istilah ini:
+=======
+- A parameter is the variable listed inside the parentheses in the function declaration (it's a declaration time term).
+- An argument is the value that is passed to the function when it is called (it's a call time term).
+>>>>>>> 291b5c05b99452cf8a0d32bd32426926dbcc0ce0
 
 - Parameter adalah variabel yang tercantum di dalam tanda kurung dalam deklarasi fungsi (ini adalah istilah waktu deklarasi)
 - Argumen adalah nilai yang diteruskan ke fungsi saat dipanggil (ini adalah istilah waktu panggilan).
 
+<<<<<<< HEAD
 Kami mendeklarasikan fungsi yang mencantumkan parameternya, lalu memanggilnya lewat argumen.
+=======
+In the example above, one might say: "the function `showMessage` is declared with two parameters, then called with two arguments: `from` and `"Hello"`".
+>>>>>>> 291b5c05b99452cf8a0d32bd32426926dbcc0ce0
 
 Dalam contoh di atas, seseorang mungkin mengatakan: "fungsi `sayMessage` dideklarasikan dengan dua parameter, kemudian dipanggil dengan dua argumen: `from` dan `"Hello"`".
 
@@ -228,7 +237,43 @@ Di sisi lain, itu dipanggil secara independen setiap kali `teks` hilang.
 
 ```
 
+<<<<<<< HEAD
 ### Alternatif nilai default parameter
+=======
+````smart header="Default parameters in old JavaScript code"
+Several years ago, JavaScript didn't support the syntax for default parameters. So people used other ways to specify them.
+
+Nowadays, we can come across them in old scripts.
+
+For example, an explicit check for `undefined`:
+
+```js
+function showMessage(from, text) {
+*!*
+  if (text === undefined) {
+    text = 'no text given';
+  }
+*/!*
+
+  alert( from + ": " + text );
+}
+```
+
+...Or using the `||` operator:
+
+```js
+function showMessage(from, text) {
+  // If the value of text is falsy, assign the default value
+  // this assumes that text == "" is the same as no text at all
+  text = text || 'no text given';
+  ...
+}
+```
+````
+
+
+### Alternative default parameters
+>>>>>>> 291b5c05b99452cf8a0d32bd32426926dbcc0ce0
 
 Terkadang akan dapat dimengerti untuk memberikan nilai default untuk variabel bukan didalam deklarasi fungsi, tapi di tahap selanjutnya, didalam proses eksekusinya.
 
@@ -250,7 +295,11 @@ function showMessage(text) {
 showMessage(); // empty message
 ```
 
+<<<<<<< HEAD
 ...Atau kita bisa menggunakan operator `||`:
+=======
+...Or we could use the `||` operator:
+>>>>>>> 291b5c05b99452cf8a0d32bd32426926dbcc0ce0
 
 ```js
 // jika teks parameter tidak ada atau "", set variabel ke 'empty'
