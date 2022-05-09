@@ -256,7 +256,11 @@ Kita meliput tiga cara membuat fungsi di JavaScript:
 3. Fungsi panah:
 
     ```js
+<<<<<<< HEAD
     // expresi di sisi kanan
+=======
+    // expression on the right side
+>>>>>>> 206485fc3a5465f961608b6e7303fae2e1a0e0b5
     let sum = (a, b) => a + b;
 
     // atau syntax baris-ganda dengan { ... }, butuh kembalian di sini:

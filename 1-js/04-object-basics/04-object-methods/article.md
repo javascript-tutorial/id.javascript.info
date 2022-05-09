@@ -51,7 +51,7 @@ let user = {
 // pertama, deklarasi
 function sayHi() {
   alert("Hello!");
-};
+}
 
 // lalu tambbahkan sebagai sebuah metodes
 user.sayHi = sayHi;

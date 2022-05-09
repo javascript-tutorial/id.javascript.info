@@ -21,7 +21,11 @@ di chapter ini, tujuan kita adalah untuk mendapatkan intisari cara kerjanya, dan
 
 ## Transpilers
 
+<<<<<<< HEAD
 Sebuah [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) adalah perangkat lunak khusus yang dapat mengurai ("membaca dan memahami") kode modern, dan menulis ulang menggunakan konstruksi sintaks yang lebih lama, sehingga hasilnya akan sama.
+=======
+A [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) is a special piece of software that translates source code to another source code. It can parse ("read and understand") modern code and rewrite it using older syntax constructs, so that it'll also work in outdated engines.
+>>>>>>> 206485fc3a5465f961608b6e7303fae2e1a0e0b5
 
 Misalnya. JavaScript sebelum tahun 2020 tidak memiliki "nullish coalescing operator" `??`. Jadi, jika pengunjung menggunakan browser yang sudah ketinggalan zaman, ia mungkin gagal memahami kode seperti `height = height ?? 100`
 
@@ -41,7 +45,11 @@ Biasanya, pengembang menjalankan transpiler di komputer mereka sendiri, dan kemu
 
 Berbicara tentang nama, [Babel](https://babeljs.io) adalah salah satu transpiler paling terkenal di luar sana. 
 
+<<<<<<< HEAD
 Sistem pembangunan proyek modern, seperti [webpack](http://webpack.github.io/), menyediakan sarana untuk menjalankan transpiler secara otomatis pada setiap perubahan kode, sehingga sangat mudah untuk diintegrasikan ke dalam proses pengembangan.
+=======
+Modern project build systems, such as [webpack](https://webpack.js.org/), provide means to run transpiler automatically on every code change, so it's very easy to integrate into development process.
+>>>>>>> 206485fc3a5465f961608b6e7303fae2e1a0e0b5
 
 ## Polyfills
 
@@ -79,7 +87,11 @@ Dua library polyfill yang menarik adalah:
 
 Di bab ini, kami ingin memotivasi Anda untuk mempelajari fitur bahasa modern dan bahkan "yang paling mutakhir", meskipun fitur tersebut belum didukung dengan baik oleh mesin JavaScript.
 
+<<<<<<< HEAD
 Jangan lupa untuk menggunakan transpiler (jika menggunakan sintaks atau operator modern) dan polyfill (untuk menambahkan fungsi yang mungkin hilang). Dan mereka akan memastikan bahwa kodenya berfungsi.
+=======
+For example, later when you're familiar with JavaScript, you can setup a code build system based on [webpack](https://webpack.js.org/) with [babel-loader](https://github.com/babel/babel-loader) plugin.
+>>>>>>> 206485fc3a5465f961608b6e7303fae2e1a0e0b5
 
 Misalnya, nanti saat Anda sudah terbiasa dengan JavaScript, Anda dapat menyiapkan sistem pembuatan kode berdasarkan [webpack](http://webpack.github.io/) dengan [babel-loader](https://github.com/babel/babel-loader).
 

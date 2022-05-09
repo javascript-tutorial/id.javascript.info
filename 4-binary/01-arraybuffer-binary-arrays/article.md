@@ -30,7 +30,7 @@ Let's eliminate a possible source of confusion. `ArrayBuffer` has nothing in com
 
 **To manipulate an `ArrayBuffer`, we need to use a "view" object.**
 
-A view object does not store anything on it's own. It's the "eyeglasses" that give an interpretation of the bytes stored in the `ArrayBuffer`.
+A view object does not store anything on its own. It's the "eyeglasses" that give an interpretation of the bytes stored in the `ArrayBuffer`.
 
 For instance:
 
@@ -126,9 +126,9 @@ new TypedArray();
 
 We can create a `TypedArray` directly, without mentioning `ArrayBuffer`. But a view cannot exist without an underlying `ArrayBuffer`, so gets created automatically in all these cases except the first one (when provided).
 
-To access the `ArrayBuffer`, there are properties:
-- `arr.buffer` -- references the `ArrayBuffer`.
-- `arr.byteLength` -- the length of the `ArrayBuffer`.
+To access the underlying `ArrayBuffer`, there are following properties in `TypedArray`:
+- `buffer` -- references the `ArrayBuffer`.
+- `byteLength` -- the length of the `ArrayBuffer`.
 
 So, we can always move from one view to another:
 ```js

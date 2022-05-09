@@ -73,7 +73,11 @@ File script ditempel ke HTML dengan atribut `src`:
 <script src="/path/to/script.js"></script>
 ```
 
+<<<<<<< HEAD
 Di sini, `/path/to/script.js` adalah jalur absolut ke file script dari root sitius. Kamu juga bisa menyediakan jalur relatif dari laman ini. Misalnya, `src="script.js"` berarti file `"script.js"` dalam folder saat ini.
+=======
+Here, `/path/to/script.js` is an absolute path to the script from the site root. One can also provide a relative path from the current page. For instance, `src="script.js"`, just like `src="./script.js"`, would mean a file `"script.js"` in the current folder.
+>>>>>>> 206485fc3a5465f961608b6e7303fae2e1a0e0b5
 
 Kamu bisa memasang URL penuh juga. Misalnya:
 

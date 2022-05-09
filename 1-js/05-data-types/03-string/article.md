@@ -48,7 +48,11 @@ let guestList = "Guests: // Error: Unexpected token ILLEGAL
   * John";
 ```
 
+<<<<<<< HEAD
 Petik satu dan petik dua berasal dari masa lalu saat bahasa pemrograman dibuat, dimana kebutuhan untuk string lebih dari satu baris belum dipikirkan. Backtick muncul di kemudian hari, dan lebih fleksibel.
+=======
+Single and double quotes come from ancient times of language creation, when the need for multiline strings was not taken into account. Backticks appeared much later and thus are more versatile.
+>>>>>>> 206485fc3a5465f961608b6e7303fae2e1a0e0b5
 
 Backtick juga memperbolehkan kita untuk menspesifikasi "fungsi template" sebelum backtick pertama. Syntaxnya yaitu: <code>func&#96;string&#96;</code>. Fungsi `func` dipanggil secara otomatis, menerima string dan ekspresi yang berada di dalamnya dan bisa memproses mereka. Ini disebut "tagged templates". Fitur ini membuat implementasi kustom templating lebih mudah, tapi jaran dipakai dalam praktik. Kamu bisa membaca lebih tentang ini di [manual](mdn:/JavaScript/Reference/Template_literals#Tagged_templates).
 
@@ -80,9 +84,15 @@ Berikut adalah daftar lengkapnya:
 
 | Character | Description |
 |-----------|-------------|
+<<<<<<< HEAD
 |`\n`|Baris baru|
 |`\r`|Carriage return: tidak digunakan sendiri. File teks milik di Windows menggunakan kombinasi dari dua karakter `\r\n` untuk menandakan baris baru.|
 |`\'`, `\"`|Petik-petik|
+=======
+|`\n`|New line|
+|`\r`|In Windows text files a combination of two characters `\r\n` represents a new break, while on non-Windows OS it's just `\n`. That's for historical reasons, most Windows software also understands `\n`. |
+|`\'`, `\"`|Quotes|
+>>>>>>> 206485fc3a5465f961608b6e7303fae2e1a0e0b5
 |`\\`|Backslash|
 |`\t`|Tab|
 |`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- tetap bisa digunakan untuk kompabilitas, sekarang sudah tidak digunakan. |
@@ -214,7 +224,7 @@ alert( 'Interface'.toLowerCase() ); // interface
 
 Atau, apabila kita hanya ingin sebuah karakter yang diubah menjadi huruf kecil:
 
-```js
+```js run
 alert( 'Interface'[0].toLowerCase() ); // 'i'
 ```
 
@@ -371,8 +381,13 @@ alert( "Widget".includes("id", 3) ); // false, dari posisi 3 tidak ditemukan "id
 Method [str.startsWith](mdn:js/String/startsWith) dan [str.endsWith](mdn:js/String/endsWith) melakukan fungsi seperti namanya:
 
 ```js run
+<<<<<<< HEAD
 alert( "Widget".startsWith("Wid") ); // true, "Widget" diawali oleh "Wid"
 alert( "Widget".endsWith("get") ); // true, "Widget" diakhiri oleh "get"
+=======
+alert( "*!*Wid*/!*get".startsWith("Wid") ); // true, "Widget" starts with "Wid"
+alert( "Wid*!*get*/!*".endsWith("get") ); // true, "Widget" ends with "get"
+>>>>>>> 206485fc3a5465f961608b6e7303fae2e1a0e0b5
 ```
 
 ## Mengambil substring
@@ -604,7 +619,11 @@ Anda akan menemukan cara lain untuk bertanganan dengan surrogate pair nanti di b
 
 ### Tanda diakritik dan normalisasi
 
+<<<<<<< HEAD
 Di banyak bahasa terdapat simbol-simbol yang terdiri dari huruf dasar dengan tanda di atas/bawahnya.
+=======
+In many languages, there are symbols that are composed of the base character with a mark above/under it.
+>>>>>>> 206485fc3a5465f961608b6e7303fae2e1a0e0b5
 
 Sebagai contoh, karakter `a` dapat menjadi huruf dasar untuk: `àáâäãåā`. Kebanyakan karakter "komposit" memiliki kode mereka sendiri di tabel UTF-16. Hal tersebut tidak selalu terjadi, karena terlalu banyak kemungkinan kombinasi.
 

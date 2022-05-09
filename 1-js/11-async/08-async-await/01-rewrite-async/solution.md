@@ -13,7 +13,12 @@ async function loadJson(url) {
   throw new Error(response.status);
 }
 
+<<<<<<< HEAD
 loadJson("no-such-user.json").catch(alert); // Error: 404 (4)
+=======
+loadJson('https://javascript.info/no-such-user.json')
+  .catch(alert); // Error: 404 (4)
+>>>>>>> 206485fc3a5465f961608b6e7303fae2e1a0e0b5
 ```
 
 Catatan:
