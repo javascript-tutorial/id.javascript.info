@@ -24,7 +24,11 @@ Kini, kita bisa menaruh beberapa data ke dalamnya dengan menggunakan operator pe
 let message;
 
 *!*
+<<<<<<< HEAD
 message = 'Hello'; // simpan string
+=======
+message = 'Hello'; // store the string 'Hello' in the variable named message
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 */!*
 ```
 
@@ -193,8 +197,13 @@ let 1a; // cannot start with a digit
 let my-name; // hyphens '-' aren't allowed in the name
 ```
 
+<<<<<<< HEAD
 ```smart header="Case berpengaruh"
 Variabel dengan nama `apple` dan `AppLE` adalah dua variabel yang berbeda.
+=======
+```smart header="Case matters"
+Variables named `apple` and `APPLE` are two different variables.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 ```
 
 ````smart header="Huruf non-Latin diperbolehkan, namun tak direkomendasikan"
@@ -299,7 +308,11 @@ const pageLoadTime = /* waktu yang dibutuhkan laman web untuk meload */;
 
 Nilai `pageLoadTime` tidak diketahui sebelum laman diload, jadi itu dinamai dengan normal. Tapi ia masih konstan karena ia tak berubah setelah penetapan.
 
+<<<<<<< HEAD
 Dengan kata lain, konstan berhuruf kapital hanya digunakan sebagai alias untuk nilai yang "dihard-code".  
+=======
+In other words, capital-named constants are only used as aliases for "hard-coded" values.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 ## Namai dengan benar
 

@@ -54,7 +54,12 @@ Dan juga, terdapat variabel global yang dinamakan `id` untuk mereferensikan elem
 </script>
 ```
 
+<<<<<<< HEAD
 ```warn header= "Tolong jangan gunakan variabel global dengan nama id untuk mengakses elemen"
+=======
+```warn header="Please don't use id-named global variables to access elements"
+This behavior is described [in the specification](http://www.whatwg.org/specs/web-apps/current-work/#dom-window-nameditem), so it's a kind of standard. But it is supported mainly for compatibility.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 Perilaku ini dideskripsikan pada [di spesifikasi](http://www.whatwg.org/specs/web-apps/current-work/#dom-window-nameditem), Jadi ini sudah standar. Tetapi ini didukung terutama untuk kompabilitas.
 
@@ -154,7 +159,7 @@ Contoh:
 <div class="contents">
   <ul class="book">
     <li class="chapter">Chapter 1</li>
-    <li class="chapter">Chapter 1</li>
+    <li class="chapter">Chapter 2</li>
   </ul>
 </div>
 

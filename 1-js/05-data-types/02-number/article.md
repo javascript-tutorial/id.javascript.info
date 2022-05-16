@@ -4,7 +4,11 @@ Dalam JavaScript modern, ada dua tipe angka:
 
 1. Angka regular di JavaScript yang disimpan dalam format 64-bit [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), juga dikenal sebagai "angka double precision floating point". Inilah angka yang kita paling sering kita pakai, dan kita akan bahas tentang mereka di bab ini.
 
+<<<<<<< HEAD
 2. Angka BigInt, untuk mewakili integer dengan panjang sembarang. Mereka kadang dibutuhkan, karena angka regular tak bisa lebih dari <code>2<sup>53</sup></code> atau kurang dari <code>-2<sup>53</sup></code>. Karena bigint dipakai di sedikit area spesial, kita khususkan mereka bab spesial <info:bigint>.
+=======
+2. BigInt numbers, to represent integers of arbitrary length. They are sometimes needed, because a regular number can't safely exceed <code>2<sup>53</sup></code> or be less than <code>-2<sup>53</sup></code>. As bigints are used in few special areas, we devote them a special chapter <info:bigint>.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 Jadi di sini kita akan bahas angka regular. Ayo perluas pengetahuan kita tentang mereka.
 
@@ -22,7 +26,11 @@ Kita juga bisa menggunakan `_` sebagai pemisahnya:
 let billion = 1_000_000_000;
 ```
 
+<<<<<<< HEAD
 Di sini, garis bawah `_` memainkan peran sebagai "syntactic sugar", ini membuat angka lebih mudah dibaca. Mesin JavaScript mengabaikan `_` di antara digit, jadi nilainya sama persis dengan satu miliar di atas.
+=======
+Here the underscore `_` plays the role of the "[syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)", it makes the number more readable. The JavaScript engine simply ignores `_` between digits, so it's exactly the same one billion as above.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 Tapi di kehidupan nyata, kita biasanya menghindari menulis string nol yang panjang karena rentan terjadi kesalahan. Selain itu, kita malas. Kita biasanya akan menulis sesuatu seperti `"1bn"` untuk milyar atau `"7.3bn"` untuk 7 milyar 300 juta. Sama halnya dengan angka besar lainnya.
 
@@ -37,16 +45,17 @@ alert( 7.3e9 );  // 7.3 milyar (7,300,000,000)
 Dengan kata lain, `"e"` kalikan angkanya dengan `1` dengan jumlah nol yang diberikan.
 
 ```js
-1e3 = 1 * 1000 // e3 means *1000
-1.23e6 = 1.23 * 1000000 // e6 means *1000000
+1e3 === 1 * 1000; // e3 means *1000
+1.23e6 === 1.23 * 1000000; // e6 means *1000000
 ```
 
 Sekarang ayo tulis sesuatu lebih kecil. Katakan, 1 microsecond (sepersejuta second):
 
 ```js
-let ms = 0.000001;
+let mсs = 0.000001;
 ```
 
+<<<<<<< HEAD
 Sama seperti sebelumnya, memakai `"e"` bisa membantu. Jika kita ingin menghindari menulis nol eksplisit, kita bisa katakan hal yang sama:
 
 ```js
@@ -54,15 +63,32 @@ let ms = 1e-6; // enam nol di sebelah kiri dari 1
 ```
 
 Jika kita hitung nol di `0.000001`, ada 6 dari mereka. Jadi alaminya `1e-6`.  
+=======
+Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could write the same as:
+
+```js
+let mcs = 1e-6; // six zeroes to the left from 1
+```
+
+If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 Dengan kata lain, angka negatif setelah `"e"` artinya pembagian 1 dengan jumlah nol yang diberikan:
 
 ```js
+<<<<<<< HEAD
 // -3 membagi 1 dengan 3 nol
 1e-3 = 1 / 1000 (=0.001)
 
 // -6 membagi 1 dengan 6 nol
 1.23e-6 = 1.23 / 1000000 (=0.00000123)
+=======
+// -3 divides by 1 with 3 zeroes
+1e-3 === 1 / 1000; // 0.001
+
+// -6 divides by 1 with 6 zeroes
+1.23e-6 === 1.23 / 1000000; // 0.00000123
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 ```
 
 ### Hex, angka binary dan octal
@@ -117,7 +143,12 @@ Tolong ingat bahwa dua dot di `123456..toString(36)` bukan typo. Jika kita mau m
 
 Jika kita menaruh dot tunggal: `123456.toString(36)`, maka akan ada galat, karena syntax JavaScript berimplikasi bahwa bagian desimal setelah dot pertama. Dan jika kita menaruh satu dot lagi, maka JavaScript tahu bahwa bagian desimal kosong dan sekarang pergi ke metode.
 
+<<<<<<< HEAD
 Juga bisa menulis `(123456).toString(36)`.
+=======
+Also could write `(123456).toString(36)`.
+
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 ```
 
 ## Pembulatan
@@ -156,7 +187,11 @@ Ada dua cara melakukannya:
 
 1. Kali-dan-bagi.
 
+<<<<<<< HEAD
     Misalnya, untuk membulatkan angka ke digit kedua setelah desimal, kita bisa mengalikan angkanya dengan `100` (atau sebuah pangkat dari 10), panggil fungsi pembulatan lalu membagi itu kembali.
+=======
+    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100`, call the rounding function and then divide it back.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
     ```js run
     let num = 1.23456;
 
@@ -177,20 +212,32 @@ Ada dua cara melakukannya:
     alert( num.toFixed(1) ); // "12.4"
     ```
 
+<<<<<<< HEAD
     Silakan catat hasil dari `toFixed` ialah string. Jika bagian desimal lebih pendek dari yang dibutuhkan, nol ditambahkan di akhir:
+=======
+    Please note that the result of `toFixed` is a string. If the decimal part is shorter than required, zeroes are appended to the end:
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
     ```js run
     let num = 12.34;
     alert( num.toFixed(5) ); // "12.34000", tambah nol supaya tepat 5 digit
     ```
 
+<<<<<<< HEAD
     Kita bisa mengkonversi itu ke angka menggunakan unary plus atau panggilan `Number()`: `+num.toFixed(5)`.
+=======
+    We can convert it to a number using the unary plus or a `Number()` call, e.g write `+num.toFixed(5)`.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 ## Kalkulasi yang tidak tepat
 
 Secara internal, angka direpresentasikan dalam format 64-bit [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), jadi ada tepat 64 bit untuk menyimpan angka: 52 di antaranya digunakan untuk menyimpan angka, 11 di antaranya menyimpan posisi titik desimal (nol untuk angka bilangan bulat), dan 1 bit untuk tanda.
 
+<<<<<<< HEAD
 Jika angka terlalu besar, itu akan meluapkan penyimpanan 64-bit, berpotensi memberikan infinity:
+=======
+If a number is really huge, it may overflow the 64-bit storage and become a special numeric value `Infinity`:
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 ```js run
 alert( 1e500 ); // Infinity
@@ -198,7 +245,11 @@ alert( 1e500 ); // Infinity
 
 Yang mungkin agak kurang jelas, tetapi sering terjadi adalah hilangnya ketepatan.
 
+<<<<<<< HEAD
 Pertimbangkan (falsy!) tes ini:
+=======
+Consider this (falsy!) equality test:
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 ```js run
 alert( 0.1 + 0.2 == 0.3 ); // *!*false*/!*
@@ -212,13 +263,21 @@ Aneh! Kenapa hasilnya itu dan tidak `0.3`?
 alert( 0.1 + 0.2 ); // 0.30000000000000004
 ```
 
+<<<<<<< HEAD
 Aduh! Ada lebih banyak konsekuensi daripada perbandingan yang salah di sini. Bayangkan Anda membuat situs e-shopping dan pengunjung memasukkan barang-barang `$ 0,10` dan` $ 0,20` ke troli mereka. Total pesanan akan `$ 0,30000000000000004`. Itu akan mengejutkan siapa pun.
+=======
+Ouch! Imagine you're making an e-shopping site and the visitor puts `$0.10` and `$0.20` goods into their cart. The order total will be `$0.30000000000000004`. That would surprise anyone.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 Tetapi kenapa hal ini bisa terjadi?
 
 Sebuah angka disimpan di memori dalam bentuk binary, sebuah urutan dari bits - satu dan nol. Tetapi bilangan pecahan seperti `0.1`, `0.2` yang terlihat sederhana dalam sistem angka desimal sebenarnya adalah pecahan tak berujung dalam bentuk binernya.
 
+<<<<<<< HEAD
 Dengan kata lain, apa itu `0,1`? Ini adalah satu dibagi dengan sepuluh `1 / 10`, sepersepuluh. Dalam sistem angka desimal, angka-angka seperti itu mudah diwakili. Bandingkan dengan sepertiga: `1 / 3`. Ini menjadi pecahan yang tak berujung `0,33333 (3)`.
+=======
+What is `0.1`? It is one divided by ten `1/10`, one-tenth. In decimal numeral system such numbers are easily representable. Compare it to one-third: `1/3`. It becomes an endless fraction `0.33333(3)`.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 Jadi, pembagian dengan kekuatan `10` dijamin bekerja dengan baik dalam sistem desimal, tetapi pembagian dengan `3` tidak. Untuk alasan yang sama, dalam sistem angka biner, pembagian dengan kekuatan `2` dijamin bekerja, tetapi `1 / 10` menjadi fraksi biner tanpa akhir.
 
@@ -245,7 +304,7 @@ Bisakah kita mengatasi masalah ini? Tentu, metode yang paling dapat diandalkan a
 
 ```js run
 let sum = 0.1 + 0.2;
-alert( sum.toFixed(2) ); // 0.30
+alert( sum.toFixed(2) ); // "0.30"
 ```
 
 Harap dicatat bahwa `toFixed` selalu mengembalikan string. Ini memastikan bahwa ia memiliki 2 digit setelah titik desimal. Itu sebenarnya nyaman jika kita memiliki e-shopping dan perlu menunjukkan `$ 0,30`. Untuk kasus lain, kita dapat menggunakan plus unary untuk memaksanya menjadi nomor:
@@ -328,11 +387,18 @@ let num = +prompt("Enter a number", '');
 alert( isFinite(num) );
 ```
 
+<<<<<<< HEAD
 Harap dicatat bahwa string kosong atau spasi-saja diperlakukan sebagai `0` dalam semua fungsi numerik termasuk` isFinite`.
 
 ```smart header="Dibandingkan dengan `Object.is`"
 
 Ada metode bawaan khusus [Object.is](mdn:js/Object/is) yang membandingkan nilai seperti `===`, tetapi lebih dapat diandalkan untuk dua kasus:
+=======
+Please note that an empty or a space-only string is treated as `0` in all numeric functions including `isFinite`.
+
+```smart header="Compare with `Object.is`"
+There is a special built-in method `Object.is` that compares values like `===`, but is more reliable for two edge cases:
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 1. Ini bekerja dengan `NaN`: `Object.is(NaN, NaN) === true`, itu hal yang bagus.
 2. Nilai `0` and `-0` adalah berbeda: `Object.is(0, -0) === false`, secara teknis adalah benar, karena secara internal nomor tersebut memiliki bit tanda yang mungkin berbeda bahkan jika semua bit lainnya nol.

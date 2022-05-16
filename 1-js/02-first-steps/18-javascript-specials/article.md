@@ -55,7 +55,11 @@ Untuk mengaktifkan penuh semua fitur modern JavaScript, kita sebaiknya mulai scr
 
 Directive ini harus ada di paling atas script atau di awal badan fungsi.
 
+<<<<<<< HEAD
 Tanpa `"use strict"`, apapun akan bekerja, tapi beberapa fitur bersikap dengan cara kuno, "kompatibel". Secara umum kita akan pilih sikap modern.
+=======
+Without `"use strict"`, everything still works, but some features behave in the old-fashioned, "compatible" way. We'd generally prefer the modern behavior.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 Beberapa fitur modern bahasa ini (seperti kelas yang akan kita pelajari di kemudian) mengaktifkan mode ketat secara implisit.
 
@@ -256,7 +260,11 @@ Kita meliput tiga cara membuat fungsi di JavaScript:
 3. Fungsi panah:
 
     ```js
+<<<<<<< HEAD
     // expresi di sisi kanan
+=======
+    // expression on the right side
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
     let sum = (a, b) => a + b;
 
     // atau syntax baris-ganda dengan { ... }, butuh kembalian di sini:

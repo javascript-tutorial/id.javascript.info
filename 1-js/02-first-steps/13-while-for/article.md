@@ -106,10 +106,17 @@ Mari bahas pernyataan `for` bagian demi bagian:
 
 | bagian  |          |                                                                            |
 |-------|----------|----------------------------------------------------------------------------|
+<<<<<<< HEAD
 | begin | `i = 0`    | Jalankan sekali masuk ke loop.                                      |
 | condition | `i < 3`| Cek sebelum tiap iterasi loop. Jika salah, loop berhenti.              |
 | body | `alert(i)`| Jalankan lagi dan lagi selama kondisi bernilai truthy.                         |
 | step | `i++`      | Exekusi setelah badan di tiap iterasi. |
+=======
+| begin | `let i = 0`    | Executes once upon entering the loop.                                      |
+| condition | `i < 3`| Checked before every loop iteration. If false, the loop stops.              |
+| body | `alert(i)`| Runs again and again while the condition is truthy.                         |
+| step| `i++`      | Executes after the body on each iteration. |
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 Cara kerja algoritma perulangan umum seperti ini:
 
@@ -268,7 +275,11 @@ for (let i = 0; i < 10; i++) {
 
 Dari sudut pandang teknis, ini identik dengan contoh diatas. Tentunya, kita dapat membungkus kode dalam sebuah blok `if` daripada menggunakan `continue`.
 
+<<<<<<< HEAD
 Tapi sebagai efeknya, hal ini akan menciptakan kode lebih dalam satu tingkat (pemanggilan `alert` didalam kurung kurawal). Jika kode didalam `if` lebih panjang beberapa baris, hal itu akan membuat tingkat keterbacaan kode menjadi berkurang.
+=======
+But as a side effect, this created one more level of nesting (the `alert` call inside the curly braces). If the code inside of `if` is longer than a few lines, that may decrease the overall readability.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 ````
 
 ````warn header="Tidak ada `break/continue` ke sisi kanan '?'"
@@ -377,7 +388,11 @@ label: {
 }
 ```
 
+<<<<<<< HEAD
 ...Meskipun, 99,9% dari waktu `break` yang digunakan adalah loop dalam, seperti yang telah kita lihat pada contoh di atas.
+=======
+...Although, 99.9% of the time `break` is used inside loops, as we've seen in the examples above.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 `continue` hanya dimungkinkan dari dalam loop.
 ````

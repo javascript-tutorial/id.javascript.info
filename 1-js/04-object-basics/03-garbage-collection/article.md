@@ -205,8 +205,16 @@ _Engine_ modern mengimplementasikan algoritma  _garbage collection_ canggih (_ad
 
 Buku "The Garbage Collection Handbook: The Art of Automatic Memory Management" (R. Jones et al) mencakup beberapanya.
 
+<<<<<<< HEAD
 Jika kamu familiar dengan pemrograman _low-level_, informasi mendalam tentang _garbage collector_ V8 terdapat pada artikel [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
 
 [V8 blog](https://v8.dev/) juga mempublikasikan artikel-artikel tentang ubahan-ubahan dalam manajemen memori dari waktu ke waktu. Tentu saja, untuk belajar proses _garbage collection_, kamu lebih baik mempersiapkan diri dengan belajar tentang _internals_ V8 secara umum dan membaca blog [Vyacheslav Egorov](http://mrale.ph) yang merupakan salah seorang _engineer_ V8. Saya bilang: "V8", karena merupakan yang paling komprehensif di _cover_ oleh artikel-artikel di internet. Untuk _engine_ lainnya, pendekatannya kebanyakan mirip-mirip, tetapi _garbage collection_ berbeda dalam banyak aspek.
 
 Pengetahuan mendalam mengenai _engines_ itu bagus ketika membutuhkan optimisasi _low-level_. Tapi akan lebih bijak untuk merencanakan itu sebagai langkah selanjutnya setelah kamu akrab dengan bahasanya (JavaScript).  
+=======
+If you are familiar with low-level programming, more detailed information about V8's garbage collector is in the article [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
+
+The [V8 blog](https://v8.dev/) also publishes articles about changes in memory management from time to time. Naturally, to learn more about garbage collection, you'd better prepare by learning about V8 internals in general and read the blog of [Vyacheslav Egorov](http://mrale.ph) who worked as one of the V8 engineers. I'm saying: "V8", because it is best covered by articles on the internet. For other engines, many approaches are similar, but garbage collection differs in many aspects.
+
+In-depth knowledge of engines is good when you need low-level optimizations. It would be wise to plan that as the next step after you're familiar with the language.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469

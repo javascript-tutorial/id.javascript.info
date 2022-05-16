@@ -143,7 +143,11 @@ Parameter dan kegunaan fungsi dokumen
 
     Oya, banyak editor seperti [WebStorm](https://www.jetbrains.com/webstorm/) bisa memahami mereka juga dan memakai mereka untuk menyediakan autocomplete dan beberapa pengecekan-kode otomatis.
 
+<<<<<<< HEAD
     Juga, Ada tool seperti [JSDoc 3](https://github.com/jsdoc3/jsdoc) yang bisa menggenerate dokumentasi-HTML dari komentar. Kamu bisa baca informasi lebih tentang JSDoc di <http://usejsdoc.org/>.
+=======
+Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <https://jsdoc.app>.
+>>>>>>> 2901e0c64590a67d8a2bde1ea76a514d96f80469
 
 Kenapa tugas ini diselesaikan begini?
 : Apa yang tertulis itu penting. Tapi apa yang *tak* tertilis mungkin lebih penting lagi untuk memahami yang terjadi. Kenapa tugas ini diselesaikan tepat seperti ini? Kodenya tak memberikan jawaban.
