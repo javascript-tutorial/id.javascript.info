@@ -6,8 +6,13 @@ Misalnya, `alert` otomatis mengkonversi nilai apapun ke string untuk menampilkan
 
 Ada juga kasus di mana kita harus explisit mengkonversi nilai ke tipe yang diharapkan.
 
+<<<<<<< HEAD
 ```smart header="Belum bicara objek dulu"
 Di bab ini, kita takkan mengcover objek. Daripada itu, kita akan belajar primitives dulu.
+=======
+```smart header="Not talking about objects yet"
+In this chapter, we won't cover objects. For now, we'll just be talking about primitives.
+>>>>>>> d5e8b6d308869738bd1f08dde62b64c969b0673e
 
 Lalu, setelah kita belajar tentang objek, kita akan lihat cara konversi objek bekerja di bab <info:object-toprimitive>.
 ```
