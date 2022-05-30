@@ -211,10 +211,18 @@ Beberapa waktu yang lalu tidak ada orang yang membayangkan bahwa halaman web bis
 
 Jadi untuk menghindari kesalah pahaman, *request* tidak aman -- yang tidak bisa diselesaikan di waktu yang lama, browser tidak akan membuat *request* tersebut secara langsung. Sebelum dikirimkan ke pendahuluan yang disebut *request* "preflight", meminta izin.
 
+<<<<<<< HEAD
 *Request* preflight menggunakan metode `OPTIONS`, tidak ada *body* dan dua *header*:
 
 - *Header* `Access-Control-request-Method` memiliki metode *request* tidak aman.
 - *Header* `Access-Control-request-headers` menyediakan daftar yang dipisahkan dengan koma dari *header* HTTP tidak aman.
+=======
+A preflight request uses the method `OPTIONS`, no body and three headers:
+
+- `Access-Control-Request-Method` header has the method of the unsafe request.
+- `Access-Control-Request-Headers` header provides a comma-separated list of its unsafe HTTP-headers.
+- `Origin` header tells from where the request came. (such as `https://javascript.info`)
+>>>>>>> 2efe0dce18a57f2b6121ed6656d6fe10b0ee8f96
 
 Jika *server* setuju untuk melayani *request*, maka akan merespon dengan *body* kosong, status 200 dan *header*:
 

@@ -131,6 +131,11 @@ Jika ada beberapa elemen di light DOM dengan nama slot yang sama, mereka ditamba
 
 Sebagai contoh:
 
+<<<<<<< HEAD
+=======
+For example, this:
+
+>>>>>>> 2efe0dce18a57f2b6121ed6656d6fe10b0ee8f96
 ```html
 <user-card>
   <span slot="username">John</span>

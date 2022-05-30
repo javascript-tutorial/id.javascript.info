@@ -39,7 +39,11 @@ Objek lebih "berat" dari primitif. Dan mereka membutuhkan sumber daya tambahan u
 
 Ini adalah paradoks yang dihadapi dari pencipta Javascript:
 
+<<<<<<< HEAD
 - Terdapat banyak hal yang harus dilakukan dengan primitif seperti string atau angka. Akan menjadi lebih baik jika mereka bisa diakses sebagai method.
+=======
+- There are many things one would want to do with a primitive, like a string or a number. It would be great to access them using methods.
+>>>>>>> 2efe0dce18a57f2b6121ed6656d6fe10b0ee8f96
 - Primitives must be as fast and lightweight as possible.
 - Sebisa mungkin primitif haruslah cepat dan ringan.
 
@@ -49,7 +53,11 @@ Solusinya terlihat sedikit aneh, tapi inilah solusinya:
 2. Bahasanya membolehkan untuk mengakses method dan properti dari string, number, boolean dan symbols.
 3. Untuk membuat itu bekerja, "objek pembungkus" spesial yang menyediakan fungsionalitas tambahan dibuat, dan lalu dihancurkan.
 
+<<<<<<< HEAD
 "Objek pembungkus" berbeda untuk setiap tipe primitif dan dipanggil: `String`, `Number`, `Boolean` dan `Symbol`. Lalu, mereka menyediakan metode-metode yang berbeda.
+=======
+The "object wrappers" are different for each primitive type and are called: `String`, `Number`, `Boolean`, `Symbol` and `BigInt`. Thus, they provide different sets of methods.
+>>>>>>> 2efe0dce18a57f2b6121ed6656d6fe10b0ee8f96
 
 Contoh, ada methode string [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) yang mengembalikan string `str` yang telah diubah menjadi huruf kapital.
 

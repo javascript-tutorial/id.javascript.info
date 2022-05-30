@@ -147,7 +147,7 @@ This option may be useful when the URL for `fetch` comes from a 3rd-party, and w
 The `credentials` option specifies whether `fetch` should send cookies and HTTP-Authorization headers with the request.
 
 - **`"same-origin"`** -- the default, don't send for cross-origin requests,
-- **`"include"`** -- always send, requires `Accept-Control-Allow-Credentials` from cross-origin server in order for JavaScript to access the response, that was covered in the chapter <info:fetch-crossorigin>,
+- **`"include"`** -- always send, requires `Access-Control-Allow-Credentials` from cross-origin server in order for JavaScript to access the response, that was covered in the chapter <info:fetch-crossorigin>,
 - **`"omit"`** -- never send, even for same-origin requests.
 
 ## cache
@@ -179,7 +179,7 @@ The `integrity` option allows to check if the response matches the known-ahead c
 
 As described in the [specification](https://w3c.github.io/webappsec-subresource-integrity/), supported hash-functions are SHA-256, SHA-384, and SHA-512, there might be others depending on the browser.
 
-For example, we're downloading a file, and we know that it's SHA-256 checksum is "abcdef" (a real checksum is longer, of course).
+For example, we're downloading a file, and we know that its SHA-256 checksum is "abcdef" (a real checksum is longer, of course).
 
 We can put it in the `integrity` option, like this:
 
