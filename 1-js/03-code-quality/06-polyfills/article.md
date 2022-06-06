@@ -6,7 +6,11 @@ Tim yang mengurus JavaScript mengerti dan akan mengusulkan mana dari proposal-pr
 
 Sangat wajar jika kebanyakan dari browser-browser yang ada hanya mengimplementasikan bagian-bagian yang tidak terlalu sulit.
 
+<<<<<<< HEAD
 Sebuah halaman yang bagus untuk melihat kondisi terkini dari fitur yang didukung oleh bahasa ini ialah <https://kangax.github.io/compat-table/es6/> (isinya banyak, kita masih banyak yang belum dipelajari)
+=======
+So it's quite common for an engine to implement only part of the standard.
+>>>>>>> 2efe0dce18a57f2b6121ed6656d6fe10b0ee8f96
 
 Sebagai programmer, kita suka untuk menggunakan fitur yang terbaru. lebih banyak fitur bagus - lebih baik lagi!
 
@@ -21,7 +25,11 @@ di chapter ini, tujuan kita adalah untuk mendapatkan intisari cara kerjanya, dan
 
 ## Transpilers
 
+<<<<<<< HEAD
 Sebuah [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) adalah perangkat lunak khusus yang dapat mengurai ("membaca dan memahami") kode modern, dan menulis ulang menggunakan konstruksi sintaks yang lebih lama, sehingga hasilnya akan sama.
+=======
+A [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) is a special piece of software that translates source code to another source code. It can parse ("read and understand") modern code and rewrite it using older syntax constructs, so that it'll also work in outdated engines.
+>>>>>>> 2efe0dce18a57f2b6121ed6656d6fe10b0ee8f96
 
 Misalnya. JavaScript sebelum tahun 2020 tidak memiliki "nullish coalescing operator" `??`. Jadi, jika pengunjung menggunakan browser yang sudah ketinggalan zaman, ia mungkin gagal memahami kode seperti `height = height ?? 100`
 
@@ -39,9 +47,15 @@ Sekarang kode yang ditulis ulang cocok untuk mesin JavaScript lama.
 
 Biasanya, pengembang menjalankan transpiler di komputer mereka sendiri, dan kemudian menyebarkan kode yang ditranspilasi ke server.
 
+<<<<<<< HEAD
 Berbicara tentang nama, [Babel](https://babeljs.io) adalah salah satu transpiler paling terkenal di luar sana. 
 
 Sistem pembangunan proyek modern, seperti [webpack](http://webpack.github.io/), menyediakan sarana untuk menjalankan transpiler secara otomatis pada setiap perubahan kode, sehingga sangat mudah untuk diintegrasikan ke dalam proses pengembangan.
+=======
+Speaking of names, [Babel](https://babeljs.io) is one of the most prominent transpilers out there.
+
+Modern project build systems, such as [webpack](https://webpack.js.org/), provide a means to run a transpiler automatically on every code change, so it's very easy to integrate into the development process.
+>>>>>>> 2efe0dce18a57f2b6121ed6656d6fe10b0ee8f96
 
 ## Polyfills
 
@@ -68,7 +82,15 @@ if (!Math.trunc) { // kalo ga ada fungsi seperti ini
 }
 ```
 
+<<<<<<< HEAD
 JavaScript adalah bahasa yang sangat dinamis, skrip dapat menambah / memodifikasi fungsi apa pun, bahkan termasuk yang sudah ada di dalamnya.
+=======
+JavaScript is a highly dynamic language. Scripts may add/modify any function, even built-in ones.
+
+Two interesting polyfill libraries are:
+- [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
+- [polyfill.io](http://polyfill.io) service that provides a script with polyfills, depending on the features and user's browser.
+>>>>>>> 2efe0dce18a57f2b6121ed6656d6fe10b0ee8f96
 
 Dua library polyfill yang menarik adalah:
 - [core js](https://github.com/zloirock/core-js) yang mendukung banyak hal, memungkinkan untuk kita memasukkan hanya fitur yang dibutuhkan.
@@ -77,9 +99,15 @@ Dua library polyfill yang menarik adalah:
 
 ## Kesimpulan
 
+<<<<<<< HEAD
 Di bab ini, kami ingin memotivasi Anda untuk mempelajari fitur bahasa modern dan bahkan "yang paling mutakhir", meskipun fitur tersebut belum didukung dengan baik oleh mesin JavaScript.
 
 Jangan lupa untuk menggunakan transpiler (jika menggunakan sintaks atau operator modern) dan polyfill (untuk menambahkan fungsi yang mungkin hilang). Dan mereka akan memastikan bahwa kodenya berfungsi.
+=======
+Just don't forget to use a transpiler (if using modern syntax or operators) and polyfills (to add functions that may be missing). They'll ensure that the code works.
+
+For example, later when you're familiar with JavaScript, you can setup a code build system based on [webpack](https://webpack.js.org/) with the [babel-loader](https://github.com/babel/babel-loader) plugin.
+>>>>>>> 2efe0dce18a57f2b6121ed6656d6fe10b0ee8f96
 
 Misalnya, nanti saat Anda sudah terbiasa dengan JavaScript, Anda dapat menyiapkan sistem pembuatan kode berdasarkan [webpack](http://webpack.github.io/) dengan [babel-loader](https://github.com/babel/babel-loader).
 
