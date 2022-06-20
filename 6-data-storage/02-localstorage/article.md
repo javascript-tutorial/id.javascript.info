@@ -6,9 +6,15 @@ Yang menarik dari mereka adalah bahwa data bertahan dari refresh halaman (untuk 
 
 Kita sudah memiliki cookies. Mengapa perlu tambahan objek?
 
+<<<<<<< HEAD
 - Tidak seperti cookies, objek penyimpanan web tidak dikirim ke server pada setiap permintaan. Karena itu, kita bisa menyimpan lebih banyak. Sebagian besar peramban mengizinkan setidaknya 2 *megabyte* data (atau lebih) dan memiliki pengaturan untuk konfigurasinya.
 - Juga tidak seperti cookies, server tidak dapat memanipulasi objek penyimpanan melalui HTTP header. Semuanya dilakukan dalam JavaScript.
 - Penyimpanan terikat kepada asalnya (domain/protokol/port triplet). Artinya, protokol atau subdomain yang berbeda menyimpulkan objek penyimpanan yang berbeda, mereka tidak dapat mengakses data satu sama lain.
+=======
+- Unlike cookies, web storage objects are not sent to server with each request. Because of that, we can store much more. Most modern browsers allow at least 5 megabytes of data (or more) and have settings to configure that.
+- Also unlike cookies, the server can't manipulate storage objects via HTTP headers. Everything's done in JavaScript.
+- The storage is bound to the origin (domain/protocol/port triplet). That is, different protocols or subdomains infer different storage objects, they can't access data from each other.
+>>>>>>> 7964b11b8fa2c314d9a09a82ea4b585cda618c80
 
 Kedua objek penyimpanan menyediakan *method* dan properti yang sama:
 
@@ -63,7 +69,12 @@ delete localStorage.test;
 
 Itu diizinkan karena alasan historis, dan sebagian besar berfungsi, tetapi umumnya tidak disarankan, karena:
 
+<<<<<<< HEAD
 1. Jika *key* dibuat oleh pengguna, itu bisa apa saja, seperti `length` atau `toString`, atau *method* bawaan `localStorage` lainnya. Dalam hal itu `getItem/setItem` berfungsi dengan baik, sementara akses seperti objek akan gagal:
+=======
+1. If the key is user-generated, it can be anything, like `length` or `toString`, or another built-in method of `localStorage`. In that case `getItem/setItem` work fine, while object-like access fails:
+
+>>>>>>> 7964b11b8fa2c314d9a09a82ea4b585cda618c80
     ```js run
     let key = 'length';
     localStorage[key] = 5; // Error, can't assign length
@@ -115,9 +126,15 @@ for(let key of keys) {
 }
 ```
 
+<<<<<<< HEAD
 Yang terakhir berfungsi, karena `Object.keys` hanya mengembalikan kunci milik objek, mengabaikan *prototype*.
 
 ## Hanya string
+=======
+The latter works, because `Object.keys` only returns the keys that belong to the object, ignoring the prototype.
+
+## Strings only
+>>>>>>> 7964b11b8fa2c314d9a09a82ea4b585cda618c80
 
 Harap dicatat bahwa *key* dan *value* harus berupa string.
 
@@ -144,7 +161,6 @@ Juga dimungkinkan untuk *stringify* seluruh objek penyimpanan, sebagai contoh un
 // menambahkan opsi pemformatan pada JSON.stringify untuk membuat objek terlihat lebih bagus
 alert( JSON.stringify(localStorage, null, 2) );
 ```
-
 
 ## sessionStorage
 
@@ -177,7 +193,11 @@ Itu persis terjadi karena `sessionStorage` terikat tidak hanya pada *origin*, te
 
 ## Event storage
 
+<<<<<<< HEAD
 Saat data diperbarui di `localStorage` atau `sessionStorage`, *event* [storage](https://www.w3.org/TR/webstorage/#the-storage-event) terpicu, dengan properti:
+=======
+When the data gets updated in `localStorage` or `sessionStorage`, [storage](https://html.spec.whatwg.org/multipage/webstorage.html#the-storageevent-interface) event triggers, with properties:
+>>>>>>> 7964b11b8fa2c314d9a09a82ea4b585cda618c80
 
 - `key` – *key* yang diubah (`null` jika `.clear()` dipanggil).
 - `oldValue` – *value* lama (`null` jika *key* baru ditambahkan).
@@ -198,8 +218,13 @@ Anda mungkin ingin membuka halaman ini di dua window peramban untuk menguji kode
 Jika kedua *window* mendengarkan (listening) `window.onstorage`, maka masing-masing akan bereaksi terhadap pembaruan yang terjadi di *window* lainnya.
 
 ```js run
+<<<<<<< HEAD
 // memicu pembaruan yang dibuat ke penyimpanan yang sama dari dokumen lain
 window.onstorage = event => { //sama seperti window.addEventListener('storage', event => {
+=======
+// triggers on updates made to the same storage from other documents
+window.onstorage = event => { // can also use window.addEventListener('storage', event => {
+>>>>>>> 7964b11b8fa2c314d9a09a82ea4b585cda618c80
   if (event.key != 'now') return;
   alert(event.key + ':' + event.newValue + " at " + event.url);
 };
@@ -217,11 +242,20 @@ Peramban modern juga mendukung [Broadcast channel API](mdn:/api/Broadcast_Channe
 
 ## Ringkasan
 
+<<<<<<< HEAD
 Objek penyimpanan web `localStorage` dan `sessionStorage` memungkinkan untuk menyimpan *key*/*value* di peramban.
 - Baik `key` dan `value` harus berupa string.
 - Batasnya adalah 5mb+, tergantung pada peramban.
 - Mereka tidak kedaluwarsa.
 - Data terikat pada *origin* (domain/port/protokol).
+=======
+Web storage objects `localStorage` and `sessionStorage` allow to store key/value in the browser.
+
+- Both `key` and `value` must be strings.
+- The limit is 5mb+, depends on the browser.
+- They do not expire.
+- The data is bound to the origin (domain/port/protocol).
+>>>>>>> 7964b11b8fa2c314d9a09a82ea4b585cda618c80
 
 | `localStorage` | `sessionStorage` |
 |----------------|------------------|

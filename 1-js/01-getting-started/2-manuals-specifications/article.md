@@ -28,7 +28,12 @@ Juga, jika kamu dalam pengembangan untuk peramban, maka ada spek lain yang dibah
 
     Juga, kamu bisa menggunakan pencarian internet dengan frasa seperti "RegExp MSDN" atau "RegExp MSDN jscript".
 
+<<<<<<< HEAD
 ## Tabel kompatibilitas
+=======
+- <https://caniuse.com> - per-feature tables of support, e.g. to see which engines support modern cryptography functions: <http://caniuse.com/#feat=cryptography>.
+- <https://kangax.github.io/compat-table> - a table with language features and engines that support those or don't support.
+>>>>>>> 7964b11b8fa2c314d9a09a82ea4b585cda618c80
 
 JavaScript merupakan bahasa berkembang, fitur baru ditambah secara reguler.
 
