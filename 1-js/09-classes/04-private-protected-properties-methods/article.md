@@ -112,8 +112,13 @@ class CoffeeMachine {
 // membuat mesin kopi
 let coffeeMachine = new CoffeeMachine(100);
 
+<<<<<<< HEAD
 // tambahkan air
 coffeeMachine.waterAmount = -10; // Error: Negative water
+=======
+// add water
+coffeeMachine.waterAmount = -10; // _waterAmount will become 0, not -10
+>>>>>>> 30a5d5e2a7c3504c9afd5028f83f4a696e60aede
 ```
 
 Sekarang aksesnya terkendali, jadi pengaturan air di bawah nol gagal.

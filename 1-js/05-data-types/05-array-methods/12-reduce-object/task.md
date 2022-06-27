@@ -4,7 +4,11 @@ nilai penting: 4
 
 # Buatlah objek dengan kunci dari array
 
+<<<<<<< HEAD
 Anggaplah kita menerima sebuah array dari user didalam form `{id:..., name:..., age... }`.
+=======
+Let's say we received an array of users in the form `{id:..., name:..., age:... }`.
+>>>>>>> 30a5d5e2a7c3504c9afd5028f83f4a696e60aede
 
 Buatlah sebuah fungsi `groupById(arr)` yang membuat sebuah objek, dengan `id` sebagai key/kunci, dan item array sebagai nilai
 
