@@ -51,7 +51,11 @@ describe("pow", function() {
 Spek punya tiga blok bangunan utama yang bisa kamu lihat di bawah:
 
 `describe("title", function() { ... })`
+<<<<<<< HEAD
 : Fungsionalitas apa yang kita jelaskan. Di kasus ini kita akan menjelaskan fungsi `pow`. Dipakai untuk mengelompokkan "pekerja" -- blok `it`.
+=======
+: What functionality we're describing? In our case we're describing the function `pow`. Used to group "workers" -- the `it` blocks.
+>>>>>>> 82ed8f11b40bd40797427a5dd1763edbe1fca523
 
 `it("use case description", function() { ... })`
 : Di judul `it` kita *dalam bahasa manusia* menjelaskan use case tertentu, dan argumen kedua ialah fungsi yang mengetes itu.

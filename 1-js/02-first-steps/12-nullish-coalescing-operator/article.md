@@ -4,7 +4,11 @@
 
 Operator penggabungan nullish ditulis sebagai dua tanda tanya `??`.
 
+<<<<<<< HEAD
 Karena memperlakukan `null` dan `undefined` sama, kita akan menggunakan istilah khusus di sini, di artikel ini. Kami akan mengatakan bahwa ekspresi adalah "didefinisikan" ketika itu bukan `null` atau `undefined`.
+=======
+As it treats `null` and `undefined` similarly, we'll use a special term here, in this article. For brevity, we'll say that a value is "defined" when it's neither `null` nor `undefined`.
+>>>>>>> 82ed8f11b40bd40797427a5dd1763edbe1fca523
 
 Hasil dari `a?? b` adalah:
 - jika `a` didefinisikan, maka `a`,
@@ -22,9 +26,15 @@ result = (a !== null && a !== undefined) ? a : b;
 
 Sekarang harus benar-benar jelas apa yang dilakukan `??`. Mari kita lihat di mana itu membantu.
 
+<<<<<<< HEAD
 Kasus penggunaan umum untuk `??` adalah memberikan nilai default untuk variabel yang berpotensi tidak terdefinisi.
 
 Misalnya, di sini kami menampilkan `pengguna` jika didefinisikan, jika tidak `Anonim`:
+=======
+The common use case for `??` is to provide a default value.
+
+For example, here we show `user` if its value isn't `null/undefined`, otherwise `Anonymous`:
+>>>>>>> 82ed8f11b40bd40797427a5dd1763edbe1fca523
 
 ```js dijalankan
 biarkan pengguna;
@@ -42,9 +52,15 @@ alert(pengguna ?? "Anonim"); // John (ditentukan pengguna)
 
 Kita juga dapat menggunakan urutan `??` untuk memilih nilai pertama dari daftar yang bukan `null/undefined`.
 
+<<<<<<< HEAD
 Katakanlah kita memiliki data pengguna dalam variabel `FirstName`, `lastName` atau `nickName`. Semuanya mungkin tidak ditentukan, jika pengguna memutuskan untuk tidak memasukkan nilai.
 
 Kami ingin menampilkan nama pengguna menggunakan salah satu variabel ini, atau menampilkan "Anonim" jika semuanya tidak ditentukan.
+=======
+Let's say we have a user's data in variables `firstName`, `lastName` or `nickName`. All of them may be not defined, if the user decided not to fill in the corresponding values.
+
+We'd like to display the user name using one of these variables, or show "Anonymous" if all of them are `null/undefined`.
+>>>>>>> 82ed8f11b40bd40797427a5dd1763edbe1fca523
 
 Mari kita gunakan operator `??` untuk itu:
 
@@ -106,11 +122,19 @@ Dalam praktiknya, ketinggian nol seringkali merupakan nilai yang valid, yang tid
 
 ## Prioritas
 
+<<<<<<< HEAD
 Prioritas operator `??` hampir sama dengan `||`, hanya sedikit lebih rendah. Ini sama dengan `5` di [tabel MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table), sedangkan `||` adalah `6` .
+=======
+The precedence of the `??` operator is the same as `||`. They both equal `4` in the [MDN table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table).
+>>>>>>> 82ed8f11b40bd40797427a5dd1763edbe1fca523
 
 Artinya, seperti halnya `||`, operator penggabungan nullish `??` dievaluasi sebelum `=` dan `?`, tetapi setelah sebagian besar operasi lain, seperti `+`, `*`.
 
+<<<<<<< HEAD
 Jadi, jika kita ingin memilih nilai dengan `??` dalam ekspresi dengan operator lain, pertimbangkan untuk menambahkan tanda kurung:
+=======
+So we may need to add parentheses in expressions like this:
+>>>>>>> 82ed8f11b40bd40797427a5dd1763edbe1fca523
 
 ```js dijalankan
 biarkan tinggi = nol;
@@ -128,8 +152,13 @@ Jika tidak, jika kita menghilangkan tanda kurung, maka karena `*` memiliki prior
 // tanpa tanda kurung
 misal luas = tinggi?? 100 * lebar ?? 50;
 
+<<<<<<< HEAD
 // ...berfungsi sama seperti ini (mungkin bukan yang kita inginkan):
 misal luas = tinggi?? (100 * lebar) ?? 50;
+=======
+// ...works this way (not what we want):
+let area = height ?? (100 * width) ?? 50;
+>>>>>>> 82ed8f11b40bd40797427a5dd1763edbe1fca523
 ```
 
 ### Menggunakan ?? dengan && atau ||
