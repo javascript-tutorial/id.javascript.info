@@ -193,6 +193,7 @@ Di sini adalah extrak dari [tabel presedensi](https://developer.mozilla.org/en/J
 | Presedensi | Nama | Tanda |
 |------------|------|------|
 | ... | ... | ... |
+<<<<<<< HEAD
 | 17 | plus unary | `+` |
 | 17 | negasi unary | `-` |
 | 16 | akar pangkat | `**` |
@@ -205,10 +206,28 @@ Di sini adalah extrak dari [tabel presedensi](https://developer.mozilla.org/en/J
 | ... | ... | ... |
 
 Seperti yang kita lihat, "plus unary" punya prioritas `17` yang lebih tinggi dari `13` "penambahan" (plus binary). Itulah kenapa, dalam expresi `"+apples + +oranges"`, plus unary bekerja sebelum penambahan.
+=======
+| 15 | unary plus | `+` |
+| 15 | unary negation | `-` |
+| 14 | exponentiation | `**` |
+| 13 | multiplication | `*` |
+| 13 | division | `/` |
+| 12 | addition | `+` |
+| 12 | subtraction | `-` |
+| ... | ... | ... |
+| 2 | assignment | `=` |
+| ... | ... | ... |
+
+As we can see, the "unary plus" has a priority of `15` which is higher than the `12` of "addition" (binary plus). That's why, in the expression `"+apples + +oranges"`, unary pluses work before the addition.
+>>>>>>> 7000ede297bfd688f9a3767e8ca43abd9242f322
 
 ## Penetapan
 
+<<<<<<< HEAD
 Mari ingat bahwa penetapan `=` juga merupakan operator. Ia terdaftar di tabel presedensi dengan prioritas sangat rendah `3`.
+=======
+Let's note that an assignment `=` is also an operator. It is listed in the precedence table with the very low priority of `2`.
+>>>>>>> 7000ede297bfd688f9a3767e8ca43abd9242f322
 
 Itulah kenapa, ketika kita tetapkan variabel, seperti `x = 2 * 2 + 1`, kalkulasinya dilakukan pertama dan kemudian `=` dievaluasi, menyimpan hasilnya dalam in `x`.
 
@@ -436,7 +455,11 @@ Daftar operator:
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
+<<<<<<< HEAD
 Operator seperti diatas sangat jarang digunakan, ketika kita membutuhkan untuk memainkan angka di level paling rendah (bitwise). Kita tidak akan membutuhkan operator seperti ini dalam waktu dekat, sebagaimana dalam pengembangan web penggunaan operator seperti itu lebih sedikit, tetapi di area yang spesial, seperti kriptographi, operator seperti itu sangan dibutuhkan. Kamu bisa membaca artikel [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) di MDN ketika kamu membutuhkannya.
+=======
+These operators are used very rarely, when we need to fiddle with numbers on the very lowest (bitwise) level. We won't need these operators any time soon, as web development has little use of them, but in some special areas, such as cryptography, they are useful. You can read the [Bitwise Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#bitwise_operators) chapter on MDN when a need arises.
+>>>>>>> 7000ede297bfd688f9a3767e8ca43abd9242f322
 
 ## Koma
 
