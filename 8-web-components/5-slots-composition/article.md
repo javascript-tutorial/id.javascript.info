@@ -131,6 +131,11 @@ Jika ada beberapa elemen di light DOM dengan nama slot yang sama, mereka ditamba
 
 Sebagai contoh:
 
+<<<<<<< HEAD
+=======
+For example, this:
+
+>>>>>>> 7000ede297bfd688f9a3767e8ca43abd9242f322
 ```html
 <user-card>
   <span slot="username">John</span>
@@ -270,7 +275,12 @@ Template shadow DOM dengan slot yang tepat:
 </template>
 ```
 
+<<<<<<< HEAD
 1. `<span slot="title">` masuk ke `<slot name="title">`.
+=======
+1. `<span slot="title">` goes into `<slot name="title">`.
+2. There are many `<li slot="item">` in the `<custom-menu>`, but only one `<slot name="item">` in the template. So all such `<li slot="item">` are appended to `<slot name="item">` one after another, thus forming the list.
+>>>>>>> 7000ede297bfd688f9a3767e8ca43abd9242f322
 
 2. Ada banyak `<li slot="item">` di template, tetapi hanya satu `<slot name="item">` di template. Jadi semua `<li slot="item">` tersebut ditambahkan ke `<slot name="item">` satu demi satu, sehingga membentuk *list*.
 
