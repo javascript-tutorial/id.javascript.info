@@ -27,7 +27,11 @@ Untungnya, (kita) tak perlu untuk menulis kode untuk menangani semua hal ini. Tu
 
 ## JSON.stringify
 
+<<<<<<< HEAD
 [JSON](http://en.wikipedia.org/wiki/JSON) (*JavaScript Object Notation*) adalah sebuah format umum yang merepresentasikan nilai-nilai dan objek. JSON dideskripsikan sebagaimana dalam standar [RFC 4627](http://tools.ietf.org/html/rfc4627). Awalnya JSON dibuat untuk JavaScript, tapi banyak bahasa pemrograman lain memiliki *library* untuk menangani JSON juga. Oleh karena itu, kini jadi mudah untuk menggunakan JSON untuk tujuan pertukaran data ketika klien menggunakan JavaScript dan server ditulis menggunakan bahasa pemrograman Ruby/PHP/Java/apapun itu.
+=======
+The [JSON](https://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) is a general format to represent values and objects. It is described as in [RFC 4627](https://tools.ietf.org/html/rfc4627) standard. Initially it was made for JavaScript, but many other languages have libraries to handle it as well.  So it's easy to use JSON for data exchange when the client uses JavaScript and the server is written on Ruby/PHP/Java/Whatever.
+>>>>>>> 1edb0a38330b54d2e1916f5193fc043e6fbbea78
 
 JavaScript menyediakan metode-metode seperti:
 
@@ -41,7 +45,7 @@ let student = {
   age: 30,
   isAdmin: false,
   courses: ['html', 'css', 'js'],
-  wife: null
+  spouse: null
 };
 
 *!*
@@ -58,7 +62,7 @@ alert(json);
   "age": 30,
   "isAdmin": false,
   "courses": ["html", "css", "js"],
-  "wife": null
+  "spouse": null
 }
 */
 */!*
