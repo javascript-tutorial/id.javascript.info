@@ -232,7 +232,11 @@ setTimeout(function() {...}, 100);
 
 Untuk `setInterval` fungsinya akan tetap didalam memori sampai `clearInterval` dipanggil.
 
+<<<<<<< HEAD
 Tidak terdapat efek-samping pada hal itu. Sebuah fungsi mereferensi lingkungan leksikal luar, jadi, selama itu masih ada, variabel luar pun akan tetap ada. Hal itu mungkin akan memakan memori daripada fungsinya sendiri. Jadi ketika kita tidak butuh fungsi yang sudah dijadwalkan lagi, akan lebih baik untuk dibatalkan/diberhentikan, bahkan jika itu sebuah kode yang sangat pendek/kecil.
+=======
+There's a side effect. A function references the outer lexical environment, so, while it lives, outer variables live too. They may take much more memory than the function itself. So when we don't need the scheduled function anymore, it's better to cancel it, even if it's very small.
+>>>>>>> 53b35c16835b7020a0a5046da5a47599d313bbb8
 ````
 
 ## setTimeout dengan penundaan nol
@@ -295,9 +299,16 @@ Untuk Javascript dibagian server, batasan itu tidaklah ada, dan disana terdapat 
 
 Perhatikan bahwa seluruh metode penjadwalan tidak *menjamin* delay yang tepat.
 
+<<<<<<< HEAD
 Contoh, didalam peramban timer mungkin lebih lambat untuk beberapa alasan:
 - CPU-nya sedang melakukan banyak pekerjaan.
 - Ada tab peramban yang sedang berjalan dalam mode background.
 - Laptopnya sedang menggunakan mode batre.
+=======
+For example, the in-browser timer may slow down for a lot of reasons:
+- The CPU is overloaded.
+- The browser tab is in the background mode.
+- The laptop is on battery saving mode.
+>>>>>>> 53b35c16835b7020a0a5046da5a47599d313bbb8
 
 Semua itu mungkin menaikan resolusi timernya (delay minimalnya) menjadi 300ms atau bahkan 1000ms tergantung perambannya dan performasi pada OS-nya.
