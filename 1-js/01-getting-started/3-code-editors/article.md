@@ -12,8 +12,13 @@ Satu IDE meload proyek (yang bisa berupa banyak file), memungkingkan navigasi an
 
 Jika kamu belum memilih satu IDE, pertimbangkan opsi-opsi berikut:
 
+<<<<<<< HEAD
 - [Visual Studio Code](https://code.visualstudio.com/) (lintas-platform, gratis).
 - [WebStorm](http://www.jetbrains.com/webstorm/) (lintas-platform, berbayar).
+=======
+- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
+- [WebStorm](https://www.jetbrains.com/webstorm/) (cross-platform, paid).
+>>>>>>> ff4ef57c8c2fd20f4a6aa9032ad37ddac93aa3c4
 
 Untuk Windows, ada juga "Visual Studio", jangan dipusingkan dengan "Visual Studio Code." "Visual Studio" merupakan editor khusus Windows yang keren dan berbayar, sangat cocok untuk platform .NET. Ia bagus juga untuk JavaScript. Lalu ada juga versi gratisnya [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
@@ -31,11 +36,17 @@ Pada praktiknya, editor ringan bisa punya banyak plugin termasuk syntax analyzer
 
 Opsi-opsi berikut patut anda perhatikan:
 
+<<<<<<< HEAD
 - [Atom](https://atom.io/) (lintas-platform, gratis).
 - [Visual Studio Code](https://code.visualstudio.com/) (lintas-platform, gratis).
 - [Sublime Text](http://www.sublimetext.com) (lintas-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, gratis).
 - [Vim](http://www.vim.org/) dan [Emacs](https://www.gnu.org/software/emacs/) sangat keren juga jika kamu tahu cara pakainya.
+=======
+- [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
+- [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
+- [Vim](http://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+>>>>>>> ff4ef57c8c2fd20f4a6aa9032ad37ddac93aa3c4
 
 ## Jangan berdebat
 

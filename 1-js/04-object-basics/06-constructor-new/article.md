@@ -1,6 +1,10 @@
 # Konstruktor, operator "new"
 
+<<<<<<< HEAD
 Sintaks reguler `{...}` memungkinkan kita untuk membuat satu objek. Tapi seringkali kita perlu untuk membuat banyak objek-objek serupa, seperti pengguna atau *item* menu berganda dan sebagainya.
+=======
+The regular `{...}` syntax allows us to create one object. But often we need to create many similar objects, like multiple users or menu items and so on.
+>>>>>>> ff4ef57c8c2fd20f4a6aa9032ad37ddac93aa3c4
 
 Hal tersebut dapat diselesaikan dengan menggunakan fungsi konstruktor dan operator `"new"`.
 
