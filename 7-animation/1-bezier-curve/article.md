@@ -140,58 +140,59 @@ Terkadang kita memiliki hal lain: untuk menggambar lengkungan *melewati beberapa
 Terdapat beberapa rumus matematika seperti lengkungan, untuk contoh [Lagrange polynomial](https://en.wikipedia.org/wiki/Lagrange_polynomial). Didalam grafis komputer [spline interpolation](https://en.wikipedia.org/wiki/Spline_interpolation) sering digunakan untuk membangun lengkungan yang halus dengan menyambungkan beberapa titik.
 ```
 
-## Maths
+## Matematikal
 
-A Bezier curve can be described using a mathematical formula.
+Sebuah _Bezier Curve_ bisa di buat dengan menggunakan rumus matematika.
 
-As we saw -- there's actually no need to know it, most people just draw the curve by moving points with a mouse. But if you're into maths -- here it is.
+Seperti yang kita lihat -- sebenarnya tidak perlu kita ketahui, kebanyakan orang membangunnya dengan menggerakan titik menggunakan _mouse_. Tapi jika kamu menyukai matematika, beginilah caranya.
 
-Given the coordinates of control points <code>P<sub>i</sub></code>: the first control point has coordinates <code>P<sub>1</sub> = (x<sub>1</sub>, y<sub>1</sub>)</code>, the second: <code>P<sub>2</sub> = (x<sub>2</sub>, y<sub>2</sub>)</code>, and so on, the curve coordinates are described by the equation that depends on the parameter `t` from the segment `[0,1]`.
+Diberikan koordinat dari titik kontrol <code>P<sub>i</sub></code>: titik kontrol pertama memiliki koordinat <code>P<sub>1</sub> = (x<sub>1</sub>, y<sub>1</sub>)</code>, yang kedua <code>P<sub>2</sub> = (x<sub>2</sub>, y<sub>2</sub>)</code>, dan seterusnya, koordinat lengkungannya dejelaskan dengan persamaan yang bergantung pada parameter `t` dari bagian `[0.1]`.
 
-- The formula for a 2-points curve:
+- Rumus untuk lengkungan dengan 2 titik:
 
   <code>P = (1-t)P<sub>1</sub> + tP<sub>2</sub></code>
 
-- For 3 control points:
+- Untuk 3 titik:
 
   <code>P = (1−t)<sup>2</sup>P<sub>1</sub> + 2(1−t)tP<sub>2</sub> + t<sup>2</sup>P<sub>3</sub></code>
 
-- For 4 control points:
+- Untuk 4 titik:
 
   <code>P = (1−t)<sup>3</sup>P<sub>1</sub> + 3(1−t)<sup>2</sup>tP<sub>2</sub> +3(1−t)t<sup>2</sup>P<sub>3</sub> + t<sup>3</sup>P<sub>4</sub></code>
 
-These are vector equations. In other words, we can put `x` and `y` instead of `P` to get corresponding coordinates.
+Ini adalah persamaan vektor. Dengan kata lain, kita bisa menyimpan `x` dan `y` daripada `P` untuk mendapatkan koordinat tertentu.
 
-For instance, the 3-point curve is formed by points `(x,y)` calculated as:
+Untuk contoh, lengkungan dengan 3 titik dibangun dengan titik `(x, y)` dihitung dengan:
 
 - <code>x = (1−t)<sup>2</sup>x<sub>1</sub> + 2(1−t)tx<sub>2</sub> + t<sup>2</sup>x<sub>3</sub></code>
 - <code>y = (1−t)<sup>2</sup>y<sub>1</sub> + 2(1−t)ty<sub>2</sub> + t<sup>2</sup>y<sub>3</sub></code>
 
-Instead of <code>x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub></code> we should put coordinates of 3 control points, and then as `t` moves from `0` to `1`, for each value of `t` we'll have `(x,y)` of the curve.
+Daripada <code>x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub></code> kita harus memasukan koordinat dari 3 titik kontrol dan lalu selama `t` bergerak dari `0` menuju `1`, untuk setiap nilai dari `t` kita harus memiliki `(x, y)` dari lengkungannya.
 
-For instance, if control points are `(0,0)`, `(0.5, 1)` and `(1, 0)`, the equations become:
+Contoh, jika titik kontrol adalah `(0,0)`, `(0,5, 1)` dan `(1, 0)`, persamaannya menjadi:
 
 - <code>x = (1−t)<sup>2</sup> _ 0 + 2(1−t)t _ 0.5 + t<sup>2</sup> \* 1 = (1-t)t + t<sup>2</sup> = t</code>
 - <code>y = (1−t)<sup>2</sup> _ 0 + 2(1−t)t _ 1 + t<sup>2</sup> \* 0 = 2(1-t)t = –2t<sup>2</sup> + 2t</code>
 
-Now as `t` runs from `0` to `1`, the set of values `(x,y)` for each `t` forms the curve for such control points.
+Sekarang selama `t` berjalan dari `0` menuju `1`, nilai dari `(x, y)` untuk setiap `t` membentuk lengkungan untuk titik kontrolnya.
 
-## Summary
+## Ringkasan
 
-Bezier curves are defined by their control points.
+_Bezier Curves_ didefinisikan menggunakan titik kontrol.
 
-We saw two definitions of Bezier curves:
+Kita melihat dua definisi dari _Bezier Curves_:
 
-1. Using a drawing process: De Casteljau's algorithm.
-2. Using a mathematical formulas.
+1. Menggunakan proses gambar: _Algoritma De Casteljau's_.
+2. Menggunakan rumus matematika.
 
-Good properties of Bezier curves:
+Properti yang bagus dari _Bezier Curve_:
 
-- We can draw smooth lines with a mouse by moving control points.
-- Complex shapes can be made of several Bezier curves.
+Kita bisa membuat garis halus dengan sebuah _mouse_ dengan menggerakan titik.
 
-Usage:
+- Bentuk yang rumit bisa dibuat dengan beberapa _Bezier Curve_.
 
-- In computer graphics, modeling, vector graphic editors. Fonts are described by Bezier curves.
-- In web development -- for graphics on Canvas and in the SVG format. By the way, "live" examples above are written in SVG. They are actually a single SVG document that is given different points as parameters. You can open it in a separate window and see the source: [demo.svg](demo.svg?p=0,0,1,0.5,0,0.5,1,1&animate=1).
-- In CSS animation to describe the path and speed of animation.
+Penggunaan:
+
+- Didalam grafis komputer, permodelan, vektor dan editor grafis. _Fonts_ di kategorikan sebagai _Bezier Curves_.
+  -Di dalam pembangunan website -- untuk grafis didalam kanvas dan didalam format SVG. Untuk informasi, contoh yang ada diatas menggunakan format SVG. Contoh-contoh itu menggunakan satu dokumen SVG yang diberikan beberapa titik sebagai parameter. Kamu bisa melihat _source_ nya di [demo.svg](demo.svg?p=0,0,1,0.5,0,0.5,1,1&animate=1).
+- Dalam animasi CSS untuk menjelaskan _path_ dan kecepatan dari animasi.
