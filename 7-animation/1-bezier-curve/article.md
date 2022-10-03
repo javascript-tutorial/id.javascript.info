@@ -128,18 +128,16 @@ _Bezier Curve_ yang tidak rapih (bisa dibuat juga):
 [iframe src="demo.svg?p=0,0,1,1,0,1,1,0&animate=1" height=370]
 
 ```online
-If there's something unclear in the algorithm description, please look at the live examples above to see how
-the curve is built.
+Jika ada sesuatu yang tidak jelas dengan deskripsi algoritmanya, perhatikan contoh yang tersedia untuk mengetahui bagaimana lengkungannya dibuat.
 ```
 
-As the algorithm is recursive, we can build Bezier curves of any order, that is: using 5, 6 or more control points. But in practice many points are less useful. Usually we take 2-3 points, and for complex lines glue several curves together. That's simpler to develop and calculate.
+Sebagaimana algoritmanya adalah rekursif(berulang), kita bisa membangun _Bezier Curves_ dengan urutan apapun, maka dari itu: gunakan 5, 6 atau lebih titik kontrol. Tapi pada penggunaannya terlalu banyak titik tidak akan benar-benar berguna. Biasanya kita akan menggunakan 2-3 titik, dan untuk garis yang lebih rumit kita hanya akan menempelkan beberapa lengkungan yang berbeda. Hal itu akan membuat pekerjaan menjadi lebih mudah dilakukan dan dihitung.
 
-```smart header="How to draw a curve *through* given points?"
-To specify a Bezier curve, control points are used. As we can see, they are not on the curve, except the first and the last ones.
+```smart header="Untuk menspesifikasikan _Bezier Curve_, digunakan titik kontrol. Seperti yang bisa kita lihat, titiknya tidak berapa pada lengkungannya, kecuali yang pertama dan terakhir."
 
-Sometimes we have another task: to draw a curve *through several points*, so that all of them are on a single smooth curve. That task is called  [interpolation](https://en.wikipedia.org/wiki/Interpolation), and here we don't cover it.
+Terkadang kita memiliki hal lain: untuk menggambar lengkungan *melewati beberapa titik*, jadi semuanya digambar didalam satu lengkungan. hal tersebut dipanggil dengan [interpolation](https://en.wikipedia.org/wiki/Interpolation),dan disini kita tidak akan mempelajarinya.
 
-There are mathematical formulas for such curves, for instance [Lagrange polynomial](https://en.wikipedia.org/wiki/Lagrange_polynomial). In computer graphics [spline interpolation](https://en.wikipedia.org/wiki/Spline_interpolation) is often used to build smooth curves that connect many points.
+Terdapat beberapa rumus matematika seperti lengkungan, untuk contoh [Lagrange polynomial](https://en.wikipedia.org/wiki/Lagrange_polynomial). Didalam grafis komputer [spline interpolation](https://en.wikipedia.org/wiki/Spline_interpolation) sering digunakan untuk membangun lengkungan yang halus dengan menyambungkan beberapa titik.
 ```
 
 ## Maths
