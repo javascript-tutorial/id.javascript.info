@@ -84,46 +84,46 @@ Titik kontrol (1, 2 dan 3) bisa dipindahkan dengan _mouse_. Tekan _play_ untuk m
 
 Itu adalah proses dari 3 titik. Tapi sama dengan proses yang menggunakan 4 titik.
 
-The demo for 4 points (points can be moved by a mouse):
+Contoh untuk 4 titik (titik dapat dipindahkan menggunakan _mouse_):
 
 [iframe src="demo.svg?p=0,0,0.5,0,0.5,1,1,1&animate=1" height=370]
 
-The algorithm for 4 points:
+Algoritma untuk 4 titik:
 
-- Connect control points by segments: 1 -> 2, 2 -> 3, 3 -> 4. There will be 3 <span style="color:#825E28">brown</span> segments.
-- For each `t` in the interval from `0` to `1`:
-  - We take points on these segments on the distance proportional to `t` from the beginning. These points are connected, so that we have two <span style="color:#0A0">green segments</span>.
-  - On these segments we take points proportional to `t`. We get one <span style="color:#167490">blue segment</span>.
-  - On the blue segment we take a point proportional to `t`. On the example above it's <span style="color:red">red</span>.
-- These points together form the curve.
+- Sambungkan titik kontrol pada bagian: 1 -> 2, 2 -> 3, 3 -> 4. Akan terdapat 3 bagian <span style="color:#825E28">coklat</span>.
+- Untuk setiap `t` didalam interval dari `0` menuju `1`:
+  - Kita ambil titik dari bagian yang memiliki cukup jarak dengan `t` di awal. Titik ini tersambung, jadi kita mempunyai dua <span style="color:#0A0">bagian hijau</span>.
+  - Salah satu dari bagiannya akan mempunyai jarak yang cukup ke `t`. Kita memiliki <span style="color:#167490">bagian biru</span>.
+  - Di bagian biru kita mengambil sebuah titik yang memiliki jarak proporsional ke `t`. Di contoh diatas adalah <span style="color:red">merah</span>.
+- Titik-titik ini akan membentuk lengkungan.
 
-The algorithm is recursive and can be generalized for any number of control points.
+Algoritmanya adalah perulangan dan bisa digenerelasikan dengan jumlah titik berapapun itu.
 
-Given N of control points:
+Diberikan titik kontrol dengan jumlah N:
 
-1. We connect them to get initially N-1 segments.
-2. Then for each `t` from `0` to `1`, we take a point on each segment on the distance proportional to `t` and connect them. There will be N-2 segments.
-3. Repeat step 2 until there is only one point.
+1. Kita sambungkan titik-titik nya untuk mendapatkan bagian awal N-1.
+2. Lalu untuk setiap `t` dari `0` sampai `1`, kita bisa mengambil titik dari setiap bagian. Akan terdapat bagian N -2.
+3. Ulangi langkah 2 sampai hanya tersisa satu titik.
 
-These points make the curve.
+Titik-titik ini membangun lengkungannya.
 
 ```online
-**Run and pause examples to clearly see the segments and how the curve is built.**
+**Jalankan dan hentikan sementara untuk melihat bagian dan lengkungannya dibuat**
 ```
 
-A curve that looks like `y=1/t`:
+Sebuah lengkungan yang terlihat seperti `y=1/t`:
 
 [iframe src="demo.svg?p=0,0,0,0.75,0.25,1,1,1&animate=1" height=370]
 
-Zig-zag control points also work fine:
+Kontrol _zig-zag_ pun dapat digunakan:
 
 [iframe src="demo.svg?p=0,0,1,0.5,0,0.5,1,1&animate=1" height=370]
 
-Making a loop is possible:
+Membuat perulangan juga bisa:
 
 [iframe src="demo.svg?p=0,0,1,0.5,0,1,0.5,0&animate=1" height=370]
 
-A non-smooth Bezier curve (yeah, that's possible too):
+_Bezier Curve_ yang tidak rapih (bisa dibuat juga):
 
 [iframe src="demo.svg?p=0,0,1,1,0,1,1,0&animate=1" height=370]
 
