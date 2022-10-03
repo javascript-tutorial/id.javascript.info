@@ -52,38 +52,37 @@ Ini adalah beberapa contoh:
 
 Terdapat sebuah rumus matematika untuk _Bezier Curve_, tapi kita akan membahasnya nanti karena [De Casteljau's algorithm](https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm) identik dengan definisinya sendiri dan dapat dilihat jelas bagaimana membangunnya.
 
-First let's see the 3-points example.
-Pertama-tama kita lihat contoh 3 titik:
+Pertama-tama kita lihat contoh 3 titik.
 
-Here's the demo, and the explanation follow.
+Ini adalah contoh dan penjelasannya akan mengikuti.
 
-Control points (1,2 and 3) can be moved by the mouse. Press the "play" button to run it.
+Titik kontrol (1, 2 dan 3) bisa dipindahkan dengan _mouse_. Tekan _play_ untuk menjalankan.
 
 [iframe src="demo.svg?p=0,0,0.5,1,1,0&animate=1" height=370]
 
-**De Casteljau's algorithm of building the 3-point bezier curve:**
+**Algoritma _De Casteljau's_ dengan 3 titik _bezier curve_**
 
-1. Draw control points. In the demo above they are labeled: `1`, `2`, `3`.
-2. Build segments between control points 1 -> 2 -> 3. In the demo above they are <span style="color:#825E28">brown</span>.
-3. The parameter `t` moves from `0` to `1`. In the example above the step `0.05` is used: the loop goes over `0, 0.05, 0.1, 0.15, ... 0.95, 1`.
+1. Letakan titik kontrol. Di dalam contoh diatas dinamai dengan: `1`, `2`, `3`.
+2. Buat bagian diantara titik kontrol 1 -> 2 -> 3. Didalam contoh diatas adalah <span style="color:#825E28">coklat</span>.
+3. Parameter `t` bergerak dari `0` menuju `1`. Didalam contoh diatas langkah `0.05` digunakan: perulangannya bergerak menuju `0, 0.05, 0.1, 0.15, ... 0.95, 1`.
 
-   For each of these values of `t`:
+   Untuk setiap nilai dari `t`:
 
-   - On each <span style="color:#825E28">brown</span> segment we take a point located on the distance proportional to `t` from its beginning. As there are two segments, we have two points.
+   - Untuk setiap bagian <span style="color:#825E28">coklat</span> kita bisa mengambil titik lokasi yang cocok untuk `t` dari titik mulainya. Karena terdapat dua bagian, kita memiliki dua titik.
 
-     For instance, for `t=0` -- both points will be at the beginning of segments, and for `t=0.25` -- on the 25% of segment length from the beginning, for `t=0.5` -- 50%(the middle), for `t=1` -- in the end of segments.
+     Untuk contoh, untuk `t=0` -- untuk kedua titik akan berada pada awal bagian, dan untuk `t=0.25` -- pada 25% dari panjang bagian dari awal, untuk `t=0.5` -- 50%(ditengah), untuk `t=1` `` diakhir dari bagian.
 
-   - Connect the points. On the picture below the connecting segment is painted <span style="color:#167490">blue</span>.
+   - Sambungkan titiknya. Didalam gambar dibawah bagian yang tersambung di warnai<span style="color:#167490">biru</span>.
 
-| For `t=0.25`           | For `t=0.5`            |
+| Untuk `t=0.25`         | Untuk `t=0.5`          |
 | ---------------------- | ---------------------- |
 | ![](bezier3-draw1.svg) | ![](bezier3-draw2.svg) |
 
-4. Now in the <span style="color:#167490">blue</span> segment take a point on the distance proportional to the same value of `t`. That is, for `t=0.25` (the left picture) we have a point at the end of the left quarter of the segment, and for `t=0.5` (the right picture) -- in the middle of the segment. On pictures above that point is <span style="color:red">red</span>.
+4. Sekarang pada bagian <span style="color:#167490">biru</span> ambil titik yang proporsional yang sama dengan `t`. Jadi, untuk `t=0.25` (gambar kiri) kita mempunyai titik pada bagian akhir dari seperempat bagian, dan untuk `t=0.5` (gambar kanan) -- di bagian tengah. Pada gambar atas titik itu berada pada <span style="color:red">merah</span>.
 
-5. As `t` runs from `0` to `1`, every value of `t` adds a point to the curve. The set of such points forms the Bezier curve. It's red and parabolic on the pictures above.
+5. Sebagaimana `t` bergerak dari `0` ke `1`, setiap nilai dari `t` menambahkan titik pada lengkungannya. Satu kesatuan itu membentuk _Bezier Curve_. Yang berwarna merah dan parabolik pada gambar diatas.
 
-That was a process for 3 points. But the same is for 4 points.
+Itu adalah proses dari 3 titik. Tapi sama dengan proses yang menggunakan 4 titik.
 
 The demo for 4 points (points can be moved by a mouse):
 
