@@ -1,2 +1,1 @@
-
-# Storing data in the browser
+# Menyimpan data didalam _Browser_
