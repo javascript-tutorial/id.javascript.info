@@ -103,7 +103,11 @@ Berikut diagramnya (lihat bagian kanan):
 
 Itu karena metode `sayHi` dan `sayBye` awalnya dibuat di `sayHiMixin`. Jadi, meskipun disalin, properti internal `[[HomeObject]]` mereferensikan `sayHiMixin`, seperti yang ditunjukkan pada gambar di atas.
 
+<<<<<<< HEAD
 Karena `super` mencari metode induk di `[[HomeObject]].[[Prototype]]`, itu berarti mencari `sayHiMixin.[[Prototype]]`, bukan `User.[[Prototype]]`.
+=======
+As `super` looks for parent methods in `[[HomeObject]].[[Prototype]]`, that means it searches `sayHiMixin.[[Prototype]]`.
+>>>>>>> 18b1314af4e0ead5a2b10bb4bacd24cecbb3f18e
 
 ## Peristiwa _Mixin_
 

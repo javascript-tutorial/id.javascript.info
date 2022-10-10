@@ -125,21 +125,36 @@ Standar sebuah [Peristiwa DOM](http://www.w3.org/TR/DOM-Level-3-Events/) terbagi
 2. fase target (_target phase_) -- peristiwa menemukan elemen.
 3. fase mengelembung (_bubbling phase_) -- peristiwa mulai naik ke atas dari elemen dasar.
 
+<<<<<<< HEAD
 Berikut ini sebuah gambar tentang klik yang terjadi pada `<td>` didalam sebuah tabel, yang diambil dari spesifikasi:
+=======
+Here's the picture, taken from the specification, of the capturing `(1)`, target `(2)` and bubbling `(3)` phases for a click event on a `<td>` inside a table:
+>>>>>>> 18b1314af4e0ead5a2b10bb4bacd24cecbb3f18e
 
 ![](eventflow.svg)
 
 Maka: untuk klik pada `<td>` peristiwa (_event_) akan pertama melewati elemen paling atas dan turun ke elemen yang bawaha (fase penangkapan), kemudian pada saat mencapai elemen yang di target akan di jalankan pada elemen tersebut (fase target), dan kemudia peristiwa itu akan naik ke atas (fase mengelembung), sambil memanggil penangan (_handler_) yang ada.
 
+<<<<<<< HEAD
 **Sebelumnya kita hanya membahas tentang proses pengelembungan, karena proses penangkapan jarang digunakan, biasanya proses ini tidak terlihat oleh kita.**
 
 Penangan (_Handlers_) yang di tambahkan menggunakan `on<event>`-properti atau menggunakan atribut HTML atau menggunakan dua argumen `addEventListener(event, handler)` tidak mengetahui tentang proses penangkapan, mereka hanya menjalankan fase ke 2 dan fase ke 3.
+=======
+Until now, we only talked about bubbling, because the capturing phase is rarely used.
+
+In fact, the capturing phase was invisible for us, because handlers added using `on<event>`-property or using HTML attributes or using two-argument `addEventListener(event, handler)` don't know anything about capturing, they only run on the 2nd and 3rd phases.
+>>>>>>> 18b1314af4e0ead5a2b10bb4bacd24cecbb3f18e
 
 Untuk menangkap sebuah peristiwa pada fase penangkapan, kita perlu mengatur penangan (_handler_) pilihan `capture` menjadi `true`:
 
 ```js
 elem.addEventListener(..., {capture: true})
+<<<<<<< HEAD
 // atau, hanya "true" karena merupakan alias dari {capture: true}
+=======
+
+// or, just "true" is an alias to {capture: true}
+>>>>>>> 18b1314af4e0ead5a2b10bb4bacd24cecbb3f18e
 elem.addEventListener(..., true)
 ```
 
@@ -178,9 +193,16 @@ Kode mengatur penangan(_handler_) klik pada *setiap* elemen yang ada di dalam do
 
 Jika kamu klik pada `<p>`, maka rangkaian peristiwa sebagai berikut:
 
+<<<<<<< HEAD
 1. `HTML` -> `BODY` -> `FORM` -> `DIV` (fase penangkapan, pendengar pertama),
 2. `P` (fase target, dijalankan 2 kali, karena kita mengatur 2 pendengar: penangkapan dan pengelembungan),
 3. `DIV` -> `FORM` -> `BODY` -> `HTML` (fase pengelembungan, pendengar kedua).
+=======
+1. `HTML` -> `BODY` -> `FORM` -> `DIV -> P` (capturing phase, the first listener):
+2. `P` -> `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
+
+Please note, the `P` shows up twice, because we've set two listeners: capturing and bubbling. The target triggers at the end of the first and at the beginning of the second phase.
+>>>>>>> 18b1314af4e0ead5a2b10bb4bacd24cecbb3f18e
 
 Ada sebuah properti `event.eventPhase` yang akan memberikan kita nomor dari fase yang dimana peristiwa tersebut di tangkap. Tapi properti ini jarang digunakan, karena kita biasanya mendapat info itu dari penangan(_handler_) itu sendiri.
 
@@ -188,8 +210,13 @@ Ada sebuah properti `event.eventPhase` yang akan memberikan kita nomor dari fase
 Jika kita menggunakan `addEventListener(..., true)`, maka kita harus menggunakan fase yang sama pada `removeEventListener(..., true)` untuk menghapus penangan secara benar.
 ```
 
+<<<<<<< HEAD
 ````smart header="Pendengar pada elemen dan fase yang sama akan dijalankan berdasarkan urutan mereka"
 Jika kita memiliki beberapa penangan pada fase yang sama, dan di atur pada elemen yang sama dengan menggunakan `addEventListener`, mereka akan berjalan sesuai dengan urutan mereka di buat:
+=======
+````smart header="Listeners on the same element and same phase run in their set order"
+If we have multiple event handlers on the same phase, assigned to the same element with `addEventListener`, they run in the same order as they are created:
+>>>>>>> 18b1314af4e0ead5a2b10bb4bacd24cecbb3f18e
 
 ```js
 elem.addEventListener("click", e => alert(1)); // akan selalu berjalan duluan
@@ -197,7 +224,16 @@ elem.addEventListener("click", e => alert(2));
 ```
 ````
 
+<<<<<<< HEAD
 ## Ringkasan
+=======
+```smart header="The `event.stopPropagation()` during the capturing also prevents the bubbling"
+The `event.stopPropagation()` method and its sibling `event.stopImmediatePropagation()` can also be called on the capturing phase. Then not only the futher capturing is stopped, but the bubbling as well.
+
+In other words, normally the event goes first down ("capturing") and then up ("bubbling"). But if `event.stopPropagation()` is called during the capturing phase, then the event travel stops, no bubbling will occur.
+```
+
+>>>>>>> 18b1314af4e0ead5a2b10bb4bacd24cecbb3f18e
 
 Pada saat sebuah peristiwa (_event_) terjadi -- elemen yang paling dalam dimana peristiwa itu terjadi akan di tandai dengan label "target elemen" (`event.target`).
 
@@ -213,7 +249,11 @@ Setiap penangan(_handler_) memiliki akses ke properti objek `event`:
 
 Penangan dapat menghentikan peristiwa dengan memanggil `event.stopPropagation()`, tapi tidak direkomendasikan, karena kita tidak belum tentu tidak memerlukan peristiwa itu pada elemen di atas, mungkin untuk hal yang berbeda.
 
+<<<<<<< HEAD
 Fase penangkapan jarang digunakan, biasanya kita menangani peristiwa yang mengelembung. Dan ada logika dibaliknya.
+=======
+The capturing phase is used very rarely, usually we handle events on bubbling. And there's a logical explanation for that.
+>>>>>>> 18b1314af4e0ead5a2b10bb4bacd24cecbb3f18e
 
 Pada dunianya, pada saat kecelakaan terjadi, petugas setempat akan bereaksi duluan. Mereka lebih mengetahui daerah dimana kejadian itu terjadi. Kemudian petugas yang bertingkat tinggil jika dibutuhkan.
 

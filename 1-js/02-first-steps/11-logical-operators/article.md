@@ -123,7 +123,11 @@ Hal ini menjadikan penggunaan yang menarik dibanding "OR booleanpure, classical,
 
     Itu berarti bahwa `||` memproses argumennya sampai nilai pertama bersifat truthy tercapai, lalu nilainya dikembalikan langsung, bahkan tanpa menyentuh argumen lainnya.
 
+<<<<<<< HEAD
     Pentingnya dari fitur ini menjadi jelas jika sebuah operan bukan hanya sebuah nilai, tapi sebuah ekspresi yang melakukan aksi, seperti assignment sebuah variabel atau sebuah pemanggilan fungsi.
+=======
+    The importance of this feature becomes obvious if an operand isn't just a value, but an expression with a side effect, such as a variable assignment or a function call.
+>>>>>>> 18b1314af4e0ead5a2b10bb4bacd24cecbb3f18e
 
     Didalam contoh dibawah, hanya pesan kedua yang di jalankan:
 

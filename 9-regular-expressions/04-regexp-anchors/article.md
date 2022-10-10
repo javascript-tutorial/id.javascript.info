@@ -16,8 +16,13 @@ Pola `^Mary` berarti: "_text_ nya dimulai dengan Mary"
 Sama seperti ini, kita bisa mencoba jika _text_ nya berakhiran dengan `snow` menggunakan `snow$`:
 
 ```js run
+<<<<<<< HEAD
 let str1 = "it's fleece was white as snow";
 alert(/snow$/.test(str1)); // true
+=======
+let str1 = "its fleece was white as snow";
+alert( /snow$/.test(str1) ); // true
+>>>>>>> 18b1314af4e0ead5a2b10bb4bacd24cecbb3f18e
 ```
 
 Dalam beberapa kasus tertentu kita bisa menggunakan metode _string_ `startsWith/endsWith`. _Regular Expression_ hanya digunakan untuk _test_ yang lebih kompleks.

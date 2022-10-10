@@ -5,7 +5,11 @@ Terdapat dua jenis properti objek.
 
 Yang pertama adalah *properti data*. Kita telah mengetahui bagaimana cara kerja mereka. Semua properti yang kita gunakan sampai sekarang adalah properti data.
 
+<<<<<<< HEAD
 Yang kedua adalah properti yang bisa dibilang cukup baru. Properti itu adalah *properti aksesor*. Mereka sebenarnya adalah fungsi untuk mendapatkan dan mengatur sebuah nilai, tapi mereka mirip seperti properti biasa pada kode eksternal.
+=======
+The second type of property is something new. It's an *accessor property*. They are essentially functions that execute on getting and setting a value, but look like regular properties to an external code.
+>>>>>>> 18b1314af4e0ead5a2b10bb4bacd24cecbb3f18e
 
 ## Getter dan setter
 
