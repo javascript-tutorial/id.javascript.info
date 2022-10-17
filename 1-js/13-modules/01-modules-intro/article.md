@@ -13,7 +13,11 @@ Disebut beberapa dengan nama (Untuk alasan sejarah):
 - [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1) -- Sistem modul yang dibuat untuk *server* Node.js.
 - [UMD](https://github.com/umdjs/umd) -- ada satu lagi sistem modul, disarankan untuk menjadi modul universal, karena cocok dengan AMD dan CommonJS.
 
+<<<<<<< HEAD
 Sekarang semua ini perlahan menjadi bagian dari sejarah, tetapi kita masih bisa menemukannya di kode skrip lama. 
+=======
+Now these all slowly became a part of history, but we still can find them in old scripts.
+>>>>>>> bf7d8bb1af3b416d393af1c15b03cb1352da1f9c
 
 Sistem modul tingkat-bahasa muncul di tahun 2015, berevolusi secara bertahap sejak saat itu, dan sekarang di dukung oleh semua browser utama dan Node.js. Jadi sekarang kita akan mulai mempelajari modul Javascript modern.
 
@@ -163,7 +167,13 @@ alert(admin.name); // Pete
 */!*
 ```
 
+<<<<<<< HEAD
 Jadi, mari kita ulangi -- modul hanya dijalankan satu kali, ekspor akan dihasilkan, dan kemudian dibagikan diantara impor, jadi jika sesuatu merubah objek `admin`, modul lainnya bisa melihat hal tersebut. 
+=======
+As you can see, when `1.js` changes the `name` property in the imported `admin`, then `2.js` can see the new `admin.name`.
+
+That's exactly because the module is executed only once. Exports are generated, and then they are shared between importers, so if something changes the `admin` object, other importers will see that.
+>>>>>>> bf7d8bb1af3b416d393af1c15b03cb1352da1f9c
 
 Perilaku seperti itu mengizinkan kita untuk bisa *mengkonfigurasi* modul di impor pertama. Kita bisa mengatur properti satu kali, dan file impor lebih lanjut sudah siap.
 
@@ -233,7 +243,11 @@ Dibedakan dengan kode skrip tidak modul, dimana `this` adalah objek global:
 
 Ada juga beberapa perbedaan spesifik browser skrip dengan `type="module"` dibandingkan dengan yang biasa.
 
+<<<<<<< HEAD
 Kamu mungkin ingin melewati bagian ini jika kamu baru membacanya pertama kali, atau jika kamu tidak menggunakan Javascript pada browser.
+=======
+You may want to skip this section for now if you're reading for the first time, or if you don't use JavaScript in a browser.
+>>>>>>> bf7d8bb1af3b416d393af1c15b03cb1352da1f9c
 
 ### Kode skrip modul di tangguhkan
 
@@ -244,7 +258,11 @@ Dalam kata lain:
 - kode skrip modul akan menunggu sampai dokumen HTML sudah siap (meski memiliki ukuran kecil dan memuat lebih cepat dari HTML), lalu dijalankan.
 - urutan relatif dari kode skrip diperlakukan: kode skrip yang pertama pada dokumen, akan dijalankan pertama.
 
+<<<<<<< HEAD
 Sebagai efek samping, kode skrip modul selalu melihat halaman HTML yang sudah dimuat semua, termasuk elemen HTML dibawahnya.
+=======
+As a side effect, module scripts always "see" the fully loaded HTML-page, including HTML elements below them.
+>>>>>>> bf7d8bb1af3b416d393af1c15b03cb1352da1f9c
 
 Misalnya:
 

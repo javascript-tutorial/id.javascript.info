@@ -51,7 +51,11 @@ describe("pow", function() {
 Spek punya tiga blok bangunan utama yang bisa kamu lihat di bawah:
 
 `describe("title", function() { ... })`
+<<<<<<< HEAD
 : Fungsionalitas apa yang kita jelaskan. Di kasus ini kita akan menjelaskan fungsi `pow`. Dipakai untuk mengelompokkan "pekerja" -- blok `it`.
+=======
+: What functionality we're describing? In our case we're describing the function `pow`. Used to group "workers" -- the `it` blocks.
+>>>>>>> bf7d8bb1af3b416d393af1c15b03cb1352da1f9c
 
 `it("use case description", function() { ... })`
 : Di judul `it` kita *dalam bahasa manusia* menjelaskan use case tertentu, dan argumen kedua ialah fungsi yang mengetes itu.
@@ -79,7 +83,11 @@ Jadi, pengembangannya *iteratif*. Kita tulis spek, implementasikan, memastikan t
 
 Ayo lihat alur pengembangan ini di kasus praktik kita.
 
+<<<<<<< HEAD
 Langkap pertama sudah lengkap: kita punya spek inisial untuk `pow`. Sekarang, sebelum membuat implementasinya, ayo pakai beberapa librari JavaScript untuk menjalankan tes, hanya untuk melihat mereka bekerja (mereka semua akan gagal).
+=======
+The first step is already complete: we have an initial spec for `pow`. Now, before making the implementation, let's use a few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
+>>>>>>> bf7d8bb1af3b416d393af1c15b03cb1352da1f9c
 
 ## Spec dalam aksi
 
