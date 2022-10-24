@@ -28,4 +28,8 @@ alert(dictionary); // "apple,__proto__"
 
 Ketika kita membuat sebuah properti menggunakan deskriptor, tandanya akan menjadi `false` secara bawaan. Jadi kode diatas, `dictionary.toString` tidak bisa dihitung.
 
+<<<<<<< HEAD
 Lihat bab [](info:property-descriptors) untuk review.
+=======
+See the chapter [](info:property-descriptors) for review.
+>>>>>>> 5dff42ba283bce883428c383c080fa9392b71df8

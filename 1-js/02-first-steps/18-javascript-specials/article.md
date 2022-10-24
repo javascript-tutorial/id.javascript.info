@@ -55,7 +55,11 @@ Untuk mengaktifkan penuh semua fitur modern JavaScript, kita sebaiknya mulai scr
 
 Directive ini harus ada di paling atas script atau di awal badan fungsi.
 
+<<<<<<< HEAD
 Tanpa `"use strict"`, apapun akan bekerja, tapi beberapa fitur bersikap dengan cara kuno, "kompatibel". Secara umum kita akan pilih sikap modern.
+=======
+Without `"use strict"`, everything still works, but some features behave in the old-fashioned, "compatible" way. We'd generally prefer the modern behavior.
+>>>>>>> 5dff42ba283bce883428c383c080fa9392b71df8
 
 Beberapa fitur modern bahasa ini (seperti kelas yang akan kita pelajari di kemudian) mengaktifkan mode ketat secara implisit.
 
@@ -144,7 +148,11 @@ Penetapan
 : Ada penetapan simpel: `a = b` dan penetapan kombinasi seperti `a *= 2`.
 
 Bitwise
+<<<<<<< HEAD
 : Operator bitwise bekerja dengan integer 32-bit di bit-level paling kecil: lihat [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators) ketika mereka dibutuhkan.
+=======
+: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](mdn:/JavaScript/Guide/Expressions_and_Operators#bitwise_operators) when they are needed.
+>>>>>>> 5dff42ba283bce883428c383c080fa9392b71df8
 
 Kondisional
 : Satu-satunya operator dengan tiga parameter: `cond ? resultA : resultB`. Jika `cond` truthy, mengembalikan `resultA`, jika tidak `resultB`.
@@ -256,7 +264,11 @@ Kita meliput tiga cara membuat fungsi di JavaScript:
 3. Fungsi panah:
 
     ```js
+<<<<<<< HEAD
     // expresi di sisi kanan
+=======
+    // expression on the right side
+>>>>>>> 5dff42ba283bce883428c383c080fa9392b71df8
     let sum = (a, b) => a + b;
 
     // atau syntax baris-ganda dengan { ... }, butuh kembalian di sini:
