@@ -77,7 +77,11 @@ alert( 8 ** (1/3) ); // 2 (pangkat 1/3 sama dengan akar kubik)
 
 ## Penambahan string dengan +
 
+<<<<<<< HEAD
 Ayo kita bertemu dengan fitur dari operator Javascript yang berada diatas aritmatika di sekolah.
+=======
+Let's meet the features of JavaScript operators that are beyond school arithmetics.
+>>>>>>> 5dff42ba283bce883428c383c080fa9392b71df8
 
 Biasanya, operator plus `+` menambah angka.
 
@@ -193,6 +197,7 @@ Di sini adalah extrak dari [tabel presedensi](https://developer.mozilla.org/en/J
 | Presedensi | Nama | Tanda |
 |------------|------|------|
 | ... | ... | ... |
+<<<<<<< HEAD
 | 17 | plus unary | `+` |
 | 17 | negasi unary | `-` |
 | 16 | akar pangkat | `**` |
@@ -205,10 +210,28 @@ Di sini adalah extrak dari [tabel presedensi](https://developer.mozilla.org/en/J
 | ... | ... | ... |
 
 Seperti yang kita lihat, "plus unary" punya prioritas `17` yang lebih tinggi dari `13` "penambahan" (plus binary). Itulah kenapa, dalam expresi `"+apples + +oranges"`, plus unary bekerja sebelum penambahan.
+=======
+| 14 | unary plus | `+` |
+| 14 | unary negation | `-` |
+| 13 | exponentiation | `**` |
+| 12 | multiplication | `*` |
+| 12 | division | `/` |
+| 11 | addition | `+` |
+| 11 | subtraction | `-` |
+| ... | ... | ... |
+| 2 | assignment | `=` |
+| ... | ... | ... |
+
+As we can see, the "unary plus" has a priority of `14` which is higher than the `11` of "addition" (binary plus). That's why, in the expression `"+apples + +oranges"`, unary pluses work before the addition.
+>>>>>>> 5dff42ba283bce883428c383c080fa9392b71df8
 
 ## Penetapan
 
+<<<<<<< HEAD
 Mari ingat bahwa penetapan `=` juga merupakan operator. Ia terdaftar di tabel presedensi dengan prioritas sangat rendah `3`.
+=======
+Let's note that an assignment `=` is also an operator. It is listed in the precedence table with the very low priority of `2`.
+>>>>>>> 5dff42ba283bce883428c383c080fa9392b71df8
 
 Itulah kenapa, ketika kita tetapkan variabel, seperti `x = 2 * 2 + 1`, kalkulasinya dilakukan pertama dan kemudian `=` dievaluasi, menyimpan hasilnya dalam in `x`.
 
@@ -302,9 +325,13 @@ Operator semacam itu memiliki hak dengan tingkat yang sama dengan assignment yan
 ```js run
 let n = 2;
 
-n *= 3 + 5;
+n *= 3 + 5; // right part evaluated first, same as n *= 8
 
+<<<<<<< HEAD
 alert( n ); // 16  (bagian paling kanan dievaluasi terlebih dahulu, sama seperti n *= 8)
+=======
+alert( n ); // 16  
+>>>>>>> 5dff42ba283bce883428c383c080fa9392b71df8
 ```
 
 ## Inkremen/dekremen
@@ -436,7 +463,11 @@ Daftar operator:
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
+<<<<<<< HEAD
 Operator seperti diatas sangat jarang digunakan, ketika kita membutuhkan untuk memainkan angka di level paling rendah (bitwise). Kita tidak akan membutuhkan operator seperti ini dalam waktu dekat, sebagaimana dalam pengembangan web penggunaan operator seperti itu lebih sedikit, tetapi di area yang spesial, seperti kriptographi, operator seperti itu sangan dibutuhkan. Kamu bisa membaca artikel [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) di MDN ketika kamu membutuhkannya.
+=======
+These operators are used very rarely, when we need to fiddle with numbers on the very lowest (bitwise) level. We won't need these operators any time soon, as web development has little use of them, but in some special areas, such as cryptography, they are useful. You can read the [Bitwise Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#bitwise_operators) chapter on MDN when a need arises.
+>>>>>>> 5dff42ba283bce883428c383c080fa9392b71df8
 
 ## Koma
 
