@@ -181,10 +181,17 @@ alert( message );
 
 Mungkin sulit pada awalnya untuk memahami apa yang terjadi. Tetapi setelah melihat lebih dekat, kita dapat melihat bahwa itu hanya serangkaian tes biasa:
 
+<<<<<<< HEAD
 1. Tanda tanya pertama memeriksa apakah `age < 3`.
 2. Jika benar -- `'Hi, baby!'` akan dikembalikan. Jika tidak, kode akan melanjutkan ke ekspresi setelah titik dua '":"', memeriksa apakah `age < 18`.
 3. Jika itu benar -- `'Hello!'` akan dikembalikan. . Jika tidak, kode akan melanjutkan ke ekspresi setelah titik dua berikutnya '":"', memeriksa `age < 100`.
 4. Jika itu benar -- `'Greetings!'` akan dikembalikan. Jika tidak, kode akan melanjutkan ke ekspresi setelah titik dua terakhir  '":"', dan akhirnya akan mengembalikan `'What an unusual age!'`.
+=======
+1. The first question mark checks whether `age < 3`.
+2. If true -- it returns `'Hi, baby!'`. Otherwise, it continues to the expression after the colon ":", checking `age < 18`.
+3. If that's true -- it returns `'Hello!'`. Otherwise, it continues to the expression after the next colon ":", checking `age < 100`.
+4. If that's true -- it returns `'Greetings!'`. Otherwise, it continues to the expression after the last colon ":", returning `'What an unusual age!'`.
+>>>>>>> 1ce5644a15ee141fbe78c0fb79c8f40d870d7043
 
 Kode bawah ini memperlihatkan apabila menggunakan `if..else` untuk kode di atas:
 
