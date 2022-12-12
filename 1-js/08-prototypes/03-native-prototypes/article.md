@@ -2,7 +2,11 @@
 
 Properti `"prototype"` adalah properti yang banyak digunakan oleh Javascript itu sendiri. Semua konstruktor fungsi menggunakannya.
 
+<<<<<<< HEAD
 Pertama kita akan melihat lebih lengkapnya dan bagaimana cara menggunakannya untuk menambah kemampuan dari objek-objek bawaan.
+=======
+First we'll look at the details, and then how to use it for adding new capabilities to built-in objects.
+>>>>>>> ea7738bb7c3616bb51ff14ae3db2a2747d7888ff
 
 ## Object.prototype
 
