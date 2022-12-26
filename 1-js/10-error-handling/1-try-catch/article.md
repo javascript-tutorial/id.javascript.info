@@ -633,7 +633,11 @@ Sebagai contoh:
 
 Peran dari global handler `window.onerror` biasanya bukan untuk memulihkan eksekusi dari kodingannya - itu biasanya tidak mungkin jika terjadi kesalahan pemrograman, namun tugasnya adalah untuk mengirim pesan eror ke pengembang.
 
+<<<<<<< HEAD
 Ada juga layanan web yang menyediakan pencatatan eror untuk kasus seperti itu, seperti <https://errorception.com> or <http://www.muscula.com>.
+=======
+There are also web-services that provide error-logging for such cases, like <https://errorception.com> or <https://www.muscula.com>.
+>>>>>>> ea7738bb7c3616bb51ff14ae3db2a2747d7888ff
 
 Mereka bekerja seperti ini:
 

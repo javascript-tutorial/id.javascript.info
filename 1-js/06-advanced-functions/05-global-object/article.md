@@ -25,7 +25,11 @@ var gVar = 5;
 alert(window.gVar); // 5 (menjadi properti objek global)
 ```
 
+<<<<<<< HEAD
 Mohon jangan bergantung dengan itu! Perilaku ini ada untuk alasan kompatibilitas. Script modern menggunakan [JavaScript modules](info:modules) dimana hal-hal tersebut tidak terjadi.
+=======
+Function declarations have the same effect (statements with `function` keyword in the main code flow, not function expressions).
+>>>>>>> ea7738bb7c3616bb51ff14ae3db2a2747d7888ff
 
 Jika kita menggunakan `let`, hal tersebut tidak akan terjadi:
 
