@@ -36,28 +36,23 @@ Tugas itu cuma contoh: ada operator `**` di JavaScript yang bisa melakukan itu, 
 
 Sebelum membuat kode `pow`, kita bisa bayangkan apa yang harus dilakukan fungsi itu dan menjelaskannya.
 
-Deskripsi begitu disebut *spesifikasi* atau, singkatnya, spek, dan berisi deskripsi use case bersama dengan tes untuk mereka, seperti ini:
+Deskripsi begitu disebut _spesifikasi_ atau, singkatnya, spek, dan berisi deskripsi use case bersama dengan tes untuk mereka, seperti ini:
 
 ```js
-describe("pow", function() {
-
-  it("raises to n-th power", function() {
+describe("pow", function () {
+  it("raises to n-th power", function () {
     assert.equal(pow(2, 3), 8);
   });
-
 });
 ```
 
 Spek punya tiga blok bangunan utama yang bisa kamu lihat di bawah:
 
-`describe("title", function() { ... })`
-: Fungsionalitas apa yang kita jelaskan. Di kasus ini kita akan menjelaskan fungsi `pow`. Dipakai untuk mengelompokkan "pekerja" -- blok `it`.
+`describe("title", function() { ... })` : Fungsionalitas apa yang kita jelaskan. Di kasus ini kita akan menjelaskan fungsi `pow`. Dipakai untuk mengelompokkan "pekerja" -- blok `it`.
 
-`it("use case description", function() { ... })`
-: Di judul `it` kita *dalam bahasa manusia* menjelaskan use case tertentu, dan argumen kedua ialah fungsi yang mengetes itu.
+`it("use case description", function() { ... })` : Di judul `it` kita _dalam bahasa manusia_ menjelaskan use case tertentu, dan argumen kedua ialah fungsi yang mengetes itu.
 
-`assert.equal(value1, value2)`
-: Kode di dalam blok `it`, jika implementasinya benar, harus berjalan tanpa galat.
+`assert.equal(value1, value2)` : Kode di dalam blok `it`, jika implementasinya benar, harus berjalan tanpa galat.
 
     Fungsi `assert.*` dipakai untuk mengecek apakah `pow` bekerja sesuai harapan. Tepat di sini kita memakai salah satunya -- `assert.equal`, ia membandingkan argumen dan menghasilkan galat jika mereka tak sama. Di sini ia mengecek apakah hasil `pow(2, 3)` sama dengan `8`. Ada tipe perbandingan dan pengecekan lain, yang akan kita tambah nanti.
 
@@ -75,7 +70,7 @@ Alur pengembangan biasanya seperti ini:
 6. Pergi ke 3, perbaharui implementasinya hingga tes tak memberikan galat.
 7. Ulangi langkah 3-6 hingga fungsionalitasnya siap.
 
-Jadi, pengembangannya *iteratif*. Kita tulis spek, implementasikan, memastikan tes lulus, lalu menulis tes lainnya, memastikan mereka bekerja dll. Akhirnya kita punya implementasi yang bekerja dan tes untuk itu.
+Jadi, pengembangannya _iteratif_. Kita tulis spek, implementasikan, memastikan tes lulus, lalu menulis tes lainnya, memastikan mereka bekerja dll. Akhirnya kita punya implementasi yang bekerja dan tes untuk itu.
 
 Ayo lihat alur pengembangan ini di kasus praktik kita.
 
@@ -86,19 +81,20 @@ Langkap pertama sudah lengkap: kita punya spek inisial untuk `pow`. Sekarang, se
 Di sini di tutorial ini kita akan memakai librari JavaScript untuk tes:
 
 - [Mocha](http://mochajs.org/) -- inti framework: menyediakan fungsi testing umum `describe` dan `it` dan fungsi utama yang menjalankan test.
-- [Chai](http://chaijs.com) -- library dengan banyak penambahan. Ini membuatmu bisa untuk menggunakan banyak penambahan yang berbeda, untuk sekarang kita hanya membutuhkan `assert.equal`.
-- [Sinon](http://sinonjs.org/) -- sebuah library untuk memata-matai fungsi, meniru fungsi bawaan dan lainnya, kita akan butuh ini nanti.
+- [Chai](http://chaijs.com) -- librari dengan banyak penambahan. Ini membuatmu bisa untuk menggunakan banyak penambahan yang berbeda, untuk sekarang kita hanya membutuhkan `assert.equal`.
+- [Sinon](http://sinonjs.org/) -- sebuah librari untuk memata-matai fungsi, meniru fungsi bawaan dan lainnya, kita akan butuh ini nanti.
 
 Librari ini cocok baik untuk pengetesan in-browser dan server-side. Di sini kita akan mempertimbangkan varian peramban.
 
 Laman HTML lengkap dengan framework ini dan spek `pow`:
 
 ```html src="index.html"
+
 ```
 
 Laman ini bisa dibagi jadi lima bagian:
 
-1. `<head>` -- menambah libraru dan gaya pihak-ketiga untuk tes.
+1. `<head>` -- menambah librari dan gaya pihak-ketiga untuk tes.
 2. `<script>` dengan fungsi untuk dites, di kasus kita -- degngan kode untuk `pow`.
 3. Tes -- di kasus kita script external `test.js` yang punya `describe("pow", ...)` dari atas.
 4. Elemen HTML `<div id="mocha">` akan dipakai untuk mengoutputkan hasil.
@@ -138,33 +134,32 @@ Kita bisa pilih salah satu cara mengorganisasikan tes di sini:
 
 1. Varian pertama -- tambah satu lagi `assert` ke dalam `it` yang sama:
 
-    ```js
-    describe("pow", function() {
+   ```js
+   describe("pow", function() {
 
-      it("raises to n-th power", function() {
-        assert.equal(pow(2, 3), 8);
-    *!*
-        assert.equal(pow(3, 4), 81);
-    */!*
-      });
+     it("raises to n-th power", function() {
+       assert.equal(pow(2, 3), 8);
+   *!*
+       assert.equal(pow(3, 4), 81);
+   */!*
+     });
 
-    });
-    ```
+   });
+   ```
+
 2. Kedua -- buat dua tes:
 
-    ```js
-    describe("pow", function() {
+   ```js
+   describe("pow", function () {
+     it("2 raised to power 3 is 8", function () {
+       assert.equal(pow(2, 3), 8);
+     });
 
-      it("2 raised to power 3 is 8", function() {
-        assert.equal(pow(2, 3), 8);
-      });
-
-      it("3 raised to power 4 is 81", function() {
-        assert.equal(pow(3, 4), 81);
-      });
-
-    });
-    ```
+     it("3 raised to power 4 is 81", function () {
+       assert.equal(pow(3, 4), 81);
+     });
+   });
+   ```
 
 Perbedaan prinsipal ialah saat `assert` memicu galat, blok `it` segera berhenti. Jadi, di varian pertama jika `assert` pertama gagal, maka kita takkan pernah melihat hasil `assert` kedua.
 
@@ -203,11 +198,10 @@ function pow(x, n) {
 Untuk yakin bahwa fungsi bekerja dengan baik, ayo kita tes dia dengan lebih banyak nilai. Daripada menulis blok `it` secara manual, kita bisa menggenerate mereka di `for`:
 
 ```js
-describe("pow", function() {
-
+describe("pow", function () {
   function makeTest(x) {
     let expected = x * x * x;
-    it(`${x} in the power 3 is ${expected}`, function() {
+    it(`${x} in the power 3 is ${expected}`, function () {
       assert.equal(pow(x, 3), expected);
     });
   }
@@ -215,7 +209,6 @@ describe("pow", function() {
   for (let x = 1; x <= 5; x++) {
     makeTest(x);
   }
-
 });
 ```
 
@@ -261,23 +254,20 @@ describe("pow", function() {
 
 Di masa depan kita bisa menambah lebih banyak `it` dan `describe` di level tertinggi dengan fungsi pembantu mereka sendiri, mereka takkan melihat `makeTest`.
 
-````smart header="`before/after` dan `beforeEach/afterEach`"
-Kita bisa mengeset fungsi `before/after` yang berjalan sebelum/setelah menjalankan tes, dan juga fungsi `beforeEach/afterEach` yang berjalan sebelum/setelah *setiap* `it`.
+````smart header="`before/after`dan`beforeEach/afterEach`" Kita bisa mengeset fungsi `before/after`yang berjalan sebelum/setelah menjalankan tes, dan juga fungsi`beforeEach/afterEach`yang berjalan sebelum/setelah *setiap*`it`.
 
 Misalnya:
 
 ```js no-beautify
-describe("test", function() {
-
+describe("test", function () {
   before(() => alert("Testing started – before all tests"));
   after(() => alert("Testing finished – after all tests"));
 
   beforeEach(() => alert("Before a test – enter a test"));
   afterEach(() => alert("After a test – exit a test"));
 
-  it('test 1', () => alert(1));
-  it('test 2', () => alert(2));
-
+  it("test 1", () => alert(1));
+  it("test 2", () => alert(2));
 });
 ```
 
@@ -297,6 +287,7 @@ Tes selesai – setelah semua tes (after)
 [edit src="beforeafter" title="Buka contoh di sandbox."]
 
 Biasanya, `beforeEach/afterEach` dan `before/after` dipakai untuk melakukan inisialisasi, mengnolkan counter atau melakukan sesuatu di antara tes (atau grup tes).
+
 ````
 
 ## Mengextend spek
@@ -322,7 +313,7 @@ describe("pow", function() {
 
   it("untuk n non-integer hasilnya NaN", function() {
 *!*
-    assert.isNaN(pow(2, 1.5));    
+    assert.isNaN(pow(2, 1.5));
 */!*
   });
 
@@ -407,3 +398,4 @@ Di kehidupan riil kadang tak mudah. Kadang sulit menulis spek sebelum kode aktua
 Nanti di tutorial ini kamu akan menemui banyak tugas dengan tes yang matang. Jadi kamu akan melihat banyak contoh praktik.
 
 Menulis tes membutuhkan pengetahuan JavaScript yang baik. Tapi kita baru saja mulai belajar. Jadi, supaya settle semuanya, dari sekarang kamu belum wajib menulis tes, tapi kamu harus sudah bisa membaca mereka meski mereka agak rumit dari yang ada di bab ini.
+````
