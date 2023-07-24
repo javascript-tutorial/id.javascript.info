@@ -6,9 +6,15 @@ importance: 5
 
 Buatlah sebuah fungsi konstruktor `Calculator` yang membuat objek dengan 3 method:
 
+<<<<<<< HEAD
 - `read()` tanyakan dua nilai menggunakan `prompt dan masukan mereka kedalam properti objek.
 - `sum()` mengembalikan jumlah dari properti-properti.
 - `mul()` mengembalikan perkalian produk dari properti-properti.
+=======
+- `read()` prompts for two values and saves them as object properties with names `a` and `b` respectively.
+- `sum()` returns the sum of these properties.
+- `mul()` returns the multiplication product of these properties.
+>>>>>>> d694e895efe89922a109702085b6ca1efeffea10
 
 Contoh:
 
