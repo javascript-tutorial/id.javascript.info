@@ -1,333 +1,344 @@
 libs:
-  - d3
-  - domtree
+
+- d3
+- domtree
 
 ---
 
+# Menelusuri DOM
 
-# Walking the DOM
+DOM memungkinkan kita untuk melakukan apapun dengan elemen-elemen dan isinya, tetapi pertama-tama kita perlu mencapai objek DOM yang sesuai.
 
-The DOM allows us to do anything with elements and their contents, but first we need to reach the corresponding DOM object.
+Semua operasi pada DOM dimulai dengan objek `document`. Itulah "titik masuk" utama ke DOM. Dari objek tersebut, kita dapat mengakses setiap node (simpul).
 
-All operations on the DOM start with the `document` object. That's the main "entry point" to DOM. From it we can access any node.
-
-Here's a picture of links that allow for travel between DOM nodes:
+Berikut adalah gambar tautan yang memungkinkan untuk berpindah antara simpul-simpul DOM):
 
 ![](dom-links.svg)
 
-Let's discuss them in more detail.
+Mari kita bahas lebih detail.
 
-## On top: documentElement and body
+## Di Puncak: documentElement dan body
 
-The topmost tree nodes are available directly as `document` properties:
+Simpul paling atas dari struktur pohon tersedia langsung sebagai properti dari `document`:
 
-`<html>` = `document.documentElement`
-: The topmost document node is `document.documentElement`. That's the DOM node of the `<html>` tag.
+`<html>` = `document.documentElement` : Simpul dokumen paling atas adalah `document.documentElement`. Itu adalah simpul DOM dari tag `<html>`.
 
-`<body>` = `document.body`
-: Another widely used DOM node is the `<body>` element -- `document.body`.
+`<body>` = `document.body` : Simpul DOM lain yang sering digunakan adalah elemen `<body>` -- `document.body`.
 
-`<head>` = `document.head`
-: The `<head>` tag is available as `document.head`.
+`<head>` = `document.head` : Tag `<head>` tersedia sebagai `document.head`.
 
-````warn header="There's a catch: `document.body` can be `null`"
-A script cannot access an element that doesn't exist at the moment of running.
+> **PERINGATAN: Tapi, ada pengecualian: `document.body` bisa saja `null`.**
+>
+> Sebuah skrip tidak dapat mengakses elemen yang belum ada pada saat dijalankan.
+>
+> Khususnya, jika sebuah skrip berada di dalam tag `<head>`, maka `document.body` tidak tersedia, karena browser (peramban) belum membacanya.
+>
+> Jadi, pada contoh di bawah ini, `alert` pertama akan menampilkan `null`:
+>
+> ```html run
+> <html>
+>   <head>
+>     <script>
+>       *!*
+>           alert( "Dari HEAD: " + document.body ); // null, belum ada <body>
+>       */!*
+>     </script>
+>   </head>
+>
+>   <body>
+>     <script>
+>       alert("Dari BODY: " + document.body); // HTMLBodyElement, sekarang sudah ada
+>     </script>
+>   </body>
+> </html>
+> ```
 
-In particular, if a script is inside `<head>`, then `document.body` is unavailable, because the browser did not read it yet.
+> **Dalam dunia DOM, `null` berarti \"Tidak ada yang eksis.\"**
+> Dalam DOM, nilai `null` berarti "tidak ada" atau "tidak ada simpul tersebut".
 
-So, in the example below the first `alert` shows `null`:
+## Anak-anak (Children): childNodes, firstChild, lastChild
 
-```html run
-<html>
+Ada dua istilah yang akan kita gunakan mulai sekarang:
 
-<head>
-  <script>
-*!*
-    alert( "From HEAD: " + document.body ); // null, there's no <body> yet
-*/!*
-  </script>
-</head>
+- **Simpul anak (Child nodes) atau Anak-anak (Children)** -- elemen-elemen yang merupakan anak langsung. Dengan kata lain, mereka bersarang tepat di dalam elemen yang diberikan. Misalnya, `<head>` dan `<body>` merupakan anak-anak dari elemen `<html>`.
+- **Keturunan (Descendants)** -- semua elemen yang bersarang di dalam elemen yang diberikan, termasuk anak-anak mereka, cucu-cucu mereka, dan seterusnya.
 
-<body>
-
-  <script>
-    alert( "From BODY: " + document.body ); // HTMLBodyElement, now it exists
-  </script>
-
-</body>
-</html>
-```
-````
-
-```smart header="In the DOM world `null` means \"doesn't exist\""
-In the DOM, the `null` value means "doesn't exist" or "no such node".
-```
-
-## Children: childNodes, firstChild, lastChild
-
-There are two terms that we'll use from now on:
-
-- **Child nodes (or children)** -- elements that are direct children. In other words, they are nested exactly in the given one. For instance, `<head>` and `<body>` are children of `<html>` element.
-- **Descendants** -- all elements that are nested in the given one, including children, their children and so on.
-
-For instance, here `<body>` has children `<div>` and `<ul>` (and few blank text nodes):
+Misalnya, di sini `<body>` memiliki anak-anak berupa `<div>` dan `<ul>` (dan beberapa simpul teks kosong):
 
 ```html run
 <html>
-<body>
-  <div>Begin</div>
+  <body>
+    <div>Mulai</div>
 
-  <ul>
-    <li>
-      <b>Information</b>
-    </li>
-  </ul>
-</body>
+    <ul>
+      <li>
+        <b>Informasi</b>
+      </li>
+    </ul>
+  </body>
 </html>
 ```
 
-...And descendants of `<body>` are not only direct children `<div>`, `<ul>` but also more deeply nested elements, such as `<li>` (a child of `<ul>`) and `<b>` (a child of `<li>`) -- the entire subtree.
+... Dan keturunan (descendants) dari `<body>` tidak hanya anak langsung `<div>`, `<ul>`, tetapi juga elemen-elemen yang bersarang lebih dalam, seperti `<li>` (anak dari `<ul>`) dan `<b>` (anak dari `<li>`) -- seluruh sub-pohon.
 
-**The `childNodes` collection lists all child nodes, including text nodes.**
+**Koleksi `childNodes` mencantumkan semua simpul anak, termasuk simpul teks.**
 
-The example below shows children of `document.body`:
+Contoh di bawah ini menampilkan anak-anak dari `document.body`:
 
 ```html run
 <html>
-<body>
-  <div>Begin</div>
+  <body>
+    <div>Mulai</div>
 
-  <ul>
-    <li>Information</li>
-  </ul>
+    <ul>
+      <li>Informasi</li>
+    </ul>
 
-  <div>End</div>
+    <div>Akhir</div>
 
-  <script>
-*!*
-    for (let i = 0; i < document.body.childNodes.length; i++) {
-      alert( document.body.childNodes[i] ); // Text, DIV, Text, UL, ..., SCRIPT
-    }
-*/!*
-  </script>
-  ...more stuff...
-</body>
+    <script>
+      *!*
+          for (let i = 0; i < document.body.childNodes.length; i++) {
+            alert( document.body.childNodes[i] ); // Text, DIV, Text, UL, ..., SCRIPT
+          }
+      */!*
+    </script>
+    ...lebih banyak hal...
+  </body>
 </html>
 ```
 
-Please note an interesting detail here. If we run the example above, the last element shown is `<script>`. In fact, the document has more stuff below, but at the moment of the script execution the browser did not read it yet, so the script doesn't see it.
+Harap perhatikan detail menarik di sini. Jika kita menjalankan contoh di atas, elemen terakhir yang ditampilkan adalah `<script>`. Sebenarnya, dokumen memiliki "lebih banyak hal" di bawahnya, tetapi pada saat eksekusi skrip, browser belum membacanya, sehingga skrip tidak melihatnya.
 
-**Properties `firstChild` and `lastChild` give fast access to the first and last children.**
+**Properti `firstChild` dan `lastChild` memberikan akses cepat ke anak pertama dan anak terakhir.**
 
-They are just shorthands. If there exist child nodes, then the following is always true:
+Mereka hanyalah cara atau jalan pintas. Jika ada simpul anak, maka pernyataan berikut selalu benar:
+
 ```js
-elem.childNodes[0] === elem.firstChild
-elem.childNodes[elem.childNodes.length - 1] === elem.lastChild
+elem.childNodes[0] === elem.firstChild; // true (benar)
+elem.childNodes[elem.childNodes.length - 1] === elem.lastChild; // true (benar)
 ```
 
-There's also a special function `elem.hasChildNodes()` to check whether there are any child nodes.
+Juga, ada fungsi khusus `elem.hasChildNodes()` untuk memeriksa apakah ada atau tidaknya simpul anak.
 
-### DOM collections
+### Koleksi DOM
 
-As we can see, `childNodes` looks like an array. But actually it's not an array, but rather a *collection* -- a special array-like iterable object.
+Seperti yang kita lihat, `childNodes` terlihat seperti sebuah array. Tetapi sebenarnya bukanlah sebuah array, melainkan sebuah _koleksi_ -- sebuah objek yang mirip array dengan sifat iterasi khusus.
 
-There are two important consequences:
+Ada dua konsekuensi penting:
 
-1. We can use `for..of` to iterate over it:
-  ```js
-  for (let node of document.body.childNodes) {
-    alert(node); // shows all nodes from the collection
-  }
-  ```
-  That's because it's iterable (provides the `Symbol.iterator` property, as required).
+1. Kita dapat menggunakan `for..of` untuk mengulanginya:
 
-2. Array methods won't work, because it's not an array:
-  ```js run
-  alert(document.body.childNodes.filter); // undefined (there's no filter method!)
-  ```
+   ```js
+   for (let node of document.body.childNodes) {
+     alert(node); // menampilkan semua simpul dari koleksi
+   }
+   ```
 
-The first thing is nice. The second is tolerable, because we can use `Array.from` to create a "real" array from the collection, if we want array methods:
+   Hal ini dikarenakan koleksi tersebut dapat diiterasi (menyediakan properti `Symbol.iterator`, seperti yang dibutuhkan).
 
-  ```js run
-  alert( Array.from(document.body.childNodes).filter ); // function
-  ```
+2. Method-method array tidak akan berfungsi, karena ini bukanlah sebuah array:
 
-```warn header="DOM collections are read-only"
-DOM collections, and even more -- *all* navigation properties listed in this chapter are read-only.
+   ```js run
+   alert(document.body.childNodes.filter); // undefined (tidak ada method filter!)
+   ```
 
-We can't replace a child by something else by assigning `childNodes[i] = ...`.
+   Hal pertama itu bagus. Yang kedua bisa ditoleransi, karena kita dapat menggunakan `Array.from` untuk membuat sebuah array "sejati" dari koleksi tersebut, jika kita membutuhkan method-method array:
 
-Changing DOM needs other methods. We will see them in the next chapter.
-```
+   ```js run
+   alert(Array.from(document.body.childNodes).filter); // fungsi
+   ```
 
-```warn header="DOM collections are live"
-Almost all DOM collections with minor exceptions are *live*. In other words, they reflect the current state of DOM.
+> **PERINGATAN: Koleksi-koleksi DOM bersifat hanya-baca (read-only).**
+>
+> Koleksi-koleksi DOM, bahkan lebih -- _semua_ properti navigasi yang tercantum dalam bab ini bersifat hanya-baca (read-only).
+>
+> Kita tidak dapat menggantikan suatu child (anak) dengan yang lain dengan cara menetapkan `childNodes[i] = ...`.
+>
+> Untuk mengubah DOM, diperlukan method-method lain. Kita akan melihatnya dalam bab selanjutnya.
 
-If we keep a reference to `elem.childNodes`, and add/remove nodes into DOM, then they appear in the collection automatically.
-```
+> **PERINGATAN: Koleksi-koleksi DOM bersifat dinamis (live).**
+>
+> Hampir semua koleksi DOM dengan beberapa pengecualian _bersifat dinamis (live)_. Dengan kata lain, mereka mencerminkan keadaan terkini dari DOM.
+>
+> Jika kita menyimpan referensi ke `elem.childNodes`, dan menambahkan/menghapus simpul pada DOM, maka simpul-simpul tersebut akan muncul secara otomatis dalam koleksi tersebut.
 
-````warn header="Don't use `for..in` to loop over collections"
-Collections are iterable using `for..of`. Sometimes people try to use `for..in` for that.
+> **PERINGATAN: Jangan menggunakan `for..in` untuk mengulangi koleksi.**
+>
+> Koleksi dapat diulangi menggunakan `for..of`. Terkadang orang lain mencoba menggunakan `for..in` untuk itu.
+>
+> Tolong, jangan melakukannya. Perulangan `for..in` mengulangi seluruh properti yang dapat dihitung (enumerable). Dan koleksi memiliki beberapa properti "tambahan" yang jarang digunakan yang biasanya tidak ingin kita dapatkan:
+>
+> ```html run
+> <body>
+>   <script>
+>     // menampilkan 0, 1, panjang (length), item, nilai (values), dan lain-lain.
+>     for (let prop in document.body.childNodes) alert(prop);
+>   </script>
+> </body>
+> ```
 
-Please, don't. The `for..in` loop iterates over all enumerable properties. And collections have some "extra" rarely used properties that we usually do not want to get:
+## Saudara kandung (siblings) dan orang tua (parent)
 
-```html run
-<body>
-<script>
-  // shows 0, 1, length, item, values and more.
-  for (let prop in document.body.childNodes) alert(prop);
-</script>
-</body>
-````
+_Saudara kandung_ adalah simpul-simpul yang merupakan anak-anak dari orang tua yang sama.
 
-## Siblings and the parent
-
-*Siblings* are nodes that are children of the same parent.
-
-For instance, here `<head>` and `<body>` are siblings:
+Misalnya, di sini `<head>` dan `<body>` adalah saudara kandung:
 
 ```html
 <html>
-  <head>...</head><body>...</body>
+  <head>
+    ...
+  </head>
+  <body>
+    ...
+  </body>
 </html>
 ```
 
-- `<body>` is said to be the "next" or "right" sibling of `<head>`,
-- `<head>` is said to be the "previous" or "left" sibling of `<body>`.
+- `<body>` disebut sebagai saudara "berikutnya" atau "kanan" dari `<head>`,
+- `<head>` disebut sebagai saudara "sebelumnya" atau "kiri" dari `<body>`.
 
-The next sibling is in `nextSibling` property, and the previous one - in `previousSibling`.
+Saudara berikutnya dapat diakses melalui properti `nextSibling`, dan saudara sebelumnya melalui properti `previousSibling`.
 
-The parent is available as `parentNode`.
+Orang tua dari suatu simpul dapat diakses menggunakan properti `parentNode`.
 
-For example:
+Contohnya:
 
 ```js run
-// parent of <body> is <html>
-alert( document.body.parentNode === document.documentElement ); // true
+// Orang tua dari <body> adalah <html>
+alert(document.body.parentNode === document.documentElement); // true (benar)
 
-// after <head> goes <body>
-alert( document.head.nextSibling ); // HTMLBodyElement
+// Setelah <head> ada <body>
+alert(document.head.nextSibling); // HTMLBodyElement
 
-// before <body> goes <head>
-alert( document.body.previousSibling ); // HTMLHeadElement
+// Sebelum <body> ada <head>
+alert(document.body.previousSibling); // HTMLHeadElement
 ```
 
-## Element-only navigation
+## Navigasi Hanya untuk Elemen
 
-Navigation properties listed above refer to *all* nodes. For instance, in `childNodes` we can see both text nodes, element nodes, and even comment nodes if they exist.
+Properti-navigasi yang telah disebutkan sebelumnya merujuk pada semua simpul. Misalnya, dalam `childNodes` kita bisa melihat baik simpul teks, simpul elemen, dan bahkan simpul komentar jika ada.
 
-But for many tasks we don't want text or comment nodes. We want to manipulate element nodes that represent tags and form the structure of the page.
+Namun, untuk banyak tugas, kita tidak tertarik pada simpul teks atau komentar. Kita ingin memanipulasi simpul elemen yang mewakili tag dan membentuk struktur halaman.
 
-So let's see more navigation links that only take *element nodes* into account:
+Oleh karena itu, mari kita lihat lebih banyak tautan navigasi yang hanya memperhatikan _simpul elemen_:
 
 ![](dom-links-elements.svg)
 
-The links are similar to those given above, just with `Element` word inside:
+Tautan-tautan tersebut mirip dengan yang telah disebutkan sebelumnya, hanya dengan tambahan kata `Element`:
 
-- `children` -- only those children that are element nodes.
-- `firstElementChild`, `lastElementChild` -- first and last element children.
-- `previousElementSibling`, `nextElementSibling` -- neighbor elements.
-- `parentElement` -- parent element.
+- `children` -- hanya mencakup anak-anak yang merupakan simpul elemen.
+- `firstElementChild`, `lastElementChild` -- anak-anak elemen pertama dan terakhir.
+- `previousElementSibling`, `nextElementSibling` -- elemen tetangga.
+- `parentElement` -- elemen orang tua.
 
-````smart header="Why `parentElement`? Can the parent be *not* an element?"
-The `parentElement` property returns the "element" parent, while `parentNode` returns "any node" parent. These properties are usually the same: they both get the parent.
+> **Mengapa `parentElement`? Apakah orang tua bisa _tidak_ berupa elemen?**
+>
+> Properti `parentElement` mengembalikan "elemen" orang tua, sedangkan `parentNode` mengembalikan "semua simpul" orang tua. Biasanya, kedua properti tersebut akan mengambil orang tua yang sama.
+>
+> Dengan satu pengecualian yaitu `document.documentElement`:
+>
+> ```js run
+> alert(document.documentElement.parentNode); // document
+> alert(document.documentElement.parentElement); // null
+> ```
+>
+> Alasannya adalah bahwa simpul akar (root) `document.documentElement` (`<html>`) memiliki `document` sebagai orang tua. Namun, `document` bukanlah sebuah simpul elemen, sehingga `parentNode` mengembalikan `document`, sementara `parentElement` tidak.
+>
+> Detail ini bisa berguna ketika kita ingin bergerak dari suatu elemen sembarang `elem` ke `<html>`, tapi tidak ingin sampai pada `document`:
+>
+> ```js
+> while ((elem = elem.parentElement)) {
+>   // bergerak naik hingga mencapai <html>
+>   alert(elem);
+> }
+> ```
 
-With the one exception of `document.documentElement`:
-
-```js run
-alert( document.documentElement.parentNode ); // document
-alert( document.documentElement.parentElement ); // null
-```
-
-The reason is that the root node `document.documentElement` (`<html>`) has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
-
-This detail may be useful when we want to travel up from an arbitrary element `elem` to `<html>`, but not to the `document`:
-```js
-while(elem = elem.parentElement) { // go up till <html>
-  alert( elem );
-}
-```
-````
-
-Let's modify one of the examples above: replace `childNodes` with `children`. Now it shows only elements:
+Mari kita modifikasi salah satu contoh di atas: gantikan `childNodes` dengan `children`. Sekarang hanya akan menampilkan elemen-elemen:
 
 ```html run
 <html>
-<body>
-  <div>Begin</div>
+  <body>
+    <div>Mulai</div>
 
-  <ul>
-    <li>Information</li>
-  </ul>
+    <ul>
+      <li>Informasi</li>
+    </ul>
 
-  <div>End</div>
+    <div>Akhir</div>
 
-  <script>
-*!*
-    for (let elem of document.body.children) {
-      alert(elem); // DIV, UL, DIV, SCRIPT
-    }
-*/!*
-  </script>
-  ...
-</body>
+    <script>
+      *!*
+          for (let elem of document.body.children) {
+            alert(elem); // DIV, UL, DIV, SCRIPT
+          }
+      */!*
+    </script>
+    ...
+  </body>
 </html>
 ```
 
-## More links: tables [#dom-navigation-tables]
+## Tautan-tautan Tambahan: Tabel [#dom-navigation-tables]
 
-Till now we described the basic navigation properties.
+Hingga saat ini, kita telah menjelaskan properti-properti navigasi dasar.
 
-Certain types of DOM elements may provide additional properties, specific to their type, for convenience.
+Terdapat beberapa jenis elemen DOM yang mungkin menyediakan properti tambahan, khusus untuk jenisnya, untuk kemudahan.
 
-Tables are a great example of that, and represent a particularly important case:
+Tabel adalah contoh yang bagus untuk hal ini, dan merupakan kasus yang cukup penting:
 
-**The `<table>`** element supports (in addition to the given above) these properties:
-- `table.rows` -- the collection of `<tr>` elements of the table.
-- `table.caption/tHead/tFoot` -- references to elements `<caption>`, `<thead>`, `<tfoot>`.
-- `table.tBodies` -- the collection of `<tbody>` elements (can be many according to the standard, but there will always be at least one -- even if it is not in the source HTML, the browser will put it in the DOM).
+**Elemen `<table>`** mendukung (selain dari yang dijelaskan di atas) properti-properti berikut:
 
-**`<thead>`, `<tfoot>`, `<tbody>`** elements provide the `rows` property:
-- `tbody.rows` -- the collection of `<tr>` inside.
+- `table.rows` -- koleksi elemen-elemen `<tr>` dari tabel.
+- `table.caption/tHead/tFoot` -- referensi ke elemen `<caption>`, `<thead>`, `<tfoot>`.
+- `table.tBodies` -- koleksi elemen-elemen `<tbody>` (bisa banyak sesuai standar, tetapi minimal akan ada satu -- bahkan jika tidak ada dalam sumber HTML, peramban akan menambahkannya dalam DOM).
 
-**`<tr>`:**
-- `tr.cells` -- the collection of `<td>` and `<th>` cells inside the given `<tr>`.
-- `tr.sectionRowIndex` -- the position (index) of the given `<tr>` inside the enclosing `<thead>/<tbody>/<tfoot>`.
-- `tr.rowIndex` -- the number of the `<tr>` in the table as a whole (including all table rows).
+**Elemen `<thead>`, `<tfoot>`, `<tbody>`** menyediakan properti `rows`:
 
-**`<td>` and `<th>`:**
-- `td.cellIndex` -- the number of the cell inside the enclosing `<tr>`.
+- `tbody.rows` -- koleksi elemen-elemen `<tr>` di dalamnya.
 
-An example of usage:
+**Elemen `<tr>`:**
+
+- `tr.cells` -- koleksi sel-sel dari `<td>` dan `<th>` di dalam `<tr>` yang diberikan.
+- `tr.sectionRowIndex` -- posisi (indexs) dari elemen `<tr>` tertentu di dalam elemen `<thead>/<tbody>/<tfoot>` yang melingkupinya.
+- `tr.rowIndex` -- nomor dari elemen `<tr>` di dalam tabel secara keseluruhan (termasuk semua baris tabel).
+
+**Elemen `<td>` dan `<th>`:**
+
+- `td.cellIndex` -- nomor sel di dalam elemen `<tr>`.
+
+Contoh penggunaannya:
 
 ```html run height=100
 <table id="table">
   <tr>
-    <td>one</td><td>two</td>
+    <td>one</td>
+    <td>two</td>
   </tr>
   <tr>
-    <td>three</td><td>four</td>
+    <td>three</td>
+    <td>four</td>
   </tr>
 </table>
 
 <script>
-  // get td with "two" (first row, second column)
+  // mendapatkan td dengan "dua" (baris pertama, kolom kedua)
   let td = table.*!*rows[0].cells[1]*/!*;
-  td.style.backgroundColor = "red"; // highlight it
+  td.style.backgroundColor = "red"; // sorotlah itu
 </script>
 ```
 
-The specification: [tabular data](https://html.spec.whatwg.org/multipage/tables.html).
+Spesifikasi: [Data Tabel](https://html.spec.whatwg.org/multipage/tables.html).
 
-There are also additional navigation properties for HTML forms. We'll look at them later when we start working with forms.
+Terdapat juga properti-properti navigasi tambahan untuk formulir HTML. Kita akan melihatnya nanti ketika kita mulai bekerja dengan formulir.
 
-## Summary
+## Ringkasan
 
-Given a DOM node, we can go to its immediate neighbors using navigation properties.
+Diberikan sebuah simpul DOM, kita dapat menuju tetangganya yang langsung menggunakan properti-properti navigasi.
 
-There are two main sets of them:
+Ada dua set utama properti-properti tersebut:
 
-- For all nodes: `parentNode`, `childNodes`, `firstChild`, `lastChild`, `previousSibling`, `nextSibling`.
-- For element nodes only: `parentElement`, `children`, `firstElementChild`, `lastElementChild`, `previousElementSibling`, `nextElementSibling`.
+- Untuk semua simpul: `parentNode`, `childNodes`, `firstChild`, `lastChild`, `previousSibling`, `nextSibling`.
+- Hanya untuk elemen: `parentElement`, `children`, `firstElementChild`, `lastElementChild`, `previousElementSibling`, `nextElementSibling`.
 
-Some types of DOM elements, e.g. tables, provide additional properties and collections to access their content.
+Beberapa jenis elemen DOM, misalnya tabel, menyediakan properti dan koleksi tambahan untuk mengakses kontennya.
