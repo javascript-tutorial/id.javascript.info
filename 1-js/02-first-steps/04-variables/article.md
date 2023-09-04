@@ -24,7 +24,11 @@ Kini, kita bisa menaruh beberapa data ke dalamnya dengan menggunakan operator pe
 let message;
 
 *!*
+<<<<<<< HEAD
 message = 'Hello'; // simpan string
+=======
+message = 'Hello'; // store the string 'Hello' in the variable named message
+>>>>>>> 285083fc71ee3a7cf55fd8acac9c91ac6f62105c
 */!*
 ```
 
@@ -63,7 +67,12 @@ let age = 25;
 let message = 'Hello';
 ```
 
+<<<<<<< HEAD
 Beberapa orang juga mendefinisi variabel ganda dalam gaya multibaris ini:
+=======
+Some people also define multiple variables in this multiline style:
+
+>>>>>>> 285083fc71ee3a7cf55fd8acac9c91ac6f62105c
 ```js no-beautify
 let user = 'John',
   age = 25,
@@ -103,7 +112,12 @@ Misalnya, variabel `message` bisa dibayangkan sebagai box berlabel `"message"` d
 
 Kita bisa menaruh nilai apapun di dalam box.
 
+<<<<<<< HEAD
 Kita juga bisa mengubahnya sebanyak yang kita mau:
+=======
+We can also change it as many times as we want:
+
+>>>>>>> 285083fc71ee3a7cf55fd8acac9c91ac6f62105c
 ```js run
 let message;
 
@@ -150,12 +164,21 @@ let message = "That"; // SyntaxError: 'message' has already been declared
 Jadi, kita harus mendeklarasikan variabel sekali dan menggunakan variabel tersebut tanpa menggunakan 'let'.
 ````
 
+<<<<<<< HEAD
 ```smart header="Bahasa fungsional"
 Ini sangat menarik untuk diperhatikan bahwa ada bahasa pemrograman [fungsional](https://en.wikipedia.org/wiki/Functional_programming), seperti [Scala](http://www.scala-lang.org/) atau [Erlang](http://www.erlang.org/) yang melarang merubah nilai dari variabel.
+=======
+```smart header="Functional languages"
+It's interesting to note that there exist so-called [pure functional](https://en.wikipedia.org/wiki/Purely_functional_programming) programming languages, such as [Haskell](https://en.wikipedia.org/wiki/Haskell), that forbid changing variable values.
+>>>>>>> 285083fc71ee3a7cf55fd8acac9c91ac6f62105c
 
 Di dalam bahasa macam ini, sekali nilai disimpan "dalam box", ia akan di sana selamanya. Jika kita harus menyimpan sesuatu yang lain, bahasa tersebut memaksa kita membuat box baru (mendeklarasi variabel baru). Kita tak bisa menggunakan ulang yang lama.
 
+<<<<<<< HEAD
 Meski kelihatan sedikit aneh saat pandangan pertama, bahasa-bahasa ini ternyata mumpuni untuk pengembangan yang serius. Lebih dari itu, ada area seperti komputasi paralel di mana keterbatasan ini memberikan keuntungan tertentu. Disarankan mempelajari bahasa macam ini (meski jika kamu tak berencana menggunakannya segera) untuk meningkatkan wawasan.
+=======
+Though it may seem a little odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation confers certain benefits.
+>>>>>>> 285083fc71ee3a7cf55fd8acac9c91ac6f62105c
 ```
 
 ## Penamaan variabel [#variable-naming]
@@ -193,12 +216,21 @@ let 1a; // cannot start with a digit
 let my-name; // hyphens '-' aren't allowed in the name
 ```
 
+<<<<<<< HEAD
 ```smart header="Case berpengaruh"
 Variabel dengan nama `apple` dan `AppLE` adalah dua variabel yang berbeda.
 ```
 
 ````smart header="Huruf non-Latin diperbolehkan, namun tak direkomendasikan"
 Boleh menggunakan bahasa apapun, termasuk huruf cyrillic atau bahkan hieroglyphs, seperti ini:
+=======
+```smart header="Case matters"
+Variables named `apple` and `APPLE` are two different variables.
+```
+
+````smart header="Non-Latin letters are allowed, but not recommended"
+It is possible to use any language, including cyrillic letters, Chinese logograms and so on, like this:
+>>>>>>> 285083fc71ee3a7cf55fd8acac9c91ac6f62105c
 
 ```js
 let имя = '...';
@@ -262,8 +294,12 @@ myBirthday = '01.01.2001'; // error, tak bisa menetapkan-ulang konstan!
 
 Ketika programmer yakin bahwa variabel tak akan berubah, mereka bisa mendeklarasikan `const` untuk menjamin hal itu dan memberitahu semua orang.
 
+<<<<<<< HEAD
 
 ### Konstan huruf-besar
+=======
+### Uppercase constants
+>>>>>>> 285083fc71ee3a7cf55fd8acac9c91ac6f62105c
 
 Ada kebiasaan umum untuk menggunakan konstan sebagai alias untuk nilai yang sulit dihafal yang akan diketahui sebelum dieksekusi.
 
@@ -292,14 +328,23 @@ Kapan kita sebaiknya menggunakan kapital untuk konstan dan kapan itu dinamai den
 
 Menjadi "konstan" hanya berarti jika nilai variable tak pernah berubah. Tapi ada konstan yang diketahui sebelum eksekusi (seperti nilai hexadecimal untuk merah) dan ada konstan yang *dikalkulasi* dalam run-time, selama eksekusi, tapi tak berubah setelah penetapan inisial mereka.
 
+<<<<<<< HEAD
 Misalnya:
+=======
+For instance:
+
+>>>>>>> 285083fc71ee3a7cf55fd8acac9c91ac6f62105c
 ```js
 const pageLoadTime = /* waktu yang dibutuhkan laman web untuk meload */;
 ```
 
 Nilai `pageLoadTime` tidak diketahui sebelum laman diload, jadi itu dinamai dengan normal. Tapi ia masih konstan karena ia tak berubah setelah penetapan.
 
+<<<<<<< HEAD
 Dengan kata lain, konstan berhuruf kapital hanya digunakan sebagai alias untuk nilai yang "dihard-code".  
+=======
+In other words, capital-named constants are only used as aliases for "hard-coded" values.
+>>>>>>> 285083fc71ee3a7cf55fd8acac9c91ac6f62105c
 
 ## Namai dengan benar
 
