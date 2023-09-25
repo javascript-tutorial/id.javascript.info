@@ -1,42 +1,42 @@
-# Attributes and properties
+# Atribut dan Properti
 
-When the browser loads the page, it "reads" (another word: "parses") the HTML and generates DOM objects from it. For element nodes, most standard HTML attributes automatically become properties of DOM objects.
+Ketika peramban (browser) memuat halaman, peramban "membaca" (atau istilah lainnya: "menganalisis") HTML dan menghasilkan objek-objek DOM dari HTML tersebut. Untuk elemen-elemen, sebagian besar atribut HTML standar secara otomatis menjadi properti dari objek-objek DOM.
 
-For instance, if the tag is `<body id="page">`, then the DOM object has `body.id="page"`.
+Misalnya, jika tag adalah `<body id="page">`, maka objek DOM akan memiliki `body.id="page"`.
 
-But the attribute-property mapping is not one-to-one! In this chapter we'll pay attention to separate these two notions, to see how to work with them, when they are the same, and when they are different.
+Namun, pemetaan atribut-atribut ini tidaklah satu-satu! Di bab ini, kita akan memahami perbedaan antara kedua hal tersebut, untuk melihat bagaimana cara bekerja dengan mereka, ketika mereka sama, dan ketika mereka berbeda.
 
-## DOM properties
+## Properti DOM
 
-We've already seen built-in DOM properties. There are a lot. But technically no one limits us, and if there aren't enough, we can add our own.
+Kita telah melihat beberapa properti DOM bawaan sebelumnya. Ada banyak properti lainnya. Tetapi secara teknis, tidak ada batasan, dan jika tidak cukup, kita dapat menambahkan properti sendiri.
 
-DOM nodes are regular JavaScript objects. We can alter them.
+Simpul DOM adalah objek JavaScript biasa. Kita dapat memodifikasinya.
 
-For instance, let's create a new property in `document.body`:
+Misalnya, mari bat sebuah properti baru pada `document.body`:
 
 ```js run
 document.body.myData = {
-  name: 'Caesar',
-  title: 'Imperator'
+  name: "Caesar",
+  title: "Imperator",
 };
 
 alert(document.body.myData.title); // Imperator
 ```
 
-We can add a method as well:
+Kita juga dapat menambahkan sebuah method:
 
 ```js run
-document.body.sayTagName = function() {
+document.body.sayTagName = function () {
   alert(this.tagName);
 };
 
-document.body.sayTagName(); // BODY (the value of "this" in the method is document.body)
+document.body.sayTagName(); // BODY (nilai dari "this" dalam method adalah document.body)
 ```
 
-We can also modify built-in prototypes like `Element.prototype` and add new methods to all elements:
+Kita juga dapat memodifikasi prototipe bawaan seperti `Element.prototype` dan menambahkan method baru ke semua elemen:
 
 ```js run
-Element.prototype.sayHi = function() {
+Element.prototype.sayHi = function () {
   alert(`Hello, I'm ${this.tagName}`);
 };
 
@@ -44,234 +44,237 @@ document.documentElement.sayHi(); // Hello, I'm HTML
 document.body.sayHi(); // Hello, I'm BODY
 ```
 
-So, DOM properties and methods behave just like those of regular JavaScript objects:
+Jadi, properti dan method DOM berperilaku sama seperti objek JavaScript biasa:
 
-- They can have any value.
-- They are case-sensitive (write `elem.nodeType`, not `elem.NoDeTyPe`).
+- Mereka dapat memiliki nilai apa pun.
+- Mereka bersifat case-sensitive (tulis `elem.nodeType`, bukan `elem.NoDeTyPe`).
 
-## HTML attributes
+## Atribut HTML
 
-In HTML, tags may have attributes. When the browser parses the HTML to create DOM objects for tags, it recognizes *standard* attributes and creates DOM properties from them.
+Dalam HTML, tag-tag dapat memiliki atribut. Ketika peramban mengurai HTML untuk membuat objek-objek DOM untuk tag-tag tersebut, peramban mengenali atribut-atribut _standar_ dan membuat properti DOM dari atribut-atribut tersebut.
 
-So when an element has `id` or another *standard* attribute, the corresponding property gets created. But that doesn't happen if the attribute is non-standard.
+Jadi, ketika sebuah elemen memiliki atribut `id` atau atribut _standar_ lainnya, properti yang sesuai akan dibuat. Namun, hal ini tidak terjadi jika atribut tersebut adalah non-standar.
 
-For instance:
+Misalnya:
+
 ```html run
 <body id="test" something="non-standard">
   <script>
-    alert(document.body.id); // test
-*!*
-    // non-standard attribute does not yield a property
-    alert(document.body.something); // undefined
-*/!*
+        alert(document.body.id); // test
+    *!*
+        // atribut non-standar tidak menghasilkan properti
+        alert(document.body.something); // undefined
+    */!*
   </script>
 </body>
 ```
 
-Please note that a standard attribute for one element can be unknown for another one. For instance, `"type"` is standard for `<input>` ([HTMLInputElement](https://html.spec.whatwg.org/#htmlinputelement)), but not for `<body>` ([HTMLBodyElement](https://html.spec.whatwg.org/#htmlbodyelement)). Standard attributes are described in the specification for the corresponding element class.
+Harap dicatat bahwa atribut standar untuk satu elemen dapat tidak dikenali oleh elemen lain. Misalnya, `"type"` adalah atribut standar untuk `<input>` ([HTMLInputElement](https://html.spec.whatwg.org/#htmlinputelement)), tetapi bukan untuk `<body>` ([HTMLBodyElement](https://html.spec.whatwg.org/#htmlbodyelement)). Atribut-atribut standar dijelaskan dalam spesifikasi untuk kelas elemen yang sesuai.
 
-Here we can see it:
+Di sini kita dapat melihatnya:
+
 ```html run
 <body id="body" type="...">
-  <input id="input" type="text">
+  <input id="input" type="text" />
   <script>
-    alert(input.type); // text
-*!*
-    alert(body.type); // undefined: DOM property not created, because it's non-standard
-*/!*
+        alert(input.type); // text
+    *!*
+        alert(body.type); // undefined: properti DOM tidak dibuat, karena itu adalah non-standar
+    */!*
   </script>
 </body>
 ```
 
-So, if an attribute is non-standard, there won't be a DOM-property for it. Is there a way to access such attributes?
+Jadi, jika sebuah atribut non-standar, maka tidak akan ada properti DOM untuknya. Apakah ada cara untuk mengakses atribut-atribut tersebut?
 
-Sure. All attributes are accessible by using the following methods:
+Tentu saja. Semua atribut dapat diakses dengan menggunakan method-method berikut:
 
-- `elem.hasAttribute(name)` -- checks for existence.
-- `elem.getAttribute(name)` -- gets the value.
-- `elem.setAttribute(name, value)` -- sets the value.
-- `elem.removeAttribute(name)` -- removes the attribute.
+- `elem.hasAttribute(name)` -- memeriksa keberadaan atribut.
+- `elem.getAttribute(name)` -- mendapatkan nilainya.
+- `elem.setAttribute(name, value)` -- mengatur nilainya.
+- `elem.removeAttribute(name)` -- menghapus atribut.
 
-These methods operate exactly with what's written in HTML.
+Method-method ini beroperasi sesuai dengan apa yang tertulis dalam HTML.
 
-Also one can read all attributes using `elem.attributes`: a collection of objects that belong to a built-in [Attr](https://dom.spec.whatwg.org/#attr) class, with `name` and `value` properties.
+Selain itu, kita dapat membaca semua atribut menggunakan `elem.attributes`: sebuah koleksi objek yang termasuk ke dalam kelas bawaan [Attr](https://dom.spec.whatwg.org/#attr), dengan properti `name` dan `value`.
 
-Here's a demo of reading a non-standard property:
+Berikut adalah contoh membaca atribut non-standar:
 
 ```html run
 <body something="non-standard">
   <script>
-*!*
-    alert(document.body.getAttribute('something')); // non-standard
-*/!*
+    *!*
+        alert(document.body.getAttribute('something')); // non-standar
+    */!*
   </script>
 </body>
 ```
 
-HTML attributes have the following features:
+Atribut HTML memiliki fitur-fitur berikut:
 
-- Their name is case-insensitive (`id` is same as `ID`).
-- Their values are always strings.
+- Nama mereka bersifat case-insensitive (`id` sama dengan `ID`).
+- Nilai-nilai mereka selalu berupa string.
 
-Here's an extended demo of working with attributes:
+Berikut adalah contoh lebih lanjut tentang cara bekerja dengan atribut-atribut:
 
 ```html run
 <body>
   <div id="elem" about="Elephant"></div>
 
   <script>
-    alert( elem.getAttribute('About') ); // (1) 'Elephant', reading
+    alert(elem.getAttribute("About")); // (1) 'Elephant', membaca
 
-    elem.setAttribute('Test', 123); // (2), writing
+    elem.setAttribute("Test", 123); // (2), menulis
 
-    alert( elem.outerHTML ); // (3), see if the attribute is in HTML (yes)
+    alert(elem.outerHTML); // (3), lihat apakah atributnya ada di HTML (ya)
 
-    for (let attr of elem.attributes) { // (4) list all
-      alert( `${attr.name} = ${attr.value}` );
+    for (let attr of elem.attributes) {
+      // (4) daftar semua
+      alert(`${attr.name} = ${attr.value}`);
     }
   </script>
 </body>
 ```
 
-Please note:
+Harap dicatat:
 
-1. `getAttribute('About')` -- the first letter is uppercase here, and in HTML it's all lowercase. But that doesn't matter: attribute names are case-insensitive.
-2. We can assign anything to an attribute, but it becomes a string. So here we have `"123"` as the value.
-3. All attributes including ones that we set are visible in `outerHTML`.
-4. The `attributes` collection is iterable and has all the attributes of the element (standard and non-standard) as objects with `name` and `value` properties.
+1. `getAttribute('About')` -- huruf pertama di sini adalah huruf kapital, dan dalam HTML semuanya huruf kecil. Tetapi hal ini tidak masalah: nama atribut bersifat case-insensitive.
+2. Kita dapat menetapkan apa pun sebagai atribut, tetapi nilainya akan menjadi sebuah string. Jadi disini kita memiliki `"123"` sebagai nilai atribut.
+3. Semua atribut, termasuk yang kita set, terlihat dalam `outerHTML`.
+4. Koleksi `attributes` dapat diulangi (iterable) dan berisi semua atribut dari elemen tersebut (standar dan non-standar) sebagai objek dengan properti `name` dan `value`.
 
-## Property-attribute synchronization
+## Sinkronisasi Properti-atribut
 
-When a standard attribute changes, the corresponding property is auto-updated, and (with some exceptions) vice versa.
+Ketika atribut standar berubah, properti yang sesuai akan diperbarui secara otomatis, dan (dengan beberapa pengecualian) sebaliknya.
 
-In the example below `id` is modified as an attribute, and we can see the property changed too. And then the same backwards:
+Pada contoh dibawah ini, `id` diubah sebagai atribut, dan kita dapat melihat bahwa properti juga berubah. Kemudian, hal yang sama terjadi sebaliknya:
 
 ```html run
-<input>
+<input />
 
 <script>
-  let input = document.querySelector('input');
+  let input = document.querySelector("input");
 
-  // attribute => property
-  input.setAttribute('id', 'id');
-  alert(input.id); // id (updated)
+  // atribut => properti
+  input.setAttribute("id", "id");
+  alert(input.id); // id (diperbarui)
 
-  // property => attribute
-  input.id = 'newId';
-  alert(input.getAttribute('id')); // newId (updated)
+  // properti => atribut
+  input.id = "newId";
+  alert(input.getAttribute("id")); // newId (diperbarui)
 </script>
 ```
 
-But there are exclusions, for instance `input.value` synchronizes only from attribute -> to property, but not back:
+Tetapi ada pengecualian, misalnya `input.value` disinkronkan hanya dari atribut -> ke properti, tapi tidak sebaliknya:
 
 ```html run
-<input>
+<input />
 
 <script>
-  let input = document.querySelector('input');
+    let input = document.querySelector('input');
 
-  // attribute => property
-  input.setAttribute('value', 'text');
-  alert(input.value); // text
+    // atribut => properti
+    input.setAttribute('value', 'text');
+    alert(input.value); // text
 
-*!*
-  // NOT property => attribute
-  input.value = 'newValue';
-  alert(input.getAttribute('value')); // text (not updated!)
-*/!*
+  *!*
+    // BUKAN properti => atribut
+    input.value = 'newValue';
+    alert(input.getAttribute('value')); // teks (tidak diperbarui!)
+  */!*
 </script>
 ```
 
-In the example above:
-- Changing the attribute `value` updates the property.
-- But the property change does not affect the attribute.
+Pada contoh di atas:
 
-That "feature" may actually come in handy, because the user actions may lead to `value` changes, and then after them, if we want to recover the "original" value from HTML, it's in the attribute.
+- Mengubah atribut `value` akan memperbarui propertinya.
+- Tetapi perubahan properti tidak mempengarui atributnya.
 
-## DOM properties are typed
+"Fitur" tersebut sebenarnya bisa sangat berguna, karena tindakan pengguna dapat menyebabkan perubahan nilai `value`, dan kemudian, jika kita ingin mengembalikan nilai "asli" dari HTML, nilainya terdapat dalam atribut.
 
-DOM properties are not always strings. For instance, the `input.checked` property (for checkboxes) is a boolean:
+## Properti DOM bertipe
+
+Properti DOM tidak selalu berupa string. Misalnya, properti `input.checked` (untuk kotak centang / checkbox) adalah boolean:
 
 ```html run
-<input id="input" type="checkbox" checked> checkbox
+<input id="input" type="checkbox" checked /> checkbox
 
 <script>
-  alert(input.getAttribute('checked')); // the attribute value is: empty string
-  alert(input.checked); // the property value is: true
+  alert(input.getAttribute("checked")); // nilai atributnya adalah: string kosong
+  alert(input.checked); // nilai propertinya adalah: benar (true)
 </script>
 ```
 
-There are other examples. The `style` attribute is a string, but the `style` property is an object:
+Ada contoh lain. Atribut `style` adalah string, tetapi properti `style` adalah objek:
 
 ```html run
 <div id="div" style="color:red;font-size:120%">Hello</div>
 
 <script>
   // string
-  alert(div.getAttribute('style')); // color:red;font-size:120%
+  alert(div.getAttribute("style")); // color:red;font-size:120%
 
-  // object
+  // objek
   alert(div.style); // [object CSSStyleDeclaration]
   alert(div.style.color); // red
 </script>
 ```
 
-Most properties are strings though.
+Sebagian besar properti adalah string.
 
-Quite rarely, even if a DOM property type is a string, it may differ from the attribute. For instance, the `href` DOM property is always a *full* URL, even if the attribute contains a relative URL or just a `#hash`.
+Jarang sekali, meskipun tipe properti DOM adalah string, itu dapat berbeda dari atribut. Misalnya, properti DOM `href` selalu berupa URL _penuh_, meskipun atributnya berisi URL relatif atau hanya `#hash`.
 
-Here's an example:
+Berikut adalah contoh:
 
 ```html height=30 run
 <a id="a" href="#hello">link</a>
 <script>
-  // attribute
-  alert(a.getAttribute('href')); // #hello
+  // atribut
+  alert(a.getAttribute("href")); // #hello
 
-  // property
-  alert(a.href ); // full URL in the form http://site.com/page#hello
+  // properti
+  alert(a.href); // URL penuh dalam formulir http://site.com/page#hello
 </script>
 ```
 
-If we need the value of `href` or any other attribute exactly as written in the HTML, we can use `getAttribute`.
+Jika kita membutuhkan nilai `href` atau atribut lainnya secara tepat seperti yang tertulis dalam HTML, kita dapat menggunakan `getAttribute`.
 
+## Atribut non-standar, dataset
 
-## Non-standard attributes, dataset
+Ketika menulis HTML, kita sering menggunakan atribut-atribut standar. Tetapi bagaimana dengan atribut non-standar, khusus? Pertama, mari lihat apakah mereka bermanfaat atau tidak? Untuk apa?
 
-When writing HTML, we use a lot of standard attributes. But what about non-standard, custom ones? First, let's see whether they are useful or not? What for?
+Terkadang atribut non-standar digunakan untuk menyampaikan data kustom dari HTML ke JavaScript, atau untuk "menandai" elemen-elemen HTML untuk JavaScript.
 
-Sometimes non-standard attributes are used to pass custom data from HTML to JavaScript, or to "mark" HTML-elements for JavaScript.
-
-Like this:
+Contohnya seperti ini:
 
 ```html run
-<!-- mark the div to show "name" here -->
+<!-- berikan tanda pada `div` untuk menampilkan "name" di sini -->
 <div *!*show-info="name"*/!*></div>
-<!-- and age here -->
+<!-- dan "umur" di sini -->
 <div *!*show-info="age"*/!*></div>
 
 <script>
-  // the code finds an element with the mark and shows what's requested
+  // kode tersebut menemukan elemen dengan tanda dan menampilkan apa yang di minta
   let user = {
     name: "Pete",
     age: 25
   };
 
   for(let div of document.querySelectorAll('[show-info]')) {
-    // insert the corresponding info into the field
+    // sisipkan info yang sesuai ke dalam elemen
     let field = div.getAttribute('show-info');
-    div.innerHTML = user[field]; // first Pete into "name", then 25 into "age"
+    div.innerHTML = user[field]; // pertama Pete ke dalam "name", kemudian 25 ke dalam "age"
   }
 </script>
 ```
 
-Also they can be used to style an element.
+Selain itu, atribut non-standar juga dapat digunakan untuk memberikan gaya (style) pada elemen.
 
-For instance, here for the order state the attribute `order-state` is used:
+Misalnya, di sini untuk keadaan pesanan (order state), digunakan atribut `order-state`:
 
 ```html run
 <style>
-  /* styles rely on the custom attribute "order-state" */
+  /* gaya-gaya (styles) mengandalkan atribut "order-state" */
   .order[order-state="new"] {
     color: green;
   }
@@ -285,48 +288,43 @@ For instance, here for the order state the attribute `order-state` is used:
   }
 </style>
 
-<div class="order" order-state="new">
-  A new order.
-</div>
+<div class="order" order-state="new">A new order.</div>
 
-<div class="order" order-state="pending">
-  A pending order.
-</div>
+<div class="order" order-state="pending">A pending order.</div>
 
-<div class="order" order-state="canceled">
-  A canceled order.
-</div>
+<div class="order" order-state="canceled">A canceled order.</div>
 ```
 
-Why would using an attribute be preferable to having classes like `.order-state-new`, `.order-state-pending`, `.order-state-canceled`?
+Mengapa menggunakan atribut lebih disukai daripada menggunakan kelas seperti `.order-state-new`, `.order-state-pending`, `.order-state-canceled`?
 
-Because an attribute is more convenient to manage. The state can be changed as easy as:
+Karena atribut lebih mudah dikelola. Keadaan dapat diubah dengan mudah seperti ini:
 
 ```js
-// a bit simpler than removing old/adding a new class
-div.setAttribute('order-state', 'canceled');
+// sedikit lebih sederhana daripada menghapus kelas lama/menambahkan kelas baru
+div.setAttribute("order-state", "canceled");
 ```
 
-But there may be a possible problem with custom attributes. What if we use a non-standard attribute for our purposes and later the standard introduces it and makes it do something? The HTML language is alive, it grows, and more attributes appear to suit the needs of developers. There may be unexpected effects in such case.
+Namun, ada masalah yang mungkin muncul dengan atribut kustom. Bagaimana jika kita menggunakan atribut non-standar untuk tujuan kita dan kemudian standar memperkenalkannya dan memberikan fungsionalitas tertentu padanya? Bahasa HTML adalah dinamis, berkembang, dan atribut-atribut baru muncul untuk memenuhi kebutuhan para pengembang. Dalam kasus tersebut, dapat terjadi efek yang tidak terduga.
 
-To avoid conflicts, there exist [data-*](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes) attributes.
+Untuk menghindari konflik, ada [data-\*](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes) atribut.
 
-**All attributes starting with "data-" are reserved for programmers' use. They are available in the `dataset` property.**
+**Semua atribut yang dimulai dengan "data-" disediakan untuk penggunaan programmer. Mereka dapat di akses melalui properti `dataset`.**
 
-For instance, if an `elem` has an attribute named `"data-about"`, it's available as `elem.dataset.about`.
+Misalnya, jika sebuah `elem` memiliki atribut bernama `"data-about"`, maka dapat diakses menggunakan `elem.dataset.about`.
 
-Like this:
+Contohnya seperti ini:
 
 ```html run
 <body data-about="Elephants">
-<script>
-  alert(document.body.dataset.about); // Elephants
-</script>
+  <script>
+    alert(document.body.dataset.about); // Elephants
+  </script>
+</body>
 ```
 
-Multiword attributes like `data-order-state` become camel-cased: `dataset.orderState`.
+Atribut dengan beberapa kata seperti `data-order-state` akan menjadi camel-cased: `dataset.orderState`.
 
-Here's a rewritten "order state" example:
+Berikut adalah contoh yang telah diperbaiki untuk "order state":
 
 ```html run
 <style>
@@ -343,44 +341,42 @@ Here's a rewritten "order state" example:
   }
 </style>
 
-<div id="order" class="order" data-order-state="new">
-  A new order.
-</div>
+<div id="order" class="order" data-order-state="new">A new order.</div>
 
 <script>
-  // read
-  alert(order.dataset.orderState); // new
+  // membaca
+  alert(order.dataset.orderState); // baru
 
-  // modify
+  // memodifikasi
   order.dataset.orderState = "pending"; // (*)
 </script>
 ```
 
-Using `data-*` attributes is a valid, safe way to pass custom data.
+Menggunakan atribut `data-*` adalah cara yang valid dan aman untuk menyampaikan data kustom.
 
-Please note that we can not only read, but also modify data-attributes. Then CSS updates the view accordingly: in the example above the last line `(*)` changes the color to blue.
+Harap dicatat bahwa kita tidak hanya bisa membaca, tetapi juga mengubah atribut data. Selanjutnya, CSS akan memperbarui tampilan sesuai dengan perubahan tersebut: pada contoh di atas, baris terakhir `(*)` mengubah warna menjadi biru.
 
-## Summary
+## Ringkasan
 
-- Attributes -- is what's written in HTML.
-- Properties -- is what's in DOM objects.
+- Atribut -- adalah apa yang tertulis dalam HTML.
+- Properti -- adalah apa yang ada dalam objek DOM.
 
-A small comparison:
+Sebuah perbandingan kecil:
 
-|            | Properties | Attributes |
-|------------|------------|------------|
-|Type|Any value, standard properties have types described in the spec|A string|
-|Name|Name is case-sensitive|Name is not case-sensitive|
+|      | Properti                                                                                     | Atribut                            |
+| ---- | -------------------------------------------------------------------------------------------- | ---------------------------------- |
+| Tipe | Bisa memiliki nilai apapun, properti standar memiliki tipe yang dijelaskan dalam spesifikasi | Sebuah string                      |
+| Nama | Nama bersifat case-sensitive                                                                 | Nama tidak bersifat case-sensitive |
 
-Methods to work with attributes are:
+Method-method untuk bekerja dengan atribut adalah:
 
-- `elem.hasAttribute(name)` -- to check for existence.
-- `elem.getAttribute(name)` -- to get the value.
-- `elem.setAttribute(name, value)` -- to set the value.
-- `elem.removeAttribute(name)` -- to remove the attribute.
-- `elem.attributes` is a collection of all attributes.
+- `elem.hasAttribute(name)` -- untuk memeriksa keberadaan atribut.
+- `elem.getAttribute(name)` -- untuk mendapatkan nilai atribut.
+- `elem.setAttribute(name, value)` -- untuk mengatur nilai atribut.
+- `elem.removeAttribute(name)` -- untuk menghapus atribut.
+- `elem.attributes` adalah koleksi dari semua atribut.
 
-For most situations using DOM properties is preferable. We should refer to attributes only when DOM properties do not suit us, when we need exactly attributes, for instance:
+Untuk sebagian besar situasi, menggunakan properti DOM lebih disukai. Kita harus merujuk pada atribut hanya ketika properti DOM tidak sesuai dengan kebutuhan kita, ketika kita memerlukan atribut secara khusus, misalnya:
 
-- We need a non-standard attribute. But if it starts with `data-`, then we should use `dataset`.
-- We want to read the value "as written" in HTML. The value of the DOM property may be different, for instance the `href` property is always a full URL, and we may want to get the "original" value.
+- Kita membutuhkan atribut non-standar. Tetapi jika atribut tersebut dimulai dengan `data-`, maka kita harus menggunakan `dataset`.
+- Kita ingin membaca nilai "sebagaimana tertulis" dalam HTML. Nilai properti DOM mungkin berbeda, misalnya properti `href` selalu berupa URL lengkap, dan kita mungkin ingin mendapatkan nilai "asli" tersebut.
