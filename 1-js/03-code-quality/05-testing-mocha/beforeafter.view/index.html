@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <!-- add mocha css, to show results -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
-  <!-- add mocha framework code -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
-  <script>
-    // enable bdd-style testing
-    mocha.setup('bdd');
-  </script>
-  <!-- add chai -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
-  <script>
-    // chai has a lot of stuff, let's make assert global
-    let assert = chai.assert;
-  </script>
-</head>
+  <head>
+    <!-- Tambahkan mocha css untuk menampilkan hasil. -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css"
+    />
+    <!-- Tambahkan kode kerangka kerja/framework mocha -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
+    <script>
+      // Mengaktifkan pengujian dengan bdd-style
+      mocha.setup("bdd");
+    </script>
+    <!-- Tambahkan chai script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+    <script>
+      // Chai memiliki banyak fitur, mari kita membuat assert menjadi global.
+      let assert = chai.assert;
+    </script>
+  </head>
 
-<body>
+  <body>
+    <!-- Skrip dengan pengujian (describe, it...). -->
+    <script src="test.js"></script>
+    <!-- Elemen dengan id="mocha" akan berisi hasil uji coba/test. -->
+    <div id="mocha"></div>
 
-  <!-- the script with tests (describe, it...) -->
-  <script src="test.js"></script>
-
-  <!-- the element with id="mocha" will contain test results -->
-  <div id="mocha"></div>
-
-  <!-- run tests! -->
-  <script>
-    mocha.run();
-  </script>
-</body>
-
+    <!-- Jalankan pengujian/tests -->
+    <script>
+      mocha.run();
+    </script>
+  </body>
 </html>
