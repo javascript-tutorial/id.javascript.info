@@ -187,8 +187,13 @@ let user = {
 
 let say = user.say.bind(user);
 
+<<<<<<< HEAD
 say("Hello"); // Hello, John (argumen "Hello" dikirim untuk digunakan)
 say("Bye"); // Bye, John ("Bye" dikirim untuk digunakan)
+=======
+say("Hello"); // Hello, John! ("Hello" argument is passed to say)
+say("Bye"); // Bye, John! ("Bye" is passed to say)
+>>>>>>> 285083fc71ee3a7cf55fd8acac9c91ac6f62105c
 ```
 
 ````smart header="Metode yang bermanfaat: `bindAll`"
@@ -202,7 +207,12 @@ for (let key in user) {
 }
 ```
 
+<<<<<<< HEAD
 Librari Javascript juga menyediakan fungsi untuk memudahkan pengikatan/binding masal, contoh [_.bindAll(object, methodNames)](http://lodash.com/docs#bindAll) didalam lodash.
+=======
+JavaScript libraries also provide functions for convenient mass binding , e.g. [_.bindAll(object, methodNames)](https://lodash.com/docs#bindAll) in lodash.
+````
+>>>>>>> 285083fc71ee3a7cf55fd8acac9c91ac6f62105c
 
 
 ## Partial functions/Fungsi sebagian
