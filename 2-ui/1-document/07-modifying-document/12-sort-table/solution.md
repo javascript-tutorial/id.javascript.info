@@ -1,18 +1,20 @@
-The solution is short, yet may look a bit tricky, so here I provide it with extensive comments:
+Solusinya singkat, namun mungkin terlihat sedikit rumit, jadi di sini saya berikan dengan komentar yang ekstensif:
 
 ```js
 let sortedRows = Array.from(table.tBodies[0].rows) // 1
-  .sort((rowA, rowB) => rowA.cells[0].innerHTML.localeCompare(rowB.cells[0].innerHTML));
+  .sort((rowA, rowB) =>
+    rowA.cells[0].innerHTML.localeCompare(rowB.cells[0].innerHTML)
+  );
 
 table.tBodies[0].append(...sortedRows); // (3)
 ```
 
-The step-by-step algorthm:
+Algoritma langkah-demi-langkah:
 
-1. Get all `<tr>`, from `<tbody>`.
-2. Then sort them comparing by the content of the first `<td>` (the name field).
-3. Now insert nodes in the right order by `.append(...sortedRows)`.
+1. Dapatkan semua `<tr>`, dari `<tbody>`.
+2. Kemudian urutkan mereka dengan membandingkan berdasarkan konten `<td>` pertama (bidang nama).
+3. Sekarang masukkan node dengan urutan yang benar dengan `.append(...sortedRows)`.
 
-We don't have to remove row elements, just "re-insert", they leave the old place automatically.
+Kita tidak perlu menghapus elemen baris, cukup "memasukkan kembali", karena mereka akan meninggalkan tempat lama secara otomatis.
 
-P.S. In our case, there's an explicit `<tbody>` in the table, but even if HTML table doesn't have `<tbody>`, the DOM structure always has it.
+P.S. Dalam kasus kita, ada <tbody> yang eksplisit dalam tabel, tetapi bahkan jika tabel HTML tidak memiliki <tbody>, struktur DOM selalu memiliki elemen tersebut.

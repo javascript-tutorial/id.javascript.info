@@ -1,9 +1,9 @@
-We'll create the table as a string: `"<table>...</table>"`, and then assign it to  `innerHTML`.
+Kita akan membuat tabel sebagai string: "<table>...</table>", dan kemudian menetapkannya ke innerHTML.
 
-The algorithm:
+Algoritma:
 
-1. Create the table header with `<th>` and weekday names.
-2. Create the date object `d = new Date(year, month-1)`. That's the first day of `month` (taking into account that months in JavaScript start from `0`, not `1`).
-3. First few cells till the first day of the month `d.getDay()` may be empty. Let's fill them in with `<td></td>`.
-4. Increase the day in `d`: `d.setDate(d.getDate()+1)`. If `d.getMonth()` is not yet the next month, then add the new cell `<td>` to the calendar. If that's a Sunday, then add a newline <code>"&lt;/tr&gt;&lt;tr&gt;"</code>.
-5. If the month has finished, but the table row is not yet full, add empty `<td>` into it, to make it square.
+1. Buat header tabel dengan <th> dan nama-nama hari.
+2. Buat objek tanggal `d = new Date(year, month-1)`. Itu adalah hari pertama dari `month` (mengingat bahwa bulan dalam JavaScript dimulai dari `0`, bukan `1`).
+3. Beberapa sel pertama hingga hari pertama bulan `d.getDay()` mungkin kosong. Mari isi mereka dengan <td></td>.
+4. Tingkatkan tanggal di `d`: `d.setDate(d.getDate()+1)`. Jika `d.getMonth()` belum bulan berikutnya, tambahkan sel `<td>` baru ke dalam kalender. Jika itu hari Minggu, tambahkan baris baru <code>"&lt;/tr&gt;&lt;tr&gt;"</code>.
+5. Jika bulan telah selesai, tetapi baris tabel belum penuh, tambahkan `<td>` kosong ke dalamnya, untuk membuatnya persegi.

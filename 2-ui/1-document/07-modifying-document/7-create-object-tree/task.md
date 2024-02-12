@@ -1,51 +1,51 @@
-importance: 5
+Tingkat kepentingan: 5
 
 ---
 
-# Create a tree from the object
+# Membuat pohon (tree) dari objek
 
-Write a function `createTree` that creates a nested `ul/li` list from the nested object.
+Buatlah sebuah fungsi `createTree` yang membuat daftar bertingkat atau bersarang (nested) `ul/li` dari objek bertingkat atau bersarang.
 
-For instance:
+Contohnya:
 
 ```js
 let data = {
-  "Fish": {
-    "trout": {},
-    "salmon": {}
+  Fish: {
+    trout: {},
+    salmon: {},
   },
 
-  "Tree": {
-    "Huge": {
-      "sequoia": {},
-      "oak": {}
+  Tree: {
+    Huge: {
+      sequoia: {},
+      oak: {},
     },
-    "Flowering": {
+    Flowering: {
       "apple tree": {},
-      "magnolia": {}
-    }
-  }
+      magnolia: {},
+    },
+  },
 };
 ```
 
-The syntax:
+Sintaksnya:
 
 ```js
 let container = document.getElementById('container');
 *!*
-createTree(container, data); // creates the tree in the container
+createTree(container, data); // membuat pohon di dalam container
 */!*
 ```
 
-The result (tree) should look like this:
+Hasilnya (pohon) seharusnya terlihat seperti ini:
 
 [iframe border=1 src="build-tree-dom"]
 
-Choose one of two ways of solving this task:
+Pilih salah satu dari dua cara berikut untuk menyelesaikan tugas ini:
 
-1. Create the HTML for the tree and then assign to `container.innerHTML`.
-2. Create tree nodes and append with DOM methods.
+1. Buat HTML untuk pohon dan kemudian tetapkan ke `container.innerHTML`.
+2. Buat simpul pohon (tree nodes) dan tambahkan dengan metode DOM.
 
-Would be great if you could do both.
+Bagus jika Anda bisa melakukan keduanya.
 
-P.S. The tree should not have "extra" elements like empty `<ul></ul>` for the leaves.
+P.S. Pohon tidak boleh memiliki elemen "ekstra" seperti <ul></ul> kosong untuk daun-daunnya.

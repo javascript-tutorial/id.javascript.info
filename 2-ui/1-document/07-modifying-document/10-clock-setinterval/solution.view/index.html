@@ -1,69 +1,69 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-  <style>
-    .hour {
-      color: red
-    }
-
-    .min {
-      color: green
-    }
-
-    .sec {
-      color: blue
-    }
-  </style>
-</head>
-
-<body>
-
-  <div id="clock">
-    <span class="hour">hh</span>:<span class="min">mm</span>:<span class="sec">ss</span>
-  </div>
-
-  <script>
-    let timerId;
-
-    function update() {
-      let clock = document.getElementById('clock');
-      let date = new Date();
-
-      let hours = date.getHours();
-      if (hours < 10) hours = '0' + hours;
-      clock.children[0].innerHTML = hours;
-
-      let minutes = date.getMinutes();
-      if (minutes < 10) minutes = '0' + minutes;
-      clock.children[1].innerHTML = minutes;
-
-      let seconds = date.getSeconds();
-      if (seconds < 10) seconds = '0' + seconds;
-      clock.children[2].innerHTML = seconds;
-    }
-
-    function clockStart() {
-      // set a new interval only if the clock is stopped
-      // otherwise we would rewrite the timerID reference to the running interval and wouldn't be able to stop the clock ever again
-      if (!timerId) { 
-        timerId = setInterval(update, 1000);
+  <head>
+    <style>
+      .hour {
+        color: red;
       }
-      update(); // <--  start right now, don't wait 1 second till the first setInterval works
-    }
 
-    function clockStop() {
-      clearInterval(timerId);
-      timerId = null; // <-- clear timerID to indicate that the clock has been stopped, so that it is possible to start it again in clockStart()
-    }
+      .min {
+        color: green;
+      }
 
-    clockStart();
-  </script>
+      .sec {
+        color: blue;
+      }
+    </style>
+  </head>
 
-  <!-- click on this button calls clockStart() -->
-  <input type="button" onclick="clockStart()" value="Start">
+  <body>
+    <div id="clock">
+      <span class="hour">hh</span>:<span class="min">mm</span>:<span class="sec"
+        >ss</span
+      >
+    </div>
 
-  <!-- click on this button calls clockStop() -->
-  <input type="button" onclick="clockStop()" value="Stop">
+    <script>
+      let timerId;
 
-</body>
+      function update() {
+        let clock = document.getElementById("clock");
+        let date = new Date();
+
+        let hours = date.getHours();
+        if (hours < 10) hours = "0" + hours;
+        clock.children[0].innerHTML = hours;
+
+        let minutes = date.getMinutes();
+        if (minutes < 10) minutes = "0" + minutes;
+        clock.children[1].innerHTML = minutes;
+
+        let seconds = date.getSeconds();
+        if (seconds < 10) seconds = "0" + seconds;
+        clock.children[2].innerHTML = seconds;
+      }
+
+      function clockStart() {
+        // atur interval baru hanya jika jam berhenti
+        // jika tidak, kita akan menulis kembali referensi timerID ke interval yang berjalan dan tidak akan dapat menghentikan jam lagi
+        if (!timerId) {
+          timerId = setInterval(update, 1000);
+        }
+        update(); // <--  mulai sekarang juga, jangan tunggu 1 detik sampai setInterval pertama berfungsi
+      }
+
+      function clockStop() {
+        clearInterval(timerId);
+        timerId = null; // <-- hapus timerID untuk menunjukkan bahwa jam telah dihentikan, sehingga memungkinkan untuk memulainya kembali di clockStart()
+      }
+
+      clockStart();
+    </script>
+
+    <!-- tekan tombol ini untuk memanggil clockStart() -->
+    <input type="button" onclick="clockStart()" value="Start" />
+
+    <!-- tekan tombol ini untuk memanggil clockStop() -->
+    <input type="button" onclick="clockStop()" value="Stop" />
+  </body>
 </html>

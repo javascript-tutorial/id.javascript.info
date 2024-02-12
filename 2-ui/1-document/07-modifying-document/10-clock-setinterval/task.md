@@ -1,11 +1,11 @@
-importance: 4
+Tingkat kepentingan: 4
 
 ---
 
-# Colored clock with setInterval
+# Jam Berwarna dengan setInterval
 
-Create a colored clock like here:
+Buatlah jam berwarna seperti di sini:
 
 [iframe src="solution" height=60]
 
-Use HTML/CSS for the styling, JavaScript only updates time in elements.
+Gunakan HTML/CSS untuk styling, JavaScript hanya untuk memperbarui waktu pada elemen-elemen.

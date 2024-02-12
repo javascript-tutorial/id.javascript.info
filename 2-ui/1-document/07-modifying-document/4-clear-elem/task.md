@@ -1,10 +1,10 @@
-importance: 5
+Tingkat kepentingan: 5
 
 ---
 
-# Clear the element
+# Membersihkan elemen
 
-Create a function `clear(elem)` that removes everything from the element.
+Buatlah fungsi `clear(elem)` yang menghapus semua konten dari elemen tersebut.
 
 ```html run height=60
 <ol id="elem">
@@ -13,8 +13,10 @@ Create a function `clear(elem)` that removes everything from the element.
 </ol>
 
 <script>
-  function clear(elem) { /* your code */ }
+  function clear(elem) {
+    /* kode anda */
+  }
 
-  clear(elem); // clears the list
+  clear(elem); // menghapus isi daftar
 </script>
 ```

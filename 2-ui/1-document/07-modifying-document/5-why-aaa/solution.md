@@ -1,9 +1,9 @@
-The HTML in the task is incorrect. That's the reason of the odd thing.
+HTML pada tugas tersebut tidak benar. Itulah sebabnya hal yang aneh terjadi.
 
-The browser has to fix it automatically. But there may be no text inside the `<table>`: according to the spec only table-specific tags are allowed. So the browser shows `"aaa"` *before* the `<table>`.
+_Browser_ harus memperbaikinya secara otomatis. Tetapi mungkin tidak ada teks di dalam `<table>`: sesuai dengan spesifikasi, hanya tag khusus tabel yang diizinkan. Jadi, _Browser_ menampilkan `"aaa"` sebelum `<table>`.
 
-Now it's obvious that when we remove the table, it remains.
+Sekarang jelas bahwa ketika kita menghapus tabel, teks tersebut tetap ada.
 
-The question can be easily answered by exploring the DOM using the browser tools. You'll see `"aaa"` before the `<table>`.
+Pertanyaan tersebut dapat dengan mudah dijawab dengan menjelajahi DOM menggunakan alat _Browser_. Anda akan melihat `"aaa"` sebelum `<table>`.
 
-The HTML standard specifies in detail how to process bad HTML, and such behavior of the browser is correct.
+Standar HTML menentukan secara rinci bagaimana cara memproses HTML yang tidak benar, dan perilaku browser seperti itu adalah benar.

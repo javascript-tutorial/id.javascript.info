@@ -1,57 +1,55 @@
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <div id="container"></div>
 
-  <div id="container"></div>
-
-  <script>
-    let data = {
-      "Fish": {
-        "trout": {},
-        "salmon": {}
-      },
-
-      "Tree": {
-        "Huge": {
-          "sequoia": {},
-          "oak": {}
+    <script>
+      let data = {
+        Fish: {
+          trout: {},
+          salmon: {},
         },
-        "Flowering": {
-          "apple tree": {},
-          "magnolia": {}
-        }
-      }
-    };
 
-    function createTree(container, obj) {
-      container.append(createTreeDom(obj));
-    }
+        Tree: {
+          Huge: {
+            sequoia: {},
+            oak: {},
+          },
+          Flowering: {
+            "apple tree": {},
+            magnolia: {},
+          },
+        },
+      };
 
-    function createTreeDom(obj) {
-      // if there's no children, then the call returns undefined
-      // and the <ul> won't be created
-      if (!Object.keys(obj).length) return;
-
-      let ul = document.createElement('ul');
-
-      for (let key in obj) {
-        let li = document.createElement('li');
-        li.innerHTML = key;
-
-        let childrenUl = createTreeDom(obj[key]);
-        if (childrenUl) {
-          li.append(childrenUl);
-        }
-
-        ul.append(li);
+      function createTree(container, obj) {
+        container.append(createTreeDom(obj));
       }
 
-      return ul;
-    }
+      function createTreeDom(obj) {
+        // jika tidak ada anak (children), maka panggilan tersebut mengembalikan undefined
+        // dan <ul> tidak akan dibuat
+        if (!Object.keys(obj).length) return;
 
-    let container = document.getElementById('container');
-    createTree(container, data);
-  </script>
+        let ul = document.createElement("ul");
 
-</body>
+        for (let key in obj) {
+          let li = document.createElement("li");
+          li.innerHTML = key;
+
+          let childrenUl = createTreeDom(obj[key]);
+          if (childrenUl) {
+            li.append(childrenUl);
+          }
+
+          ul.append(li);
+        }
+
+        return ul;
+      }
+
+      let container = document.getElementById("container");
+      createTree(container, data);
+    </script>
+  </body>
 </html>

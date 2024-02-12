@@ -1,4 +1,4 @@
-The easiest way to walk the object is to use recursion.
+Cara termudah untuk menyusuri objek adalah dengan menggunakan rekursi.
 
-1. [The solution with innerHTML](sandbox:innerhtml).
-2. [The solution with DOM](sandbox:build-tree-dom).
+1. [Solusi dengan innerHTML](sandbox:innerhtml).
+2. [Solusi dengan DOM](sandbox:build-tree-dom).

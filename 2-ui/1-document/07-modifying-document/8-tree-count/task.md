@@ -1,13 +1,13 @@
-importance: 5
+Tingkat kepentingan: 5
 
 ---
 
-# Show descendants in a tree
+# Tampilkan keturunan dalam bentuk pohon
 
-There's a tree organized as nested `ul/li`.
+Ada pohon yang diorganisir sebagai `ul/li` bersarang.
 
-Write the code that adds to each `<li>` the number of its descendants. Skip leaves (nodes without children).
+Tuliskan kode yang menambahkan ke setiap `<li>` jumlah keturunannya. lewati daun (node tanpa anak).
 
-The result:
+Hasilnya:
 
 [iframe border=1 src="solution"]
