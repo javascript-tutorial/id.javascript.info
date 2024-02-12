@@ -1,17 +1,17 @@
-importance: 4
+Tingkat kepentingan: 4
 
 ---
 
-# Create a calendar
+# Buat kalender
 
-Write a function `createCalendar(elem, year, month)`.
+Tulis fungsi `createCalendar(elem, year, month)`.
 
-The call should create a calendar for the given year/month and put it inside `elem`.
+Panggilan tersebut harus membuat kalender untuk tahun/bulan yang diberikan dan menempatkannya di dalam `elem`.
 
-The calendar should be a table, where a week is `<tr>`, and a day is `<td>`. The table top should be `<th>` with weekday names: the first day should be Monday, and so on till Sunday.
+Kalender tersebut harus berupa tabel, di mana satu minggu adalah `<tr>`, dan satu hari adalah `<td>`. Puncak tabel harus berupa `<th>` dengan nama hari dalam seminggu: hari pertama harus Senin, dan seterusnya hingga Minggu.
 
-For instance, `createCalendar(cal, 2012, 9)` should generate in element `cal` the following calendar:
+Sebagai contoh, `createCalendar(cal, 2012, 9)` harus menghasilkan kalender berikut dalam elemen `cal`:
 
 [iframe height=210 src="solution"]
 
-P.S. For this task it's enough to generate the calendar, should not yet be clickable.
+P.S. Untuk tugas ini, cukup menghasilkan kalender; belum perlu dapat diklik.

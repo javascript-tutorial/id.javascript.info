@@ -1,14 +1,14 @@
-importance: 1
+Tingkat kepentingan: 1
 
 ---
 
-# Why does "aaa" remain?
+# Mengapa "aaa" masih ada?
 
-In the example below, the call `table.remove()` removes the table from the document.
+Pada contoh di bawah, panggilan `table.remove()` menghapus tabel dari dokumen.
 
-But if you run it, you can see that the text `"aaa"` is still visible.
+Tetapi jika anda menjalankannya, anda dapat melihat bahwa teks `"aaa"` masih terlihat.
 
-Why does that happen?
+Mengapa hal itu terjadi?
 
 ```html height=100 run
 <table id="table">
@@ -19,9 +19,9 @@ Why does that happen?
 </table>
 
 <script>
-  alert(table); // the table, as it should be
+  alert(table); // tabel, sebagaimana mestinya
 
   table.remove();
-  // why there's still aaa in the document?
+  // mengapa masih ada "aaa" di dokumen?
 </script>
 ```

@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-</head>
+  <body>
+    <div id="tree"></div>
 
-<body>
-
-  <div id="tree"></div>
-
-  <!-- The result should be:
+    <!-- Hasilnya seharusnya:
 <div id="tree">
 <ul>
   <li>Fish
@@ -38,31 +36,30 @@
 </div>
 -->
 
-  <script>
-    let data = {
-      "Fish": {
-        "trout": {},
-        "salmon": {}
-      },
-
-      "Tree": {
-        "Huge": {
-          "sequoia": {},
-          "oak": {}
+    <script>
+      let data = {
+        Fish: {
+          trout: {},
+          salmon: {},
         },
-        "Flowering": {
-          "apple tree": {},
-          "magnolia": {}
-        }
+
+        Tree: {
+          Huge: {
+            sequoia: {},
+            oak: {},
+          },
+          Flowering: {
+            "apple tree": {},
+            magnolia: {},
+          },
+        },
+      };
+
+      function createTree(container, data) {
+        /* kode anda  */
       }
-    };
 
-    function createTree(container, data) {
-      /* your code */
-    }
-
-    createTree(document.getElementById('tree'), data);
-  </script>
-
-</body>
+      createTree(document.getElementById("tree"), data);
+    </script>
+  </body>
 </html>

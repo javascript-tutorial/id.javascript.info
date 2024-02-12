@@ -1,16 +1,18 @@
-First, let's make HTML/CSS.
+Pertama, mari membuat HTML/CSS.
 
-Each component of the time would look great in its own `<span>`:
+Setiap komponen waktu akan terlihat bagus dalam elemen `<span>` sendiri:
 
 ```html
 <div id="clock">
-  <span class="hour">hh</span>:<span class="min">mm</span>:<span class="sec">ss</span>
+  <span class="hour">hh</span>:<span class="min">mm</span>:<span class="sec"
+    >ss</span
+  >
 </div>
 ```
 
-Also we'll need CSS to color them.
+Kita juga akan membutuhkan CSS untuk memberi warna pada mereka.
 
-The `update` function will refresh the clock, to be called by `setInterval` every second:
+Fungsi `update` akan menyegarkan jam, dipanggil oleh `setInterval` setiap detik:
 
 ```js
 function update() {
@@ -32,15 +34,17 @@ function update() {
 }
 ```
 
-In the line `(*)` we every time check the current date. The calls to `setInterval` are not reliable: they may happen with delays.
+Pada baris `(*)`, kita memeriksa tanggal saat ini setiap kali. Panggilan ke `setInterval` tidak dapat diandalkan: mereka mungkin terjadi dengan penundaan.
 
-The clock-managing functions:
+Fungsi pengelolaan jam:
 
 ```js
 let timerId;
 
-function clockStart() { // run the clock  
-  if (!timerId) { // only set a new interval if the clock is not running
+function clockStart() {
+  // menjalankan jam
+  if (!timerId) {
+    // hanya atur interval baru jika jam tidak berjalan
     timerId = setInterval(update, 1000);
   }
   update(); // (*)
@@ -52,6 +56,6 @@ function clockStop() {
 }
 ```
 
-Please note that the call to `update()` is not only scheduled in `clockStart()`, but immediately run in the line `(*)`. Otherwise the visitor would have to wait till the first execution of `setInterval`. And the clock would be empty till then.
+Harap dicatat bahwa panggilan ke `update()` tidak hanya dijadwalkan dalam `clockStart()`, tetapi segera dijalankan pada baris `(*)`. Jika tidak, pengunjung harus menunggu sampai eksekusi pertama `setInterval`. Dan jam akan kosong sampai saat itu.
 
-Also it is important to set a new interval in `clockStart()` only when the clock is not running. Otherways clicking the start button several times would set multiple concurrent intervals. Even worse - we would only keep the `timerID` of the last interval, losing references to all others. Then we wouldn't be able to stop the clock ever again! Note that we need to clear the `timerID` when the clock is stopped in the line `(**)`, so that it can be started again by running `clockStart()`.
+Juga penting untuk mengatur interval baru dalam `clockStart()` hanya ketika jam tidak berjalan. Jika tidak, mengklik tombol start beberapa kali akan mengatur beberapa interval yang berjalan bersamaan. Lebih buruk lagi - kita hanya akan menyimpan `timerID` dari interval terakhir, kehilangan referensi ke semua yang lain. Maka kita tidak akan bisa menghentikan jam lagi! Perlu dicatat bahwa kita perlu membersihkan `timerID` ketika jam berhenti pada baris `(**)`, sehingga itu dapat dimulai kembali dengan menjalankan `clockStart()`.

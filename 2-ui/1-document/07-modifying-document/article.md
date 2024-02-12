@@ -1,117 +1,115 @@
-# Modifying the document
+# Mengubah Dokumen
 
-DOM modification is the key to creating "live" pages.
+Modifikasi DOM adalah kunci untuk menciptakan halaman "live".
 
-Here we'll see how to create new elements "on the fly" and modify the existing page content.
+Di sini kita akan melihat cara membuat elemen baru "on the fly" dan mengubah konten halaman yang sudah ada.
 
-## Example: show a message
+## Contoh: menampilkan pesan
 
-Let's demonstrate using an example. We'll add a message on the page that looks nicer than `alert`.
+Mari kita tunjukkan dengan contoh. Kita akan menambahkan pesan pada halaman yang terlihat lebih baik daripada `alert`.
 
-Here's how it will look:
+Inilah tampilannya:
 
 ```html autorun height="80"
 <style>
-.alert {
-  padding: 15px;
-  border: 1px solid #d6e9c6;
-  border-radius: 4px;
-  color: #3c763d;
-  background-color: #dff0d8;
-}
+  .alert {
+    padding: 15px;
+    border: 1px solid #d6e9c6;
+    border-radius: 4px;
+    color: #3c763d;
+    background-color: #dff0d8;
+  }
 </style>
 
 *!*
-<div class="alert">
-  <strong>Hi there!</strong> You've read an important message.
-</div>
+<div class="alert"><strong>Hai!</strong> Anda telah membaca pesan penting.</div>
 */!*
 ```
 
-That was the HTML example. Now let's create the same `div` with JavaScript (assuming that the styles are in the HTML/CSS already).
+Itu adalah contoh HTML. Sekarang mari kita buat `div` yang sama dengan JavaScript (dengan asumsi bahwa gaya sudah ada di HTML/CSS).
 
-## Creating an element
+## Membuat elemen
 
-To create DOM nodes, there are two methods:
+Untuk membuat node DOM, ada dua metode:
 
 `document.createElement(tag)`
-: Creates a new *element node* with the given tag:
+: Membuat _node elemen_ baru dengan tag yang diberikan:
 
     ```js
     let div = document.createElement('div');
     ```
 
 `document.createTextNode(text)`
-: Creates a new *text node* with the given text:
+: Membuat _node teks_ baru dengan teks yang diberikan:
 
     ```js
-    let textNode = document.createTextNode('Here I am');
+    let textNode = document.createTextNode('Ini saya');
     ```
 
-Most of the time we need to create element nodes, such as the `div` for the message.
+Sebagian besar waktu kita perlu membuat node elemen, seperti `div` untuk pesan.
 
-### Creating the message
+### Membuat pesan
 
-Creating the message div takes 3 steps:
+Membuat `div` pesan melibatkan 3 langkah:
 
 ```js
-// 1. Create <div> element
-let div = document.createElement('div');
+// 1. Membuat elemen <div>
+let div = document.createElement("div");
 
-// 2. Set its class to "alert"
+// 2. Mengatur kelasnya menjadi "alert"
 div.className = "alert";
 
-// 3. Fill it with the content
-div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+// 3. Mengisinya dengan kontennya
+div.innerHTML = "<strong>Hai!</strong> Anda telah membaca pesan penting.";
 ```
 
-We've created the element. But as of now it's only in a variable named `div`, not in the page yet. So we can't see it.
+Kita telah membuat elemennya. Tapi sampai sekarang hanya dalam variabel bernama `div`, belum ada di halaman. Jadi kita belum bisa melihatnya.
 
-## Insertion methods
+## Metode Penyisipan
 
-To make the `div` show up, we need to insert it somewhere into `document`. For instance, into `<body>` element, referenced by `document.body`.
+Agar `div` muncul, kita perlu menyisipkannya ke suatu tempat dalam `document`. Misalnya, ke dalam elemen `<body>`, yang dirujuk oleh `document.body`.
 
-There's a special method `append` for that: `document.body.append(div)`.
+Ada metode khusus untuk itu: `document.body.append(div)`.
 
-Here's the full code:
+Berikut adalah kode lengkapnya:
 
 ```html run height="80"
 <style>
-.alert {
-  padding: 15px;
-  border: 1px solid #d6e9c6;
-  border-radius: 4px;
-  color: #3c763d;
-  background-color: #dff0d8;
-}
+  .alert {
+    padding: 15px;
+    border: 1px solid #d6e9c6;
+    border-radius: 4px;
+    color: #3c763d;
+    background-color: #dff0d8;
+  }
 </style>
 
 <script>
-  let div = document.createElement('div');
-  div.className = "alert";
-  div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+    let div = document.createElement('div');
+    div.className = "alert";
+    div.innerHTML = "<strong>Hai!</strong> Anda telah membaca pesan penting.";
 
-*!*
-  document.body.append(div);
-*/!*
+  *!*
+    document.body.append(div);
+  */!*
 </script>
 ```
 
-Here we called `append` on `document.body`, but we can call `append` method on any other element, to put another element into it. For instance, we can append something to `<div>` by calling `div.append(anotherElement)`.
+Di sini kita memanggil `append` pada `document.body`, tetapi kita dapat memanggil metode `append` pada elemen lain, untuk menyisipkan elemen lain ke dalamnya. Misalnya, kita dapat menambahkan sesuatu ke `<div>` dengan memanggil `div.append(anotherElement)`.
 
-Here are more insertion methods, they specify different places where to insert:
+Berikut adalah beberapa metode penyisipan lainnya, yang menentukan tempat yang berbeda untuk menyisipkan:
 
-- `node.append(...nodes or strings)` -- append nodes or strings *at the end* of `node`,
-- `node.prepend(...nodes or strings)` -- insert nodes or strings *at the beginning* of `node`,
-- `node.before(...nodes or strings)` –- insert nodes or strings *before* `node`,
-- `node.after(...nodes or strings)` –- insert nodes or strings *after* `node`,
-- `node.replaceWith(...nodes or strings)` –- replaces `node` with the given nodes or strings.
+- `node.append(...nodes or strings)` -- menambahkan node atau string _di akhir_ dari `node`,
+- `node.prepend(...nodes or strings)` -- menyisipkan node atau string _di awal_ dari `node`,
+- `node.before(...nodes or strings)` –- menyisipkan node atau string _sebelum_ `node`,
+- `node.after(...nodes or strings)` –- menyisipkan node atau string _setelah_ `node`,
+- `node.replaceWith(...nodes or strings)` –- menggantikan `node` dengan node atau string yang diberikan.
 
-Arguments of these methods are an arbitrary list of DOM nodes to insert, or text strings (that become text nodes automatically).
+Argumen dari metode-metode ini adalah daftar sembarang node DOM yang akan disisipkan, atau string teks (yang secara otomatis menjadi node teks).
 
-Let's see them in action.
+Mari kita lihat bagaimana mereka bekerja.
 
-Here's an example of using these methods to add items to a list and the text before/after it:
+Berikut adalah contoh penggunaan metode-metode ini untuk menambahkan item ke dalam daftar dan teks sebelum/ setelahnya:
 
 ```html autorun
 <ol id="ol">
@@ -121,27 +119,27 @@ Here's an example of using these methods to add items to a list and the text bef
 </ol>
 
 <script>
-  ol.before('before'); // insert string "before" before <ol>
-  ol.after('after'); // insert string "after" after <ol>
+  ol.before("sebelum"); // menyisipkan string "sebelum" sebelum <ol>
+  ol.after("sesudah"); // menyisipkan string "sesudah" setelah <ol>
 
-  let liFirst = document.createElement('li');
-  liFirst.innerHTML = 'prepend';
-  ol.prepend(liFirst); // insert liFirst at the beginning of <ol>
+  let liFirst = document.createElement("li");
+  liFirst.innerHTML = "prepend";
+  ol.prepend(liFirst); // menyisipkan <li> Pertama di awal <ol>
 
-  let liLast = document.createElement('li');
-  liLast.innerHTML = 'append';
-  ol.append(liLast); // insert liLast at the end of <ol>
+  let liLast = document.createElement("li");
+  liLast.innerHTML = "append";
+  ol.append(liLast); // menyisipkan <li> Terakhir di akhir <ol>
 </script>
 ```
 
-Here's a visual picture of what the methods do:
+Berikut adalah gambaran visual tentang apa yang dilakukan metode-metode ini:
 
 ![](before-prepend-append-after.svg)
 
-So the final list will be:
+Jadi, daftar akhirnya akan menjadi:
 
 ```html
-before
+sebalum
 <ol id="ol">
   <li>prepend</li>
   <li>0</li>
@@ -149,216 +147,217 @@ before
   <li>2</li>
   <li>append</li>
 </ol>
-after
+sesudah
 ```
 
-As said, these methods can insert multiple nodes and text pieces in a single call.
+Seperti yang disebutkan, metode-metode ini dapat menyisipkan beberapa node dan potongan teks dalam satu panggilan.
 
-For instance, here a string and an element are inserted:
+Misalnya, di sini sebuah string dan sebuah elemen disisipkan:
 
 ```html run
 <div id="div"></div>
 <script>
-  div.before('<p>Hello</p>', document.createElement('hr'));
+  div.before("<p>Halo</p>", document.createElement("hr"));
 </script>
 ```
 
-Please note: the text is inserted "as text", not "as HTML", with proper escaping of characters such as `<`, `>`.
+Harap diperhatikan: teks disisipkan "sebagai teks", bukan "sebagai HTML", dengan penghindaran karakter seperti `<`, `>`.
 
-So the final HTML is:
+Jadi HTML akhirnya adalah:
 
 ```html run
-*!*
-&lt;p&gt;Hello&lt;/p&gt;
-*/!*
-<hr>
+*!* &lt;p&gt;Hello&lt;/p&gt; */!*
+<hr />
 <div id="div"></div>
 ```
 
-In other words, strings are inserted in a safe way, like `elem.textContent` does it.
+Dengan kata lain, string disisipkan dengan cara yang aman, seperti yang dilakukan `elem.textContent`.
 
-So, these methods can only be used to insert DOM nodes or text pieces.
+Jadi, metode-metode ini hanya dapat digunakan untuk menyisipkan node DOM atau potongan teks.
 
-But what if we'd like to insert an HTML string "as html", with all tags and stuff working, in the same manner as `elem.innerHTML` does it?
+Tetapi bagaimana jika kita ingin menyisipkan string HTML "sebagai HTML", dengan semua tag dan fitur berfungsi, dengan cara yang sama seperti `elem.innerHTML` melakukannya?
 
-## insertAdjacentHTML/Text/Element
+## insertAdjacentHTML/Teks/Elemen
 
-For that we can use another, pretty versatile method: `elem.insertAdjacentHTML(where, html)`.
+Untuk itu, kita dapat menggunakan metode lain yang cukup serbaguna: `elem.insertAdjacentHTML(where, html)`.
 
-The first parameter is a code word, specifying where to insert relative to `elem`. Must be one of the following:
+Parameter pertama adalah kata kode, yang menentukan di mana menyisipkan relatif terhadap `elem`. Harus salah satu dari yang berikut:
 
-- `"beforebegin"` -- insert `html` immediately before `elem`,
-- `"afterbegin"` -- insert `html` into `elem`, at the beginning,
-- `"beforeend"` -- insert `html` into `elem`, at the end,
-- `"afterend"` -- insert `html` immediately after `elem`.
+- `"beforebegin"` -- menyisipkan `html` langsung sebelum `elem`,
+- `"afterbegin"` -- menyisipkan `html` ke dalam `elem`, di awal,
+- `"beforeend"` -- menyisipkan `html` ke dalam `elem`, di akhir,
+- `"afterend"` -- menyisipkan `html` langsung setelah `elem`.
 
-The second parameter is an HTML string, that is inserted "as HTML".
+Parameter kedua adalah string HTML, yang disisipkan "sebagai HTML".
 
-For instance:
+Misalnya:
 
 ```html run
 <div id="div"></div>
 <script>
-  div.insertAdjacentHTML('beforebegin', '<p>Hello</p>');
-  div.insertAdjacentHTML('afterend', '<p>Bye</p>');
+  div.insertAdjacentHTML("beforebegin", "<p>Halo</p>");
+  div.insertAdjacentHTML("afterend", "<p>Sampai Jumpa</p>");
 </script>
 ```
 
-...Would lead to:
+...akan menghasilkan:
 
 ```html run
-<p>Hello</p>
+<p>Halo</p>
 <div id="div"></div>
-<p>Bye</p>
+<p>Sampai Jumpa</p>
 ```
 
-That's how we can append arbitrary HTML to the page.
+Itulah bagaimana kita dapat menambahkan HTML sembarang ke halaman.
 
-Here's the picture of insertion variants:
+Berikut adalah gambaran variasi penyisipan:
 
 ![](insert-adjacent.svg)
 
-We can easily notice similarities between this and the previous picture. The insertion points are actually the same, but this method inserts HTML.
+Kita dengan mudah dapat melihat kesamaan antara ini dan gambar sebelumnya. Titik-titik penyisipan sebenarnya sama, tetapi metode ini menyisipkan HTML.
 
-The method has two brothers:
+Metode ini memiliki dua saudara:
 
-- `elem.insertAdjacentText(where, text)` -- the same syntax, but a string of `text` is inserted "as text" instead of HTML,
-- `elem.insertAdjacentElement(where, elem)` -- the same syntax, but inserts an element.
+- `elem.insertAdjacentText(where, text)` -- sintaks yang sama, tetapi serangkaian `text` disisipkan "sebagai teks" alih-alih HTML,
+- `elem.insertAdjacentElement(where, elem)` -- sintaks yang sama, tetapi menyisipkan sebuah elemen.
 
-They exist mainly to make the syntax "uniform". In practice, only `insertAdjacentHTML` is used most of the time. Because for elements and text, we have methods `append/prepend/before/after` -- they are shorter to write and can insert nodes/text pieces.
+Mereka ada terutama untuk membuat sintaks "seragam". Secara praktis, hanya `insertAdjacentHTML` yang digunakan sebagian besar waktu. Karena untuk elemen dan teks, kita memiliki metode `append/prepend/before/after` -- mereka lebih singkat untuk ditulis dan dapat menyisipkan node/potongan teks.
 
-So here's an alternative variant of showing a message:
+Jadi berikut adalah varian alternatif untuk menampilkan pesan:
 
 ```html run
 <style>
-.alert {
-  padding: 15px;
-  border: 1px solid #d6e9c6;
-  border-radius: 4px;
-  color: #3c763d;
-  background-color: #dff0d8;
-}
+  .alert {
+    padding: 15px;
+    border: 1px solid #d6e9c6;
+    border-radius: 4px;
+    color: #3c763d;
+    background-color: #dff0d8;
+  }
 </style>
 
 <script>
-  document.body.insertAdjacentHTML("afterbegin", `<div class="alert">
-    <strong>Hi there!</strong> You've read an important message.
-  </div>`);
+  document.body.insertAdjacentHTML(
+    "afterbegin",
+    `<div class="alert">
+    <strong>Hai!</strong> Anda telah membaca pesan penting.
+  </div>`
+  );
 </script>
 ```
 
-## Node removal
+## Penghapusan Node
 
-To remove a node, there's a method `node.remove()`.
+Untuk menghapus suatu node, ada metode `node.remove()`.
 
-Let's make our message disappear after a second:
+Mari buat pesan kita hilang setelah satu detik:
 
 ```html run untrusted
 <style>
-.alert {
-  padding: 15px;
-  border: 1px solid #d6e9c6;
-  border-radius: 4px;
-  color: #3c763d;
-  background-color: #dff0d8;
-}
+  .alert {
+    padding: 15px;
+    border: 1px solid #d6e9c6;
+    border-radius: 4px;
+    color: #3c763d;
+    background-color: #dff0d8;
+  }
 </style>
 
 <script>
-  let div = document.createElement('div');
-  div.className = "alert";
-  div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+    let div = document.createElement('div');
+    div.className = "alert";
+    div.innerHTML = "<strong>Hai!</strong> Anda telah membaca pesan penting.";
 
-  document.body.append(div);
-*!*
-  setTimeout(() => div.remove(), 1000);
-*/!*
+    document.body.append(div);
+  *!*
+    setTimeout(() => div.remove(), 1000);
+  */!*
 </script>
 ```
 
-Please note: if we want to *move* an element to another place -- there's no need to remove it from the old one.
+Harap dicatat: jika kita ingin _memindahkan_ suatu elemen ke tempat lain -- tidak perlu menghapusnya dari tempat yang lama.
 
-**All insertion methods automatically remove the node from the old place.**
+**Semua metode penyisipan secara otomatis menghapus node dari tempat lama.**
 
-For instance, let's swap elements:
+Sebagai contoh, mari tukar elemen:
 
 ```html run height=50
 <div id="first">First</div>
 <div id="second">Second</div>
 <script>
-  // no need to call remove
-  second.after(first); // take #second and after it insert #first
+  // tidak perlu memanggil remove
+  second.after(first); // ambil #second dan setelah itu sisipkan #first
 </script>
 ```
 
-## Cloning nodes: cloneNode
+## Penggandaan Node: cloneNode
 
-How to insert one more similar message?
+Bagaimana menyisipkan satu pesan serupa lagi?
 
-We could make a function and put the code there. But the alternative way would be to *clone* the existing `div` and modify the text inside it (if needed).
+Kita bisa membuat sebuah fungsi dan meletakkan kode di sana. Tetapi cara alternatifnya adalah dengan _menggandakan_ `div` yang sudah ada dan mengubah teks di dalamnya (jika diperlukan).
 
-Sometimes when we have a big element, that may be faster and simpler.
+Kadang-kadang ketika kita memiliki elemen besar, itu mungkin lebih cepat dan lebih sederhana.
 
-- The call `elem.cloneNode(true)` creates a "deep" clone of the element -- with all attributes and subelements. If we call `elem.cloneNode(false)`, then the clone is made without child elements.
+- Panggil `elem.cloneNode(true)` membuat klon "dalam" dari elemen itu -- dengan semua atribut dan subelemen. Jika kita memanggil `elem.cloneNode(false)`, maka klon dibuat tanpa elemen anak.
 
-An example of copying the message:
+Contoh menyalin pesan:
 
 ```html run height="120"
 <style>
-.alert {
-  padding: 15px;
-  border: 1px solid #d6e9c6;
-  border-radius: 4px;
-  color: #3c763d;
-  background-color: #dff0d8;
-}
+  .alert {
+    padding: 15px;
+    border: 1px solid #d6e9c6;
+    border-radius: 4px;
+    color: #3c763d;
+    background-color: #dff0d8;
+  }
 </style>
 
 <div class="alert" id="div">
-  <strong>Hi there!</strong> You've read an important message.
+  <strong>Hai!</strong> Anda telah membaca pesan penting.
 </div>
 
 <script>
-*!*
-  let div2 = div.cloneNode(true); // clone the message
-  div2.querySelector('strong').innerHTML = 'Bye there!'; // change the clone
+  *!*
+    let div2 = div.cloneNode(true); // menggandakan pesan
+    div2.querySelector('strong').innerHTML = 'Sampai jumpa!'; // mengubah klon
 
-  div.after(div2); // show the clone after the existing div
-*/!*
+    div.after(div2); // tampilkan klon setelah div yang sudah ada
+  */!*
 </script>
 ```
 
 ## DocumentFragment [#document-fragment]
 
-`DocumentFragment` is a special DOM node that serves as a wrapper to pass around lists of nodes.
+`DocumentFragment` adalah node DOM khusus yang berfungsi sebagai pembungkus untuk melewati daftar node.
 
-We can append other nodes to it, but when we insert it somewhere, then its content is inserted instead.
+Kita dapat menambahkan node lain ke dalamnya, tetapi ketika kita menyisipkannya di suatu tempat, maka isinya disisipkan sebagai gantinya.
 
-For example, `getListContent` below generates a fragment with `<li>` items, that are later inserted into `<ul>`:
+Sebagai contoh, `getListContent` di bawah menghasilkan fragmen dengan item `<li>`, yang kemudian disisipkan ke dalam `<ul>`:
 
 ```html run
 <ul id="ul"></ul>
 
 <script>
-function getListContent() {
-  let fragment = new DocumentFragment();
+  function getListContent() {
+    let fragment = new DocumentFragment();
 
-  for(let i=1; i<=3; i++) {
-    let li = document.createElement('li');
-    li.append(i);
-    fragment.append(li);
+    for(let i=1; i<=3; i++) {
+      let li = document.createElement('li');
+      li.append(i);
+      fragment.append(li);
+    }
+
+    return fragment;
   }
 
-  return fragment;
-}
-
-*!*
-ul.append(getListContent()); // (*)
-*/!*
+  *!*
+  ul.append(getListContent()); // (*)
+  */!*
 </script>
 ```
 
-Please note, at the last line `(*)` we append `DocumentFragment`, but it "blends in", so the resulting structure will be:
+Harap diperhatikan, pada baris terakhir `(*)` kita menyisipkan `DocumentFragment`, tetapi itu "melebur", sehingga struktur yang dihasilkan akan menjadi:
 
 ```html
 <ul>
@@ -368,46 +367,46 @@ Please note, at the last line `(*)` we append `DocumentFragment`, but it "blends
 </ul>
 ```
 
-`DocumentFragment` is rarely used explicitly. Why append to a special kind of node, if we can return an array of nodes instead? Rewritten example:
+`DocumentFragment` jarang digunakan secara eksplisit. Mengapa menambahkan ke jenis node khusus, jika kita dapat mengembalikan array node? Contoh yang diperbarui:
 
 ```html run
 <ul id="ul"></ul>
 
 <script>
-function getListContent() {
-  let result = [];
+  function getListContent() {
+    let result = [];
 
-  for(let i=1; i<=3; i++) {
-    let li = document.createElement('li');
-    li.append(i);
-    result.push(li);
+    for(let i=1; i<=3; i++) {
+      let li = document.createElement('li');
+      li.append(i);
+      result.push(li);
+    }
+
+    return result;
   }
 
-  return result;
-}
-
-*!*
-ul.append(...getListContent()); // append + "..." operator = friends!
-*/!*
+  *!*
+  ul.append(...getListContent()); // append + "..." operator = sahabat!
+  */!*
 </script>
 ```
 
-We mention `DocumentFragment` mainly because there are some concepts on top of it, like [template](info:template-element) element, that we'll cover much later.
+Kami menyebutkan `DocumentFragment` terutama karena ada beberapa konsep di atasnya, seperti elemen [template](info:template-element), yang akan kami bahas nanti.
 
-## Old-school insert/remove methods
+## Metode Penyisipan/Penghapusan Kuno
 
 [old]
 
-There are also "old school" DOM manipulation methods, existing for historical reasons.
+Ada juga metode manipulasi DOM "kuno", yang ada karena alasan sejarah.
 
-These methods come from really ancient times. Nowadays, there's no reason to use them, as modern methods, such as `append`, `prepend`, `before`, `after`, `remove`, `replaceWith`, are more flexible.
+Metode-metode ini berasal dari zaman yang sangat kuno. Saat ini, tidak ada alasan untuk menggunakannya, karena metode modern, seperti `append`, `prepend`, `before`, `after`, `remove`, `replaceWith`, lebih fleksibel.
 
-The only reason we list these methods here is that you can find them in many old scripts:
+Alasan satu-satunya kami mencantumkan metode-metode ini di sini adalah karena Anda mungkin menemukannya dalam banyak skrip lama:
 
 `parentElem.appendChild(node)`
-: Appends `node` as the last child of `parentElem`.
+: Menambahkan `node` sebagai anak terakhir dari `parentElem`.
 
-    The following example adds a new `<li>` to the end of `<ol>`:
+    Contoh berikut menambahkan elemen `<li>` baru ke akhir dari `<ol>`:
 
     ```html run height=100
     <ol id="list">
@@ -418,16 +417,16 @@ The only reason we list these methods here is that you can find them in many old
 
     <script>
       let newLi = document.createElement('li');
-      newLi.innerHTML = 'Hello, world!';
+      newLi.innerHTML = 'Halo, dunia!';
 
       list.appendChild(newLi);
     </script>
     ```
 
 `parentElem.insertBefore(node, nextSibling)`
-: Inserts `node` before `nextSibling` into `parentElem`.
+: Menyisipkan `node` sebalum `nextSibling` ke dalam `parentElem`.
 
-    The following code inserts a new list item before the second `<li>`:
+    Kode berikut menyisipkan elemen daftar baru sebelum elemen `<li>` kedua:
 
     ```html run height=100
     <ol id="list">
@@ -437,26 +436,26 @@ The only reason we list these methods here is that you can find them in many old
     </ol>
     <script>
       let newLi = document.createElement('li');
-      newLi.innerHTML = 'Hello, world!';
+      newLi.innerHTML = 'halo, dunia!';
 
     *!*
       list.insertBefore(newLi, list.children[1]);
     */!*
     </script>
     ```
-    To insert `newLi` as the first element, we can do it like this:
+    Untuk menyisipkan `newLi` sebagai elemen pertama, kita dapat melakukannya seperti ini:
 
     ```js
     list.insertBefore(newLi, list.firstChild);
     ```
 
 `parentElem.replaceChild(node, oldChild)`
-: Replaces `oldChild` with `node` among children of `parentElem`.
+: Menggantikan `oldChild` dengan `node` di antara anak-anak `parentElem`.
 
 `parentElem.removeChild(node)`
-: Removes `node` from `parentElem` (assuming `node` is its child).
+: Menghapus `node` dari `parentElem` (dengan asumsi `node` adalah anaknya).
 
-    The following example removes first `<li>` from `<ol>`:
+    Contoh berikut menghapus elemen `<li>` pertama dari `<ol>`:
 
     ```html run height=100
     <ol id="list">
@@ -471,91 +470,96 @@ The only reason we list these methods here is that you can find them in many old
     </script>
     ```
 
-All these methods return the inserted/removed node. In other words, `parentElem.appendChild(node)` returns `node`. But usually the returned value is not used, we just run the method.
+Semua metode ini mengembalikan node yang disisipkan/dihapus. Dengan kata lain, `parentElem.appendChild(node)` mengembalikan `node`. Tetapi biasanya nilai yang dikembalikan tidak digunakan, kita hanya menjalankan metodenya.
 
-## A word about "document.write"
+## Sedikit tentang "document.write"
 
-There's one more, very ancient method of adding something to a web-page: `document.write`.
+Ada satu lagi metode yang sangat kuno untuk menambahkan sesuatu ke halaman web: `document.write`.
 
-The syntax:
-
-```html run
-<p>Somewhere in the page...</p>
-*!*
-<script>
-  document.write('<b>Hello from JS</b>');
-</script>
-*/!*
-<p>The end</p>
-```
-
-The call to `document.write(html)` writes the `html` into page "right here and now". The `html` string can be dynamically generated, so it's kind of flexible. We can use JavaScript to create a full-fledged webpage and write it.
-
-The method comes from times when there was no DOM, no standards... Really old times. It still lives, because there are scripts using it.
-
-In modern scripts we can rarely see it, because of the following important limitation:
-
-**The call to `document.write` only works while the page is loading.**
-
-If we call it afterwards, the existing document content is erased.
-
-For instance:
+Syntax:
 
 ```html run
-<p>After one second the contents of this page will be replaced...</p>
+<p>Di suatu tempat di halaman...</p>
 *!*
 <script>
-  // document.write after 1 second
-  // that's after the page loaded, so it erases the existing content
-  setTimeout(() => document.write('<b>...By this.</b>'), 1000);
+  document.write("<b>Halo dari JS</b>");
+</script>
+*/!*
+<p>Akhir</p>
+```
+
+Panggilan ke `document.write(html)` menulis `html` ke dalam halaman "di sini dan sekarang". String `html` dapat dibuat secara dinamis, sehingga ini cukup fleksibel. Kita dapat menggunakan JavaScript untuk membuat halaman web lengkap dan menuliskannya.
+
+Metode ini berasal dari waktu ketika tidak ada DOM, tidak ada standar... Waktu yang sangat lama. Ini masih ada karena masih ada skrip yang menggunakannya.
+
+Dalam skrip modern, kita jarang melihatnya, karena ada batasan penting berikut:
+
+**Panggilan ke `document.write` hanya berfungsi saat halaman dimuat.**
+
+Jika kita memanggilnya setelah itu, konten dokumen yang ada akan dihapus.
+
+Sebagai contoh:
+
+```html run
+<p>Setelah satu detik konten halaman ini akan digantikan...</p>
+*!*
+<script>
+  // document.write setelah 1 second
+  // itu setelah halaman dimuat, jadi itu akan menghapus konten yang ada
+  setTimeout(() => document.write("<b>...By this.</b>"), 1000);
 </script>
 */!*
 ```
 
-So it's kind of unusable at "after loaded" stage, unlike other DOM methods we covered above.
+Jadi ini agak tidak dapat digunakan pada tahap "setelah dimuat", tidak seperti metode DOM lainnya yang sudah kita bahas di atas.
 
-That's the downside.
+Itu adalah kelemahannya.
 
-There's an upside also. Technically, when `document.write` is called while the browser is reading ("parsing") incoming HTML, and it writes something, the browser consumes it just as if it were initially there, in the HTML text.
+Ada juga kelebihannya. Secara teknis, ketika document.write dipanggil sementara browser sedang membaca ("menganalisis") HTML masuk, dan itu menulis sesuatu, browser mengonsumsinya seolah-olah itu awalnya ada di teks HTML.
 
-So it works blazingly fast, because there's *no DOM modification* involved. It writes directly into the page text, while the DOM is not yet built.
+Jadi itu bekerja sangat cepat, karena tidak ada modifikasi DOM yang terlibat. Itu menulis langsung ke dalam teks halaman, sementara DOM belum dibangun.
 
-So if we need to add a lot of text into HTML dynamically, and we're at page loading phase, and the speed matters, it may help. But in practice these requirements rarely come together. And usually we can see this method in scripts just because they are old.
+Jadi jika kita perlu menambahkan banyak teks ke HTML secara dinamis, dan kita berada di fase memuat halaman, dan kecepatan penting, itu bisa membantu. Tetapi dalam prakteknya, persyaratan ini jarang terpenuhi bersamaan. Dan biasanya kita dapat melihat metode ini dalam skrip hanya karena mereka sudah tua.
 
-## Summary
+## Ringkasan
 
-- Methods to create new nodes:
-    - `document.createElement(tag)` -- creates an element with the given tag,
-    - `document.createTextNode(value)` -- creates a text node (rarely used),
-    - `elem.cloneNode(deep)` -- clones the element, if `deep==true` then with all descendants.  
+- Metode untuk membuat node baru:
 
-- Insertion and removal:
-    - `node.append(...nodes or strings)` -- insert into `node`, at the end,
-    - `node.prepend(...nodes or strings)` -- insert into `node`, at the beginning,
-    - `node.before(...nodes or strings)` –- insert right before `node`,
-    - `node.after(...nodes or strings)` –- insert right after `node`,
-    - `node.replaceWith(...nodes or strings)` –- replace `node`.
-    - `node.remove()` –- remove the `node`.
+  - `document.createElement(tag)` -- membuat elemen dengan tag tertentu,
+  - `document.createTextNode(value)` -- membuat node teks (jarang digunakan),
+  - `elem.cloneNode(deep)` -- mengkloning elemen, jika `deep==true` maka dengan semua elemen turunannya.
 
-    Text strings are inserted "as text".
+- Penyisipan dan penghapusan:
 
-- There are also "old school" methods:
-    - `parent.appendChild(node)`
-    - `parent.insertBefore(node, nextSibling)`
-    - `parent.removeChild(node)`
-    - `parent.replaceChild(newElem, node)`
+  - `node.append(...nodes or strings)` -- menyisipkan ke dalam `node`, di akhir,
+  - `node.prepend(...nodes or strings)` -- menyisipkan ke dalam `node`, di awal,
+  - `node.before(...nodes or strings)` –- menyisipkan tepat sebalum `node`,
+  - `node.after(...nodes or strings)` –- menyisipkan tepat sesudah `node`,
+  - `node.replaceWith(...nodes or strings)` –- mengganti `node`.
+  - `node.remove()` –- menghapus `node`.
 
-    All these methods return `node`.
+  String teks disisipkan "sebagai teks".
 
-- Given some HTML in `html`, `elem.insertAdjacentHTML(where, html)` inserts it depending on the value of `where`:
-    - `"beforebegin"` -- insert `html` right before `elem`,
-    - `"afterbegin"` -- insert `html` into `elem`, at the beginning,
-    - `"beforeend"` -- insert `html` into `elem`, at the end,
-    - `"afterend"` -- insert `html` right after `elem`.
+- Ada juga metode "kuno":
 
-    Also there are similar methods, `elem.insertAdjacentText` and `elem.insertAdjacentElement`, that insert text strings and elements, but they are rarely used.
+  - `parent.appendChild(node)`
+  - `parent.insertBefore(node, nextSibling)`
+  - `parent.removeChild(node)`
+  - `parent.replaceChild(newElem, node)`
 
-- To append HTML to the page before it has finished loading:
-    - `document.write(html)`
+  Semua metode ini mengembalikan `node`.
 
-    After the page is loaded such a call erases the document. Mostly seen in old scripts.
+- Diberikan beberapa HTML dalam `html`, `elem.insertAdjacentHTML(where, html)` menyisipkannya tergantung pada nilai `where`:
+
+  - `"beforebegin"` -- sisipkan `html` tepat sebelum `elem`,
+  - `"afterbegin"` -- sisipkan `html` ke dalam `elem`, di awal,
+  - `"beforeend"` -- sisipkan `html` ke dalam `elem`, di akhir,
+  - `"afterend"` -- sisipkan `html` tepat sesudah `elem`.
+
+  Juga ada metode serupa, `elem.insertAdjacentText` dan `elem.insertAdjacentElement`, yang menyisipkan string teks dan elemen, tetapi jarang digunakan.
+
+- Untuk menambahkan HTML ke halaman sebelum selesai dimuat:
+
+  - `document.write(html)`
+
+  Setelah halaman dimuat, panggilan semacam ini menghapus dokumen. Biasanya ditemui dalam skrip lama.

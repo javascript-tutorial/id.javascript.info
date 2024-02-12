@@ -1,19 +1,19 @@
-importance: 4
+Tingkat kepentingan: 4
 
 ---
 
-# Create a list
+# Membuat daftar
 
-Write an interface to create a list from user input.
+Tuliskan antarmuka untuk membuat daftar dari _input_ pengguna.
 
-For every list item:
+Untuk setiap item daftar:
 
-1. Ask a user about its content using `prompt`.
-2. Create the `<li>` with it and add it to `<ul>`.
-3. Continue until the user cancels the input (by pressing `key:Esc` or via an empty entry).
+1. Tanyakan kepada pengguna mengenai isinya menggunakan `prompt`.
+2. Buat `<li>` dengan isian tersebut dan tambahkan ke dalam `<ul>`.
+3. Lanjutkan hingga pengguna membatalkan input (dengan menekan `key:Esc` atau melalui entri kosong).
 
-All elements should be created dynamically.
+Semua elemen harus dibuat secara dinamis.
 
-If a user types HTML-tags, they should be treated like a text.
+Jika pengguna mengetikkan tag HTML, tag tersebut harus diperlakukan sebagai teks.
 
 [demo src="solution"]
