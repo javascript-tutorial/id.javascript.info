@@ -1,4 +1,4 @@
-# Pendadwalan: setTimeout dan setInterval
+# Penjadwalan: setTimeout dan setInterval
 
 Kita mungkin memutuskan untuk mengeksekusi fungsinya bukanlah sekarang, tapi pada waktu-waktu tertentu nanti. Itu dipanggil dengan "penjadwalan pemanggilan".
 
