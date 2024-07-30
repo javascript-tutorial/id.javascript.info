@@ -1,7 +1,7 @@
 
 # Objek
 
-Seperti yang kita tahu dari bab <info:types>, ada delapan tipe data di JavaScript. Enak dari mereka disebut "primitif", karena nilai mereka berisi cuma satu hal tunggal (entah string atau angka atau apapun).
+Seperti yang kita tahu dari bab <info:types>, ada delapan tipe data di JavaScript. Tujuh dari mereka disebut "primitif", karena nilai mereka berisi cuma satu hal tunggal (entah string atau angka atau apapun).
 
 Kontrasnya, objek dipakai untuk menyimpan koleksi terkunci dari berbagai data dan entitas rumit lainnya. Di JavaScript, objek menembus hampir tiap aspek bahasa. Jadi kita harus memahami mereka dulu sebelum masuk lebih dalam ke manapun.
 
