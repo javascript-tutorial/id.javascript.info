@@ -37,7 +37,11 @@ Dan ini bagaimana kita menyimpannya di dalam memory:
 
 Objek disimpan di suatu tempat di memori (di sebelah kanan gambar), sedangkan variabel `user` (di sebelah kiri) memiliki" referensi "padanya.
 
+<<<<<<< HEAD
 Kita mungkin menganggap variabel objek, seperti `pengguna`, seperti selembar kertas dengan alamat objek di atasnya.
+=======
+We may think of an object variable, such as `user`, like a sheet of paper with the address of the object on it.
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 
 Saat kita melakukan tindakan dengan objek, misalnya: mengambil properti `user.name`, mesin JavaScript melihat apa yang ada di alamat itu dan melakukan operasi pada objek sebenarnya.
 
@@ -103,15 +107,49 @@ alert( a == b ); // false
 
 Untuk perbandingan seperti `obj1 > obj2` atau untuk perbandingan dengan sebuah nilai primitif `obj == 5`, objek akan diubah dahulu menjadi primitif. Kita akan belajar bagaimana perubahan objek sebentar lagi, akan tetapi sebenarnya, perbandingan seperti itu muncul sangat jarang, biasanya hanya sebuah hasil dari kesalahan koding.
 
+<<<<<<< HEAD
 ## Penggandaan dan penggabungan, Object.assign [#cloning-and-merging-object-assign]
+=======
+````smart header="Const objects can be modified"
+An important side effect of storing objects as references is that an object declared as `const` *can* be modified.
+
+For instance:
+
+```js run
+const user = {
+  name: "John"
+};
+
+*!*
+user.name = "Pete"; // (*)
+*/!*
+
+alert(user.name); // Pete
+```
+
+It might seem that the line `(*)` would cause an error, but it does not. The value of `user` is constant, it must always reference the same object, but properties of that object are free to change.
+
+In other words, the `const user` gives an error only if we try to set `user=...` as a whole.
+
+That said, if we really need to make constant object properties, it's also possible, but using totally different methods. We'll mention that in the chapter <info:property-descriptors>.
+````
+
+## Cloning and merging, Object.assign [#cloning-and-merging-object-assign]
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 
 Jadi, menyalin sebuah variabel objek akan menciptakan satu lagi referensi kepada objek yang sama.
 
+<<<<<<< HEAD
 Tapi bagaimana jika kita butuh untuk menduplikasi objek? Membuat salinan yang berdiri sendiri, menggandakan atau meng-klon?
 
 Hal itu juga bisa dilakukan, tapi sedikit lebih sulit, karena tidak ada method bawaan untuk hal itu di javascript. Sebenarnya, hal itu juga jarang dibutuhkan. Di kebanyakan waktu, menyalin referensinya sudah cukup.
 
 Tapi bagaimana jika kita benar-benar ingin hal itu, lalu kita membutuhkan untuk menciptakan sebuah objek dan mengulangi struktur dari objek yang sama dengan meng-iterasi propertinya dan menyalin mereka didalam level primitif.
+=======
+But what if we need to duplicate an object?
+
+We can create a new object and replicate the structure of the existing one, by iterating over its properties and copying them on the primitive level.
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 
 Seperti ini:
 
@@ -136,14 +174,19 @@ clone.name = "Pete"; // ubah data didalamnya
 alert( user.name ); // masih John didalam objek yang asli
 ```
 
+<<<<<<< HEAD
 Juga kita bisa menggunakan method [Object.assign](mdn:js/Object/assign) untuk itu.
+=======
+We can also use the method [Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign).
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 
 sintaksnya adalah:
 
 ```js
-Object.assign(dest, [src1, src2, src3...])
+Object.assign(dest, ...sources)
 ```
 
+<<<<<<< HEAD
 - Argumen pertama `dest` adalah sebuah objek target.
 - Argumen selanjutnya `src1, ..., srcN` (bisa sebanyak yang dibutuhkan) adalah objek sumber.
 - Itu akan menyalin properti dari seluruh objek sumber `src1, ..., srcN` kedalam target `dest`. Dengan kata lain, properti dari semua argumen dimulai dari argumen kedua akan disalin kedalam object pertama.
@@ -152,6 +195,16 @@ Object.assign(dest, [src1, src2, src3...])
 
 Contoh, kita bisa menggunakan untuk menggabungkan beberapa objek menjadi satu:
 ```js
+=======
+- The first argument `dest` is a target object.
+- Further arguments is a list of source objects.
+
+It copies the properties of all source objects into the target `dest`, and then returns it as the result.
+
+For example, we have `user` object, let's add a couple of permissions to it:
+
+```js run
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 let user = { name: "John" };
 
 let permissions1 = { canView: true };
@@ -162,7 +215,14 @@ let permissions2 = { canEdit: true };
 Object.assign(user, permissions1, permissions2);
 */!*
 
+<<<<<<< HEAD
 // sekarang user = { name: "John", canView: true, canEdit: true }
+=======
+// now user = { name: "John", canView: true, canEdit: true }
+alert(user.name); // John
+alert(user.canView); // true
+alert(user.canEdit); // true
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 ```
 
 Jika nama dari properti yang disali sudah ada, propertinya akan ditimpa:
@@ -175,9 +235,13 @@ Object.assign(user, { name: "Pete" });
 alert(user.name); // sekarang user = { name: "Pete" }
 ```
 
+<<<<<<< HEAD
 Kita juga bisa menggunakan `Object.assign` untuk mengganti perulangan `for...in` untuk penggandaan yang sederhana.
+=======
+We also can use `Object.assign` to perform a simple object cloning:
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 
-```js
+```js run
 let user = {
   name: "John",
   age: 30
@@ -186,15 +250,26 @@ let user = {
 *!*
 let clone = Object.assign({}, user);
 */!*
+
+alert(clone.name); // John
+alert(clone.age); // 30
 ```
 
+<<<<<<< HEAD
 Kode diatas akan menyalin seluruh properti dari `user` kedalam objek yang kosong dan mengembalikan/me-return hasilnya.
+=======
+Here it copies all properties of `user` into the empty object and returns it.
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 
 Ada juga metode lain untuk mengkloning objek, mis. menggunakan [sintaksis spread](info:rest-parameters-spread) `clone = {...user}`, dibahas nanti dalam tutorial.
 
 ## Nested cloning
 
+<<<<<<< HEAD
 Sampai sekarang kita telah berasumsi bahwa seluruh properti dari `user` adalah primitif. Tapi properti bisa di referensi ke objek lainnya. Apa yang harus dilakukan dengan mereka?
+=======
+Until now we assumed that all properties of `user` are primitive. But properties can be references to other objects.
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 
 Like this:
 ```js run
@@ -209,10 +284,14 @@ let user = {
 alert( user.sizes.height ); // 182
 ```
 
+<<<<<<< HEAD
 Now it's not enough to copy `clone.sizes = user.sizes`, because the `user.sizes` is an object, it will be copied by reference. So `clone` and `user` will share the same sizes:
 Sekarang hal itu tidak cukup untuk menyalin `clone.sizes = user.sizes`, karena `user.sizes` adalah sebuah objek, itu akan tersalin secara referensi. Jadi `clone` dan `user` akan berbagi objek yang sama:
 
 Like this:
+=======
+Now it's not enough to copy `clone.sizes = user.sizes`, because `user.sizes` is an object, and will be copied by reference, so `clone` and `user` will share the same sizes:
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 
 ```js run
 let user = {
@@ -227,39 +306,96 @@ let clone = Object.assign({}, user);
 
 alert( user.sizes === clone.sizes ); // true, objek yang sama
 
+<<<<<<< HEAD
 // user dan clone akan berbagi objek yang sama
 user.sizes.width++;       // ganti properti dari satu tempat
 alert(clone.sizes.width); // 51, melihat hasilnya ditempat yang lain
 ```
 
 Untuk membenarkan hal itu, kita harus menggunakan perulangan kloning yang memeriksa setip nilai dari `user[key]` dan, jika itu adalah sebuah objek, lalu duplikasi strukturnya juga. Hal itu dinamakan dengan "deep cloning".
+=======
+// user and clone share sizes
+user.sizes.width = 60;    // change a property from one place
+alert(clone.sizes.width); // 60, get the result from the other one
+```
 
-We can use recursion to implement it. Or, to not reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
+To fix that and make `user` and `clone` truly separate objects, we should use a cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning" or "structured cloning". There's [structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) method that implements deep cloning.
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 
+
+<<<<<<< HEAD
 
 ````smart header="Const objects can be modified"
 An important side effect of storing objects as references is that an object declared as `const` *can* be modified.
+=======
+### structuredClone
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 
-For instance:
+The call `structuredClone(object)` clones the `object` with all nested properties.
+
+Here's how we can use it in our example:
 
 ```js run
-const user = {
-  name: "John"
+let user = {
+  name: "John",
+  sizes: {
+    height: 182,
+    width: 50
+  }
 };
 
 *!*
-user.name = "Pete"; // (*)
+let clone = structuredClone(user);
 */!*
 
-alert(user.name); // Pete
+alert( user.sizes === clone.sizes ); // false, different objects
+
+// user and clone are totally unrelated now
+user.sizes.width = 60;    // change a property from one place
+alert(clone.sizes.width); // 50, not related
 ```
 
+<<<<<<< HEAD
 Sepertinya baris `(*)` akan menyebabkan kesalahan, tetapi sebenarnya tidak. Nilai dari `user` adalah konstan, itu harus selalu mereferensikan objek yang sama, tetapi properti dari objek tersebut bebas untuk berubah.
 
 Dengan kata lain, `const user` memberikan kesalahan hanya jika kita mencoba menyetel` user = ... `secara keseluruhan.
 
 yang berarti, jika kita benar-benar perlu membuat properti objek konstan, itu juga mungkin, tetapi menggunakan metode yang sama sekali berbeda. Kita akan membahasnya di bab <info: property-descriptors>.
 ````
+=======
+The `structuredClone` method can clone most data types, such as objects, arrays, primitive values.
+
+It also supports circular references, when an object property references the object itself (directly or via a chain or references).
+
+For instance:
+
+```js run
+let user = {};
+// let's create a circular reference:
+// user.me references the user itself
+user.me = user;
+
+let clone = structuredClone(user);
+alert(clone.me === clone); // true
+```
+
+As you can see, `clone.me` references the `clone`, not the `user`! So the circular reference was cloned correctly as well.
+
+Although, there are cases when `structuredClone` fails.
+
+For instance, when an object has a function property:
+
+```js run
+// error
+structuredClone({
+  f: function() {}
+});
+```
+
+Function properties aren't supported.
+
+To handle such complex cases we may need to use a combination of cloning methods, write custom code or, to not reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 
 
 ## Ringkasan
@@ -273,3 +409,7 @@ Untuk membuat "salinan asli" (kloning) kita dapat menggunakan `Object.assign` un
 
 
 
+<<<<<<< HEAD
+=======
+To make a "real copy" (a clone) we can use `Object.assign` for the so-called "shallow copy" (nested objects are copied by reference) or a "deep cloning" function `structuredClone` or use a custom cloning implementation, such as [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
