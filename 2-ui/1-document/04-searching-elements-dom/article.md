@@ -54,7 +54,12 @@ Dan juga, terdapat variabel global yang dinamakan `id` untuk mereferensikan elem
 </script>
 ```
 
+<<<<<<< HEAD
 ```warn header= "Tolong jangan gunakan variabel global dengan nama id untuk mengakses elemen"
+=======
+```warn header="Please don't use id-named global variables to access elements"
+This behavior is described [in the specification](https://html.spec.whatwg.org/multipage/window-object.html#named-access-on-the-window-object), but it is supported mainly for compatibility.
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 
 Perilaku ini dideskripsikan pada [di spesifikasi](http://www.whatwg.org/specs/web-apps/current-work/#dom-window-nameditem), Jadi ini sudah standar. Tetapi ini didukung terutama untuk kompabilitas.
 
@@ -116,7 +121,11 @@ Dengan kata lain, hasilnya sama dengan `elem.querySelectorAll(css)[0]`, tetapi c
 ## Persamaan
 Metode sebelumnya digunakan untuk mencari DOM.
 
+<<<<<<< HEAD
 metode [elem.matches(css)](http://dom.spec.whatwg.org/#dom-element-matches) tidak mencari apapun, metode ini hanya memeriksa apakan `elem` sama dengan *selector* CSS yang diberikan. Metode ini mengembalikan `true` atau `false`. 
+=======
+The [elem.matches(css)](https://dom.spec.whatwg.org/#dom-element-matches) does not look for anything, it merely checks if `elem` matches the given CSS-selector. It returns `true` or `false`.
+>>>>>>> b258d7d5b635c88228f7556e14fbe5e5ca7f736d
 
 Metode ini akan berguna saat kita mengulang elemen yang banyak (seperti *array* atau yang lain) dan mencoba untuk menyaring apa yang kita inginkan.
 
@@ -154,7 +163,7 @@ Contoh:
 <div class="contents">
   <ul class="book">
     <li class="chapter">Chapter 1</li>
-    <li class="chapter">Chapter 1</li>
+    <li class="chapter">Chapter 2</li>
   </ul>
 </div>
 
