@@ -13,12 +13,18 @@ Itulah gunanya `Promise.all`.
 Sintaksis nya adalah:
 
 ```js
-let promise = Promise.all([...promises...]);
+let promise = Promise.all(iterable);
 ```
 
+<<<<<<< HEAD
 `Promise.all` mengambil sebuah array promise (secara teknis bisa menjadi iterable, tetapi biasanya sebuah array) dan mengembalikkan promise baru.
 
 Promise baru resolve ketika semua promise yang terdaftar diselesaikan dan array dari hasil promise menjadi hasilnya itu sendiri.
+=======
+`Promise.all` takes an iterable (usually, an array of promises) and returns a new promise.
+
+The new promise resolves when all listed promises are resolved, and the array of their results becomes its result.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Sebagai contoh, `Promise.all` di bawah selesai setelah 3 detik, dan kemudian hasilnya adalah sebuah array `[1, 2, 3]`:
 
@@ -256,7 +262,7 @@ Promise.any([
 ]).catch(error => {
   console.log(error.constructor.name); // AggregateError
   console.log(error.errors[0]); // Error: Ouch!
-  console.log(error.errors[1]); // Error: Error
+  console.log(error.errors[1]); // Error: Error!
 });
 ```
 

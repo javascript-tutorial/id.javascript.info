@@ -8,7 +8,11 @@ Tapi apa yang terjadi jika variabel luar berubah saat fungsinya dibuat? Akankan 
 
 Dan bagaimana jika sebuah fungsi diberikan sebagai paramter dan dipanggil dibagian kode lain, akankah itu mendapatkan akses ke variabel luar ditempat itu?
 
+<<<<<<< HEAD
 Ayo kita peruas pengetahuan kita untuk mengerti skenario ini dan skenario yang lebih kompleks.
+=======
+And what if a function is passed along as an argument and called from another place of code, will it get access to outer variables at the new place?
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```smart header="Kita akan bahas tentang variabel `let/const` di sini"
 Di JavaScript, ada 3 cara mendeklarasi variabel: `let`, `const` (cara-cara modern), dan `var` (sisa masa lalu).
