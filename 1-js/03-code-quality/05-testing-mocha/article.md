@@ -48,7 +48,12 @@ describe("pow", function () {
 
 Spek punya tiga blok bangunan utama yang bisa kamu lihat di bawah:
 
+<<<<<<< HEAD
 `describe("title", function() { ... })` : Fungsionalitas apa yang kita jelaskan. Di kasus ini kita akan menjelaskan fungsi `pow`. Dipakai untuk mengelompokkan "pekerja" -- blok `it`.
+=======
+`describe("title", function() { ... })`
+: What functionality we're describing? In our case we're describing the function `pow`. Used to group "workers" -- the `it` blocks.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 `it("use case description", function() { ... })` : Di judul `it` kita _dalam bahasa manusia_ menjelaskan use case tertentu, dan argumen kedua ialah fungsi yang mengetes itu.
 
@@ -62,6 +67,7 @@ Spesifikasi ini bisa diexekusi, dan ia akan menjalankan tes yang dispesifikasi d
 
 Alur pengembangan biasanya seperti ini:
 
+<<<<<<< HEAD
 1. Spek inisial ditulis, dengan tes untuk kebanyakan fungsionalitas dasar.
 2. Implementatsi inisial dibuat.
 3. Untuk mengecek apakah ia bekerja, kita jalankan framework pengetesan [Mocha](http://mochajs.org/) (detil lebih segera) yang menjalankan spek. Saat fungsionalitas tak lengkap, galat ditampilkan. Kita buat koreksi hingga semuanya bekerja.
@@ -69,20 +75,39 @@ Alur pengembangan biasanya seperti ini:
 5. Kita tambah use case lain ke spek, mungkin belum didukung implementasinya. Tes mulai gagal.
 6. Pergi ke 3, perbaharui implementasinya hingga tes tak memberikan galat.
 7. Ulangi langkah 3-6 hingga fungsionalitasnya siap.
+=======
+1. An initial spec is written, with tests for the most basic functionality.
+2. An initial implementation is created.
+3. To check whether it works, we run the testing framework [Mocha](https://mochajs.org/) (more details soon) that runs the spec. While the functionality is not complete, errors are displayed. We make corrections until everything works.
+4. Now we have a working initial implementation with tests.
+5. We add more use cases to the spec, probably not yet supported by the implementations. Tests start to fail.
+6. Go to 3, update the implementation till tests give no errors.
+7. Repeat steps 3-6 till the functionality is ready.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Jadi, pengembangannya _iteratif_. Kita tulis spek, implementasikan, memastikan tes lulus, lalu menulis tes lainnya, memastikan mereka bekerja dll. Akhirnya kita punya implementasi yang bekerja dan tes untuk itu.
 
 Ayo lihat alur pengembangan ini di kasus praktik kita.
 
+<<<<<<< HEAD
 Langkap pertama sudah lengkap: kita punya spek inisial untuk `pow`. Sekarang, sebelum membuat implementasinya, ayo pakai beberapa librari JavaScript untuk menjalankan tes, hanya untuk melihat mereka bekerja (mereka semua akan gagal).
+=======
+The first step is already complete: we have an initial spec for `pow`. Now, before making the implementation, let's use a few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ## Spec dalam aksi
 
 Di sini di tutorial ini kita akan memakai librari JavaScript untuk tes:
 
+<<<<<<< HEAD
 - [Mocha](http://mochajs.org/) -- inti framework: menyediakan fungsi testing umum `describe` dan `it` dan fungsi utama yang menjalankan test.
 - [Chai](http://chaijs.com) -- librari dengan banyak penambahan. Ini membuatmu bisa untuk menggunakan banyak penambahan yang berbeda, untuk sekarang kita hanya membutuhkan `assert.equal`.
 - [Sinon](http://sinonjs.org/) -- sebuah librari untuk memata-matai fungsi, meniru fungsi bawaan dan lainnya, kita akan butuh ini nanti.
+=======
+- [Mocha](https://mochajs.org/) -- the core framework: it provides common testing functions including `describe` and `it` and the main function that runs tests.
+- [Chai](https://www.chaijs.com/) -- the library with many assertions. It allows to use a lot of different assertions, for now we need only `assert.equal`.
+- [Sinon](https://sinonjs.org/) -- a library to spy over functions, emulate built-in functions and more, we'll need it much later.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Librari ini cocok baik untuk pengetesan in-browser dan server-side. Di sini kita akan mempertimbangkan varian peramban.
 
@@ -329,6 +354,7 @@ Tes yang baru ditambahkan gagal, karena implementasi kita tak mendukung mereka. 
 ```smart header="Assersi lain"
 Tolong catat assersi `assert.isNaN`: ia melakukan ecek terhadap `NaN`.
 
+<<<<<<< HEAD
 Ada assersi lain di [Chai](http://chaijs.com) juga, misalnya:
 
 - `assert.equal(value1, value2)` -- mengecek ekualitas  `value1 == value2`.
@@ -337,6 +363,16 @@ Ada assersi lain di [Chai](http://chaijs.com) juga, misalnya:
 - `assert.isTrue(value)` -- mengecek apa `value === true`
 - `assert.isFalse(value)` -- mengecek apa `value === false`
 - ...daftar lengkapnya ada di [docs](http://chaijs.com/api/assert/)
+=======
+There are other assertions in [Chai](https://www.chaijs.com/) as well, for instance:
+
+- `assert.equal(value1, value2)` -- checks the equality  `value1 == value2`.
+- `assert.strictEqual(value1, value2)` -- checks the strict equality `value1 === value2`.
+- `assert.notEqual`, `assert.notStrictEqual` -- inverse checks to the ones above.
+- `assert.isTrue(value)` -- checks that `value === true`
+- `assert.isFalse(value)` -- checks that `value === false`
+- ...the full list is in the [docs](https://www.chaijs.com/api/assert/)
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 
 Jadi kita harus tambah beberapa baris `pow`:

@@ -59,7 +59,11 @@ alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 
 Solusi tersebut memiliki waktu penyelesaian [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation). Dalam kata lain, jika kita menambah ukuran *array* 2 kali lipat, algoritma akan bekerja 4 kali lipat lebih lama.
 
+<<<<<<< HEAD
 Untuk *array* yang besar (1000, 10000 *item* atau lebih) algoritma yang demikian akan mengarah pada kelambanan yang parah.
+=======
+For big arrays (1000, 10000 or more items) such algorithms can lead to serious sluggishness.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 # Solusi cepat
 
@@ -91,4 +95,8 @@ alert( getMaxSubSum([-1, -2, -3]) ); // 0
 
 Algoritma tersebut membutuhkan tepat 1 *array* yang lolos, jadi waktu penyelesaian adalah O(n).
 
+<<<<<<< HEAD
 Kamu dapat menemukan informasi yang lebih rinci tentang algoritma di sini: [Masalah *subarray* maksimum](http://en.wikipedia.org/wiki/Maximum_subarray_problem). Jika masih kurang jelas bagaimana hal tersebut bekerja, maka mohon menelusuri algoritma pada contoh di atas, perhatikan bagaimana algoritmanya bekerja, itulah cara yang paling baik.
+=======
+You can find more detailed information about the algorithm here: [Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem). If it's still not obvious why that works, then please trace the algorithm on the examples above, see how it works, that's better than any words.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3

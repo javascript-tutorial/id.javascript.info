@@ -121,16 +121,34 @@ showAvatar();
 
 Cukup bersih dan mudah dibaca, bukan? Jauh lebih baik dari sebelumnya.
 
+<<<<<<< HEAD
 ````smart header="`await` tidak bekerja pada top-level code"
 Orang yang baru mulai menggunakan `await` cenderung lupa faktanya bahwa kita tidak bisa menggunakan `await` pada top-level code. Sebagai contoh, ini tidak akan bekerja:
 
 ```js run
 // error sintaksis pada top-level code
+=======
+````smart header="Modern browsers allow top-level `await` in modules"
+In modern browsers, `await` on top level works just fine, when we're inside a module. We'll cover modules in article <info:modules-intro>.
+
+For instance:
+
+```js run module
+// we assume this code runs at top level, inside a module
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 let response = await fetch('/article/promise-chaining/user.json');
 let user = await response.json();
+
+console.log(user);
 ```
 
+<<<<<<< HEAD
 Kita dapat membungkusnya kedalam fungsi async anonymous, seperti ini:
+=======
+If we're not using modules, or [older browsers](https://caniuse.com/mdn-javascript_operators_await_top_level) must be supported, there's a universal recipe: wrapping into an anonymous async function.
+
+Like this:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js
 (async () => {
@@ -140,7 +158,10 @@ Kita dapat membungkusnya kedalam fungsi async anonymous, seperti ini:
 })();
 ```
 
+<<<<<<< HEAD
 P.S. Fitur baru: mulai dari mesin V8 versi 8.9+, tingkat atas menunggu bekerja di [modul](info: modul).
+=======
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ````
 
 `````
@@ -301,8 +322,13 @@ Keyword `async` sebelum fungsi memiliki dua efek:
 
 Keyword `await` sebelum promise membuat JavaScript menunggu sampai promise itu selesai, dan kemudian:
 
+<<<<<<< HEAD
 1. Jika ada error, pengecualian dihasilkan, sama seperti jika `throw error` dipanggil di tempat itu.
 2. Sebaliknya, menghasilkan result.
+=======
+1. If it's an error, an exception is generated — same as if `throw error` were called at that very place.
+2. Otherwise, it returns the result.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Bersama mereka menyediakan kerangka kerja yang bagus untuk menulis kode asynchronous yang mudah baik membaca dan menulis.
 

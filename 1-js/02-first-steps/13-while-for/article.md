@@ -6,7 +6,24 @@ Contohnya, Mengeluarkan barang dari sebuah daftar satu per satu atau hanya menja
 
 *Perulangan* adalah sebuah cara untuk mengulangi kode yang sama beberapa kali.
 
+<<<<<<< HEAD
 ## Perulangan "while"
+=======
+```smart header="The for..of and for..in loops"
+A small announcement for advanced readers.
+
+This article covers only basic loops: `while`, `do..while` and `for(..;..;..)`.
+
+If you came to this article searching for other types of loops, here are the pointers:
+
+- See [for..in](info:object#forin) to loop over object properties.
+- See [for..of](info:array#loops) and [iterables](info:iterable) for looping over arrays and iterable objects.
+
+Otherwise, please read on.
+```
+
+## The "while" loop
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Perulangan `while` memiliki sintaks sebagai berikut:
 
@@ -106,10 +123,17 @@ Mari bahas pernyataan `for` bagian demi bagian:
 
 | bagian  |          |                                                                            |
 |-------|----------|----------------------------------------------------------------------------|
+<<<<<<< HEAD
 | begin | `i = 0`    | Jalankan sekali masuk ke loop.                                      |
 | condition | `i < 3`| Cek sebelum tiap iterasi loop. Jika salah, loop berhenti.              |
 | body | `alert(i)`| Jalankan lagi dan lagi selama kondisi bernilai truthy.                         |
 | step | `i++`      | Exekusi setelah badan di tiap iterasi. |
+=======
+| begin | `let i = 0`    | Executes once upon entering the loop.                                      |
+| condition | `i < 3`| Checked before every loop iteration. If false, the loop stops.              |
+| body | `alert(i)`| Runs again and again while the condition is truthy.                         |
+| step| `i++`      | Executes after the body on each iteration. |
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Cara kerja algoritma perulangan umum seperti ini:
 
@@ -162,11 +186,14 @@ for (i = 0; i < 3; i++) { // gunakan variabel yang sudah ada
 
 alert(i); // 3, terlihat, karena dideklarasikan diluar dari perulangan
 ```
-
 ````
 
+<<<<<<< HEAD
 
 ### Melewatkan bagian
+=======
+### Skipping parts
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Bagian apapun dari `for` dapat dilewati.
 
@@ -268,7 +295,11 @@ for (let i = 0; i < 10; i++) {
 
 Dari sudut pandang teknis, ini identik dengan contoh diatas. Tentunya, kita dapat membungkus kode dalam sebuah blok `if` daripada menggunakan `continue`.
 
+<<<<<<< HEAD
 Tapi sebagai efeknya, hal ini akan menciptakan kode lebih dalam satu tingkat (pemanggilan `alert` didalam kurung kurawal). Jika kode didalam `if` lebih panjang beberapa baris, hal itu akan membuat tingkat keterbacaan kode menjadi berkurang.
+=======
+But as a side effect, this created one more level of nesting (the `alert` call inside the curly braces). If the code inside of `if` is longer than a few lines, that may decrease the overall readability.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ````
 
 ````warn header="Tidak ada `break/continue` ke sisi kanan '?'"
@@ -285,7 +316,6 @@ if (i > 5) {
 ```
 
 ...dan tulis ulang menggunakan sebuah tanda tanya:
-
 
 ```js no-beautify
 (i > 5) ? alert(i) : *!*continue*/!*; // continue tidak diperbolehkan disini
@@ -320,7 +350,12 @@ Kita butuh cara untuk menghentikan proses jika pengguna membatalkan input.
 
 `break` biasa setelah `input` hanya akan menghentikan perulangan dalam. Itu tidak cukup--label, datang untuk menyelamatkan!
 
+<<<<<<< HEAD
 Label adalah sebuah pengidentifikasi dengan sebuah titik dua sebelum perulangan:
+=======
+A *label* is an identifier with a colon before a loop:
+
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```js
 labelName: for (...) {
   ...
@@ -342,6 +377,7 @@ Pernyataan `break <labelName>` di dalam loop di bawah menghentikan pada label:
     // lakukan sesuatu dengan nilai...
   }
 }
+
 alert('Done!');
 ```
 
@@ -361,14 +397,24 @@ Perintah `continue` dapat juga digunakan dengan sebuah label. pada kasus ini, ek
 ````warn header="Label tidak mengizinkan \"lompat\" ke manapun"
 Label tidak mengizinkan kita untuk lompat ke sembarang tempat dalam kode.
 
+<<<<<<< HEAD
 Misalnya, mustahil melakukan ini:
+=======
+For example, it is impossible to do this:
+
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```js
 break label;  // tidak lompak ke label di bawah
 
 label: for (...)
 ```
 
+<<<<<<< HEAD
 Direktif `break` harus berada di dalam blok kode. Secara teknis, setiap blok kode berlabel akan dilakukan, contoh.:
+=======
+A `break` directive must be inside a code block. Technically, any labelled code block will do, e.g.:
+
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```js
 label: {
   // ...
@@ -377,7 +423,11 @@ label: {
 }
 ```
 
+<<<<<<< HEAD
 ...Meskipun, 99,9% dari waktu `break` yang digunakan adalah loop dalam, seperti yang telah kita lihat pada contoh di atas.
+=======
+...Although, 99.9% of the time `break` is used inside loops, as we've seen in the examples above.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 `continue` hanya dimungkinkan dari dalam loop.
 ````
