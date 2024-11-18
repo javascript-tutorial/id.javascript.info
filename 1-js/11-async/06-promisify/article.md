@@ -25,7 +25,11 @@ function loadScript(src, callback) {
 
 Fungsi memuat script dengan `src` yang diberikan, dan kemudian memanggil` callback (err) `jika terjadi kesalahan, atau` callback (null, script) `jika pemuatan berhasil. Itu adalah kesepakatan untuk menggunakan callback, kita telah melihat itu sebelumnya.
 
+<<<<<<< HEAD
 Mari kita jadikan promise.
+=======
+Let's promisify it.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Kita akan membuat fungsi baru `loadScriptPromise (src)`, yang melakukan hal yang sama (memuat skrip), tetapi mengembalikan sebuah promise daripada menggunakan callback.
 
@@ -126,7 +130,11 @@ Untuk format callback yang lebih eksotis, seperti yang tidak memiliki `err` sama
 Ada juga module dengan function promisifikasi yang sedikit lebih fleksibel, misalnya [es6-promisify](https://github.com/digitaldesignlabs/es6-promisify). Di Node.js, ada function `util.promisify` bawaan untuk itu.
 
 ```smart
+<<<<<<< HEAD
 Promisifikasi adalah pendekatan yang bagus, khususnya ketika anda menggunakan `async/await` (lihat bab selanjutnya), tapi bukan pengganti callback secara total.
+=======
+Promisification is a great approach, especially when you use `async/await` (covered later in the chapter <info:async-await>), but not a total replacement for callbacks.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Ingat, sebuah promise mungkin hanya memiliki satu hasil, tetapi callback mungkin secara teknis dipanggil berkali-kali.
 

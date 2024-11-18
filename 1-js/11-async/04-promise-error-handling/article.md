@@ -194,7 +194,15 @@ Di dalam lingkungan non-peramban seperti Node.js di sana ada cara lain untuk mel
 
 ## Ringkasan
 
+<<<<<<< HEAD
 - `.catch` menangani _error_ di segala macam promise: baik itu panggilan `reject()`, atau sebuah _error_ yang dilemparkan di dalam handler.
 - Kita harus meletakkan `.catch` tepat di tempat dimana kita ingin menangani _error_ dan tahu bagaimana untuk menangani _error-error_ tersebut. Handler harus menganalisa _error_ (bantuan class _error_ khusus) dan melemparkan kembali yang tidak diketahui (mungkin itu adalah kesalahan pemrograman).
 - Ok untuk tidak menggunakan `.catch` sama sekali, jika tidak ada cara untuk memulihkan dari kesalahan.
 - Bagaimanapun kita harus memiliki handler event `unhandledrejection` (untuk peramban,dan analog untuk lingkungan lainnya), untuk melacak _error_ yang tak tertangani dan memberi tahu pengguna (dan mungkin server kita) tentang _error-error_ tersebut, jadi aplikasi kita tidak pernah "mati begitu saja".
+=======
+- `.catch` handles errors in promises of all kinds: be it a `reject()` call, or an error thrown in a handler.
+- `.then` also catches errors in the same manner, if given the second argument (which is the error handler).
+- We should place `.catch` exactly in places where we want to handle errors and know how to handle them. The handler should analyze errors (custom error classes help) and rethrow unknown ones (maybe they are programming mistakes).
+- It's ok not to use `.catch` at all, if there's no way to recover from an error.
+- In any case we should have the `unhandledrejection` event handler (for browsers, and analogs for other environments) to track unhandled errors and inform the user (and probably our server) about them, so that our app never "just dies".
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3

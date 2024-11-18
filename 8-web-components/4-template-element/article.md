@@ -1,7 +1,11 @@
 
 # Elemen template
 
+<<<<<<< HEAD
 Elemen `<template>` bawaan berfungsi sebagai penyimpanan untuk template markup HTML. Browser mengabaikan isinya, hanya memeriksa validitas sintaks, tetapi kita dapat mengakses dan menggunakannya dalam JavaScript, untuk membuat elemen lain.
+=======
+A built-in `<template>` element serves as a storage for HTML markup templates. The browser ignores its contents, only checks for syntax validity, but we can access and use it in JavaScript, to create other elements.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Secara teori, kita bisa membuat elemen tak terlihat di suatu tempat di HTML untuk tujuan penyimpanan markup HTML. Apa yang spesial dari `<template>`?
 

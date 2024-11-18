@@ -4,7 +4,17 @@ _Bezier Curves_ digunakan didalam grafis komputer untuk menggambar bentuk, untuk
 
 _Bezier Curves_ merupakan hal yang cukup simple, dan sangat layak untuk dipelajari dan akan terasa kenyamanan penggunaannya didalam grafis vektor dan animasi lanjutan.
 
+<<<<<<< HEAD
 ## Titik Kontrol
+=======
+```smart header="Some theory, please"
+This article provides a theoretical, but very needed insight into what Bezier curves are, while [the next one](info:css-animations#bezier-curve) shows how we can use them for CSS animations.
+
+Please take your time to read and understand the concept, it'll serve you well.
+```
+
+## Control points
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Sebuah [bezier curve](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) didefinisikan dengan menggunakan titik kontrol.
 
