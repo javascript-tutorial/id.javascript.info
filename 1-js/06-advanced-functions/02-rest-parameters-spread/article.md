@@ -23,7 +23,11 @@ function sum(a, b) {
 alert( sum(1, 2, 3, 4, 5) );
 ```
 
+<<<<<<< HEAD
 Disana tidak akan terdapat error karena argumen "berlebihan". Tapi tentu saja hasilnya hanya dua angka pertama yang dihitung.
+=======
+There will be no error because of "excessive" arguments. But of course in the result only the first two will be counted, so the result in the code above is `3`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Sisa parameternya bisa digunakan didalam fungsi dengan menggunakan tiga titik `...` diikuti nama dari array yang akan berisi mereka. Titik secara harfiah berarti "kumpulkan sisa parameter didalam array".
 
