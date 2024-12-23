@@ -28,10 +28,17 @@ let range = {
 
 Untuk bisa membuat `range` bisa diiterasi (dan membuat `for..of` bekerja) kita harus menambahkan sebuah metode kedalam objeknya bernama `Symbol.iterator` (Simbol built-in spesian yang hanya digunakan untuk hal itu).
 
+<<<<<<< HEAD
 1. Ketika `for.of` dimulai, itu akan memanggil metodenya sekali (atau error jika tidak ditemukan). Metodenya haruslah mengembalikan sebuah *iterator* -- sebuah objek dengan metode `next`.
 2. Selanjutnya, `for..of` bekerja *hanya bila itu mengembalikan objek*.
 3. Ketika `for..of` menginginkan nilai selanjutnya, itu akan memanggil `next()` didalam objeknya.
 4. Hasil dari `next()` harus mempunyai form `{done: Boolean, value: any}`, dimana `done=true` berarti iterasinya telah selesai, sebaliknya `value` adalah nilai selanjutnya.
+=======
+1. When `for..of` starts, it calls that method once (or errors if not found). The method must return an *iterator* -- an object with the method `next`.
+2. Onward, `for..of` works *only with that returned object*.
+3. When `for..of` wants the next value, it calls `next()` on that object.
+4. The result of `next()` must have the form `{done: Boolean, value: any}`, where `done=true` means that the loop is finished, otherwise `value` is the next value.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Ini adalah implementasi penuh untuk `range` dengan catatan:
 
@@ -44,11 +51,16 @@ let range = {
 // 1. panggil for..of pertama kali untuk memanggil ini
 range[Symbol.iterator] = function() {
 
+<<<<<<< HEAD
   // ini akan mengembalikan objek iterator:
   // 2. Selanjutnya, for..of hanya bekerja dengan iterator ini, menanyakan nilai selanjutnya
+=======
+  // ...it returns the iterator object:
+  // 2. Onward, for..of works only with the iterator object below, asking it for next values
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
   return {
     current: this.from,
-    last: this.to,      
+    last: this.to,
 
     // 3. next() dipanggil untuk setiap iterasi oleh perulangan for..of
     next() {
@@ -174,7 +186,11 @@ ketika kita menggunakan javascript untuk melakukan prakter didalam browser atau 
 
 Contoh, string adalah keduanya, bisa diiterasi (`for..of` dapat bekerja) dan seperti array(mempunyai indeks angka dan `length`(panjang)).
 
+<<<<<<< HEAD
 Akan tetapi bisa diiterasi mungkin bukanlah array. Dan sebaliknya sebuah array mungkin tidak bisa diiterasi.
+=======
+But an iterable may not be array-like. And vice versa an array-like may not be iterable.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Contoh, `range` di contoh diatas bisa diiterasi, tapi tidak seperti array, karena itu tidak memiliki properti indeks dan `length`.
 
@@ -218,8 +234,13 @@ alert(arr.pop()); // World (metode bekerja)
 
 Hal yang serupa terjadi untuk sesuatu yang bisa diiterasi:
 
+<<<<<<< HEAD
 ```js
 // asumsikan bahwa range diambil dari contoh diatas
+=======
+```js run
+// assuming that range is taken from the example above
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 let arr = Array.from(range);
 alert(arr); // 1,2,3,4,5 (konversi array toString bekerja)
 ```
@@ -233,8 +254,13 @@ Argumen kedua yang opsional `mapFn` bisa saja sebuah fungsi yang akan digunakan 
 
 Contoh:
 
+<<<<<<< HEAD
 ```js
 // asumsikan bahwa range diambil dari contoh diatas
+=======
+```js run
+// assuming that range is taken from the example above
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 // kuadratkan setiap angka
 let arr = Array.from(range, num => num * num);
@@ -271,7 +297,11 @@ for (let char of str) {
 alert(chars);
 ```
 
+<<<<<<< HEAD
 ...Tapi ini lebih pendek.  
+=======
+...But it is shorter.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Kita bahkan bisa membangun `slice` pengganti didalamnya:
 

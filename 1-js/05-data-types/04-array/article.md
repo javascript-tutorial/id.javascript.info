@@ -92,6 +92,38 @@ let fruits = [
 Gaya "tanda koma yang membuntuti" membuat lebih mudah untuk memasukkan/menghilangkan item dari sebuah array, karena semua baris serupa.
 ````
 
+## Get last elements with "at"
+
+[recent browser="new"]
+
+Let's say we want the last element of the array.
+
+Some programming languages allow the use of negative indexes for the same purpose, like `fruits[-1]`.
+
+Although, in JavaScript it won't work. The result will be `undefined`, because the index in square brackets is treated literally.
+
+We can explicitly calculate the last element index and then access it: `fruits[fruits.length - 1]`.
+
+```js run
+let fruits = ["Apple", "Orange", "Plum"];
+
+alert( fruits[fruits.length-1] ); // Plum
+```
+
+A bit cumbersome, isn't it? We need to write the variable name twice.
+
+Luckily, there's a shorter syntax: `fruits.at(-1)`:
+
+```js run
+let fruits = ["Apple", "Orange", "Plum"];
+
+// same as fruits[fruits.length-1]
+alert( fruits.at(-1) ); // Plum
+```
+
+In other words, `arr.at(i)`:
+- is exactly the same as `arr[i]`, if `i >= 0`.
+- for negative values of `i`, it steps back from the end of the array.
 
 ## Metode *pop*/*push*, *shift*/*unshift*
 
@@ -121,9 +153,15 @@ Sebuah *stack* biasanya diilustrasikan sebagai sebuah *pack* kartu: kartu-kartu 
 
 Untuk *stack*, elemen terakhir yang di-*push* diterima lebih dulu, hal itu juga disebut sebagai prinsip LIFO (*Last-In-First-Out*) atau "terakhir masuk, pertama keluar". Sedangkan untuk *queue*, kita memiliki prinsip (*First-In-First-Out*) atau "pertama masuk, pertama keluar".
 
+<<<<<<< HEAD
 *Array* dalam JavaScript dapat bekerja baik sebagai sebuah *queue* maupun *stack*. Keduanya membuat kamu bisa menambahkan/menghilangkan elemen baik dari/ke awal ataupun akhir.
 
 Dalam *computer science* struktur data yang memungkinkan kita bisa melakukan hal-hal demikian disebut sebagai [*deque* (*double-ended queue*)](https://en.wikipedia.org/wiki/Double-ended_queue).
+=======
+Arrays in JavaScript can work both as a queue and as a stack. They allow you to add/remove elements, both to/from the beginning or the end.
+
+In computer science, the data structure that allows this, is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 **Metode yang berfungsi dengan bagian akhir dari _array_:**
 
@@ -137,6 +175,8 @@ Dalam *computer science* struktur data yang memungkinkan kita bisa melakukan hal
 
     alert( fruits ); // Apple, Orange
     ```
+
+    Both `fruits.pop()` and `fruits.at(-1)` return the last element of the array, but `fruits.pop()` also modifies the array by removing it.
 
 `push`
 : Mendorong elemen ke bagian akhir *array*:
@@ -248,7 +288,11 @@ Mengapa bekerja dengan bagian akhir sebuah *array* ketimbang bagian depannya? Ma
 fruits.shift(); // mengambil 1 elemen dari bagian awal
 ```
 
+<<<<<<< HEAD
 Tidaklah cukup mengambil dan menghapus elemen dengan angka `0`. Elemen lainnya juga perlu diberi angka pula.
+=======
+It's not enough to take and remove the element with the index `0`. Other elements need to be renumbered as well.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Operasi `shift` harus menjalankan 3 hal:
 
@@ -366,11 +410,19 @@ Ada satu sintaks lagi untuk membuat sebuah *array*:
 let arr = *!*new Array*/!*("Apple", "Pear", "etc");
 ```
 
+<<<<<<< HEAD
 Sintaks tersebut jarang digunakan, karena tanda kurung siku `[]` lebih pendek. Juga terdapat sebuah fitur yang sukar di dalamnya.
+=======
+It's rarely used, because square brackets `[]` are shorter. Also, there's a tricky feature with it.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Jika `new Array` dipanggil dengan sebuah argumen tunggal yang mana adalah sebuah angka, maka sintaks tersebut akan membuat sebuah *array* yang *tanpa elemen, namun dengan panjang sesuai yang diberikan*.
 
+<<<<<<< HEAD
 Mari lihat bagaimana orang-orang bisa terjebak dengan hal ini:
+=======
+Let's see how one can shoot themselves in the foot:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let arr = new Array(2); // akankah membuat sebuah array berisi [2] ?
@@ -395,7 +447,11 @@ let matrix = [
   [7, 8, 9]
 ];
 
+<<<<<<< HEAD
 alert( matrix[1][1] ); // 5, elemen pusat
+=======
+alert( matrix[0][1] ); // 2, the second value of the first inner array
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 
 ## toString
@@ -442,7 +498,11 @@ Mari kita ingat aturannya:
 - Jika salah satu argumen `==` adalah objek, dan argumen lainnya primitif, objek tersebut akan diubah menjadi primitif, seperti yang dijelaskan pada bab <info: object-toprimitive>.
 - ... Dengan pengecualian `null` dan` undefined` yang sama `==` satu sama lain dan tidak ada yang lain.
 
+<<<<<<< HEAD
 Perbandingan ketat `===` bahkan lebih sederhana, karena tidak mengonversi jenis.
+=======
+The strict comparison `===` is even simpler, as it doesn't convert types.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Jadi, jika kita membandingkan array dengan `==`, keduanya tidak akan pernah sama, kecuali jika kita membandingkan dua variabel yang mereferensikan array yang sama persis.
 
@@ -462,7 +522,11 @@ alert( 0 == [] ); // true
 alert('0' == [] ); // false
 ```
 
+<<<<<<< HEAD
 Di sini, dalam kedua kasus, kami membandingkan primitif dengan objek array. Jadi, array `[]` diubah menjadi primitif untuk tujuan perbandingan dan menjadi string kosong `` '' `.
+=======
+Here, in both cases, we compare a primitive with an array object. So the array `[]` gets converted to primitive for the purpose of comparison and becomes an empty string `''`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Kemudian proses perbandingan berlanjut dengan primitif, seperti yang dijelaskan dalam bab <info: type-conversion>:
 
@@ -481,6 +545,7 @@ Sederhana saja: jangan gunakan operator `==`. Sebaliknya, bandingkan item-by-ite
 
 *Array* adalah sebuah objek berjenis khusus, cocok untuk menyimpan dan mengelola data yang tersusun.
 
+<<<<<<< HEAD
 - Deklarasinya:
 
     ```js
@@ -492,11 +557,33 @@ Sederhana saja: jangan gunakan operator `==`. Sebaliknya, bandingkan item-by-ite
     ```
 
     Panggilan `new Array(number)` membuat sebuah *array* dengan panjang indeks (*length*) yang diberikan, tetapi tanpa elemen.
+=======
+The declaration:
+
+```js
+// square brackets (usual)
+let arr = [item1, item2...];
+
+// new Array (exceptionally rare)
+let arr = new Array(item1, item2...);
+```
+
+The call to `new Array(number)` creates an array with the given length, but without elements.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 - Properti `length` adalah panjang *array* atau, lebih tepatnya, angka indeks terakhir plus satu. Hal tersebut secara otomatis diatur dengan metode *array*.
 - Jika kita memendekkan `length` secara manuak, *array* tersebut akan terpotong.
 
+<<<<<<< HEAD
 Kita bisa menggunakan sebuah *array* sebagai sebuah *deque* dengan operasi sebagai berikut:
+=======
+Getting the elements:
+
+- we can get element by its index, like `arr[0]`
+- also we can use `at(i)` method that allows negative indexes. For negative values of `i`, it steps back from the end of the array. If `i >= 0`, it works same as `arr[i]`.
+
+We can use an array as a deque with the following operations:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 - `push(...items)` menambahkan `items` ke bagian akhir *array*.
 - `pop()` menghilangkan elemen dari bagian akhir *array* dan mengembalikannya.
