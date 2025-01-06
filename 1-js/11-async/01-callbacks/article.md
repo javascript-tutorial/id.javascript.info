@@ -28,7 +28,11 @@ function loadScript(src) {
 }
 ```
 
+<<<<<<< HEAD
 Fungsi tersebut menambahkan ke dokumen baru, dibuat secara dinamis, tag `<script src="…">` dengan `src` yang diberikan. Browser kemudian secara otomatis memuat dan menjalankannya ketika lengkap.
+=======
+It inserts into the document a new, dynamically created, tag `<script src="…">` with the given `src`. The browser automatically starts loading it and executes when complete.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Kita bisa menggunakan fungsi tersebut seperti ini:
 
@@ -77,7 +81,13 @@ function loadScript(src, *!*callback*/!*) {
 }
 ```
 
+<<<<<<< HEAD
 Sekarang jika kita ingin memanggil fungsi baru dari script, kita harus menulisnya didalam callback:
+=======
+The `onload` event is described in the article <info:onload-onerror#loading-a-script>, it basically executes a function after the script is loaded and executed.
+
+Now if we want to call new functions from the script, we should write that in the callback:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js
 loadScript('/my/script.js', function() {
@@ -101,8 +111,13 @@ function loadScript(src, callback) {
 
 *!*
 loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script => {
+<<<<<<< HEAD
   alert(`Cool, the ${script.src} is loaded`);
   alert( _ ); // fungsi dideklarasi di dalam script yang dimuat
+=======
+  alert(`Cool, the script ${script.src} is loaded`);
+  alert( _ ); // _ is a function declared in the loaded script
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 });
 */!*
 ```
@@ -196,9 +211,15 @@ Jadi fungsi `callback` single tersebut keduanya digunakan untuk pelaporan error 
 
 ## Pyramid of Doom
 
+<<<<<<< HEAD
 Dari tampilan pertama, itu adalah cara yang layak untuk coding secara asynchronous. Dan memang demikian. Untuk satu atau bahkan dua pemanggilan bersarang itu tidak masalah.
 
 Tetapi untuk beberapa action asynchronous yang mengikuti satu demi satu kita akan punya kode seperti ini:
+=======
+At first glance, it looks like a viable approach to asynchronous coding. And indeed it is. For one or maybe two nested calls it looks fine.
+
+But for multiple asynchronous actions that follow one after another, we'll have code like this:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js
 loadScript('1.js', function(error, script) {
@@ -228,10 +249,17 @@ loadScript('1.js', function(error, script) {
 });
 ```
 
+<<<<<<< HEAD
 Dalam kode di atas:
 1. Kita memuat `1.js`, kemudian jika tidak ada error.
 2. Kita muat `2.js`, kemudian jika tidak ada error.
 3. Kita muat `3.js`, jika tidak ada error -- lakukan sesuatu yang lain `(*)`.
+=======
+In the code above:
+1. We load `1.js`, then if there's no error...
+2. We load `2.js`, then if there's no error...
+3. We load `3.js`, then if there's no error -- do something else `(*)`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Saat pemanggilan jadi lebih bersarang, kode akan menjadi lebih dalam dan semakin susah untuk diatur, khususnya jika kita punya kode asli daripada `...`, itu mungkin berisi loop yang lebih, pernyataan bersyarat dan seterusnya.
 
@@ -299,7 +327,11 @@ function step3(error, script) {
 }
 ```
 
+<<<<<<< HEAD
 Lihat? Itu sama saja, dan tidak ada sarang yang dalam sekarang karena kita buat setiap action menjadi fungsi top-level yang terpisah.
+=======
+See? It does the same thing, and there's no deep nesting now because we made every action a separate top-level function.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Ini berfungsi, tetapi kode-nya terlihat seperti sebuah spreadsheet yang terkoyak. Itu sulit di baca, dan kamu mungkin memperhatikan kalau yang satu butuh untuk eye-jump antara potongan lainnya saat di baca. Itu tidak nyaman, khususnya jika pembaca tidak terbiasa dengan kode dan tidak tahu harus kemana saat eye-jump.
 
@@ -307,4 +339,8 @@ Juga, fungsi yang bernama `step*` semuanya digunakan sekali saja, mereka dibuat 
 
 Kita ingin memiliki sesuatu yang lebih baik.
 
+<<<<<<< HEAD
 Untunglah, ada cara lain untuk menghindari pyramida seperti itu. Salah satu cara yang bagus yaitu menggunakan "promise," di jelaskan dalam bab selanjutnya.
+=======
+Luckily, there are other ways to avoid such pyramids. One of the best ways is to use "promises", described in the next chapter.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
