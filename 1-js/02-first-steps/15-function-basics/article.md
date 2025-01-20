@@ -24,7 +24,7 @@ Katakunci `fungsi` ditulis duluan, lalu *nama fungsinya*, kemudian daftar semua 
 
 ```js
 function name(parameter1, parameter2, ... parameterN) {
-  ...body...
+ // body
 }
 ```
 
@@ -178,12 +178,21 @@ Ketika sebuah nilai dilewatkan sebagai parameter fungsi, itu juga disebut *argum
 
 Dengan kata lain, untuk meluruskan istilah-istilah ini:
 
+<<<<<<< HEAD
 - Parameter adalah variabel yang tercantum di dalam tanda kurung dalam deklarasi fungsi (ini adalah istilah waktu deklarasi)
 - Argumen adalah nilai yang diteruskan ke fungsi saat dipanggil (ini adalah istilah waktu panggilan).
+=======
+- A parameter is the variable listed inside the parentheses in the function declaration (it's a declaration time term).
+- An argument is the value that is passed to the function when it is called (it's a call time term).
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Kami mendeklarasikan fungsi yang mencantumkan parameternya, lalu memanggilnya lewat argumen.
 
+<<<<<<< HEAD
 Dalam contoh di atas, seseorang mungkin mengatakan: "fungsi `sayMessage` dideklarasikan dengan dua parameter, kemudian dipanggil dengan dua argumen: `from` dan `"Hello"`".
+=======
+In the example above, one might say: "the function `showMessage` is declared with two parameters, then called with two arguments: `from` and `"Hello"`".
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 
 ## Nilai default
@@ -208,7 +217,17 @@ function showMessage(from, *!*text = "no text given"*/!*) {
 showMessage("Ann"); // Ann: tidak diberikan teks
 ```
 
+<<<<<<< HEAD
 Sekarang, jika parameter `text` tidak ditentukan, parameter tersebut akan mengambil nilai `"no text give"`
+=======
+Now if the `text` parameter is not passed, it will get the value `"no text given"`.
+
+The default value also jumps in if the parameter exists, but strictly equals `undefined`, like this:
+
+```js
+showMessage("Ann", undefined); // Ann: no text given
+```
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Disini `"no text give"` adalah string, tapi ia bisa menjadi suatu expresi nilai lebih kompleks, yang hanya dievaluasi dan ditetapkan jika tak ada nilai pada parameter. Jadi, ini juga mungkin ditetapkan:
 
@@ -228,9 +247,47 @@ Di sisi lain, itu dipanggil secara independen setiap kali `teks` hilang.
 
 ```
 
+<<<<<<< HEAD
 ### Alternatif nilai default parameter
 
 Terkadang akan dapat dimengerti untuk memberikan nilai default untuk variabel bukan didalam deklarasi fungsi, tapi di tahap selanjutnya, didalam proses eksekusinya.
+=======
+````smart header="Default parameters in old JavaScript code"
+Several years ago, JavaScript didn't support the syntax for default parameters. So people used other ways to specify them.
+
+Nowadays, we can come across them in old scripts.
+
+For example, an explicit check for `undefined`:
+
+```js
+function showMessage(from, text) {
+*!*
+  if (text === undefined) {
+    text = 'no text given';
+  }
+*/!*
+
+  alert( from + ": " + text );
+}
+```
+
+...Or using the `||` operator:
+
+```js
+function showMessage(from, text) {
+  // If the value of text is falsy, assign the default value
+  // this assumes that text == "" is the same as no text at all
+  text = text || 'no text given';
+  ...
+}
+```
+````
+
+
+### Alternative default parameters
+
+Sometimes it makes sense to assign default values for parameters at a later stage after the function declaration.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Untuk memeriksa parameter yang tidak ada, kita bisa membandingkannya dengan `undefined`:
 
@@ -250,7 +307,11 @@ function showMessage(text) {
 showMessage(); // empty message
 ```
 
+<<<<<<< HEAD
 ...Atau kita bisa menggunakan operator `||`:
+=======
+...Or we could use the `||` operator:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js
 // jika teks parameter tidak ada atau "", set variabel ke 'empty'
@@ -427,7 +488,11 @@ Pada contoh-contoh ini diasumsikan arti-arti umum pada kata awalan. Kamu dan tim
 ```smart header="Ultrashort function names"
 Fungsi yang *digunakan secara sering* kadang-kadang memiliki nama yang sangat pendek.
 
+<<<<<<< HEAD
 Sebagai contoh, framework [jQuary](http://jquary.com) mendefinisikan fungsi dengan simbol `$`. Library [Lodash](https://lodash.com) memiliki fungsi inti yang dinamakan dengan `_`.
+=======
+For example, the [jQuery](https://jquery.com/) framework defines a function with `$`. The [Lodash](https://lodash.com/) library has its core function named `_`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Hal-hal tersebut adalah pengecualian. Secara umum, nama fungsi sebaiknya ringkas dan menjelaskan maksudnya.
 ```
@@ -495,7 +560,11 @@ function name(parameters, delimited, by, comma) {
 
 Untuk membuat kode yang bersih dan mudah untuk dipahami, sangat dianjurkan untuk menggunakan variabel lokal dan parameter pada fungsi, tidak mengguunakan variabel luar / variabel global.
 
+<<<<<<< HEAD
 Akan menjadi hal yang mudah untuk dipahami pada fungsi yang mendapatkan parameter, yang bekerja dengan parameter tersebut  dan mengembalikan nilainya daripada fuungsi yang tidak memilki parameter, tetapi melakukan modifikasi terhadap variabel luar akan memiliki efek samping.
+=======
+It is always easier to understand a function which gets parameters, works with them and returns a result than a function which gets no parameters, but modifies outer variables as a side effect.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Penamaan fungsi:
 
