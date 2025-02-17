@@ -36,6 +36,7 @@ button.onclick = () => {
 Dengan cara ini pengguna agak terlindungi dari popups yang tidak diinginkan dan fungsionalitasnya tidak dinonaktifkan secara total.
 Bagaimana jika popups dibuka dari `onclick`, tetapi setelah `setTimeout` ? Hal ini sedikit rumit.
 
+<<<<<<< HEAD
 Coba kode berikut:
 
 ```js run
@@ -54,6 +55,8 @@ setTimeout(() => window.open('http://google.com'), 1000);
 
 Perbedaannya adalah Firefox memperlakukan sebuah timeout antara 2000ms atau kurang dari itu untuk dapat diterima, namun lebih dari itu -- hilangkan "kepercayaan", Firefox berasumsi bahwa saat ini "diluar kendali pengguna". Sehingga yang pertama akan diblokir, dan yang kedua tidak.
 
+=======
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 ## window.open
 
 Sintak untuk membuka popup adalah: `window.open(url, name, params)`:
@@ -81,8 +84,17 @@ Pengaturan untuk `params`:
 
 Ada juga sedikit dukungan untuk fitur spesifik peramban, Dimana biasanya tidak digunakan. Periksa <a href="https://developer.mozilla.org/en/DOM/window.open">window.open in MDN</a> Sebagai contoh.
 
+<<<<<<< HEAD
 ## Contoh: sebuah jendela sederhana
 Mari buka jendela dengan pengaturan fitur paling sedikit untuk melihat fitur mana yang akan diizinkan atau tidak oleh peramban:
+=======
+There is also a number of less supported browser-specific features, which are usually not used. Check <a href="https://developer.mozilla.org/en/DOM/window.open">window.open in MDN</a> for examples.
+
+## Example: a minimalistic window
+
+Let's open a window with minimal set of features, just to see which of them browser allows to disable:
+
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 ```js run
 let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
 width=0,height=0,left=-1000,top=-1000`;
@@ -109,8 +121,16 @@ Aturan untuk penggaturan yang dihilangkan:
 - Jika tidak ada `left/top` di dalam parameter, maka peramban akan mencoba untuk membuka sebuah jendela baru didekat jendela yang terakhir terbuka.
 - Jika tidak ada `width/height`, maka jendela baru akan memiliki ukuran yang sama seperti jendela yang terakhir terbuka.
 
+<<<<<<< HEAD
 ## Mengakses popup dari jendela
 Pemanggilan `Open` mengembalikan referensi ke jendela baru. referensi itu bisa digunakan untuk memanipulasi properti, merubah lokasi dan melakukan hal lain yang lebih dari itu.
+=======
+## Accessing popup from window
+
+The `open` call returns a reference to the new window. It can be used to manipulate its properties, change location and even more.
+
+In this example, we generate popup content from JavaScript:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Pada contoh ini, kita menghasilkan popup konten dari Javascript:
 ```js
@@ -217,7 +237,17 @@ Kami telah membicarakan tentang mengulir jendela di bagian <info:size-and-scroll
 ## Fokus/kabur di jendela
 Secara teori, ada metode `window.focus()` dan `window.blur()` untuk memfokuskan/tidak fokus sebuah jendela. Dan ada juga <em>even</em> `focus/blur` yang mengizinkan untuk menangkap momen saat pegunjung fokus pada jendela dan berpindah ke tempat lain.
 
+<<<<<<< HEAD
 Meskipun, dalam praktiknya hal ini dibatasi, karena pada masa lalu halaman jahat menyalahgunakannya.
+=======
+## Focus/blur on a window
+
+Theoretically, there are `window.focus()` and `window.blur()` methods to focus/unfocus on a window. And there are also `focus/blur` events that allow to catch the moment when the visitor focuses on a window and switches elsewhere.
+
+Although, in practice they are severely limited, because in the past evil pages abused them.
+
+For instance, look at this code:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Sebagai contoh, lihat code ini:
 ```js run
@@ -236,10 +266,17 @@ Sebagai contoh:
 - Saat kita membuka popup, mungkin ide yang bagus untuk menjalankan `newWindow.focus()`. untuk beberapa kombinasi OS/peramban memastikan bahwa pengguna saat ini berada di dalam jendela baru
 - Jika kita ingin melacak kapan pengunjung mengunakan web-app, kita dapat melacak `window.onfocus/onblur`. Hal ini mengijinkan kita untuk menangguhkan / melanjutkan di dalam aktifitas animasi dan semacamnya. Tetapi tolong dicatat bahwa <em>event</em> `blur` berarti pengunjung berpindah dari jendela, teteapi mereka mungkin masih mengamatinya. Jendela berada di latar belakang, namun mungkin masih dapat dilihat.
 
+<<<<<<< HEAD
 ## kesimpulan
 Jendela popup jarang digunakan, karena ada beberapa alternatif: memuat dan menampilkan informasi in-page, atau di dalam iframe.
 
 Jika kita akan membuka popup, cara yang benar adalah dengan memberitahu pengguna tentang hal ini. Sebuah ikon "jendela terbuka" dekat tautan atau tombol yang mengizinkan pengunjung untuk tetap fokus dan ingat kedua jendela. 
+=======
+- When we open a popup, it might be a good idea to run `newWindow.focus()` on it. Just in case, for some OS/browser combinations it ensures that the user is in the new window now.
+- If we want to track when a visitor actually uses our web-app, we can track `window.onfocus/onblur`. That allows us to suspend/resume in-page activities, animations etc. But please note that the `blur` event means that the visitor switched out from the window, but they still may observe it. The window is in the background, but still may be visible.
+
+## Summary
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 - Popup dapat dibuka dengan pemanggilan `open(url, name, params)`. hal ini akan mengembalikan referensi untuk jendela yang lebih baru.
 - Peramban memblokir pemanggilan `open` dari kode yang berasal dari luar aksi pengguna. Biasanya notifikasi muncul, sehingga pengguna mungkin mengizinkannya.

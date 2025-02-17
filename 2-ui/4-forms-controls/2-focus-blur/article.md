@@ -97,6 +97,8 @@ Jika kita sedang mengetik/memasukkan sesuatu ke input dan coba menggunakan`key:T
 
 Perlu diingat bahwa kita tidak bisa "mencegah hilangnya fokus" dengan memanggil `event.preventDefault()` pada `onblur`, karena `onblur` bekerja saat element hilang fokus.
 
+In practice though, one should think well, before implementing something like this, because we generally *should show errors* to the user, but *should not prevent their progress* in filling our form. They may want to fill other fields first.
+
 ```warn header="JavaScript-initiated focus loss"
 Focus loss bisa terjadi untuk alasan tertentu.
 

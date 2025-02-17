@@ -27,7 +27,11 @@ Untungnya, (kita) tak perlu untuk menulis kode untuk menangani semua hal ini. Tu
 
 ## JSON.stringify
 
+<<<<<<< HEAD
 [JSON](http://en.wikipedia.org/wiki/JSON) (*JavaScript Object Notation*) adalah sebuah format umum yang merepresentasikan nilai-nilai dan objek. JSON dideskripsikan sebagaimana dalam standar [RFC 4627](http://tools.ietf.org/html/rfc4627). Awalnya JSON dibuat untuk JavaScript, tapi banyak bahasa pemrograman lain memiliki *library* untuk menangani JSON juga. Oleh karena itu, kini jadi mudah untuk menggunakan JSON untuk tujuan pertukaran data ketika klien menggunakan JavaScript dan server ditulis menggunakan bahasa pemrograman Ruby/PHP/Java/apapun itu.
+=======
+The [JSON](https://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) is a general format to represent values and objects. It is described as in [RFC 4627](https://tools.ietf.org/html/rfc4627) standard. Initially it was made for JavaScript, but many other languages have libraries to handle it as well.  So it's easy to use JSON for data exchange when the client uses JavaScript and the server is written on Ruby/PHP/Java/Whatever.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 JavaScript menyediakan metode-metode seperti:
 
@@ -41,7 +45,7 @@ let student = {
   age: 30,
   isAdmin: false,
   courses: ['html', 'css', 'js'],
-  wife: null
+  spouse: null
 };
 
 *!*
@@ -58,7 +62,7 @@ alert(json);
   "age": 30,
   "isAdmin": false,
   "courses": ["html", "css", "js"],
-  "wife": null
+  "spouse": null
 }
 */
 */!*
@@ -402,7 +406,7 @@ Untuk men-*decode* sebuah *string* JSON, kita memerlukan sebuah metode lain bern
 
 Sintaksnya:
 ```js
-let value = JSON.parse(str, [reviver]);
+let value = JSON.parse(str[, reviver]);
 ```
 
 *str*
@@ -448,7 +452,11 @@ let json = `{
 
 Selaain itu semua, JSON tidak mendukung komentar. Menambahkan sebuah komentar ke JSON akan membuat JSON tersebut tidak valid.
 
+<<<<<<< HEAD
 Terdapat format lain yang dinamakan [JSON5](http://json5.org/), yang mengizinkan *key* tanpa tanda kutip, adanya komentar dan lain-lain. Tapi ini adalah *library* yang berdiri sendiri, tidak terdapat dalam spesifikasi bahasa pemrograman.
+=======
+There's another format named [JSON5](https://json5.org/), which allows unquoted keys, comments etc. But this is a standalone library, not in the specification of the language.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 JSON biasa memang seketat itu bukan karena para pengembangnya malas, tetapi agar implementasinya mudah, dapat diandalkan dan cepat saat proses *parsing* algoritma.
 

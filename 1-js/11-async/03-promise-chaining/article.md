@@ -33,7 +33,15 @@ new Promise(function (resolve, reject) {
 
 Idenya adalah bahwa **result** diteruskan melalui rantai _handlers_ `.then`.
 
+<<<<<<< HEAD
 Ini alurnya:
+=======
+Here the flow is:
+1. The initial promise resolves in 1 second `(*)`,
+2. Then the `.then` handler is called `(**)`, which in turn creates a new promise (resolved with `2` value).
+3. The next `then` `(***)` gets the result of the previous one, processes it (doubles) and passes it to the next handler.
+4. ...and so on.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 1. Promise pertama selesai dalam 1 detik `(*)`,
 2. Kemudian _handler_ `.then` dipanggil `(**)`.
@@ -44,7 +52,11 @@ Selama **result** diteruskan di sepanjang rantai _handlers_, kita bisa melihat u
 
 ![](promise-then-chain.svg)
 
+<<<<<<< HEAD
 Seluruhnya bekerja, karena pemanggilan ke `promise.then` mengembalikan sebuah _promise_, jadi kita bisa memanggil `.then` selanjutnya.
+=======
+The whole thing works, because every call to a `.then` returns a new promise, so that we can call the next `.then` on it.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Ketika sebuah _handler_ mengembalikan nilai, _handler_ tersebut menjadi hasil dari promise, jadi `.then` selanjutnya dipanggil dengan itu.
 
@@ -73,7 +85,11 @@ promise.then(function (result) {
 });
 ```
 
+<<<<<<< HEAD
 Apa yang kita lakukan di sini hanya beberapa _handlers_ untuk satu _promise_. _Handlers_ tersebut tidak meneruskan result ke satu sama lain, melainkan memprosesnya masing-masing.
+=======
+What we did here is just adding several handlers to one promise. They don't pass the result to each other; instead they process it independently.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Ini gambarnya (bandingkan dengan _chaining_ di atas):
 
@@ -121,7 +137,11 @@ new Promise(function(resolve, reject) {
 });
 ```
 
+<<<<<<< HEAD
 Di sini `.then` pertama menunjukan `1` dan mengembalikan `new Promise(…)` pada baris `(*)`. Setelah satu detik selesai, dan hasil (argument `resolve`, di sini `result * 2`) diteruskan ke _handler_ `.then` kedua. Handler pada baris `(**)`, menunjukan `2` dan melakukan hal yang sama.
+=======
+Here the first `.then` shows `1` and returns `new Promise(…)` in the line `(*)`. After one second it resolves, and the result (the argument of `resolve`, here it's `result * 2`) is passed on to the handler of the second `.then`. That handler is in the line `(**)`, it shows `2` and does the same thing.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Jadi keluarannya sama dengan contoh sebelumnya: 1 -> 2 -> 4, tetapi sekarang dengan menunda 1 detik antara pemanggilan `alert`.
 
@@ -229,7 +249,13 @@ Fitur ini memperbolehkan kita untuk untuk mengintegrasikan objek kustom dengan p
 
 Di dalam pemrograman frontend promises sering digunakan untuk permintaan jaringan. Jadi mari lihat contoh yang lebih luas dari itu.
 
+<<<<<<< HEAD
 Kita akan menggunakan methos [fetch](info:fetch) untuk memuat informasi tentang pengguna dari server jarak jauh. Banyak sekali pilihan parameter yang dilibatkan di dalam [bab terpisah](info:fetch), tetapi sintaksis dasar cukup sederhana:
+=======
+In frontend programming, promises are often used for network requests. So let's see an extended example of that.
+
+We'll use the [fetch](info:fetch) method to load the information about the user from the remote server. It has a lot of optional parameters covered in [separate chapters](info:fetch), but the basic syntax is quite simple:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```js
 let promise = fetch(url);
@@ -346,9 +372,13 @@ function loadJson(url) {
 }
 
 function loadGithubUser(name) {
+<<<<<<< HEAD
   return fetch(`https://api.github.com/users/${name}`).then((response) =>
     response.json()
   );
+=======
+  return loadJson(`https://api.github.com/users/${name}`);
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 }
 
 function showAvatar(githubUser) {

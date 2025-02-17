@@ -27,7 +27,11 @@ Biasanya, adalah sebuah fungsi. Untuk beberapa alasan, sebuah string dari kode b
 : Penundaannya sebelum berjalan, didalam milidetik (1000 milidetik = 1 detik), secara default 0.
 
 `arg1`, `arg2`...
+<<<<<<< HEAD
 : Argumen-argumen untuk fungsinya (tidak didukung didalam IE9-).
+=======
+: Arguments for the function
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Contoh, kode ini memanggil `sayHi()` setelah satu detik:
 
@@ -102,7 +106,11 @@ Seperti yang bisa kita lihat dari keluaran `alert`, didalam peramban identifier 
 
 Lainnya, tidak terdapat spesifikasi universal untuk metode-metode ini, jadi tidak ada masalah.
 
+<<<<<<< HEAD
 Untuk peramban, timer dideskripsikan didalam [bagian timer](https://www.w3.org/TR/html5/webappapis.html#timers) dari standar HTML5.
+=======
+For browsers, timers are described in the [timers section](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) of HTML Living Standard.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ## setInterval
 
@@ -232,7 +240,11 @@ setTimeout(function() {...}, 100);
 
 Untuk `setInterval` fungsinya akan tetap didalam memori sampai `clearInterval` dipanggil.
 
+<<<<<<< HEAD
 Tidak terdapat efek-samping pada hal itu. Sebuah fungsi mereferensi lingkungan leksikal luar, jadi, selama itu masih ada, variabel luar pun akan tetap ada. Hal itu mungkin akan memakan memori daripada fungsinya sendiri. Jadi ketika kita tidak butuh fungsi yang sudah dijadwalkan lagi, akan lebih baik untuk dibatalkan/diberhentikan, bahkan jika itu sebuah kode yang sangat pendek/kecil.
+=======
+There's a side effect. A function references the outer lexical environment, so, while it lives, outer variables live too. They may take much more memory than the function itself. So when we don't need the scheduled function anymore, it's better to cancel it, even if it's very small.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 ````
 
 ## setTimeout dengan penundaan nol
@@ -255,8 +267,13 @@ Pada baris pertama "akan memasukan pemanggilan kedalam urutan pemanggilan setela
 
 Juga terdapat kasus yang berhubungan dengan peramban, kita akan membahasnya didalam bab <info:event-loop>.
 
+<<<<<<< HEAD
 ````smart header="Penundaan dengan nol faktanya tidaklah nol (didalam peramban)"
 Didalam peramban, terdapat sebuah batasan seberapa seringnya timer bercabang bisa berjalan. [standar HTML5](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) mengatakan: "setelah lima timer bercabang, intervalnya dipaksa untuk berjalan setidaknya 4 milidetik.".
+=======
+````smart header="Zero delay is in fact not zero (in a browser)"
+In the browser, there's a limitation of how often nested timers can run. The [HTML Living Standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) says: "after five nested timers, the interval is forced to be at least 4 milliseconds.".
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Let's demonstrate what it means with the example below. The `setTimeout` call in it re-schedules itself with zero delay. Each call remembers the real time from the previous one in the `times` array. What do the real delays look like? Let's see:
 Ayo kita prakterkan apa artinya itu dengan contoh dibawah. Pemanggilan `setTimeout` menjadwalkan ulang dengan penundaan 0. Setiap pemanggilan mengingat waktu yang asli dari pemanggilan sebelumnya didalam array `times`. Seperti apa penundaan sesungguhnya terlihat? Lihat dibawah:
@@ -295,9 +312,16 @@ Untuk Javascript dibagian server, batasan itu tidaklah ada, dan disana terdapat 
 
 Perhatikan bahwa seluruh metode penjadwalan tidak *menjamin* delay yang tepat.
 
+<<<<<<< HEAD
 Contoh, didalam peramban timer mungkin lebih lambat untuk beberapa alasan:
 - CPU-nya sedang melakukan banyak pekerjaan.
 - Ada tab peramban yang sedang berjalan dalam mode background.
 - Laptopnya sedang menggunakan mode batre.
+=======
+For example, the in-browser timer may slow down for a lot of reasons:
+- The CPU is overloaded.
+- The browser tab is in the background mode.
+- The laptop is on battery saving mode.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Semua itu mungkin menaikan resolusi timernya (delay minimalnya) menjadi 300ms atau bahkan 1000ms tergantung perambannya dan performasi pada OS-nya.

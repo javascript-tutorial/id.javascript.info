@@ -45,7 +45,11 @@ Satu cara untuk berkomunikasi dengan *server* lain adalah dengan mengirimkan `<f
 <iframe name="iframe"></iframe>
 */!*
 
+<<<<<<< HEAD
 <!-- form bisa dihasilkan secara dinamis dan dikirikan oleh Javascript -->
+=======
+<!-- a form could be dynamically generated and submitted by JavaScript -->
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 *!*
 <form target="iframe" method="POST" action="http://another.com/…">
 */!*
@@ -173,6 +177,7 @@ Untuk **request** cross-origin, secara default Javascript hanya dapat mengakses 
 
 - `*cache*-Control`
 - `Content-Language`
+- `Content-Length`
 - `Content-Type`
 - `Expires`
 - `Last-Modified`
@@ -180,6 +185,7 @@ Untuk **request** cross-origin, secara default Javascript hanya dapat mengakses 
 
 Mengakses *header* respon lainnya akan menghasilkan error.
 
+<<<<<<< HEAD
 ```smart
 Tidak ada *header* `Content-Length` di daftar!
 
@@ -187,6 +193,9 @@ Tidak ada *header* `Content-Length` di daftar!
 ```
 
 Untuk memberikan Javascript akses ke *header* respon lainnya, *server* harus mengirimkan *header*  `Access-Control-Expose-*header*s`. Ini berisi daftar yang dipisahkan dengan koma dari nama *header* tidak aman yang seharusnya dibuat untuk bisa di akses. 
+=======
+To grant JavaScript access to any other response header, the server must send the `Access-Control-Expose-Headers` header. It contains a comma-separated list of unsafe header names that should be made accessible.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Contoh:
 
@@ -194,14 +203,23 @@ Contoh:
 200 OK
 Content-Type:text/html; charset=UTF-8
 Content-Length: 12345
+Content-Encoding: gzip
 API-Key: 2c9de507f2c54aa1
 Access-Control-Allow-Origin: https://javascript.info
 *!*
+<<<<<<< HEAD
 Access-Control-Expose-*header*s: Content-Length,API-Key
 */!*
 ```
 
 Dengan *header* `Access-Control-Expose-headers`, skrip diizinkan untuk membaca *header* `Content-Length` dan `API-Key` dari respon. 
+=======
+Access-Control-Expose-Headers: Content-Encoding,API-Key
+*/!*
+```
+
+With such an `Access-Control-Expose-Headers` header, the script is allowed to read the `Content-Encoding` and `API-Key` headers of the response.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ## *Request* tidak aman
 
@@ -211,10 +229,18 @@ Beberapa waktu yang lalu tidak ada orang yang membayangkan bahwa halaman web bis
 
 Jadi untuk menghindari kesalah pahaman, *request* tidak aman -- yang tidak bisa diselesaikan di waktu yang lama, browser tidak akan membuat *request* tersebut secara langsung. Sebelum dikirimkan ke pendahuluan yang disebut *request* "preflight", meminta izin.
 
+<<<<<<< HEAD
 *Request* preflight menggunakan metode `OPTIONS`, tidak ada *body* dan dua *header*:
 
 - *Header* `Access-Control-request-Method` memiliki metode *request* tidak aman.
 - *Header* `Access-Control-request-headers` menyediakan daftar yang dipisahkan dengan koma dari *header* HTTP tidak aman.
+=======
+A preflight request uses the method `OPTIONS`, no body and three headers:
+
+- `Access-Control-Request-Method` header has the method of the unsafe request.
+- `Access-Control-Request-Headers` header provides a comma-separated list of its unsafe HTTP-headers.
+- `Origin` header tells from where the request came. (such as `https://javascript.info`)
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Jika *server* setuju untuk melayani *request*, maka akan merespon dengan *body* kosong, status 200 dan *header*:
 
