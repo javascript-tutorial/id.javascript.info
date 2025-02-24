@@ -1,6 +1,10 @@
 # Tutorial JavaScript Modern
 
+<<<<<<< HEAD
 Ini adalah repository konten Indonesia dari Tutorial JavaScript Modern yang terbit di [https://javascript.info](https://javascript.info).
+=======
+This repository hosts the English content of the Modern JavaScript Tutorial, published at [https://javascript.info](https://javascript.info).
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ## Penerjemahan
 
@@ -12,17 +16,29 @@ Lihat <https://javascript.info/translate> untuk detilnya.
 
 Kami juga ingin berkolaborasi dengan orang lain di tutorial ini.
 
+<<<<<<< HEAD
 Apa ada yang salah? Apa ada topik yang hilang? Jelaskan ke semua orang, ajukan sebagai PR 👏
 
 **Kamu bisa edit teks di editor apapun.** Tutorial ini memakai format "markdown" yang canggih, mudah dipahami. Jika kamu mau lihat bagaimana tampilan on-site-nya, ada server untuk menjalankan tutorial secara lokal di <https://github.com/javascript-tutorial/server>.  
+=======
+Something's wrong? A topic is missing? Explain it to people, add it as PR 👏
+
+**You can edit the text in any editor.** The tutorial uses an enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Daftar kontributor tersedia di <https://javascript.info/about#contributors>.
 
 ## Struktur
 
+<<<<<<< HEAD
 Tiap bab, artikel atau tugas mempunyai foldernya sendiri.
 
 Foldernya dinamai seperti `N-url`, di mana `N` adalah angka untuk tujuan pengurutan dan `url` adalah URL dengan judul bahan material.
+=======
+Every chapter, article, or task has its folder.
+
+The folder is named like `N-url`, where `N` is a number for the sorting purposes and `URL` is the URL part with the title of the material.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Tipe material didefinisikan oleh file di dalam foldernya:
 

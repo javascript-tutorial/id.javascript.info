@@ -195,12 +195,21 @@ Header ini memastikan HTTP yang tepat dan aman, jadi mereka khusus dikendalikan 
 
 Untuk membuat sebuah permintaan `POST` , atau sebuah permintaan dengan metode lain, kita perlu menggunakan *option* `fetch`: 
 
+<<<<<<< HEAD
 - **`method`** -- metode HTTP, misalnya `POST`,
 - **`body`** -- permintaan *body*, satu dari:
   - sebuah string (misalnya dikodekan JSON),
   - objek `FormData`, untuk mengirimkan data sebagai `form/multipart`,
   - `Blob`/`BufferSource` untuk mengirimkan data biner, 
   - [URLSearchParams](info:url), untuk mengirimkan data di `x-www-form-urlencoded` pengkodean, jarang digunakan.
+=======
+- **`method`** -- HTTP-method, e.g. `POST`,
+- **`body`** -- the request body, one of:
+  - a string (e.g. JSON-encoded),
+  - `FormData` object, to submit the data as `multipart/form-data`,
+  - `Blob`/`BufferSource` to send binary data,
+  - [URLSearchParams](info:url), to submit the data in `x-www-form-urlencoded` encoding, rarely used.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Format JSON adalah yang paling banyak digunakan sepanjang waktu.
 
@@ -299,6 +308,7 @@ fetch(url, options)
   .then(result => /* hasil proses */)
 ```
 
+<<<<<<< HEAD
 Properti tanggapan:
 - `response.status` -- kode dari tanggapan HTTP,
 - `response.ok` -- `true` jika status 200-299.
@@ -310,6 +320,19 @@ Metode untuk mendapatkan tanggapan *body*:
 - **`response.formData()`** -- mengembalikan tanggapan sebagai objek `FormData` ( pengkodean form/multipart , lihat bab selanjutnya),
 - **`response.blob()`** -- mengembalikan tanggapan sebagai [Blob](info:blob) (data biner dengan tipe),
 - **`response.ArrayBuffer()`** -- mengembalikan tanggapan sebagai [ArrayBuffer](info:Arraybuffer-binary-Arrays) (data biner tingkat rendah),
+=======
+Response properties:
+- `response.status` -- HTTP code of the response,
+- `response.ok` -- `true` if the status is 200-299.
+- `response.headers` -- Map-like object with HTTP headers.
+
+Methods to get response body:
+- **`response.text()`** -- return the response as text,
+- **`response.json()`** -- parse the response as JSON object,
+- **`response.formData()`** -- return the response as `FormData` object (`multipart/form-data` encoding, see the next chapter),
+- **`response.blob()`** -- return the response as [Blob](info:blob) (binary data with type),
+- **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (low-level binary data),
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Option Fetch sejauh ini:
 - `method` -- metode HTTP,

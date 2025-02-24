@@ -131,6 +131,11 @@ Jika ada beberapa elemen di light DOM dengan nama slot yang sama, mereka ditamba
 
 Sebagai contoh:
 
+<<<<<<< HEAD
+=======
+For example, this:
+
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 ```html
 <user-card>
   <span slot="username">John</span>
@@ -270,7 +275,12 @@ Template shadow DOM dengan slot yang tepat:
 </template>
 ```
 
+<<<<<<< HEAD
 1. `<span slot="title">` masuk ke `<slot name="title">`.
+=======
+1. `<span slot="title">` goes into `<slot name="title">`.
+2. There are many `<li slot="item">` in the `<custom-menu>`, but only one `<slot name="item">` in the template. So all such `<li slot="item">` are appended to `<slot name="item">` one after another, thus forming the list.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 2. Ada banyak `<li slot="item">` di template, tetapi hanya satu `<slot name="item">` di template. Jadi semua `<li slot="item">` tersebut ditambahkan ke `<slot name="item">` satu demi satu, sehingga membentuk *list*.
 
@@ -385,7 +395,11 @@ Jika kita ingin melacak modifikasi internal light DOM dari JavaScript, itu juga 
 
 ##  Slot API
 
+<<<<<<< HEAD
 Terakhir, mari kita bahas *method* JavaScript terkait slot.
+=======
+As we've seen before, JavaScript looks at the "real" DOM, without flattening. But, if the shadow tree has `{mode: 'open'}`, then we can figure out which elements assigned to a slot and, vice-versa, the slot by the element inside it:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Seperti yang telah kita lihat sebelumnya, JavaScript melihat DOM "asli", tanpa meratakan. Akan tetapi, jika *shadow tree* memiliki `{mode: 'open'}`, maka kita dapat mengetahui elemen mana yang ditetapkan ke slot dan, sebaliknya, slot dengan elemen di dalamnya:
 

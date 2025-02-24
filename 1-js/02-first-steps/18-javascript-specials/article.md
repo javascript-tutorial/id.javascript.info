@@ -55,7 +55,11 @@ Untuk mengaktifkan penuh semua fitur modern JavaScript, kita sebaiknya mulai scr
 
 Directive ini harus ada di paling atas script atau di awal badan fungsi.
 
+<<<<<<< HEAD
 Tanpa `"use strict"`, apapun akan bekerja, tapi beberapa fitur bersikap dengan cara kuno, "kompatibel". Secara umum kita akan pilih sikap modern.
+=======
+Without `"use strict"`, everything still works, but some features behave in the old-fashioned, "compatible" way. We'd generally prefer the modern behavior.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Beberapa fitur modern bahasa ini (seperti kelas yang akan kita pelajari di kemudian) mengaktifkan mode ketat secara implisit.
 
@@ -103,6 +107,7 @@ Lebih lanjut di: <info:variables> and <info:types>.
 
 Kita menggunakan peramban sebagai lingkungan kerja, jadi fungsi UI dasar akan menjadi:
 
+<<<<<<< HEAD
 [`prompt(question, [default])`](mdn:api/Window/prompt)
 : Menanyakan `question`, dan mengembalikan apa yang pengunjung isikan atau `null` jika mereka mengklik "cancel".
 
@@ -111,6 +116,16 @@ Kita menggunakan peramban sebagai lingkungan kerja, jadi fungsi UI dasar akan me
 
 [`alert(message)`](mdn:api/Window/alert)
 : Menampilkan a `message`.
+=======
+[`prompt(question, [default])`](https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt)
+: Ask a `question`, and return either what the visitor entered or `null` if they clicked "cancel".
+
+[`confirm(question)`](https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm)
+: Ask a `question` and suggest to choose between Ok and Cancel. The choice is returned as `true/false`.
+
+[`alert(message)`](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert)
+: Output a `message`.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Semua fungsi ini adalah *modal*, mereka menyela exekusi kode dan mencegah pengunjung dari berinteraksi dengan laman hingga mereka menjawab.
 
@@ -144,7 +159,11 @@ Penetapan
 : Ada penetapan simpel: `a = b` dan penetapan kombinasi seperti `a *= 2`.
 
 Bitwise
+<<<<<<< HEAD
 : Operator bitwise bekerja dengan integer 32-bit di bit-level paling kecil: lihat [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators) ketika mereka dibutuhkan.
+=======
+: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#bitwise_operators) when they are needed.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Kondisional
 : Satu-satunya operator dengan tiga parameter: `cond ? resultA : resultB`. Jika `cond` truthy, mengembalikan `resultA`, jika tidak `resultB`.
@@ -256,7 +275,11 @@ Kita meliput tiga cara membuat fungsi di JavaScript:
 3. Fungsi panah:
 
     ```js
+<<<<<<< HEAD
     // expresi di sisi kanan
+=======
+    // expression on the right side
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
     let sum = (a, b) => a + b;
 
     // atau syntax baris-ganda dengan { ... }, butuh kembalian di sini:

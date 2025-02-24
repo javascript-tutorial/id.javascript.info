@@ -44,7 +44,11 @@ Hasil objek `user` bisa dibayangkan sebagai kabinet dengan dua file bertanda den
 
 ![user object](object-user.svg)
 
+<<<<<<< HEAD
 Kita bisa tambah, hapus dan baca file darinya kapanpun.
+=======
+We can add, remove and read files from it at any time.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Nilai properti bisa diakses memakai notasi dot:
 
@@ -62,7 +66,11 @@ user.isAdmin = true;
 
 ![user object 2](object-user-isadmin.svg)
 
+<<<<<<< HEAD
 Untuk menghapus properti, kita bisa pakai operator `delete`:
+=======
+To remove a property, we can use the `delete` operator:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```js
 delete user.age;
@@ -201,13 +209,21 @@ let bag = {
 };
 ```
 
+<<<<<<< HEAD
 Bracket kotak jauh lebih kuat dari notasi dot. Mereka membolehkan variabel dan nama properti apapun. Tapi mereka juga lebih rumit untuk ditulis.
+=======
+Square brackets are much more powerful than dot notation. They allow any property names and variables. But they are also more cumbersome to write.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Jadi seringnya, saat nama properti diketahui dan simpel, dot dipakai. Dan jika kita butuh sesuatu yang rumit, maka kita ganti ke bracket kotak.
 
 ## Singkatan nilai properti
 
+<<<<<<< HEAD
 Di kode riil kita sering memakai variabel sebagai nilai untuk nama properti.
+=======
+In real code, we often use existing variables as values for property names.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Misalnya:
 
@@ -252,7 +268,11 @@ let user = {
 
 ## Batasan nama properti
 
+<<<<<<< HEAD
 Seperti yang sudah kita tahu, sebuah variabel tidak bisa memiliki nama yang sama dengan salah satu "kata yang telah dimiliki bahasa pemrograman" seperti "for", "let", "return" dan lainnya.
+=======
+As we already know, a variable cannot have a name equal to one of the language-reserved words like "for", "let", "return" etc.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Tapi dari sebuah properti objek, tidak ada batasan seperti itu:
 
@@ -325,7 +345,11 @@ alert( "blabla" in user ); // false, user.blabla tak ada
 
 Tolong ingat bahwa di sebelah kiri `in` harus ada *nama properti*. Itu biasanya string yang dikuotasi.
 
+<<<<<<< HEAD
 Jika kita menghilangkan kutipnya, berarti sebuah variabel, itu haruslah mengandung nama yang akan dites. Contoh:
+=======
+If we omit quotes, that means a variable should contain the actual name to be tested. For instance:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```js run
 let user = { age: 30 };
@@ -357,7 +381,11 @@ Di contoh kode di atas, properti `obj.test` ada secara teknis. Tapi operator `in
 Situasi seperti ini jarang terjadi, karena `undefined` biasanya tak ditetapkan. Kita sering memakai `null` untuk nilai "unknown" atau "empty". Jadi operator `in` merupakan tamu exotik dalam kode.
 ````
 
+<<<<<<< HEAD
 ## "for..in"
+=======
+## The "for..in" loop [#forin]
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Untuk mengitari semua kunci objek, ada bentuk spesial dari loop: `for..in`. Ini sangat berbeda dari konstruksi `for(;;)` yang kita pelajari sebelumnya.
 
@@ -415,7 +443,11 @@ for (let code in codes) {
 */!*
 ```
 
+<<<<<<< HEAD
 Objek ini digunakan untuk mensugesti daftar opsi ke pengguna. Jika kita membuat situs khusus untuk audiensi Jerman maka kita kemungkinan mau `49` jadi yang pertama.
+=======
+The object may be used to suggest a list of options to the user. If we're making a site mainly for a German audience then we probably want `49` to be the first.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Tapi jika kita menjalankan kodenya, kita lihat potret yang berbeda:
 
@@ -427,9 +459,14 @@ Kode telpon berurut secara ascending, karena mereka integer. Jadi kita lihat `1,
 ````smart header="Properti integer? Apa itu?"
 Istilah "properti integer" di sini artinya string yang bisa dikonversi ke-dan-dari integer tanpa perubahan.
 
+<<<<<<< HEAD
 Jadi, "49" nama properti integer, karena mereka ditransform ke angka integer dan kebalikannya, ia masih sama saja. Tapi "+49" dan "1.2" tidak:
+=======
+So, `"49"` is an integer property name, because when it's transformed to an integer number and back, it's still the same. But `"+49"` and `"1.2"` are not:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```js run
+// Number(...) explicitly converts to a number
 // Math.trunc is a built-in function that removes the decimal part
 alert( String(Math.trunc(Number("49"))) ); // "49", sama, properti integer
 alert( String(Math.trunc(Number("+49"))) ); // "49", tidak sama "+49" ⇒ bukan properti integer
@@ -482,9 +519,15 @@ Objek menyimpan properti (pasangan key-value), dimana:
 - kunci/key properti haruslah sebuah string atau simbol (biasanya string).
 - Nilai bisa tipe apapun.
 
+<<<<<<< HEAD
 Untuk mengakses properti, kita bisa gunakan:
 - Notasi dot: `obj.properti`.
 - Notasi kurung siku `obj["properti"]`. Kurung siku memperbolehkan mengambil key dari sebuah variabel, seperti `obj[varDenganKey]`.
+=======
+To access a property, we can use:
+- The dot notation: `obj.property`.
+- Square brackets notation `obj["property"]`. Square brackets allow taking the key from a variable, like `obj[varWithKey]`.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Operator tambahan:
 - Untuk menghapus properti: `delete obj.prop`.

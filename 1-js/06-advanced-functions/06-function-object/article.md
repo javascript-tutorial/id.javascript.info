@@ -326,7 +326,11 @@ welcome(); // Hello, Guest (pemanggilan bercabang bekerja)
 
 Sekarang hal itu bekerja karena nama `"func"` adalah fungsi-lokal. Fungsi itu tidak diambil dari luar (dan tidak terlihat dari luar). Spesifikasinya menjamin itu akan selalu mereferensi fungsi saat ini. 
 
+<<<<<<< HEAD
 Fungsi dari luar kode mempunyai variabel `sayHi` atau `welcome`nya sendiri. Dan `func` adalah sebuah "nama fungsi internal", bagaimana fungsi bisa memanggil dirinya sendiri secara internal.
+=======
+The outer code still has its variable `sayHi` or `welcome`. And `func` is an "internal function name", the way for the function to can call itself reliably.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```smart header="Tidak ada hal semacam itu untuk deklarasi fungsi"
 Fitur "nama internal" dideskripsikan disini hanya tersedia untuk ekspresi fungsi, bukan deklarasi fungsi. Untuk deklarasi fungsi, tidak terdapat sintaks untuk menambahkan sebuah nama "internal".

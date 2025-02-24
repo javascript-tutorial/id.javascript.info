@@ -76,9 +76,15 @@ Objek kekurangan banyak method yang ada untuk arrays, contoh `map`, `filter` dan
 
 Jika kita ingin mengapplikasikan method-method tersebut, kita bisa menggunakan `Object.entries` diikuti oleh `Object.fromEntries`:
 
+<<<<<<< HEAD
 1. Gunakan `Object.entries(obj)` untuk mendapatkan array pasangan kunci/nilai dari `obj`.
 2. Gunakan method array di array tersebut, contoh `map`. 
 3. Gunakan `Object.fromEntries(array)` di array hasil untuk mengubahnya kembali menjadi objek.
+=======
+1. Use `Object.entries(obj)` to get an array of key/value pairs from `obj`.
+2. Use array methods on that array, e.g. `map`, to transform these key/value pairs.
+3. Use `Object.fromEntries(array)` on the resulting array to turn it back into an object.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Sebagai contoh, kita mempunyai objek dengan harga-harga, dan mau melipat duakan harga-harganya:
 
@@ -91,12 +97,22 @@ let prices = {
 
 *!*
 let doublePrices = Object.fromEntries(
+<<<<<<< HEAD
   // ubah menjadi array, map, lalu fromEntries mengembalikan objeknya
   Object.entries(prices).map(([key, value]) => [key, value * 2])
+=======
+  // convert prices to array, map each key/value pair into another pair
+  // and then fromEntries gives back the object
+  Object.entries(prices).map(entry => [entry[0], entry[1] * 2])
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 );
 */!*
 
 alert(doublePrices.meat); // 8
-```   
+```
 
+<<<<<<< HEAD
 Mungkin ini terlihat susah pertama kalinya, tetapi ini akan menjadi mudah untuk di mengerti setelah kamu menggunakannya beberapa kali. Kita bisa membuat perantaian hebat dengan cara ini.
+=======
+It may look difficult at first sight, but becomes easy to understand after you use it once or twice. We can make powerful chains of transforms this way.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
