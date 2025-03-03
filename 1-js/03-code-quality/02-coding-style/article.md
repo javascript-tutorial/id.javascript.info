@@ -301,11 +301,15 @@ Yang keren dari ini ialah pengecekan gaya sekaligus menemukan bug., like typos i
 
 Berikut beberapa linting tool terkenal:
 
-- [JSLint](http://www.jslint.com/) -- one of the first linters.
-- [JSHint](http://www.jshint.com/) -- more settings than JSLint.
-- [ESLint](http://eslint.org/) -- probably the newest one.
+- [JSLint](https://www.jslint.com/) -- one of the first linters.
+- [JSHint](https://jshint.com/) -- more settings than JSLint.
+- [ESLint](https://eslint.org/) -- probably the newest one.
 
+<<<<<<< HEAD
 Semuanya bisa melakukan itu. Penulis ini menggunakan [ESLint](http://eslint.org/).
+=======
+All of them can do the job. The author uses [ESLint](https://eslint.org/).
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Kebanyakan linter terintegrasi dengan banyak editor populer: cuma mengaktifkan plugin di editor dan mengkonfigurasi gayanya.
 
@@ -335,7 +339,11 @@ Berikut contoh file `.eslintrc`:
 
 Di sini directive `"extends"` menunjukkan bahwa konfigurasinya berdasarkan set pengaturan "eslint:recommended". Setelah itu, kita spesifikasikan punya kita sendiri.
 
+<<<<<<< HEAD
 Selain itu, dimungkinkan juga mengunduh set aturan gaya dari web dan mengextend mereka. Lihat <http://eslint.org/docs/user-guide/getting-started> untuk detil lebih tentang instalasi.
+=======
+It is also possible to download style rule sets from the web and extend them instead. See <https://eslint.org/docs/user-guide/getting-started> for more details about installation.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Juga IDE tertentu punya linting built-in, yang nyaman tapi tak bisa dikustomisasi seperti ESLint.
 

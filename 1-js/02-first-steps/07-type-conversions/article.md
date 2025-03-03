@@ -6,8 +6,13 @@ Misalnya, `alert` otomatis mengkonversi nilai apapun ke string untuk menampilkan
 
 Ada juga kasus di mana kita harus explisit mengkonversi nilai ke tipe yang diharapkan.
 
+<<<<<<< HEAD
 ```smart header="Belum bicara objek dulu"
 Di bab ini, kita takkan mengcover objek. Daripada itu, kita akan belajar primitives dulu.
+=======
+```smart header="Not talking about objects yet"
+In this chapter, we won't cover objects. For now, we'll just be talking about primitives.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Lalu, setelah kita belajar tentang objek, kita akan lihat cara konversi objek bekerja di bab <info:object-toprimitive>.
 ```
@@ -34,7 +39,11 @@ Konversi string kebanyakan jelas. `false` menjadi `"false"`, `null` menjadi `"nu
 
 ## Konversi Numerik
 
+<<<<<<< HEAD
 Konversi numerik terjadi otomatis dalam fungsi dan expresi matematis.
+=======
+Numeric conversion in mathematical functions and expressions happens automatically.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Misalnya, ketika pembagian `/` dilakukan ke non-angka:
 
@@ -69,8 +78,13 @@ Aturan konversi numerik:
 |-------|-------------|
 |`undefined`|`NaN`|
 |`null`|`0`|
+<<<<<<< HEAD
 |<code>true&nbsp;dan&nbsp;false</code> | `1` and `0` |
 | `string` | Whitespaces dari awal dan akhir dibuang. Jika string sisanya kosong, hasilnya `0`. Sebaliknya, angkanya "dibaca" dari stringnya. Error memberikan `NaN`. |
+=======
+|<code>true&nbsp;and&nbsp;false</code> | `1` and `0` |
+| `string` | Whitespaces (includes spaces, tabs `\t`, newlines `\n` etc.) from the start and end are removed. If the remaining string is empty, the result is `0`. Otherwise, the number is "read" from the string. An error gives `NaN`. |
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Misalnya:
 
@@ -130,7 +144,11 @@ Konversinya mengikuti aturan ini:
 |`undefined`|`NaN`|
 |`null`|`0`|
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
+<<<<<<< HEAD
 | `string` | Stringnya dibaca "apa adanya", whitespace dari kedua sisi diabaikan. String kosong menjadi `0`. Error memberikan `NaN`. |
+=======
+| `string` | The string is read "as is", whitespaces (includes spaces, tabs `\t`, newlines `\n` etc.) from both sides are ignored. An empty string becomes `0`. An error gives `NaN`. |
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 **`Konversi Boolean`** -- Terjadi di operasi logika. Bisa berjalan dengan `Boolean(value)`.
 

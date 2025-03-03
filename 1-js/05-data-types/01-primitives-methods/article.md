@@ -39,7 +39,11 @@ Objek lebih "berat" dari primitif. Dan mereka membutuhkan sumber daya tambahan u
 
 Ini adalah paradoks yang dihadapi dari pencipta Javascript:
 
+<<<<<<< HEAD
 - Terdapat banyak hal yang harus dilakukan dengan primitif seperti string atau angka. Akan menjadi lebih baik jika mereka bisa diakses sebagai method.
+=======
+- There are many things one would want to do with a primitive, like a string or a number. It would be great to access them using methods.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 - Primitives must be as fast and lightweight as possible.
 - Sebisa mungkin primitif haruslah cepat dan ringan.
 
@@ -49,7 +53,11 @@ Solusinya terlihat sedikit aneh, tapi inilah solusinya:
 2. Bahasanya membolehkan untuk mengakses method dan properti dari string, number, boolean dan symbols.
 3. Untuk membuat itu bekerja, "objek pembungkus" spesial yang menyediakan fungsionalitas tambahan dibuat, dan lalu dihancurkan.
 
+<<<<<<< HEAD
 "Objek pembungkus" berbeda untuk setiap tipe primitif dan dipanggil: `String`, `Number`, `Boolean` dan `Symbol`. Lalu, mereka menyediakan metode-metode yang berbeda.
+=======
+The "object wrappers" are different for each primitive type and are called: `String`, `Number`, `Boolean`, `Symbol` and `BigInt`. Thus, they provide different sets of methods.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Contoh, ada methode string [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) yang mengembalikan string `str` yang telah diubah menjadi huruf kapital.
 
@@ -105,9 +113,16 @@ if (zero) { // zero adalah true, karena itu adalah sebuah objek
 }
 ```
 
+<<<<<<< HEAD
 Disisi lain, menggunakan fungsi yang sama `String/Number/Boolean` tanpa `new` adalah hal yang masuk akal dan hal yang berguna. Mereka mengubah nilai kedalam tipe yang sesuai: kedalam sebuah string, sebuah number, atau sebuah boolean(primitif).
 
 Contoh, hal ini sepenuhnya valid:
+=======
+On the other hand, using the same functions `String/Number/Boolean` without `new` is totally fine and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).
+
+For example, this is entirely valid:
+
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 ```js
 let num = Number("123"); // mengubah string menjadi angka
 ```

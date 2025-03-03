@@ -93,6 +93,7 @@ Kesan pertama terkait "impor semuanya" adalah terdengar seperti sesuatu yang ker
 
 Jadi, ini adalah beberapa alasannya.
 
+<<<<<<< HEAD
 1. Perkakas penggabung yang modern ([webpack](http://webpack.github.io) dan lainnya) menggabungkan semua modul sekaligus dan mengoptimalkannya untuk mempercepat proses pemuatan dan menghapus modul yang tidak digunakan.
 
     Katakanlah kita menambahkan sebuah pustaka pihak ketiga `say.js` ke dalam proyek dengan banyak fungsi:
@@ -115,6 +116,16 @@ Jadi, ini adalah beberapa alasannya.
 
 2. Mendaftarkan secara eksplisit apa yang akan diimpor dengan nama yang lebih pendek: `sayHi()` sebagai ganti dari `say.sayHi()`.
 3. Daftar import eksplisit memberikan gambaran yang lebih baik tentang struktur kode: apa yang digunakan dan dimana. Itu membuat dukungan kode dan proses refactoring lebih mudah.
+=======
+1. Explicitly listing what to import gives shorter names: `sayHi()` instead of `say.sayHi()`.
+2. Explicit list of imports gives better overview of the code structure: what is used and where. It makes code support and refactoring easier.
+
+```smart header="Don't be afraid to import too much"
+Modern build tools, such as [webpack](https://webpack.js.org/) and others, bundle modules together and optimize them to speedup loading. They also remove unused imports.
+
+For instance, if you `import * as library` from a huge code library, and then use only few methods, then unused ones [will not be included](https://github.com/webpack/webpack/tree/main/examples/harmony-unused#examplejs) into the optimized bundle.
+```
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ## Import "as"
 
@@ -371,7 +382,11 @@ Sintaks `export ... from ...` hanyalah notasi pendek untuk proses impor-ekspor.
 
 ```js
 // 📁 auth/index.js
+<<<<<<< HEAD
 // impor login/logout dan kemudian segera mengekspornya kembali
+=======
+// re-export login/logout
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 export {login, logout} from './helpers.js';
 
 // impor default sebagai User kemudian mengekspornya
@@ -379,7 +394,11 @@ export {default as User} from './user.js';
 ...
 ```
 
+<<<<<<< HEAD
 ### Ekspor ulang ekspor bawaan
+=======
+The notable difference of `export ... from` compared to `import/export` is that re-exported modules aren't available in the current file. So inside the above example of `auth/index.js` we can't use re-exported `login/logout` functions.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Ekspor bawaan memerlukan penanganan terpisah ketika melakukan ekspor ulang.
 
@@ -396,10 +415,18 @@ export default class User {
 
     Untuk melakukan ekspor ulang ekspor bawaan, kita harus menuliskan `export { default as User }` seperti contoh diatas.
 
+<<<<<<< HEAD
 2. `export * from './user.js'` mengekspor ulang hanya ekspor bernama, tetapi mengabaikan ekspor bawaan.
+=======
+    To re-export the default export, we have to write `export {default as User}`, as in the example above.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
     Jika kita ingin melakukan ekspor ulang keduanya (ekspor bernama dan ekspor bawaan), maka diperlukan dua pernyataan seperti berikut:
 
+<<<<<<< HEAD
+=======
+    If we'd like to re-export both named and default exports, then two statements are needed:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
     ```js
     export * from './user.js'; // ekspor ulang ekspor bernama
     export { default } from './user.js'; // ekspor ulang ekspor bawaan
@@ -424,7 +451,19 @@ Ekspor:
     -   `export * from "module"` (tidak mengekspor ulang bawaan).
     -   `export {default [as y]} from "module"` (ekspor ulang bawaan).
 
+<<<<<<< HEAD
 Impor:
+=======
+- Importing named exports:
+  - `import {x [as y], ...} from "module"`
+- Importing the default export:
+  - `import x from "module"`
+  - `import {default as x} from "module"`
+- Import all:
+  - `import * as obj from "module"`
+- Import the module (its code runs), but do not assign any of its exports to variables:
+  - `import "module"`
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 -   Ekspor bernama dari modul:
     -   `import {x [as y], ...} from "module"`

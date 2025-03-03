@@ -2,7 +2,13 @@
 
 Kita juga dapat menetapkan metode ke fungsi kelas itu sendiri, bukan ke `" prototipe "`-nya. Metode seperti itu disebut _static_.
 
+<<<<<<< HEAD
 Di dalam kelas, mereka ditambahkan oleh kata kunci `static`, seperti ini:
+=======
+We can also assign a method to the class as a whole. Such methods are called *static*.
+
+In a class declaration, they are prepended by `static` keyword, like this:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```js run
 class User {
@@ -30,9 +36,17 @@ User.staticMethod(); // true
 
 Nilai `this` dalam panggilan `User.staticMethod()` adalah konstruktor kelas `User` itu sendiri (aturan "object before dot").
 
+<<<<<<< HEAD
 Biasanya, metode statis digunakan untuk mengimplementasikan fungsi yang dimiliki kelas, tetapi tidak untuk objek tertentu darinya.
 
 Misalnya, kita punya objek `Article` dan membutuhkan sebuah fungsi untuk membandingkan mereka. Solusi natural adalah menambahkan metode `Article.compare`, seperti ini:
+=======
+Usually, static methods are used to implement functions that belong to the class as a whole, but not to any particular object of it.
+
+For instance, we have `Article` objects and need a function to compare them.
+
+A natural solution would be to add `Article.compare` static method:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```js run
 class Article {
@@ -62,9 +76,17 @@ articles.sort(Article.compare);
 alert( articles[0].title ); // CSS
 ```
 
+<<<<<<< HEAD
 Di sini `Article.compare` berdiri "di atas" _articles_, sebagai alat untuk membandingkannya. Ini bukan metode _article_, melainkan seluruh kelas.
 
 Contoh lain adalah apa yang disebut metode "factory". Bayangkan, kita butuh beberapa cara untuk membuat _article_:
+=======
+Here `Article.compare` method stands "above" articles, as a means to compare them. It's not a method of an article, but rather of the whole class.
+
+Another example would be a so-called "factory" method.
+
+Let's say, we need multiple ways to create an article:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 1. Buat dengan parameter yang diberikan (`title`, `date` dsb).
 2. Buat _article_ kosong dengan tanggal hari ini.
@@ -72,7 +94,11 @@ Contoh lain adalah apa yang disebut metode "factory". Bayangkan, kita butuh bebe
 
 Cara pertama dapat diterapkan oleh konstruktor. Dan untuk yang kedua kita bisa membuat metode statis kelas.
 
+<<<<<<< HEAD
 Seperti `Article.createTodays()` di sini:
+=======
+Such as `Article.createTodays()` here:
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```js run
 class Article {
@@ -99,12 +125,32 @@ Sekarang setiap kali kita perlu membuat _today's digest_, kita dapat memanggil `
 Metode statis juga digunakan dalam kelas terkait basis data untuk mencari/menyimpan/menghapus entri dari basis data, seperti ini:
 
 ```js
+<<<<<<< HEAD
 // dengan asumsi Article adalah kelas khusus untuk mengelola articles
 // metode statis untuk menghapus article:
 Article.remove({ id: 12345 });
 ```
 
 ## Properti Statis
+=======
+// assuming Article is a special class for managing articles
+// static method to remove the article by id:
+Article.remove({id: 12345});
+```
+
+````warn header="Static methods aren't available for individual objects"
+Static methods are callable on classes, not on individual objects.
+
+E.g. such code won't work:
+
+```js
+// ...
+article.createTodays(); /// Error: article.createTodays is not a function
+```
+````
+
+## Static properties
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 [recent browser=Chrome]
 
