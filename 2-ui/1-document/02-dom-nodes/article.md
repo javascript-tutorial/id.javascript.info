@@ -51,7 +51,7 @@ DOM menggambarkan HTML seperti struktur pohon pada tag. Begini tampilannya:
 <div class="domtree"></div>
 
 <script>
-let node1 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  "},{"name":"TITLE","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"About elk"}]},{"name":"#text","nodeType":3,"content":"\n"}]},{"name":"#text","nodeType":3,"content":"\n"},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk.\n\n\n"}]}]}
+let node1 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  "},{"name":"TITLE","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"About elk"}]},{"name":"#text","nodeType":3,"content":"\n"}]},{"name":"#text","nodeType":3,"content":"\n"},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk.\n"}]}]}
 
 drawHtmlTree(node1, 'div.domtree', 690, 320);
 </script>
@@ -211,7 +211,11 @@ Ada [12 jenis-jenis node](https://dom.spec.whatwg.org/#node). Dalam praktiknya k
 
 ## Melihatnya untuk kita sendiri
 
+<<<<<<< HEAD
 Untuk melihat struktur DOM secara real-time, coba [Live DOM Viewer](http://software.hixie.ch/utilities/js/live-dom-viewer/). Cukup ketikkan dokumen, dan itu akan muncul sebagai DOM dalam sekejap.
+=======
+To see the DOM structure in real-time, try [Live DOM Viewer](https://software.hixie.ch/utilities/js/live-dom-viewer/). Just type in the document, and it will show up as a DOM at an instant.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Cara lain untuk menjelajahi DOM gunakan alat pengembang browser. Sebenarnya itulah yang kita gunakan saat mengembangkan.
 

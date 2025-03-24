@@ -33,7 +33,11 @@ printReverseList(list);
 
 # Menggunakan perulangan
 
+<<<<<<< HEAD
 Varian perulangan juga sedikit lebih rumit daripada mengeluarkannya secara langsung.
+=======
+The loop variant is also a little bit more complicated than the direct output.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Tidak ada cara untuk mendapatkan nilai terakhir didalam `list` kita. Kita juga tidak bisa "berjalan mundur".
 

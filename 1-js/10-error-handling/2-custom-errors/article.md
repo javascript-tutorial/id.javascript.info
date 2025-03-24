@@ -22,9 +22,15 @@ Secara internal, kita akan menggunakan `JSON.parse`. Jika menerima `json` yang s
 
 Fungsi kita `readUser(json)` tidak hanya akan membaca JSON, tetapi juga memeriksa ("memvalidasi") data. Jika tidak ada bidang yang wajib diisi, atau formatnya salah, itu adalah kesalahan. Dan itu bukan `SyntaxError`, karena datanya benar secara sintaksis, tetapi jenis kesalahan lain. Kita akan menyebutnya `ValidationError` dan membuat kelas untuk itu. Kesalahan semacam itu juga harus membawa informasi tentang bidang yang melanggar.
 
+<<<<<<< HEAD
 Kelas `ValidationError` kita harus mewarisi dari kelas `Error` bawaan.
 
 Kelas itu sudah ada di dalamnya, tetapi berikut ini kode perkiraannya sehingga kita dapat memahami apa yang kita perluas:
+=======
+Our `ValidationError` class should inherit from the `Error` class.
+
+The `Error` class is built-in, but here's its approximate code so we can understand what we're extending:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js
 // "Kode semu" untuk kelas Kesalahan bawaan yang ditentukan oleh JavaScript itu sendiri
@@ -39,7 +45,7 @@ class Error {
 
 Sekarang mari kita mewarisi `ValidationError` darinya dan mencobanya dalam tindakan:
 
-```js run untrusted
+```js run
 *!*
 class ValidationError extends Error {
 */!*
@@ -122,11 +128,19 @@ Kita juga bisa melihat `err.name`, seperti ini:
 
 Versi `instanceof` jauh lebih baik, karena di masa mendatang kita akan memperluas `ValidationError`, membuat subtipe darinya, seperti `PropertyRequiredError`. Dan pemeriksaan `instanceof` akan terus berfungsi untuk kelas pewaris baru. Jadi itu bukti masa depan.
 
+<<<<<<< HEAD
 Juga penting bahwa jika `catch` menemui kesalahan yang tidak diketahui, maka itu akan ditarik kembali di baris `(**)`. Blok `catch` hanya mengetahui cara menangani validasi dan kesalahan sintaksis, jenis lain (karena kesalahan ketik pada kode atau kesalahan lain yang tidak diketahui) akan gagal.
+=======
+Also it's important that if `catch` meets an unknown error, then it rethrows it in the line `(**)`. The `catch` block only knows how to handle validation and syntax errors, other kinds (caused by a typo in the code or other unknown reasons) should fall through.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ## Warisan lebih lanjut
 
+<<<<<<< HEAD
 Kelas `ValidationError` sangat umum. Banyak hal mungkin salah. Properti mungkin tidak ada atau mungkin dalam format yang salah (seperti nilai string untuk `age`). Mari kita buat kelas yang lebih konkret `PropertyRequiredError`, tepatnya untuk properti yang tidak ada. Ini akan membawa informasi tambahan tentang properti yang hilang.
+=======
+The `ValidationError` class is very generic. Many things may go wrong. The property may be absent or it may be in a wrong format (like a string value for `age` instead of a number). Let's make a more concrete class `PropertyRequiredError`, exactly for absent properties. It will carry additional information about the property that's missing.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run
 class ValidationError extends Error {

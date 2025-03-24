@@ -6,7 +6,11 @@ Harap diperhatikan: Saat ini belum ada cara bagi metode `fetch` untuk melacak ke
 
 Untuk melacak kemajuan _download_, kita dapat menggunakan properti `response.body`. Itu adalah `ReadableStream` -- sebuah objek khusus yang menyediakan potongan demi potongan `response.body` saat didapatkan. _Readable streams_ dideskripsikan pada spesifikasi [Streams API](https://streams.spec.whatwg.org/#rs-class).
 
+<<<<<<< HEAD
 Tidak seperti `response.text()`, `response.json()` dan metode lainnya, `response.body` memberikan kontrol penuh atas proses pembacaan dan kita dapat menghitung berapa banyak _data_ yang diterima setiap saat.
+=======
+To track download progress, we can use `response.body` property. It's a `ReadableStream` -- a special object that provides body chunk-by-chunk, as it comes. Readable streams are described in the [Streams API](https://streams.spec.whatwg.org/#rs-class) specification.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Berikut adalah sketsa kode yang membaca respon dari `response.body`:
 

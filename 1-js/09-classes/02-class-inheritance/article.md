@@ -107,7 +107,11 @@ class Rabbit extends Animal {
 }
 ```
 
+<<<<<<< HEAD
 Biasanya kita tidak ingin sepenuhnya mengganti metode induk, melainkan untuk membangun di atasnya untuk mengubah atau memperluas fungsinya. Kita melakukan sesuatu dalam metode kita, tetapi memanggil metode induk sebelum/sesudahnya atau dalam proses.
+=======
+Usually, however, we don't want to totally replace a parent method, but rather to build on top of it to tweak or extend its functionality. We do something in our method, but call the parent method before/after it or in the process.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Kelas menyediakan kata kunci `"super"` untuk itu.
 
@@ -160,7 +164,12 @@ Sekarang `Rabbit` mempunyai metode `stop` yang memanggil induk `super.stop()` di
 ````smart header="_Arrow functions_ tidak mempunyai `super`"
 Seperti yang disebutkan di bab <info:arrow-functions>, _arrow functions_ tidak memiliki `super`.
 
+<<<<<<< HEAD
 Jika diakses, itu diambil dari fungsi luar. Misalnya:
+=======
+If accessed, it's taken from the outer function. For instance:
+
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 ```js
 class Rabbit extends Animal {
   stop() {
@@ -177,9 +186,13 @@ setTimeout(function() { super.stop() }, 1000);
 ```
 `````
 
+<<<<<<< HEAD
 ## Mengganti konstruktor
 
 Dengan konstruktor, ini menjadi sedikit rumit.
+=======
+## Overriding constructor
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Sampai sekarang, `Rabbit` tidak mempunyai `constructor` sendiri.
 
@@ -280,7 +293,11 @@ alert(rabbit.earLength); // 10
 */!*
 ```
 
+<<<<<<< HEAD
 ### Mengganti bidang kelas: catatan rumit
+=======
+### Overriding class fields: a tricky note
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```warn header="Advanced note"
 Catatan ini mengasumsikan kamu memiliki pengalaman tertentu dengan kelas, mungkin dalam bahasa pemrograman lain.
@@ -315,13 +332,21 @@ new Rabbit(); // animal
 */!*
 ```
 
+<<<<<<< HEAD
 Di sini, kelas `Rabbit` memperluas `Animal` dan mengganti bidang `nama` dengan nilainya sendiri.
+=======
+Here, class `Rabbit` extends `Animal` and overrides the `name` field with its own value.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Tidak ada konstruktor sendiri dalam `Rabbit`, jadi konstruktor `Animal` dipanggil.
 
 Yang menarik adalah dalam kedua kasus: `new Animal()` dan `new Rabbit()`, `alert` di baris `(*)` menampilkan `animal`.
 
+<<<<<<< HEAD
 **Dengan kata lain, konstruktor induk selalu menggunakan nilai bidangnya sendiri, bukan yang diganti.**
+=======
+**In other words, the parent constructor always uses its own field value, not the overridden one.**
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Apa yang aneh tentang itu?
 
@@ -358,24 +383,40 @@ Dan itulah yang secara natural kita harapkan. Ketika konstruktor induk dipanggil
 
 ...Tetapi untuk bidang kelas tidak demikian. Seperti yang dikatakan, konstruktor induk selalu menggunakan bidang induk.
 
+<<<<<<< HEAD
 Mengapa ada bedanya?
 
 Nah, alasannya ada di urutan bidang inisialisasi. Bidang kelas diinisialisasi:
+=======
+Why is there a difference?
+
+Well, the reason is the field initialization order. The class field is initialized:
+- Before constructor for the base class (that doesn't extend anything),
+- Immediately after `super()` for the derived class.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 - Sebelum konstruktor untuk kelas dasar (yang tidak memperluas apa pun),
 - Langsung setelah `super()` untuk kelas turunan.
 
 Dalam kasus kita, `Rabbit` adalah kelas turunannya. Tidak ada `constructor()` di dalamnya. Seperti yang dikatakan sebelumnya, itu sama seperti jika ada konstruktor kosong hanya dengan `super(...args)`.
 
+<<<<<<< HEAD
 Jadi, `new Rabbit()` memanggil `super()`, sehingga mengeksekusi konstruktor induk, dan (sesuai aturan untuk kelas turunan) hanya setelah bidang kelasnya diinisialisasi. Pada saat eksekusi induk konstruktor, belum ada bidang kelas `Rabbit`, itulah mengapa bidang `Animal` digunakan.
+=======
+This subtle difference between fields and methods is specific to JavaScript.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Perbedaan halus antara bidang dan metode ini khusus untuk JavaScript
 
 Untungnya, perilaku ini hanya muncul dengan sendirinya jika bidang yang diganti digunakan di konstruktor induk. Maka mungkin sulit untuk memahami apa yang sedang terjadi, jadi kita menjelaskannya di sini.
 
+<<<<<<< HEAD
 Jika ini menjadi masalah, seseorang dapat memperbaikinya dengan menggunakan metode atau _getter_/_setter_ sebagai ganti bidang.
 
 ## _Super: internals, [[HomeObject]]_
+=======
+## Super: internals, [[HomeObject]]
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```warn header="Advanced information"
 Jika Anda membaca tutorial untuk pertama kali - bagian ini mungkin dilewati.

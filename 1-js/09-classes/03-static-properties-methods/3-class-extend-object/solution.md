@@ -21,14 +21,22 @@ alert( rabbit.hasOwnProperty('name') ); // true
 
 Tapi itu belum semuanya.
 
+<<<<<<< HEAD
 Bahkan setelah perbaikan, masih ada perbedaan penting dalam `"class Rabbit extends Object"` versus `class Rabbit`.
+=======
+Even after the fix, there's still an important difference between `"class Rabbit extends Object"` and `class Rabbit`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Seperti yang kita tahu, sintaks "extends" menyiapkan dua prototipe:
 
 1. Antara `"prototype"` dari fungsi konstruktor (untuk metode).
 2. Antara konstruktor berfungsi sendiri (untuk metode statis).
 
+<<<<<<< HEAD
 Dalam kasus kita, untuk `class Rabbit extends Object` itu berarti:
+=======
+In the case of `class Rabbit extends Object` it means:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run
 class Rabbit extends Object {}
@@ -37,7 +45,11 @@ alert(Rabbit.prototype.__proto__ === Object.prototype); // (1) true
 alert(Rabbit.__proto__ === Object); // (2) true
 ```
 
+<<<<<<< HEAD
 Jadi `Rabbit` sekarang menyediakan akses ke metode statis `Object` melalui `Rabbit`, seperti ini:
+=======
+So `Rabbit` now provides access to the static methods of `Object` via `Rabbit`, like this:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run
 class Rabbit extends Object {}
@@ -67,7 +79,11 @@ alert ( Rabbit.getOwnPropertyNames({a: 1, b: 2})); // Error
 
 Jadi `Rabbit` tidak menyediakan akses ke metode statis `Object` dalam hal itu.
 
+<<<<<<< HEAD
 Ngomong-ngomong, `Function.prototype` mempunyai fungsi metode "generic", seperti `call`, `bind` dll. Mereka terakhir tersedia dalam kedua kasus, karena untuk konstruktor `Object` bawaan, `Object.__proto__ === Function.prototype`.
+=======
+By the way, `Function.prototype` also has "generic" function methods, like `call`, `bind` etc. They are ultimately available in both cases, because for the built-in `Object` constructor, `Object.__proto__ === Function.prototype`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Berikut gambarnya:
 

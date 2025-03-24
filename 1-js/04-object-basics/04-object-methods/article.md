@@ -51,7 +51,7 @@ let user = {
 // pertama, deklarasi
 function sayHi() {
   alert("Hello!");
-};
+}
 
 // lalu tambbahkan sebagai sebuah metodes
 user.sayHi = sayHi;
@@ -90,7 +90,11 @@ user = {
 
 Seperti yang didemonstrasikan, kita bisa mengabaikan `"function"` dan hanya menuliskan `sayHi()`.
 
+<<<<<<< HEAD
 Sebenarnya, notasi-notasi tersebut tidak sepenuhnya sama. Ada beberapa perbedaan kecil yang berhubungan dengan *object inheritance* atau pewarisan objek (akan dibahas nanti), tetapi untuk sekarang hal-hal tersebut tidak terlalu penting. Dalam hampir kebanyakan kasus sintaks ringkas lebih disukai.
+=======
+To tell the truth, the notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter. In almost all cases, the shorter syntax is preferred.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ## "this" dalam metode
 

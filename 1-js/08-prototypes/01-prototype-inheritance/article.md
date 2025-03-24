@@ -54,7 +54,11 @@ alert( rabbit.eats ); // true (**)
 alert( rabbit.jumps ); // true
 ```
 
+<<<<<<< HEAD
 Pada baris `(*)` menyetel `animal` untuk menjadi prototype dari `rabbit`.
+=======
+Here the line `(*)` sets `animal` to be the prototype of `rabbit`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Lalu, ketika `alert` mencoba untuk membaca properti `rabbit.eats` `(**)`, ternyata `rabbit` tidak memiliki propertinya, maka Javascript mengikuti referensi `[[Prototype]]`nya dan menemukan `animal` (mencari dari bawah ke atas):
 
@@ -131,9 +135,14 @@ Akan tetapi terdapat dua batasan:
 
 Dan juga tentu saja: hanya terdapat satu `[[Prototype]]`. Sebuah objek tidak bisa mewarisi dari dua objek.
 
+<<<<<<< HEAD
 
 ```smart header="`__proto__` adalah asal usul getter/setter untuk `[[Prototype]]`"
 Biasanya kesalan *developer* pemula adalah tidak mengetahui perbedaan antara keduanya.
+=======
+```smart header="`__proto__` is a historical getter/setter for `[[Prototype]]`"
+It's a common mistake of novice developers not to know the difference between these two.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Perlu diingat bahwa `__proto__` *tidak sama* dengan properti internal `[[Prototype]]`. Itu hanyalah *getter/setter* untuk `[[Prototype]]`. Nanti kita akan melihat situasi dimana hal itu akan digunakan, untuk sekarang kita hanya perlu tahu, kita akan terus bangun pemahaman kita tentang Javascript.
 
@@ -287,7 +296,11 @@ for(let prop in rabbit) alert(prop); // jumps, lalu eats
 */!*
 ```
 
+<<<<<<< HEAD
 Jika itu bukanlah hal yang kita inginkanm dan kita ingin untuk mengecualikan properti warisan, terdapat metode bawaan [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty): yang mengembalikan `true` jika `obj` memiliki properti bernama `key` (bukan properti warisan).
+=======
+If that's not what we want, and we'd like to exclude inherited properties, there's a built-in method [obj.hasOwnProperty(key)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty): it returns `true` if `obj` has its own (not inherited) property named `key`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Jadi kita bisa memisahkan properti warisan (atau melakukan sesuatu dengan properti warisan itu):
 

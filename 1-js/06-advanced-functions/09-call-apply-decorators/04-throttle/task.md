@@ -8,9 +8,15 @@ Buatlah sebuah dekorator "penutup" `throttle(f, ms)` -- yang mengembalikan sebua
 
 Ketika fungsinya dipanggil beberapa kali, fungsinya akan melakukan pemanggilan kepada `f` maksimal sekali per `ms` milidetik.
 
+<<<<<<< HEAD
 Perbedaannya dengan dekorator debounce adalah keduanya benar-benar dekorator berbeda:
 - `debounce` menjalankan fungsinya sekali setelah masa "tidak aktif". Bagus untuk memproses hasil akhir.
 - `throttle` menjalankan fungsinya tidak lebih banyak dari waktu `ms` yang diberikan. Bagus untuk update tersusun yang tidak terlalu sering dipanggil.
+=======
+Compared to the debounce decorator, the behavior is completely different:
+- `debounce` runs the function once after the "cooldown" period. Good for processing the final result.
+- `throttle` runs it not more often than given `ms` time. Good for regular updates that shouldn't be very often.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Dengan kata lain, `throttle` seperti seorang sekertaris yang menerima panggilan telefon, tapi menggangu bos nya (memanggil fungsi `f` asli) tidak lebih sering dari sekali per `ms` milidetik.
 

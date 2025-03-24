@@ -69,7 +69,11 @@ if (kondisi) {
 
 ## Klausa "else"
 
+<<<<<<< HEAD
 Pernyataan `if` dapat berisi blok opsional "else" opsional. Block "else" dijalankan ketika semua kondisi di atas blok "else" salah (false) semua.
+=======
+The `if` statement may contain an optional `else` block. It executes when the condition is falsy.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Contohnya:
 ```js run
@@ -181,10 +185,17 @@ alert( message );
 
 Mungkin sulit pada awalnya untuk memahami apa yang terjadi. Tetapi setelah melihat lebih dekat, kita dapat melihat bahwa itu hanya serangkaian tes biasa:
 
+<<<<<<< HEAD
 1. Tanda tanya pertama memeriksa apakah `age < 3`.
 2. Jika benar -- `'Hi, baby!'` akan dikembalikan. Jika tidak, kode akan melanjutkan ke ekspresi setelah titik dua '":"', memeriksa apakah `age < 18`.
 3. Jika itu benar -- `'Hello!'` akan dikembalikan. . Jika tidak, kode akan melanjutkan ke ekspresi setelah titik dua berikutnya '":"', memeriksa `age < 100`.
 4. Jika itu benar -- `'Greetings!'` akan dikembalikan. Jika tidak, kode akan melanjutkan ke ekspresi setelah titik dua terakhir  '":"', dan akhirnya akan mengembalikan `'What an unusual age!'`.
+=======
+1. The first question mark checks whether `age < 3`.
+2. If true -- it returns `'Hi, baby!'`. Otherwise, it continues to the expression after the colon ":", checking `age < 18`.
+3. If that's true -- it returns `'Hello!'`. Otherwise, it continues to the expression after the next colon ":", checking `age < 100`.
+4. If that's true -- it returns `'Greetings!'`. Otherwise, it continues to the expression after the last colon ":", returning `'What an unusual age!'`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Kode bawah ini memperlihatkan apabila menggunakan `if..else` untuk kode di atas:
 

@@ -12,7 +12,13 @@ function sayHi() {
 
 Ada syntax lain untuk membuat fungsi yang disebut *Expresi Fungsi*.
 
+<<<<<<< HEAD
 Rupanya seperti ini:
+=======
+It allows us to create a new function in the middle of any expression.
+
+For example:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js
 let sayHi = function() {
@@ -20,9 +26,25 @@ let sayHi = function() {
 };
 ```
 
+<<<<<<< HEAD
 Di sini, fungsi dibuat dan diisi variabel secara explisit, seperti nilai lain manapun. Tak peduli bagaimana fungsi didefinisi, ia hanya suatu nilai yang disimpan dalam variabel `sayHi`.
 
 Arti dari sampel kode ini sama: "buatlah fungs dan taruhlah di dalam variabel `sayHi`".
+=======
+Here we can see a variable `sayHi` getting a value, the new function, created as `function() { alert("Hello"); }`.
+
+As the function creation happens in the context of the assignment expression (to the right side of `=`), this is a *Function Expression*.
+
+Please note, there's no name after the `function` keyword. Omitting a name is allowed for Function Expressions.
+
+Here we immediately assign it to the variable, so the meaning of these code samples is the same: "create a function and put it into the variable `sayHi`".
+
+In more advanced situations, that we'll come across later, a function may be created and immediately called or scheduled for a later execution, not stored anywhere, thus remaining anonymous.
+
+## Function is a value
+
+Let's reiterate: no matter how the function is created, a function is a value. Both examples above store a function in the `sayHi` variable.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Kita bahkan bisa mencetak nilai itu menggunakan `alert`:
 
@@ -63,22 +85,31 @@ Inilah yang terjadi di atas secara detil:
 2. Baris `(2)` mengkopinya ke variabel `func`. Tolong ingat lagi: tak ada tanda kurung setelah `sayHi`. Jika ada, maka `func = sayHi()` akan menulis  *hasil panggilan* `sayHi()` ke `func`, bukan *fungsi* `sayHi` itu sendiri.
 3. Sekarang fungsi bisa dipanggil baik sebagai `sayHi()` maupun `func()`.
 
+<<<<<<< HEAD
 Catat bahwa kita jusa bisa menggunakan Expresi Fungsi untuk mendeklarasi `sayHi`, di baris pertama:
+=======
+We could also have used a Function Expression to declare `sayHi`, in the first line:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js
-let sayHi = function() {
+let sayHi = function() { // (1) create
   alert( "Hello" );
 };
 
-let func = sayHi;
+let func = sayHi;  //(2)
 // ...
 ```
 
 Semua akan berjalan sama.
 
 
+<<<<<<< HEAD
 ````smart header="Kenapa ada semicolon di akhir?"
 Kamu mungkin penasaran, kenapa Expresi Fungsi punya semicolon `;` di akhir, tapi Deklarasi Fungsi tidak:
+=======
+````smart header="Why is there a semicolon at the end?"
+You might wonder, why do Function Expressions have a semicolon `;` at the end, but Function Declarations do not:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js
 function sayHi() {
@@ -90,9 +121,15 @@ let sayHi = function() {
 }*!*;*/!*
 ```
 
+<<<<<<< HEAD
 Jawabannya simpel:
 - `;` tidak dibutuhkan di akhir blok kode dan struktur syntax yang memakai mereka seperti `if { ... }`, `for {  }`, `function f { }` dll.
 - Expresi Fungsi digunakan di dalam pernyataan: `let sayHi = ...;`, sebagai nilai. Ia bukan blok kode, tapi lebih ke penetapan. Semicolon `;` disarankan di akhir pernyataan, tak peduli nilainya apa. Jadi semicolon di sini tak ada hubungannya dengan Expresi Fungsi itu sendiri, ia hanya menstop pernyataan.
+=======
+The answer is simple: a Function Expression is created here as `function(…) {…}` inside the assignment statement: `let sayHi = …;`. The semicolon `;` is recommended at the end of the statement, it's not a part of the function syntax.
+
+The semicolon would be there for a simpler assignment, such as `let sayHi = 5;`, and it's also there for a function assignment.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 ````
 
 ## Fungsi callback
@@ -132,13 +169,21 @@ function showCancel() {
 ask("Do you agree?", showOk, showCancel);
 ```
 
+<<<<<<< HEAD
 Pada praktiknya, fungsi macam ini agak berguna. Perbedaan besar antara `ask` kehidupan-nyata dan contoh di atas adalah fungsi kehidupan-nyata memakai cara komplex untuk berinteraksi dengan pengguna daripada sekedar `confirm`. Di peramban, fungsi macam ini biasanya menarik window pertanyaan menarik. Tapi itu cerita lain lagi.
+=======
+In practice, such functions are quite useful. The major difference between a real-life `ask` and the example above is that real-life functions use more complex ways to interact with the user than a simple `confirm`. In the browser, such functions usually draw a nice-looking question window. But that's another story.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 **Argumen `showOk` dan `showCancel` dari `ask` dipanggil *fungsi callback* atau hanya *callback*.**
 
 Idenya adalah kita mengoper fungsi dan berharap ia "dipanggil kembali" kemudian jika dibutuhkan. Pada kasus kita, `showOk` menjadi callback untuk jawaban "yes", dan `showCancel` untuk jawaban "no".
 
+<<<<<<< HEAD
 Kita bisa memakai Expresi Fungsi untuk menulis fungsi yang sama lebih pendek:
+=======
+We can use Function Expressions to write an equivalent, shorter function:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run no-beautify
 function ask(question, yes, no) {
@@ -174,7 +219,11 @@ Mari kita rumuskan kunci perbedaan antara Deklarasi dan Expresi Fungsi.
 
 Pertama, syntax: bagaimana membedakan antara mereka dalam kode.
 
+<<<<<<< HEAD
 - *Deklarasi Fungsi:* fungsi, yang dideklarasi sebagai pernyataan terpisah, dalam aliran kode utama.
+=======
+- *Function Declaration:* a function, declared as a separate statement, in the main code flow:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
     ```js
     // Deklarasi Fungsi
@@ -182,7 +231,11 @@ Pertama, syntax: bagaimana membedakan antara mereka dalam kode.
       return a + b;
     }
     ```
+<<<<<<< HEAD
 - *Expresi Fungsi:* fungsi, yang dibuat dalam expresi atau dalam konstruksi syntax lain. Di sini, fungsi dibuat pada sisi kanan dari "expresi penetapan" `=`:
+=======
+- *Function Expression:* a function, created inside an expression or inside another syntax construct. Here, the function is created on the right side of the "assignment expression" `=`:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
     ```js
     // Expresi Fungsi
@@ -279,9 +332,15 @@ if (age < 18) {
   welcome();               // \   (berjalan)
 */!*
                            //  |
+<<<<<<< HEAD
   function welcome() {     //  |  
     alert("Hello!");       //  |  Deklarasi Fungsi tersedia
   }                        //  |  di manapun dalam blok kode tempat dia dideklarasi
+=======
+  function welcome() {     //  |
+    alert("Hello!");       //  |  Function Declaration is available
+  }                        //  |  everywhere in the block where it's declared
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
                            //  |
 *!*
   welcome();               // /   (berjalan)
@@ -289,7 +348,7 @@ if (age < 18) {
 
 } else {
 
-  function welcome() {    
+  function welcome() {
     alert("Greetings!");
   }
 }
@@ -347,8 +406,13 @@ welcome(); // sekarang ok
 ```
 
 
+<<<<<<< HEAD
 ```smart header="Kapan harus memilih Deklarasi Fungsi versus Expresi Fungsi?"
 Sebagai aturan praktis, saat kita harus mendeklarasi fungsi, hal pertama yang kita pertimbangkan ialah syntax Deklarasi Fungsi. Ia memberi kebebasan lebih dalam bagaimana mengorganisir kode kita, karena kita bisa memanggil fungsi macam ini sebelum mereka dideklarasi.
+=======
+```smart header="When to choose Function Declaration versus Function Expression?"
+As a rule of thumb, when we need to declare a function, the first thing to consider is Function Declaration syntax. It gives more freedom in how to organize our code, because we can call such functions before they are declared.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Itu juga untuk keterbacaan yang lebih baik, karena lebih mudah melihat `function f(…) {…}` dalam kode ketimbang `let f = function(…) {…}`. Deklarasi Fungsi lebih "eye-catching".
 

@@ -139,7 +139,11 @@ switch (a) {
 
 Sekarang baik `3` maupun `5` menampilkan pesan yang sama.
 
+<<<<<<< HEAD
 Kemampuan "mengelompokkan" case adalah efek samping dari bagaimana `switch/case` bekerja tanpa `break`. Di sini exekusi dari `case 3` mulai dari baris `(*)` dan tembus ke `case 5`, karena tidak ada `break`.
+=======
+The ability to "group" cases is a side effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ## Tipe berpengaruh
 

@@ -4,10 +4,17 @@ Kita tahu beberapa operator pembanding dari matematika.
 
 Didalam Javascript operator-operator itu ditulis seperi ini:
 
+<<<<<<< HEAD
 - Lebih besar/kurang dari: <code>a &gt; b</code>, <code>a &lt; b</code>.
 - Lebih besar/kurang dari atau sama: <code>a &gt;= b</code>, <code>a &lt;= b</code>.
 - Sama dengan: `a == b`, perhatikan tanda dua `=` digunakan untuk test persamaan, jika menggunakan satu `=` seperti `a = b` itu adalah sebuah asignment atau memasukan nilai kedalam variabel.
 - Tidak sama dengan: Didalam matematika notasinya seperti <code>&ne;</code>, tetapi didalam Javascript ditulis seperti <code>a != b</code>.
+=======
+- Greater/less than: <code>a &gt; b</code>, <code>a &lt; b</code>.
+- Greater/less than or equals: <code>a &gt;= b</code>, <code>a &lt;= b</code>.
+- Equals: `a == b`, please note the double equality sign `==` means the equality test, while a single one `a = b` means an assignment.
+- Not equals: In maths the notation is <code>&ne;</code>, but in JavaScript it's written as <code>a != b</code>.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Didalam artikel ini kita akan belajar lebih lanjut tentang perbedaan tipe dari perbandingan, bagaimana cara Javascript membuatnya, termasuk sifat-sifat penting.
 

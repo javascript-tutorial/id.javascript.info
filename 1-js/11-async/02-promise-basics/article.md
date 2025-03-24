@@ -32,7 +32,12 @@ Ketika eksekutor mendapatkan hasilnya, baik itu cepat atau lambat - tidak masala
 - `reject(error)` — jika terjadi kesalahan, `error` adalah objek kesalahan.
 
 
+<<<<<<< HEAD
 Jadi untuk meringkas: eksekutor berjalan secara otomatis, eksekutor harus melakukan pekerjaan dan kemudian memanggil salah satu dari `resolve` atau `reject`.
+=======
+- `state` — initially `"pending"`, then changes to either `"fulfilled"` when `resolve` is called or `"rejected"` when `reject` is called.
+- `result` — initially `undefined`, then changes to `value` when `resolve(value)` is called or `error` when `reject(error)` is called.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Objek `promise` yang dikembalikan oleh *constructor* `new Promise` memiliki properti internal:
 
@@ -47,7 +52,7 @@ Nanti kita akan melihat bagaimana "penggemar" dapat berlangganan kepada perubaha
 
 Berikut ini contoh *constructor promise* dan fungsi eksekutor sederhana dengan "kode produksi" yang membutuhkan waktu (melalui `setTimeout`):
 
-```js run
+```js
 let promise = new Promise(function(resolve, reject) {
   // fungsi tersebut dieksekusi secara otomatis ketika "promise" dibangun
 
@@ -61,7 +66,11 @@ Kita dapat melihat dua hal dengan menjalankan kode di atas:
 1. Exekutor dipanggil secara langsung dan otomatis (oleh `new Promise`).
 2. Exekutor menerima dua argumen: `resolve` dan `reject` — fungsi ini sudah ditentukan sebelumnya oleh mesin JavaScript. Jadi kita tak perlu membuatnya. Kita hanya harus memanggil salah satu dari dua argumen tersebut ketika siap.
 
+<<<<<<< HEAD
     Setelah satu detik "memproses" eksekutor memanggil `resolve("done")` untuk memproduksi hasilnya. Ini mengubah status objek `promise`:
+=======
+    After one second of "processing", the executor calls `resolve("done")` to produce the result. This changes the state of the `promise` object:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
     ![](promise-resolve-1.svg)
 
@@ -128,9 +137,15 @@ Tidak apa-apa. Kita segera menyelesaikan *promise*.
 Properti `state` dan `result`    objek Promise bersifat internal. Kita tidak bisa mengakses properti tersebut secara langsung. Kita bisa menggunakan *method* `.then`/`.catch`/`.finally` untuk melakukannya. Penjelasan method-method tersebut ada di bawah ini.
 ```
 
+<<<<<<< HEAD
 ## Konsumen: then, catch, finally
 
 Objek *Promise* berfungsi sebagai tautan antara eksekutor ("kode produksi" atau "penyanyi") dan fungsi konsumsi ("penggemar"), yang akan menerima hasil atau *error*. Fungsi konsumsi bisa didaftarkan (berlangganan) menggunakan *method* `.then`, `.catch` and `.finally`.
+=======
+## Consumers: then, catch
+
+A Promise object serves as a link between the executor (the "producing code" or "singer") and the consuming functions (the "fans"), which will receive the result or error. Consuming functions can be registered (subscribed) using the methods `.then` and `.catch`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ### then
 
@@ -145,9 +160,15 @@ promise.then(
 );
 ```
 
+<<<<<<< HEAD
 Argumen pertama dari `.then` adalah fungsi yang berjalan ketika *promise* terselesaikan, dan menerima hasil.
 
 Argumen kedua dari `.then` adalah fungsi yang berjalan ketika *promise* ditolak, dan menerima *error*.
+=======
+The first argument of `.then` is a function that runs when the promise is resolved and receives the result.
+
+The second argument of `.then` is a function that runs when the promise is rejected and receives the error.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Sebagai contoh, disini reaksi ketika *promise* berhasil diselesaikan:
 
@@ -213,10 +234,11 @@ promise.catch(alert); // menampilkan "Error: Whoops!" setelah satu detik
 
 Panggilan `.catch(f)` adalah analog lengkap dari `.then(null, f)`, itu hanya sebuah singkatan.
 
-### finally
+## Cleanup: finally
 
 Sama seperti ada klausa `finally` dalam `try {...} catch {...}`, ada `finally` dalam *promises*.
 
+<<<<<<< HEAD
 Panggilan `.finally(f)` mirip dengan `.then(f, f)` dalam arti bahwa `f` selalu berjalan ketika *promise* diselesaikan: apakah itu *resolve* atau *reject*.
 
 `finally` adalah penanganan yang baik untuk melakukan pembersihan, mis. menghentikan indikator pemuatan kita, karena tidak diperlukan lagi, apa pun hasilnya.
@@ -231,10 +253,31 @@ new Promise((resolve, reject) => {
 
   // berjalan ketika "promise" diselesaikan, tidak peduli sukses atau tidak
   .finally(() => hentikan indikator pemuatan)
+=======
+The call `.finally(f)` is similar to `.then(f, f)` in the sense that `f` runs always, when the promise is settled: be it resolve or reject.
+
+The idea of `finally` is to set up a handler for performing cleanup/finalizing after the previous operations are complete.
+
+E.g. stopping loading indicators, closing no longer needed connections, etc.
+
+Think of it as a party finisher. Irresepective of whether a party was good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.
+
+The code may look like this:
+
+```js
+new Promise((resolve, reject) => {
+  /* do something that takes time, and then call resolve or maybe reject */
+})
+*!*
+  // runs when the promise is settled, doesn't matter successfully or not
+  .finally(() => stop loading indicator)
+  // so the loading indicator is always stopped before we go on
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 */!*
   .then(result => munculkan hasil, err => munculkan "error")
 ```
 
+<<<<<<< HEAD
 
 Tapi ini bukan alias dari `then(f,f)`. Ada beberapa perbedaan penting:
 
@@ -243,25 +286,68 @@ Tapi ini bukan alias dari `then(f,f)`. Ada beberapa perbedaan penting:
 2. *Handler* `finally` melewatkan hasil dan *error* ke *handler* selanjutnya.
 
     Misalnya, di sini hasilnya dilewatkan melalui `finally` ke `then`:
+=======
+Please note that `finally(f)` isn't exactly an alias of `then(f,f)` though.
+
+There are important differences:
+
+1. A `finally` handler has no arguments. In `finally` we don't know whether the promise is successful or not. That's all right, as our task is usually to perform "general" finalizing procedures.
+
+    Please take a look at the example above: as you can see, the `finally` handler has no arguments, and the promise outcome is handled by the next handler.
+2. A `finally` handler "passes through" the result or error to the next suitable handler.
+
+    For instance, here the result is passed through `finally` to `then`:
+
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
     ```js run
     new Promise((resolve, reject) => {
-      setTimeout(() => resolve("result"), 2000)
+      setTimeout(() => resolve("value"), 2000);
     })
+<<<<<<< HEAD
       .finally(() => alert("Promise ready"))
       .then(result => alert(result)); // <-- .then menangani hasilnya
     ```
 
     Dan di sini ada *error* di dalam *promise*, dilewatkan melalui `finally` ke `catch`:
+=======
+      .finally(() => alert("Promise ready")) // triggers first
+      .then(result => alert(result)); // <-- .then shows "value"
+    ```
+
+    As you can see, the `value` returned by the first promise is passed through `finally` to the next `then`.
+
+    That's very convenient, because `finally` is not meant to process a promise result. As said, it's a place to do generic cleanup, no matter what the outcome was.
+
+    And here's an example of an error, for us to see how it's passed through `finally` to `catch`:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
     ```js run
     new Promise((resolve, reject) => {
       throw new Error("error");
     })
+<<<<<<< HEAD
       .finally(() => alert("Promise ready"))
       .catch(err => alert(err));  // <-- .catch menangani objek galat
     ```  
+=======
+      .finally(() => alert("Promise ready")) // triggers first
+      .catch(err => alert(err));  // <-- .catch shows the error
+    ```
 
+3. A `finally` handler also shouldn't return anything. If it does, the returned value is silently ignored.
 
+    The only exception to this rule is when a `finally` handler throws an error. Then this error goes to the next handler, instead of any previous outcome.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
+
+To summarize:
+
+- A `finally` handler doesn't get the outcome of the previous handler (it has no arguments). This outcome is passed through instead, to the next suitable handler.
+- If a `finally` handler returns something, it's ignored.
+- When `finally` throws an error, then the execution goes to the nearest error handler.
+
+These features are helpful and make things work just the right way if we use `finally` how it's supposed to be used: for generic cleanup procedures.
+
+<<<<<<< HEAD
     Itu sangat nyaman, karena `finally` tidak dimaksudkan untuk memproses hasil dari *promise*. Jadi itu melewatinya.
 
     Kita akan berbicara lebih banyak tentang *chaining promise* dan *passing-result* antara *handler* di bab selanjutnya.
@@ -270,6 +356,14 @@ Tapi ini bukan alias dari `then(f,f)`. Ada beberapa perbedaan penting:
 
 ````smart header="Dengan promise yang sudah ditentukan handler segera menjalankannya"
  Jika *promise* tertunda, *handler* `.then/catch/finally` akan menunggu *promise* tersebut. Jika tidak, jika *promise* sudah selesai, handler langsung menjalankan:
+=======
+````smart header="We can attach handlers to settled promises"
+If a promise is pending, `.then/catch/finally` handlers wait for its outcome.
+
+Sometimes, it might be that a promise is already settled when we add a handler to it.
+
+In such case, these handlers just run immediately:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run
 // "promise" diselesaikan segera setelah dibuat
@@ -282,11 +376,19 @@ Perhatikan bahwa ini membuat Promise lebih efektif daripada skenario "daftar ber
 Promise lebih fleksibel. Kita bisa menambahkan handlers kapan saja: jika hasilnya sudah ada, mereka langsung mengeksekusi.
 ````
 
+<<<<<<< HEAD
 Selanjutnya, mari kita lihat contoh-contoh yang lebih praktis tentang bagaimana *promise* dapat membantu kita menulis kode *asynchronous*.
 
 ## Contoh: loadScript [#loadscript]
 
 Kita punya fungsi `loadScript` untuk memuat skrip dari bab sebelumnya.
+=======
+## Example: loadScript [#loadscript]
+
+Next, let's see more practical examples of how promises can help us write asynchronous code.
+
+We've got the `loadScript` function for loading a script from the previous chapter.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Inilah varian berbasis *callback*, hanya untuk mengingatkan kita tentang itu:
 

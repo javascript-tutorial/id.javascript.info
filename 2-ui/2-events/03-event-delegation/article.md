@@ -1,7 +1,11 @@
 
 # Delegasi Peristiwa
 
+<<<<<<< HEAD
 Menangkap dan pengelembungan mengizinkan kita untuk mengimplementasikan salah satu pola penanganan peristiwa paling kuat yang disebut dengan *delegasi peristiwa (_event delegation_)*.
+=======
+Capturing and bubbling allow us to implement one of the most powerful event handling patterns called *event delegation*.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Ide utama yaitu jika kita memiliki banyak elemen yang akan di tangani dengan cara yang sama, maka sebaiknya daripada memberikan sebuah penangan pada setiap elemen tersebut -- kita buat sebuah penangan (_handler_) pada elemen atas yang melingkupi semua elemen tersebut.
 

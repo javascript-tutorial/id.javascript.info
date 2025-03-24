@@ -154,7 +154,11 @@ Mari bicara tentang kontrol form.
 
 ### input dan textarea
 
+<<<<<<< HEAD
 Kita bisa akses nilai mereka dengan `input.value` (string) atau `input.checked` (boolean) untuk checkboxes.
+=======
+We can access their value as `input.value` (string) or `input.checked` (boolean) for checkboxes and radio buttons.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Seperti ini:
 
@@ -247,7 +251,11 @@ This syntax is optional. We can use `document.createElement('option')` and set a
 - `defaultSelected` -- jika `true`, maka `selected` HTML-attribute dibuat,
 - `selected` -- jika `true`, maka option nya *selected*.
 
+<<<<<<< HEAD
 Disana mungkin sedikit bingung tentang `defaultSelected` dan `selected`. That's simple: `defaultSelected` *set* HTML-attribute, dengan itu kita bisa dapat menggunakan  `option.getAttribute('selected')`. Dan `selected` - baik opsi *selected* atau tidak, itu yang lebih penting. Biasanya kedua nilai baik di *set* ke `true` atau tidak di *set* (sama dengan `false`).
+=======
+The difference between `defaultSelected` and `selected` is that `defaultSelected` sets the HTML-attribute (that we can get using `option.getAttribute('selected')`), while `selected` sets whether the option is selected or not.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Misalnya:
 

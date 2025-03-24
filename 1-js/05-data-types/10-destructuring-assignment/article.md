@@ -2,6 +2,7 @@
 
 Dua stuktur data yang paling banyak digunakan di Javascript adalah `Object` dan `Array`
 
+<<<<<<< HEAD
 Objek memungkinkan kita untuk membuat entitas tunggal yang menyimpan data item berdasarkan kunci, dan array memungkinkan kita untuk mengumpulkan data item menjadi koleksi yang terurut.
 
 Tetapi ketika kita meneruskannya ke suatu fungsi, itu mungkin tidak perlu objek / array secara keseluruhan, melainkan potongan individual.
@@ -9,11 +10,25 @@ Tetapi ketika kita meneruskannya ke suatu fungsi, itu mungkin tidak perlu objek 
 *Destructuring assignment* adalah sebuah sintaks spesial yang memungkinkan kita untuk "membongkar" array atau objek menjadi variabel yang banyak, kadang-kadang itu memang lebih nyaman. Destrukturisasi juga berfungsi baik dengan fungsi-fungsi kompleks yang mempunyai banyak parameter, nilai default, dan sebagainya.
 
 ## Destrukturisasi Array
+=======
+- Objects allow us to create a single entity that stores data items by key.
+- Arrays allow us to gather data items into an ordered list.
+
+However, when we pass these to a function, we may not need all of it. The function might only require certain elements or properties.
+
+*Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes that's more convenient.
+
+Destructuring also works well with complex functions that have a lot of parameters, default values, and so on. Soon we'll see that.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Contoh bagaimana array di-destrukturisasi menjadi variabel:
 
 ```js
+<<<<<<< HEAD
 // kita mempunyai array dengan nama, dan nama keluarga
+=======
+// we have an array with a name and surname
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 let arr = ["John", "Smith"]
 
 *!*
@@ -37,10 +52,19 @@ alert(firstName); // John
 alert(surname);  // Smith
 ```
 
+<<<<<<< HEAD
 ````smart header="\"Destructuring\" bukan berarti \"destructive\"."
 Ini disebut "destructuring assignment," karena "destructurizes" dengan menyalin item kedalam variabel. Tetapi array itu sendiri tidak dimodifikasi.
 
 Ini hanya cara singkat untuk menulis:
+=======
+As you can see, the syntax is simple. There are several peculiar details though. Let's see more examples to understand it better.
+
+````smart header="\"Destructuring\" does not mean \"destructive\"."
+It's called "destructuring assignment," because it "destructurizes" by copying items into variables. However, the array itself is not modified.
+
+It's just a shorter way to write:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 ```js
 // let [firstName, surname] = arr;
 let firstName = arr[0];
@@ -60,7 +84,11 @@ let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic
 alert( title ); // Consul
 ```
 
+<<<<<<< HEAD
 Pada kode diatas, elemen kedua dari array dilewati, yang ketiga ditetapkan untuk `title`, dan sisa item array juga dilewati (karena tidak ada variabel untuknya).
+=======
+In the code above, the second element of the array is skipped, the third one is assigned to `title`, and the rest of the array items are also skipped (as there are no variables for them).
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 ````
 
 ````smart header="Bekerja dengan iterabel apapun di sisi kanan"
@@ -71,11 +99,16 @@ Pada kode diatas, elemen kedua dari array dilewati, yang ketiga ditetapkan untuk
 let [a, b, c] = "abc"; // ["a", "b", "c"]
 let [one, two, three] = new Set([1, 2, 3]);
 ```
-That works, because internally a destructuring assignment works by iterating over the right value. It's kind of syntax sugar for calling `for..of` over the value to the right of `=` and assigning the values.
+That works, because internally a destructuring assignment works by iterating over the right value. It's a kind of syntax sugar for calling `for..of` over the value to the right of `=` and assigning the values.
 ````
 
 
+<<<<<<< HEAD
 ````smart header="Menetapkan ke apa saja pada sisi kiri"
+=======
+````smart header="Assign to anything at the left-side"
+We can use any "assignables" on the left side.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Kita bisa menggunakan "penetapan" apa saja pada sisi kiri.
 
@@ -90,11 +123,18 @@ alert(user.surname); // Smith
 
 ````
 
+<<<<<<< HEAD
 ````smart header="Pengulangan dengan .entries()"
 
 Di bagian sebelumnya kita melihat metode [Object.entries(obj)](mdn:js/Object/entries).
 
 Kita bisa menggunakan itu untuk destrukturisasi untuk melompati kunci-dan-nilai sebuah objek:
+=======
+````smart header="Looping with .entries()"
+In the previous chapter, we saw the [Object.entries(obj)](mdn:js/Object/entries) method.
+
+We can use it with destructuring to loop over the keys-and-values of an object:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run
 let user = {
@@ -102,7 +142,7 @@ let user = {
   age: 30
 };
 
-// loop over keys-and-values
+// loop over the keys-and-values
 *!*
 for (let [key, value] of Object.entries(user)) {
 */!*
@@ -163,14 +203,24 @@ If we'd like also to gather all that follows -- we can add one more parameter th
 let [name1, name2, *!*...rest*/!*] = ["Julius", "Caesar", *!*"Consul", "of the Roman Republic"*/!*];
 
 *!*
+<<<<<<< HEAD
 // Catatan bahwa tipe dari `rest` adalah Array.
+=======
+// rest is an array of items, starting from the 3rd one
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 alert(rest[0]); // Consul
 alert(rest[1]); // of the Roman Republic
 alert(rest.length); // 2
 */!*
 ```
 
+<<<<<<< HEAD
 Nilai dari `rest` adalah array dari elemen array yang tersisa. Kita bisa menggunakan variabel lain apapun pada `rest`, hanya pastikan memiliki tiga titik sebelum itu dan pergi terakhir di penetapan destrukturisasi.
+=======
+The value of `rest` is the array of the remaining array elements.
+
+We can use any other variable name in place of `rest`, just make sure it has three dots before it and goes last in the destructuring assignment.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run
 let [name1, name2, *!*...titles*/!*] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
@@ -179,7 +229,11 @@ let [name1, name2, *!*...titles*/!*] = ["Julius", "Caesar", "Consul", "of the Ro
 
 ### Nilai default
 
+<<<<<<< HEAD
 Jika ada lebih sedikit nilai dalam array daripada variabel dalam penugasan, tidak akan ada kesalahan. Nilai absen dianggap undefined:
+=======
+If the array is shorter than the list of variables on the left, there will be no errors. Absent values are considered undefined:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run
 *!*
@@ -227,7 +281,11 @@ Sintaks dasarnya adalah:
 let {var1, var2} = {var1:…, var2:…}
 ```
 
+<<<<<<< HEAD
 Kita memiliki objek yang ada di sisi kanan, yang ingin kita pisah menjadi beberapa variabel. Sisi kiri berisi "pola" untuk properti yang sesuai. Dalam kasus sederhana, itu adalah daftar nama variabel di `{...}`.
+=======
+We should have an existing object on the right side, that we want to split into variables. The left side contains an object-like "pattern" for corresponding properties. In the simplest case, that's a list of variable names in `{...}`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Contohnya:
 
@@ -247,7 +305,13 @@ alert(width);  // 100
 alert(height); // 200
 ```
 
+<<<<<<< HEAD
 Properti `options.title`, `options.width` dan `options.height` ditugaskan ke variabel yang sesuai. Urutannya tidak masalah. Ini juga berfungsi:
+=======
+Properties `options.title`, `options.width` and `options.height` are assigned to the corresponding variables.
+
+The order does not matter. This works too:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js
 // mengganti urutan di let {...}
@@ -409,9 +473,15 @@ alert( title ); // Menu
 
 ## Destrukturisasi bersarang
 
+<<<<<<< HEAD
 Jika suatu objek atau array berisi objek dan array bersarang lainnya, kita dapat menggunakan pola sisi kiri yang lebih kompleks untuk mengekstraksi bagian yang lebih dalam.
 
 Dalam kode di bawah ini `options` memiliki objek lain di properti` size` dan sebuah array di properti `items`. Pola di sisi kiri penugasan memiliki struktur yang sama untuk mengekstrak nilai dari mereka:
+=======
+If an object or an array contains other nested objects and arrays, we can use more complex left-side patterns to extract deeper portions.
+
+In the code below `options` has another object in the property `size` and an array in the property `items`. The pattern on the left side of the assignment has the same structure to extract values from them:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run
 let options = {
@@ -420,7 +490,7 @@ let options = {
     height: 200
   },
   items: ["Cake", "Donut"],
-  extra: true   
+  extra: true
 };
 
 // tugas dekstukturisasi dibagi dalam beberapa baris untuk kejelasan
@@ -440,8 +510,12 @@ alert(item1);  // Cake
 alert(item2);  // Donut
 ```
 
+<<<<<<< HEAD
 
 Semua properti objek `options` kecuali` extra` yang tidak ada di bagian kiri, ditetapkan ke variabel yang sesuai:
+=======
+All properties of `options` object except `extra` which is absent in the left part, are assigned to corresponding variables:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ![](destructuring-complex.svg)
 
@@ -451,9 +525,15 @@ Perhatikan bahwa tidak ada variabel untuk `size` dan` item`, karena kita mengamb
 
 ## Parameter fungsi cerdas
 
+<<<<<<< HEAD
 Ada kalanya suatu fungsi memiliki banyak parameter, yang sebagian besar bersifat opsional. Itu terutama berlaku untuk antarmuka pengguna. Bayangkan sebuah fungsi yang menciptakan menu. Mungkin memiliki lebar, tinggi, judul, daftar item dan sebagainya.
 
 Berikut cara yang buruk untuk menulis fungsi tersebut:
+=======
+There are times when a function has many parameters, most of which are optional. That's especially true for user interfaces. Imagine a function that creates a menu. It may have a width, a height, a title, an item list and so on.
+
+Here's a bad way to write such a function:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js
 function showMenu(title = "Untitled", width = 200, height = 100, items = []) {
@@ -461,7 +541,11 @@ function showMenu(title = "Untitled", width = 200, height = 100, items = []) {
 }
 ```
 
+<<<<<<< HEAD
 Dalam kehidupan nyata, masalahnya adalah bagaimana cara mengingat urutan argumen. Biasanya IDE mencoba membantu kita, terutama jika kodenya didokumentasikan dengan baik, tetapi masih ... Masalah lain adalah bagaimana memanggil fungsi ketika sebagian besar parameter ok secara default.
+=======
+In real-life, the problem is how to remember the order of arguments. Usually, IDEs try to help us, especially if the code is well-documented, but still... Another problem is how to call a function when most parameters are ok by default.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Soperti ini?
 
@@ -526,7 +610,11 @@ function({
 })
 ```
 
+<<<<<<< HEAD
 Kemudian, untuk objek parameter, akan ada variabel `varName` untuk properti` incomingProperty`, dengan `defaultValue` secara default.
+=======
+Then, for an object of parameters, there will be a variable `varName` for the property `incomingProperty`, with `defaultValue` by default.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Harap perhatikan bahwa destrukturisasi seperti itu mengasumsikan bahwa `showMenu ()` memang memiliki argumen. Jika kita menginginkan semua nilai secara default, maka kita harus menentukan objek kosong:
 
@@ -553,7 +641,7 @@ Dalam kode di atas, objek argumen keseluruhan adalah `{}` secara default, jadi s
 - Penugasan destrukturisasi memungkinkan untuk memetakan objek atau array secara instan ke banyak variabel.
 - Sintaks lengkap objek:
     ```js
-    let {prop : varName = default, ...rest} = object
+    let {prop : varName = defaultValue, ...rest} = object
     ```
 
     Ini berarti properti `prop` harus masuk ke variabel` varName` dan, jika tidak ada properti seperti itu, maka nilai `default` harus digunakan.
@@ -563,9 +651,13 @@ Dalam kode di atas, objek argumen keseluruhan adalah `{}` secara default, jadi s
 - Sintaks lengkap array:
 
     ```js
-    let [item1 = default, item2, ...rest] = array
+    let [item1 = defaultValue, item2, ...rest] = array
     ```
 
+<<<<<<< HEAD
     Item pertama masuk ke `item1`; yang kedua masuk ke `item2`, sisanya membuat array `rest`.
+=======
+    The first item goes to `item1`; the second goes into `item2`, and all the rest makes the array `rest`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 - Dimungkinkan untuk mengekstraksi data dari array / objek bersarang, untuk itu sisi kiri harus memiliki struktur yang sama dengan yang benar.

@@ -167,7 +167,11 @@ _Server_ membaca data formulir dan berkas seolah-olah itu adalah pengajuan formu
 
 Objek [FormData](https://xhr.spec.whatwg.org/#interface-formdata) digunakan untuk mendapatkan formulir HTML dan mengirimkannya menggunakan `fetch` atau metode jaringan lainnya.
 
+<<<<<<< HEAD
 Kita dapat membuat `new FormData(form)` dari formulir HTML atau membuat sebuah objek `FormData` tanpa sebuah formulir HTML dan kemudian menambahkan ruas formulir dengan metode berikut:
+=======
+We can either create `new FormData(form)` from an HTML form, or create an object without a form at all, and then append fields with methods:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 -   `formData.append(nama, nilai)`
 -   `formData.append(nama, blob, namaBerkas)`

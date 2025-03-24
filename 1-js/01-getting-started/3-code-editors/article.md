@@ -12,8 +12,13 @@ Satu IDE meload proyek (yang bisa berupa banyak file), memungkingkan navigasi an
 
 Jika kamu belum memilih satu IDE, pertimbangkan opsi-opsi berikut:
 
+<<<<<<< HEAD
 - [Visual Studio Code](https://code.visualstudio.com/) (lintas-platform, gratis).
 - [WebStorm](http://www.jetbrains.com/webstorm/) (lintas-platform, berbayar).
+=======
+- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
+- [WebStorm](https://www.jetbrains.com/webstorm/) (cross-platform, paid).
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Untuk Windows, ada juga "Visual Studio", jangan dipusingkan dengan "Visual Studio Code." "Visual Studio" merupakan editor khusus Windows yang keren dan berbayar, sangat cocok untuk platform .NET. Ia bagus juga untuk JavaScript. Lalu ada juga versi gratisnya [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
@@ -29,6 +34,7 @@ Perbedaan utama antara "editor ringan" dan "IDE" adalah IDE bekerja pada level p
 
 Pada praktiknya, editor ringan bisa punya banyak plugin termasuk syntax analyzers dan autocompleters level direktori, jadi tak ada batasan ketat antara editor ringan dan IDE.
 
+<<<<<<< HEAD
 Opsi-opsi berikut patut anda perhatikan:
 
 - [Atom](https://atom.io/) (lintas-platform, gratis).
@@ -36,6 +42,13 @@ Opsi-opsi berikut patut anda perhatikan:
 - [Sublime Text](http://www.sublimetext.com) (lintas-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, gratis).
 - [Vim](http://www.vim.org/) dan [Emacs](https://www.gnu.org/software/emacs/) sangat keren juga jika kamu tahu cara pakainya.
+=======
+There are many options, for instance:
+
+- [Sublime Text](https://www.sublimetext.com/) (cross-platform, shareware).
+- [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
+- [Vim](https://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ## Jangan berdebat
 
@@ -43,4 +56,13 @@ Daftar editor di atas merupakan barang yang sudah biasa saya atau teman-teman sa
 
 Ada banyak editor bagus lainnya di dunia kita yang besar ini. Silakan pilih satu yang paling kamu suka.
 
+<<<<<<< HEAD
 Pilihan editor, sama seperti tool lainnya, bersifat individual dan tergantung pada proyek, kebiasaan, dan preferensi personal.
+=======
+The choice of an editor, like any other tool, is individual and depends on your projects, habits, and personal preferences.
+
+The author's personal opinion:
+
+- I'd use [Visual Studio Code](https://code.visualstudio.com/) if I develop mostly frontend.
+- Otherwise, if it's mostly another language/platform and partially frontend, then consider other editors, such as XCode (Mac), Visual Studio (Windows) or Jetbrains family (Webstorm, PHPStorm, RubyMine etc, depending on the language).
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6

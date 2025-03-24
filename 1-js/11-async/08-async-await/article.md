@@ -121,16 +121,34 @@ showAvatar();
 
 Cukup bersih dan mudah dibaca, bukan? Jauh lebih baik dari sebelumnya.
 
+<<<<<<< HEAD
 ````smart header="`await` tidak bekerja pada top-level code"
 Orang yang baru mulai menggunakan `await` cenderung lupa faktanya bahwa kita tidak bisa menggunakan `await` pada top-level code. Sebagai contoh, ini tidak akan bekerja:
 
 ```js run
 // error sintaksis pada top-level code
+=======
+````smart header="Modern browsers allow top-level `await` in modules"
+In modern browsers, `await` on top level works just fine, when we're inside a module. We'll cover modules in article <info:modules-intro>.
+
+For instance:
+
+```js run module
+// we assume this code runs at top level, inside a module
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 let response = await fetch('/article/promise-chaining/user.json');
 let user = await response.json();
+
+console.log(user);
 ```
 
+<<<<<<< HEAD
 Kita dapat membungkusnya kedalam fungsi async anonymous, seperti ini:
+=======
+If we're not using modules, or [older browsers](https://caniuse.com/mdn-javascript_operators_await_top_level) must be supported, there's a universal recipe: wrapping into an anonymous async function.
+
+Like this:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js
 (async () => {
@@ -140,7 +158,10 @@ Kita dapat membungkusnya kedalam fungsi async anonymous, seperti ini:
 })();
 ```
 
+<<<<<<< HEAD
 P.S. Fitur baru: mulai dari mesin V8 versi 8.9+, tingkat atas menunggu bekerja di [modul](info: modul).
+=======
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 ````
 
 `````
@@ -306,5 +327,14 @@ Keyword `await` sebelum promise membuat JavaScript menunggu sampai promise itu s
 
 Bersama mereka menyediakan kerangka kerja yang bagus untuk menulis kode asynchronous yang mudah baik membaca dan menulis.
 
+<<<<<<< HEAD
 Dengan `async/await` kita jarang menulis `promise.then/catch`, tetapi kita tetap tidak boleh lupa bahwa `async/await` berdasarkan promise, karena terkadang (misalnya di scope terluar) kita harus menggunakan method ini. Juga `Promise.all` adalah sesuatu yang bagus untuk menunggu banyak task secara bersamaan.
 ```
+=======
+1. If it's an error, an exception is generated — same as if `throw error` were called at that very place.
+2. Otherwise, it returns the result.
+
+Together they provide a great framework to write asynchronous code that is easy to both read and write.
+
+With `async/await` we rarely need to write `promise.then/catch`, but we still shouldn't forget that they are based on promises, because sometimes (e.g. in the outermost scope) we have to use these methods. Also `Promise.all` is nice when we are waiting for many tasks simultaneously.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6

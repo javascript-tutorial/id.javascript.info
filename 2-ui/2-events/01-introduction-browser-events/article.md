@@ -24,7 +24,11 @@ Berikut ini daftar peristiwa DOM yang paling berguna:
 **Peristiwa CSS (_CSS events_):**
 - `transitionend` -- pada saat animasi CSS selesai.
 
+<<<<<<< HEAD
 Masih banyak lagi peristiwa lain. Kita akan membahas lebih detail tentang peristiwa tertentu pada bab selanjutnya.
+=======
+There are many other events. We'll get into more details of particular events in upcoming chapters.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ## Penangan peristiwa (_Event handlers_)
 
@@ -160,7 +164,11 @@ button.onclick = ucapkanTerimaKasih;
 button.onclick = ucapkanTerimaKasih();
 ```
 
+<<<<<<< HEAD
 Jika kita tambahkan tanda kurung, maka `ucapkanTerimaKasih()` menjadi proses pemanggilan fungsi. Jadi baris terakhir akan mengambil *hasil* dari pengeksekusian fungsi, yang merupakan `tidak terdefinisi` (_`undefined`_ — karena fungsi tidak mengembalikan apapun), dan mengatur nilai itu ke peristiwa `onclick`. Maka peristiwa tersebut tidak akan menjalankan apapun.
+=======
+If we add parentheses, then `sayThanks()` becomes a function call. So the last line actually takes the *result* of the function execution, that is `undefined` (as the function returns nothing), and assigns it to `onclick`. That doesn't work.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ...Namun, jika kita menambahkan secara langsung ke HTML, maka kita harus menambahkan tanda kurung:
 
@@ -195,7 +203,11 @@ Atur sebuah penangan ke `elem.onclick`, bukan `elem.ONCLICK`, karena properti DO
 
 ## tambahkanPendengarPeristiwa (_addEventListener_)
 
+<<<<<<< HEAD
 Salah satu masalah mendasar pada cara mengatur pengedali sebelumnya -- kita tidak bisa mengatur beberapa penangan pada sebuah peristiwa.
+=======
+The fundamental problem of the aforementioned ways to assign handlers is that we *can't assign multiple handlers to one event*.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Mari kata, sebuah bagian pada koded kita ingin menyoroti sebuah tombol pada saat diklik, dan satu lagi ingin menunjukan seubah pesan pada proses pengklikan tersebut.
 
@@ -207,7 +219,11 @@ input.onclick = function() { alert(1); }
 input.onclick = function() { alert(2); } // menganti pengedali yang lama
 ```
 
+<<<<<<< HEAD
 Pengembang dari standar situs web paham sejak lama, dan menyarankan cara alternatif untuk mengelola penangan menggunakan metode khusus `addEventListener` dan `removeEventListener`. Kedua hal tersebut tidak memiliki permasalahan seperti itu.
+=======
+Developers of web standards understood that long ago and suggested an alternative way of managing handlers using the special methods `addEventListener` and `removeEventListener` which aren't bound by such constraint.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Sintaks (_syntax_) untuk menambahkan sebuah penangan:
 
@@ -261,7 +277,11 @@ input.removeEventListener("click", handler);
 Harap dicatat -- Jika kita tidak menyimpan fungsi tersebut kedalam variable, maka kita tidak bisa menghapusnya. Tidak ada cara untuk "membaca kembali" penangan yang di atur pada `addEventListener`.
 ````
 
+<<<<<<< HEAD
 Beberapa pemanggilan ke `addEventListener` mengijinkan untuk menambahkan beberapa penangan, seperti ini:
+=======
+Multiple calls to `addEventListener` allow it to add multiple handlers, like this:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```html run no-beautify
 <input id="elem" type="button" value="Klik saya"/>
@@ -288,7 +308,11 @@ Seperti yang bisa kita lihat pada contoh di atas, kita bisa mengatur *kedua* pen
 ````warn header="Untuk beberapa peristiwa, penangan bekerja hanya dengan `addEventListener`"
 Ada beberapa peristiwa yang tidak dapat di atur menggunakan properti DOM. hanya dengan `addEventListener`.
 
+<<<<<<< HEAD
 Contohnya, peristiwa `DOMContentLoaded`, yang akan terpicu pada saat dokumen telah berhasil di dimuat dan dibuat.
+=======
+For instance, the `DOMContentLoaded` event, that triggers when the document is loaded and the DOM has been built.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js
 // tidak akan perna berjalan
@@ -334,10 +358,17 @@ Beberapa properti dari objek `peristiwa`:
 `peristiwa.currentTarget`
 : elemen yang ditangani oleh peristiwa. Sama persis dengan `this`, kecuali jika penangan merupakan fungsi anak panah (arrow function), atau `this` sudah di atur untuk hal lain, maka kita dapat menggunakan `peristiwa.currentTarget` untuk mendapati elemen.
 
+<<<<<<< HEAD
 `peristiwa.clientX / peristiwa.clientY`
 : koordinat kursor relatif pada jendela (window), untuk peristwa pointer.
 
 Masih banyak lagi properti. Banyak yang tergantung pada tipe peristiwa: peristiwa papan ketik memilik satu set properti, peristiwa pointer - memiliki set yang berbeda, kita nanti akan mempelajari mereka pada saat kita mendapati peristiwa lainnya secara detail. 
+=======
+`event.clientX` / `event.clientY`
+: Window-relative coordinates of the cursor, for pointer events.
+
+There are more properties. Many of them depend on the event type: keyboard events have one set of properties, pointer events - another one, we'll study them later when as we move on to the details of different events.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ````smart header="Objek peristiwa juga ada pada penangan HTML"
 Jika kita mengatur penangan pada HTML, kita bisa juga menggunakan objek peristiwa, seperti ini:
@@ -373,7 +404,11 @@ Contohnya:
 
 Seperti yang bisa kita lihat, pada saat `addEventListener` menerima objek sebagai penangan, itu akan memanggil `obj.handleEvent(event)` jika sebuah peristiwa terjadi.
 
+<<<<<<< HEAD
 Kita juga dapat menggunakan Kelas (_class_) untuk hal itu:
+=======
+We could also use objects of a custom class, like this:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 
 ```html run
@@ -395,6 +430,7 @@ Kita juga dapat menggunakan Kelas (_class_) untuk hal itu:
 
 *!*
   let menu = new Menu();
+
   elem.addEventListener('mousedown', menu);
   elem.addEventListener('mouseup', menu);
 */!*

@@ -57,10 +57,17 @@ Untuk membuat objek `Date` baru panggil `new Date()` dengan salah satu dari argu
 `new Date(year, month, date, hours, minutes, seconds, ms)`
 : Membuat waktu dengan komponen yang diberikan dari zona waktu lokal. Hanya dua argument pertama yang wajib.
 
+<<<<<<< HEAD
     - `Tahun`nya harus mempunyai 4 angka: `2013` boleh, `98` tidak boleh.
     - Perhitungan `Bulan`nya dimulai dari `0` (Jan), sampai `11` (Des).
     - Parameter `date` sebenarnya adalah hari dari bulan, jika tidak ada maka akan diasumsikan `1`.
     - Jika `jam/menit/detik/milidetik` tidak ada, mereka akan diasumsikan sama dengan `0`.
+=======
+    - The `year` should have 4 digits. For compatibility, 2 digits are also accepted and considered `19xx`, e.g. `98` is the same as `1998` here, but always using 4 digits is strongly encouraged.
+    - The `month` count starts with `0` (Jan), up to `11` (Dec).
+    - The `date` parameter is actually the day of month, if absent then `1` is assumed.
+    - If `hours/minutes/seconds/ms` is absent, they are assumed to be equal `0`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
     Contoh:
 
@@ -378,7 +385,11 @@ for (let i = 0; i < 10; i++) {
 ```warn header="Berhati-hati saat melakukan microbenchmarking/pengujian kemampuan micro"
 Mesin Javascript modern melakukan banyak optimasi. mereka mungkin merekayasa hasil dari "test buatan" dibandingkan dengan "pemakaian normal", terutama ketika kita mengukur kemampuan sesuatu yang sangat kecil, seperti bagaimana operator bekerja, atau fungsi bawaan. Jadi jika kamu sangat serius ingin mengerti tentang performansi, maka pelajarilah bagaiman mesin Javascript bekerja. dan maka kamu mungkin tidak butuh microbenchmarking sama sekali
 
+<<<<<<< HEAD
 Kumpulan artikel yang bagus tentang V8 bisa ditemukan di <http://mrale.ph>.
+=======
+The great pack of articles about V8 can be found at <https://mrale.ph>.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 ```
 
 ## Date.parse dari sebuah string
@@ -409,7 +420,7 @@ Kita bisa secara instan membuat sebuah objek `new Date` dari timestamp:
 ```js run
 let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
 
-alert(date);  
+alert(date);
 ```
 
 ## Ringkasan

@@ -61,7 +61,7 @@ Ketika `pow(x, n)` dipanggil, eksekusinya dibagi menjadi dua cabang:
               if n==1  = x
              /
 pow(x, n) =
-             \       
+             \
               else     = x * pow(x, n - 1)
 ```
 
@@ -287,7 +287,11 @@ Interatif `pow` menggunakan konteks tunggal mengganti `i` dan `result` didalam p
 
 **Rekursi apapun bisa ditulis ulang sebagai perulangan. Varian perulangan biasanya bisa dibuat lebih efektif.**
 
+<<<<<<< HEAD
 ...Tapi terkadang menulis ulang bukanlah hal yang sepele, terutama ketika fungsi menggunakan pemanggilan rekursif yang berbeda tergantung dari kondisi dan menyatukan hasil mereka atau cabangnya lebih rumit. Dan optimasinya mungkin tidak dibutuhkan dan benar-benar menghabiskan tenaga.
+=======
+...But sometimes the rewrite is non-trivial, especially when a function uses different recursive subcalls depending on conditions and merges their results or when the branching is more intricate. And the optimization may be unneeded and totally not worth the efforts.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Rekursi bisa memberikan kode yang lebih pendek, lebih mudah dimengerti dan didukung. Optimasi tidak dibutuhkan di setiap tempat, kebanyakan kita butuh kode yang bagus, itulah kenapa itu digunakan.
 
@@ -538,7 +542,11 @@ Istilah:
     list = { value, next -> list }
     ```
 
+<<<<<<< HEAD
     Pohon seperti pohon elemen HTML atau pohon departemen dari bab ini juga secara natural rekursif: cabang mereka dan setuap cabang mempunyai cabang lainnya.
+=======
+    Trees like HTML elements tree or the department tree from this chapter are also naturally recursive: they have branches and every branch can have other branches.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
     Fungsi rekursif bisa digunakan untuk menyusurinya seperti yang telah kita lihat didalam contoh `sumSalary`.
 

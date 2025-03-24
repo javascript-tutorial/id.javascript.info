@@ -118,7 +118,11 @@ alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 
 ## Bukan hanya sebuah pemanis sintaks belaka
 
+<<<<<<< HEAD
 Terkadang orang-orang mengatakan bahwa `class` adalah sebuah `sintaksis sugar` (sintaks yang diciptakan untuk membuat mudah pembacaan, tapi tidak ada sesuatu yang baru didalamnya), karena kita sebenarnya dapat mendeklasikan objek tanpa menggunakan sintaks `class` sama sekali.
+=======
+Sometimes people say that `class` is a "syntactic sugar" (syntax that is designed to make things easier to read, but doesn't introduce anything new), because we could actually declare the same thing without using the `class` keyword at all:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run
 // menjalankan Class User hanya dengan fungsi
