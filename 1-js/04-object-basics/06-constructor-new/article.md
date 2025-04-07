@@ -1,6 +1,10 @@
 # Konstruktor, operator "new"
 
+<<<<<<< HEAD
 Sintaks reguler `{...}` memungkinkan kita untuk membuat satu objek. Tapi seringkali kita perlu untuk membuat banyak objek-objek serupa, seperti pengguna atau *item* menu berganda dan sebagainya.
+=======
+The regular `{...}` syntax allows us to create one object. But often we need to create many similar objects, like multiple users or menu items and so on.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 Hal tersebut dapat diselesaikan dengan menggunakan fungsi konstruktor dan operator `"new"`.
 
@@ -170,8 +174,13 @@ alert( new SmallUser().name );  // John
 
 Biasanya konstruktor tidak memiliki sebuah pernyataan `return`. Di sini kita menyebutkan perilaku khusus dengan cara mengembalikan objek dengan tujuan utamanya yakni hanya untuk melengkapi saja.
 
+<<<<<<< HEAD
 ````smart header="Mengabaikan parentheses"
 Omong-omong, kita bisa mengabaikan parentheses setelah `new`, jika tidak memiliki argumen:
+=======
+````smart header="Omitting parentheses"
+By the way, we can omit parentheses after `new`:
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 ```js
 let user = new User; // <-- tanpa parentheses
