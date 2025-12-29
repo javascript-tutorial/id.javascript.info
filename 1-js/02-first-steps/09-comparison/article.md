@@ -4,10 +4,17 @@ Kita tahu beberapa operator pembanding dari matematika.
 
 Didalam Javascript operator-operator itu ditulis seperi ini:
 
+<<<<<<< HEAD
 - Lebih besar/kurang dari: <code>a &gt; b</code>, <code>a &lt; b</code>.
 - Lebih besar/kurang dari atau sama: <code>a &gt;= b</code>, <code>a &lt;= b</code>.
 - Sama dengan: `a == b`, perhatikan tanda dua `=` digunakan untuk test persamaan, jika menggunakan satu `=` seperti `a = b` itu adalah sebuah asignment atau memasukan nilai kedalam variabel.
 - Tidak sama dengan: Didalam matematika notasinya seperti <code>&ne;</code>, tetapi didalam Javascript ditulis seperti <code>a != b</code>.
+=======
+- Greater/less than: <code>a &gt; b</code>, <code>a &lt; b</code>.
+- Greater/less than or equals: <code>a &gt;= b</code>, <code>a &lt;= b</code>.
+- Equals: `a == b`, please note the double equality sign `==` means the equality test, while a single one `a = b` means an assignment.
+- Not equals: In maths the notation is <code>&ne;</code>, but in JavaScript it's written as <code>a != b</code>.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 Didalam artikel ini kita akan belajar lebih lanjut tentang perbedaan tipe dari perbandingan, bagaimana cara Javascript membuatnya, termasuk sifat-sifat penting.
 
@@ -206,6 +213,7 @@ Perlakukan pembandingan manapun dengan `undefined/null` kecuali equalitas ketat 
 
 Jangan gunakan pembandingan `>= > < <=` dengan variabel yang bisa jadi `null/undefined`, kecuali kamu paham apa yang kamu lakukan. Jika variabel bisa punya nilai ini, cek mereka secara terpisah.
 
+<<<<<<< HEAD
 ## Kesimpulan
 
 - Operator pembandingan menghasilkan nilai boolean.
@@ -213,3 +221,10 @@ Jangan gunakan pembandingan `>= > < <=` dengan variabel yang bisa jadi `null/und
 - Ketika nilai dari tipe berbeda diperbandingkan, mereka dikonversi ke angka (kecuali pengecekan equalitas ketat).
 - Nilai `null` dan `undefined` sama dengan `==` satu sama lain dan tidak sama dengan nilai lain manapun.
 - Waspada ketika menggunakan pembandingan seperti `>` atau `<` dengan variabel yang kadang bisa jadi `null/undefined`. Pengecekan secara terpisah `null/undefined` merupakan ide yang bagus.
+=======
+- Comparison operators return a boolean value.
+- Strings are compared letter-by-letter in the "dictionary" order.
+- When values of different types are compared, they get converted to numbers (with the exclusion of a strict equality check).
+- The values `null` and `undefined` are equal `==` to themselves and each other, but do not equal any other value.
+- Be careful when using comparisons like `>` or `<` with variables that can occasionally be `null/undefined`. Checking for `null/undefined` separately is a good idea.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
