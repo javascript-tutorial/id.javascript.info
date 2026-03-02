@@ -55,8 +55,13 @@ Algoritma `obj instanceof Class` bekerja kurang lebih sebgai berikut:
     Sebagai contoh:
 
     ```js run
+<<<<<<< HEAD
     // menyiapkan instanceOf yang berasumsi
     // apapun yang memiliki properti canEat adalah binatang
+=======
+    // set up instanceof check that assumes that
+    // anything with canEat property is an animal
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
     class Animal {
       static [Symbol.hasInstance](obj) {
         if (obj.canEat) return true;
@@ -68,7 +73,11 @@ Algoritma `obj instanceof Class` bekerja kurang lebih sebgai berikut:
     alert(obj instanceof Animal); // true: Animal[Symbol.hasInstance](obj) dipanggil
     ```
 
+<<<<<<< HEAD
 2. Kebanyakan kelas tidak memiliki `Symbol.hasInstance`. Dalam kasus ini, logika standar digunakan: `obj instanceOf Class` Memeriksa apakah `Class.prototype` sama dengan salah satu _prototype_ dalam rantai _prototype_`obj` .
+=======
+2. Most classes do not have `Symbol.hasInstance`. In that case, the standard logic is used: `obj instanceof Class` checks whether `Class.prototype` is equal to one of the prototypes in the `obj` prototype chain.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
     Dengan kata lain, bandingkan satu sama lain:
     ```js
@@ -93,7 +102,7 @@ Algoritma `obj instanceof Class` bekerja kurang lebih sebgai berikut:
     alert(rabbit instanceof Animal); // true
     */!*
 
-    // rabbit.__proto__ === Rabbit.prototype
+    // rabbit.__proto__ === Animal.prototype (no match)
     *!*
     // rabbit.__proto__.__proto__ === Animal.prototype (match!)
     */!*
