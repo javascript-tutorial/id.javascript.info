@@ -8,12 +8,16 @@ let newStr = str[0].toUpperCase() + str.slice(1);
 
 Tetapi ada sedikit masalah. Jika `str` bernilai kosong, maka `str[0]` bernilai `undefined`, dan `undefined` tidak memiliki method `toUpperCase()`. Hal tersebut yang menyebabkan error.
 
+<<<<<<< HEAD
 Ada dua cara di sini:
 
 1. Gunakan `str.charAt(0)`, karena method ini selalu mengembalikan string (mungkin kosong).
 2. Tambahkan pengecekan string kosong.
 
 Berikut adalah cara yang kedua:
+=======
+The easiest way out is to add a test for an empty string, like this:
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 ```js run demo
 function ucFirst(str) {
