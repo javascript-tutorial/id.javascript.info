@@ -22,7 +22,7 @@ Tools pengembang akan terbuka pada Console tab secara default.
 
 Nanti tampilannya seperti ini:
 
-![chrome](chrome.png)
+![chrome](chrome.webp)
 
 Tampilan persisnya tools pengembang tergantung versi Chrome kamu. Ia berubah dari masa ke masa tapi tetap serupa.
 
@@ -49,7 +49,11 @@ Look & feel mereka hampir mirip. Sekali kamu tahu cara memakainya (kamu bisa mul
 
 Safari (peramban Mac, tidak didukung Windows/Linux) agak sedikit spesial di sini. Kita harus mengaktifkan "Develop menu" terlebih dulu.
 
+<<<<<<< HEAD
 Buka Preferences dan pergi ke "Advanced" pane. Di sana ada checkbox di sebelah bawah:
+=======
+Open Settings and go to the "Advanced" pane. There's a checkbox at the bottom:
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 ![safari](safari.png)
 
