@@ -1,5 +1,11 @@
+importance: 5
 
+<<<<<<< HEAD
 # Fungsi di dalam if
+=======
+---
+# Function in if
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
 
 Lihatlah kode di bawah ini. Apa hasil dari panggilan fungsi di baris terakhir?
 

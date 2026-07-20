@@ -165,7 +165,11 @@ Pada contoh dibawah ini, `id` diubah sebagai atribut, dan kita dapat melihat bah
 </script>
 ```
 
+<<<<<<< HEAD
 Tetapi ada pengecualian, misalnya `input.value` disinkronkan hanya dari atribut -> ke properti, tapi tidak sebaliknya:
+=======
+But there are exclusions, for instance `input.value` synchronizes only from attribute -> property, but not back:
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
 
 ```html run
 <input />

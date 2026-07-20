@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 Errornya muncul karena `ask` mendapatkan fungsi `loginOk/loginFail` tanpa objeknya.
+=======
+The error occurs because `askPassword` gets functions `loginOk/loginFail` without the object.
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
 
 ketika `ask` memanggil, `loginOk/loginFail` mengasumsikan bahwa `this=undefined`.
 
