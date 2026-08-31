@@ -6,7 +6,7 @@ Tapi di dalam peramban, error tidak terlihat ke pengguna secara default. Jadi, k
 
 Supaya bisa melihat error dan memperoleh informasi berfaedah lainnya dari script, "tools pengembang" ditanamkan di dalam peramban.
 
-Kebanyakan pengembang memakai Chrome atau Firefox untuk pengembangan karena tools pengembangan yang mereka punya paling mantap. Peramban lain punya juga koq, ada with special features, but are usually playing "catch-up" to Chrome or Firefox. So most developers have a "favorite" browser and switch to others if a problem is browser-specific.
+Kebanyakan pengembang memakai Chrome atau Firefox untuk pengembangan karena tools pengembangan yang mereka punya paling mantap. Peramban lain juga memilikinya, ada yang memiliki fitur spesial, biasanya menyamai Chrome atau Firefox. Jadi, kebanyakan pengembang memiliki browser "favorit"-nya sendiri dan berpindah ke yang lainnya, ketika ada masalah yang spesifik dengan browser-nya.
 
 Tools pengembang mengandung banyak manfaat; mereka punya banyak fitur. Untuk memulainya, kita akan belajar cara membuka mereka, mencari error, dan menjalankan perintah JavaScript.
 
@@ -34,9 +34,9 @@ Di bawah pesan error, ada simbol `>` berwarna biru. Ia menandakan "command line"
 Sekarang kita bisa melihat error, dan itu sudah cukup untuk permulaan. Kita nanti akan kembali ke tools pengembang dan mengcover debugging lebih dalam di bab <info:debugging-chrome>.
 
 ```smart header="Multi-line input"
-Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+Biasanya, ketika kita memasukan baris code ke dalam console, dan menekan `key:Enter`, console akan mengeksekusinya.
 
-To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+Untuk memasukan baris baru, tekan `key:Shift+Enter`. Cara ini akan memasukan bagian-bagian panjang dari code JavaScript.
 ```
 
 ## Firefox, Edge, dan lainnya
