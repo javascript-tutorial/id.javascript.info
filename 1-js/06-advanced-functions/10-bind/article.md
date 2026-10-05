@@ -125,7 +125,11 @@ funcUser(); // John
 */!*
 ```
 
+<<<<<<< HEAD
 Disini `func.bin(user)` sebagai sebuah varian dari `func`, dengan nilai tetap `this=user`.
+=======
+Here `func.bind(user)` is a "bound variant" of `func`, with fixed `this=user`.
+>>>>>>> 20208769e528337949e946f526534d61d38bac47
 
 Seluruh argumen dikirim kepada `func` asli "sebagaimana adanya", contoh:
 
@@ -187,8 +191,13 @@ let user = {
 
 let say = user.say.bind(user);
 
+<<<<<<< HEAD
 say("Hello"); // Hello, John (argumen "Hello" dikirim untuk digunakan)
 say("Bye"); // Bye, John ("Bye" dikirim untuk digunakan)
+=======
+say("Hello"); // Hello, John! ("Hello" argument is passed to say)
+say("Bye"); // Bye, John! ("Bye" is passed to say)
+>>>>>>> 20208769e528337949e946f526534d61d38bac47
 ```
 
 ````smart header="Metode yang bermanfaat: `bindAll`"
@@ -202,7 +211,12 @@ for (let key in user) {
 }
 ```
 
+<<<<<<< HEAD
 Librari Javascript juga menyediakan fungsi untuk memudahkan pengikatan/binding masal, contoh [_.bindAll(object, methodNames)](http://lodash.com/docs#bindAll) didalam lodash.
+=======
+JavaScript libraries also provide functions for convenient mass binding , e.g. [_.bindAll(object, methodNames)](https://lodash.com/docs#bindAll) in lodash.
+````
+>>>>>>> 20208769e528337949e946f526534d61d38bac47
 
 
 ## Partial functions/Fungsi sebagian
