@@ -23,7 +23,7 @@ let ladder = {
   }
 };
 
-ladder.up().up().down().up().down().showStep(); // 1
+ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
 ```
 
 Kita juga bisa menuliskan sebuah panggilan di setiap baris. Untuk rantai kode yang panjang jadi lebih mudah dibaca seperti ini:
@@ -33,7 +33,7 @@ ladder
   .up()
   .up()
   .down()
-  .up()
+  .showStep() // 1
   .down()
-  .showStep(); // 1
+  .showStep(); // 0
 ```
